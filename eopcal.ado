@@ -661,6 +661,7 @@ forvalue i = 1/`reps' { ;
 		}; /*}}}*/
 		restore, preserve ;
 }; /*}}}*/
+
 	/* PRINTING {{{*/
 	foreach j in `goindex' `rrindex' {;
 		tempname stat`j' ;

@@ -7,11 +7,11 @@
 *! version 1.0.1 Stephen P. Jenkins, April 1998   STB-48 sg104
 *! Inequality indices, with optional decomposition by population subgroups
 
-program mystat, sortpreserve rclass 
+program ineqstat, sortpreserve rclass 
 
 version 8.2 
 syntax varname(numeric) [aweight fweight] [if] [in] ///
-	[, BYgroup(varname numeric) Welfare Summarize ]
+	[, BYgroup(varname numeric) Welfare SUMmarize SAVing(passthru) ]
 
 if "`summarize'" != "" local summ "summ" 
 if "`welfare'" != ""    local w "w" 
@@ -121,10 +121,10 @@ quietly {
 	lab var `i2' "GE(2)"
 
 	tempvar v9010 v9050 v1050 v7525
-	gen `v9010' = `p90'/`p10' in 1
-	gen `v9050' = `p90'/`p50' in 1
-	gen `v1050' = `p10'/`p50' in 1
-	gen `v7525' = `p75'/`p25' in 1
+	gen `v9010' = `p90'/`p10'
+	gen `v9050' = `p90'/`p50'
+	gen `v1050' = `p10'/`p50'
+	gen `v7525' = `p75'/`p25'
 	lab var `v9010' "p90/p10"
 	lab var `v9050' "p90/p50"
 	lab var `v1050' "p10/p50"
@@ -164,7 +164,7 @@ quietly {
 	return scalar ge1 = `i1'[1] 
 	return scalar ge2 = `i2'[1] 
 		
-	drop `gini' `im1' `i0' `i1' `i2' 
+	*drop `gini' `im1' `i0' `i1' `i2' 
 
 	egen double `edehalf' = sum(`fi' * sqrt(`inc') )  if `touse'
 	replace `edehalf' = (`edehalf')^2 if `touse'
@@ -195,7 +195,7 @@ quietly {
 	return scalar a1 = `a1'[1] 
 	return scalar a2 = `a2'[1] 
 
-	drop `ahalf' `a1' `a2'  
+	*drop `ahalf' `a1' `a2'  
 
 	// results for Yede, welfare indices if requested: 
 
@@ -239,10 +239,9 @@ quietly {
 		return scalar wgini = `wgini'[1]
 
 
-		drop `whalf' `w1' `w2'
+		*drop `whalf' `w1' `w2'
 
 	}
-
 *************************
 * SUBGROUP DECOMPOSITIONS
 *************************
@@ -334,7 +333,7 @@ if "`bygroup'" != "" {
 		local ++i
 	}
 
-	drop `lgmeank' `ginik' `thetak' `nk' `pyk' 
+	*drop `lgmeank' `ginik' `thetak' `nk' `pyk' 
 
 	egen double `withm1' = sum(`fi' * `im1k' / `lambdak') if `touse'
 	egen double `with0' = sum(`fi' * `i0k') if `touse'
@@ -356,7 +355,7 @@ if "`bygroup'" != "" {
 	return scalar within_ge1 = `with1'[1]
 	return scalar within_ge2 = `with2'[1]
 
-	drop `im1k' `i0k' `i1k' `i2k' `withm1' `with0' `with1' `with2' 
+	*drop `im1k' `i0k' `i1k' `i2k' `withm1' `with0' `with1' `with2' 
 
 	** GE index between-group inequalities **
 
@@ -381,7 +380,7 @@ if "`bygroup'" != "" {
 	return scalar between_ge1 = `i1b'[1]
 	return scalar between_ge2 = `i2b'[1]
 
-	drop `im1b' `i0b' `i1b' `i2b' 
+	*drop `im1b' `i0b' `i1b' `i2b' 
 
 	** Subgroup Atkinson and welfare indices **
 
@@ -434,7 +433,7 @@ if "`bygroup'" != "" {
 	return scalar within_a1 = `awith1'[1]
 	return scalar within_a2 = `awith2'[1]
 
-	drop `ahalfk' `a1k' `a2k' `awithh' `awith1' `awith2' `lambdak'
+	*drop `ahalfk' `a1k' `a2k' `awithh' `awith1' `awith2' `lambdak'
 
 	* Atkinson between-group inequality (Blackorby et al., eqn (17))
 
@@ -461,7 +460,7 @@ if "`bygroup'" != "" {
 	return scalar ede1 = `ede1'[1]
 	return scalar ede2 = `ede2'[1]
 
-	drop `ahalfb' `a1b' `a2b' `edehalf' `ede1' `ede2'
+	*drop `ahalfb' `a1b' `a2b' `edehalf' `ede1' `ede2'
 
 	// results for Yede, welfare indices if requested 
 
@@ -485,7 +484,7 @@ if "`bygroup'" != "" {
 			local ++i 
 		}
 
-		drop `edehalfk' `ede1k' `ede2k' 
+		*drop `edehalfk' `ede1k' `ede2k' 
 
 
 		sort `notuse' `bygroup' 
@@ -513,16 +512,130 @@ if "`bygroup'" != "" {
 			local ++i 
 		}
 
-		drop `whalfk' `w1k' `w2k'
+		*drop `whalfk' `w1k' `w2k'
 	}
 
-	drop `wginik' `fi'
-
-
+	*drop `wginik' `fi'
 
 } 	// end of  "`bygroup'"  block for subgroup decompositions
 
-
 } 	// end quietly block
 
+*!Modified by Jay Oh in order to save results as .dta file
+
+local vlist ///
+	gini im1 i0 i1 i2 ///
+	ahalf a1 a2 whalf w1 w2 ///
+	lgmeank ginik thetak nk pyk ///
+	im1k i0k i1k i2k ///
+	withm1 with0 with1 with2 ///
+	im1b i0b i1b i2b  wgini fi ///
+	ahalfk a1k a2k awithh awith1 awith2 lambdak ///
+	ahalfb a1b a2b edehalf ede1 ede2 ///
+	edehalfk ede1k ede2k  ///
+	whalfk w1k w2k v9010 v9050 v1050 v7525 ///
+	wginik 
+
+foreach i of local vlist {
+	capture drop `i'
+	capture rename ``i'' `i'
+}
+/*Variable Label {{{*/
+capture label var gini "Gini index; All obs."
+capture label var im1 "GE(-1); All obs."
+capture label var i0 "GE(0); All obs."
+capture label var i1 "GE(1); All obs."
+capture label var i2 "GE(2); All obs."
+capture label var ahalf "Atkinson(0.5); All obs."
+capture label var a1 "Atkinson(1); All obs."
+capture label var a2 "Atkinson(2); All obs."
+capture label var whalf "SW(0.5); All obs."
+capture label var w1 "SW(1); All obs."
+capture label var w2 "SW(2); All obs."
+capture label var lgmeank "Log mean; Subgrp." 
+capture label var ginik "Gini index; Subgrp."
+capture label var wgini "Sen's welfare index"
+capture label var thetak "Income share; Subgrp." 
+capture label var nk 
+capture label var pyk
+capture label var im1k "GE(-1); Subgrp."
+capture label var i0k "GE(0); Subgrp."
+capture label var i1k "GE(1); Subgrp."
+capture label var i2k"GE(2); Subgrp."
+capture label var withm1 "GE(-1); within."
+capture label var with0 "GE(0); within."
+capture label var with1 "GE(1); within."
+capture label var with2 "GE(2); within."
+capture label var im1b  "GE(-1); between."
+capture label var i0b  "GE(0); between."
+capture label var i1b  "GE(1); between."
+capture label var i2b  "GE(2); between."
+capture label var wginik "Sen's welfare index; Subgrp."
+capture label var fi "% of population"
+capture label var ahalfk "Atkinson(0.5); Subgrp."
+capture label var a1k "Atkinson(1); Subgrp."
+capture label var a2k "Atkinson(2); Subgrp."
+capture label var awithh "Within Atkinson(0.5); Subgrp."
+capture label var awith1 "Within Atkinson(1); Subgrp."
+capture label var awith2 "Within Atkinson(2); Subgrp."
+capture label var lambdak "Relative mean(mu_k/mu); Subgrp."
+capture label var ahalfb "Between Atkinson(0.5); Subgrp."
+capture label var a1b    "Between Atkinson(1); Subgrp."
+capture label var a2b    "Between Atkinson(2); Subgrp."
+capture label var edehalf "EDE of SW(0.5); All obs."
+capture label var ede1 "EDE of SW(1); All obs."
+capture label var ede2 "EDE of SW(2); All obs."
+capture label var edehalfk "EDE of SW(0.5); Subgrp."
+capture label var ede1k "EDE of SW(1); Subgrp."
+capture label var ede2k  "EDE of SW(2); Subgrp."
+capture label var whalfk "SW(0.5); Subgrp."
+capture label var w1k "SW(1); Subgrp."
+capture label var w2k "SW(2); Subgrp."
+capture label var wginik "Sen's welfare index; Subgrp."/*}}}*/
+/*if "`save'" != "" {*/
+	/*if "`welfare'" == ""  & "`bygroup'" == "" {*/
+		/*preserve*/
+		/*keep fi-a2*/
+		/*keep in 1*/
+		/*save `saving' */
+		/*restore*/
+		/*drop gini-a2*/
+	/*}*/
+	/*if "`welfare'" != ""  & "`bygroup'" == "" {*/
+		/*preserve*/
+		/*keep fi-w2*/
+		/*keep in 1*/
+		/*save `saving' */
+		/*restore*/
+		/*drop gini-w2*/
+	/*}*/
+	/*if "`welfare'" == ""  & "`bygroup'" != "" {*/
+		/*preserve*/
+		/*keep `bygroup' gini-a2*/
+		/*replace `bygroup' = 0*/
+		/*keep in 1*/
+		/*save */
+		/*restore, preserve*/
+		/*keep `bygroup' nk-a2b*/
+		/*bys `bygroup' : gen `first' = _n==1*/
+		/*keep if `first'*/
+		/*save `saving'*/
+		/*restore*/
+		/*drop fi-a2b*/
+	/*}*/
+	/*if "`welfare'" != ""  & "`bygroup'" != "" {*/
+		/*preserve*/
+		/*keep `bygroup' fi-w2*/
+		/*replace `bygorup' =0*/
+		/*keep in 1*/
+		/*save */
+		/*restore, preserve*/
+		/*keep `bygroup' nk-w2k*/
+		/*bys `bygroup' : geen `first' = _n==1*/
+		/*keep if `first'*/
+		/*save `saving'*/
+		/*restore*/
+		/*drop fi-w2k*/
+	/*}*/
+pause
 end

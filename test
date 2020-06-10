@@ -1,5 +1,0 @@
-If there’s one feature of Vimscript that will let you bend Vim to your will more than any other, it’s the ability to map keys. Mapping keys lets you tell Vim:
-When I press this key, I want you to do this stuff instead of whatever you would normally do.
-We’re going to start off by mapping keys in normal mode. We’ll talk about how to map keys in insert and other modes in the next chapter.
-Type a few lines of text into a file, then run:
-
