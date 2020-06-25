@@ -1,17 +1,15 @@
 #delimit ;
 capture program drop eopcal;
 program eopcal, byable(recall) rclass sortpreserve;
-
 /* SYNTAX SETTING {{{*/
 syntax varlist(numeric ) [if] [in] [pweight aweight fweight iweight] [using] , ENVironment(varlist numeric )
 	[GOIndex RRIndex(passthru) 
-	CUMDplot KDENplot XRange(numlist min=2 max=2) YRange(numlist min=2 max=2)
-	NOZero REPs(integer 1) TRace(integer 0)] ; /*}}}*/
-
-/* ARGUMENTS CHECKING {{{*/
+	CUMDplot KDENplot XRange(passthru) YRange(passthru) Filename(passthru)
+	NOZero REPs(integer 0) TRace(integer 0)] ; /*}}}*/
+/* ARGUMENTS CHECK LIST {{{*/
 	/** TRACE ON/OFF {{{*/
 	qui capture set trace off ;
-	if ("`trace'" != "") {;
+	if ("`trace'" != "0") {;
 		set trace on ;
 		set traced `trace' ;
 	}; /*}}}*/
@@ -62,11 +60,10 @@ syntax varlist(numeric ) [if] [in] [pweight aweight fweight iweight] [using] , E
 		local rrindex rrindex ;
 	}; /*}}}*/
 /*}}}*/
-
 /* MARKER SETTING {{{*/
 marksample touse  ;
 markout `touse' `environment' ;
-	// CHECK IF THE ACHIEVEMENT CONTAINS POSITIVE INTEGER ONLY{{{*/
+	/* APPLYING NOZERO OPTION TO THE VARLIST {{{*/
 	if "`nozero'" != "" {;
 		count if `varlist' < 0 & `touse' ;
 		noi if r(N) > 0 { ;
@@ -83,11 +80,12 @@ markout `touse' `environment' ;
 		replace `touse' = 0 if `varlist' <= 0 ;
 	}; /*}}}*/
 /*}}}*/
-
 /* CALCULATION {{{*/
 preserve ;
 qui keep if `touse' ;
-if ("`reps'" != "") { ; /*BOOTSTRAP SAMPLING*/
+/*BOOTSTRAP SAMPLING {{{*/
+if (`reps' >= 1) { ;
+	tempname temps tempi temp1 temp2 tempind tempsum ;
 	forvalue i = 1/`reps' { ;
 	bsample ;
 		/* BYABLE SETTING {{{*/
@@ -107,161 +105,117 @@ if ("`reps'" != "") { ; /*BOOTSTRAP SAMPLING*/
 			/*};*/
 			/*}}}*/
 	/* CALCULATION {{{*/
-	foreach j in `goindex' `rrindex' {;
+	if "`goindex'" != "" {;
+		goi `varlist' [`weight' `exp'] , environment(`environment') ;
+		return scalar index = `r(index)' ;
+		return local idxname "goindex" ;
+	};
+	if "`rrindex'" != "" {;
+		rri `varlist' [`weight' `exp'] , environment(`environment') type(`rritype') crit(`rricrit') ;
+		return scalar index = `r(index)' ;
+		return local type  "`r(type)'";
+		return local crit "`r(crit)'";
+		return local idxname "rrindex" ;
+	};
+	mat `tempi'=J(1,2,99);
+		mat `tempi'[1,1] = `i' ;
+		mat `tempi'[1,2] = `r(index)' ;
+		mat `tempind' = (nullmat(`tempind') \ `tempi') ;
+		mat colnames `tempind'= #bst Index ;
+	matrix `temp2' = r(RESULTS) ;
 		if "`goindex'" != "" {;
-			goi `varlist' [`weight' `exp'] , environment(`environment') ;
-			return scalar score = `r(index)' ;
-			return local idxname "goindex" ;
-			return local achname "`varlist'" ;
-			return local evnname "`environment'" ;
+			qui levelsof `environment' , local(typlist) ;
+			local typnum : word count `typlist' ;
+			local t1 = `typnum' + 1 ;
+			matrix `temp1' = J(`t1',1,`i');
 		};
-		if "`rrindex'" != "" {;
-			rri `varlist' [`weight' `exp'] , environment(`environment') type(`rritype') crit(`rricrit') ;
-			return scalar score = `r(index)' ;
-			return scalar diswin = `r(diswin)' ;
-			return scalar dispop = `r(dispop)' ;
-			return scalar totwin = `r(totwin)' ;
-			return scalar totpop = `r(totpop)' ;
-			return local idxname "rrindex" ;
-			return local achname "`varlist'" ;
-			return local evnname "`environment'" ;
+		else if "`rrindex'" != "" {;
+			matrix `temp1' = J(1,1,`i');
 		};
-		if "`cumdplot'" != "" {;
-			cumd `varlist' [`weight' `exp'] , environment(`environment') xrange(`xrange') yrange(`yrange') ;
-		};
-		if "`kdenplot'" != "" {;
-			kden `varlist' [`weight' `exp'] , environment(`environment') xrange(`xrange') yrange(`yrange') ;
-		};
-		mat stat_`j'`i'=J(1,1,99);
-		mat rownames stat_`j'`i'=`j'`i' ;
-		mat colnames stat_`j'`i'=`j' ;
-		mat stat_`j'`i'[1,1] = r(index) ;
-		mat `stat`j''=(nullmat(`stat`j'')\stat_`j'`i') ;
-		mat drop stat_`j'`i' ;
-	}; /*}}}*/
+		matrix colname `temp1' = #bst ;
+		matrix `temps' = (`temp1',`temp2') ;
+		mat `tempsum' = (nullmat(`tempsum') \ `temps') ;
+	 /*}}}*/
 	restore, preserve ;
 	};
+	return local achname "`varlist'" ;
+	return local evnname "`environment'" ;
+	return matrix INDEX = `tempind' ;
+	return matrix RESULTS = `tempsum' ;
 };
+/*}}}*/
+/*NON-BOOTSTRAP {{{*/
 else {;
-		/* BYABLE SETTING {{{*/
-		/*local bylist `_byvars';*/
-		/*local bynu : word count `_byvars' ;*/
-		/*local excnt = _byindex() ;*/
-		/*local bycnt = 1 ;*/
-		/*if _by() {;*/
-			/*while "`bylist'" == "" {;*/
-				/*gettoken byv`bycnt' bylist : bylist ; */
-				/*local ++bycnt;*/
-				/*}; */
+	/* BYABLE SETTING {{{*/
+	/*local bylist `_byvars';*/
+	/*local bynu : word count `_byvars' ;*/
+	/*local excnt = _byindex() ;*/
+	/*local bycnt = 1 ;*/
+	/*if _by() {;*/
+		/*while "`bylist'" == "" {;*/
+			/*gettoken byv`bycnt' bylist : bylist ; */
+			/*local ++bycnt;*/
 			/*}; */
-		/*local idx = _byn1();*/
-		/*foreach j of local _byvars {;*/
-			/*local l_`j' = `j'[`idx'];*/
-			/*};*/
-			/*}}}*/
-		/* CALCULATION {{{*/
-		foreach j in `goindex' `rrindex' {;
-			if "`goindex'" != "" {;
-				goi `varlist' [`weight' `exp'] , environment(`environment') ;
-				return scalar score = `r(index)' ;
-				return scalar gini = `r(gini)' ;
-				return local idxname "goindex" ;
-				return local achname "`varlist'" ;
-				return local evnname "`environment'" ;
-			};
-			if "`rrindex'" != "" {;
-				rri `varlist' [`weight' `exp'] , environment(`environment') type(`rritype') crit(`rricrit') ;
-				return scalar score = `r(index)' ;
-				return scalar diswin = `r(diswin)' ;
-				return scalar dispop = `r(dispop)' ;
-				return scalar totwin = `r(totwin)' ;
-				return scalar totpop = `r(totpop)' ;
-				return local idxname "rrindex" ;
-				return local achname "`varlist'" ;
-				return local evnname "`environment'" ;
-			};
-			if "`cumdplot'" != "" {;
-				cumd `varlist' [`weight' `exp'] , environment(`environment') xrange(`xrange') yrange(`yrange') ;
-			};
-			if "`kdenplot'" != "" {;
-				kden `varlist' [`weight' `exp'] , environment(`environment') xrange(`xrange') yrange(`yrange') ;
-			};
-			mat stat_`j'`i'=J(1,1,99);
-			mat rownames stat_`j'`i'=`j'`i' ;
-			mat colnames stat_`j'`i'=`j' ;
-			mat stat_`j'`i'[1,1] = r(index) ;
-			mat `stat`j''=(nullmat(`stat`j'')\stat_`j'`i') ;
-			mat drop stat_`j'`i' ;
-		}; /*}}}*/
-	restore, preserve ;
-}; /*}}}*/
-
-	/* PRINTING {{{*/
-	foreach j in `goindex' `rrindex' {;
-		tempname stat`j' ;
+		/*}; */
+	/*local idx = _byn1();*/
+	/*foreach j of local _byvars {;*/
+		/*local l_`j' = `j'[`idx'];*/
+		/*};*/
+		/*}}}*/
+	/* CALCULATION {{{*/
+	tempname temp ;
+	if ("`goindex'" != "") {;
+		goi `varlist' [`weight' `exp'] , environment(`environment') ;
+		return scalar index = `r(index)' ;
+		return local idxname "goindex" ;
 	};
-	/*if _by() {;*//*{{{*/
-		/*foreach j of local optlist {;*/
-			/*local tbynu = `bynu' ;*/
-			/*local tnu = `bynu' + 5;*/
-			/*mat report_`j'`excnt'=J(1,`tnu',99) ;*/
-			/*capture drop `j'idx ;*/
-			/*svmat `stat`j'', names(`j'idx);*/
-			/*forvalues k = 1/`bynu' {;*/
-				/*local l : word `k' of `_byvars' ;*/
-				/*mat report_`j'`excnt'[1,`k'] = `l_`l'' ;*/
-			/*};*/
-			/*qui sum `j'idx ;*/
-			/*mat report_`j'`excnt'[1,`++tbynu'] = r(N) ;*/
-			/*mat report_`j'`excnt'[1,`++tbynu'] = r(mean) ;*/
-			/*mat report_`j'`excnt'[1,`++tbynu'] = r(sd) ;*/
-			/*mat report_`j'`excnt'[1,`++tbynu'] = r(min) ;*/
-			/*mat report_`j'`excnt'[1,`++tbynu'] = r(max) ;*/
-		/*};*/
-		/*if _bylastcall() {;*/
-			/*foreach j of local optlist {;*/
-				/*forvalues i = 1/`excnt' {;*/
-					/*mat idx_`j'=(nullmat(idx_`j')\report_`j'`i') ;*/
-				/*};*/
-				/*mat colnames idx_`j' = `_byvars' itrnum idxmean idxsd min max ;*/
-				/*matlist idx_`j' , title(`j') rowtitle(by `environment') ;*/
-				/*return matrix `j' = idx_`j';*/
-			/*};*/
-		/*};*/
-	/*};*/
-	/*else {;*//*}}}*/
-		foreach j in `goindex' `rrindex' {;
-			mat report_`j'=J(1, 5 ,99) ;
-			capture drop `j'idx ;
-			svmat `stat`j'', names(`j'idx);
-			qui sum `j'idx ;
-				mat report_`j'[1,1] = r(N) ;
-				mat report_`j'[1,2] = r(mean) ;
-				mat report_`j'[1,3] = r(sd) ;
-				mat report_`j'[1,4] = r(min) ;
-				mat report_`j'[1,5] = r(max) ;
-			mat colnames report_`j' = itrnum idxmean idxsd min max ;
-			matlist report_`j' , title(`j')  rowtitle(by `bygroup') ;
-			return matrix `j' = report_`j' ;
-		};
-	/*};*/ /*}}}*/
+	if ("`rrindex'" != "") {;
+		rri `varlist' [`weight' `exp'] , environment(`environment') type(`rritype') crit(`rricrit') ;
+		return scalar index = `r(index)' ;
+		return local type  "`r(type)'";
+		return local crit "`r(crit)'";
+		return local idxname "rrindex" ;
+	};
+	if ("`cumdplot'" != "") {;
+		cumd `varlist' [`weight' `exp'] , environment(`environment') `xrange' `yrange' `filename' ;
+	}
+	if ("`kdenplot'" != "") {;
+		kden `varlist' [`weight' `exp'] , environment(`environment') `xrange' `yrange' `filename' ;
+	};
+	return local achname "`varlist'" ;
+	return local evnname "`environment'" ;
+	if ("`goindex'" != "")|("`rrindex'" != "") {;
+		matrix `temp' = r(RESULTS) ;
+		return matrix RESULTS = `temp' ;
+	};
+	restore, preserve ;
+/*}}}*/
+};
+/*}}}*/
+/*}}}*/
 end;
 
 /* SUB PROGRAM {{{*/
-
-/** GOINDEX PROGRAM {{{*/
+/* GOINDEX PROGRAM {{{*/
 capture program drop goi ;
 program define goi , rclass; 
-	syntax varname [fw aw pw iw] , ENVironment(varlist numeric) ;
+syntax varlist [fw aw pw iw] , ENVironment(varlist numeric) ;
 
-tempname envm ginim senm countm populm ;
+tempname envm ginim senm countm populm tempg ;
 qui levelsof `environment' , local(typlist) ;
 local typnum : word count `typlist' ;
-local envvalue : value lable `environment' ;
+local envvalue : value label `environment' ;
+mat `envm'=J(`typnum', 1 ,99) ;
+mat `ginim'=J(`typnum', 1 ,99) ;
+mat `senm'=J(`typnum', 1 ,99) ;
+mat `countm'=J(`typnum', 1 ,99) ;
+mat `populm'=J(`typnum', 1 ,99) ;
 
-sum `varlist' [`weight' `exp'] if `touse' , meanonly ;
-	local gsumw = r(sum_w);
-	local gmean = r(mean);
+sum `varlist' [`weight' `exp'] , meanonly ;
+local gsumw = r(sum_w);
+local gmean = r(mean);
+qui count ;
+local gn = r(N);
 
 qui ineqdeco `varlist' [`weight' `exp'] , bygroup(`environment') welfare ;
 local ggini = r(gini) ; /* Grand Gini */
@@ -272,191 +226,192 @@ forvalues i=1/`typnum'{;
 	matrix `envm'[`i',1]=`j' ;
 	matrix `ginim'[`i',1]=r(gini_`j') ;
 	matrix `senm'[`i',1]=r(wgini_`j') ;
-	qui count if `environment' == `j' ;
-	matrix `countm'[`i',1] = r(N) ;
 	matrix `populm'[`i',1] = r(sumw_`j')/`gsumw' ;
 	local rowname `rowname' `jlabel' ;
 } ;
-matrix results = (`envm',`ginim',`senm',`countm', `populm') ;
-matrix colname results = Env. Gini Sen's  #Obs. %Pop ;
-matrix rowname results = `rowname' ;
+forvalues i=1/`typnum'{;
+	local j : word `i' of `typlist' ;
+	qui count if `environment' == `j' ;
+	matrix `countm'[`i',1] = r(N) ;
+} ;
+sum `varlist' [`weight' `exp'] , meanonly ;
+matrix `tempg' = (-1 , `ggini' , `gsen' , `gn' , 1 ) ;
+matrix rowname `tempg' = All ;
+matrix RESULTS = (`envm',`ginim',`senm',`countm', `populm') ;
+matrix rowname RESULTS = `rowname' ;
+matrix RESULTS = (`tempg' \ RESULTS) ;
+matrix colname RESULTS = Env Gini Sen  #Obs %Pop ;
 
 local count = 1 ;
+local go = 0 ;
 while (`count' < `typnum') { ;
 	local cplus = `count' +1 ;
 	forvalues j=`cplus'/`typnum'{ ;
-		local go = `go' + `popul'[`count',1]*`popul'[`j',1]*abs(`sen'[`i',1]-`sen'[`j',1]) ;
+		local go = `go' + `populm'[`count',1]*`populm'[`j',1]*abs(`senm'[`count',1]-`senm'[`j',1]) ;
 	} ;
-	local count = `i' + 1 ;
+	local count = `count' + 1 ;
 } ;
+
 local go = `go'/`gmean' ;
 return scalar index = `go' ;
-return matrix Results = results ;
-end ;
-/*}}}*/
-/** RRINDEX PROGRAM {{{*/
+return matrix RESULTS = RESULTS ;
+end ; /*}}}*/
+/* RRINDEX PROGRAM {{{*/
 capture program drop rri ;
 program define rri , rclass; 
-	syntax varname [fw aw pw iw] , ENVironment(varlist numeric) TYPE(str) CRIT(real) ;
+syntax varlist [fw aw pw iw] , ENVironment(varlist numeric) TYPE(str) CRIT(real) ;
+return local type  "`type'" ;
+return local crit  "`crit'" ;
 
-	tempvar one ;
+tempvar one ;
+qui levelsof `environment' , local(typlist) ;
+local typnum : word count `typlist' ;
+local disadv : word 1 of `typlist' ;
 
-	qui levelsof `environment' , local(typlist) ;
-	local typnum : word count `typlist' ;
-	local disadv : word 1 of `typlist' ;
-	di as txt "We consider the group `disadv' of `environment' as the disadvantaged group";
+gen `one' = 1;
+sum `one' [`weight' `exp'] , meanonly ;
+local totpop = r(sum_w) ; /*Grand Population*/
+sum `one' if `environment' == `disadv' [`weight' `exp'] , meanonly ;
+local dispop = r(sum_w) ; /*Population of the Disadvantage Grouop*/
 
-	gen `one' = 1;
-	sum `one' [`weight' `exp'] , meanonly ;
-	local totpop = r(sum_w) ; /*Grand Population*/
-	sum `one' if `environment' == `disadv' [`weight' `exp'] , meanonly ;
-	local dispop = r(sum_w) ; /*Population of the Disadvantage Grouop*/
+if ("`type'" == "score") {;
+	sum `one' [`weight' `exp'] if `varlist' >= `crit' , meanonly ;
+	local totwin = r(sum_w) ;
+	sum `one' if `environment' == `disadv' & `varlist' >= `crit' [`weight' `exp'] , meanonly ;
+	local diswin = r(sum_w) ;
+};
+else if ("`type'" == "type") {;
+	sum `one' [`weight' `exp'] if `varlist' == `crit' , meanonly ;
+	local totwin = r(sum_w) ;
+	sum `one' if `environment' == `disadv' & `varlist' == `crit' [`weight' `exp'] , meanonly ;
+	local diswin = r(sum_w) ;
+};
+else if ("`type'" == "percent") {;
+	local crit = 100 - `crit' ;
+	_pctile `varlist' [`weight' `exp'] , p( `crit') ;
+	local crit = r(r1);
+	sum `one' if `varlist' >= `crit' [`weight' `exp'] , meanonly ;
+	local totwin = r(sum_w) ;
+	sum `one' if `environment' == `disadv' & `varlist' >= `crit' [`weight' `exp'] , meanonly ;
+	local diswin = r(sum_w) ;
+};
 
-	if ("`type'" == "score") {;
-		sum `one' [`weight' `exp'] if `varlist' >= `crit' , meanonly ;
-		local totwin = r(sum_w) ;
-		sum `one' if `environment' == `disadv' & `varlist' >= `crit' [`weight' `exp'] , meanonly ;
-		local diswin = r(sum_w) ;
-	};
-	else if ("`type'" == "type") {;
-		sum `one' [`weight' `exp'] if `varlist' == `crit' , meanonly ;
-		local totwin = r(sum_w) ;
-		sum `one' if `environment' == `disadv' & `varlist' == `crit' [`weight' `exp'] , meanonly ;
-		local diswin = r(sum_w) ;
-	};
-	else if ("`type'" == "percent") {;
-		local crit = 100 - `crit' ;
-		_pctile `varlist' [`weight' `exp'] , p( `crit') ;
-		local crit = r(r1);
-		sum `one' if `varlist' >= `crit' [`weight' `exp'] , meanonly ;
-		local totwin = r(sum_w) ;
-		sum `one' if `environment' == `disadv' & `varlist' >= `crit' [`weight' `exp'] , meanonly ;
-		local diswin = r(sum_w) ;
-	};
-	local rr = 1 - (`diswin'/`totwin')/(`dispop'/`totpop') ;
-	return scalar index = `rr' ;
+local rr = 1 - (`diswin'/`totwin')/(`dispop'/`totpop') ;
+return scalar index = `rr' ;
 
-	matrix Results =(`disadv' , `type', `crit', `diswin' , `dispop' , `totwin' , `totpop') ;
-	matrix colname Results = Disadv.type Succ.type Succ.crit #Succ.&Disadv. #Disadv. #Succ. #Pop ;
-	return matrix Results ;
-end;
-/*}}}*/
-/** CUMDPLOT PROGRAM {{{*/
-capture program drop cumd;
+matrix RESULTS =(`disadv' , `diswin' , `dispop' , `totwin' , `totpop') ;
+matrix colname RESULTS = Disadv_type #Succ_Disadv #Disadv #Succ #Pop ;
+return matrix RESULTS = RESULTS ;
+
+end; /*}}}*/
+/* CUMDPLOT PROGRAM {{{*/
 program define cumd, byable(recall);
-	syntax varlist [if] [in] [fw aw pw iw] 
-		, ENVironment(varlist numeric) [ XRange(numlist min=2 max=2 >0 ascending) YRange(numlist min=2 max=2 >0 <100 ascending)] ;
-	/******************************** LABELING ******************************/
-	qui levelsof `environment', local(envlist);
-	local lbg : variable label `environment';
-	local lbs : variable label `varlist';
-	local lbe : value label `environment';
-	local lvscnt = 1;
-	foreach i of local envlist {;
-		local lbv`i' : label `lbe' `i';
-		local labels `labels' label(`lvscnt' `lbv`i'') ;
-		local ++lvscnt;
-		};
-	/******************************** GEN CUMUL ******************************/
-	foreach i of local envlist {;
-		local cvar  c`environment'`i';
-		local cvarlist `cvarlist' `cvar';
-		local cvar2list `cvar2list' `cvar' `varlist';
-		cumul `varlist' [`weight' `exp'] if `environment'==`i', equal gen(c`environment'`i');
-		label variable `cvar' `"`lbv`i''"'; 
-		};
-	/******************************** RANGE RESTRICTION ******************************/
-	if `"`yrange'"' != "" {;
-		gettoken ymin ymax : yrange ;
-		local yymin = `ymin'/100 ;
-		local yymax = `ymax'/100 ;
-		foreach i of local envlist {;
-			qui replace c`environment'`i'=. if `environment' == `i' &
-				(c`environment'`i' < `yymin' | c`environment'`i' > `yymax') ; 
-			};
-		};
-	stack `cvar2list', into (c c`environment') wide;
-	if `"`xrange'"' != "" {;
-		gettoken xmin xmax : xrange ;
-		qui replace c`environment'=. if  c`environment'< `xmin' | c`environment'> `xmax' ;
-		};
-	/******************************** DRAWING ******************************/
-	line `cvarlist' c`environment',
-		sort ylab(, grid) ytitle("CDF") 
-		xlab(, grid) xtitle("`lbs'", size(vlarge))
-		legend( region(lpattern(blank) color(none)) pos(5) ring(0) col(1) `labels' );
-	/******************************** SAVING ******************************/
-	local i = _byindex();
-	capture mkdir figure;
-	if _by() {;
-		graph save "`c(pwd)'`c(dirsep)'figure`c(dirsep)'`environment'_cum_`varlist'_`_byvars'_`i'",replace;
-		graph export "`c(pwd)'`c(dirsep)'figure`c(dirsep)'`environment'_cum_`varlist'_`_byvars'_`i'.png", as(png) replace;
-	};
-	else if _by() == 0 {;
-		graph save "`c(pwd)'`c(dirsep)'figure`c(dirsep)'`environment'_cum_`varlist'_",replace;
-		graph export "`c(pwd)'`c(dirsep)'figure`c(dirsep)'`environment'_cum_`varlist'.png", as(png) replace;
-	};
-	end;/*}}}*/
-/** KDENPLOT PROGRAM {{{*/
-capture program drop kden;
-program define kden, byable(recall);
-	syntax varname [if] [in] [fw aw pw iw] ,
-		ENVironment(varlist numeric) [ Number(integer 500) Kernel(string)
-		XRange(numlist min=2 max=2 >0 ascending) YRange(numlist min=2 max=2 >0 <100 ascending)] ;
+syntax varlist [if] [in] [fw aw pw iw] 
+	, ENVironment(varlist numeric) [ XRange(numlist min=2 max=2 >0 ascending) YRange(numlist min=2 max=2 >0 <1 ascending) Filename(name max=1) ] ;
 /******************************** LABELING ******************************/
-	qui levelsof `environment', local(envlist);
-	local lbg : variable label `environment';
-	local lbs : variable label `varlist';
-	local lbe : value label `environment';	
-	local lvscnt = 1;
-	foreach i of local envlist {;
-		local lbv`i' : label `lbe' `i';
-		local labels `labels' label(`lvscnt' `lbv`i'') ;
-		local ++lvscnt;
-		};
+qui levelsof `environment', local(envlist);
+local varlabel : variable label `varlist';
+local envvalue : value label `environment';
+local count = 1;
+foreach i of local envlist {;
+	local lbv`i' : label `envvalue' `i';
+	local labels `labels' label(`count' `lbv`i'') ;
+	local ++count;
+};
 /******************************** GEN CUMUL ******************************/
-	kdensity `varlist' [`weight' `exp'] , n(`number') nograph gen(x c`environment') kernel(`kernel');
+foreach i of local envlist {;
+	local cvar  c`environment'`i';
+	local cvarlist `cvarlist' `cvar';
+	local cvar2list `cvar2list' `cvar' `varlist';
+	cumul `varlist' [`weight' `exp'] if `environment'==`i', equal gen(c`environment'`i');
+	label variable `cvar' `"`lbv`i''"';
+};
+/******************************** RANGE RESTRICTION ******************************/
+if `"`yrange'"' != "" {;
+	gettoken ymin ymax : yrange ;
+	local yymin = `ymin' ;
+	local yymax = `ymax' ;
 	foreach i of local envlist {;
-		local cv  c`environment'`i';
-		local cvlist `cvlist' `cv';
-		kdensity `varlist' [`weight' `exp'] if `environment'==`i', nograph gen(c`environment'`i') at(x) kernel(`kernel');
-		label var c`environment'`i' `"`lbv`i''"'; 
-		};
-	if `"`yrange'"' != "" {;
-		gettoken ymin ymax : yrange ;
-		local yymin = `ymin'/100 ;
-		local yymax = `ymax'/100 ;
-		foreach i of local envlist {;
-			qui replace c`environment'`i'=. if `environment' == `i' &
-				(c`environment'`i' < `yymin' | c`environment'`i' > `yymax') ; 
-			};
-		};
-	if `"`xrange'"' != "" {;
-		gettoken xmin xmax : xrange ;
-		foreach i of local envlist {;
-			qui replace c`environment'=. if  c`environment'< `xmin' | c`environment'> `xmax' ;
-		};
+		qui replace c`environment'`i' = . if inlist(`environment' , `i') &
+			inrange(c`environment'`i' ,  `yymin' , `yymax') ;
 	};
+};
+stack `cvar2list', into (c c`environment') wide;
+if `"`xrange'"' != "" {;
+	gettoken xmin xmax : xrange ;
+	qui replace c`environment'=. if inrange( c`environment' , `xmin' , `xmax') ;
+};
+/******************************** DRAWING ******************************/
+line `cvarlist' c`environment',
+	sort ylab(, grid) ytitle("CDF") 
+	xlab(, grid) xtitle("`varlabel'", size(vlarge))
+	legend( region(lpattern(blank) color(none)) pos(5) ring(0) col(1) `labels' );
+/******************************** SAVING ******************************/
+capture mkdir figure;
+if ("`filename'" != "") { ;
+	graph save "`c(pwd)'`c(dirsep)'figure`c(dirsep)'`filename'",replace;
+	graph export "`c(pwd)'`c(dirsep)'figure`c(dirsep)'`filename'.png", as(png) replace;
+};
+else { ;
+	graph save "`c(pwd)'`c(dirsep)'figure`c(dirsep)'`environment'_cumd_`varlist'_",replace;
+	graph export "`c(pwd)'`c(dirsep)'figure`c(dirsep)'`environment'_cumd_`varlist'.png", as(png) replace;
+};
+end; /*}}}*/
+/* KDENPLOT PROGRAM {{{*/
+program define kden, ;
+syntax varname [if] [in] [fw aw pw iw] ,
+	ENVironment(varlist numeric) [ Number(integer 500) Kernel(string)
+	XRange(numlist min=2 max=2 >0 ascending) YRange(numlist min=2 max=2 >0 <100 ascending) Filename(name max=1)] ;
+/******************************** LABELING ******************************/
+qui levelsof `environment', local(envlist);
+local varlabel : variable label `varlist';
+local envvalue : value label `environment';
+local count = 1;
+foreach i of local envlist {;
+	local lbv`i' : label `envvalue' `i';
+	local labels `labels' label(`count' `lbv`i'') ;
+	local ++count;
+};
+/******************************** GEN CUMUL ******************************/
+qui kdensity `varlist' [`weight' `exp'] , n(`number') nograph gen(x c`environment') kernel(`kernel');
+foreach i of local envlist {;
+	local cv  c`environment'`i';
+	local cvlist `cvlist' `cv';
+	kdensity `varlist' [`weight' `exp'] if inlist(`environment' , `i') , nograph gen(c`environment'`i') at(x) kernel(`kernel');
+	label var c`environment'`i' `"`lbv`i''"';
+};
+if `"`yrange'"' != "" {;
+	gettoken ymin ymax : yrange ;
+	local yymin = `ymin' ;
+	local yymax = `ymax' ;
+	foreach i of local envlist {;
+		qui replace c`environment'`i'=. if inlist( `environment' , `i') &
+			inrange(c`environment'`i' , `yymin' , `yymax') ;
+	};
+};
+if `"`xrange'"' != "" {;
+	gettoken xmin xmax : xrange ;
+	foreach i of local envlist {;
+		qui replace c`environment'=. if  inrange(c`environment' , `xmin' , `xmax' ) ;
+	};
+};
 /******************************** Drawing ******************************/
-	line `cvlist' x ,
-	sort ytitle(Density)
-		xtitle("`lbs'", size(vlarge))
-		legend( region(lpattern(blank) color(none)) pos(1) ring(0) col(1) `labels'  );		
+line `cvlist' x ,
+sort ytitle(Density)
+xtitle("`varlabel'", size(vlarge))
+	legend( region(lpattern(blank) color(none)) pos(1) ring(0) col(1) `labels'  );
 /******************************** Saving ******************************/
-	local i = _byindex();
-	capture mkdir figure;
-	if _by() {;
-		graph save "`c(pwd)'`c(dirsep)'figure`c(dirsep)'`environment'_kdn_`varlist'_`_byvars'_`i'",replace;
-		graph export "`c(pwd)'`c(dirsep)'figure`c(dirsep)'`environment'_kdn_`varlist'_`_byvars'_`i'.png", as(png) replace;
-	};
-	else if _by() == 0 {;
-		graph save "`c(pwd)'`c(dirsep)'figure`c(dirsep)'`environment'_kdn_`varlist'",replace;
-		graph export "`c(pwd)'`c(dirsep)'figure`c(dirsep)'`environment'_kdn_`varlist'.png", as(png) replace;
-	};
-end;
+capture mkdir figure ;
+if ("`filename'" != "") { ;
+	graph save "`c(pwd)'`c(dirsep)'figure`c(dirsep)'`filename'",replace;
+	graph export "`c(pwd)'`c(dirsep)'figure`c(dirsep)'`filename'.png", as(png) replace;
+};
+else { ;
+	graph save "`c(pwd)'`c(dirsep)'figure`c(dirsep)'`environment'_kden_`varlist'",replace;
+	graph export "`c(pwd)'`c(dirsep)'figure`c(dirsep)'`environment'_kden_`varlist'.png", as(png) replace;
+};
+end; /*}}}*/
 /*}}}*/
-/*}}}*/
-exit;
 #delimit cr
 
 *! Created by Jay Oh on 18th Aug 2017.
