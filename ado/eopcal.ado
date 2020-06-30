@@ -2,10 +2,12 @@
 capture program drop eopcal;
 program eopcal, byable(recall) rclass sortpreserve;
 /* SYNTAX SETTING {{{*/
-syntax varlist(numeric ) [if] [in] [pweight aweight fweight iweight] [using] , ENVironment(varlist numeric )
-	[GOIndex RRIndex(passthru) 
-	CUMDplot KDENplot XRange(passthru) YRange(passthru) Filename(passthru)
-	NOZero REPs(integer 0) TRace(integer 0)] ; /*}}}*/
+syntax varlist(numeric ) [if] [in] [pweight aweight fweight iweight] [using] , ENVironment(varname numeric )
+	[GOIndex 
+	 RRIndex(passthru) 
+	 CUMDplot KDENplot XRange(passthru) YRange(passthru) Filename(passthru)
+	 NOZero REPs(integer 0) Seed(integer 10101)
+	 TRace(integer 0)] ; /*}}}*/
 /* ARGUMENTS CHECK LIST {{{*/
 	/** TRACE ON/OFF {{{*/
 	qui capture set trace off ;
@@ -31,14 +33,12 @@ syntax varlist(numeric ) [if] [in] [pweight aweight fweight iweight] [using] , E
 		qui gen `wgt' = round(`wvar' , 1) ; 
 		local exp = "=`wgt'" ;
 	};/*}}}*/
-	/** CHECK IF THE ENVIRONMENT CONTAINS WRONG VALUE {{{*/
-	if "`environment'" != "" {;
-		capture levelsof `environment' if `touse' , local(gp);
-		foreach x of local gp {;
-			if (int(`x') != `x') | (`x' < 0) { ;
-				di as error "`environment' should have positive integers only";
-				exit 459;
-			};
+	/** CHECK IF THE ENVIRONMENT CONTAINS NONPOSITIVE VALUE {{{*/
+	levelsof `environment' , local(gp);
+	foreach x of local gp {;
+		if (int(`x') != `x') | (`x' < 0) { ;
+			di as error "`environment' should have positive integers only";
+			exit 459;
 		};
 	}; /*}}}*/
 	/** CHECK IF THE OPTION RRINDEX HAS THE FORM OF (TYPE , CRITERA) {{{*/
@@ -49,12 +49,12 @@ syntax varlist(numeric ) [if] [in] [pweight aweight fweight iweight] [using] , E
 		local rritype = strltrim(strrtrim("`rritype'"));
 		local rricrit = strltrim(strrtrim(subinstr("`rricrit'" , ",","",1)));
 		if("`rritype'" != "type" & "`rritype'" != "percent" & "`rritype'" != "score") {;
-			di as error "ERROR in RRindex type." _n "The following values are admitted: type, percent and score.";
+			di as error "ERROR in RRindex type." as text "The following values are admitted: type, percent and score.";
 			exit ;
 		};
 		captur confirm number `rricrit' ; 
 		if _rc != 0 {;
-			di as error "ERROR in RRindex critera." _n "An appropriate number is required";
+			di as error "ERROR in RRindex critera." as text "An appropriate number is required";
 			exit ;
 		};
 		local rrindex rrindex ;
@@ -63,8 +63,8 @@ syntax varlist(numeric ) [if] [in] [pweight aweight fweight iweight] [using] , E
 /* MARKER SETTING {{{*/
 marksample touse  ;
 markout `touse' `environment' ;
-	/* APPLYING NOZERO OPTION TO THE VARLIST {{{*/
-	if "`nozero'" != "" {;
+	/** APPLYING NOZERO OPTION TO THE VARLIST {{{*/
+	if ("`nozero'" != "") {;
 		count if `varlist' < 0 & `touse' ;
 		noi if r(N) > 0 { ;
 			di " " ;
@@ -83,11 +83,12 @@ markout `touse' `environment' ;
 /* CALCULATION {{{*/
 preserve ;
 qui keep if `touse' ;
-/*BOOTSTRAP SAMPLING {{{*/
+/** BOOTSTRAP SAMPLING : GOI and RRI {{{*/
 if (`reps' >= 1) { ;
+	set seed `seed' ;
 	tempname temps tempi temp1 temp2 tempind tempsum ;
 	forvalue i = 1/`reps' { ;
-	bsample ;
+		bsample ;
 		/* BYABLE SETTING {{{*/
 		/*local bylist `_byvars';*/
 		/*local bynu : word count `_byvars' ;*/
@@ -104,47 +105,47 @@ if (`reps' >= 1) { ;
 			/*local l_`j' = `j'[`idx'];*/
 			/*};*/
 			/*}}}*/
-	/* CALCULATION {{{*/
-	if "`goindex'" != "" {;
-		goi `varlist' [`weight' `exp'] , environment(`environment') ;
-		return scalar index = `r(index)' ;
-		return local idxname "goindex" ;
-	};
-	if "`rrindex'" != "" {;
-		rri `varlist' [`weight' `exp'] , environment(`environment') type(`rritype') crit(`rricrit') ;
-		return scalar index = `r(index)' ;
-		return local type  "`r(type)'";
-		return local crit "`r(crit)'";
-		return local idxname "rrindex" ;
-	};
-	mat `tempi'=J(1,2,99);
-		mat `tempi'[1,1] = `i' ;
-		mat `tempi'[1,2] = `r(index)' ;
-		mat `tempind' = (nullmat(`tempind') \ `tempi') ;
-		mat colnames `tempind'= #bst Index ;
-	matrix `temp2' = r(RESULTS) ;
+		/* CALCULATION {{{*/
 		if "`goindex'" != "" {;
-			qui levelsof `environment' , local(typlist) ;
-			local typnum : word count `typlist' ;
-			local t1 = `typnum' + 1 ;
-			matrix `temp1' = J(`t1',1,`i');
+			goi `varlist' [`weight' `exp'] , environment(`environment') ;
+			return scalar index = `r(index)' ;
+			return local idxname "goindex" ;
 		};
-		else if "`rrindex'" != "" {;
-			matrix `temp1' = J(1,1,`i');
+		if "`rrindex'" != "" {;
+			rri `varlist' [`weight' `exp'] , environment(`environment') type(`rritype') crit(`rricrit') ;
+			return scalar index = `r(index)' ;
+			return local type  "`r(type)'";
+			return local crit "`r(crit)'";
+			return local idxname "rrindex" ;
 		};
-		matrix colname `temp1' = #bst ;
-		matrix `temps' = (`temp1',`temp2') ;
-		mat `tempsum' = (nullmat(`tempsum') \ `temps') ;
-	 /*}}}*/
-	restore, preserve ;
+		mat `tempi'=J(1,2,99);
+			mat `tempi'[1,1] = `i' ;
+			mat `tempi'[1,2] = `r(index)' ;
+			mat `tempind' = (nullmat(`tempind') \ `tempi') ;
+			mat colnames `tempind'= #bst Index ;
+		matrix `temp2' = r(RESULTS) ;
+			if "`goindex'" != "" {;
+				qui levelsof `environment' , local(typlist) ;
+				local typnum : word count `typlist' ;
+				local t1 = `typnum' + 1 ;
+				matrix `temp1' = J(`t1',1,`i');
+			};
+			else if "`rrindex'" != "" {;
+				matrix `temp1' = J(1,1,`i');
+			};
+			matrix colname `temp1' = #bst ;
+			matrix `temps' = (`temp1',`temp2') ;
+			mat `tempsum' = (nullmat(`tempsum') \ `temps') ;
+		 /*}}}*/
+		restore, preserve ;
 	};
 	return local achname "`varlist'" ;
 	return local evnname "`environment'" ;
-	return matrix INDEX = `tempind' ;
-	return matrix RESULTS = `tempsum' ;
+	return matrix index = `tempind' ;
+	return matrix results = `tempsum' ;
 };
 /*}}}*/
-/*NON-BOOTSTRAP {{{*/
+/** NON-BOOTSTRAP : GOI, RRI, CUMD and KDEN {{{*/
 else {;
 	/* BYABLE SETTING {{{*/
 	/*local bylist `_byvars';*/
@@ -178,15 +179,16 @@ else {;
 	};
 	if ("`cumdplot'" != "") {;
 		cumd `varlist' [`weight' `exp'] , environment(`environment') `xrange' `yrange' `filename' ;
-	}
+	};
 	if ("`kdenplot'" != "") {;
 		kden `varlist' [`weight' `exp'] , environment(`environment') `xrange' `yrange' `filename' ;
 	};
 	return local achname "`varlist'" ;
 	return local evnname "`environment'" ;
 	if ("`goindex'" != "")|("`rrindex'" != "") {;
-		matrix `temp' = r(RESULTS) ;
-		return matrix RESULTS = `temp' ;
+		matrix `temp' = r(results) ;
+		return matrix results = `temp' ;
+		di as text "Index = " as result %5.4f `r(index)' ;
 	};
 	restore, preserve ;
 /*}}}*/
@@ -196,7 +198,7 @@ else {;
 end;
 
 /* SUB PROGRAM {{{*/
-/* GOINDEX PROGRAM {{{*/
+/** GOINDEX PROGRAM {{{*/
 capture program drop goi ;
 program define goi , rclass; 
 syntax varlist [fw aw pw iw] , ENVironment(varlist numeric) ;
@@ -237,10 +239,10 @@ forvalues i=1/`typnum'{;
 sum `varlist' [`weight' `exp'] , meanonly ;
 matrix `tempg' = (-1 , `ggini' , `gsen' , `gn' , 1 ) ;
 matrix rowname `tempg' = All ;
-matrix RESULTS = (`envm',`ginim',`senm',`countm', `populm') ;
-matrix rowname RESULTS = `rowname' ;
-matrix RESULTS = (`tempg' \ RESULTS) ;
-matrix colname RESULTS = Env Gini Sen  #Obs %Pop ;
+matrix results = (`envm',`ginim',`senm',`countm', `populm') ;
+matrix rowname results = `rowname' ;
+matrix results = (`tempg' \ RESULTS) ;
+matrix colname results = Env Gini Sen  #Obs %Pop ;
 
 local count = 1 ;
 local go = 0 ;
@@ -254,9 +256,9 @@ while (`count' < `typnum') { ;
 
 local go = `go'/`gmean' ;
 return scalar index = `go' ;
-return matrix RESULTS = RESULTS ;
+return matrix results = results ;
 end ; /*}}}*/
-/* RRINDEX PROGRAM {{{*/
+/** RRINDEX PROGRAM {{{*/
 capture program drop rri ;
 program define rri , rclass; 
 syntax varlist [fw aw pw iw] , ENVironment(varlist numeric) TYPE(str) CRIT(real) ;
@@ -299,12 +301,12 @@ else if ("`type'" == "percent") {;
 local rr = 1 - (`diswin'/`totwin')/(`dispop'/`totpop') ;
 return scalar index = `rr' ;
 
-matrix RESULTS =(`disadv' , `diswin' , `dispop' , `totwin' , `totpop') ;
-matrix colname RESULTS = Disadv_type #Succ_Disadv #Disadv #Succ #Pop ;
-return matrix RESULTS = RESULTS ;
+matrix results =(`disadv' , `diswin' , `dispop' , `totwin' , `totpop') ;
+matrix colname results = Disadv_type #Succ_Disadv #Disadv #Succ #Pop ;
+return matrix results = results ;
 
 end; /*}}}*/
-/* CUMDPLOT PROGRAM {{{*/
+/** CUMDPLOT PROGRAM {{{*/
 program define cumd, byable(recall);
 syntax varlist [if] [in] [fw aw pw iw] 
 	, ENVironment(varlist numeric) [ XRange(numlist min=2 max=2 >0 ascending) YRange(numlist min=2 max=2 >0 <1 ascending) Filename(name max=1) ] ;
@@ -339,7 +341,7 @@ if `"`yrange'"' != "" {;
 stack `cvar2list', into (c c`environment') wide;
 if `"`xrange'"' != "" {;
 	gettoken xmin xmax : xrange ;
-	qui replace c`environment'=. if inrange( c`environment' , `xmin' , `xmax') ;
+	qui replace c`environment' =. if !inrange( c`environment' , `xmin' , `xmax' ) ;
 };
 /******************************** DRAWING ******************************/
 line `cvarlist' c`environment',
@@ -357,7 +359,7 @@ else { ;
 	graph export "`c(pwd)'`c(dirsep)'figure`c(dirsep)'`environment'_cumd_`varlist'.png", as(png) replace;
 };
 end; /*}}}*/
-/* KDENPLOT PROGRAM {{{*/
+/** KDENPLOT PROGRAM {{{*/
 program define kden, ;
 syntax varname [if] [in] [fw aw pw iw] ,
 	ENVironment(varlist numeric) [ Number(integer 500) Kernel(string)
@@ -392,7 +394,7 @@ if `"`yrange'"' != "" {;
 if `"`xrange'"' != "" {;
 	gettoken xmin xmax : xrange ;
 	foreach i of local envlist {;
-		qui replace c`environment'=. if  inrange(c`environment' , `xmin' , `xmax' ) ;
+		qui replace x =. if !inrange( x , `xmin' , `xmax' ) ;
 	};
 };
 /******************************** Drawing ******************************/
@@ -414,5 +416,7 @@ end; /*}}}*/
 /*}}}*/
 #delimit cr
 
+*! A nonparametic analysis tool for (in)equality of opportunity.
 *! Created by Jay Oh on 18th Aug 2017.
-*! First update by Jay Oh on 29th Nov 2019.
+*! First update on Novemver 2019.
+*! Second update on June 2020.
