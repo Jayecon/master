@@ -34,7 +34,7 @@ syntax varlist(numeric ) [if] [in] [pweight aweight fweight iweight] [using] , E
 		local exp = "=`wgt'" ;
 	};/*}}}*/
 	/** CHECK IF THE ENVIRONMENT CONTAINS NONPOSITIVE VALUE {{{*/
-	levelsof `environment' , local(gp);
+	qui levelsof `environment' , local(gp);
 	foreach x of local gp {;
 		if (int(`x') != `x') | (`x' < 0) { ;
 			di as error "`environment' should have positive integers only";
@@ -82,12 +82,12 @@ markout `touse' `environment' ;
 /*}}}*/
 /* CALCULATION {{{*/
 preserve ;
-qui keep if `touse' ;
 /** BOOTSTRAP SAMPLING : GOI and RRI {{{*/
 if (`reps' >= 1) { ;
 	set seed `seed' ;
 	tempname temps tempi temp1 temp2 tempind tempsum ;
 	forvalue i = 1/`reps' { ;
+		qui keep if `touse' ;
 		bsample ;
 		/* BYABLE SETTING {{{*/
 		/*local bylist `_byvars';*/
@@ -123,7 +123,7 @@ if (`reps' >= 1) { ;
 			mat `tempi'[1,2] = `r(index)' ;
 			mat `tempind' = (nullmat(`tempind') \ `tempi') ;
 			mat colnames `tempind'= #bst Index ;
-		matrix `temp2' = r(RESULTS) ;
+		matrix `temp2' = r(results) ;
 			if "`goindex'" != "" {;
 				qui levelsof `environment' , local(typlist) ;
 				local typnum : word count `typlist' ;
@@ -147,6 +147,7 @@ if (`reps' >= 1) { ;
 /*}}}*/
 /** NON-BOOTSTRAP : GOI, RRI, CUMD and KDEN {{{*/
 else {;
+	qui keep if `touse' ;
 	/* BYABLE SETTING {{{*/
 	/*local bylist `_byvars';*/
 	/*local bynu : word count `_byvars' ;*/
@@ -218,6 +219,7 @@ local gsumw = r(sum_w);
 local gmean = r(mean);
 qui count ;
 local gn = r(N);
+pause ;
 
 qui ineqdeco `varlist' [`weight' `exp'] , bygroup(`environment') welfare ;
 local ggini = r(gini) ; /* Grand Gini */
@@ -241,7 +243,7 @@ matrix `tempg' = (-1 , `ggini' , `gsen' , `gn' , 1 ) ;
 matrix rowname `tempg' = All ;
 matrix results = (`envm',`ginim',`senm',`countm', `populm') ;
 matrix rowname results = `rowname' ;
-matrix results = (`tempg' \ RESULTS) ;
+matrix results = (`tempg' \ results) ;
 matrix colname results = Env Gini Sen  #Obs %Pop ;
 
 local count = 1 ;

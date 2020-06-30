@@ -6,8 +6,8 @@ program define tempdom,  rclass;
 	 Percent(numlist min=2 max=2 >0 <1 ascending) 
 	 ACCuracy(integer 40) TRace(integer 0)];
 
-capture timer clear ; //timer!!
-timer on 1 ; //timer!!
+/*capture timer clear ; //timer!!*/
+/*timer on 1 ; //timer!!*/
 /** TRACE ON/OFF {{{*/
 qui capture set trace off ;
 if ("`trace'" != "0") {;
@@ -143,7 +143,7 @@ return matrix result = `temp1';
 /*drop `ind';*/
 /*local s = `s' + 1;*/
 /*}}}*/
-timer off 1 ; //timer!!
-timer list 1 ; //timer!!
+/*timer off 1 ; //timer!!*/
+/*timer list 1 ; //timer!!*/
 #delimit cr;
 end
