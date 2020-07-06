@@ -5,7 +5,7 @@ program eopcal, byable(recall) rclass sortpreserve;
 syntax varlist(numeric ) [if] [in] [pweight aweight fweight iweight] [using] , ENVironment(varname numeric )
 	[GOIndex 
 	 RRIndex(passthru) 
-	 CUMDplot KDENplot XRange(passthru) YRange(passthru) Filename(passthru)
+	 CUMDplot KDENplot XRange(passthru) YRange(passthru) Filename(passthru) XTitle(passthru)
 	 NOZero REPs(integer 0) Seed(integer 10101)
 	 TRace(integer 0)] ; /*}}}*/
 /* ARGUMENTS CHECK LIST {{{*/
@@ -179,10 +179,10 @@ else {;
 		return local idxname "rrindex" ;
 	};
 	if ("`cumdplot'" != "") {;
-		cumd `varlist' [`weight' `exp'] , environment(`environment') `xrange' `yrange' `filename' ;
+		cumd `varlist' [`weight' `exp'] , environment(`environment') `xrange' `yrange' `filename' `xtitle' ;
 	};
 	if ("`kdenplot'" != "") {;
-		kden `varlist' [`weight' `exp'] , environment(`environment') `xrange' `yrange' `filename' ;
+		kden `varlist' [`weight' `exp'] , environment(`environment') `xrange' `yrange' `filename' `xtitle' ;
 	};
 	return local achname "`varlist'" ;
 	return local evnname "`environment'" ;
@@ -219,7 +219,6 @@ local gsumw = r(sum_w);
 local gmean = r(mean);
 qui count ;
 local gn = r(N);
-pause ;
 
 qui ineqdeco `varlist' [`weight' `exp'] , bygroup(`environment') welfare ;
 local ggini = r(gini) ; /* Grand Gini */
@@ -311,7 +310,7 @@ end; /*}}}*/
 /** CUMDPLOT PROGRAM {{{*/
 program define cumd, byable(recall);
 syntax varlist [if] [in] [fw aw pw iw] 
-	, ENVironment(varlist numeric) [ XRange(numlist min=2 max=2 >0 ascending) YRange(numlist min=2 max=2 >0 <1 ascending) Filename(name max=1) ] ;
+	, ENVironment(varlist numeric) [ XRange(numlist min=2 max=2 >0 ascending) YRange(numlist min=2 max=2 >0 <1 ascending) Filename(name max=1) XTitle(string) ] ;
 /******************************** LABELING ******************************/
 qui levelsof `environment', local(envlist);
 local varlabel : variable label `varlist';
@@ -346,9 +345,10 @@ if `"`xrange'"' != "" {;
 	qui replace c`environment' =. if !inrange( c`environment' , `xmin' , `xmax' ) ;
 };
 /******************************** DRAWING ******************************/
+if ("`xtitle'" != "") {; local xlabel "`xtitle'" ; }; else {; local xlabel "`varlabel'" ; };
 line `cvarlist' c`environment',
 	sort ylab(, grid) ytitle("CDF") 
-	xlab(, grid) xtitle("`varlabel'", size(vlarge))
+	xlab(, grid) xtitle("`xlabel'", size(automatic))
 	legend( region(lpattern(blank) color(none)) pos(5) ring(0) col(1) `labels' );
 /******************************** SAVING ******************************/
 capture mkdir figure;
@@ -365,7 +365,7 @@ end; /*}}}*/
 program define kden, ;
 syntax varname [if] [in] [fw aw pw iw] ,
 	ENVironment(varlist numeric) [ Number(integer 500) Kernel(string)
-	XRange(numlist min=2 max=2 >0 ascending) YRange(numlist min=2 max=2 >0 <100 ascending) Filename(name max=1)] ;
+	XRange(numlist min=2 max=2 >0 ascending) YRange(numlist min=2 max=2 >0 <100 ascending) Filename(name max=1) XTitle(string)] ;
 /******************************** LABELING ******************************/
 qui levelsof `environment', local(envlist);
 local varlabel : variable label `varlist';
@@ -400,9 +400,10 @@ if `"`xrange'"' != "" {;
 	};
 };
 /******************************** Drawing ******************************/
+if ("`xtitle'" != "") {; local xlabel `xtitle' ; }; else {; local xlabe `varlabel' ; };
 line `cvlist' x ,
 sort ytitle(Density)
-xtitle("`varlabel'", size(vlarge))
+xtitle("`xtitle'", size(vlarge))
 	legend( region(lpattern(blank) color(none)) pos(1) ring(0) col(1) `labels'  );
 /******************************** Saving ******************************/
 capture mkdir figure ;
