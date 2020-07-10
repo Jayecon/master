@@ -1,18 +1,16 @@
 #delimit ;
-program define eopdom,  rclass;
+program define eopdom, rclass;
 	syntax varlist [if] [in] [fw pw aw] 
-	,ENVironment(varname numeric) 
-	[Value(numlist min=2 max=2 >0 ascending) 
-	 Percent(numlist min=2 max=2 >0 <1 ascending) 
-	 ACCuracy(integer 40) TRace(integer 0)];
+	, ENVironment(varname numeric) 
+	[Value(numlist min=2 max=2 >0 ascending) Percent(numlist min=2 max=2 >0 <100 ascending) ///Options for control a test range.
+	 NOZero ACCuracy(integer 40) TRace(integer 0)]; ///Extra options.
 
-/*capture timer clear ; //timer!!*/
-/*timer on 1 ; //timer!!*/
 /** TRACE ON/OFF {{{*/
 qui capture set trace off ;
 if ("`trace'" != "0") {;
 	set trace on ;
 	set traced `trace' ;
+	set traceindent on ;
 }; /*}}}*/
 
 qui levelsof `environment' , local(typlist) ;
@@ -21,12 +19,13 @@ local typnum : word count `typlist' ;
 /*MARKER SETTING{{{*/
 marksample touse ;
 markout `touse' `environment' ;
-qui replace `touse' = 0 if `varlist' <= 0 ; //To exclude non-positive achievement samples
+qui keep if `touse' ;
+if ("`nozero'" != "") {;
+	qui replace `touse' = 0 if `varlist' <= 0 ; //To exclude non-positive achievement samples
+};
 /* MANIPULATE THE TEST RANGE {{{*/
 if `"`percent'"' != "" {;
 	gettoken min max : percent;
-	local min = `min' * 100 ;
-	local max = `max' * 100 ;
 	foreach i of local typlist {;
 		_pctile `varlist' [`weight' `exp'] if `environment' == `i' , p(`min', `max');
 		local min`i' = r(r1); local max`i' = r(r2);
@@ -38,12 +37,10 @@ if `"`value'"' != "" {;
 	foreach i of local typlist {;
 		qui replace `touse' = 0 if `environment' == `i' & !inrange(`varlist' , `min' , `max');
 	};
-};
-/*}}}*/
+}; /*}}}*/
 /*}}}*/
 
 preserve ;
-qui keep if `touse' ;
 foreach i of local typlist { ;
 	summarize `varlist' [`weight' `exp'] if `environment' == `i' & `touse' , meanonly;
 		local min`i' = r(min); local max`i' = r(max);
@@ -125,26 +122,6 @@ while (`i' < `typnum') { ;
 	local ++s;
 };
 return matrix result = `temp1';
-/*{{{*/
-/*summarize `ind', meanonly;*/
- /*if r(mean) == 1 {; local done = 1;*/
-                       /*global Dorder = -`s';*/
-                       /*display "";*/
-                       /*display "Dominance achieved at order " `s';*/
-                       /*local s = 1;};*/
- /*if r(mean) == 2 {; local done = 1;*/
-                       /*global Dorder = `s';*/
-                       /*display "";*/
-                       /*display "Dominance achieved at order " `s';*/
-                       /*local s = 1;};*/
- /*if `s' >= 3        {; local done = 1;*/
-                       /*global Dorder = 0;*/
-                       /*display "";*/
-                       /*display "Dominance not achieved up to order 3";};*/
-/*drop `ind';*/
-/*local s = `s' + 1;*/
-/*}}}*/
-/*timer off 1 ; //timer!!*/
-/*timer list 1 ; //timer!!*/
+restore ; 
 #delimit cr;
 end
