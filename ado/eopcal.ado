@@ -120,7 +120,7 @@ else if ("`cumdplot'" != "") {;
 	cumd `varlist' [`weight' `exp'] , environment(`environment') `value' `percent' `groptions';
 };
 else if ("`kdenplot'" != "") {;
-	kden `varlist' [`weight' `exp'] , environment(`environment') `value' `groptions';
+	kden `varlist' [`weight' `exp'] , environment(`environment') `value' `percent' `groptions';
 };
 else if ("`dom'" != "") {;
 	dom `varlist' [`weight' `exp'] , environment(`environment') `value' `percent' `accuracy' `modified';
@@ -530,10 +530,11 @@ qui line `cvarlist' c`environment',
 end; /*}}}*/
 /** KDENPLOT PROGRAM {{{*/
 program define kden, ;
-syntax varname [if] [in] [fw aw pw iw] ,
+syntax varlist [if] [in] [fw aw pw iw] ,
 	ENVironment(varlist numeric) [ Number(integer 500) Kernel(string)
-	Value(numlist min=2 max=2  ascending) Filename(name max=1) GROPtions(string)] ;
+	Value(numlist min=2 max=2  ascending) Percent(numlist min=2 max=2 >0 <1 ascending) GROPtions(string)] ;
 /******************************** LABELING ******************************/
+tempvar temp ;
 qui levelsof `environment', local(envlist);
 local varlabel : variable label `varlist';
 local envvalue : value label `environment';
@@ -557,9 +558,8 @@ else {;
 /******************************** GEN KDEN ******************************/
 qui kdensity `varlist' [`weight' `exp'] , n(`number') nograph gen(x c`environment') kernel(`kernel');
 foreach i of local envlist {;
-	local cv  c`environment'`i';
-	local cvlist `cvlist' `cv';
-	kdensity `varlist' [`weight' `exp'] if inlist(`environment' , `i') , nograph gen(c`environment'`i') at(x) kernel(`kernel');
+	local cvlist `cvlist' c`environment'`i' ;
+	kdensity `varlist' [`weight' `exp'] if `environment' == `i' , nograph gen(c`environment'`i') at(x) kernel(`kernel');
 	label var c`environment'`i' `"`lbv`i''"';
 };
 if `"`value'"' != "" {;
