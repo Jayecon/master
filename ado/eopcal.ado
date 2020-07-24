@@ -3,11 +3,11 @@ capture program drop eopcal;
 program eopcal, byable(recall) rclass sortpreserve;
 syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] [using] , ENVironment(varname numeric )
 	[GOIndex RRIndex(passthru) Bootstrap(integer 0) Seed(integer 10101)	///Options for calculating indicies.
-	 DOM ACCuracy(passthru)												///Option for dominance test.
+	 DOMinance ACCuracy(passthru)										///Option for dominance test.
 	 CUMDplot KDENplot GRoptions(passthru)								///Options for drawing graphs.
 	 Value(passthru) Percent(passthru) NOZero							///Options for processing data range.
 	 STATs																///Options for descriptive statistics.
-	 SHOW MODIfied REView TRace(integer 0)] ;								///Extra options.
+	 DEtail MODIfied REView TRace(integer 0)] ;							///Extra options.
 /* ARGUMENTS CHECK LIST {{{*/
 /** TRACE ON/OFF {{{*/
 qui capture set trace off ;
@@ -122,7 +122,7 @@ else if ("`cumdplot'" != "") {;
 else if ("`kdenplot'" != "") {;
 	kden `varlist' [`weight' `exp'] , environment(`environment') `value' `percent' `groptions';
 };
-else if ("`dom'" != "") {;
+else if ("`dominance'" != "") {;
 	dom `varlist' [`weight' `exp'] , environment(`environment') `value' `percent' `accuracy' `modified';
 	/*** PRINT of DOM{{{*/
 	matrix `temps' = r(results) ;	///temps for svmat
@@ -146,30 +146,30 @@ else if ("`dom'" != "") {;
 	while (`i' < `typnum') { ;
 		local j = `i' +1 ;
 		while (`j' <= `typnum'){ ; 
-			sum `temps'11 if `temps'1 == 2 & `temps'2 == `i' & `temps'3 == `j' , meanonly ;
-				if (r(mean) == 1) { ; local dom`i'`j' "   <2***" ; };
-			sum `temps'12 if `temps'1 == 2 & `temps'2 == `i' & `temps'3 == `j' , meanonly ;
-				if (r(mean) == 1) { ; local dom`i'`j' "    <2**" ; };
 			sum `temps'13 if `temps'1 == 2 & `temps'2 == `i' & `temps'3 == `j' , meanonly ;
 				if (r(mean) == 1) { ; local dom`i'`j' "     <2*" ; };
-			sum `temps'8 if `temps'1 == 2 & `temps'2 == `i' & `temps'3 == `j'  , meanonly ;
-				if (r(mean) == 1) { ; local dom`i'`j' "   >2***" ; };
+			sum `temps'12 if `temps'1 == 2 & `temps'2 == `i' & `temps'3 == `j' , meanonly ;
+				if (r(mean) == 1) { ; local dom`i'`j' "    <2**" ; };
+			sum `temps'11 if `temps'1 == 2 & `temps'2 == `i' & `temps'3 == `j' , meanonly ;
+				if (r(mean) == 1) { ; local dom`i'`j' "   <2***" ; };
+			sum `temps'10 if `temps'1 == 2 & `temps'2 == `i' & `temps'3 == `j'  , meanonly ;
+				if (r(mean) == 1) { ; local dom`i'`j' "     >2*" ; };
 			sum `temps'9 if `temps'1 == 2 & `temps'2 == `i' & `temps'3 == `j'  , meanonly ;
 				if (r(mean) == 1) { ; local dom`i'`j' "    >2**" ; };
-			sum `temps'10 if `temps'1 == 2 & `temps'2 == `i' & `temps'3 == `j' , meanonly ;
-				if (r(mean) == 1) { ; local dom`i'`j' "     >2*" ; };
-			sum `temps'11 if `temps'1 == 1 & `temps'2 == `i' & `temps'3 == `j' , meanonly ;
-				if (r(mean) == 1) { ; local dom`i'`j' "   <1***" ; };
-			sum `temps'12 if `temps'1 == 1 & `temps'2 == `i' & `temps'3 == `j' , meanonly ;
-				if (r(mean) == 1) { ; local dom`i'`j' "    <1**" ; };
+			sum `temps'8 if `temps'1 == 2 & `temps'2 == `i' & `temps'3 == `j' , meanonly ;
+				if (r(mean) == 1) { ; local dom`i'`j' "   >2***" ; };
 			sum `temps'13 if `temps'1 == 1 & `temps'2 == `i' & `temps'3 == `j' , meanonly ;
 				if (r(mean) == 1) { ; local dom`i'`j' "     <1*" ; };
-			sum `temps'8 if `temps'1 == 1 & `temps'2 == `i' & `temps'3 == `j'  , meanonly ;
-				if (r(mean) == 1) { ; local dom`i'`j' "   >1***" ; };
+			sum `temps'12 if `temps'1 == 1 & `temps'2 == `i' & `temps'3 == `j' , meanonly ;
+				if (r(mean) == 1) { ; local dom`i'`j' "    <1**" ; };
+			sum `temps'11 if `temps'1 == 1 & `temps'2 == `i' & `temps'3 == `j' , meanonly ;
+				if (r(mean) == 1) { ; local dom`i'`j' "   <1***" ; };
+			sum `temps'10 if `temps'1 == 1 & `temps'2 == `i' & `temps'3 == `j'  , meanonly ;
+				if (r(mean) == 1) { ; local dom`i'`j' "     >1*" ; };
 			sum `temps'9 if `temps'1 == 1 & `temps'2 == `i' & `temps'3 == `j'  , meanonly ;
 				if (r(mean) == 1) { ; local dom`i'`j' "    >1**" ; };
-			sum `temps'10 if `temps'1 == 1 & `temps'2 == `i' & `temps'3 == `j' , meanonly ;
-				if (r(mean) == 1) { ; local dom`i'`j' "     >1*" ; };
+			sum `temps'8 if `temps'1 == 1 & `temps'2 == `i' & `temps'3 == `j' , meanonly ;
+				if (r(mean) == 1) { ; local dom`i'`j' "   >1***" ; };
 			if ("`dom`i'`j''" == "") {; local dom`i'`j' "ambiguous" ; };
 			local ++j;
 		} ;
@@ -218,7 +218,7 @@ else if ("`dom'" != "") {;
 				di as text %12s abbrev("`lbv`i''",8) _col(14) "{c |}" `contents`i'';
 			};
 	}; /*}}}*/
-	if ("`show'" != "") {; matlist `temps' ; };
+	if ("`detail'" != "") {; matlist `temps' ; };
 	/*}}}*/
 }; /*}}}*/
 restore, preserve ; 
@@ -592,7 +592,7 @@ marksample touse ;
 markout `touse' `environment' ;
 /* MANIPULATE THE TEST RANGE {{{*/
 if `"`percent'"' != "" {;
-	gettoken min max : percent; local min = `min'*100 ; local max = `max'*100 ;
+	gettoken min max : percent; local min = `min'*100 ; if (`max' == 1) {; local max ; }; else {; local max = `max'*100 ; };
 	foreach i of local typlist {;
 		_pctile `varlist' [`weight' `exp'] if `environment' == `i' , p(`min', `max');
 		local min`i' = r(r1); local max`i' = r(r2);
