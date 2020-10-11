@@ -3,14 +3,14 @@ capture program drop eopcal;
 program eopcal, byable(recall) rclass sortpreserve;
 syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] [using] , ENVironment(varname numeric )
 	[GOIndex RRIndex(passthru) Bootstrap(integer 0) Seed(integer 10101)	///Options for calculating indicies.
-	 DOMinance ACCuracy(passthru)										///Option for dominance test.
+	 DOMinance ACCuracy(passthru)										///Options for dominance test.
 	 CUMDplot KDENplot GRoptions(passthru)								///Options for drawing graphs.
 	 Value(passthru) Percent(passthru) NOZero							///Options for processing data range.
 	 STATs																///Options for descriptive statistics.
 	 DEtail MODIfied REView TRace(integer 0)] ;							///Extra options.
 /* ARGUMENTS CHECK LIST {{{*/
 /** TRACE ON/OFF {{{*/
-qui capture set trace off ;
+/*qui capture set trace off ;*/
 if ("`trace'" != "0") {;
 	set trace on ;
 	set traced `trace' ;
@@ -300,7 +300,7 @@ local rowname All ;
 qui sum `varlist'[`weight' `exp'] ;
 matrix `temp'[1,1] = -1 ;
 matrix `temp'[1,2] = r(N) ;
-matrix `temp'[1,3] = (`temp'[1,2]/`temp'[1,2])*100  ;
+matrix `temp'[1,3] = (`temp'[1,2]/`temp'[1,2]) ;
 matrix `temp'[1,4] = r(mean) ;
 matrix `temp'[1,5] = r(sd) ;
 matrix `temp'[1,6] = r(min) ;
@@ -317,7 +317,7 @@ foreach i of local typlist {;
 	qui sum `varlist' if `environment' == `i' [`weight' `exp'] ;
 	matrix `temp'[`count',1] = `i' ;
 	matrix `temp'[`count',2] = r(N) ;
-	matrix `temp'[`count',3] = (`temp'[`count',2]/`temp'[1,2])*100  ;
+	matrix `temp'[`count',3] = (`temp'[`count',2]/`temp'[1,2]) ;
 	matrix `temp'[`count',4] = r(mean) ;
 	matrix `temp'[`count',5] = r(sd) ;
 	matrix `temp'[`count',6] = r(min) ;
@@ -326,7 +326,7 @@ foreach i of local typlist {;
 	if ("`nozero'" == "") {;
 		qui count if `varlist' == 0 & `environment' == `i' ;
 		matrix `temp'[`count',9] = r(N) ;
-		matrix `temp'[`count',10] = (`temp'[`count',9]/`temp'[`count',2])*100  ;
+		matrix `temp'[`count',10] = (`temp'[`count',9]/`temp'[`count',2]) ;
 	};
 	local row`i' : label `typval' `i' ;
 	local rowname `rowname' `row`i'' ;
@@ -603,8 +603,10 @@ if `"`value'"' != "" {;
 	gettoken min max : value;
 	qui replace `touse' = 0 if !inrange(`varlist' , `min' , `max');
 }; /*}}}*/
-/*Calculate MinZ MaxZ InterZ{{{*/
 preserve ;
+/*Calculate MinZ MaxZ InterZ{{{*/
+qui inspect `varlist' ;
+	if (`accuracy' <= r(N_unique) ) {; local intvalue = 1 ; }; else {; local intvalue = 0 ; };
 foreach i of local typlist { ;
 	summarize `varlist' [`weight' `exp'] if `environment' == `i' & `touse' , meanonly;
 		local min`i' = r(min); local max`i' = r(max);
@@ -615,7 +617,13 @@ while (`i' < `typnum') { ;
 	while ( `j' <= `typnum') { ;
 		local min`i'`j' = max(`min`i'',`min`j'');
 		local max`i'`j' = min(`max`i'',`max`j'');
-		local inter`i'`j' = (`max`i'`j''-`min`i'`j'')/(`accuracy'-1);
+		if ( `intvalue' ) {;
+			local inter`i'`j' = (`max`i'`j''-`min`i'`j'')/(`accuracy'-1);
+		};
+		else {;
+			local inter`i'`j' = 1 ;
+			local max`i'`j' = `max`i'`j'' - 1 ;
+		};
 		local ++j ;
 	};
 	local ++i ;
@@ -635,32 +643,27 @@ while (`s' < 3) { ;
 			local alpha = `s' - 1;
 			local afac = round(exp(lnfactorial(`alpha')),1);
 			qui count if inlist(`environment' , `i' ,`j') ;
-			local nsample = r(N) - 4 ;
+			local df = r(N) - 4 ;
 			local z = `min`i'`j'';
 			local rownum = 1;
-
 			while (`z' <= `max`i'`j'') {;
 				qui gen double `X' = 0 ;
 				qui replace `X'  = (1/`afac')*((`z'-`varlist')^`alpha') if `varlist'<= (`z' + 10^(-20)) ;
-
 				qui mean `X' [`weight' `exp'] if `environment' == `i' & `touse' ;
-				matrix est1 = e(b);		matrix var1 = e(V);
-				local  D1 = est1[1,1];	local  VD1 = var1[1,1];
-
+					matrix est1 = e(b);		matrix var1 = e(V);
+					local  D1 = est1[1,1];	local  VD1 = var1[1,1];
 				qui mean `X' [`weight' `exp'] if `environment' == `j' & `touse' ;
-				matrix est2 = e(b);		matrix var2 = e(V);
-				local D2 = est2[1,1];	local VD2 = var2[1,1];
-
+					matrix est2 = e(b);		matrix var2 = e(V);
+					local D2 = est2[1,1];	local VD2 = var2[1,1];
 				local t = (`D2'-`D1')/sqrt(`VD1'+`VD2'); //The t-statistic
 				qui drop `X' ;
-
 				/*CREATING RESULT MATRIX{{{*/
-				if (`t' > invttail(`nsample',.005)) { ; local o005 = 1; }; else {; local o005 = 0; };
-				if (`t' > invttail(`nsample',.025)) { ; local o025 = 1; }; else {; local o025 = 0; };
-				if (`t' > invttail(`nsample',.05)) { ; local o05 = 1; }; else {; local o05 = 0; };
-				if (`t' < invttail(`nsample',.95)) { ; local b95 = 1; }; else {; local b95 = 0; };
-				if (`t' < invttail(`nsample',.975)) { ; local b975 = 1; }; else {; local b975 = 0; };
-				if (`t' < invttail(`nsample',.995)) { ; local b995 = 1; }; else {; local b995 = 0; };
+				if (`t' > invttail(`df',.005)) { ; local o005 = 1; }; else {; local o005 = 0; };
+				if (`t' > invttail(`df',.025)) { ; local o025 = 1; }; else {; local o025 = 0; };
+				if (`t' > invttail(`df',.05)) { ; local o05 = 1; }; else {; local o05 = 0; };
+				if (`t' < invttail(`df',.95)) { ; local b95 = 1; }; else {; local b95 = 0; };
+				if (`t' < invttail(`df',.975)) { ; local b975 = 1; }; else {; local b975 = 0; };
+				if (`t' < invttail(`df',.995)) { ; local b995 = 1; }; else {; local b995 = 0; };
 				matrix `temp' = J(1,13,99);
 				matrix colname `temp' = S_order Group1 Group2 Z_value D1 D2 T 
 										over005 over025 over05 below995 below975 below95 ;
