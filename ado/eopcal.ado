@@ -1,16 +1,15 @@
 #delimit ;
 capture program drop eopcal;
 program eopcal, byable(recall) rclass sortpreserve;
-syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] [using] , ENVironment(varname numeric )
+syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] , ENVironment(varname numeric )
 	[GOIndex RRIndex(passthru) Bootstrap(integer 0) Seed(integer 10101)	///Options for calculating indicies.
 	 DOMinance ACCuracy(passthru)										///Options for dominance test.
 	 CUMDplot KDENplot GRoptions(passthru)								///Options for drawing graphs.
-	 Value(passthru) Percent(passthru) NOZero							///Options for processing data range.
+	 Value(passthru) Percent(passthru) NOZero							///Options for manipulating data range.
 	 STATs																///Options for descriptive statistics.
-	 DEtail MODIfied REView TRace(integer 0)] ;							///Extra options.
+	 DEtail MODIfied TRace(integer 0) IDEAL SAVing(string) ] ;						///Extra options.
 /* ARGUMENTS CHECK LIST {{{*/
 /** TRACE ON/OFF {{{*/
-/*qui capture set trace off ;*/
 if ("`trace'" != "0") {;
 	set trace on ;
 	set traced `trace' ;
@@ -27,12 +26,12 @@ if("`weight'"=="iweight"){ ;
 	local wvar=strltrim(subinstr("`exp'","=","",1)) ;
 	sum `exp' , meanonly ;
 	gen `wgt'=`wvar'/(r(mean)) ;
-	local exp="=`wgt'" ;
+	local exp "=`wgt'" ;
 };
 if("`weight'"=="fweight" ){;
 	local wvar=strltrim(subinstr("`exp'","=","",1)) ;
 	qui gen `wgt' = round(`wvar' , 1) ; 
-	local exp = "=`wgt'" ;
+	local exp "=`wgt'" ;
 };/*}}}*/
 /** CHECK IF THE OPTION RRINDEX HAS THE FORM OF (TYPE , CRITERA) {{{*/
 if `"`rrindex'"' != "" {; 
@@ -42,12 +41,12 @@ if `"`rrindex'"' != "" {;
 		local rritype = strltrim(strrtrim("`rritype'"));
 		local rricrit = strltrim(strrtrim(subinstr("`rricrit'" , ",","",1)));
 	if("`rritype'" != "type" & "`rritype'" != "percent" & "`rritype'" != "score") {;
-		di as error "ERROR in RRindex type. " as text "The following values are admitted: type, percent and score.";
+		di as error "ERROR in RRindex type. " as text "The following values are required: type, percent and score.";
 		exit ;
 	};
 	captur confirm number `rricrit' ; 
 	if _rc != 0 {;
-		di as error "ERROR in RRindex critera." as text "An appropriate number is required";
+		di as error "ERROR in RRindex critera." as text "A numeric argument is required";
 		exit ;
 	};
 	local rrindex rrindex ;
@@ -55,6 +54,7 @@ if `"`rrindex'"' != "" {;
 /** CHECK IF THE ENVIRONMENT VALUE HAVE SEQUENCE FROM 1 TO 1.{{{*/
 qui levelsof `environment' , local(typlist) ;
 	local typnum : word count `typlist' ;
+	local typnump = `typnum' + 1;
 forvalue i = 1/`typnum' {;
 	local typ`i' : word `i' of `typlist' ;
 	if !(`typ`i'' == `i') {;
@@ -78,8 +78,65 @@ markout `touse' `environment' ;
 	}; /*}}}*/
 /*}}}*/
 /* CALCULATION {{{*/
+/* GENERATE THE EX-POST EOP GROUP{{{*/
+if ("`ideal'" != "") {;
+	preserve ;
+	qui keep if `touse' ;
+	sort `environment' `varlist' ;
+	tempvar temp1 temp2 temp3 temp4 ;
+	tempfile tempdata ;
+	/* 자료수가 가장 적은 환경유형 및 자료수 찾기{{{*/
+	local minnum = . ;
+	foreach i of local typlist { ;
+		qui	count if `environment' == `i' ;
+		if (r(N) < `minnum' ) { ;
+			local mintyp = `i' ;
+			local minnum = r(N) ;
+		} ;
+	} ; 
+	/*}}}*/
+	/* 상이한 환경에서 동일한 노력(분위)을 한 집단 표시{{{*/
+	qui bys `environment' : gen `temp1' = _n ;
+	foreach i of local typlist {;
+		qui xtile temp`i' = `temp1' if `environment' == `i' , n(`minnum') ;
+	};
+	qui egen `temp2' = rowmax(temp?) ;
+	/*}}}*/
+	/* 상이한 환경에서 동일한 노력을 한 집단에게 동일소득 부여{{{*/
+	qui gen `temp3' = . ;
+	forvalue i = 1/`minnum' { ;
+		sum `varlist' [`weight' `exp'] if `temp2' == `i' , meanonly ;
+		qui replace `temp3' = r(mean) if `temp2' == `i' ;
+	};
+	qui inspect `varlist' ;
+	if (r(N_unique) < .) {;
+		qui replace `temp3' = round(`temp3' , 1) ;
+	};
+	/*}}}*/
+	local wvar=strltrim(subinstr("`exp'","=","",1)) ;
+	qui bys `temp2' : egen `temp4' = total(`wvar') ; /*기회평등 집단에 대한 가중치 생성*/
+	qui keep `temp3' `temp4' `environment' ; /*성취변수 환경변수 가중치만 남김*/
+	qui keep if `environment' == `mintyp' ;
+	qui replace `environment' = `typnump' ;
+	rename `temp3' `varlist' ;
+	rename `temp4' `wvar' ;
+	local sname=strltrim(subinstr("`c(filename)'",".dta","",.)) ;
+	qui compress ;
+	if ("`saving'" != "") { ;
+		save `sname'_`saving'.dta , replace ;
+	};
+	qui save `tempdata' ;
+	restore ;
+};
+/*}}}*/
 preserve ;
 qui keep if `touse' ;
+if ("`ideal'" != "") {;
+	qui append using `tempdata' ;
+	local venvlabel : value label `environment' ;
+	label define `venvlabel' `typnump' "기회평등" , add ;
+	local typnum = `typnump' ;
+};
 tempname temps temps2 ;
 /** CALL SUB PROGRAMS{{{*/
 if ("`stats'" != "") {;
@@ -90,20 +147,20 @@ if ("`stats'" != "") {;
 	return matrix results = `temps' ; /*}}}*/
 };
 if ("`goindex'" != "") {;
-	goi `varlist' [`weight' `exp'] , environment(`environment') `review' `modified' ;
+	goi `varlist' [`weight' `exp'] , environment(`environment') `detail' `modified' ;
 	/*** PRINT of GOI{{{*/
 	return local achname "`varlist'" ;
 	return local evnname "`environment'" ;
 	return local idxname "goindex" ;
 	di as text "`goindex' = " as result %5.4f `r(index)' ;
 	return scalar index = `r(index)' ;
-	if ("`review'" != "") {;
+	if ("`detail'" != "") {;
 		matrix `temps' = r(results) ;
 		return matrix results = `temps' ;
 	}; /*}}}*/
 };
 else if ("`rrindex'" != "") {;
-	rri `varlist' [`weight' `exp'] , environment(`environment') type(`rritype') crit(`rricrit') `review' ;
+	rri `varlist' [`weight' `exp'] , environment(`environment') type(`rritype') crit(`rricrit') `detail' ;
 	/*** PRINT of RRI{{{*/
 	return local achname "`varlist'" ;
 	return local evnname "`environment'" ;
@@ -111,7 +168,7 @@ else if ("`rrindex'" != "") {;
 	return local idxname "rrindex" ;
 	return scalar index = `r(index)' ;
 	di as text "`rrindex' = " as result %5.4f `r(index)' ;
-	if ("`review'" != "") {;
+	if ("`detail'" != "") {;
 		matrix `temps' = r(results) ;
 		return matrix results = `temps' ;
 	}; /*}}}*/
@@ -129,7 +186,6 @@ else if ("`dominance'" != "") {;
 	matrix `temps2' = r(results) ;	///temps2 for return results
 	return matrix results = `temps2' ;
 	qui levelsof `environment' , local(typlist) ;
-		local typnum : word count `typlist' ;
 		local typlab : variable label `environment' ;
 		local typvalue : value label `environment';
 		local hlnum = 8*`typnum' + 4*(`typnum' - 1);
@@ -176,6 +232,9 @@ else if ("`dominance'" != "") {;
 		local ++i ;
 	} ; /*}}}*/
 	restore, preserve ;
+	if ("`ideal'" != "") {;
+		qui append using `tempdata' ;
+	};
 	/**** KSMIRNOV TEST for EQUAL DISTRIBUTION{{{*/
 	local i = 1 ;
 	while (`i' < `typnum') { ;
@@ -185,7 +244,7 @@ else if ("`dominance'" != "") {;
 				tempvar tempgrp;
 				qui gen `tempgrp' = `environment' ;
 				qui replace `tempgrp' = . if !inlist(`environment' , `i' ,`j') ;
-				qui ksmirnov `varlist' `if' , by(`tempgrp');
+				qui ksmirnov `varlist' if `touse' , by(`tempgrp');
 				if (r(p) <= 0.1  ) {; local dom`i'`j'  "     ??*"; };
 				if (r(p) <= 0.05 ) {; local dom`i'`j'  "    ??**"; };
 				if (r(p) <= 0.01 ) {; local dom`i'`j'  "   ??***"; };
@@ -222,6 +281,9 @@ else if ("`dominance'" != "") {;
 	/*}}}*/
 }; /*}}}*/
 restore, preserve ; 
+if ("`ideal'" != "") {;
+	qui append using `tempdata' ;
+};
 /** BOOTSTRAP SAMPLING for CALCULATING CI of GOI and RRI {{{*/
 if (`bootstrap' >= 1) { ; 
 	set seed `seed' ;
@@ -230,10 +292,10 @@ if (`bootstrap' >= 1) { ;
 		qui keep if `touse' ;
 		bsample ;
 		if ("`goindex'" != "") {;
-			goi `varlist' [`weight' `exp'] , environment(`environment') `review' ;
+			goi `varlist' [`weight' `exp'] , environment(`environment') `detail' ;
 		};
 		else if ("`rrindex'" != "") {;
-			rri `varlist' [`weight' `exp'] , environment(`environment') type(`rritype') crit(`rricrit') `review' ;
+			rri `varlist' [`weight' `exp'] , environment(`environment') type(`rritype') crit(`rricrit') `detail' ;
 		};
 		/*** CREATING BSTINDEX MATRIX{{{*/
 		mat `tempi'=J(1,1,99); 
@@ -242,7 +304,7 @@ if (`bootstrap' >= 1) { ;
 			mat `tempind' = (nullmat(`tempind') \ `tempi') ;
 			mat colnames `tempind'= Index ; /*}}}*/
 		/*** CREATING BSTRESULTS MATRIX{{{*/
-		if ("`review'" != "") {;
+		if ("`detail'" != "") {;
 			matrix `temp2' = r(results) ; 
 			qui levelsof `environment' , local(typlist) ;
 			local typnum : word count `typlist' ;
@@ -261,6 +323,9 @@ if (`bootstrap' >= 1) { ;
 			mat `tempsum' = (nullmat(`tempsum') \ `temp') ;
 		}; /*}}}*/
 		restore, preserve ;
+		if ("`ideal'" != "") {;
+			qui append using `tempdata' ;
+		};
 	};
 	/*** CREAING RESULTS{{{*/
 	svmat `tempind' ;
@@ -270,7 +335,7 @@ if (`bootstrap' >= 1) { ;
 	return scalar l95 = r(r1) ;
 	return scalar u95 = r(r2) ;
 	di as text "95% CI is [" as result %5.4f `r(r1)' as text " , " as result %5.4f `r(r2)' as text "]." ;
-	if ("`review'" != "") {;
+	if ("`detail'" != "") {;
 		return matrix bstindex = `tempind' ;
 		return matrix bstresults = `tempsum' ; 
 	}; /*}}}*/
@@ -309,7 +374,7 @@ matrix `temp'[1,8] = r(sum_w) ;
 if ("`nozero'" == "") {;
 	qui count if `varlist' == 0 ;
 	matrix `temp'[1,9] = r(N) ;
-	matrix `temp'[1,10] = (`temp'[1,9]/`temp'[1,2])*100  ;
+	matrix `temp'[1,10] = (`temp'[1,9]/`temp'[1,2]) ;
 };
 
 local count = 2 ;
@@ -346,7 +411,7 @@ end; /*}}}*/
 /** GOINDEX PROGRAM {{{*/
 capture program drop goi ;
 program define goi , rclass; 
-syntax varlist [fw aw pw iw] , ENVironment(varlist numeric) [REView MODIfied];
+syntax varlist [fw aw pw iw] , ENVironment(varlist numeric) [detail MODIfied];
 
 tempname envm ginim senm countm populm tempg ;
 
@@ -356,7 +421,7 @@ qui levelsof `environment' , local(typlist) ;
 
 mat `senm'=J(`typnum', 1 ,99) ;
 mat `populm'=J(`typnum', 1 ,99) ;
-if ("`review'" != "") {;
+if ("`detail'" != "") {;
 	mat `envm'=J(`typnum', 1 ,99) ;
 	mat `ginim'=J(`typnum', 1 ,99) ;
 	mat `countm'=J(`typnum', 1 ,99) ;
@@ -376,12 +441,12 @@ forvalues i=1/`typnum'{;
 	local rowname `rowname' `ilabel' ;
 	matrix `senm'[`i',1]=r(wgini_`i') ;
 	matrix `populm'[`i',1] = r(sumw_`i')/`gsumw' ;
-	if ("`review'" != "") {;
+	if ("`detail'" != "") {;
 		matrix `envm'[`i',1]=`i' ;
 		matrix `ginim'[`i',1]=r(gini_`i') ;
 	};
 } ;
-if ("`review'" != "") {;
+if ("`detail'" != "") {;
 	forvalues i=1/`typnum'{;
 		qui count if `environment' == `i' ;
 		matrix `countm'[`i',1] = r(N) ;
@@ -413,14 +478,14 @@ else {;
 };
 
 return scalar index = `go' ;
-if ("`review'" != "") {;
+if ("`detail'" != "") {;
 	return matrix results = results ;
 };
 end ; /*}}}*/
 /** RRINDEX PROGRAM {{{*/
 capture program drop rri ;
 program define rri , rclass; 
-syntax varlist [fw aw pw iw] , ENVironment(varlist numeric) TYPE(str) CRIT(real) [REView] ;
+syntax varlist [fw aw pw iw] , ENVironment(varlist numeric) TYPE(str) CRIT(real) [detail] ;
 return local type  "`type'" ;
 return local crit  "`crit'" ;
 
@@ -460,7 +525,7 @@ else if ("`type'" == "percent") {;
 local rr = 1 - (`diswin'/`totwin')/(`dispop'/`totpop') ;
 return scalar index = `rr' ;
 
-if ("`review'" != "") {;
+if ("`detail'" != "") {;
 	matrix results =(`disadv' , `diswin' , `dispop' , `totwin' , `totpop') ;
 	matrix colname results = DisTyp SucDisNum DisNum SucNum PopNum ;
 	return matrix results = results ;
@@ -591,18 +656,26 @@ local typnum : word count `typlist' ;
 marksample touse ;
 markout `touse' `environment' ;
 /* MANIPULATE THE TEST RANGE {{{*/
-if `"`percent'"' != "" {;
+if (`"`percent'"' != "") {;
 	gettoken min max : percent; local min = `min'*100 ; if (`max' == 1) {; local max ; }; else {; local max = `max'*100 ; };
 	foreach i of local typlist {;
 		_pctile `varlist' [`weight' `exp'] if `environment' == `i' , p(`min', `max');
-		local min`i' = r(r1); local max`i' = r(r2);
-		qui replace `touse' = 0 if `environment' == `i' & !inrange(`varlist' , `min`i'' , `max`i'');
+		local min`i'p = r(r1); local max`i'p = r(r2);
 	};
 };
-if `"`value'"' != "" {;
+else {;
+	foreach i of local typlist {;
+		local min`i'p = -.; local max`i'p = .;
+	};
+};
+
+if (`"`value'"' != "") {;
 	gettoken min max : value;
-	qui replace `touse' = 0 if !inrange(`varlist' , `min' , `max');
-}; /*}}}*/
+}; 
+else {;
+		local min = -.; local max = .;
+};
+/*}}}*/
 preserve ;
 /*Calculate MinZ MaxZ InterZ{{{*/
 qui inspect `varlist' ;
@@ -615,14 +688,14 @@ local i = 1 ;
 while (`i' < `typnum') { ;
 	local j = `i' +1 ;
 	while ( `j' <= `typnum') { ;
-		local min`i'`j' = max(`min`i'',`min`j'');
-		local max`i'`j' = min(`max`i'',`max`j'');
-		if ( `intvalue' ) {;
+		local min`i'`j' = max(`min`i'',`min`j'', `min' , `min`i'p' , `min`j'p');
+		local max`i'`j' = min(`max`i'',`max`j'', `max' , `max`i'' , `max`j'');
+		if ( `intvalue' == 1 ) {;
 			local inter`i'`j' = (`max`i'`j''-`min`i'`j'')/(`accuracy'-1);
 		};
 		else {;
 			local inter`i'`j' = 1 ;
-			local max`i'`j' = `max`i'`j'' - 1 ;
+			local max`i'`j' = `max`i'`j'' ;
 		};
 		local ++j ;
 	};
@@ -645,10 +718,15 @@ while (`s' < 3) { ;
 			qui count if inlist(`environment' , `i' ,`j') ;
 			local df = r(N) - 4 ;
 			local z = `min`i'`j'';
+			/* 범주형 성취에 대한 검증범위 교정; 1차지배는 최댓값 미실시, 2차지배는 최솟값 미실시 {{{*/
+			if ( `intvalue' == 0 & `s' == 1) {; local max`i'`j' = `max`i'`j'' - 1 ;  };
+			if ( `intvalue' == 0 & `s' == 2) {; local max`i'`j' = `max`i'`j'' + 1 ;  };
+			if ( `intvalue' == 0 & `s' == 2) {; local z = `min`i'`j''+1 ; };
+			/*}}}*/
 			local rownum = 1;
 			while (`z' <= `max`i'`j'') {;
 				qui gen double `X' = 0 ;
-				qui replace `X'  = (1/`afac')*((`z'-`varlist')^`alpha') if `varlist'<= (`z' + 10^(-20)) ;
+				qui replace `X'  = (1/`afac')*((`z'-`varlist')^`alpha') if `varlist'<= `z'  ;
 				qui mean `X' [`weight' `exp'] if `environment' == `i' & `touse' ;
 					matrix est1 = e(b);		matrix var1 = e(V);
 					local  D1 = est1[1,1];	local  VD1 = var1[1,1];
