@@ -77,7 +77,7 @@ markout `touse' `environment' ;
 		qui replace `touse' = 0 if `varlist' <= 0 ;
 	}; /*}}}*/
 /*}}}*/
-/* CALCULATION {{{*/
+/* RUN SUB PROGRAMS {{{*/
 /* GENERATE THE EX-POST EOP GROUP{{{*/
 if ("`ideal'" != "") {;
 	preserve ;
@@ -331,10 +331,16 @@ if (`bootstrap' >= 1) { ;
 	svmat `tempind' ;
 	qui keep `tempind'1 ;
 	qui keep if !missing(`tempind'1) ;
-	_pctile `tempind'1 , p(2.5 97.5) ;
-	return scalar l95 = r(r1) ;
-	return scalar u95 = r(r2) ;
-	di as text "95% CI is [" as result %5.4f `r(r1)' as text " , " as result %5.4f `r(r2)' as text "]." ;
+	qui sum `tempind'1 ;
+	return scalar sd = r(sd) ;
+	_pctile `tempind'1 , p( 0.5 2.5 5 95 97.5 99.5) ;
+	return scalar l99 = r(r1) ;
+	return scalar l95 = r(r2) ;
+	return scalar l90 = r(r3) ;
+	return scalar u90 = r(r4) ;
+	return scalar u95 = r(r5) ;
+	return scalar u99 = r(r6) ;
+	di as text "95% CI is [" as result %5.4f `r(r2)' as text " , " as result %5.4f `r(r5)' as text "]." ;
 	if ("`detail'" != "") {;
 		return matrix bstindex = `tempind' ;
 		return matrix bstresults = `tempsum' ; 
@@ -589,9 +595,9 @@ if (strpos("`groptions'" , "ytitle") == 0)	{; local ytitle "ytitle(CDF)" ; };
 if (strpos("`groptions'" , "ylab") == 0)	{; local ylab "ylab(,grid)" ; };
 if (strpos("`groptions'" , "xtitle") == 0)	{; local xtitle "xtitle(`varlabel')" ; };
 if (strpos("`groptions'" , "xlab") == 0)	{; local xlab "xlab(,grid)" ; };
-if (strpos("`groptions'" , "legend") == 0)	{; local legend " legend( region(lpattern(blank) color(none)) pos(5) ring(0) col(1) `labels' ) " ; };
+if (strpos("`groptions'" , "legend") == 0)	{; local legend " legend( pos(6) row(1) ) " ; };
 qui line `cvarlist' c`environment',
-	`sort' `ytitle' `xtitle' `ylab'  `xlab' `legend' `groptions' ;
+	`sort' `ytitle' `xtitle' `ylab'  `xlab' `legend' `groptions' legend(`labels') ;
 end; /*}}}*/
 /** KDENPLOT PROGRAM {{{*/
 program define kden, ;
@@ -634,13 +640,13 @@ if `"`value'"' != "" {;
 	};
 };
 /******************************** Drawing ******************************/
-if (strpos("`groptios'" , "sort") == 0) {; local sort "sort" ; };
-if (strpos("`groptios'" , "ytitle") == 0) {; local ytitle "ytitle(Density)" ; };
-if (strpos("`groptios'" , "xtitle") == 0) {; local xtitle "xtitle(`varlabel')" ; };
-if (strpos("`groptios'" , "legend") == 0) {; local legend "legend( region(lpattern(blank) color(none)) pos(1) ring(0) col(1) `labels' )" ; };
+if (strpos("`groptions'" , "sort") == 0) {; local sort "sort" ; };
+if (strpos("`groptions'" , "ytitle") == 0) {; local ytitle "ytitle(Density)" ; };
+if (strpos("`groptions'" , "xtitle") == 0) {; local xtitle "xtitle(`varlabel')" ; };
+if (strpos("`groptions'" , "legend") == 0)	{; local legend " legend( pos(6) row(1) ) " ; };
 if ("`xtitle'" != "") {; local xlabel `xtitle' ; }; else {; local xlabe `varlabel' ; };
 line `cvlist' x ,
-	`sort' `ytitle' `xtitle' `legend' `groptions' ;
+	`sort' `ytitle' `xtitle' `legend' `groptions' legend(`labels') ;
 end; /*}}}*/
 /** DOM PROGRAM{{{*/
 capture program drop dom ;
