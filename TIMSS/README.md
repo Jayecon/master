@@ -1,2 +1,0 @@
-# TIMSS
-TIMSS data
