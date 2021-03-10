@@ -1,0 +1,20 @@
+﻿* Encoding: UTF-8.
+DEFINE !StateLoop (!POSITIONAL  !CHAREND('/') 
+                                / !POSITIONAL  !CMDEND) 
+!DO !I !IN (!1) 
+ !DO !J !IN (!2) 
+    !LET !F = !QUOTE(!CONCAT("E:\Works\TIMSS\TIMSS07\T07_SPSS_G8\",!I,!J,"m4.sav"))
+    !LET !G = !QUOTE(!CONCAT("E:\Works\TIMSS\Stata\",!I,!J,"m4.dta"))
+    GET FILE = !F.
+    SAVE TRANSLATE OUTFILE= !G
+          /TYPE=STATA
+          /VERSION=13
+          /EDITION=SE
+          /MAP
+          /REPLACE.
+ !DOEND 
+!DOEND 
+!ENDDEFINE. 
+
+!StateLoop bcg bsa bsg bst btm bts /  dza arm aus bhr bih bwa bgr twn col cyp cze egy slv eng geo gha hkg hun idn irn isr ita jpn jor kor kwt lbn ltu mys mlt mng mar nor omn pse qat rom rus sau sco scg sgp svn swe syr tha tun ukr usa. 
+
