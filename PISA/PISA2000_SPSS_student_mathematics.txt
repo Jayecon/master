@@ -4,8 +4,8 @@
 
 SET decimal=dot.
 
-DATA LIST file="c:\***\intstud_math_v3.txt"/
-COUNTRY      2 - 4 (a)
+DATA LIST file="e:/works/pisa/pisa2000/intstud_math_v3.txt"
+/COUNTRY      2 - 4 (a)
 SCHOOLID     5 - 9 (a)
 STIDSTD     10 - 14 (a)
 SUBNATIO    16 - 17 (a)
@@ -52,7 +52,7 @@ ST20Q01     71 - 71
 ST20Q02     72 - 72 
 ST20Q03     73 - 73 
 ST20Q04     74 - 74 
-	ST20Q05     75 - 75 
+ST20Q05     75 - 75 
 ST20Q06     76 - 76 
 ST21Q01     77 - 77 
 ST21Q02     78 - 78 
@@ -1293,5 +1293,9 @@ recode pv5read3 pv1math1 to pv5math2 (sysmis=9997).
 
 EXECUTE.
 
-*SAVE OUTFILE="c:\****\intstud_math.sav".
-
+    SAVE TRANSLATE OUTFILE= 'E:\works\pisa\stata\p00_math.dta'
+          /TYPE=STATA
+          /VERSION=13
+          /EDITION=SE
+          /MAP
+          /REPLACE.

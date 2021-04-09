@@ -1,14 +1,8 @@
 * This program reads the txt file data and applies variable and value labes, format and missing valus specifications.
 * Write the location of the ASCII file on the at the beginning of the controle file.
 * Write the location of the SPSS file at the end of the controle file.
-DEFINE !StateLoop () 
-	!LET !RPATH = !QUOTE(E:\Works\PISA\PISA2000)
-	!LET !SPATH = !QUOTE(E:\Works\PISA\STATA)
-	!LET !FNAME = !QUOTE(intcogn_v4.txt)
-    !LET !D = !QUOTE(!CONCAT(!RPATH,!FNAME))
-    !LET !S = !QUOTE(!CONCAT(!SPATH,!FNAME))
 
-Data list file='!D'
+DATA LIST file="e:/works/pisa/pisa2000/intcogn_v4.txt"
 /COUNTRY	    2-4(a)
 SCHOOLID	     5-9(a)
 STIDSTD	        10-14(a)
@@ -574,12 +568,9 @@ missing value
 M033Q01 to  S305Q03T ('8','9','n').
 execute.
 
-    SAVE TRANSLATE OUTFILE= !G
+    SAVE TRANSLATE OUTFILE= 'E:\works\pisa\stata\p00_cogitm.dta'
           /TYPE=STATA
           /VERSION=13
           /EDITION=SE
           /MAP
           /REPLACE.
-!ENDDEFINE. 
-
-!Stateloop

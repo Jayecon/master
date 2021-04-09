@@ -3,8 +3,8 @@
 * Write the location of the SPSS data file at the end of the control file.
 
 SET decimal=dot.
-DATA LIST FILE = "C:\****\INT_cogn_2003.txt"/  
-country               1-  3  (A)
+DATA LIST file="e:\works\pisa\pisa2003\INT_cogn_2003_v2.txt"
+/ country               1-  3  (A)
 CNT                   4-  6  (A)
 subnatio              7- 10  (A)
 schoolid             11- 15  (A)
@@ -387,4 +387,9 @@ missing values  MSCALE RSCALE SSCALE PSCALE CLCUSE1 ('8','9','n').
 missing values CLCUSE3a CLCUSE3b (997,998,999).
 missing values M033Q01 to X603Q03 ('n').
 exe.
-SAVE OUTFILE="c:\...\INT_cogn_2003.sav". 
+    SAVE TRANSLATE OUTFILE= "E:\works\pisa\stata\p03_cogitm.dta" 
+          /TYPE=STATA
+          /VERSION=13
+          /EDITION=SE
+          /MAP
+          /REPLACE.

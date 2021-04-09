@@ -4,8 +4,8 @@
 
 SET decimal=dot.
 
-DATA LIST FILE = 'C:\XXX\INT_COG09_TD_DEC11.txt'/ 
-   CNT           1	-	3     (A)     
+DATA LIST file='e:\works\pisa\pisa2009\INT_COG09_TD_DEC11.txt'
+/   CNT           1	-	3     (A)     
    COUNTRY       4	-	6     (A)    
    OECD          7	-	7     (A)  
    SUBNATIO      8	-	12    (A)    
@@ -2777,3 +2777,10 @@ missing values S519Q02R ('77' ).
 missing values S527Q01R ('777' ).       
 missing values S527Q03R ('77' ).        
 missing values S527Q04R ('777' ).       
+
+    SAVE TRANSLATE OUTFILE= 'E:\works\pisa\stata\p09_cogitm.dta'
+          /TYPE=STATA
+          /VERSION=13
+          /EDITION=SE
+          /MAP
+          /REPLACE.

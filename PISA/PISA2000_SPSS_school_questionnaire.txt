@@ -4,7 +4,7 @@
 
 SET decimal=dot.
 
-DATA list file='c:\****\intscho.txt' /
+DATA LIST file="e:/works/pisa/pisa2000/intscho.txt"
 country 	2-4(a)
 schoolid	5-9(a)
 subnatio 	11-12(a)
@@ -634,5 +634,9 @@ sc01q01 sc03q01 sc05q01 to sc05q14 sc07q01 to sc07q07 sc09q01 to sc12q05 sc16q01
 /schlsize (99997,99999)
 /sc22q01 to sc22q12 ("99997","99999")
 
-save outfile='c:\****\intscho.sav'.
-
+    SAVE TRANSLATE OUTFILE= 'E:\works\pisa\stata\p00_school.dta'
+          /TYPE=STATA
+          /VERSION=13
+          /EDITION=SE
+          /MAP
+          /REPLACE.

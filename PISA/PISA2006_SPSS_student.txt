@@ -6,8 +6,8 @@
 
 SET decimal=dot.
 
-DATA LIST FILE='C:\****\INT_Stu06_Dec07.txt' / 
-   SUBNATIO            1 -    5 (A)         
+DATA LIST file="e:/works/pisa/pisa2006\INT_Stu06_Dec07.txt"
+/ SUBNATIO            1 -    5 (A)         
    SCHOOLID            6 -   10 (A)         
    STIDSTD            11 -   15 (A)         
    CNT                16 -   18 (A)         
@@ -4346,4 +4346,9 @@ MISSING VALUES S421Q02 ("7").
 MISSING VALUES S456Q01 ("77","71").
 MISSING VALUES S456Q02 ("7").
 
-SAVE OUTFILE='C:\****\INT_Stu06_Dec07.sav'.
+    SAVE TRANSLATE OUTFILE= 'E:\works\pisa\stata\p06_student'
+          /TYPE=STATA
+          /VERSION=13
+          /EDITION=SE
+          /MAP
+          /REPLACE.

@@ -7,8 +7,8 @@
 SET decimal=dot.
 
 
-DATA LIST FILE='c:\****\INT_Sch06_Dec07.txt' / 
-   SUBNATIO            1 -    5 (A)         
+DATA LIST file="e:\works\pisa\pisa2006\INT_Sch06_Dec07.txt"
+/ SUBNATIO            1 -    5 (A)         
    SCHOOLID            6 -   10 (A)         
    CNT                11 -   13 (A)         
    COUNTRY            14 -   16 (A)         
@@ -1734,6 +1734,12 @@ MISSING VALUES
  STRATIO PROPCERT PROPQUAL (9997, 9998, 9999).
 MISSING VALUES SC05Q01 SC05Q02 (9997 thru 9999, 996).
 MISSING VALUES SCHSIZE (99997, 99998, 99999).
+exe.
 
 
-SAVE OUTFILE='C:\****\INT_Sch06_Dec07.sav'.
+    SAVE TRANSLATE OUTFILE= 'E:\works\pisa\stata\p06_school.dta'
+          /TYPE=STATA
+          /VERSION=13
+          /EDITION=SE
+          /MAP
+          /REPLACE.

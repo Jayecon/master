@@ -4,7 +4,7 @@
 
 SET decimal=dot.
 
-DATA LIST FILE = 'c:\***\INT_stui_2003_v2.txt'
+DATA LIST file="e:\works\pisa\pisa2003\INT_stui_2003_v2.txt"
  /COUNTRY     1    - 3	 (a)  
   CNT         4    -   6       (a) 
   SUBNATIO    7    -   10      (a) 
@@ -3844,7 +3844,11 @@ value labels STRATUM
   "89106" "Yugoslavia: Stratum 6"
   "89107" "Yugoslavia: Stratum 7"
   "89108" "Yugoslavia: Stratum 8".
-  SAVE OUTFILE="c:\***\INT_stui_2003.sav". 
+exe.
 
-
-
+    SAVE TRANSLATE OUTFILE= "E:\works\pisa\stata\p03_student.dta" 
+          /TYPE=STATA
+          /VERSION=13
+          /EDITION=SE
+          /MAP
+          /REPLACE.

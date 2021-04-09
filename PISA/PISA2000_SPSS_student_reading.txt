@@ -6,8 +6,8 @@
 
 SET decimal=dot.
 
-DATA LIST file="c:\***\intstud_read_v3.txt"/
-COUNTRY      2 - 4 (a)
+DATA LIST file="e:/works/pisa/pisa2000/intstud_read_v3.txt"
+/ COUNTRY      2 - 4 (a)
 SCHOOLID     5 - 9 (a)
 STIDSTD     10 - 14 (a)
 SUBNATIO    16 - 17 (a)
@@ -1261,4 +1261,9 @@ MISSING VALUES
 
 EXECUTE.
 
-*SAVE OUTFILE="c:\****\intstud_read.sav".
+    SAVE TRANSLATE OUTFILE= 'E:\works\pisa\stata\p00_reading.dta'
+          /TYPE=STATA
+          /VERSION=13
+          /EDITION=SE
+          /MAP
+          /REPLACE.

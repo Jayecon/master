@@ -3,8 +3,8 @@
 
 SET decimal dot.
 
-DATA LIST FILE   'C:\XXX\INT_COG09_S_DEC11.txt'/ 
-   CNT           1	-	3     (A)     
+DATA LIST file='e:/works/pisa/pisa2009\INT_COG09_S_DEC11.txt'
+/  CNT           1	-	3     (A)     
    COUNTRY       4	-	6     (A)    
    OECD          7	-	7     (F,0)  
    SUBNATIO      8	-	12    (A)    
@@ -729,3 +729,9 @@ VALUE LABELS
 missing values M033Q01 to S527Q04T ('7').
 exe.      
 
+    SAVE TRANSLATE OUTFILE= 'E:\works\pisa\stata\p09_scorecogitm.dta' 
+          /TYPE=STATA
+          /VERSION=13
+          /EDITION=SE
+          /MAP
+          /REPLACE.

@@ -3,8 +3,8 @@
 
 SET decimal=dot.
 
-DATA LIST file="C:\xxxx\intstud_scie_v3.txt" /
-COUNTRY      2 - 4 (a)
+DATA LIST file="e:\works\pisa\pisa2000\intstud_scie_v3.txt" 
+/ COUNTRY      2 - 4 (a)
 SCHOOLID     5 - 9 (a)
 STIDSTD     10 - 14 (a)
 SUBNATIO    16 - 17 (a)
@@ -1270,3 +1270,9 @@ MISSING VALUES
 
 EXECUTE.
 
+    SAVE TRANSLATE OUTFILE= 'E:\works\pisa\stata\p00_science.txt'
+          /TYPE=STATA
+          /VERSION=13
+          /EDITION=SE
+          /MAP
+          /REPLACE.

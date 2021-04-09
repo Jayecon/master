@@ -6,7 +6,7 @@
 
 SET decimal=dot.
 
-data  list file='c:\****\INT_Cogn06_T_Dec07.txt'
+DATA LIST file="e:\works\pisa\pisa2006\INT_Cogn06_T_Dec07.txt"
    /SUBNATIO	1-5	(a)
    SCHOOLID	6-10	(a)
    STIDSTD	11-15	(a)
@@ -3283,6 +3283,12 @@ miss val S527R01 ('777' ).
 miss val S527R03 ('77' ).
 miss val S527R04 ('777' ).
 miss val CLCUSE3A CLCUSE3B DEFFORT (997,998,999).
+exe.
 
 
-SAVE OUTFILE='C:\****\INT_Cogn06_T_Dec07.sav'.
+    SAVE TRANSLATE OUTFILE= 'E:\works\pisa\stata\p06_cogitm.dta'
+          /TYPE=STATA
+          /VERSION=13
+          /EDITION=SE
+          /MAP
+          /REPLACE.
