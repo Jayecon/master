@@ -2,12 +2,12 @@ cd c:\timss
 local path_input E:\Works\TIMSS\Stata\
 
 /*Set input list{{{*/
-local dlist bcg bsg btm bts bst
-/*35 Countries for 8th Grades in TIMSS 1995*/
-local clist aus aut can col cyp csk dnk fra deu grc ///
-			hkg hun isl irn irl isr kor kwt lva ltu ///
-			nld nzl nor prt rom rus sco sgp slv svn ///
-			esp swe che tha usa
+local dlist bcg bsa bsg bst btm bts 
+/*39 Countries for 8th Grades in TIMSS 2019*/
+local clist are aus bhr chl cyp egy eng fin fra geo ///
+			hkg hun irl irn isr ita jor jpn kaz kor ///
+			kwt lbn ltu mar mys nor nzl omn pry qat ///
+			rom tus sau sgp swe tur twn usa zaf 
 /*Set ID Input List{{{*/
 local bcgidlist idcntry	idschool
 local bsgidlist idcntry	idschool	idstud
@@ -16,24 +16,24 @@ local btsidlist idcntry	idschool			idteach	idlink
 local bstidlist idcntry				idstud	idteach	idlink
 /*}}}*/
 /*Set File Specific Input Lists {{{*/
-local bcgvlist bcbgcomm bcbgftte bcbgptte bcbgcom1 bcbgbenr bcbggenr
-local bsgvlist ///
-	bsspv01 bsspv02 bsspv03 bsspv04 bsspv05 ///
-	bsmpv01 bsmpv02 bsmpv03 bsmpv04 bsmpv05 ///
-	bsbglang bsbgbrn1 bsdage itsex ///
-	bsbgbook bsbgps01 bsbgps02 bsbgps03 bsbgps04 ///
-	bsbgedum bsbgeduf bsdgedup ///
-	bsbgbrnm bsbgbrnf
-local btmvlist btbgeduc btbgage btbgsex btdcsize btbgtaug
-local btsvlist btbgeduc btbgage btbgsex btdcsize btbgtaug
+local bcgvlist bcbg05a bcbg10 stotwgtu
+local bsgvlist  ///
+	bsssci01 bsssci02 bsssci03 bsssci04 bsssci05  ///
+	bsmmat01 bsmmat02 bsmmat03 bsmmat04 bsmmat05  ///
+	bsbg03 bsbg10a bsdage itsex ///
+	bsbg04 bsbg06a bsbg06b bsbg06c bsbg06d bsbg06e bsbg06f bsbg06g   ///
+	bsbg07a bsbg07b bsdgedup ///
+	bsbg09a bsbg09b
+local btmvlist btbg04 btbg03 btbg02 btbg12 btbg01
+local btsvlist btbg04 btbg03 btbg02 btbg12 btbg01
 /*}}}*/
 /*Set Rename Vars list{{{*/
-local bcgrvlist comsiz tcfnum tcpnum sccnum scbnum scgnum
+local bcgrvlist comsiz sccnum scsnum
 local bsgrvlist ///
 	sci01 sci02 sci03 sci04 sci05 ///
 	mat01 mat02 mat03 mat04 mat05 ///
 	stdlng stdbrn stdage stdsex ///
-	posbok poscal poscom posdsk posdic ///
+	posbok poscto poscts posdsk posrom posnet posphn posgam ///
 	mtredu ftredu paredu ///
 	mtrbrn ftrbrn
 local btmrvlist tcmedu tcmage tcmsex clmsiz tcmyox
@@ -48,70 +48,6 @@ local btswlist
 local bstwlist
 /*}}}*/
 /*}}}*/
-
-/*Missing Value Control{{{*/
-foreach z of local clist {
-	/*BCG file{{{*/
-	use "`path_input'bcg`z'm1.dta", clear
-		rename _all , lower
-		mvdecode bcbgcomm, mv(9=. \ 8=. \ 99=.)
-		mvdecode bcbgftte, mv(998=.)	/*GEN\NUMBER OF FULL-TIME TEACHERS */
-		mvdecode bcbgptte, mv(998=.)	/*GEN\NUMBER OF PART-TIME TEACHERS*/
-		mvdecode bcbgcom1, mv(998=.)	/*GEN\COMPUTERS\AVAILABLE*/
-		mvdecode bcbgbenr, mv(9998=.)	/*GEN\TOTAL SCHOOL ENROLLMENT\BOYS */
-		mvdecode bcbggenr, mv(9998=.)	/*GEN\TOTAL SCHOOL\ENROLLMENT\GIRLS */
-		keep `bcgidlist' `bcgvlist' `bcgwlist'
-			rename (`bcgvlist') (`bcgrvlist')
-			save "bcg`z'temp1", replace
-	/*}}}*/
-	/*BSG file{{{*/
-	use "`path_input'bsg`z'm1.dta", clear
-		rename _all , lower
-		mvdecode bsbglang, 	mv(9=. \ 8=. \ 6=. )
-		mvdecode bsbgbrn1, 	mv(9=. \ 8=. \ 6=. )
-		mvdecode bsdage,   	mv(99=. \ 98=.)
-		mvdecode itsex,   	mv(9=. \ 8=.)
-		mvdecode bsbgbook, 	mv(9=. \ 8=. \ 6=.)
-		mvdecode bsbgps01, 	mv(9=. \ 8=.)
-		mvdecode bsbgps02, 	mv(9=. \ 8=.)
-		mvdecode bsbgps03, 	mv(9=. \ 8=.)
-		mvdecode bsbgps04, 	mv(9=. \ 8=.)
-		mvdecode bsbgedum, 	mv(99=. \ 98=. \96=. \ 7=.)
-		mvdecode bsbgeduf, 	mv(99=. \ 98=. \96=. \ 7=.)
-		mvdecode bsdgedup, 	mv(9=. \ 8=. \ 6=. \ 4=.)
-		mvdecode bsbgbrnm, 	mv(9=. \ 8=. \ 6=. )
-		mvdecode bsbgbrnf, 	mv(9=. \ 8=. \ 6=. )
-		keep `bsgidlist' `bsgvlist' `bsgwlist'
-			rename (`bsgvlist') (`bsgrvlist')
-			save "bsg`z'temp1", replace/*}}}*/
-	/*BTM file{{{*/
-	use "`path_input'btm`z'm1.dta", clear
-		rename _all , lower
-		mvdecode btbgeduc, mv(99=. \ 98=.)
-		mvdecode btbgage, mv(99=. \ 98=.)
-		mvdecode btbgsex, mv(9=. \ 8=.)
-		mvdecode btbgtaug, mv(99=. \ 98=.)
-		mvdecode btdcsize, mv(9999=. \ 9998=. \ 9996=.)
-		keep `btmidlist' `btmvlist' `btmwlist'
-			rename (`btmvlist') (`btmrvlist')
-		save "btm`z'temp1", replace/*}}}*/
-	/*BTS file{{{*/
-	use "`path_input'bts`z'm1.dta", clear
-		rename _all , lower
-		mvdecode btbgeduc, mv(99=. \ 98=.)
-		mvdecode btbgage, mv(99=. \ 98=.)
-		mvdecode btbgsex, mv(9=. \ 8=.)
-		mvdecode btbgtaug, mv(99=. \ 98=.)
-		mvdecode btdcsize, mv(9999=. \ 9998=. \ 9996=.)
-		keep `btsidlist' `btsvlist' `btswlist'
-			rename (`btsvlist') (`btsrvlist')
-			save "bts`z'temp1", replace/*}}}*/
-	/*BST file{{{*/
-	use "`path_input'bst`z'm1.dta", clear
-		rename _all , lower
-		keep `bstidlist'  `bstwlist'
-		save "bst`z'temp1", replace/*}}}*/
-} /*}}}*/
 
 /*Merge Files{{{*/
 local fcntry : word 1 of `clist'
@@ -205,4 +141,68 @@ foreach y of local clist {
 	}
 	append using "timssw1.dta"/*}}}*/
 	save "timssw1.dta", replace
+} /*}}}*/
+
+/*Missing Value Control{{{*/
+foreach z of local clist {
+	/*BCG file{{{*/
+	use "`path_input'bcg`z'm1.dta", clear
+		rename _all , lower
+		mvdecode bcbgcomm, mv(9=. \ 8=. \ 99=.)
+		mvdecode bcbgftte, mv(998=.)	/*GEN\NUMBER OF FULL-TIME TEACHERS */
+		mvdecode bcbgptte, mv(998=.)	/*GEN\NUMBER OF PART-TIME TEACHERS*/
+		mvdecode bcbgcom1, mv(998=.)	/*GEN\COMPUTERS\AVAILABLE*/
+		mvdecode bcbgbenr, mv(9998=.)	/*GEN\TOTAL SCHOOL ENROLLMENT\BOYS */
+		mvdecode bcbggenr, mv(9998=.)	/*GEN\TOTAL SCHOOL\ENROLLMENT\GIRLS */
+		keep `bcgidlist' `bcgvlist' `bcgwlist'
+			rename (`bcgvlist') (`bcgrvlist')
+			save "bcg`z'temp1", replace
+	/*}}}*/
+	/*BSG file{{{*/
+	use "`path_input'bsg`z'm1.dta", clear
+		rename _all , lower
+		mvdecode bsbglang, 	mv(9=. \ 8=. \ 6=. )
+		mvdecode bsbgbrn1, 	mv(9=. \ 8=. \ 6=. )
+		mvdecode bsdage,   	mv(99=. \ 98=.)
+		mvdecode itsex,   	mv(9=. \ 8=.)
+		mvdecode bsbgbook, 	mv(9=. \ 8=. \ 6=.)
+		mvdecode bsbgps01, 	mv(9=. \ 8=.)
+		mvdecode bsbgps02, 	mv(9=. \ 8=.)
+		mvdecode bsbgps03, 	mv(9=. \ 8=.)
+		mvdecode bsbgps04, 	mv(9=. \ 8=.)
+		mvdecode bsbgedum, 	mv(99=. \ 98=. \96=. \ 7=.)
+		mvdecode bsbgeduf, 	mv(99=. \ 98=. \96=. \ 7=.)
+		mvdecode bsdgedup, 	mv(9=. \ 8=. \ 6=. \ 4=.)
+		mvdecode bsbgbrnm, 	mv(9=. \ 8=. \ 6=. )
+		mvdecode bsbgbrnf, 	mv(9=. \ 8=. \ 6=. )
+		keep `bsgidlist' `bsgvlist' `bsgwlist'
+			rename (`bsgvlist') (`bsgrvlist')
+			save "bsg`z'temp1", replace/*}}}*/
+	/*BTM file{{{*/
+	use "`path_input'btm`z'm1.dta", clear
+		rename _all , lower
+		mvdecode btbgeduc, mv(99=. \ 98=.)
+		mvdecode btbgage, mv(99=. \ 98=.)
+		mvdecode btbgsex, mv(9=. \ 8=.)
+		mvdecode btbgtaug, mv(99=. \ 98=.)
+		mvdecode btdcsize, mv(9999=. \ 9998=. \ 9996=.)
+		keep `btmidlist' `btmvlist' `btmwlist'
+			rename (`btmvlist') (`btmrvlist')
+		save "btm`z'temp1", replace/*}}}*/
+	/*BTS file{{{*/
+	use "`path_input'bts`z'm1.dta", clear
+		rename _all , lower
+		mvdecode btbgeduc, mv(99=. \ 98=.)
+		mvdecode btbgage, mv(99=. \ 98=.)
+		mvdecode btbgsex, mv(9=. \ 8=.)
+		mvdecode btbgtaug, mv(99=. \ 98=.)
+		mvdecode btdcsize, mv(9999=. \ 9998=. \ 9996=.)
+		keep `btsidlist' `btsvlist' `btswlist'
+			rename (`btsvlist') (`btsrvlist')
+			save "bts`z'temp1", replace/*}}}*/
+	/*BST file{{{*/
+	use "`path_input'bst`z'm1.dta", clear
+		rename _all , lower
+		keep `bstidlist'  `bstwlist'
+		save "bst`z'temp1", replace/*}}}*/
 } /*}}}*/

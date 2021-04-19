@@ -1,60 +1,65 @@
 cd c:\timss
 local path_input E:\Works\TIMSS\Stata\
+
 /*Set input list{{{*/
-	/*Set Common Input Lists {{{*/
-	local dlist bcg bsg btm bts bst
-		/*Set ID Input List{{{*/
-		local bcgidlist idcntry	idschool
-		local bsgidlist idcntry	idschool	idstud
-		local btmidlist idcntry	idschool			idteach	idlink
-		local btsidlist idcntry	idschool			idteach	idlink
-		local bstidlist idcntry				idstud	idteach	idlink
-		/*}}}*/
-		/*Set Rename Vars list{{{*/
-		local bcgrvlist comsiz sccnum scsnum
-		local bsgrvlist ///
-			sci01 sci02 sci03 sci04 sci05 ///
-			mat01 mat02 mat03 mat04 mat05 ///
-			stdlng stdbrn stdage stdsex ///
-			posbok poscom posdsk posrom posnet ///
-			mtredu ftredu paredu ///
-			mtrbrn ftrbrn
-		local btmrvlist tcmedu tcmage tcmsex clmsiz tcmyox
-		local btsrvlist tcsedu tcsage tcssex clssiz tcsyox
-		local bstrvlist tcmnum tcsnum tcanum
-		/*}}}*/
-		/*Set Weight Vars list{{{*/
-		local bcgwlist schwgt
-		local bsgwlist totwgt houwgt senwgt
-		local btmwlist
-		local btswlist
-		local bstwlist
-		/*}}}*/
-	/*}}}*/
-	/*Set Input Lists for Wave 5(42 Countries){{{*/
-	local clist5 arm aus bhr chl twn eng fin geo gha hkg hun idn irn isr ita jpn jor kaz kor lbn ltu mkd mys mar nzl nor omn pse qat rom rus sau sgp svn swe syr tha tun tur ukr are usa
-	local bcgvlist5 bcbg05a bcbg07 bcbg01
-	local bsgvlist5  ///
-		bsssci01 bsssci02 bsssci03 bsssci04 bsssci05  ///
-		bsmmat01 bsmmat02 bsmmat03 bsmmat04 bsmmat05  ///
-		bsbg03 bsbg09a bsdage itsex ///
-		bsbg04 bsbg05a bsbg05b  bsbg05d  bsbg05e ///
-		bsbg06a bsbg06b bsdgedup ///
-		bsbg08a bsbg08b
-	local btmvlist5 btbg04 btbg03 btbg02 btbg12 btbg01
-	local btsvlist5 btbg04 btbg03 btbg02 btbg12 btbg01
-	/*}}}*/
+local dlist bcg bsg btm bts bst
+/*42 Countries for 8th Grades in TIMSS 2011*/
+local clist arm aus bhr chl twn eng fin geo gha hkg ///
+			hun idn irn isr ita jpn jor kaz kor lbn ///
+			ltu mkd mys mar nzl nor omn pse qat rom ///
+			rus sau sgp svn swe syr tha tun tur ukr ///
+			are usa
+/*Set ID Input List{{{*/
+local bcgidlist idcntry	idschool
+local bsgidlist idcntry	idschool	idstud
+local btmidlist idcntry	idschool			idteach	idlink
+local btsidlist idcntry	idschool			idteach	idlink
+local bstidlist idcntry				idstud	idteach	idlink
 /*}}}*/
+/*Set File Specific Input Lists {{{*/
+local bcgvlist bcbg05a bcbg07 bcbg01
+local bsgvlist  ///
+	bsssci01 bsssci02 bsssci03 bsssci04 bsssci05  ///
+	bsmmat01 bsmmat02 bsmmat03 bsmmat04 bsmmat05  ///
+	bsbg03 bsbg09a bsdage itsex ///
+	bsbg04 bsbg05a bsbg05b  bsbg05d  bsbg05e ///
+	bsbg06a bsbg06b bsdgedup ///
+	bsbg08a bsbg08b
+local btmvlist btbg04 btbg03 btbg02 btbg12 btbg01
+local btsvlist btbg04 btbg03 btbg02 btbg12 btbg01
+/*}}}*/
+/*Set Rename Vars list{{{*/
+local bcgrvlist comsiz sccnum scsnum
+local bsgrvlist ///
+	sci01 sci02 sci03 sci04 sci05 ///
+	mat01 mat02 mat03 mat04 mat05 ///
+	stdlng stdbrn stdage stdsex ///
+	posbok poscom posdsk posrom posnet ///
+	mtredu ftredu paredu ///
+	mtrbrn ftrbrn
+local btmrvlist tcmedu tcmage tcmsex clmsiz tcmyox
+local btsrvlist tcsedu tcsage tcssex clssiz tcsyox
+local bstrvlist tcmnum tcsnum tcanum
+/*}}}*/
+/*Set Weight Vars list{{{*/
+local bcgwlist schwgt
+local bsgwlist totwgt houwgt senwgt
+local btmwlist
+local btswlist
+local bstwlist
+/*}}}*/
+/*}}}*/
+
 /*Missing Value Control{{{*/
-foreach z of local clist5 {
+foreach z of local clist {
 	/*BCG file{{{*/
 	use "`path_input'bcg`z'm5.dta", clear
 		rename _all , lower
 		mvdecode bcbg05a, mv(9=.)
 		mvdecode bcbg01, mv(99999=.)
 		mvdecode bcbg07, mv(999=.)
-		keep `bcgidlist' `bcgvlist5' `bcgwlist'
-			rename (`bcgvlist5') (`bcgrvlist')
+		keep `bcgidlist' `bcgvlist' `bcgwlist'
+			rename (`bcgvlist') (`bcgrvlist')
 			save "bcg`z'temp5", replace
 	/*}}}*/
 	/*BSG file{{{*/
@@ -71,8 +76,8 @@ foreach z of local clist5 {
 		mvdecode bsdgedup, 	mv(99=. \ 96=. \ 6=.)
 		mvdecode bsbg08a, 	mv(9=. \ 8=.)
 		mvdecode bsbg08b, 	mv(9=. \ 8=.)
-		keep `bsgidlist' `bsgvlist5' `bsgwlist'
-			rename (`bsgvlist5') (`bsgrvlist')
+		keep `bsgidlist' `bsgvlist' `bsgwlist'
+			rename (`bsgvlist') (`bsgrvlist')
 			recode stdsex (2=0)
 		save "bsg`z'temp5", replace/*}}}*/
 	/*BTM file{{{*/
@@ -83,8 +88,8 @@ foreach z of local clist5 {
 		mvdecode btbg02, mv(9=. \ 8=.)
 		mvdecode btbg01, mv(99=. \ 98=.)
 		mvdecode btbg12, mv(999=. \ 998=.)
-		keep `btmidlist' `btmvlist5' `btmwlist'
-			rename (`btmvlist5') (`btmrvlist')
+		keep `btmidlist' `btmvlist' `btmwlist'
+			rename (`btmvlist') (`btmrvlist')
 		save "btm`z'temp5", replace /*}}}*/
 	/*BTS file{{{*/
 	use "`path_input'bts`z'm5.dta", clear
@@ -94,8 +99,8 @@ foreach z of local clist5 {
 		mvdecode btbg02, mv(9=. \ 8=.)
 		mvdecode btbg01, mv(99=. \ 98=.)
 		mvdecode btbg12, mv(999=. \ 998=.)
-		keep `btsidlist' `btsvlist5' `btswlist'
-			rename (`btsvlist5') (`btsrvlist')
+		keep `btsidlist' `btsvlist' `btswlist'
+			rename (`btsvlist') (`btsrvlist')
 			save "bts`z'temp5", replace/*}}}*/
 	/*BST file{{{*/
 	use "`path_input'bst`z'm5.dta", clear
@@ -104,9 +109,10 @@ foreach z of local clist5 {
 			save "bst`z'temp5", replace/*}}}*/
 	}
 /*}}}*/
+
 /*Merge Files{{{*/
-local fcntry : word 1 of `clist5'
-foreach y of local clist5 {
+local fcntry : word 1 of `clist'
+foreach y of local clist {
 	disp "Country: `y'"
 	/*Merge BCG and BSG{{{*/
 	use "bcg`y'temp5", clear
