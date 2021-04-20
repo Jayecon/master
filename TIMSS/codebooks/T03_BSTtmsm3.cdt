@@ -1,0 +1,261 @@
+Codebook DATE 11.04.2005 File:BSTtmsm3.sdb                                                                                            
+
+Var. Question     Variable  Variable Label                           Code      Option                                 Location/Format 
+No.               Name                                                                                                                
+--------------------------------------------------------------------------------------------------------------------------------------
+   1 COUNTRY      IDCNTRY   *COUNTRY ID*                               VALUE   IDCNTRY ID                              1-    5/N  5.0  
+                                                                       99999   omitted                                                  
+                                                                       99998   not admin.                                               
+                                                                               VLD: (IDCNTRY>=0.AND.IDCNTRY<=99996).OR.IDCNTRY=99999.O
+                                                                                R.IDCNTRY=99998                                       
+                                                                               Flags: SCR:   1 / CAR:T   / CAT:ID     / DEF:            
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+   2 POP          IDPOP     *POPULATION ID*                                9   omitted                                 6      /C  1.0  
+                                                                           8   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:   2 / CAR:T   / CAT:ID     / DEF: 2          
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+   3 SCHOOL       IDSCHOOL  *SCHOOL ID*                                VALUE   IDSCHOOL ID                             7-   12/N  6.0  
+                                                                      999999   omitted                                                  
+                                                                      999998   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:   3 / CAR:T   / CAT:ID     / DEF:            
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+   4 CLASS        IDCLASS   *CLASS ID*                                 VALUE   IDCLASS ID                             13-   20/N  8.0  
+                                                                     9999999   omitted                                                  
+                                                                     9999999   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:   4 / CAR:T   / CAT:ID     / DEF:            
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+   5 STUD         IDSTUD    *STUDENT ID*                               VALUE   IDSTUD ID                              21-   30/N 10.0  
+                                                                     9999999   omitted                                                  
+                                                                     9999999   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:   5 / CAR:F   / CAT:ID     / DEF:            
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+   6 TEACHER      IDTEACH   *TEACHER ID*                               VALUE   IDTEACH LK                             31-   38/N  8.0  
+                                                                     9999999   omitted                                                  
+                                                                     9999999   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:   6 / CAR:F   / CAT:LK     / DEF: 99999998   
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+   7 LINK_NO      IDLINK    *TEACHER LINK NUMBER*                      VALUE   IDLINK LK                              39-   40/N  2.0  
+                                                                          99   omitted                                                  
+                                                                          98   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:   7 / CAR:F   / CAT:LK     / DEF: 98         
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+   8 IDSTRATE     IDSTRATE  EXPLICIT STRATUM CODE                      VALUE   IDSTRATE D                             41-   43/N  3.0  
+                                                                         999   omitted                                                  
+                                                                         998   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:   8 / CAR:F   / CAT:D      / DEF: 998        
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+   9 IDSTRATI     IDSTRATI  IMPLICIT STRATUM CODE                      VALUE   IDSTRATI D                             44-   46/N  3.0  
+                                                                         999   omitted                                                  
+                                                                         998   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:   9 / CAR:F   / CAT:D      / DEF: 998        
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  10 GRADE        IDGRADE   *GRADE*                                    VALUE   IDGRADE ID                             47-   48/N  2.0  
+                                                                               VLD: (IDGRADE>=7.AND.IDGRADE<=9)                       
+                                                                               Flags: SCR:  10 / CAR:T   / CAT:ID     / DEF:            
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  11 GRADE        IDGRADER  *STANDARDIZED GRADE ID*                        9   omitted                                49      /C  1.0  
+                                                                           8   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  11 / CAR:F   / CAT:ID     / DEF: 8          
+                                                                       COMMENT: recoding of IDGRADE to international standard                   
+--------------------------------------------------------------------------------------------------------------------------------------
+  12 COURSE       ITCOURSE  *NAME OF COURSE*                              99   omitted                                50-   51/C  2.0  
+                                                                          98   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  12 / CAR:F   / CAT:IT     / DEF: 97         
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  13 LINK         MATSUBJ   *MATHEMATICS TEACHER LINK*                 VALUE   MATSUBJ D                              52      /N  1.0  
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  13 / CAR:F   / CAT:D      / DEF:            
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  14 LINK         SCISUBJ   *SCIENCE TEACHER LINK*                     VALUE   SCISUBJ D                              53      /N  1.0  
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  14 / CAR:F   / CAT:D      / DEF:            
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  15 LINK         NMTEACH   *NUMBER OF MATH TEACHERS FOR STUDENT*      VALUE   NMTEACH D                              54      /N  1.0  
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  15 / CAR:F   / CAT:D      / DEF:            
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  16 LINK         NSTEACH   *NUMBER OF SCIENCE TEACHERS FOR STUDENT*   VALUE   NSTEACH D                              55      /N  1.0  
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  16 / CAR:F   / CAT:D      / DEF:            
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  17 LINK         NTEACH    *NO. OF MATH+SCIENCE TEACHERS COMBINED*    VALUE   NTEACH D                               56      /N  1.0  
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  17 / CAR:F   / CAT:D      / DEF:            
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  18 INTMS03      INTMS03   *IN 2003 ASSESSMENT POPULATION*            VALUE   INTMS03 D                              57      /N  1.0  
+                                                                           9   omitted                                                  
+                                                                           8   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  18 / CAR:F   / CAT:D      / DEF: 8          
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  19 INTMS99      INTMS99   *IN 2003 AND 1999 ASSESSMENT POPULATION*   VALUE   INTMS99 D                              58      /N  1.0  
+                                                                           9   omitted                                                  
+                                                                           8   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  19 / CAR:F   / CAT:D      / DEF: 8          
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  20 INTMS95      INTMS95   *IN 2003 AND 1999 AND 1995 ASS. POP*       VALUE   INTMS95 D                              59      /N  1.0  
+                                                                           9   omitted                                                  
+                                                                           8   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  20 / CAR:F   / CAT:D      / DEF: 8          
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  21 WEIGHT       MATWGT    *WEIGHT FOR MATHEMATICS TEACHER DATA*      VALUE   MATWGT D                               60-   72/N 13.6  
+                                                                      999999   omitted                                                  
+                                                                      999998   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  21 / CAR:F   / CAT:D      / DEF: 999998     
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  22 WEIGHT       SCIWGT    *WEIGHT FOR SCIENCE TEACHER DATA*          VALUE   SCIWGT D                               73-   85/N 13.6  
+                                                                      999999   omitted                                                  
+                                                                      999998   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  22 / CAR:F   / CAT:D      / DEF: 999998     
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  23 WEIGHT       TCHWGT    *WEIGHT FOR MAT+SCI TEACHER DATA COMBIN*   VALUE   TCHWGT D                               86-   98/N 13.6  
+                                                                      999999   omitted                                                  
+                                                                      999998   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  23 / CAR:F   / CAT:D      / DEF: 999998     
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  24 WEIGHT       TOTWGT    *STUDENT WEIGHT*                           VALUE   TOTWGT D                               99-  111/N 13.6  
+                                                                      999999   omitted                                                  
+                                                                      999998   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  24 / CAR:F   / CAT:D      / DEF: 999998     
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  25 JACKKNIFE    JKREP     *REPLICATE CODE*                           VALUE   JKREP D                               112      /N  1.0  
+                                                                           9   omitted                                                  
+                                                                           8   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  25 / CAR:F   / CAT:D      / DEF: 8          
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  26 JACKKNIFE    JKZONE    *ZONE CODE*                                VALUE   JKZONE D                              113-  114/N  2.0  
+                                                                          99   omitted                                                  
+                                                                          98   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  26 / CAR:F   / CAT:D      / DEF: 98         
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  27 SCORE        BSSNRSC   *NATIONAL SCIENCE RASCH SCORE (150,10)*    VALUE   BSSNRSC D                             115-  122/N  8.3  
+                                                                        9999   omitted                                                  
+                                                                        9998   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  27 / CAR:F   / CAT:D      / DEF: 9998       
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  28 SCORE        BSMNRSC   *NATIONAL MATH RASCH SCORE (150,10)*       VALUE   BSMNRSC D                             123-  130/N  8.3  
+                                                                        9999   omitted                                                  
+                                                                        9998   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  28 / CAR:F   / CAT:D      / DEF: 9998       
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  29 SCORE        BSMMAT01  *1ST PLAUSIBLE VALUE MATHEMATICS*          VALUE   BSMMAT01 D                            131-  136/N  6.2  
+                                                                         999   omitted                                                  
+                                                                         998   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  29 / CAR:F   / CAT:D      / DEF: 998        
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  30 SCORE        BSMMAT02  *2ND PLAUSIBLE VALUE MATHEMATICS*          VALUE   BSMMAT02 D                            137-  142/N  6.2  
+                                                                         999   omitted                                                  
+                                                                         998   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  30 / CAR:F   / CAT:D      / DEF: 998        
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  31 SCORE        BSMMAT03  *3RD PLAUSIBLE VALUE MATHEMATICS*          VALUE   BSMMAT03 D                            143-  148/N  6.2  
+                                                                         999   omitted                                                  
+                                                                         998   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  31 / CAR:F   / CAT:D      / DEF: 998        
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  32 SCORE        BSMMAT04  *4TH PLAUSIBLE VALUE MATHEMATICS*          VALUE   BSMMAT04 D                            149-  154/N  6.2  
+                                                                         999   omitted                                                  
+                                                                         998   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  32 / CAR:F   / CAT:D      / DEF: 998        
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  33 SCORE        BSMMAT05  *5TH PLAUSIBLE VALUE MATHEMATICS*          VALUE   BSMMAT05 D                            155-  160/N  6.2  
+                                                                         999   omitted                                                  
+                                                                         998   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  33 / CAR:F   / CAT:D      / DEF: 998        
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  34 SCORE        BSSSCI01  *1ST PLAUSIBLE VALUE SCIENCE*              VALUE   BSSSCI01 D                            161-  166/N  6.2  
+                                                                         999   omitted                                                  
+                                                                         998   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  34 / CAR:F   / CAT:D      / DEF: 998        
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  35 SCORE        BSSSCI02  *2ND PLAUSIBLE VALUE SCIENCE*              VALUE   BSSSCI02 D                            167-  172/N  6.2  
+                                                                         999   omitted                                                  
+                                                                         998   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  35 / CAR:F   / CAT:D      / DEF: 998        
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  36 SCORE        BSSSCI03  *3RD PLAUSIBLE VALUE SCIENCE*              VALUE   BSSSCI03 D                            173-  178/N  6.2  
+                                                                         999   omitted                                                  
+                                                                         998   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  36 / CAR:F   / CAT:D      / DEF: 998        
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  37 SCORE        BSSSCI04  *4TH PLAUSIBLE VALUE SCIENCE*              VALUE   BSSSCI04 D                            179-  184/N  6.2  
+                                                                         999   omitted                                                  
+                                                                         998   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  37 / CAR:F   / CAT:D      / DEF: 998        
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  38 SCORE        BSSSCI05  *5TH PLAUSIBLE VALUE SCIENCE*              VALUE   BSSSCI05 D                            185-  190/N  6.2  
+                                                                         999   omitted                                                  
+                                                                         998   not admin.                                               
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  38 / CAR:F   / CAT:D      / DEF: 998        
+                                                                       COMMENT:                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------
+  39 SYSTEM       DPCDATE   *FILE CREATION DATE AT DPC HAMBURG*        VALUE   DPCDATE D                             191-  196/N  6.0  
+                                                                               VLD: .T.                                               
+                                                                               Flags: SCR:  39 / CAR:F   / CAT:D      / DEF:            
+                                                                       COMMENT:                                                                 
