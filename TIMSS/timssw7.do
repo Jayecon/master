@@ -16,16 +16,16 @@ local btsidlist idcntry	idschool			idteach	idlink
 local bstidlist idcntry				idstud	idteach	idlink
 /*}}}*/
 /*Set File Specific Input Lists {{{*/
-local bcgvlist bcbg05a bcbg10 stotwgtu
+local bcgvlist bcbg05a bcbg07 stotwgtu
 local bsgvlist  ///
 	bsssci01 bsssci02 bsssci03 bsssci04 bsssci05  ///
 	bsmmat01 bsmmat02 bsmmat03 bsmmat04 bsmmat05  ///
-	bsbg03 bsbg10a bsdage itsex ///
-	bsbg04 bsbg06a bsbg06b bsbg06c bsbg06d bsbg06e bsbg06f bsbg06g   ///
-	bsbg07a bsbg07b bsdgedup ///
-	bsbg09a bsbg09b
-local btmvlist btbg04 btbg03 btbg02 btbg12 btbg01
-local btsvlist btbg04 btbg03 btbg02 btbg12 btbg01
+	bsbg03 bsbg09a bsdage itsex ///
+	bsbg04 bsbg05a bsbg05b bsbg05c bsbg05d bsbg05e ///
+	bsbg06a bsbg06b bsdgedup ///
+	bsbg08a bsbg08b
+local btmvlist btbg04 btbg03 btbg02 btbg10 btbg01
+local btsvlist btbg04 btbg03 btbg02 btbg10 btbg01
 /*}}}*/
 /*Set Rename Vars list{{{*/
 local bcgrvlist comsiz sccnum scsnum
@@ -33,7 +33,7 @@ local bsgrvlist ///
 	sci01 sci02 sci03 sci04 sci05 ///
 	mat01 mat02 mat03 mat04 mat05 ///
 	stdlng stdbrn stdage stdsex ///
-	posbok poscto poscts posdsk posrom posnet posphn posgam ///
+	posbok poscto posdsk posrom posnet posphn ///
 	mtredu ftredu paredu ///
 	mtrbrn ftrbrn
 local btmrvlist tcmedu tcmage tcmsex clmsiz tcmyox
