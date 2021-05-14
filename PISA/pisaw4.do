@@ -1,15 +1,19 @@
+/*Macro List{{{*/
+local path "E:\works\pisa\stata\"
+/*Macro List for School{{{*/
 local schidlist country schoolid cnt
 local schvlist sc07q01 stratio propcert propqual 
 local schrvlist schloc strati tchcer tchi5a 
 local schwlist w_fschwt
 local schrwlist schwgt
 local schtvlist sc09q11-sc09q32
-
+/*}}}*/
+/*Macro List for Student{{{*/
 local stuidlist country schoolid stidstd cnt
 local stuvlist st04q01 ///
 				st09q01 st13q01 st12q01 st16q01 ///
-				st10q01 st11q01 st11q02 st11q03 st11q04///
-				st14q01 st15q01 st15q02 st15q03 st15q04///
+				st10q01 st11q01 st11q02 st11q03 st11q04 ///
+				st14q01 st15q01 st15q02 st15q03 st15q04 ///
 				st17q01 st17q02 st17q03 ///
 				st20q01 st20q02 st20q03 st20q04 st20q05 ///
 				st20q06 st20q07 st20q08 st20q09 st20q10 ///
@@ -37,3 +41,27 @@ local sturwlist stuwgt ceqwgt
 local scorelist pv1math pv2math pv3math pv4math pv5math ///
 				pv1read pv2read pv3read pv4read pv5read ///
 				pv1scie pv2scie pv3scie pv4scie pv5scie 
+/*}}}*/
+/*}}}*/
+
+tempfile tfile
+
+cd `path'
+
+use `path'p09_school.dta , clear 
+	rename _all, low
+	isid `schidlist'
+	keep `schidlist' `schvlist' `schwlist' 
+	rename (`schvlist' `schwlist') (`schrvlist' `schrwlist')
+save `tfile'
+
+use `path'p09_student.dta , clear 
+	rename _all, low
+	isid `stuidlist'
+	keep `stuidlist' `stuvlist' `stuwlist' 
+	rename (`stuvlist' `stuwlist') (`sturvlist' `sturwlist')
+	merge m:1 `schidlist' using `tfile' 
+save `tfile' , replace
+
+save pisaw4.dta , replace
+

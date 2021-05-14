@@ -1,23 +1,28 @@
+/*Macro List{{{*/
+local path "E:\works\pisa\stata\"
+/*Macro List for School{{{*/
 local schidlist cntryid cntschid cnt
-local schvlist sc001q01ta stratio proatce proat5b 
+local schvlist sc001q01ta stratio proatce proat5ab 
 local schrvlist schloc strati tchcer tchi5a 
-local schwlist w_schgrnr senwgt
-local schrwlist schwgt seqwgt
+local schwlist w_schgrnrabwt senwt 
+local schrwlist schwgt senwgt
 local schtvlist sc09q11-sc09q32
-
+/*}}}*/
+/*Macro List for Student{{{*/
 local stuidlist cntryid cntschid cntstuid cnt
-local stuvlist st04q01 ///
+local stuvlist st004d01t ///
 				ocod1 ocod2 ///
-				st13q01 st14q01 st14q02 st14q03 st14q04///
-				st17q01 st18q01 st18q02 st18q03 st18q04///
-				st26q01 st26q02 st26q03 ///
-				st26q01 st26q02 st26q03 st26q04 st26q05 ///
-				st26q06 st26q07 st26q08 st26q09 st26q10 ///
-				st26q11 st26q12 st26q13 st26q14 ///
-				st27q01 st27q02 st27q03 st27q04 st27q05 ///
-				st28q01 ///
+				st005q01ta st006q01ta st006q02ta st006q03ta st006q04ta ///
+				st007q01ta st008q01ta st008q02ta st008q03ta st008q04ta ///
+				st019aq01t st019bq01t st019cq01t ///
+				st011q01ta st011q02ta st011q03ta st011q04ta st011q05ta ///
+				st011q06ta st011q07ta st011q08ta st011q09ta st011q10ta ///
+				st011q11ta st011q12ta st011q16na ///
+				st012q01ta st012q02ta st012q03ta st012q05na st012q06na ///
+				st012q07na st012q08na st012q09na ///
+				st013q01ta ///
 				bfmj2 bmmj1 misced fisced hisced ///
-				fsecateg msecateg hsecateg hisei escs
+				hisei escs
 local sturvlist stusex ///
 				mtrocc ftrocc ///
 				mtredu1 mtredu2 mtredu3 mtredu4 mtredu5 ///
@@ -25,13 +30,40 @@ local sturvlist stusex ///
 				stubrn mtrbrn ftrbrn ///
 				posdsk posrom posplc poscom possft ///
 				posnet poslit pospoe posart postxt ///
-				postbk posdic posdsh posdvd ///
-				numphn numtvs numcom numcar numbth ///
+				postbk posdic posamd ///
+				numtvs numcar numbth numphn numcom ///
+				numtab numebk numins ///
 				posbok ////
 				ftrsei mtrsei mtredu ftredu hghedu ///
-				ftrsec mtrsec hghsec hghsei idxesc
-local stuwlist w_fstuwtenwgt_stu
+				hghsei idxesc
+local stuwlist w_fstuwt senwt
 local sturwlist stuwgt sstwgt 
 local scorelist pv1math pv2math pv3math pv4math pv5math ///
+				pv6math pv7math pv8math pv9math pv10math ///
 				pv1read pv2read pv3read pv4read pv5read ///
-				pv1scie pv2scie pv3scie pv4scie pv5scie 
+				pv6read pv7read pv8read pv9read pv10read ///
+				pv1scie pv2scie pv3scie pv4scie pv5scie ///
+				pv6scie pv7scie pv8scie pv9scie pv10scie 
+/*}}}*/
+/*}}}*/
+
+tempfile tfile
+
+cd `path'
+
+use `path'p15_school.dta , clear 
+	rename _all, low
+	isid `schidlist'
+	keep `schidlist' `schvlist' `schwlist' 
+	rename (`schvlist' `schwlist') (`schrvlist' `schrwlist')
+save `tfile'
+
+use `path'p15_student.dta , clear 
+	rename _all, low
+	isid `stuidlist'
+	keep `stuidlist' `stuvlist' `stuwlist' 
+	rename (`stuvlist' `stuwlist') (`sturvlist' `sturwlist')
+	merge m:1 `schidlist' using `tfile' 
+save `tfile' , replace
+
+save pisaw6.dta , replace
