@@ -1,5 +1,5 @@
-cd c:\timss
-local path_input E:\Works\TIMSS\Stata\
+local path E:\Works\TIMSS\Stata\
+tempfile tfile1 tfile2 tfile3 tfile4 tfile5 tfile6
 
 /*Set input list{{{*/
 local dlist bcg bsg btm bts bst
@@ -50,20 +50,22 @@ local bstwlist
 /*}}}*/
 /*}}}*/
 
+local fcntry : word 1 of `clist'
 /*Missing Value Control{{{*/
 foreach z of local clist {
+local fcntry : word 1 of `clist'
 	/*BCG file{{{*/
-	use "`path_input'bcg`z'm5.dta", clear
+	use "`path'bcg`z'm5.dta", clear
 		rename _all , lower
 		mvdecode bcbg05a, mv(9=.)
 		mvdecode bcbg01, mv(99999=.)
 		mvdecode bcbg07, mv(999=.)
 		keep `bcgidlist' `bcgvlist' `bcgwlist'
 			rename (`bcgvlist') (`bcgrvlist')
-			save "bcg`z'temp5", replace
+			save `tfile1', replace
 	/*}}}*/
 	/*BSG file{{{*/
-	use "`path_input'bsg`z'm5.dta", clear
+	use "`path'bsg`z'm5.dta", clear
 		rename _all , lower
 		mvdecode bsbg03, 	mv(9=. \ 8=.)
 		mvdecode bsbg09a, 	mv(9=. \ 8=.)
@@ -79,9 +81,9 @@ foreach z of local clist {
 		keep `bsgidlist' `bsgvlist' `bsgwlist'
 			rename (`bsgvlist') (`bsgrvlist')
 			recode stdsex (2=0)
-		save "bsg`z'temp5", replace/*}}}*/
+		save `tfile2', replace/*}}}*/
 	/*BTM file{{{*/
-	use "`path_input'btm`z'm5.dta", clear
+	use "`path'btm`z'm5.dta", clear
 		rename _all , lower
 		mvdecode btbg04, mv(9=. \ 8=.)
 		mvdecode btbg03, mv(9=. \ 8=.)
@@ -90,9 +92,9 @@ foreach z of local clist {
 		mvdecode btbg12, mv(999=. \ 998=.)
 		keep `btmidlist' `btmvlist' `btmwlist'
 			rename (`btmvlist') (`btmrvlist')
-		save "btm`z'temp5", replace /*}}}*/
+		save `tfile3', replace /*}}}*/
 	/*BTS file{{{*/
-	use "`path_input'bts`z'm5.dta", clear
+	use "`path'bts`z'm5.dta", clear
 		rename _all , lower
 		mvdecode btbg04, mv(9=. \ 8=.)
 		mvdecode btbg03, mv(9=. \ 8=.)
@@ -101,28 +103,25 @@ foreach z of local clist {
 		mvdecode btbg12, mv(999=. \ 998=.)
 		keep `btsidlist' `btsvlist' `btswlist'
 			rename (`btsvlist') (`btsrvlist')
-			save "bts`z'temp5", replace/*}}}*/
+			save `tfile4', replace/*}}}*/
 	/*BST file{{{*/
-	use "`path_input'bst`z'm5.dta", clear
+	use "`path'bst`z'm5.dta", clear
 			rename _all , lower
 			keep `bstidlist'
-			save "bst`z'temp5", replace/*}}}*/
-	}
+			save `tfile5', replace/*}}}*/
 /*}}}*/
 
 /*Merge Files{{{*/
-local fcntry : word 1 of `clist'
-foreach y of local clist {
-	disp "Country: `y'"
+disp "Country: `z'"
 	/*Merge BCG and BSG{{{*/
-	use "bcg`y'temp5", clear
-		merge 1:m idcntry idschool using "bsg`y'temp5"
+	use `tfile1', clear
+		merge 1:m idcntry idschool using `tfiel2'
 		drop if _merge == 1
 		drop _merge
-		save "`y'w5", replace /*}}}*/
+		save `tfile6', replace /*}}}*/
 	/*Control BTM{{{*/
-	use "bst`y'temp5", clear
-		merge m:1 idcntry idteach idlink using "btm`y'temp5"
+	use `tfile5', clear
+		merge m:1 idcntry idteach idlink using `tfile3'
 		drop if _merge == 2
 		drop _merge
 		mvdecode idschool, mv(999999=. )
@@ -143,14 +142,14 @@ foreach y of local clist {
 		label var tcmsex "GEN\SEX OF TEACHER"
 		label var clmsiz "GEN\CLSS\NUMBER OF BOYS & GIRLS IN CLASS"
 		label var tcmyox "GEN\YEARS BEEN TEACHING"
-		label value tcmedu BTBG04
-		label value tcmage BTBG03
-		label value tcmsex BTBG02
-		label value clmsiz BTBG12
-		save "btm`y'temp5", replace/*}}}*/
+		label value tcmedu BTBGEDUC
+		label value tcmage BTBGAGE
+		label value tcmsex BTBGSEX
+		label value clmsiz BTDCSIZE
+		save `tfile3' , replace/*}}}*/
 	/*Control BTS{{{*/
-	use "bst`y'temp5", clear
-		merge m:1 idcntry idteach idlink using "bts`y'temp5"
+	use `tfile5', clear
+		merge m:1 idcntry idteach idlink using `tfile4'
 		drop if _merge == 2
 		drop _merge
 		mvdecode idschool, mv(999999=. )
@@ -171,19 +170,19 @@ foreach y of local clist {
 		label var tcssex "GEN\SEX OF TEACHER"
 		label var clssiz "GEN\CLSS\NUMBER OF BOYS & GIRLS IN CLASS"
 		label var tcsyox "GEN\YEARS BEEN TEACHING"
-		label value tcsedu BTBG04
-		label value tcsage BTBG03
-		label value tcssex BTBG02
-		label value clssiz BTBG12
-		save "bts`y'temp5", replace
+		label value tcsedu BTBGEDUC
+		label value tcsage BTBGAGE
+		label value tcssex BTBGSEX
+		label value clssiz BTDCSIZE
+		save `tfile4', replace
 	/*}}}*/
 	/*Combine BCG BSG BTM BTS{{{*/
-	use "`y'w5", replace
-		merge 1:1 idcntry idstud using "btm`y'temp5" , nogen
-		merge 1:1 idcntry idstud using "bts`y'temp5" , nogen
-		gen str3 cntry = "`y'"
+	use `tfile6', replace
+		merge 1:1 idcntry idstud using `tfile3' , nogen
+		merge 1:1 idcntry idstud using `tfile4' , nogen
+		gen str3 cntry = "`z'"
 		label variable cntry "COUNTRY 3CHAR"
-		gen byte wave = 5
+		gen byte wave = 1
 		label variable wave "WAVE NUMBER"
 		order _all, alphabetic
 		compress/*}}}*/
@@ -194,13 +193,12 @@ foreach y of local clist {
 		egen parbrn = rowtotal(ftrbrn mtrbrn) , missing
 		replace cntry = "cze" if cntry == "csk"	/*CSK exception*/
 		replace idcntry = 203 if idcntry == 200		/*CSK exception*//*}}}*/
-		save "`y'w5", replace
+	save `tfile6', replace
 	/*Merge by Countries{{{*/
-	if  "`y'" == "`fcntry'" {
-		save "timssw5.dta", replace
+	if  "`z'" == "`fcntry'" {
+		save "`path'timssw5.dta", replace
 		continue
 	}
-	append using "timssw5.dta"
-	save "timssw5.dta", replace/*}}}*/
-}
-/*}}}*/
+	append using "`path'timssw5.dta"/*}}}*/
+	save "`path'timssw5.dta", replace
+} /*}}}*/
