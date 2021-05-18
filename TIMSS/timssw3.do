@@ -52,7 +52,7 @@ local bstwlist
 
 local fcntry : word 1 of `clist'
 /*Missing Value Control{{{*/
-foreach z of local clist 
+foreach z of local clist {
 	/*BCG file{{{*/
 	use "`path'bcg`z'm3.dta", clear
 		rename _all , lower
@@ -116,7 +116,7 @@ foreach z of local clist
 disp "Country: `z'"
 	/*Merge BCG and BSG{{{*/
 	use `tfile1', clear
-		merge 1:m idcntry idschool using `tfiel2'
+		merge 1:m idcntry idschool using `tfile2'
 		drop if _merge == 1
 		drop _merge
 		save `tfile6', replace /*}}}*/

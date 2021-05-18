@@ -53,64 +53,62 @@ local fcntry : word 1 of `clist'
 /*Missing Value Control{{{*/
 foreach z of local clist {
 	/*BCG file{{{*/
-	use "`path_input'bcg`z'm1.dta", clear
+	use "`path'bcg`z'm7.dta", clear
 		rename _all , lower
-		mvdecode bcbgcomm, mv(9=. \ 8=. \ 99=.)
-		mvdecode bcbgftte, mv(998=.)	/*GEN\NUMBER OF FULL-TIME TEACHERS */
-		mvdecode bcbgptte, mv(998=.)	/*GEN\NUMBER OF PART-TIME TEACHERS*/
-		mvdecode bcbgcom1, mv(998=.)	/*GEN\COMPUTERS\AVAILABLE*/
-		mvdecode bcbgbenr, mv(9998=.)	/*GEN\TOTAL SCHOOL ENROLLMENT\BOYS */
-		mvdecode bcbggenr, mv(9998=.)	/*GEN\TOTAL SCHOOL\ENROLLMENT\GIRLS */
+		mvdecode bcbg05a, mv(99=.)
+		mvdecode stotwgtu, mv(999999=.)
+		mvdecode bcbg07, mv(9999=.)
 		keep `bcgidlist' `bcgvlist' `bcgwlist'
 			rename (`bcgvlist') (`bcgrvlist')
 			save `tfile1', replace
 	/*}}}*/
 	/*BSG file{{{*/
-	use "`path_input'bsg`z'm1.dta", clear
+	use "`path'bsg`z'm7.dta", clear
 		rename _all , lower
-		mvdecode bsbglang, 	mv(9=. \ 8=. \ 6=. )
-		mvdecode bsbgbrn1, 	mv(9=. \ 8=. \ 6=. )
-		mvdecode bsdage,   	mv(99=. \ 98=.)
-		mvdecode itsex,   	mv(9=. \ 8=.)
-		mvdecode bsbgbook, 	mv(9=. \ 8=. \ 6=.)
-		mvdecode bsbgps01, 	mv(9=. \ 8=.)
-		mvdecode bsbgps02, 	mv(9=. \ 8=.)
-		mvdecode bsbgps03, 	mv(9=. \ 8=.)
-		mvdecode bsbgps04, 	mv(9=. \ 8=.)
-		mvdecode bsbgedum, 	mv(99=. \ 98=. \96=. \ 7=.)
-		mvdecode bsbgeduf, 	mv(99=. \ 98=. \96=. \ 7=.)
-		mvdecode bsdgedup, 	mv(9=. \ 8=. \ 6=. \ 4=.)
-		mvdecode bsbgbrnm, 	mv(9=. \ 8=. \ 6=. )
-		mvdecode bsbgbrnf, 	mv(9=. \ 8=. \ 6=. )
+		mvdecode bsbg03, 	mv(9=. \ 8=.)
+		mvdecode bsdage,   	mv(99=.)
+		mvdecode itsex,   	mv(9=. )
+		mvdecode bsbg04, 	mv(9=. \ 8=.)
+		mvdecode bsbg05a,  	mv(9=. )
+		mvdecode bsbg05b,  	mv(9=. )
+		mvdecode bsbg05c,  	mv(9=. )
+		mvdecode bsbg05d,  	mv(9=. )
+		mvdecode bsbg05e,  	mv(9=. )
+		mvdecode bsbg06a, 	mv(99=. \ 8=. \ 9=.)
+		mvdecode bsbg06b, 	mv(99=. \ 8=. \ 9=.)
+		mvdecode bsdgedup, 	mv(9=. \ 6=.)
+		mvdecode bsbg08a, 	mv(9=. \ 8=.)
+		mvdecode bsbg08b, 	mv(9=. \ 8=.)
+		mvdecode bsbg09a, 	mv(9=. \ 8=.)
 		keep `bsgidlist' `bsgvlist' `bsgwlist'
 			rename (`bsgvlist') (`bsgrvlist')
-			save `tfile2', replace/*}}}*/
+		save `tfile2', replace/*}}}*/
 	/*BTM file{{{*/
-	use "`path_input'btm`z'm1.dta", clear
+	use "`path'btm`z'm7.dta", clear
 		rename _all , lower
-		mvdecode btbgeduc, mv(99=. \ 98=.)
-		mvdecode btbgage, mv(99=. \ 98=.)
-		mvdecode btbgsex, mv(9=. \ 8=.)
-		mvdecode btbgtaug, mv(99=. \ 98=.)
-		mvdecode btdcsize, mv(9999=. \ 9998=. \ 9996=.)
+		mvdecode btbg04, mv(99=.)
+		mvdecode btbg03, mv(9=.)
+		mvdecode btbg02, mv(9=.)
+		mvdecode btbg01, mv(99=.)
+		mvdecode btbg10, mv(999=.)
 		keep `btmidlist' `btmvlist' `btmwlist'
 			rename (`btmvlist') (`btmrvlist')
 		save `tfile3', replace/*}}}*/
 	/*BTS file{{{*/
-	use "`path_input'bts`z'm1.dta", clear
+	use "`path'bts`z'm7.dta", clear
 		rename _all , lower
-		mvdecode btbgeduc, mv(99=. \ 98=.)
-		mvdecode btbgage, mv(99=. \ 98=.)
-		mvdecode btbgsex, mv(9=. \ 8=.)
-		mvdecode btbgtaug, mv(99=. \ 98=.)
-		mvdecode btdcsize, mv(9999=. \ 9998=. \ 9996=.)
+		mvdecode btbg04, mv(99=.)
+		mvdecode btbg03, mv(9=.)
+		mvdecode btbg02, mv(9=.)
+		mvdecode btbg01, mv(99=.)
+		mvdecode btbg10, mv(999=.)
 		keep `btsidlist' `btsvlist' `btswlist'
 			rename (`btsvlist') (`btsrvlist')
-			save `tfile4', replace/*}}}*/
+		save `tfile4', replace/*}}}*/
 	/*BST file{{{*/
-	use "`path_input'bst`z'm1.dta", clear
-		rename _all , lower
-		keep `bstidlist'  `bstwlist'
+	use "`path'bst`z'm7.dta", clear
+			rename _all , lower
+			keep `bstidlist'
 		save `tfile5', replace/*}}}*/
 /*}}}*/
 
@@ -118,7 +116,7 @@ foreach z of local clist {
 disp "Country: `z'"
 	/*Merge BCG and BSG{{{*/
 	use `tfile1', clear
-		merge 1:m idcntry idschool using `tfiel2'
+		merge 1:m idcntry idschool using `tfile2'
 		drop if _merge == 1
 		drop _merge
 		save `tfile6', replace /*}}}*/
@@ -205,3 +203,4 @@ disp "Country: `z'"
 	append using "`path'timssw7.dta"/*}}}*/
 	save "`path'timssw7.dta", replace
 } /*}}}*/
+

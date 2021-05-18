@@ -118,7 +118,7 @@ disp "Country: `z'"
 /*Merge Files{{{*/
 	/*Merge BCG and BSG{{{*/
 	use `tfile1', clear
-		merge 1:m idcntry idschool using `tfiel2'
+		merge 1:m idcntry idschool using `tfile2'
 		drop if _merge == 1
 		drop _merge
 		save `tfile6', replace /*}}}*/

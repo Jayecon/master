@@ -30,12 +30,12 @@ local sturvlist stusex ///
 				pospon postvs poscal poscom posmus ///
 				poscar posbth ///
 				numlan nummat numsci ///
-				posbok
+				posbokd
 local stuwlist w_fstuwt cnt?fac 
 local sturwlist stuwgt cn?fwgt 
-local scorelist pv1math pv2math pv3math pv4math pv5math ///
-				pv1read pv2read pv3read pv4read pv5read ///
-				pv1scie pv2scie pv3scie pv4scie pv5scie 
+local scorelistm pv1math pv2math pv3math pv4math pv5math
+local scorelistr pv1read pv2read pv3read pv4read pv5read
+local scorelists pv1scie pv2scie pv3scie pv4scie pv5scie 
 /*}}}*/
 /*}}}*/
 
@@ -53,7 +53,7 @@ save `tfile'
 use `path'p00_science.dta , clear 
 	rename _all, low
 	isid `stuidlist'
-	keep `stuidlist' `stuvlist' `stuwlist' 
+	keep `stuidlist' `stuvlist' `stuwlist' `scorelists'
 	rename (`stuvlist' `stuwlist') (`sturvlist' `sturwlist')
 	merge m:1 `schidlist' using `tfile' , gen(_mscience)
 save `tfile' , replace
@@ -61,7 +61,7 @@ save `tfile' , replace
 use `path'p00_reading.dta , clear 
 	rename _all, low
 	isid `stuidlist'
-	keep `stuidlist' `stuvlist' `stuwlist' 
+	keep `stuidlist' `stuvlist' `stuwlist' `scorelistr'
 	rename (`stuvlist' `stuwlist') (`sturvlist' `sturwlist')
 	merge 1:1 `stuidlist' using `tfile' , gen(_mreading)
 save `tfile' , replace
@@ -69,9 +69,53 @@ save `tfile' , replace
 use `path'p00_math.dta , clear 
 	rename _all, low
 	isid `stuidlist'
-	keep `stuidlist' `stuvlist' `stuwlist' 
+	keep `stuidlist' `stuvlist' `stuwlist' `scorelistm'
 	rename (`stuvlist' `stuwlist') (`sturvlist' `sturwlist')
 	merge 1:1 `stuidlist' using `tfile' , gen(_mmath)
 save `tfile' , replace
 
+/*Missing Control{{{*/
+mvdecode sc01q0  , mv(9=.)
+mvdecode stratio , mv(9=.)
+mvdecode propqual, mv(9=.)
+mvdecode propcert, mv(9=.)
+mvdecode propread, mv(9=.)
+mvdecode propmath, mv(9=.)
+mvdecode propscie, mv(9=.)
+mvdecode st03q01 , mv(9=.)
+mvdecode st06q01 , mv(9=.)
+mvdecode st07q01 , mv(9=.)
+mvdecode st09q01 , mv(9=.)
+mvdecode st11q01 , mv(9=.)
+mvdecode st12q01 , mv(9=.)
+mvdecode st13q01 , mv(9=.)
+mvdecode st14q01 , mv(9=.)
+mvdecode st15q01 , mv(9=.)
+mvdecode st16q01 , mv(9=.)
+mvdecode st16q02 , mv(9=.)
+mvdecode st16q03 , mv(9=.)
+mvdecode st21q01 , mv(9=.)
+mvdecode st21q02 , mv(9=.)
+mvdecode st21q03 , mv(9=.)
+mvdecode st21q04 , mv(9=.)
+mvdecode st21q05 , mv(9=.)
+mvdecode st21q06 , mv(9=.)
+mvdecode st21q07 , mv(9=.)
+mvdecode st21q08 , mv(9=.)
+mvdecode st21q09 , mv(9=.)
+mvdecode st21q10 , mv(9=.)
+mvdecode st21q11 , mv(9=.)
+mvdecode st22q01 , mv(9=.)
+mvdecode st22q02 , mv(9=.)
+mvdecode st22q03 , mv(9=.)
+mvdecode st22q04 , mv(9=.)
+mvdecode st22q05 , mv(9=.)
+mvdecode st22q06 , mv(9=.)
+mvdecode st22q07 , mv(9=.)
+mvdecode st27q01 , mv(9=.)
+mvdecode st27q02 , mv(9=.)
+mvdecode st27q03 , mv(9=.)
+mvdecode st37q01 , mv(9=.)
+/*}}}*/
 save pisaw1.dta , replace
+save ~/dropbox/pisaw1.dta , replace
