@@ -46,6 +46,9 @@ cd `path'
 
 use `path'p06_school.dta , clear 
 	rename _all, low
+/*Macro List for School{{{*/
+mvdecode sc07q01  , mv(9=. / 8=. / 7=.)
+/*}}}*/
 	isid `schidlist'
 	keep `schidlist' `schvlist' `schwlist' 
 	rename (`schvlist' `schwlist') (`schrvlist' `schrwlist')
@@ -53,6 +56,47 @@ save `tfile'
 
 use `path'p06_student.dta , clear 
 	rename _all, low
+/*Macro List for Student{{{*/
+mvdecode st04q01  ,mv(9=. / 8=. / 7=.)
+mvdecode bmmj     ,mv(99=. / 97=.)
+mvdecode bfmj     ,mv(99=. / 97=.)
+mvdecode msecateg ,mv(9=. / 7=.)
+mvdecode fsecateg , mv(9=. / 7=.)  
+mvdecode st06q01  , mv(9=. / 8=. / 7=.)
+mvdecode st07q01  , mv(9=. / 8=. / 7=.)
+mvdecode st07q02  , mv(9=. / 8=. / 7=.)
+mvdecode st07q03  , mv(9=. / 8=. / 7=.) 
+mvdecode st09q01  , mv(9=. / 8=. / 7=.)
+mvdecode st10q01  , mv(9=. / 8=. / 7=.)
+mvdecode st10q02  , mv(9=. / 8=. / 7=.)
+mvdecode st10q03  , mv(9=. / 8=. / 7=.) 
+mvdecode st11q01  , mv(9=. / 8=. / 7=.)
+mvdecode st11q02  , mv(9=. / 8=. / 7=.)
+mvdecode st11q03  , mv(9=. / 8=. / 7=.) 
+mvdecode st13q01  , mv(9=. / 8=. / 7=.)
+mvdecode st13q02  , mv(9=. / 8=. / 7=.)
+mvdecode st13q03  , mv(9=. / 8=. / 7=.)
+mvdecode st13q04  , mv(9=. / 8=. / 7=.)
+mvdecode st13q05  , mv(9=. / 8=. / 7=.) 
+mvdecode st13q06  , mv(9=. / 8=. / 7=.)
+mvdecode st13q07  , mv(9=. / 8=. / 7=.)
+mvdecode st13q08  , mv(9=. / 8=. / 7=.)
+mvdecode st13q09  , mv(9=. / 8=. / 7=.)
+mvdecode st13q10  , mv(9=. / 8=. / 7=.) 
+mvdecode st13q11  , mv(9=. / 8=. / 7=.)
+mvdecode st13q12  , mv(9=. / 8=. / 7=.)
+mvdecode st13q13  , mv(9=. / 8=. / 7=.)
+mvdecode st13q14  , mv(9=. / 8=. / 7=.) 
+mvdecode st14q01  , mv(9=. / 8=. / 7=.)
+mvdecode st14q02  , mv(9=. / 8=. / 7=.)
+mvdecode st14q03  , mv(9=. / 8=. / 7=.)
+mvdecode st14q04  , mv(9=. / 8=. / 7=.) 
+mvdecode st15q01  , mv(9=. / 8=. / 7=.) 
+mvdecode misced   , mv(9=. / 7=.)
+mvdecode fisced   , mv(9=. / 7=.)
+mvdecode hisced   , mv(9=. / 7=.)
+mvdecode pared    , mv(99=. / 97=.)
+/*}}}*/
 	isid `stuidlist'
 	keep `stuidlist' `stuvlist' `stuwlist' 
 	rename (`stuvlist' `stuwlist') (`sturvlist' `sturwlist')

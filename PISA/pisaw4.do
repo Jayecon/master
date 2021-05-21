@@ -2,7 +2,7 @@
 local path "E:\works\pisa\stata\"
 /*Macro List for School{{{*/
 local schidlist country schoolid cnt
-local schvlist sc07q01 stratio propcert propqual 
+local schvlist sc04q01 stratio propcert propqual 
 local schrvlist schloc strati tchcer tchi5a 
 local schwlist w_fschwt
 local schrwlist schwgt
@@ -20,7 +20,6 @@ local stuvlist st04q01 ///
 				st20q11 st20q12 st20q13 st20q14 ///
 				st21q01 st21q02 st21q03 st21q04 st21q05 ///
 				st22q01 ///
-				st36q01 ///
 				bfmj bmmj misced fisced hisced ///
 				fsecateg msecateg hsecateg hisei escs
 local sturvlist stusex ///
@@ -33,7 +32,6 @@ local sturvlist stusex ///
 				postbk posdic posdsh posdvd ///
 				numphn numtvs numcom numcar numbth ///
 				posbok ////
-				nummat ///
 				ftrsei mtrsei mtredu ftredu hghedu ///
 				ftrsec mtrsec hghsec hghsei idxesc
 local stuwlist w_fstuwt cntfac 
@@ -50,6 +48,9 @@ cd `path'
 
 use `path'p09_school.dta , clear 
 	rename _all, low
+/*Missing Control{{{*/
+mvdecode sc04q01  , mv( 9=. / 8=. / 7=. )
+/*}}}*/
 	isid `schidlist'
 	keep `schidlist' `schvlist' `schwlist' 
 	rename (`schvlist' `schwlist') (`schrvlist' `schrwlist')
@@ -57,6 +58,56 @@ save `tfile'
 
 use `path'p09_student.dta , clear 
 	rename _all, low
+/*Missing Control{{{*/
+mvdecode st04q01  , mv( 9=. / 8=. / 7=. ) 
+mvdecode st09q01  , mv( 9999=. / 9998=. / 9997=. )
+mvdecode st13q01  , mv( 9999=. / 9998=. / 9997=. )
+mvdecode st12q01  , mv( 9=. / 8=. / 7=. )
+mvdecode st16q01  , mv( 9=. / 8=. / 7=. ) 
+mvdecode st10q01  , mv( 9=. / 8=. / 7=. )
+mvdecode st11q01  , mv( 9=. / 8=. / 7=. )
+mvdecode st11q02  , mv( 9=. / 8=. / 7=. )
+mvdecode st11q03  , mv( 9=. / 8=. / 7=. )
+mvdecode st11q04  , mv( 9=. / 8=. / 7=. ) 
+mvdecode st14q01  , mv( 9=. / 8=. / 7=. )
+mvdecode st15q01  , mv( 9=. / 8=. / 7=. )
+mvdecode st15q02  , mv( 9=. / 8=. / 7=. )
+mvdecode st15q03  , mv( 9=. / 8=. / 7=. )
+mvdecode st15q04  , mv( 9=. / 8=. / 7=. ) 
+mvdecode st17q01  , mv( 9=. / 8=. / 7=. )
+mvdecode st17q02  , mv( 9=. / 8=. / 7=. )
+mvdecode st17q03  , mv( 9=. / 8=. / 7=. ) 
+mvdecode st20q01  , mv( 9=. / 8=. / 7=. )
+mvdecode st20q02  , mv( 9=. / 8=. / 7=. )
+mvdecode st20q03  , mv( 9=. / 8=. / 7=. )
+mvdecode st20q04  , mv( 9=. / 8=. / 7=. )
+mvdecode st20q05  , mv( 9=. / 8=. / 7=. ) 
+mvdecode st20q06  , mv( 9=. / 8=. / 7=. )
+mvdecode st20q07  , mv( 9=. / 8=. / 7=. )
+mvdecode st20q08  , mv( 9=. / 8=. / 7=. )
+mvdecode st20q09  , mv( 9=. / 8=. / 7=. )
+mvdecode st20q10  , mv( 9=. / 8=. / 7=. ) 
+mvdecode st20q11  , mv( 9=. / 8=. / 7=. )
+mvdecode st20q12  , mv( 9=. / 8=. / 7=. )
+mvdecode st20q13  , mv( 9=. / 8=. / 7=. )
+mvdecode st20q14  , mv( 9=. / 8=. / 7=. ) 
+mvdecode st21q01  , mv( 9=. / 8=. / 7=. )
+mvdecode st21q02  , mv( 9=. / 8=. / 7=. )
+mvdecode st21q03  , mv( 9=. / 8=. / 7=. )
+mvdecode st21q04  , mv( 9=. / 8=. / 7=. )
+mvdecode st21q05  , mv( 9=. / 8=. / 7=. ) 
+mvdecode st22q01  , mv( 9=. / 8=. / 7=. ) 
+mvdecode bfmj     , mv( 99=. / 98=. / 97=. )
+mvdecode bmmj     , mv( 99=. / 98=. / 97=. )
+mvdecode misced   , mv( 9=. / 8=. / 7=. )
+mvdecode fisced   , mv( 9=. / 8=. / 7=. )
+mvdecode hisced   , mv( 9=. / 8=. / 7=. )
+mvdecode fsecateg , mv( 9=. / 8=. / 7=. ) 
+mvdecode msecateg , mv( 9=. / 8=. / 7=. ) 
+mvdecode hsecateg , mv( 9=. / 8=. / 7=. ) 
+mvdecode hisei    , mv( 99=. / 98=. / 97=. )
+mvdecode escs     , mv( 9=. / 8=. / 7=. )
+/*}}}*/
 	isid `stuidlist'
 	keep `stuidlist' `stuvlist' `stuwlist' 
 	rename (`stuvlist' `stuwlist') (`sturvlist' `sturwlist')
