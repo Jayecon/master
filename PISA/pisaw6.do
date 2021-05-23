@@ -6,6 +6,7 @@ local schvlist sc001q01ta stratio proatce proat5ab
 local schrvlist schloc strati tchcer tchi5a 
 local schwlist w_schgrnrabwt senwt 
 local schrwlist schwgt senwgt
+local schtvlist sc09q11-sc09q32
 /*}}}*/
 /*Macro List for Student{{{*/
 local stuidlist cntryid cntschid cntstuid cnt
@@ -53,10 +54,7 @@ cd `path'
 use `path'p15_school.dta , clear 
 	rename _all, low
 /*Missing Control{{{*/
-	mvdecode sc001q01ta , mv( 99=. \ 98=. )
-	mvdecode stratio  , mv(999=. \ 998=. \ 997=.)  
-	mvdecode proatce , mv(99=. \ 98=. \ 97=.)  
-	mvdecode proat5ab , mv(99=. \ 98=. \ 97=.) 
+mvdecode sc001q01ta , mv( 99=. / 98=. ) 
 /*}}}*/
 	isid `schidlist'
 	keep `schidlist' `schvlist' `schwlist' 
@@ -66,55 +64,52 @@ save `tfile'
 use `path'p15_student.dta , clear 
 	rename _all, low
 /*Missing Control{{{*/
-mvdecode st004d01t  , mv( 9=. \ 8=. \ 7=. ) 
-mvdecode ocod1      , mv( 9999=. \ 9998=. \ 9997=. )
-mvdecode ocod2      , mv( 9999=. \ 9998=. \ 9997=. )
-mvdecode st005q01ta , mv( 99=. \ 98=. \ 97=. )
-mvdecode st006q01ta , mv( 9=. \ 8=. \ 7=. )
-mvdecode st006q02ta , mv( 9=. \ 8=. \ 7=. )
-mvdecode st006q03ta , mv( 9=. \ 8=. \ 7=. )
-mvdecode st006q04ta , mv( 9=. \ 8=. \ 7=. ) 
-mvdecode st007q01ta , mv( 99=. \ 98=. \ 97=. )
-mvdecode st008q01ta , mv( 9=. \ 8=. \ 7=. )
-mvdecode st008q02ta , mv( 9=. \ 8=. \ 7=. )
-mvdecode st008q03ta , mv( 9=. \ 8=. \ 7=. )
-mvdecode st008q04ta , mv( 9=. \ 8=. \ 7=. ) 
-mvdecode st019aq01t , mv( 99=. \ 98=. \ 97=. )
-mvdecode st019bq01t , mv( 99=. \ 98=. \ 97=. )
-mvdecode st019cq01t , mv( 99=. \ 98=. \ 97=. ) 
-mvdecode st011q01ta , mv( 9=. \ 8=. \ 7=. )
-mvdecode st011q02ta , mv( 9=. \ 8=. \ 7=. )
-mvdecode st011q03ta , mv( 9=. \ 8=. \ 7=. )
-mvdecode st011q04ta , mv( 9=. \ 8=. \ 7=. )
-mvdecode st011q05ta , mv( 9=. \ 8=. \ 7=. ) 
-mvdecode st011q06ta , mv( 9=. \ 8=. \ 7=. )
-mvdecode st011q07ta , mv( 9=. \ 8=. \ 7=. )
-mvdecode st011q08ta , mv( 9=. \ 8=. \ 7=. )
-mvdecode st011q09ta , mv( 9=. \ 8=. \ 7=. )
-mvdecode st011q10ta , mv( 9=. \ 8=. \ 7=. ) 
-mvdecode st011q11ta , mv( 9=. \ 8=. \ 7=. )
-mvdecode st011q12ta , mv( 9=. \ 8=. \ 7=. )
-mvdecode st011q16na , mv( 9=. \ 8=. \ 7=. ) 
-mvdecode st012q01ta , mv( 9=. \ 8=. \ 7=. )
-mvdecode st012q02ta , mv( 9=. \ 8=. \ 7=. )
-mvdecode st012q03ta , mv( 9=. \ 8=. \ 7=. )
-mvdecode st012q05na , mv( 9=. \ 8=. \ 7=. )
-mvdecode st012q06na , mv( 9=. \ 8=. \ 7=. ) 
-mvdecode st012q07na , mv( 9=. \ 8=. \ 7=. )
-mvdecode st012q08na , mv( 9=. \ 8=. \ 7=. )
-mvdecode st012q09na , mv( 9=. \ 8=. \ 7=. ) 
-mvdecode st013q01ta , mv( 99=. \ 98=. \ 97=. ) 
-mvdecode misced     , mv( 99=. \ 98=. \ 97=. )
-mvdecode fisced     , mv( 99=. \ 98=. \ 97=. )
-mvdecode hisced     , mv( 99=. \ 98=. \ 97=. )
-mvdecode bmmj1     , mv( 9999=. \ 9998=. \ 9997=. )
-mvdecode bfmj2     , mv( 9999=. \ 9998=. \ 9997=. )
-mvdecode hisei     , mv( 9999=. \ 9998=. \ 9997=. )
+mvdecode st004d01t  , mv( 9=. / 8=. / 7=. ) 
+mvdecode ocod1      , mv( 9999=. / 9998=. / 9997=. )
+mvdecode ocod2      , mv( 9999=. / 9998=. / 9997=. )
+mvdecode st005q01ta , mv( 99=. / 98=. / 97=. )
+mvdecode st006q01ta , mv( 9=. / 8=. / 7=. )
+mvdecode st006q02ta , mv( 9=. / 8=. / 7=. )
+mvdecode st006q03ta , mv( 9=. / 8=. / 7=. )
+mvdecode st006q04ta , mv( 9=. / 8=. / 7=. ) 
+mvdecode st007q01ta , mv( 99=. / 98=. / 97=. )
+mvdecode st008q01ta , mv( 9=. / 8=. / 7=. )
+mvdecode st008q02ta , mv( 9=. / 8=. / 7=. )
+mvdecode st008q03ta , mv( 9=. / 8=. / 7=. )
+mvdecode st008q04ta , mv( 9=. / 8=. / 7=. ) 
+mvdecode st019aq01t , mv( 99=. / 98=. / 97=. )
+mvdecode st019bq01t , mv( 99=. / 98=. / 97=. )
+mvdecode st019cq01t , mv( 99=. / 98=. / 97=. ) 
+mvdecode st011q01ta , mv( 9=. / 8=. / 7=. )
+mvdecode st011q02ta , mv( 9=. / 8=. / 7=. )
+mvdecode st011q03ta , mv( 9=. / 8=. / 7=. )
+mvdecode st011q04ta , mv( 9=. / 8=. / 7=. )
+mvdecode st011q05ta , mv( 9=. / 8=. / 7=. ) 
+mvdecode st011q06ta , mv( 9=. / 8=. / 7=. )
+mvdecode st011q07ta , mv( 9=. / 8=. / 7=. )
+mvdecode st011q08ta , mv( 9=. / 8=. / 7=. )
+mvdecode st011q09ta , mv( 9=. / 8=. / 7=. )
+mvdecode st011q10ta , mv( 9=. / 8=. / 7=. ) 
+mvdecode st011q11ta , mv( 9=. / 8=. / 7=. )
+mvdecode st011q12ta , mv( 9=. / 8=. / 7=. )
+mvdecode st011q16na , mv( 9=. / 8=. / 7=. ) 
+mvdecode st012q01ta , mv( 9=. / 8=. / 7=. )
+mvdecode st012q02ta , mv( 9=. / 8=. / 7=. )
+mvdecode st012q03ta , mv( 9=. / 8=. / 7=. )
+mvdecode st012q05na , mv( 9=. / 8=. / 7=. )
+mvdecode st012q06na , mv( 9=. / 8=. / 7=. ) 
+mvdecode st012q07na , mv( 9=. / 8=. / 7=. )
+mvdecode st012q08na , mv( 9=. / 8=. / 7=. )
+mvdecode st012q09na , mv( 9=. / 8=. / 7=. ) 
+mvdecode st013q01ta , mv( 99=. / 98=. / 97=. ) 
+mvdecode misced     , mv( 99=. / 98=. / 97=. )
+mvdecode fisced     , mv( 99=. / 98=. / 97=. )
+mvdecode hisced     , mv( 99=. / 98=. / 97=. )
 /*}}}*/
 	isid `stuidlist'
-	keep `stuidlist' `stuvlist' `stuwlist' `scorelist'
+	keep `stuidlist' `stuvlist' `stuwlist' 
 	rename (`stuvlist' `stuwlist') (`sturvlist' `sturwlist')
 	merge m:1 `schidlist' using `tfile' 
 save `tfile' , replace
 
-save ~/dropbox/pisaw6.dta , replace
+save pisaw6.dta , replace
