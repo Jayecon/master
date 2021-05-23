@@ -1,5 +1,5 @@
 local path E:\Works\TIMSS\Stata\
-tempfile tfile1 tfile2 tfile3 tfile4 tfile5 tfile6
+tempfile tfile1 tfile2 tfile3 tfile4 tfile5 tfile6 tfile7
 
 /*Set input list{{{*/ local dlist bcg bsg btm bts bst
 /*34 Countries for 8th Grades in TIMSS 1999*/
@@ -198,9 +198,10 @@ disp "Country: `z'"
 	save `tfile6', replace
 	/*Merge by Countries{{{*/
 	if  "`z'" == "`fcntry'" {
-		save "`path'timssw2.dta", replace
+		save `tfile7' , replace
 		continue
 	}
-	append using "`path'timssw2.dta"/*}}}*/
-	save "~/dropbox/timssw2.dta", replace
+	append using `tfile7'
+	save `tfile7' , replace /*}}}*/
 } /*}}}*/
+save "~/dropbox/timssw2.dta", replace
