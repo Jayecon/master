@@ -1,4 +1,4 @@
-local path_input E:\Works\TIMSS\Stata\
+local path E:\Works\TIMSS\Stata\
 tempfile tfile1 tfile2 tfile3 tfile4 tfile5 tfile6
 
 /*Set input list{{{*/
