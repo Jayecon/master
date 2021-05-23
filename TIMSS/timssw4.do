@@ -202,5 +202,5 @@ disp "Country: `z'"
 		continue
 	}
 	append using "`path'timssw4.dta"/*}}}*/
-	save "`path'timssw4.dta", replace
+	save "~/dropbox/timssw4.dta", replace
 } /*}}}*/

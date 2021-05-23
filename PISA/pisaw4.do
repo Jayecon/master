@@ -118,4 +118,3 @@ mvdecode escs     , mv( 9999=. \ 9998=. \ 9997=. )
 save `tfile' , replace
 
 save ~/dropbox/pisaw4.dta , replace
-

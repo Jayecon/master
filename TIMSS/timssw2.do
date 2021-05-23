@@ -1,8 +1,7 @@
 local path E:\Works\TIMSS\Stata\
 tempfile tfile1 tfile2 tfile3 tfile4 tfile5 tfile6
 
-/*Set input list{{{*/
-local dlist bcg bsg btm bts bst
+/*Set input list{{{*/ local dlist bcg bsg btm bts bst
 /*34 Countries for 8th Grades in TIMSS 1999*/
 local clist aus bgr can chl twn cyp cze fin hkg hun ///
 			idn irn isr ita jor kor lva ltu mkd mda ///
@@ -203,5 +202,5 @@ disp "Country: `z'"
 		continue
 	}
 	append using "`path'timssw2.dta"/*}}}*/
-	save "`path'timssw2.dta", replace
+	save "~/dropbox/timssw2.dta", replace
 } /*}}}*/

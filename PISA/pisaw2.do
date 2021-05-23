@@ -99,4 +99,3 @@ mvdecode pared   , mv(99=. )
 save `tfile' , replace
 
 save ~/dropbox/pisaw2.dta , replace
-

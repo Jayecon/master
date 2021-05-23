@@ -1,5 +1,4 @@
-local path E:\Works\TIMSS\Stata\
-tempfile tfile1 tfile2 tfile3 tfile4 tfile5 tfile6
+local path E:\Works\TIMSS\Stata\ tempfile tfile1 tfile2 tfile3 tfile4 tfile5 tfile6
 
 /*Set input list{{{*/
 local dlist bcg bsg btm bts bst
@@ -203,5 +202,5 @@ disp "Country: `z'"
 		continue
 	}
 	append using "`path'timssw1.dta"/*}}}*/
-	save "`path'timssw1.dta", replace
+	save "~/dropbox/timssw1.dta", replace
 } /*}}}*/
