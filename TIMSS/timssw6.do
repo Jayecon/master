@@ -30,8 +30,8 @@ local btsvlist btbg04 btbg03 btbg02 btbg12 btbg01
 /*Set Rename Vars list{{{*/
 local bcgrvlist comsiz sccnum scsnum
 local bsgrvlist ///
-	sci01 sci02 sci03 sci04 sci05 ///
-	mat01 mat02 mat03 mat04 mat05 ///
+	pv1scie pv2scie pv3scie pv4scie pv5scie ///
+	pv1math pv2math pv3math pv4math pv5math ///
 	stdlng stdbrn stdage stdsex ///
 	posbok poscto poscts posdsk posrom posnet posphn posgam ///
 	mtredu ftredu paredu ///
