@@ -1,193 +1,205 @@
-/*Macro List{{{*/
-local path "E:\works\pisa\stata\"
-/*Macro List for School{{{*/
-local schidlist country schoolid cnt
-local schvlist sc01q01 stratio propqual propcert propread propmath propscie
-local schrvlist schloc strati tchi5a tchcer tchr5a tchm5a tchs5a
-local schwlist wnrschb
-local schrwlist schwgt
+local path_input E:\Works\TIMSS\Stata\
+tempfile tfile1 tfile2 tfile3 tfile4 tfile5 tfile6
+
+/*Set input list{{{*/
+local dlist bcg bsa bsg bst btm bts 
+/*39 Countries for 8th Grades in TIMSS 2019*/
+local clist are aus bhr chl cyp egy eng fin fra geo ///
+			hkg hun irl irn isr ita jor jpn kaz kor ///
+			kwt lbn ltu mar mys nor nzl omn pry qat ///
+			rom tus sau sgp swe tur twn usa zaf 
+/*Set ID Input List{{{*/
+local bcgidlist idcntry	idschool
+local bsgidlist idcntry	idschool	idstud
+local btmidlist idcntry	idschool			idteach	idlink
+local btsidlist idcntry	idschool			idteach	idlink
+local bstidlist idcntry				idstud	idteach	idlink
 /*}}}*/
-/*Macro List for Student{{{*/
-local stuidlist country schoolid stidstd cnt
-local stuvlist st03q01 ///
-				st06q01 st07q01 st09q01 st11q01 ///
-				st12q01 st13q01 st14q01 st15q01 ///
-				st16q01 st16q02 st16q03 ///
-				st21q01 st21q02 st21q03 st21q04 st21q05 ///
-				st21q06 st21q07 st21q08 st21q09 st21q10 ///
-				st21q11  ///
-				st22q01 st22q02 st22q03 st22q04 st22q05 ///
-				st22q06 st22q07 ///
-				st37q01
-local sturvlist stusex ///
-				mtrocc ftrocc mtrjob ftrjob ///
-				mtredu2 ftredu2 mtredu3 ftredu3 ///
-				stubrn mtrbrn ftrbrn ///
-				posdis posrom possft posnet posdic ///
-				pospla posdsk postxt poslit pospoe ///
-				posart  ///
-				pospon postvs poscal poscom posmus ///
-				poscar posbth ///
-				posbok
-local stuwlist w_fstuwt cnt?fac 
-local sturwlist stuwgt cn?fwgt 
-local scorelistm pv1math pv2math pv3math pv4math pv5math
-local scorelistr pv1read pv2read pv3read pv4read pv5read
-local scorelists pv1scie pv2scie pv3scie pv4scie pv5scie 
+/*Set File Specific Input Lists {{{*/
+local bcgvlist bcbg05a bcbg07 stotwgtu
+local bsgvlist  ///
+	bsssci01 bsssci02 bsssci03 bsssci04 bsssci05  ///
+	bsmmat01 bsmmat02 bsmmat03 bsmmat04 bsmmat05  ///
+	bsbg03 bsbg09a bsdage itsex ///
+	bsbg04 bsbg05a bsbg05b bsbg05c bsbg05d bsbg05e ///
+	bsbg06a bsbg06b bsdgedup ///
+	bsbg08a bsbg08b
+local btmvlist btbg04 btbg03 btbg02 btbg10 btbg01
+local btsvlist btbg04 btbg03 btbg02 btbg10 btbg01
+/*}}}*/
+/*Set Rename Vars list{{{*/
+local bcgrvlist comsiz sccnum scsnum
+local bsgrvlist ///
+	sci01 sci02 sci03 sci04 sci05 ///
+	mat01 mat02 mat03 mat04 mat05 ///
+	stdlng stdbrn stdage stdsex ///
+	posbok poscto posdsk posrom posnet posphn ///
+	mtredu ftredu paredu ///
+	mtrbrn ftrbrn
+local btmrvlist tcmedu tcmage tcmsex clmsiz tcmyox
+local btsrvlist tcsedu tcsage tcssex clssiz tcsyox
+local bstrvlist tcmnum tcsnum tcanum
+/*}}}*/
+/*Set Weight Vars list{{{*/
+local bcgwlist schwgt
+local bsgwlist totwgt houwgt senwgt
+local btmwlist
+local btswlist
+local bstwlist
 /*}}}*/
 /*}}}*/
 
-tempfile tfile
-
-cd `path'
-
-use `path'p00_school.dta , clear 
-	rename _all, low
-/*Missing Control{{{*/
-mvdecode sc01q0  , mv(9=. \ 8=. \ 7=.)
-mvdecode stratio , mv(99=. \ 97=.)
-mvdecode propqual, mv(9=. \ 8=. \ 7=.)
-mvdecode propcert, mv(9=. \ 8=. \ 7=.)
-mvdecode propread, mv(9=. \ 8=. \ 7=.)
-mvdecode propmath, mv(9=. \ 8=. \ 7=.)
-mvdecode propscie, mv(9=. \ 8=. \ 7=.)
+local fcntry : word 1 of `clist'
+/*Missing Value Control{{{*/
+foreach z of local clist {
+	/*BCG file{{{*/
+	use "`path'bcg`z'm7.dta", clear
+		rename _all , lower
+		mvdecode bcbg05a, mv(99=.)
+		mvdecode stotwgtu, mv(999999=.)
+		mvdecode bcbg07, mv(9999=.)
+		keep `bcgidlist' `bcgvlist' `bcgwlist'
+			rename (`bcgvlist') (`bcgrvlist')
+			save `tfile1', replace
+	/*}}}*/
+	/*BSG file{{{*/
+	use "`path'bsg`z'm7.dta", clear
+		rename _all , lower
+		mvdecode bsbg03, 	mv(9=. \ 8=.)
+		mvdecode bsdage,   	mv(99=.)
+		mvdecode itsex,   	mv(9=. )
+		mvdecode bsbg04, 	mv(9=. \ 8=.)
+		mvdecode bsbg05a,  	mv(9=. )
+		mvdecode bsbg05b,  	mv(9=. )
+		mvdecode bsbg05c,  	mv(9=. )
+		mvdecode bsbg05d,  	mv(9=. )
+		mvdecode bsbg05e,  	mv(9=. )
+		mvdecode bsbg06a, 	mv(99=. \ 8=. \ 9=.)
+		mvdecode bsbg06b, 	mv(99=. \ 8=. \ 9=.)
+		mvdecode bsdgedup, 	mv(9=. \ 6=.)
+		mvdecode bsbg08a, 	mv(9=. \ 8=.)
+		mvdecode bsbg08b, 	mv(9=. \ 8=.)
+		mvdecode bsbg09a, 	mv(9=. \ 8=.)
+		keep `bsgidlist' `bsgvlist' `bsgwlist'
+			rename (`bsgvlist') (`bsgrvlist')
+		save `tfile2', replace/*}}}*/
+	/*BTM file{{{*/
+	use "`path'btm`z'm7.dta", clear
+		rename _all , lower
+		mvdecode btbg04, mv(99=.)
+		mvdecode btbg03, mv(9=.)
+		mvdecode btbg02, mv(9=.)
+		mvdecode btbg01, mv(99=.)
+		mvdecode btbg10, mv(999=.)
+		keep `btmidlist' `btmvlist' `btmwlist'
+			rename (`btmvlist') (`btmrvlist')
+		save `tfile3', replace/*}}}*/
+	/*BTS file{{{*/
+	use "`path'bts`z'm7.dta", clear
+		rename _all , lower
+		mvdecode btbg04, mv(99=.)
+		mvdecode btbg03, mv(9=.)
+		mvdecode btbg02, mv(9=.)
+		mvdecode btbg01, mv(99=.)
+		mvdecode btbg10, mv(999=.)
+		keep `btsidlist' `btsvlist' `btswlist'
+			rename (`btsvlist') (`btsrvlist')
+		save `tfile4', replace/*}}}*/
+	/*BST file{{{*/
+	use "`path'bst`z'm7.dta", clear
+			rename _all , lower
+			keep `bstidlist'
+		save `tfile5', replace/*}}}*/
 /*}}}*/
-	isid `schidlist'
-	keep `schidlist' `schvlist' `schwlist' 
-	rename (`schvlist' `schwlist') (`schrvlist' `schrwlist')
-save `tfile'
 
-use `path'p00_science.dta , clear 
-	rename _all, low
-/*Missing Control{{{*/
-mvdecode st03q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st06q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st07q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st09q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st11q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st12q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st13q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st14q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st15q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st16q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st16q02 , mv(9=. \ 8=. \ 7=.)
-mvdecode st16q03 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q02 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q03 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q04 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q05 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q06 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q07 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q08 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q09 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q10 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q11 , mv(9=. \ 8=. \ 7=.)
-mvdecode st22q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st22q02 , mv(9=. \ 8=. \ 7=.)
-mvdecode st22q03 , mv(9=. \ 8=. \ 7=.)
-mvdecode st22q04 , mv(9=. \ 8=. \ 7=.)
-mvdecode st22q05 , mv(9=. \ 8=. \ 7=.)
-mvdecode st22q06 , mv(9=. \ 8=. \ 7=.)
-mvdecode st22q07 , mv(9=. \ 8=. \ 7=.)
-mvdecode st27q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st27q02 , mv(9=. \ 8=. \ 7=.)
-mvdecode st27q03 , mv(9=. \ 8=. \ 7=.)
-mvdecode st37q01 , mv(99=. \ 98=. \ 97=.)
-/*}}}*/
-	isid `stuidlist'
-	keep `stuidlist' `stuvlist' `stuwlist' `scorelists'
-	rename (`stuvlist' `stuwlist') (`sturvlist' `sturwlist')
-	merge m:1 `schidlist' using `tfile' , gen(_mscience)
-save `tfile' , replace
-
-use `path'p00_reading.dta , clear 
-	rename _all, low
-/*Missing Control{{{*/
-mvdecode st03q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st06q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st07q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st09q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st11q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st12q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st13q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st14q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st15q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st16q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st16q02 , mv(9=. \ 8=. \ 7=.)
-mvdecode st16q03 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q02 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q03 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q04 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q05 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q06 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q07 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q08 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q09 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q10 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q11 , mv(9=. \ 8=. \ 7=.)
-mvdecode st22q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st22q02 , mv(9=. \ 8=. \ 7=.)
-mvdecode st22q03 , mv(9=. \ 8=. \ 7=.)
-mvdecode st22q04 , mv(9=. \ 8=. \ 7=.)
-mvdecode st22q05 , mv(9=. \ 8=. \ 7=.)
-mvdecode st22q06 , mv(9=. \ 8=. \ 7=.)
-mvdecode st22q07 , mv(9=. \ 8=. \ 7=.)
-mvdecode st27q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st27q02 , mv(9=. \ 8=. \ 7=.)
-mvdecode st27q03 , mv(9=. \ 8=. \ 7=.)
-mvdecode st37q01 , mv(99=. \ 98=. \ 97=.)
-/*}}}*/
-	isid `stuidlist'
-	keep `stuidlist' `stuvlist' `stuwlist' `scorelistr'
-	rename (`stuvlist' `stuwlist') (`sturvlist' `sturwlist')
-	merge 1:1 `stuidlist' using `tfile' , gen(_mreading)
-save `tfile' , replace
-
-use `path'p00_math.dta , clear 
-	rename _all, low
-/*Missing Control{{{*/
-mvdecode st03q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st06q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st07q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st09q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st11q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st12q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st13q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st14q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st15q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st16q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st16q02 , mv(9=. \ 8=. \ 7=.)
-mvdecode st16q03 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q02 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q03 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q04 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q05 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q06 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q07 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q08 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q09 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q10 , mv(9=. \ 8=. \ 7=.)
-mvdecode st21q11 , mv(9=. \ 8=. \ 7=.)
-mvdecode st22q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st22q02 , mv(9=. \ 8=. \ 7=.)
-mvdecode st22q03 , mv(9=. \ 8=. \ 7=.)
-mvdecode st22q04 , mv(9=. \ 8=. \ 7=.)
-mvdecode st22q05 , mv(9=. \ 8=. \ 7=.)
-mvdecode st22q06 , mv(9=. \ 8=. \ 7=.)
-mvdecode st22q07 , mv(9=. \ 8=. \ 7=.)
-mvdecode st27q01 , mv(9=. \ 8=. \ 7=.)
-mvdecode st27q02 , mv(9=. \ 8=. \ 7=.)
-mvdecode st27q03 , mv(9=. \ 8=. \ 7=.)
-mvdecode st37q01 , mv(99=. \ 98=. \ 97=.)
-/*}}}*/
-	isid `stuidlist'
-	keep `stuidlist' `stuvlist' `stuwlist' `scorelistm'
-	rename (`stuvlist' `stuwlist') (`sturvlist' `sturwlist')
-	merge 1:1 `stuidlist' using `tfile' , gen(_mmath)
-save `tfile' , replace
-
-save pisaw1.dta , replace
-save ~/dropbox/pisaw1.dta , replace
+/*Merge Files{{{*/
+disp "Country: `z'"
+	/*Merge BCG and BSG{{{*/
+	use `tfile1', clear
+		merge 1:m idcntry idschool using `tfile2'
+		drop if _merge == 1
+		drop _merge
+		save `tfile6', replace /*}}}*/
+	/*Control BTM{{{*/
+	use `tfile5', clear
+		merge m:1 idcntry idteach idlink using `tfile3'
+		drop if _merge == 2
+		drop _merge
+		mvdecode idschool, mv(999999=. )
+		drop if missing(idschool)
+		drop idteach idlink
+		bys idstud : gen nu = _n
+		sum nu , meanonly
+		local tcmmax = r(max)
+		reshape wide `btmrvlist' , i(idstud) j(nu)
+		order _all , alpha
+		foreach j of local btmrvlist {
+			egen `j' = rowmean(`j'1-`j'`tcmmax')
+			replace `j' = round(`j',1)
+				drop `j'1-`j'`tcmmax'
+		}
+		label var tcmedu "GEN\LEVEL OF EDUCATION COMPLETED"
+		label var tcmage "GEN\AGE OF TEACHER" 
+		label var tcmsex "GEN\SEX OF TEACHER"
+		label var clmsiz "GEN\CLSS\NUMBER OF BOYS & GIRLS IN CLASS"
+		label var tcmyox "GEN\YEARS BEEN TEACHING"
+		label value tcmedu BTBGEDUC
+		label value tcmage BTBGAGE
+		label value tcmsex BTBGSEX
+		label value clmsiz BTDCSIZE
+		save `tfile3' , replace/*}}}*/
+	/*Control BTS{{{*/
+	use `tfile5', clear
+		merge m:1 idcntry idteach idlink using `tfile4'
+		drop if _merge == 2
+		drop _merge
+		mvdecode idschool, mv(999999=. )
+		drop if missing(idschool)
+		drop idteach idlink
+		bys idstud : gen nu = _n
+		sum nu , meanonly
+		local tcsmax = r(max)
+		reshape wide `btsrvlist' , i(idstud) j(nu)
+		order _all , alpha
+		foreach j of local btsrvlist {
+			egen `j' = rowmean(`j'1-`j'`tcsmax')
+			replace `j' = round(`j',1)
+				drop `j'1-`j'`tcsmax'
+		}
+		label var tcsedu "GEN\LEVEL OF EDUCATION COMPLETED"
+		label var tcsage "GEN\AGE OF TEACHER"
+		label var tcssex "GEN\SEX OF TEACHER"
+		label var clssiz "GEN\CLSS\NUMBER OF BOYS & GIRLS IN CLASS"
+		label var tcsyox "GEN\YEARS BEEN TEACHING"
+		label value tcsedu BTBGEDUC
+		label value tcsage BTBGAGE
+		label value tcssex BTBGSEX
+		label value clssiz BTDCSIZE
+		save `tfile4', replace
+	/*}}}*/
+	/*Combine BCG BSG BTM BTS{{{*/
+	use `tfile6', replace
+		merge 1:1 idcntry idstud using `tfile3' , nogen
+		merge 1:1 idcntry idstud using `tfile4' , nogen
+		gen str3 cntry = "`z'"
+		label variable cntry "COUNTRY 3CHAR"
+		gen byte wave = 1
+		label variable wave "WAVE NUMBER"
+		order _all, alphabetic
+		compress/*}}}*/
+	/*Cleaning & Exception Control{{{*/
+		order _all , first
+		order wave cntry id* , first
+		egen posses = rowtotal(pos*) , missing
+		egen parbrn = rowtotal(ftrbrn mtrbrn) , missing
+		replace cntry = "cze" if cntry == "csk"	/*CSK exception*/
+		replace idcntry = 203 if idcntry == 200		/*CSK exception*//*}}}*/
+	save `tfile6', replace
+	/*Merge by Countries{{{*/
+	if  "`z'" == "`fcntry'" {
+		save "`path'timssw7.dta", replace
+		continue
+	}
+	append using "`path'timssw7.dta"/*}}}*/
+	save "`path'timssw7.dta", replace
+} /*}}}*/

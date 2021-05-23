@@ -44,10 +44,7 @@ cd `path'
 use `path'p03_school.dta , clear 
 	rename _all, low
 	/*Missing Control{{{*/
-	mvdecode sc01q01  , mv(9=. \ 8=. \ 7=.)  
-	mvdecode stratio  , mv(999=. \ 998=. \ 997=.)  
-	mvdecode propcert , mv(999=. \ 998=. \ 997=.)  
-	mvdecode propqped , mv(999=. \ 998=. \ 997=.)  
+	mvdecode sc01q01  , mv(9=. / 8=. / 7=.)  
 	/*}}}*/
 	isid `schidlist'
 	keep `schidlist' `schvlist' `schwlist' 
@@ -57,46 +54,46 @@ save `tfile'
 use `path'p03_student.dta , clear 
 	rename _all, low
 /*Macro List for Student{{{*/
-mvdecode st03q01 , mv(9=. \ 8=. \ 7=.)  
-mvdecode st05q01 , mv(9=. \ 8=. \ 7=.) 
-mvdecode st06q01 , mv(9=. \ 8=. \ 7=.) 
-mvdecode st07q01 , mv(9999=. \ 9998=. \ 9997=.) 
-mvdecode st09q01 , mv(9999=. \ 9998=. \ 9997=.)  
-mvdecode st11r01 , mv(9=. \ 8=. \ 7=.) 
-mvdecode st12q01 , mv(9=. \ 8=. \ 7=.) 
-mvdecode st12q02 , mv(9=. \ 8=. \ 7=.) 
-mvdecode st12q03 , mv(9=. \ 8=. \ 7=.)  
-mvdecode st13r01 , mv(9=. \ 8=. \ 7=.) 
-mvdecode st14q01 , mv(9=. \ 8=. \ 7=.) 
-mvdecode st14q02 , mv(9=. \ 8=. \ 7=.) 
-mvdecode st14q03 , mv(9=. \ 8=. \ 7=.)  
-mvdecode st15q01 , mv(99=. \ 98=. \ 97=.) 
-mvdecode st15q02 , mv(99=. \ 98=. \ 97=.) 
-mvdecode st15q03 , mv(99=. \ 98=. \ 97=.)  
-mvdecode st17q01 , mv(9=. \ 8=. \ 7=.) 
-mvdecode st17q02 , mv(9=. \ 8=. \ 7=.) 
-mvdecode st17q03 , mv(9=. \ 8=. \ 7=.) 
-mvdecode st17q04 , mv(9=. \ 8=. \ 7=.) 
-mvdecode st17q05 , mv(9=. \ 8=. \ 7=.)  
-mvdecode st17q06 , mv(9=. \ 8=. \ 7=.) 
-mvdecode st17q07 , mv(9=. \ 8=. \ 7=.) 
-mvdecode st17q08 , mv(9=. \ 8=. \ 7=.) 
-mvdecode st17q09 , mv(9=. \ 8=. \ 7=.) 
-mvdecode st17q10 , mv(9=. \ 8=. \ 7=.)  
-mvdecode st17q11 , mv(9=. \ 8=. \ 7=.) 
-mvdecode st17q12 , mv(9=. \ 8=. \ 7=.) 
-mvdecode st17q13 , mv(9=. \ 8=. \ 7=.)  
-mvdecode st19q01 , mv(9=. \ 8=. \ 7=.)  
-mvdecode misced  , mv(9=. \ 8=. \ 7=.)
-mvdecode fisced  , mv(9=. \ 8=. \ 7=.)
-mvdecode hisced  , mv(9=. \ 8=. \ 7=.)
+mvdecode st03q01 , mv(9=. / 8=. / 7=.)  
+mvdecode st05q01 , mv(9=. / 8=. / 7=.) 
+mvdecode st06q01 , mv(9=. / 8=. / 7=.) 
+mvdecode st07q01 , mv(9999=. / 9998=. / 9997=.) 
+mvdecode st09q01 , mv(9999=. / 9998=. / 9997=.)  
+mvdecode st11r01 , mv(9=. / 8=. / 7=.) 
+mvdecode st12q01 , mv(9=. / 8=. / 7=.) 
+mvdecode st12q02 , mv(9=. / 8=. / 7=.) 
+mvdecode st12q03 , mv(9=. / 8=. / 7=.)  
+mvdecode st13r01 , mv(9=. / 8=. / 7=.) 
+mvdecode st14q01 , mv(9=. / 8=. / 7=.) 
+mvdecode st14q02 , mv(9=. / 8=. / 7=.) 
+mvdecode st14q03 , mv(9=. / 8=. / 7=.)  
+mvdecode st15q01 , mv(99=. / 98=. / 97=.) 
+mvdecode st15q02 , mv(99=. / 98=. / 97=.) 
+mvdecode st15q03 , mv(99=. / 98=. / 97=.)  
+mvdecode st17q01 , mv(9=. / 8=. / 7=.) 
+mvdecode st17q02 , mv(9=. / 8=. / 7=.) 
+mvdecode st17q03 , mv(9=. / 8=. / 7=.) 
+mvdecode st17q04 , mv(9=. / 8=. / 7=.) 
+mvdecode st17q05 , mv(9=. / 8=. / 7=.)  
+mvdecode st17q06 , mv(9=. / 8=. / 7=.) 
+mvdecode st17q07 , mv(9=. / 8=. / 7=.) 
+mvdecode st17q08 , mv(9=. / 8=. / 7=.) 
+mvdecode st17q09 , mv(9=. / 8=. / 7=.) 
+mvdecode st17q10 , mv(9=. / 8=. / 7=.)  
+mvdecode st17q11 , mv(9=. / 8=. / 7=.) 
+mvdecode st17q12 , mv(9=. / 8=. / 7=.) 
+mvdecode st17q13 , mv(9=. / 8=. / 7=.)  
+mvdecode st19q01 , mv(9=. / 8=. / 7=.)  
+mvdecode misced  , mv(9=. / 8=. / 7=.)
+mvdecode fisced  , mv(9=. / 8=. / 7=.)
+mvdecode hisced  , mv(9=. / 8=. / 7=.)
 mvdecode pared   , mv(99=. )
 /*}}}*/
 	isid `stuidlist'
-	keep `stuidlist' `stuvlist' `stuwlist' `scorelist'
+	keep `stuidlist' `stuvlist' `stuwlist' 
 	rename (`stuvlist' `stuwlist') (`sturvlist' `sturwlist')
 	merge m:1 `schidlist' using `tfile' 
 save `tfile' , replace
 
-save ~/dropbox/pisaw2.dta , replace
+save pisaw2.dta , replace
 
