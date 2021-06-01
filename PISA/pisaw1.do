@@ -192,4 +192,5 @@ egen posses = rowtotal(poscom posdsk posnet posrom) , missing
 egen fambrn = rowtotal(???brn) , missing
 	label var fambrn "Born in the Country; Family"
 	compress
+
 save ~/dropbox/pisaw1 , replace

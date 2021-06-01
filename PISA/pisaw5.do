@@ -115,9 +115,8 @@ mvdecode hisei   , mv( 9999=. \ 9998=. \ 9997=. )
 	merge m:1 `schidlist' using `tfile' , gen(_student)
 save `tfile' , replace
 
-rename country cntcode
-destring cntcode , replace
-merge m:1 cntcode using ~/git/etc/countrycode_1.dta 
+rename cnt cntabc3
+merge m:1 cntabc3 using ~/git/etc/countrycode_1.dta 
 	drop if _merge == 2
 	drop _merge
 egen posses = rowtotal(poscom posdsk posnet posrom) , missing
