@@ -1,9 +1,8 @@
 foreach i in pisa {
-	forvalue j = 2/2 {
+	forvalue j = 1/1 {
 		use ~/dropbox/`i'w`j' , clear
 		capture drop pcascore* pcagrp* cnt
 		capture drop pcascore pcagrp 
-		capture drop _merge
 		capture rename country cntcode
 		capture destring cntcode , replace
 		merge m:1 cntcode using ~/dropbox/countrycode_1.dta 
@@ -29,7 +28,7 @@ foreach i in pisa {
 		egen pcascore = rowtotal(pcascore0*) , missing
 				label var pcascore "PCA Score"
 		egen pcagrp = rowtotal(pcagrp*) , missing
-				label var pcagrp "PCA Group"
+				label var pcagrp "PCA Score"
 				capture label drop PCAGRP
 				label define PCAGRP 1 "Low Env." 2 "Mid Env." 3 "high Env."
 				label value pcagrp PCAGRP

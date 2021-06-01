@@ -1,4 +1,3 @@
-local grplist incgrp edugrp rgngrp pcagrp 
 
 set more off
 set matsize 10000

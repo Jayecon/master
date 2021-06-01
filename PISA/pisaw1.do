@@ -38,7 +38,6 @@ local scorelists pv1scie pv2scie pv3scie pv4scie pv5scie
 /*}}}*/
 
 tempfile tfile
-
 cd `path'
 
 use `path'p00_school.dta , clear 
@@ -183,5 +182,14 @@ mvdecode st37q01 , mv(99=. \ 98=. \ 97=.)
 	merge 1:1 `stuidlist' using `tfile' , gen(_mmath)
 save `tfile' , replace
 
-save pisaw1.dta , replace
-save ~/dropbox/pisaw1.dta , replace
+rename country cntcode
+destring cntcode , replace
+merge m:1 cntcode using ~/git/etc/countrycode_1.dta 
+	drop if _merge == 2
+	drop _merge
+egen posses = rowtotal(poscom posdsk posnet posrom) , missing
+	label var posses "Possession Status; Desk, Com, Net and Room"
+egen fambrn = rowtotal(???brn) , missing
+	label var fambrn "Born in the Country; Family"
+	compress
+save ~/dropbox/pisaw1 , replace
