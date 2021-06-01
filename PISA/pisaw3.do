@@ -103,7 +103,7 @@ mvdecode pared    , mv(99=. \ 97=.)
 	isid `stuidlist'
 	keep `stuidlist' `stuvlist' `stuwlist' `scorelist'
 	rename (`stuvlist' `stuwlist') (`sturvlist' `sturwlist')
-	merge m:1 `schidlist' using `tfile' 
+	merge m:1 `schidlist' using `tfile' , gen(_student)
 save `tfile' , replace
 
 rename country cntcode

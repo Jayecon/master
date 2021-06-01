@@ -112,7 +112,7 @@ mvdecode hisei   , mv( 9999=. \ 9998=. \ 9997=. )
 	isid `stuidlist'
 	keep `stuidlist' `stuvlist' `stuwlist' `scorelist'
 	rename (`stuvlist' `stuwlist') (`sturvlist' `sturwlist')
-	merge m:1 `schidlist' using `tfile' 
+	merge m:1 `schidlist' using `tfile' , gen(_student)
 save `tfile' , replace
 
 rename country cntcode
