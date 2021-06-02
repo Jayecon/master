@@ -2,12 +2,14 @@ local path E:\Works\TIMSS\Stata\
 tempfile tfile1 tfile2 tfile3 tfile4 tfile5 tfile6 tfile7
 
 /*Set input list{{{*/
-local dlist bcg bsa bsg bst btm bts 
-/*39 Countries for 8th Grades in TIMSS 2019*/
-local clist are aus bhr chl cyp egy eng fin fra geo ///
-			hkg hun irl irn isr ita jor jpn kaz kor ///
-			kwt lbn ltu mar mys nor nzl omn pry qat ///
-			rom tus sau sgp swe tur twn usa zaf 
+local dlist bcg bsg btm bts bst
+/*46 Countries for 8th Grades in TIMSS 2003*/
+local clist arm aus bhr bwa bgr chl twn cyp egy eng ///
+			est gha hkg hun idn irn isr ita jpn jor ///
+			kor lva lbn ltu mkd mys mda mar nld nzl ///
+			nor pse phl rom rus sau sco scg sgp svk ///
+			svn zaf swe syr tun usa
+local fcntry : word 1 of `clist'
 /*Set ID Input List{{{*/
 local bcgidlist idcntry	idschool
 local bsgidlist idcntry	idschool	idstud
@@ -16,16 +18,16 @@ local btsidlist idcntry	idschool			idteach	idlink
 local bstidlist idcntry				idstud	idteach	idlink
 /*}}}*/
 /*Set File Specific Input Lists {{{*/
-local bcgvlist bcbg05a bcbg07 stotwgtu
-local bsgvlist  ///
-	bsssci01 bsssci02 bsssci03 bsssci04 bsssci05  ///
-	bsmmat01 bsmmat02 bsmmat03 bsmmat04 bsmmat05  ///
-	bsbg03 bsbg09a bsdage itsex ///
-	bsbg04 bsbg05a bsbg05b bsbg05c bsbg05d bsbg05e ///
-	bsbg06a bsbg06b bsdgedup ///
-	bsbg08a bsbg08b
-local btmvlist btbg04 btbg03 btbg02 btbg10 btbg01
-local btsvlist btbg04 btbg03 btbg02 btbg10 btbg01
+local bcgvlist bcbgcomu bcbgcmps bcbgtenr
+local bsgvlist ///
+	bsssci01 bsssci02 bsssci03 bsssci04 bsssci05 ///
+	bsmmat01 bsmmat02 bsmmat03 bsmmat04 bsmmat05 ///
+	bsbgolan bsbgborn bsdage itsex ///
+	bsbgbook bsbgps01 bsbgps02 bsbgps03 bsbgps04 ///
+	bsbgmfed bsbgfmed bsdgedup ///
+	bsbgmbrn bsbgfbrn
+local btmvlist btbgfedc btbgage btbgsex btdmstud btbgtaut
+local btsvlist btbgfedc btbgage btbgsex btdsstud btbgtaut
 /*}}}*/
 /*Set Rename Vars list{{{*/
 local bcgrvlist comsiz sccnum scsnum
@@ -33,7 +35,7 @@ local bsgrvlist ///
 	pv1scie pv2scie pv3scie pv4scie pv5scie ///
 	pv1math pv2math pv3math pv4math pv5math ///
 	stdlng stdbrn stdage stdsex ///
-	posbok poscto posdsk posrom posnet posphn ///
+	posbok poscal poscom posdsk posdic ///
 	mtredu ftredu paredu ///
 	mtrbrn ftrbrn
 local btmrvlist tcmedu tcmage tcmsex clmsiz tcmyox
@@ -53,65 +55,63 @@ local fcntry : word 1 of `clist'
 /*Missing Value Control{{{*/
 foreach z of local clist {
 	/*BCG file{{{*/
-	use "`path'bcg`z'm7.dta", clear
+	use "`path'bcg`z'm3.dta", clear
 		rename _all , lower
-		mvdecode bcbg05a, mv(99=.)
-		mvdecode stotwgtu, mv(999999=.)
-		mvdecode bcbg07, mv(9999=.)
+		mvdecode bcbgcomu, mv(9=. \ 8=. \ 99=.) 
+		mvdecode bcbgcmps, mv(999=. ) 
+		mvdecode bcbgtenr, mv(99999=. ) 
 		keep `bcgidlist' `bcgvlist' `bcgwlist'
 			rename (`bcgvlist') (`bcgrvlist')
 			save `tfile1', replace
 	/*}}}*/
 	/*BSG file{{{*/
-	use "`path'bsg`z'm7.dta", clear
+	use "`path'bsg`z'm3.dta", clear
 		rename _all , lower
-		mvdecode bsbg03, 	mv(9=. \ 8=.)
-		mvdecode bsdage,   	mv(99=.)
-		mvdecode itsex,   	mv(9=. )
-		mvdecode bsbg04, 	mv(9=. \ 8=.)
-		mvdecode bsbg05a,  	mv(9=. )
-		mvdecode bsbg05b,  	mv(9=. )
-		mvdecode bsbg05c,  	mv(9=. )
-		mvdecode bsbg05d,  	mv(9=. )
-		mvdecode bsbg05e,  	mv(9=. )
-		mvdecode bsbg06a, 	mv(99=. \ 8=. \ 9=.)
-		mvdecode bsbg06b, 	mv(99=. \ 8=. \ 9=.)
-		mvdecode bsdgedup, 	mv(9=. \ 6=.)
-		mvdecode bsbg08a, 	mv(9=. \ 8=.)
-		mvdecode bsbg08b, 	mv(9=. \ 8=.)
-		mvdecode bsbg09a, 	mv(9=. \ 8=.)
+			mvdecode bsbgolan, 	mv(9=. \ 8=.)
+			mvdecode bsbgborn, 	mv(9=. \ 8=.)
+			mvdecode bsdage,   	mv(99=. \ 98=.)
+			mvdecode itsex,   	mv(9=. \ 8=.)
+			mvdecode bsbgbook, 	mv(9=. \ 8=.)
+			mvdecode bsbgps01, 	mv(9=. )
+			mvdecode bsbgps02, 	mv(9=. )
+			mvdecode bsbgps03, 	mv(9=. )
+			mvdecode bsbgps04, 	mv(9=. )
+			mvdecode bsbgmfed, 	mv(99=. \ 98=. \ 9=.)
+			mvdecode bsbgfmed, 	mv(99=. \ 98=. \ 9=.)
+			mvdecode bsdgedup, 	mv(9=. \ 8=. )
+			mvdecode bsbgmbrn, 	mv(9=. \ 8=. )
+			mvdecode bsbgfbrn, 	mv(9=. \ 8=. )
 		keep `bsgidlist' `bsgvlist' `bsgwlist'
 			rename (`bsgvlist') (`bsgrvlist')
 		save `tfile2', replace/*}}}*/
 	/*BTM file{{{*/
-	use "`path'btm`z'm7.dta", clear
-		rename _all , lower
-		mvdecode btbg04, mv(99=.)
-		mvdecode btbg03, mv(9=.)
-		mvdecode btbg02, mv(9=.)
-		mvdecode btbg01, mv(99=.)
-		mvdecode btbg10, mv(999=.)
-		keep `btmidlist' `btmvlist' `btmwlist'
-			rename (`btmvlist') (`btmrvlist')
-		save `tfile3', replace/*}}}*/
+	use "`path'btm`z'm3.dta", clear
+	rename _all , lower
+		mvdecode btbgfedc, mv(9=. ) 
+		mvdecode btbgage, mv(9=.)
+		mvdecode btbgsex, mv(9=.) 
+		mvdecode btbgtaut, mv(99=. \ 98=.)
+		mvdecode btdmstud, mv(9=.) 
+	keep `btmidlist' `btmvlist' `btmwlist'
+		rename (`btmvlist') (`btmrvlist')
+	save `tfile3', replace/*}}}*/
 	/*BTS file{{{*/
-	use "`path'bts`z'm7.dta", clear
-		rename _all , lower
-		mvdecode btbg04, mv(99=.)
-		mvdecode btbg03, mv(9=.)
-		mvdecode btbg02, mv(9=.)
-		mvdecode btbg01, mv(99=.)
-		mvdecode btbg10, mv(999=.)
-		keep `btsidlist' `btsvlist' `btswlist'
-			rename (`btsvlist') (`btsrvlist')
-		save `tfile4', replace/*}}}*/
+	use "`path'bts`z'm3.dta", clear
+	rename _all , lower
+		mvdecode btbgfedc, mv(9=.) 
+		mvdecode btbgage, mv(9=.)
+		mvdecode btbgsex, mv(9=.) 
+		mvdecode btbgtaut, mv(99=. \ 98=.)
+		mvdecode btdsstud, mv(9=.) 
+	keep `btsidlist' `btsvlist' `btswlist'
+		rename (`btsvlist') (`btsrvlist')
+	save `tfile4', replace/*}}}*/
 	/*BST file{{{*/
-	use "`path'bst`z'm7.dta", clear
-			rename _all , lower
-			keep `bstidlist'
-		save `tfile5', replace/*}}}*/
+	use "`path'bst`z'm3.dta", clear
+	rename _all , lower
+	keep `bstidlist' `bstwlist'
+	save `tfile5', replace/*}}}*/
 /*}}}*/
-
 /*Merge Files{{{*/
 disp "Country: `z'"
 	/*Merge BCG and BSG{{{*/
@@ -202,5 +202,14 @@ disp "Country: `z'"
 	}
 	append using `tfile7'
 	save `tfile7' , replace /*}}}*/
-} /*}}}*/
-save "~/dropbox/timssw7.dta", replace
+/*}}}*/
+}
+/*Merge with the Country List{{{*/
+rename idcntry cntcode
+destring cntcode , replace
+merge m:1 cntcode using ~/git/etc/countrycode_1.dta 
+	drop if _merge == 2
+	drop _merge
+	compress
+/*}}}*/
+save "~/dropbox/timssw3.dta", replace

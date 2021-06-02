@@ -8,6 +8,7 @@ local clist aus aut can col cyp csk dnk fra deu grc ///
 			hkg hun isl irn irl isr kor kwt lva ltu ///
 			nld nzl nor prt rom rus sco sgp slv svn ///
 			esp swe che tha usa
+local fcntry : word 1 of `clist'
 /*Set ID Input List{{{*/
 local bcgidlist idcntry	idschool
 local bsgidlist idcntry	idschool	idstud
@@ -49,9 +50,8 @@ local bstwlist
 /*}}}*/
 /*}}}*/
 
-local fcntry : word 1 of `clist'
-/*Missing Value Control{{{*/
 foreach z of local clist {
+/*Missing Value Control{{{*/
 	/*BCG file{{{*/
 	use "`path'bcg`z'm1.dta", clear
 		rename _all , lower
@@ -113,7 +113,6 @@ foreach z of local clist {
 		keep `bstidlist'  `bstwlist'
 		save `tfile5', replace/*}}}*/
 /*}}}*/
-
 /*Merge Files{{{*/
 disp "Country: `z'"
 	/*Merge BCG and BSG{{{*/
@@ -204,5 +203,16 @@ disp "Country: `z'"
 	}
 	append using `tfile7'
 	save `tfile7' , replace /*}}}*/
-} /*}}}*/
+/*}}}*/
+}
+
+/*Merge with the Country List{{{*/
+rename idcntry cntcode
+destring cntcode , replace
+merge m:1 cntcode using ~/git/etc/countrycode_1.dta 
+	drop if _merge == 2
+	drop _merge
+	compress
+/*}}}*/
+
 save "~/dropbox/timssw1.dta", replace

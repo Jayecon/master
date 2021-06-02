@@ -1,14 +1,13 @@
 local path E:\Works\TIMSS\Stata\
 tempfile tfile1 tfile2 tfile3 tfile4 tfile5 tfile6 tfile7
 
-/*Set input list{{{*/
-local dlist bcg bsg btm bts bst
-/*46 Countries for 8th Grades in TIMSS 2003*/
-local clist arm aus bhr bwa bgr chl twn cyp egy eng ///
-			est gha hkg hun idn irn isr ita jpn jor ///
-			kor lva lbn ltu mkd mys mda mar nld nzl ///
-			nor pse phl rom rus sau sco scg sgp svk ///
-			svn zaf swe syr tun usa
+/*Set input list{{{*/ local dlist bcg bsg btm bts bst
+/*34 Countries for 8th Grades in TIMSS 1999*/
+local clist aus bgr can chl twn cyp cze fin hkg hun ///
+			idn irn isr ita jor kor lva ltu mkd mda ///
+			mar mys nld nzl phl rom rus sgp svk svn ///
+			tha tun tur usa
+local fcntry : word 1 of `clist'
 /*Set ID Input List{{{*/
 local bcgidlist idcntry	idschool
 local bsgidlist idcntry	idschool	idstud
@@ -17,19 +16,19 @@ local btsidlist idcntry	idschool			idteach	idlink
 local bstidlist idcntry				idstud	idteach	idlink
 /*}}}*/
 /*Set File Specific Input Lists {{{*/
-local bcgvlist bcbgcomu bcbgcmps bcbgtenr
+local bcgvlist bcbgcomm bcbgftte bcbgptte bcbgcmp3 bcbgbenr bcbggenr
 local bsgvlist ///
 	bsssci01 bsssci02 bsssci03 bsssci04 bsssci05 ///
 	bsmmat01 bsmmat02 bsmmat03 bsmmat04 bsmmat05 ///
-	bsbgolan bsbgborn bsdage itsex ///
+	bsbglang bsbgbrn1 bsdage itsex ///
 	bsbgbook bsbgps01 bsbgps02 bsbgps03 bsbgps04 ///
-	bsbgmfed bsbgfmed bsdgedup ///
-	bsbgmbrn bsbgfbrn
-local btmvlist btbgfedc btbgage btbgsex btdmstud btbgtaut
-local btsvlist btbgfedc btbgage btbgsex btdsstud btbgtaut
+	bsbgedmo bsbgedfa bsdgedup ///
+	bsbgbrnm bsbgbrnf
+local btmvlist btbgeduc btbgage btbgsex btdmsize btbgtaug
+local btsvlist btbgeduc btbgage btbgsex btdssize btbgtaug
 /*}}}*/
 /*Set Rename Vars list{{{*/
-local bcgrvlist comsiz sccnum scsnum
+local bcgrvlist comsiz tcfnum tcpnum sccnum scbnum scgnum
 local bsgrvlist ///
 	pv1scie pv2scie pv3scie pv4scie pv5scie ///
 	pv1math pv2math pv3math pv4math pv5math ///
@@ -50,70 +49,71 @@ local bstwlist
 /*}}}*/
 /*}}}*/
 
-local fcntry : word 1 of `clist'
-/*Missing Value Control{{{*/
 foreach z of local clist {
+/*Missing Value Control{{{*/
+disp "Country: `z'"
 	/*BCG file{{{*/
-	use "`path'bcg`z'm3.dta", clear
+	use "`path'bcg`z'm2.dta", clear
 		rename _all , lower
-		mvdecode bcbgcomu, mv(9=. \ 8=. \ 99=.) 
-		mvdecode bcbgcmps, mv(999=. ) 
-		mvdecode bcbgtenr, mv(99999=. ) 
+		mvdecode bcbgcomm, mv(9=. \ 8=. \ 99=.)
+		mvdecode bcbgftte, mv(998=.)	/*GEN\NUMBER OF FULL-TIME TEACHERS */
+		mvdecode bcbgptte, mv(998=.)	/*GEN\NUMBER OF PART-TIME TEACHERS*/
+		mvdecode bcbgcmp3, mv(998=.)	/*GEN\COMPUTERS\AVAILABLE*/
+		mvdecode bcbgbenr, mv(9998=.)	/*GEN\TOTAL SCHOOL ENROLLMENT\BOYS */
+		mvdecode bcbggenr, mv(9998=.)	/*GEN\TOTAL SCHOOL\ENROLLMENT\GIRLS */
 		keep `bcgidlist' `bcgvlist' `bcgwlist'
 			rename (`bcgvlist') (`bcgrvlist')
 			save `tfile1', replace
 	/*}}}*/
 	/*BSG file{{{*/
-	use "`path'bsg`z'm3.dta", clear
+	use "`path'bsg`z'm2.dta", clear
 		rename _all , lower
-			mvdecode bsbgolan, 	mv(9=. \ 8=.)
-			mvdecode bsbgborn, 	mv(9=. \ 8=.)
-			mvdecode bsdage,   	mv(99=. \ 98=.)
-			mvdecode itsex,   	mv(9=. \ 8=.)
-			mvdecode bsbgbook, 	mv(9=. \ 8=.)
-			mvdecode bsbgps01, 	mv(9=. )
-			mvdecode bsbgps02, 	mv(9=. )
-			mvdecode bsbgps03, 	mv(9=. )
-			mvdecode bsbgps04, 	mv(9=. )
-			mvdecode bsbgmfed, 	mv(99=. \ 98=. \ 9=.)
-			mvdecode bsbgfmed, 	mv(99=. \ 98=. \ 9=.)
-			mvdecode bsdgedup, 	mv(9=. \ 8=. )
-			mvdecode bsbgmbrn, 	mv(9=. \ 8=. )
-			mvdecode bsbgfbrn, 	mv(9=. \ 8=. )
+		mvdecode bsbglang, 	mv(9=. \ 8=.)
+		mvdecode bsbgbrn1, 	mv(9=. \ 8=.)
+		mvdecode bsdage,   	mv(99=. \ 98=.)
+		mvdecode itsex,   	mv(9=. \ 8=.)
+		mvdecode bsbgbook, 	mv(9=. \ 8=.)
+		mvdecode bsbgps01, 	mv(9=. \ 8=.)
+		mvdecode bsbgps02, 	mv(9=. \ 8=.)
+		mvdecode bsbgps03, 	mv(9=. \ 8=.)
+		mvdecode bsbgps04, 	mv(9=. \ 8=.)
+		mvdecode bsbgedmo, 	mv(99=. \ 98=. \ 8=.)
+		mvdecode bsbgedfa, 	mv(99=. \ 98=. \ 8=.)
+		mvdecode bsdgedup, 	mv(9=. \ 8=. \ 5=. \ 6=.)
+		mvdecode bsbgbrnm, 	mv(9=. \ 8=.) 
+		mvdecode bsbgbrnf, 	mv(9=. \ 8=.)
 		keep `bsgidlist' `bsgvlist' `bsgwlist'
 			rename (`bsgvlist') (`bsgrvlist')
-		save `tfile2', replace/*}}}*/
+			save `tfile2', replace/*}}}*/
 	/*BTM file{{{*/
-	use "`path'btm`z'm3.dta", clear
-	rename _all , lower
-		mvdecode btbgfedc, mv(9=. ) 
-		mvdecode btbgage, mv(9=.)
-		mvdecode btbgsex, mv(9=.) 
-		mvdecode btbgtaut, mv(99=. \ 98=.)
-		mvdecode btdmstud, mv(9=.) 
-	keep `btmidlist' `btmvlist' `btmwlist'
-		rename (`btmvlist') (`btmrvlist')
-	save `tfile3', replace/*}}}*/
+	use "`path'btm`z'm2.dta", clear
+		rename _all , lower
+		mvdecode btbgeduc, mv(99=. \ 98=.) 
+		mvdecode btbgage, mv(999=. \ 998=.)
+		mvdecode btbgsex, mv(99=. \ 98=.) 
+		mvdecode btbgtaug, mv(999=. \ 998=.)
+		mvdecode btdmsize, mv(9999=. \ 9998=. \ 9996=.) 
+		keep `btmidlist' `btmvlist' `btmwlist'
+			rename (`btmvlist') (`btmrvlist')
+		save `tfile3', replace/*}}}*/
 	/*BTS file{{{*/
-	use "`path'bts`z'm3.dta", clear
-	rename _all , lower
-		mvdecode btbgfedc, mv(9=.) 
-		mvdecode btbgage, mv(9=.)
-		mvdecode btbgsex, mv(9=.) 
-		mvdecode btbgtaut, mv(99=. \ 98=.)
-		mvdecode btdsstud, mv(9=.) 
-	keep `btsidlist' `btsvlist' `btswlist'
-		rename (`btsvlist') (`btsrvlist')
-	save `tfile4', replace/*}}}*/
+	use "`path'bts`z'm2.dta", clear
+		rename _all , lower
+		mvdecode btbgeduc, mv(99=. \ 98=.) 
+		mvdecode btbgage, mv(99=. \ 98=.)
+		mvdecode btbgsex, mv(9=. \ 8=.) 
+		mvdecode btbgtaug, mv(99=. \ 98=.)
+		mvdecode btdssize, mv(9999=. \ 9998=. \ 9996=.) 
+		keep `btsidlist' `btsvlist' `btswlist'
+			rename (`btsvlist') (`btsrvlist')
+			save `tfile4', replace/*}}}*/
 	/*BST file{{{*/
-	use "`path'bst`z'm3.dta", clear
-	rename _all , lower
-	keep `bstidlist' `bstwlist'
-	save `tfile5', replace/*}}}*/
+	use "`path'bst`z'm2.dta", clear
+		rename _all , lower
+		keep `bstidlist' `bstwlist'
+		save `tfile5', replace/*}}}*/
 /*}}}*/
-
 /*Merge Files{{{*/
-disp "Country: `z'"
 	/*Merge BCG and BSG{{{*/
 	use `tfile1', clear
 		merge 1:m idcntry idschool using `tfile2'
@@ -202,5 +202,15 @@ disp "Country: `z'"
 	}
 	append using `tfile7'
 	save `tfile7' , replace /*}}}*/
-} /*}}}*/
-save "~/dropbox/timssw3.dta", replace
+/*}}}*/
+}
+/*Merge with the Country List{{{*/
+rename idcntry cntcode
+destring cntcode , replace
+merge m:1 cntcode using ~/git/etc/countrycode_1.dta 
+	drop if _merge == 2
+	drop _merge
+	compress
+/*}}}*/
+
+save "~/dropbox/timssw2.dta", replace
