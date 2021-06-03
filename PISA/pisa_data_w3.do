@@ -39,14 +39,13 @@ local scorelist pv1math pv2math pv3math pv4math pv5math ///
 				pv1scie pv2scie pv3scie pv4scie pv5scie 
 /*}}}*/
 /*}}}*/
-
 tempfile tfile
-
 cd `path'
-
+/*Select and Rename Variables {{{*/
+/*School File{{{*/
 use `path'p06_school.dta , clear 
 	rename _all, low
-/*Macro List for School{{{*/
+/*Missing Control{{{*/
 	mvdecode sc07q01  , mv(9=. \ 8=. \ 7=.)
 	mvdecode stratio  , mv(9999=. \ 9998=. \ 9997=.)  
 	mvdecode propcert , mv(9999=. \ 9998=. \ 9997=.)  
@@ -56,10 +55,11 @@ use `path'p06_school.dta , clear
 	keep `schidlist' `schvlist' `schwlist' 
 	rename (`schvlist' `schwlist') (`schrvlist' `schrwlist')
 save `tfile'
-
+/*}}}*/
+/*Student File{{{*/
 use `path'p06_student.dta , clear 
 	rename _all, low
-/*Macro List for Student{{{*/
+/*Missing Control{{{*/
 mvdecode st04q01  ,mv(9=. \ 8=. \ 7=.)
 mvdecode bmmj     ,mv(99=. \ 97=.)
 mvdecode bfmj     ,mv(99=. \ 97=.)
@@ -105,7 +105,9 @@ mvdecode pared    , mv(99=. \ 97=.)
 	rename (`stuvlist' `stuwlist') (`sturvlist' `sturwlist')
 	merge m:1 `schidlist' using `tfile' , gen(_student)
 save `tfile' , replace
-
+/*}}}*/
+/*}}}*/
+/*Merge with the Country List{{{*/
 rename country cntcode
 destring cntcode , replace
 merge m:1 cntcode using ~/git/etc/countrycode_1.dta 
@@ -116,5 +118,5 @@ egen posses = rowtotal(poscom posdsk posnet posrom) , missing
 egen fambrn = rowtotal(???brn) , missing
 	label var fambrn "Born in the Country; Family"
 	compress
-
+/*}}}*/
 save ~/dropbox/pisaw3.dta , replace

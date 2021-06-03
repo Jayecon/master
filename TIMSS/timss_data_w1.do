@@ -51,7 +51,7 @@ local bstwlist
 /*}}}*/
 
 foreach z of local clist {
-/*Missing Value Control{{{*/
+/*Renaming and Missing Value Control{{{*/
 	/*BCG file{{{*/
 	use "`path'bcg`z'm1.dta", clear
 		rename _all , lower
@@ -191,8 +191,6 @@ disp "Country: `z'"
 	/*Cleaning & Exception Control{{{*/
 		order _all , first
 		order wave cntry id* , first
-		egen posses = rowtotal(pos*) , missing
-		egen parbrn = rowtotal(ftrbrn mtrbrn) , missing
 		replace cntry = "cze" if cntry == "csk"	/*CSK exception*/
 		replace idcntry = 203 if idcntry == 200		/*CSK exception*//*}}}*/
 	save `tfile6', replace
@@ -205,14 +203,21 @@ disp "Country: `z'"
 	save `tfile7' , replace /*}}}*/
 /*}}}*/
 }
-
 /*Merge with the Country List{{{*/
+drop cntry
 rename idcntry cntcode
 destring cntcode , replace
 merge m:1 cntcode using ~/git/etc/countrycode_1.dta 
 	drop if _merge == 2
 	drop _merge
 	compress
+/*}}}*/
+/*Generating Parent Highest Education{{{*/
+drop paredu
+egen paredu = max(mtredu , ftredu)
+label var paredu GEN\HIGHEST EUDC LEVEL\PARENTS
+local edulabel : value label ftredu
+label value paredu `edulabel'
 /*}}}*/
 
 save "~/dropbox/timssw1.dta", replace

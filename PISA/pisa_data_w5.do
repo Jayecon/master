@@ -41,11 +41,10 @@ local scorelist pv1math pv2math pv3math pv4math pv5math ///
 				pv1scie pv2scie pv3scie pv4scie pv5scie 
 /*}}}*/
 /*}}}*/
-
 tempfile tfile
-
 cd `path'
-
+/*Select and Rename Variables {{{*/
+/*School File{{{*/
 use `path'p12_school.dta , clear 
 	rename _all, low
 /*Missing Control{{{*/
@@ -58,7 +57,8 @@ use `path'p12_school.dta , clear
 	keep `schidlist' `schvlist' `schwlist' 
 	rename (`schvlist' `schwlist') (`schrvlist' `schrwlist')
 save `tfile'
-
+/*}}}*/
+/*Student File{{{*/
 use `path'p12_student.dta , clear 
 	rename _all, low
 /*Missing Control{{{*/
@@ -114,15 +114,13 @@ mvdecode hisei   , mv( 9999=. \ 9998=. \ 9997=. )
 	rename (`stuvlist' `stuwlist') (`sturvlist' `sturwlist')
 	merge m:1 `schidlist' using `tfile' , gen(_student)
 save `tfile' , replace
-
+/*}}}*/
+/*}}}*/
+/*Merge with the Country List{{{*/
 rename cnt cntabc3
 merge m:1 cntabc3 using ~/git/etc/countrycode_1.dta 
 	drop if _merge == 2
 	drop _merge
-egen posses = rowtotal(poscom posdsk posnet posrom) , missing
-	label var posses "Possession Status; Desk, Com, Net and Room"
-egen fambrn = rowtotal(???brn) , missing
-	label var fambrn "Born in the Country; Family"
 	compress
-
+/*}}}*/
 save ~/dropbox/pisaw5.dta , replace

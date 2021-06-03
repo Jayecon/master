@@ -36,10 +36,10 @@ local scorelistr pv1read pv2read pv3read pv4read pv5read
 local scorelists pv1scie pv2scie pv3scie pv4scie pv5scie 
 /*}}}*/
 /*}}}*/
-
 tempfile tfile
 cd `path'
-
+/*Select and Rename Variables {{{*/
+/*School File{{{*/
 use `path'p00_school.dta , clear 
 	rename _all, low
 /*Missing Control{{{*/
@@ -49,7 +49,8 @@ mvdecode sc01q0  , mv(9=. \ 8=. \ 7=.)
 	keep `schidlist' `schvlist' `schwlist' 
 	rename (`schvlist' `schwlist') (`schrvlist' `schrwlist')
 save `tfile'
-
+/*}}}*/
+/*Science File{{{*/
 use `path'p00_science.dta , clear 
 	rename _all, low
 /*Missing Control{{{*/
@@ -93,7 +94,8 @@ mvdecode st37q01 , mv(99=. \ 98=. \ 97=.)
 	rename (`stuvlist' `stuwlist') (`sturvlist' `sturwlist')
 	merge m:1 `schidlist' using `tfile' , gen(_mscience)
 save `tfile' , replace
-
+/*}}}*/
+/*Reading File{{{*/
 use `path'p00_reading.dta , clear 
 	rename _all, low
 /*Missing Control{{{*/
@@ -137,7 +139,8 @@ mvdecode st37q01 , mv(99=. \ 98=. \ 97=.)
 	rename (`stuvlist' `stuwlist') (`sturvlist' `sturwlist')
 	merge 1:1 `stuidlist' using `tfile' , gen(_mreading)
 save `tfile' , replace
-
+/*}}}*/
+/*Math File{{{*/
 use `path'p00_math.dta , clear 
 	rename _all, low
 /*Missing Control{{{*/
@@ -181,16 +184,14 @@ mvdecode st37q01 , mv(99=. \ 98=. \ 97=.)
 	rename (`stuvlist' `stuwlist') (`sturvlist' `sturwlist')
 	merge 1:1 `stuidlist' using `tfile' , gen(_mmath)
 save `tfile' , replace
-
+/*}}}*/
+/*}}}*/
+/*Merge with the Country List{{{*/
 rename country cntcode
 destring cntcode , replace
 merge m:1 cntcode using ~/git/etc/countrycode_1.dta 
 	drop if _merge == 2
 	drop _merge
-egen posses = rowtotal(poscom posdsk posnet posrom) , missing
-	label var posses "Possession Status; Desk, Com, Net and Room"
-egen fambrn = rowtotal(???brn) , missing
-	label var fambrn "Born in the Country; Family"
-	compress
-
+compress
+/*}}}*/
 save ~/dropbox/pisaw1 , replace

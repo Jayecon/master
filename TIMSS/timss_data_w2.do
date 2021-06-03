@@ -1,8 +1,9 @@
 local path E:\Works\TIMSS\Stata\
 tempfile tfile1 tfile2 tfile3 tfile4 tfile5 tfile6 tfile7
 
-/*Set input list{{{*/ local dlist bcg bsg btm bts bst
+/*Set input list{{{*/ 
 /*34 Countries for 8th Grades in TIMSS 1999*/
+local dlist bcg bsg btm bts bst
 local clist aus bgr can chl twn cyp cze fin hkg hun ///
 			idn irn isr ita jor kor lva ltu mkd mda ///
 			mar mys nld nzl phl rom rus sgp svk svn ///
@@ -50,7 +51,7 @@ local bstwlist
 /*}}}*/
 
 foreach z of local clist {
-/*Missing Value Control{{{*/
+/*Renaming and Missing Value Control{{{*/
 disp "Country: `z'"
 	/*BCG file{{{*/
 	use "`path'bcg`z'm2.dta", clear
@@ -190,8 +191,6 @@ disp "Country: `z'"
 	/*Cleaning & Exception Control{{{*/
 		order _all , first
 		order wave cntry id* , first
-		egen posses = rowtotal(pos*) , missing
-		egen parbrn = rowtotal(ftrbrn mtrbrn) , missing
 		replace cntry = "cze" if cntry == "csk"	/*CSK exception*/
 		replace idcntry = 203 if idcntry == 200		/*CSK exception*//*}}}*/
 	save `tfile6', replace
@@ -205,12 +204,20 @@ disp "Country: `z'"
 /*}}}*/
 }
 /*Merge with the Country List{{{*/
+drop cntry
 rename idcntry cntcode
 destring cntcode , replace
 merge m:1 cntcode using ~/git/etc/countrycode_1.dta 
 	drop if _merge == 2
 	drop _merge
 	compress
+/*}}}*/
+/*Generating Parent Highest Education{{{*/
+drop paredu
+egen paredu = max(mtredu , ftredu)
+label var paredu GEN\HIGHEST EUDC LEVEL\PARENTS
+local edulabel : value label ftredu
+label value paredu `edulabel'
 /*}}}*/
 
 save "~/dropbox/timssw2.dta", replace
