@@ -187,9 +187,9 @@ save `tfile' , replace
 /*}}}*/
 /*}}}*/
 /*Merge with the Country List{{{*/
-rename country cntcode
-destring cntcode , replace
-merge m:1 cntcode using ~/git/etc/countrycode_1.dta 
+rename country cntcod
+destring cntcod , replace
+merge m:1 cntcod using ~/git/etc/countrycode_1.dta 
 	drop if _merge == 2
 	drop _merge
 compress
@@ -201,7 +201,7 @@ foreach i in ftr mtr {
 }
 local labelname : value label ftredu1
 	label copy `labelname' EDUCAT
-	label EDUCAT 6 "Tertiary education" , add
+	label define EDUCAT 6 "Tertiary education" , add
 	label value ftredu mtredu EDUCAT
 	label var ftredu "Father's education"
 	label var mtredu "Mother's education"

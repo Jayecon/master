@@ -1,3 +1,4 @@
+set more off
 local path ~/git/pisa/
 do `path'pisa_data_w1.do
 do `path'pisa_data_w2.do
