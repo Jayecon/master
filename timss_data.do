@@ -1,3 +1,5 @@
+set more off
+
 local path ~/git/timss/
 
 do `path'timss_data_w1.do

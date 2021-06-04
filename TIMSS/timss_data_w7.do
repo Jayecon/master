@@ -212,8 +212,8 @@ merge m:1 cntcode using ~/git/etc/countrycode_1.dta
 /*}}}*/
 /*Generating Parent Highest Education{{{*/
 drop paredu
-egen paredu = max(mtredu , ftredu)
-label var paredu GEN\HIGHEST EUDC LEVEL\PARENTS
+egen paredu = rowmax(mtredu  ftredu)
+label var paredu "GEN\HIGHEST EUDC LEVEL\PARENTS"
 local edulabel : value label ftredu
 label value paredu `edulabel'
 /*}}}*/
