@@ -33,7 +33,7 @@ local sturvlist stusex ///
 				numtvs numcar numbth numphn numcom ///
 				numtab numebk numins ///
 				posbok ////
-				ftrsei mtrsei mtredu ftredu hghedu ///
+				ftrsei mtrsei mtredu ftredu paredu ///
 				hghsei idxesc
 local stuwlist w_fstuwt senwt
 local sturwlist stuwgt sstwgt 
@@ -126,4 +126,4 @@ merge m:1 cntabc3 using ~/git/etc/countrycode_1.dta
 	drop _merge
 	compress
 /*}}}*/
-save ~/dropbox/pisaw7.dta , replace
+save ~/dropbox/pisar7.dta , replace

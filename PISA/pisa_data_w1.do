@@ -21,7 +21,7 @@ local stuvlist st03q01 ///
 				st37q01
 local sturvlist stusex ///
 				mtrocc ftrocc mtrjob ftrjob ///
-				mtredu2 ftredu2 mtredu3 ftredu3 ///
+				mtredu1 ftredu1 mtredu2 ftredu2 ///
 				stubrn mtrbrn ftrbrn ///
 				posdis posrom possft posnet posdic ///
 				pospla posdsk postxt poslit pospoe ///
@@ -194,4 +194,19 @@ merge m:1 cntcode using ~/git/etc/countrycode_1.dta
 	drop _merge
 compress
 /*}}}*/
-save ~/dropbox/pisaw1 , replace
+/*Generate Parents' Education{{{*/
+foreach i in ftr mtr {
+	gen `i'edu = `i'edu1
+	replace `i'edu = 6 if `i'edu2 == 1
+}
+local labelname : value label ftredu1
+	label copy `labelname' EDUCAT
+	label EDUCAT 6 "Tertiary education" , add
+	label value ftredu mtredu EDUCAT
+	label var ftredu "Father's education"
+	label var mtredu "Mother's education"
+egen paredu = rowmax(ftredu mtredu)
+	label var paredu "Parents' education"
+	label value paredu EDUCAT
+/*}}}*/
+save ~/dropbox/pisar1 , replace

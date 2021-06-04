@@ -28,7 +28,7 @@ local sturvlist stusex ///
 				posnet poscal poslit pospoe posart ///
 				postxt posdic posdsh ///
 				posbok ////
-				mtredu ftredu hghedu pyredu
+				mtredu ftredu paredu pyredu
 local stuwlist w_fstuwt cntfac1 cntfac2 
 local sturwlist stuwgt ceqwgt cnmwgt
 local scorelist pv1math pv2math pv3math pv4math pv5math ///
@@ -107,4 +107,4 @@ merge m:1 cntcode using ~/git/etc/countrycode_1.dta
 	drop _merge
 	compress
 /*}}}*/
-save ~/dropbox/pisaw2.dta , replace
+save ~/dropbox/pisar2.dta , replace

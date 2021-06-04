@@ -1,6 +1,5 @@
 local path E:\Works\TIMSS\Stata\
 tempfile tfile1 tfile2 tfile3 tfile4 tfile5 tfile6 tfile7
-
 /*Set input list{{{*/
 local dlist bcg bsg btm bts bst
 /*42 Countries for 8th Grades in TIMSS 2011*/
@@ -23,7 +22,7 @@ local bsgvlist  ///
 	bsssci01 bsssci02 bsssci03 bsssci04 bsssci05  ///
 	bsmmat01 bsmmat02 bsmmat03 bsmmat04 bsmmat05  ///
 	bsbg03 bsbg09a bsdage itsex ///
-	bsbg04 bsbg05a bsbg05b  bsbg05d  bsbg05e ///
+	bsbg04 bsbg05a bsbg05b bsbg05d  bsbg05e ///
 	bsbg06a bsbg06b bsdgedup ///
 	bsbg08a bsbg08b
 local btmvlist btbg04 btbg03 btbg02 btbg12 btbg01
@@ -50,7 +49,6 @@ local btswlist
 local bstwlist
 /*}}}*/
 /*}}}*/
-
 foreach z of local clist {
 /*Renaming and Missing Value Control{{{*/
 local fcntry : word 1 of `clist'
@@ -73,6 +71,9 @@ local fcntry : word 1 of `clist'
 		mvdecode itsex,   	mv(9=. \ 8=.)
 		mvdecode bsbg04, 	mv(9=. \ 8=. )
 		mvdecode bsbg05a,  	mv(9=. \ 8=.)
+		mvdecode bsbg05b,  	mv(9=. \ 8=.)
+		mvdecode bsbg05d,  	mv(9=. \ 8=.)
+		mvdecode bsbg05e,  	mv(9=. \ 8=.)
 		mvdecode bsbg06a, 	mv(99=. \ 98=. \ 8=.)
 		mvdecode bsbg06b, 	mv(99=. \ 98=. \ 8=.)
 		mvdecode bsdgedup, 	mv(99=. \ 96=. \ 6=.)
@@ -202,9 +203,9 @@ disp "Country: `z'"
 }
 /*Merge with the Country List{{{*/
 drop cntry
-rename idcntry cntcode
-destring cntcode , replace
-merge m:1 cntcode using ~/git/etc/countrycode_1.dta 
+rename idcntry cntcod
+destring cntcod , replace
+merge m:1 cntcod using ~/git/etc/countrycode_1.dta 
 	drop if _merge == 2
 	drop _merge
 	compress
@@ -216,5 +217,4 @@ label var paredu "GEN\HIGHEST EUDC LEVEL\PARENTS"
 local edulabel : value label ftredu
 label value paredu `edulabel'
 /*}}}*/
-
-save "~/dropbox/timssw5.dta", replace
+save "~/dropbox/timssr5.dta", replace

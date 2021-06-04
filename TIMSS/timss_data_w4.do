@@ -1,6 +1,5 @@
 local path E:\Works\TIMSS\Stata\
 tempfile tfile1 tfile2 tfile3 tfile4 tfile5 tfile6 tfile7
-
 /*Set input list{{{*/
 local dlist bcg bsg btm bts bst
 /*47 Countries(+ England and Scottland) for 8th Grades in TIMSS 2007*/
@@ -18,7 +17,7 @@ local btsidlist idcntry	idschool			idteach	idlink
 local bstidlist idcntry				idstud	idteach	idlink
 /*}}}*/
 /*Set File Specific Input Lists {{{*/
-local bcgvlist bc4gcomu bc4gcmps bc4gtenr
+local bcgvlist bc4gcomu 
 local bsgvlist ///
 	bsssci01 bsssci02 bsssci03 bsssci04 bsssci05  ///
 	bsmmat01 bsmmat02 bsmmat03 bsmmat04 bsmmat05  ///
@@ -30,7 +29,7 @@ local btmvlist bt4gfedc bt4gage bt4gsex btdmstud bt4gtaut
 local btsvlist bt4gfedc bt4gage bt4gsex btdsstud bt4gtaut
 /*}}}*/
 /*Set Rename Vars list{{{*/
-local bcgrvlist comsiz sccnum scsnum
+local bcgrvlist comsiz 
 local bsgrvlist ///
 	pv1scie pv2scie pv3scie pv4scie pv5scie ///
 	pv1math pv2math pv3math pv4math pv5math ///
@@ -50,7 +49,6 @@ local btswlist
 local bstwlist
 /*}}}*/
 /*}}}*/
-
 foreach z of local clist {
 /*Renaming and Missing Value Control{{{*/
 	/*BCG file{{{*/
@@ -204,9 +202,9 @@ disp "Country: `z'"
 }
 /*Merge with the Country List{{{*/
 drop cntry
-rename idcntry cntcode
-destring cntcode , replace
-merge m:1 cntcode using ~/git/etc/countrycode_1.dta 
+rename idcntry cntcod
+destring cntcod , replace
+merge m:1 cntcod using ~/git/etc/countrycode_1.dta 
 	drop if _merge == 2
 	drop _merge
 	compress
@@ -218,5 +216,4 @@ label var paredu "GEN\HIGHEST EUDC LEVEL\PARENTS"
 local edulabel : value label ftredu
 label value paredu `edulabel'
 /*}}}*/
-
-save "~/dropbox/timssw4.dta", replace
+save "~/dropbox/timssr4.dta", replace

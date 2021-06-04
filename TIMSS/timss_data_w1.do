@@ -1,6 +1,5 @@
 local path E:\Works\TIMSS\Stata\ 
 tempfile tfile1 tfile2 tfile3 tfile4 tfile5 tfile6 tfile7
-
 /*Set input list{{{*/
 local dlist bcg bsg btm bts bst
 /*35 Countries for 8th Grades in TIMSS 1995*/
@@ -49,7 +48,6 @@ local btswlist
 local bstwlist
 /*}}}*/
 /*}}}*/
-
 foreach z of local clist {
 /*Renaming and Missing Value Control{{{*/
 	/*BCG file{{{*/
@@ -205,9 +203,9 @@ disp "Country: `z'"
 }
 /*Merge with the Country List{{{*/
 drop cntry
-rename idcntry cntcode
-destring cntcode , replace
-merge m:1 cntcode using ~/git/etc/countrycode_1.dta 
+rename idcntry cntcod
+destring cntcod , replace
+merge m:1 cntcod using ~/git/etc/countrycode_1.dta 
 	drop if _merge == 2
 	drop _merge
 	compress
@@ -219,5 +217,4 @@ label var paredu "GEN\HIGHEST EUDC LEVEL\PARENTS"
 local edulabel : value label ftredu
 label value paredu `edulabel'
 /*}}}*/
-
-save "~/dropbox/timssw1.dta", replace
+save "~/dropbox/timssr1.dta", replace

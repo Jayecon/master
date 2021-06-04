@@ -31,7 +31,7 @@ local sturvlist stusex ///
 				postxt posdic posdsh posdvd ///
 				numphn numtvs numcom numcar ///
 				posbok ////
-				mtredu ftredu hghedu pyredu
+				mtredu ftredu paredu pyredu
 local stuwlist w_fstuwt cntfac subfac 
 local sturwlist stuwgt ceqwgt cnmwgt
 local scorelist pv1math pv2math pv3math pv4math pv5math ///
@@ -119,4 +119,4 @@ egen fambrn = rowtotal(???brn) , missing
 	label var fambrn "Born in the Country; Family"
 	compress
 /*}}}*/
-save ~/dropbox/pisaw3.dta , replace
+save ~/dropbox/pisar3.dta , replace

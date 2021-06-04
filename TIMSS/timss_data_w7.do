@@ -1,6 +1,5 @@
 local path E:\Works\TIMSS\Stata\
 tempfile tfile1 tfile2 tfile3 tfile4 tfile5 tfile6 tfile7
-
 /*Set input list{{{*/
 local dlist bcg bsa bsg bst btm bts 
 /*39 Countries for 8th Grades in TIMSS 2019*/
@@ -49,7 +48,6 @@ local btswlist
 local bstwlist
 /*}}}*/
 /*}}}*/
-
 foreach z of local clist {
 /*Renaming and Missing Value Control{{{*/
 	/*BCG file{{{*/
@@ -77,8 +75,8 @@ foreach z of local clist {
 		mvdecode bsbg06a, 	mv(99=. \ 8=. \ 9=.)
 		mvdecode bsbg06b, 	mv(99=. \ 8=. \ 9=.)
 		mvdecode bsdgedup, 	mv(9=. \ 6=.)
-		mvdecode bsbg08a, 	mv(9=. \ 8=.)
-		mvdecode bsbg08b, 	mv(9=. \ 8=.)
+		mvdecode bsbg08a, 	mv(9=. \ 8=. \ 3=. \ 4=.)
+		mvdecode bsbg08b, 	mv(9=. \ 8=. \ 3=. \ 4=.)
 		mvdecode bsbg09a, 	mv(9=. \ 8=.)
 		keep `bsgidlist' `bsgvlist' `bsgwlist'
 			rename (`bsgvlist') (`bsgrvlist')
@@ -203,9 +201,9 @@ disp "Country: `z'"
 }
 /*Merge with the Country List{{{*/
 drop cntry
-rename idcntry cntcode
-destring cntcode , replace
-merge m:1 cntcode using ~/git/etc/countrycode_1.dta 
+rename idcntry cntcod
+destring cntcod , replace
+merge m:1 cntcod using ~/git/etc/countrycode_1.dta 
 	drop if _merge == 2
 	drop _merge
 	compress
@@ -217,5 +215,4 @@ label var paredu "GEN\HIGHEST EUDC LEVEL\PARENTS"
 local edulabel : value label ftredu
 label value paredu `edulabel'
 /*}}}*/
-
-save "~/dropbox/timssw7.dta", replace
+save "~/dropbox/timssr7.dta", replace

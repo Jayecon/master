@@ -32,7 +32,7 @@ local sturvlist stusex ///
 				postbk posdic posdsh posdvd ///
 				numphn numtvs numcom numcar numbth ///
 				posbok ////
-				ftrsei mtrsei mtredu ftredu hghedu ///
+				ftrsei mtrsei mtredu ftredu paredu ///
 				hghsei idxesc
 local stuwlist w_fstuwt senwgt_stu
 local sturwlist stuwgt sstwgt 
@@ -123,4 +123,4 @@ merge m:1 cntabc3 using ~/git/etc/countrycode_1.dta
 	drop _merge
 	compress
 /*}}}*/
-save ~/dropbox/pisaw5.dta , replace
+save ~/dropbox/pisar5.dta , replace
