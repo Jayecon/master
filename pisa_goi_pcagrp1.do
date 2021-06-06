@@ -5,7 +5,7 @@ cd ~/dropbox
 tempname temp1 temp2
 matrix `temp1' = J(1,5,.)
 
-foreach k in timss {
+foreach k in pisa {
 forvalue l = 1/7 {
 	use `k'w`l' , clear
 	levelsof cntcod , local(clist)
@@ -50,4 +50,4 @@ svmat `temp2' , names(matcol)
 		label define SUBJECT 1 "Math" 2 "Science" 
 		label value subject SUBJECT
 	label var index1 "GOI"
-save timss_index1.dta , replace
+save pisa_index1.dta , replace

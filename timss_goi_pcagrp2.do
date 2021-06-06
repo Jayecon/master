@@ -25,7 +25,7 @@ foreach i of local clist{
 	else if ("`k'" == "scie") {
 		local subject = 2
 	} /*}}}*/
-	eopcal pv1`j' [aw=stuwgt] if cntcod == `i' , env(pcagrp1) goi 
+	eopcal pv1`j' [aw=stuwgt] if cntcod == `i' , env(pcagrp2) goi 
 	matrix `temp1'[1,1] =  `datatype'
 	matrix `temp1'[1,2] = `l'        
 	matrix `temp1'[1,3] = `subject'        
@@ -50,4 +50,4 @@ svmat `temp2' , names(matcol)
 		label define SUBJECT 1 "Math" 2 "Science" 
 		label value subject SUBJECT
 	label var index1 "GOI"
-save timss_index1.dta , replace
+save timss_index2.dta , replace
