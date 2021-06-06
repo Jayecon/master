@@ -1,4 +1,4 @@
-cd ~/dropbox
+cd ~/git
 captur log close
 log using pnt_missing , replace
 foreach i in pisa timss {
@@ -7,10 +7,9 @@ forvalue j=1/7 {
 	qui levelsof cntcod , local(clist)
 	qui lookfor pos
 		local vlist `r(varlist)'
-		qui lookfor edu
-		local vlist `vlist' `r(varlist)'
+		local vlist ftredu mtredu
 		qui lookfor brn
-		local vlist `vlist' `r(varlist)'
+		local vlist `r(varlist)'
 	foreach k of local clist {
 		qui count if cntcod == `k'
 		local cntnum = r(N)
@@ -18,14 +17,11 @@ forvalue j=1/7 {
 			qui count if !missing(`l') & cntcod == `k'
 			local varnum = r(N)
 			local nmratio = `varnum'/`cntnum' 
-			*if (`nmratio' >= .7) {
-			*	di as text "Data : " "`i'" " Wave : " "`j'" " Cntcod : " "`k'" " Var : " "`l'" " Non-missing : " %4.3f `nmratio'
-			*}
-			*else {
-			*	di as error "Data : " "`i'" " Wave : " "`j'" " Cntcod : " "`k'" " Var : " "`l'" " Non-missing : "  %4.3f `nmratio'
-			*}
-			if (`nmratio' < .7) {
-				di as error "Data : " "`i'" " Wave : " "`j'" " Cntcod : " "`k'" " Var : " "`l'" " Non-missing : " %4.3f `nmratio'
+			if (`nmratio' >= .7) {
+				di as text "Data : " "`i'" " Wave : " "`j'" " Cntcod : " "`k'" " Var : " "`l'" " Non-missing : " %4.3f `nmratio'
+			}
+			else {
+				di as error "Data : " "`i'" " Wave : " "`j'" " Cntcod : " "`k'" " Var : " "`l'" " Non-missing : "  %4.3f `nmratio'
 			}
 		}
 	}

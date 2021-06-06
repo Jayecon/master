@@ -1,0 +1,58 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/jay/git/pnt_missing_brn.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 5 Jun 2021, 06:33:28
+{txt}
+{com}. foreach i in pisa timss {c -(}
+{txt}  2{com}. forvalue j=1/7 {c -(}
+{txt}  3{com}.         use ~/dropbox/`i'r`j' , clear
+{txt}  4{com}.         qui levelsof cntcod , local(clist)
+{txt}  5{com}.         *qui lookfor pos
+.         *       local vlist `r(varlist)'
+.         *       qui lookfor edu
+.         *       local vlist `vlist' `r(varlist)'
+.                 qui lookfor brn
+{txt}  6{com}.                 local vlist `r(varlist)'
+{txt}  7{com}.         foreach k of local clist {c -(}
+{txt}  8{com}.                 qui count if cntcod == `k'
+{txt}  9{com}.                 local cntnum = r(N)
+{txt} 10{com}.                 foreach l of local vlist {c -(}
+{txt} 11{com}.                         qui count if !missing(`l') & cntcod == `k'
+{txt} 12{com}.                         local varnum = r(N)
+{txt} 13{com}.                         local nmratio = `varnum'/`cntnum' 
+{txt} 14{com}.                         *if (`nmratio' >= .7) {c -(}
+.                         *       di as text "Data : " "`i'" " Wave : " "`j'" " Cntcod : " "`k'" " Var : " "`l'" " Non-missing : " %4.3f `nmratio'
+.                         *{c )-}
+.                         *else {c -(}
+.                         *       di as error "Data : " "`i'" " Wave : " "`j'" " Cntcod : " "`k'" " Var : " "`l'" " Non-missing : "  %4.3f `nmratio'
+.                         *{c )-}
+.                         if (`nmratio' < .7) {c -(}
+{txt} 15{com}.                                 di as error "Data : " "`i'" " Wave : " "`j'" " Cntcod : " "`k'" " Var : " "`l'" " Non-missing : " %4.3f `nmratio'
+{txt} 16{com}.                         {c )-}
+{txt} 17{com}.                 {c )-}
+{txt} 18{com}.         {c )-}
+{txt} 19{com}. {c )-}
+{txt} 20{com}. {c )-}
+{err}Data : pisa Wave : 1 Cntcod : 410 Var : stubrn Non-missing : 0.000
+Data : pisa Wave : 1 Cntcod : 410 Var : mtrbrn Non-missing : 0.000
+Data : pisa Wave : 1 Cntcod : 410 Var : ftrbrn Non-missing : 0.000
+Data : pisa Wave : 6 Cntcod : 8 Var : stubrn Non-missing : 0.000
+Data : pisa Wave : 6 Cntcod : 8 Var : mtrbrn Non-missing : 0.000
+Data : pisa Wave : 6 Cntcod : 8 Var : ftrbrn Non-missing : 0.000
+Data : timss Wave : 1 Cntcod : 250 Var : ftrbrn Non-missing : 0.000
+Data : timss Wave : 1 Cntcod : 250 Var : mtrbrn Non-missing : 0.000
+Data : timss Wave : 1 Cntcod : 250 Var : stdbrn Non-missing : 0.000
+Data : timss Wave : 4 Cntcod : 12 Var : ftrbrn Non-missing : 0.001
+Data : timss Wave : 4 Cntcod : 12 Var : mtrbrn Non-missing : 0.001
+Data : timss Wave : 4 Cntcod : 12 Var : stdbrn Non-missing : 0.001
+{txt}
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/jay/git/pnt_missing_brn.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 5 Jun 2021, 06:33:57
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

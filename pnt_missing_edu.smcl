@@ -1,0 +1,250 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/jay/git/pnt_missing_edu.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 5 Jun 2021, 06:37:22
+{txt}
+{com}. foreach i in pisa timss {c -(}
+{txt}  2{com}. forvalue j=1/7 {c -(}
+{txt}  3{com}.         use ~/dropbox/`i'r`j' , clear
+{txt}  4{com}.         qui levelsof cntcod , local(clist)
+{txt}  5{com}.         *qui lookfor pos
+.         *       local vlist `r(varlist)'
+.                 local vlist ftredu mtredu
+{txt}  6{com}.         *       qui lookfor brn
+.         *       local vlist `r(varlist)'
+.         foreach k of local clist {c -(}
+{txt}  7{com}.                 qui count if cntcod == `k'
+{txt}  8{com}.                 local cntnum = r(N)
+{txt}  9{com}.                 foreach l of local vlist {c -(}
+{txt} 10{com}.                         qui count if !missing(`l') & cntcod == `k'
+{txt} 11{com}.                         local varnum = r(N)
+{txt} 12{com}.                         local nmratio = `varnum'/`cntnum' 
+{txt} 13{com}.                         *if (`nmratio' >= .7) {c -(}
+.                         *       di as text "Data : " "`i'" " Wave : " "`j'" " Cntcod : " "`k'" " Var : " "`l'" " Non-missing : " %4.3f `nmratio'
+.                         *{c )-}
+.                         *else {c -(}
+.                         *       di as error "Data : " "`i'" " Wave : " "`j'" " Cntcod : " "`k'" " Var : " "`l'" " Non-missing : "  %4.3f `nmratio'
+.                         *{c )-}
+.                         if (`nmratio' < .7) {c -(}
+{txt} 14{com}.                                 di as error "Data : " "`i'" " Wave : " "`j'" " Cntcod : " "`k'" " Var : " "`l'" " Non-missing : " %4.3f `nmratio'
+{txt} 15{com}.                         {c )-}
+{txt} 16{com}.                 {c )-}
+{txt} 17{com}.         {c )-}
+{txt} 18{com}. {c )-}
+{txt} 19{com}. {c )-}
+{err}Data : pisa Wave : 1 Cntcod : 392 Var : ftredu Non-missing : 0.330
+Data : pisa Wave : 1 Cntcod : 392 Var : mtredu Non-missing : 0.336
+Data : pisa Wave : 6 Cntcod : 8 Var : ftredu Non-missing : 0.000
+Data : pisa Wave : 6 Cntcod : 8 Var : mtredu Non-missing : 0.000
+Data : timss Wave : 1 Cntcod : 196 Var : ftredu Non-missing : 0.564
+Data : timss Wave : 1 Cntcod : 196 Var : mtredu Non-missing : 0.590
+Data : timss Wave : 1 Cntcod : 208 Var : ftredu Non-missing : 0.501
+Data : timss Wave : 1 Cntcod : 208 Var : mtredu Non-missing : 0.534
+Data : timss Wave : 1 Cntcod : 250 Var : ftredu Non-missing : 0.469
+Data : timss Wave : 1 Cntcod : 250 Var : mtredu Non-missing : 0.496
+Data : timss Wave : 1 Cntcod : 280 Var : ftredu Non-missing : 0.636
+Data : timss Wave : 1 Cntcod : 280 Var : mtredu Non-missing : 0.668
+Data : timss Wave : 1 Cntcod : 364 Var : ftredu Non-missing : 0.651
+Data : timss Wave : 1 Cntcod : 364 Var : mtredu Non-missing : 0.585
+Data : timss Wave : 1 Cntcod : 414 Var : ftredu Non-missing : 0.491
+Data : timss Wave : 1 Cntcod : 414 Var : mtredu Non-missing : 0.434
+Data : timss Wave : 1 Cntcod : 428 Var : ftredu Non-missing : 0.516
+Data : timss Wave : 1 Cntcod : 428 Var : mtredu Non-missing : 0.579
+Data : timss Wave : 1 Cntcod : 440 Var : ftredu Non-missing : 0.499
+Data : timss Wave : 1 Cntcod : 440 Var : mtredu Non-missing : 0.546
+Data : timss Wave : 1 Cntcod : 528 Var : ftredu Non-missing : 0.655
+Data : timss Wave : 1 Cntcod : 528 Var : mtredu Non-missing : 0.647
+Data : timss Wave : 1 Cntcod : 554 Var : ftredu Non-missing : 0.652
+Data : timss Wave : 1 Cntcod : 554 Var : mtredu Non-missing : 0.689
+Data : timss Wave : 1 Cntcod : 578 Var : ftredu Non-missing : 0.592
+Data : timss Wave : 1 Cntcod : 578 Var : mtredu Non-missing : 0.601
+Data : timss Wave : 1 Cntcod : 752 Var : ftredu Non-missing : 0.560
+Data : timss Wave : 1 Cntcod : 752 Var : mtredu Non-missing : 0.583
+Data : timss Wave : 1 Cntcod : 827 Var : ftredu Non-missing : 0.411
+Data : timss Wave : 1 Cntcod : 827 Var : mtredu Non-missing : 0.459
+Data : timss Wave : 2 Cntcod : 36 Var : ftredu Non-missing : 0.636
+Data : timss Wave : 2 Cntcod : 36 Var : mtredu Non-missing : 0.686
+Data : timss Wave : 2 Cntcod : 152 Var : ftredu Non-missing : 0.649
+Data : timss Wave : 2 Cntcod : 152 Var : mtredu Non-missing : 0.696
+Data : timss Wave : 2 Cntcod : 246 Var : ftredu Non-missing : 0.382
+Data : timss Wave : 2 Cntcod : 246 Var : mtredu Non-missing : 0.412
+Data : timss Wave : 2 Cntcod : 428 Var : ftredu Non-missing : 0.585
+Data : timss Wave : 2 Cntcod : 428 Var : mtredu Non-missing : 0.667
+Data : timss Wave : 2 Cntcod : 440 Var : ftredu Non-missing : 0.645
+Data : timss Wave : 2 Cntcod : 498 Var : ftredu Non-missing : 0.691
+Data : timss Wave : 2 Cntcod : 504 Var : ftredu Non-missing : 0.607
+Data : timss Wave : 2 Cntcod : 504 Var : mtredu Non-missing : 0.655
+Data : timss Wave : 2 Cntcod : 528 Var : ftredu Non-missing : 0.634
+Data : timss Wave : 2 Cntcod : 528 Var : mtredu Non-missing : 0.646
+Data : timss Wave : 2 Cntcod : 554 Var : ftredu Non-missing : 0.638
+Data : timss Wave : 2 Cntcod : 554 Var : mtredu Non-missing : 0.698
+Data : timss Wave : 3 Cntcod : 36 Var : ftredu Non-missing : 0.618
+Data : timss Wave : 3 Cntcod : 36 Var : mtredu Non-missing : 0.640
+Data : timss Wave : 3 Cntcod : 348 Var : ftredu Non-missing : 0.648
+Data : timss Wave : 3 Cntcod : 348 Var : mtredu Non-missing : 0.663
+Data : timss Wave : 3 Cntcod : 376 Var : ftredu Non-missing : 0.693
+Data : timss Wave : 3 Cntcod : 392 Var : ftredu Non-missing : 0.643
+Data : timss Wave : 3 Cntcod : 392 Var : mtredu Non-missing : 0.691
+Data : timss Wave : 3 Cntcod : 428 Var : ftredu Non-missing : 0.625
+Data : timss Wave : 3 Cntcod : 440 Var : ftredu Non-missing : 0.633
+Data : timss Wave : 3 Cntcod : 528 Var : ftredu Non-missing : 0.655
+Data : timss Wave : 3 Cntcod : 528 Var : mtredu Non-missing : 0.651
+Data : timss Wave : 3 Cntcod : 554 Var : ftredu Non-missing : 0.438
+Data : timss Wave : 3 Cntcod : 554 Var : mtredu Non-missing : 0.477
+Data : timss Wave : 3 Cntcod : 578 Var : ftredu Non-missing : 0.465
+Data : timss Wave : 3 Cntcod : 578 Var : mtredu Non-missing : 0.491
+Data : timss Wave : 3 Cntcod : 710 Var : ftredu Non-missing : 0.602
+Data : timss Wave : 3 Cntcod : 710 Var : mtredu Non-missing : 0.660
+Data : timss Wave : 3 Cntcod : 752 Var : ftredu Non-missing : 0.463
+Data : timss Wave : 3 Cntcod : 752 Var : mtredu Non-missing : 0.486
+Data : timss Wave : 3 Cntcod : 926 Var : ftredu Non-missing : 0.267
+Data : timss Wave : 3 Cntcod : 926 Var : mtredu Non-missing : 0.293
+Data : timss Wave : 3 Cntcod : 927 Var : ftredu Non-missing : 0.273
+Data : timss Wave : 3 Cntcod : 927 Var : mtredu Non-missing : 0.282
+Data : timss Wave : 4 Cntcod : 36 Var : ftredu Non-missing : 0.561
+Data : timss Wave : 4 Cntcod : 36 Var : mtredu Non-missing : 0.600
+Data : timss Wave : 4 Cntcod : 72 Var : ftredu Non-missing : 0.598
+Data : timss Wave : 4 Cntcod : 72 Var : mtredu Non-missing : 0.668
+Data : timss Wave : 4 Cntcod : 376 Var : ftredu Non-missing : 0.645
+Data : timss Wave : 4 Cntcod : 376 Var : mtredu Non-missing : 0.658
+Data : timss Wave : 4 Cntcod : 392 Var : ftredu Non-missing : 0.674
+Data : timss Wave : 4 Cntcod : 440 Var : ftredu Non-missing : 0.616
+Data : timss Wave : 4 Cntcod : 470 Var : ftredu Non-missing : 0.614
+Data : timss Wave : 4 Cntcod : 470 Var : mtredu Non-missing : 0.641
+Data : timss Wave : 4 Cntcod : 578 Var : ftredu Non-missing : 0.461
+Data : timss Wave : 4 Cntcod : 578 Var : mtredu Non-missing : 0.476
+Data : timss Wave : 4 Cntcod : 702 Var : ftredu Non-missing : 0.695
+Data : timss Wave : 4 Cntcod : 705 Var : ftredu Non-missing : 0.672
+Data : timss Wave : 4 Cntcod : 705 Var : mtredu Non-missing : 0.694
+Data : timss Wave : 4 Cntcod : 752 Var : ftredu Non-missing : 0.423
+Data : timss Wave : 4 Cntcod : 752 Var : mtredu Non-missing : 0.419
+Data : timss Wave : 4 Cntcod : 840 Var : ftredu Non-missing : 0.685
+Data : timss Wave : 4 Cntcod : 926 Var : ftredu Non-missing : 0.000
+Data : timss Wave : 4 Cntcod : 926 Var : mtredu Non-missing : 0.000
+Data : timss Wave : 4 Cntcod : 927 Var : ftredu Non-missing : 0.000
+Data : timss Wave : 4 Cntcod : 927 Var : mtredu Non-missing : 0.000
+Data : timss Wave : 5 Cntcod : 36 Var : ftredu Non-missing : 0.506
+Data : timss Wave : 5 Cntcod : 36 Var : mtredu Non-missing : 0.528
+Data : timss Wave : 5 Cntcod : 48 Var : ftredu Non-missing : 0.656
+Data : timss Wave : 5 Cntcod : 48 Var : mtredu Non-missing : 0.677
+Data : timss Wave : 5 Cntcod : 246 Var : ftredu Non-missing : 0.622
+Data : timss Wave : 5 Cntcod : 246 Var : mtredu Non-missing : 0.656
+Data : timss Wave : 5 Cntcod : 268 Var : ftredu Non-missing : 0.677
+Data : timss Wave : 5 Cntcod : 392 Var : ftredu Non-missing : 0.654
+Data : timss Wave : 5 Cntcod : 440 Var : ftredu Non-missing : 0.682
+Data : timss Wave : 5 Cntcod : 458 Var : ftredu Non-missing : 0.679
+Data : timss Wave : 5 Cntcod : 512 Var : ftredu Non-missing : 0.653
+Data : timss Wave : 5 Cntcod : 512 Var : mtredu Non-missing : 0.700
+Data : timss Wave : 5 Cntcod : 554 Var : ftredu Non-missing : 0.400
+Data : timss Wave : 5 Cntcod : 554 Var : mtredu Non-missing : 0.430
+Data : timss Wave : 5 Cntcod : 578 Var : ftredu Non-missing : 0.521
+Data : timss Wave : 5 Cntcod : 578 Var : mtredu Non-missing : 0.546
+Data : timss Wave : 5 Cntcod : 702 Var : ftredu Non-missing : 0.679
+Data : timss Wave : 5 Cntcod : 752 Var : ftredu Non-missing : 0.481
+Data : timss Wave : 5 Cntcod : 752 Var : mtredu Non-missing : 0.510
+Data : timss Wave : 5 Cntcod : 784 Var : ftredu Non-missing : 0.659
+Data : timss Wave : 5 Cntcod : 784 Var : mtredu Non-missing : 0.683
+Data : timss Wave : 5 Cntcod : 840 Var : ftredu Non-missing : 0.643
+Data : timss Wave : 5 Cntcod : 926 Var : ftredu Non-missing : 0.468
+Data : timss Wave : 5 Cntcod : 926 Var : mtredu Non-missing : 0.496
+Data : timss Wave : 6 Cntcod : 36 Var : ftredu Non-missing : 0.493
+Data : timss Wave : 6 Cntcod : 36 Var : mtredu Non-missing : 0.512
+Data : timss Wave : 6 Cntcod : 48 Var : ftredu Non-missing : 0.643
+Data : timss Wave : 6 Cntcod : 48 Var : mtredu Non-missing : 0.660
+Data : timss Wave : 6 Cntcod : 72 Var : ftredu Non-missing : 0.602
+Data : timss Wave : 6 Cntcod : 124 Var : ftredu Non-missing : 0.576
+Data : timss Wave : 6 Cntcod : 124 Var : mtredu Non-missing : 0.598
+Data : timss Wave : 6 Cntcod : 268 Var : ftredu Non-missing : 0.668
+Data : timss Wave : 6 Cntcod : 344 Var : ftredu Non-missing : 0.680
+Data : timss Wave : 6 Cntcod : 372 Var : ftredu Non-missing : 0.683
+Data : timss Wave : 6 Cntcod : 376 Var : ftredu Non-missing : 0.691
+Data : timss Wave : 6 Cntcod : 392 Var : ftredu Non-missing : 0.641
+Data : timss Wave : 6 Cntcod : 410 Var : ftredu Non-missing : 0.688
+Data : timss Wave : 6 Cntcod : 414 Var : ftredu Non-missing : 0.630
+Data : timss Wave : 6 Cntcod : 414 Var : mtredu Non-missing : 0.677
+Data : timss Wave : 6 Cntcod : 422 Var : ftredu Non-missing : 0.645
+Data : timss Wave : 6 Cntcod : 422 Var : mtredu Non-missing : 0.673
+Data : timss Wave : 6 Cntcod : 440 Var : ftredu Non-missing : 0.695
+Data : timss Wave : 6 Cntcod : 458 Var : ftredu Non-missing : 0.699
+Data : timss Wave : 6 Cntcod : 470 Var : ftredu Non-missing : 0.574
+Data : timss Wave : 6 Cntcod : 470 Var : mtredu Non-missing : 0.601
+Data : timss Wave : 6 Cntcod : 512 Var : ftredu Non-missing : 0.621
+Data : timss Wave : 6 Cntcod : 512 Var : mtredu Non-missing : 0.651
+Data : timss Wave : 6 Cntcod : 554 Var : ftredu Non-missing : 0.371
+Data : timss Wave : 6 Cntcod : 554 Var : mtredu Non-missing : 0.385
+Data : timss Wave : 6 Cntcod : 578 Var : ftredu Non-missing : 0.557
+Data : timss Wave : 6 Cntcod : 578 Var : mtredu Non-missing : 0.584
+Data : timss Wave : 6 Cntcod : 634 Var : ftredu Non-missing : 0.699
+Data : timss Wave : 6 Cntcod : 634 Var : mtredu Non-missing : 0.696
+Data : timss Wave : 6 Cntcod : 702 Var : ftredu Non-missing : 0.676
+Data : timss Wave : 6 Cntcod : 702 Var : mtredu Non-missing : 0.699
+Data : timss Wave : 6 Cntcod : 705 Var : ftredu Non-missing : 0.602
+Data : timss Wave : 6 Cntcod : 705 Var : mtredu Non-missing : 0.628
+Data : timss Wave : 6 Cntcod : 710 Var : ftredu Non-missing : 0.628
+Data : timss Wave : 6 Cntcod : 752 Var : ftredu Non-missing : 0.522
+Data : timss Wave : 6 Cntcod : 752 Var : mtredu Non-missing : 0.545
+Data : timss Wave : 6 Cntcod : 784 Var : ftredu Non-missing : 0.604
+Data : timss Wave : 6 Cntcod : 784 Var : mtredu Non-missing : 0.624
+Data : timss Wave : 6 Cntcod : 840 Var : ftredu Non-missing : 0.678
+Data : timss Wave : 6 Cntcod : 926 Var : ftredu Non-missing : 0.392
+Data : timss Wave : 6 Cntcod : 926 Var : mtredu Non-missing : 0.425
+Data : timss Wave : 7 Cntcod : 36 Var : ftredu Non-missing : 0.527
+Data : timss Wave : 7 Cntcod : 36 Var : mtredu Non-missing : 0.591
+Data : timss Wave : 7 Cntcod : 48 Var : ftredu Non-missing : 0.630
+Data : timss Wave : 7 Cntcod : 48 Var : mtredu Non-missing : 0.669
+Data : timss Wave : 7 Cntcod : 196 Var : ftredu Non-missing : 0.699
+Data : timss Wave : 7 Cntcod : 196 Var : mtredu Non-missing : 0.656
+Data : timss Wave : 7 Cntcod : 246 Var : ftredu Non-missing : 0.538
+Data : timss Wave : 7 Cntcod : 246 Var : mtredu Non-missing : 0.568
+Data : timss Wave : 7 Cntcod : 250 Var : ftredu Non-missing : 0.464
+Data : timss Wave : 7 Cntcod : 250 Var : mtredu Non-missing : 0.493
+Data : timss Wave : 7 Cntcod : 268 Var : ftredu Non-missing : 0.614
+Data : timss Wave : 7 Cntcod : 268 Var : mtredu Non-missing : 0.681
+Data : timss Wave : 7 Cntcod : 344 Var : ftredu Non-missing : 0.615
+Data : timss Wave : 7 Cntcod : 344 Var : mtredu Non-missing : 0.678
+Data : timss Wave : 7 Cntcod : 372 Var : ftredu Non-missing : 0.626
+Data : timss Wave : 7 Cntcod : 372 Var : mtredu Non-missing : 0.648
+Data : timss Wave : 7 Cntcod : 376 Var : ftredu Non-missing : 0.650
+Data : timss Wave : 7 Cntcod : 392 Var : ftredu Non-missing : 0.585
+Data : timss Wave : 7 Cntcod : 392 Var : mtredu Non-missing : 0.668
+Data : timss Wave : 7 Cntcod : 410 Var : ftredu Non-missing : 0.645
+Data : timss Wave : 7 Cntcod : 410 Var : mtredu Non-missing : 0.635
+Data : timss Wave : 7 Cntcod : 414 Var : ftredu Non-missing : 0.608
+Data : timss Wave : 7 Cntcod : 414 Var : mtredu Non-missing : 0.582
+Data : timss Wave : 7 Cntcod : 422 Var : ftredu Non-missing : 0.623
+Data : timss Wave : 7 Cntcod : 422 Var : mtredu Non-missing : 0.675
+Data : timss Wave : 7 Cntcod : 440 Var : ftredu Non-missing : 0.550
+Data : timss Wave : 7 Cntcod : 440 Var : mtredu Non-missing : 0.612
+Data : timss Wave : 7 Cntcod : 458 Var : ftredu Non-missing : 0.580
+Data : timss Wave : 7 Cntcod : 458 Var : mtredu Non-missing : 0.612
+Data : timss Wave : 7 Cntcod : 512 Var : ftredu Non-missing : 0.596
+Data : timss Wave : 7 Cntcod : 512 Var : mtredu Non-missing : 0.615
+Data : timss Wave : 7 Cntcod : 554 Var : ftredu Non-missing : 0.378
+Data : timss Wave : 7 Cntcod : 554 Var : mtredu Non-missing : 0.431
+Data : timss Wave : 7 Cntcod : 578 Var : ftredu Non-missing : 0.535
+Data : timss Wave : 7 Cntcod : 578 Var : mtredu Non-missing : 0.561
+Data : timss Wave : 7 Cntcod : 634 Var : ftredu Non-missing : 0.620
+Data : timss Wave : 7 Cntcod : 634 Var : mtredu Non-missing : 0.612
+Data : timss Wave : 7 Cntcod : 643 Var : ftredu Non-missing : 0.672
+Data : timss Wave : 7 Cntcod : 702 Var : ftredu Non-missing : 0.589
+Data : timss Wave : 7 Cntcod : 702 Var : mtredu Non-missing : 0.626
+Data : timss Wave : 7 Cntcod : 710 Var : ftredu Non-missing : 0.609
+Data : timss Wave : 7 Cntcod : 752 Var : ftredu Non-missing : 0.493
+Data : timss Wave : 7 Cntcod : 752 Var : mtredu Non-missing : 0.514
+Data : timss Wave : 7 Cntcod : 784 Var : ftredu Non-missing : 0.539
+Data : timss Wave : 7 Cntcod : 784 Var : mtredu Non-missing : 0.523
+Data : timss Wave : 7 Cntcod : 840 Var : ftredu Non-missing : 0.626
+Data : timss Wave : 7 Cntcod : 840 Var : mtredu Non-missing : 0.694
+Data : timss Wave : 7 Cntcod : 926 Var : ftredu Non-missing : 0.408
+Data : timss Wave : 7 Cntcod : 926 Var : mtredu Non-missing : 0.448
+{txt}
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/jay/git/pnt_missing_edu.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 5 Jun 2021, 06:37:47
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
