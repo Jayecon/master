@@ -9,9 +9,6 @@ forvalue j=1/7 {
 }
 
 pisa
-1 	drop 348
-4 	drop 348
-5 	drop 348
 
 1	124 352 604
 2	250 344 446 

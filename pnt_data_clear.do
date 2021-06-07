@@ -1,8 +1,7 @@
 foreach i in pisa timss {
 forvalue j=1/7 {
 	use ~/dropbox/`i'r`j' , clear
-	/*Excpetion Control{{{*/
-	/*Drop Error Counrtries{{{*/
+	/*Errant Countries Control{{{*/
 	if "`i'" == "pisa" & `j' == 1 {
 		drop if cntcod == 438 /*Small Size : Liechtenstein*/
 	}
@@ -19,15 +18,20 @@ forvalue j=1/7 {
 		drop if cntcod == 926 /*No parental education : Kosovo*/
 		drop if cntcod == 927 /*No parental education : Kosovo*/
 	}
-	/*}}}*/
 	levelsof cntcod , local(clist)
 	/*}}}*/
 	/*Rename Variables {{{*/
 	if "`i'" == "timss" {
 		rename totwgt stuwgt
 		rename comsiz schloc
+		rename idstud idstudent
+	}
+	if "`i'" == "pisa" {
+		rename schoolid idschool
+		rename stidstd idstudent
 	}
 	/*}}}*/
+	drop if missing(cntcod , idschool , idstudent)
 	/* Cleaning Dummy Variables {{{*/
 	captur label drop YN
 	label define YN 1 "Yes" 0 "No"
@@ -46,6 +50,14 @@ forvalue j=1/7 {
 				label value `k' YN
 			}
 		}
+	}
+	/*}}}*/
+	/*Drop Redundent Variables{{{*/
+	if "`i'" == "timss" {
+		drop clmsiz clssiz sscnum scsnum stdlng tcm??? tcs??? wave 
+	}
+	if "`i'" == "pisa" {
+		drop _* ???fwgt cnt ???edu? ???job ???occ strati tch*
 	}
 	/*}}}*/
 	/*Generate Possession Variables{{{*/
@@ -68,65 +80,10 @@ forvalue j=1/7 {
 		label var posses "Possession Status: Sum of 4 Vars"
 	/*}}}*/
 	/*Generate the Family Born in the Country Variables{{{*/
-	/*BRN : pisa w1 cnt410 Korea ; timss w1 cnt250 France ; timss w4 cnt12 Algeria*/
+	/*Caution on BRN Missing : pisa w1 cnt410 Korea ; timss w1 cnt250 France ; timss w4 cnt12 Algeria*/
 	capture drop fambrn
-	egen fambrn = rowtotal(???brn) 
+	egen fambrn = rowtotal(???brn) , missing
 		label var fambrn "Born in the Country; Family"
-	/*}}}*/
-	/* Generate PCA Group1{{{*/
-	local pcalist posbok posses paredu 
-	capture drop pcascr1 pcagrp1 
-	local count = 1
-	foreach k of local clist {
-		pca `pcalist' if cntcod == `k'
-			predict temp1`count' if e(sample)
-			xtile temp2`count' = temp1`count' , nq(3)
-		local ++count
-	}
-	egen pcascr1 = rowtotal(temp1*) , missing
-		label var pcascr1 "PCA Score; Possession, Book and Parental Education"
-	egen pcagrp1 = rowtotal(temp2*) , missing
-		label var pcagrp1 "PCA Group; Possession, Book and Parental Education"
-		capture label drop PCAGRP
-		label define PCAGRP 1 "Low Env." 2 "Mid Env." 3 "high Env."
-		label value pcagrp1 PCAGRP
-	drop temp*
-	/*}}}*/
-	/* Generate PCA Group2{{{*/
-	local pcalist posbok posses paredu fambrn
-	capture drop pcascr2 pcagrp2 
-	local count = 1
-	foreach k of local clist {
-		pca `pcalist' if cntcod == `k'
-			predict temp1`count' if e(sample)
-			xtile temp2`count' = temp1`count' , nq(3)
-		local ++count
-	}
-	egen pcascr2 = rowtotal(temp1*) , missing
-		label var pcascr2 "PCA Score; Possession, Book, and Parental Education and Migration "
-	egen pcagrp2 = rowtotal(temp2*) , missing
-		label var pcagrp2 "PCA Group; Possession, Book, and Parental Education and Migration "
-		capture label drop PCAGRP
-		label value pcagrp2 PCAGRP
-	drop temp*
-	/*}}}*/
-	/* Generate PCA Group3{{{*/
-	local pcalist schloc posbok posses paredu fambrn
-	capture drop pcascr3 pcagrp3 
-	local count = 1
-	foreach k of local clist {
-		pca `pcalist' if cntcod == `k'
-			predict temp1`count' if e(sample)
-			xtile temp2`count' = temp1`count' , nq(3)
-		local ++count
-	}
-	egen pcascr3 = rowtotal(temp1*) , missing
-		label var pcascr3 "PCA Score; Possession, Book, Sch location and Parental Education and Migration "
-	egen pcagrp3 = rowtotal(temp2*) , missing
-		label var pcagrp3 "PCA Group; Possession, Book, Sch location and Parental Education and Migration "
-		capture label drop PCAGRP
-		label value pcagrp3 PCAGRP
-	drop temp*
 	/*}}}*/
 	compress
 	save ~/dropbox/`i'w`j' , replace
