@@ -8,6 +8,8 @@ forvalue j=1/7 {
 	capture drop pcascr1 pcagrp1 
 	local count = 1
 	foreach k of local clist {
+		di ""
+		di as text " DATA : " as input "`i'" as text " Wave : " as input "`j'" as text " Cntcod : " as input "`k'"
 		pca `pcalist' if cntcod == `k'
 			predict temp1`count' if e(sample)
 			xtile temp2`count' = temp1`count' , nq(3)

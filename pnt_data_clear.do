@@ -1,4 +1,4 @@
-foreach i in pisa timss {
+foreach i in pisa timss{
 forvalue j=1/7 {
 	use ~/dropbox/`i'r`j' , clear
 	/*Errant Countries Control{{{*/
@@ -14,6 +14,9 @@ forvalue j=1/7 {
 	if "`i'" == "pisa" & `j' == 6 {
 		drop if cntcod == 8 /*No parental education : Albania*/
 	}
+	if "`i'" == "pisa" & `j' == 7 {
+		drop if cntcod == 704 /*No Score : Viet Nam*/
+	}
 	if "`i'" == "timss" & `j' == 4 {
 		drop if cntcod == 926 /*No parental education : Kosovo*/
 		drop if cntcod == 927 /*No parental education : Kosovo*/
@@ -26,9 +29,13 @@ forvalue j=1/7 {
 		rename comsiz schloc
 		rename idstud idstudent
 	}
-	if "`i'" == "pisa" {
+	if "`i'" == "pisa" & `j' <= 5 {
 		rename schoolid idschool
 		rename stidstd idstudent
+	}
+	if "`i'" == "pisa" & `j' > 5 {
+		rename cntschid idschool
+		rename cntstuid idstudent
 	}
 	/*}}}*/
 	drop if missing(cntcod , idschool , idstudent)
@@ -53,12 +60,12 @@ forvalue j=1/7 {
 	}
 	/*}}}*/
 	/*Drop Redundent Variables{{{*/
-	if "`i'" == "timss" {
-		drop clmsiz clssiz sscnum scsnum stdlng tcm??? tcs??? wave 
-	}
-	if "`i'" == "pisa" {
-		drop _* ???fwgt cnt ???edu? ???job ???occ strati tch*
-	}
+	*if "`i'" == "timss" {
+	*	drop clmsiz clssiz sscnum scsnum stdlng tcm??? tcs??? wave 
+	*}
+	*if "`i'" == "pisa" {
+	*	drop _* ???edu? ???job ???occ strati tch*
+	*}
 	/*}}}*/
 	/*Generate Possession Variables{{{*/
 	capture drop posses 

@@ -1,8 +1,9 @@
-/*PCA Score; Possession, Book, and Parental Education and Migration */
+ /*PCA Score; Possession, Book, and Parental Education and Migration */
 foreach i in pisa timss {
 forvalue j=1/7 {
 	use ~/dropbox/`i'w`j' , clear
-	levelsof cntcod , local(clist)
+	capture drop _pca2
+	save , replace
 	/*Errant Control{{{*/
 	if "`i'" == "pisa" & `j' == 1 {
 		drop if cntcod == 410 /*Korea Missing BRN Variables*/
@@ -18,7 +19,10 @@ forvalue j=1/7 {
 	local pcalist posbok posses paredu fambrn
 	capture drop pcascr2 pcagrp2 
 	local count = 1
+	levelsof cntcod , local(clist)
 	foreach k of local clist {
+	di ""
+	di as text " DATA : " as input "`i'" as text " Wave : " as input "`j'" as text " Cntcod : " as input "`k'"
 		pca `pcalist' if cntcod == `k'
 			predict temp1`count' if e(sample)
 			xtile temp2`count' = temp1`count' , nq(3)
@@ -35,6 +39,6 @@ forvalue j=1/7 {
 	compress
 	keep cntcod id* pca*
 	merge 1:1 cntcod idschool idstudent using ~/dropbox/`i'w`j' , gen(_pca2) 
-	save ~/dropbox/`i'w`j' , replace
+	save , replace
 }
 }
