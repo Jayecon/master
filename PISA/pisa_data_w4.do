@@ -121,6 +121,7 @@ save `tfile' , replace
 /*Merge with the Country List{{{*/
 rename country cntcod
 destring cntcod , replace
+replace stidstd = stidstd +1616 if cnt == "QTN"
 merge m:1 cntcod using ~/git/etc/countrycode_1.dta 
 	drop if _merge == 2
 	drop _merge
