@@ -1,9 +1,11 @@
 #delimit ;
-capture program drop eopcal;
-program eopcal, byable(recall) rclass sortpreserve;
-syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] , ENVironment(varname numeric )
-	[GOIndex RRIndex(passthru) Bootstrap(integer 0) Seed(integer 10101)	///Options for calculating indicies.
+capture program drop eopcal ;
+program eopcal, byable(recall) rclass sortpreserve ;
+syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] , 
+	[ENVironment(varname numeric )
+	 GOIndex RRIndex(passthru) Bootstrap(integer 0) Seed(integer 10101)	///Options for calculating indicies.
 	 DOMinance ACCuracy(passthru)										///Options for dominance test.
+	 BJORKlund(passthru) SAVing											///Options for Bjorklund et al. 
 	 CUMDplot KDENplot GRoptions(passthru)								///Options for drawing graphs.
 	 Value(passthru) Percent(passthru) NOZero							///Options for manipulating data range.
 	 STATs																///Options for descriptive statistics.
@@ -51,15 +53,35 @@ if `"`rrindex'"' != "" {;
 	};
 	local rrindex rrindex ;
 }; /*}}}*/
+/** CHECK IF THE OPTION BJORKLUND HAS THE FORM OF (TYPE , CRITERA) {{{*/
+if `"`bjorklund'"' != "" { ; 
+	local bjorklund = strltrim(strltrim(subinstr("`bjorklund'" , "bjorklund(","",1))) ;
+	local bjorklund = strltrim(strltrim(subinstr("`bjorklund'" , ")","",1))) ;
+	gettoken bjorktype bjorkcrit : bjorklund, parse(,) ;
+		local bjorktype = strltrim(strrtrim("`bjorktype'")) ;
+		local bjorkcrit = strltrim(strrtrim(subinstr("`bjorkcrit'" , ",","",1))) ;
+	if("`bjorktype'" != "mld" & "`bjorktype'" != "var" ) { ;
+		di as error "ERROR in Bjorklund type. " as text "The following values are required: mld or var." ;
+		exit ;
+	} ;
+	captur confirm number `bjorkcrit' ; 
+	if _rc != 0 { ;
+		di as error "ERROR in Bjorklund critera." as text "A numeric argument is required" ;
+		exit ;
+	};
+	local bjorklund bjorklund ;
+}; /*}}}*/
 /** CHECK IF THE ENVIRONMENT VALUE HAVE SEQUENCE FROM 1 TO 1.{{{*/
+if "`environment'" != "" { ;
 qui levelsof `environment' , local(typlist) ;
 	local typnum : word count `typlist' ;
 	local typnump = `typnum' + 1;
-forvalue i = 1/`typnum' {;
-	local typ`i' : word `i' of `typlist' ;
-	if !(`typ`i'' == `i') {;
-		di as error "ERROR in Environment value. " as text "The value must increase from 1 to 1. (eg. 1,2,3,...)." ;
-		exit;
+	forvalue i = 1/`typnum' {;
+		local typ`i' : word `i' of `typlist' ;
+		if !(`typ`i'' == `i') {;
+			di as error "ERROR in Environment value. " as text "The value must increase from 1 to 1. (eg. 1,2,3,...)." ;
+			exit;
+		};
 	};
 }; /*}}}*/
 /*}}}*/
@@ -172,6 +194,16 @@ else if ("`rrindex'" != "") {;
 		matrix `temps' = r(results) ;
 		return matrix results = `temps' ;
 	}; /*}}}*/
+};
+else if ("`bjorklund'" != "") {;
+	bjork `varlist' [`weight' `exp'] , type(`bjorktype') cut(`bjorkcrit') ;
+	/*** PRINT of Bjorklund{{{*/
+	return local idxname "Bjorklund;mld" ;
+	di as text "`bjorklund' = " as result %5.4f `r(fg1a)' ;
+	return scalar fg1a=`r(fg1a)' ;
+	return scalar fg1r=`r(fg1r)' ;
+	return scalar fg2r=`r(fg2r)' ;
+	; /*}}}*/
 };
 else if ("`cumdplot'" != "") {;
 	cumd `varlist' [`weight' `exp'] , environment(`environment') `value' `percent' `groptions';
@@ -538,6 +570,58 @@ if ("`detail'" != "") {;
 };
 
 end; /*}}}*/
+/** Bjorklund PROGRAM {{{*/
+capture program drop bjork ;
+program define bjork , rclass; 
+syntax varlist [fw aw pw iw] , TYPE(str) CUT(real) ;
+
+tempvar group nofg resid yhat one ;
+
+return local type  "`type'" ;
+return local cut  "`cut'" ;
+
+// DEFINE DEPENDENT AND INDEPENDENT VARIABLES
+tokenize `varlist' ;
+local depvar `1' ;
+macro shift ;
+local indepvars `*' ;
+
+qui egen `group'  = group(`indepvars') ;
+	bys `group' : gen `nofg' = _N ;
+	qui replace `group' = . if `nofg' <= `cut' ;
+	qui levelsof `group' , local(glist) ;
+	qui reg `depvar' `indepvars' [`weight' `exp'] if !missing(`group') ;
+	qui predict double `yhat' if e(sample)  ;
+	qui predict double `resid' if e(sample) , res ;
+	qui sum `resid' [`weight' `exp'] ;
+	local k = `r(sd)'^(-1) ;
+
+local count = 1 ;
+foreach i of local glist { ;
+	qui reg `depvar' `indepvar' [`weight' `exp'] if `group' == `i' ;
+	qui predict double resid0`count' if e(sample) , res ;
+	qui sum resid0`count' [`weight' `exp'] ;
+	local rho0`count' = `r(sd)' ;
+	qui gen u0`count' = resid0`count'*(`k'*`rho0`count'')^(-1) ;
+	local ++count ;
+} ;
+qui egen u = rowtotal(u0*) , missing ;
+	drop u0* ;
+qui gen yhatm = `depvar' - u ;
+
+iop_mld yhatm if !missing(u) [`weight'`exp'] ;
+	local res_FGa=r(mld) ;
+iop_mld `depvar' if !missing(u) [`weight'`exp'] ;
+	local res_FGorg=r(mld) ;
+	local res_FGr=`res_FGa'/`res_FGorg' ;
+qui reg `depvar' yhatm if !missing(u) [`weight' `exp' ] ;
+	local res_var=e(r2) ;
+
+return scalar fg1a=`res_FGa' ;
+return scalar fg1r=`res_FGr' ;
+return scalar fg2r=`res_var' ;
+
+end; /*}}}*/
 /** CUMDPLOT PROGRAM {{{*/
 program define cumd, byable(recall);
 syntax varlist [if] [in] [fw aw pw iw] 
@@ -770,8 +854,27 @@ while (`s' < 3) { ;
 };
 return matrix results = `temp1';
 restore ; 
-#delimit cr;
-end /*}}}*/
+end; /*}}}*/
+/***iop_mld{{{*/
+capture program drop iop_mld ;
+	program define iop_mld, rclass;
+	version 9.0 ;
+	syntax varlist(max=1) [if] [in] [iweight fweight] ;
+	preserve ;
+	quietly{ ;
+	marksample touse2 ;
+	keep if `touse2' ;
+	
+	sum `varlist' [`weight'`exp'] ;
+	local mean=r(mean) ;
+	tempvar mld ;
+	gen `mld'=ln(r(mean)/`varlist') ;
+	sum `mld' [`weight'`exp'] ;
+	local MLD=r(mean) ;
+	return scalar mld=r(mean) ;
+	} ;
+end ;
+/*}}}*/
 /*}}}*/
 
 #delimit cr

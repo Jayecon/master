@@ -283,7 +283,7 @@ else if(`case'==2){ // ordered
 	return scalar pdb_max=`max'
 
 } // end case==2 (ordered)
-else if(`case'==3){ //CONTINOUS 
+else if(`case'==3){ //CONTINOUS  ???
 	quietly{
 		tempvar loglin
 		
