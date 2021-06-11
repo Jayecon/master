@@ -13,7 +13,7 @@ forvalue k = 1/7 {
 	drop if missing(`grpvar')
 	gen `wgt' = round(stuwgt , 1)
 	levelsof cntcod , local(clist)
-	foreach j in math scie read{
+	foreach j in math scie{
 		foreach i of local clist{
 			/*grouptype {{{*/
 			if ("`j'" == "math") {
@@ -27,7 +27,7 @@ forvalue k = 1/7 {
 			} /*}}}*/
 			di ""
 			di as text " DATA : " as input "PISA" as text " Wave : " as input "`k'" as text " Country : " as input "`i'" as text " Subject : " as input "`j'"
-			eopcal pv1`j' posses posbok paredu [fw=`wgt'] if cntcod == `i' , bjork(mld, 10)  /*Index Calculator HERE*/
+			eopcal pv1`j' posses posbok paredu [fw=`wgt'] if cntcod == `i' , bjork(mld, 5)  /*Index Calculator HERE*/
 			matrix `temp1'[1,1] = `k'        
 			matrix `temp1'[1,2] = `i'        
 			matrix `temp1'[1,3] = `subject'        

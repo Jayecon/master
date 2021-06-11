@@ -1,4 +1,6 @@
 /*PCA Score; Possession, Book and Parental Education*/
+set more off
+
 foreach i in pisa timss {
 forvalue j=1/7 {
 	use ~/dropbox/`i'w`j' , clear

@@ -27,7 +27,7 @@ forvalue k = 1/7 {
 			} /*}}}*/
 			di ""
 			di as text " DATA : " as input "TIMSS" as text " Wave : " as input "`k'" as text " Country : " as input "`i'" as text " Subject : " as input "`j'"
-			eopcal pv1`j' posses posbok paredu fambrn schloc [fw=`wgt'] if cntcod == `i' , bjork(mld , 10)  /*Index Calculator HERE*/
+			eopcal pv1`j' posses posbok paredu fambrn schloc [fw=`wgt'] if cntcod == `i' , bjork(mld , 5)  /*Index Calculator HERE*/
 			matrix `temp1'[1,1] = `k'        
 			matrix `temp1'[1,2] = `i'        
 			matrix `temp1'[1,3] = `subject'        

@@ -43,10 +43,26 @@ forvalue j=1/7 {
 	captur label drop YN
 	label define YN 1 "Yes" 0 "No"
 	qui lookfor pos
-	local plist r(varlist)
+	local plist `r(varlist)'
 	foreach k of local plist {
 		local postest strpos("`k'" , "pos")
 		if `postest' {
+			qui inspect `k'
+			local length = r(N_unique) 
+			sum `k' , meanonly
+			local min = r(min)
+			local max = r(max)
+			if `length' == 2 & `min' == 1 & `max' == 2 {
+				recode `k' 2 = 0 
+				label value `k' YN
+			}
+		}
+	}
+	qui lookfor brn
+	local blist `r(varlist)'
+	foreach k of local blist {
+		local brntest strpos("`k'" , "brn")
+		if `brntest' == 4 {
 			qui inspect `k'
 			local length = r(N_unique) 
 			sum `k' , meanonly
