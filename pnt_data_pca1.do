@@ -4,7 +4,6 @@ set more off
 
 foreach i in pisa timss {
 forvalue j=1/7 {
-=======
 
 tempname temp1 temp2 temp3
 matrix `temp2' = J(1,2,.)
