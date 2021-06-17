@@ -16,21 +16,10 @@ foreach i in pisa timss {
 	} /*}}}*/
 	forvalue j=1/7 {
 		use ~/dropbox/`i'w`j' , clear
-		/*Errant Control{{{*/
-		if "`i'" == "pisa" & `j' == 1 {
-			drop if cntcod == 410 /*Korea Missing BRN Variables*/
-		}
-		if "`i'" == "timss" & `j' == 1 {
-			drop if cntcod == 250 /*France Missing BRN Variables*/
-		}
-		if "`i'" == "timss" & `j' == 4 {
-			drop if cntcod == 12 /*Algeria Missing BRN Variables*/
-		}
-		/*}}}*/
 		levelsof cntcod , local(clist)
+		local pcalist posbok posses paredu 
 		/* Generate PCA Group1{{{*/
-		local pcalist posbok posses paredu fambrn
-		capture drop pcascr2 pcagrp2 
+		capture drop pcascr1 pcagrp1 
 		local count = 1
 		foreach k of local clist {
 			di ""
@@ -47,12 +36,12 @@ foreach i in pisa timss {
 			matrix `temp3' = (nullmat(`temp3') \ `temp1' )
 			local ++count
 		}
-		egen pcascr2 = rowtotal(temp1*) , missing
-			label var pcascr2 "PCA Score; Possession, Book, and Parental Education and Migration "
-		egen pcagrp2 = rowtotal(temp2*) , missing
-			label var pcagrp2 "PCA Score; Possession, Book, and Parental Education and Migration "
+		egen pcascr1 = rowtotal(temp1*) , missing
+			label var pcascr1 "PCA Score; Possession, Book and Parental Education"
+		egen pcagrp1 = rowtotal(temp2*) , missing
+			label var pcagrp1 "PCA Group; Possession, Book and Parental Education"
 			capture label drop PCAGRP
-			label value pcagrp2 PCAGRP
+			label value pcagrp1 PCAGRP
 		drop temp*
 		/*}}}*/
 		compress
@@ -68,6 +57,6 @@ foreach i in pisa timss {
 	gen datatype = `datatype'
 		label var datatype "지수유형"	
 		label value datatype DATATYPE
-	save ~/dropbox/`i'_pcagrp2_eigvec.dta , replace
 	/*}}}*/
+	save ~/dropbox/`i'_pcagrp1_eigvec.dta , replace
 }

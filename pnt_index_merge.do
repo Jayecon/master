@@ -48,8 +48,7 @@ foreach i in pisa timss {
 		}	
 	}	
 }	
-/*Append each data set with pcagrp{{{*/
-local count = 1
+/*Append each data set with pcagrp{{{*/ local count = 1
 foreach i in pisa timss {
 	foreach j in goi rri fg bj {
 		use `i'_`j'_pcagrp1 , clear

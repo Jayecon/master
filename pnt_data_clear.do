@@ -2,25 +2,19 @@ foreach i in pisa timss{
 forvalue j=1/7 {
 	use ~/dropbox/`i'r`j' , clear
 	/*Errant Countries Control{{{*/
-	if "`i'" == "pisa" & `j' == 1 {
-		drop if cntcod == 438 /*Small Size : Liechtenstein*/
-	}
-	if "`i'" == "pisa" & `j' == 4 {
-		drop if cntcod == 438 /*Small Size : Liechtenstein*/
-	}
-	if "`i'" == "pisa" & `j' == 5 {
-		drop if cntcod == 438 /*Small Size : Liechtenstein*/
-	}
 	if "`i'" == "pisa" & `j' == 6 {
 		drop if cntcod == 8 /*No parental education : Albania*/
 	}
 	if "`i'" == "pisa" & `j' == 7 {
 		drop if cntcod == 704 /*No Score : Viet Nam*/
 	}
-	if "`i'" == "timss" & `j' == 4 {
-		drop if cntcod == 926 /*No parental education : Kosovo*/
-		drop if cntcod == 927 /*No parental education : Kosovo*/
-	}
+	/*Exception Control{{{*/
+	replace cntcod = 276 if cntcod == 280 /* Germany code changed */
+	replace cntcod = 705 if cntcod == 890 /* Slovenia code changed */
+	replace cntcod = 826 if cntcod == 926 /* England is a large part of the UK */
+	replace cntcod = 688 if cntcod == 891 /* Serbia code changed */
+	drop if inlist(cntcod , 201 , 827 , 927 , 438) /* 201 = Unknown; 827 and 927 = Scotland is a part of the UK; 438 Liehitenstein is a small country */
+	/*}}}*/
 	levelsof cntcod , local(clist)
 	/*}}}*/
 	/*Rename Variables {{{*/
@@ -28,6 +22,7 @@ forvalue j=1/7 {
 		rename totwgt stuwgt
 		rename comsiz schloc
 		rename idstud idstudent
+		rename stdsex stusex
 	}
 	if "`i'" == "pisa" & `j' <= 5 {
 		rename schoolid idschool
