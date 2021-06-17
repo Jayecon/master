@@ -68,6 +68,6 @@ foreach i in pisa timss {
 	gen datatype = `datatype'
 		label var datatype "지수유형"	
 		label value datatype DATATYPE
-	save `i'_pcagrp2_eigvec.dta , replace
+	save ~/dropbox/`i'_pcagrp2_eigvec.dta , replace
 	/*}}}*/
 }
