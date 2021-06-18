@@ -588,8 +588,8 @@ local indepvars `*' ;
 
 qui egen `group'  = group(`indepvars') ;
 	bys `group' : gen `nofg' = _N ;
-	qui replace `group' = . if `nofg' <= `cut' ;
-	qui levelsof `group' , local(glist) ;
+	qui replace `group' = . if `nofg' < `cut' ;
+	qui levelsof `group' if !missing(`nofg') , local(glist) ;
 	qui reg `depvar' `indepvars' [`weight' `exp'] if !missing(`group') ;
 	qui predict double `yhat' if e(sample)  ;
 	qui predict double `resid' if e(sample) , res ;

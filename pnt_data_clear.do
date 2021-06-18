@@ -1,3 +1,4 @@
+set more off
 foreach i in pisa timss{
 forvalue j=1/7 {
 	use ~/dropbox/`i'r`j' , clear
@@ -7,6 +8,9 @@ forvalue j=1/7 {
 	}
 	if "`i'" == "pisa" & `j' == 7 {
 		drop if cntcod == 704 /*No Score : Viet Nam*/
+	}
+	if "`i'" == "timss" & `j' == 4 {
+		drop if cntcod == 926 /*No parental education : England*/
 	}
 	/*Exception Control{{{*/
 	replace cntcod = 276 if cntcod == 280 /* Germany code changed */
