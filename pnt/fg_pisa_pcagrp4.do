@@ -2,18 +2,18 @@ set more off
 set matsize 10000
 cd ~/dropbox
 
-local grpvar pcagrp3 /*Input for Environment HERE*/
+local grpvar pcagrp4 /*Input for Environment HERE*/
 
 tempname temp1 temp2
 tempvar wgt
 matrix `temp1' = J(1,6,.)
 
 forvalue k = 1/7 {
-	use timssw`k' , clear
+	use pisaw`k' , clear
 	drop if missing(`grpvar')
 	gen `wgt' = round(stuwgt , 1)
 	levelsof cntcod , local(clist)
-	foreach j in math scie {
+	foreach j in math scie read{
 		foreach i of local clist{
 			/*grouptype {{{*/
 			if ("`j'" == "math") {
@@ -26,8 +26,8 @@ forvalue k = 1/7 {
 				local subject = 3
 			} /*}}}*/
 			di ""
-			di as text " DATA : " as input "TIMSS" as text " Wave : " as input "`k'" as text " Country : " as input "`i'" as text " Subject : " as input "`j'"
-			iop pv1`j' stusex posses posbok paredu [fw=`wgt'] if cntcod == `i'  /*Index Calculator HERE*/
+			di as text " DATA : " as input "PISA" as text " Wave : " as input "`k'" as text " Country : " as input "`i'" as text " Subject : " as input "`j'"
+			iop pv1`j' stusex posses posbok paredu fambrn [fw=`wgt'] if cntcod == `i'  /*Index Calculator HERE*/
 			matrix `temp1'[1,1] = `k'        
 			matrix `temp1'[1,2] = `i'        
 			matrix `temp1'[1,3] = `subject'        
@@ -46,7 +46,7 @@ svmat `temp2' , names(matcol)
 	rename `temp2'* *
 	keep if !missing(index1)
 	label drop _all
-gen datatype = 2
+gen datatype = 1
 	label var datatype "지수유형"
 		label define DATATYPE 1 "PISA" 2 "TIMSS"
 		label value datatype DATATYPE
@@ -56,4 +56,4 @@ gen datatype = 2
 	label var index1 "FG1A"
 	label var index2 "FG1R"
 	label var index3 "FG2A"
-save timss_fg_pcagrp3.dta , replace
+save pisa_fg_pcagrp4.dta , replace

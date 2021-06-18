@@ -27,7 +27,7 @@ forvalue k = 1/7 {
 			} /*}}}*/
 			di ""
 			di as text " DATA : " as input "PISA" as text " Wave : " as input "`k'" as text " Country : " as input "`i'" as text " Subject : " as input "`j'"
-			iop pv1`j' posses posbok paredu fambrn schloc [fw=`wgt'] if cntcod == `i'  /*Index Calculator HERE*/
+			iop pv1`j' stusex posses posbok paredu [fw=`wgt'] if cntcod == `i'  /*Index Calculator HERE*/
 			matrix `temp1'[1,1] = `k'        
 			matrix `temp1'[1,2] = `i'        
 			matrix `temp1'[1,3] = `subject'        
@@ -56,4 +56,4 @@ gen datatype = 1
 	label var index1 "FG1A"
 	label var index2 "FG1R"
 	label var index3 "FG2A"
-save pisa_fg_pcagrp3.dta , replace
+save pisa_fg_pcagrp2.dta , replace

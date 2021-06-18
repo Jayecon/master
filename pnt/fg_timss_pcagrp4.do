@@ -2,7 +2,7 @@ set more off
 set matsize 10000
 cd ~/dropbox
 
-local grpvar pcagrp3 /*Input for Environment HERE*/
+local grpvar pcagrp4 /*Input for Environment HERE*/
 
 tempname temp1 temp2
 tempvar wgt
@@ -27,7 +27,7 @@ forvalue k = 1/7 {
 			} /*}}}*/
 			di ""
 			di as text " DATA : " as input "TIMSS" as text " Wave : " as input "`k'" as text " Country : " as input "`i'" as text " Subject : " as input "`j'"
-			iop pv1`j' stusex posses posbok paredu [fw=`wgt'] if cntcod == `i'  /*Index Calculator HERE*/
+			iop pv1`j' stusex posses posbok paredu fambrn [fw=`wgt'] if cntcod == `i'  /*Index Calculator HERE*/
 			matrix `temp1'[1,1] = `k'        
 			matrix `temp1'[1,2] = `i'        
 			matrix `temp1'[1,3] = `subject'        
@@ -56,4 +56,4 @@ gen datatype = 2
 	label var index1 "FG1A"
 	label var index2 "FG1R"
 	label var index3 "FG2A"
-save timss_fg_pcagrp3.dta , replace
+save timss_fg_pcagrp4.dta , replace
