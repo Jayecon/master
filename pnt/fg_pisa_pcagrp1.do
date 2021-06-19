@@ -13,9 +13,9 @@ forvalue k = 1/7 {
 	drop if missing(`grpvar')
 	gen `wgt' = round(stuwgt , 1)
 	levelsof cntcod , local(clist)
-	foreach j in math scie read{
+	foreach j in math scie read masc mrsc {
 		foreach i of local clist{
-			/*grouptype {{{*/
+			/*subtype {{{*/
 			if ("`j'" == "math") {
 				local subject = 1
 			}
@@ -24,6 +24,12 @@ forvalue k = 1/7 {
 			} 
 			else if ("`j'" == "read") {
 				local subject = 3
+			} 
+			else if ("`j'" == "masc") {
+				local subject = 4
+			} 
+			else if ("`j'" == "mrsc") {
+				local subject = 5
 			} /*}}}*/
 			di ""
 			di as text " DATA : " as input "PISA" as text " Wave : " as input "`k'" as text " Country : " as input "`i'" as text " Subject : " as input "`j'"
@@ -51,7 +57,7 @@ gen datatype = 1
 		label define DATATYPE 1 "PISA" 2 "TIMSS"
 		label value datatype DATATYPE
 	label var subject "과목"
-		label define SUBJECT 1 "수학" 2 "과학" 3 "읽기"
+		label define SUBJECT 1 "수학" 2 "과학" 3 "읽기" 4 "수과" 5 "읽수과"
 		label value subject SUBJECT
 	label var index1 "FG1A"
 	label var index2 "FG1R"
