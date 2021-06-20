@@ -1,9 +1,9 @@
 cd ~/dropbox
 capture label drop GROUP
-label define GROUP 1 "장서, 소유물, 부모교육" 2 "장서, 소유물, 부모교육, 가족이민" 3 "장서, 소유물, 부모교육, 가족이민, 거주지 규모"
+label define GROUP 1 "장서, 소유물, 부모교육" 2 "장서, 소유물, 부모교육, 가족이민" 3 "장서, 소유물, 부모교육, 성별" 4 "장서, 소유물, 부모교육, 가족이민, 성별" 
 foreach i in pisa timss {
 	foreach j in goi rri fg bj {
-		forvalue k = 1/3 {
+		forvalue k = 1/4 {
 			use `i'_`j'_pcagrp`k' , clear
 			/*Data specific control{{{*/
 			capture drop year
@@ -26,15 +26,15 @@ foreach i in pisa timss {
 			}
 			else if "`j'" == "fg" {
 				capture rename (index1 index2 index3) (fg1a fg1r fg2r)
-				label var fg1a "FG기회불평등지수;절대치 mld"
-				label var fg1r "FG기회불평등지수;상대치 var"
-				label var fg2r "FG기회불평등지수;상대치 var"
+				label var fg1a "FG기회불평등지수;절대치, mld"
+				label var fg1r "FG기회불평등지수;상대치, var"
+				label var fg2r "FG기회불평등지수;상대치, var"
 			}
 			else if "`j'" == "bj" {
 				capture rename (index1 index2 index3) (bj1a bj1r bj2r)
-				label var bj1a "BJ기회불평등지수;절대치 mld"
-				label var bj1r "BJ기회불평등지수;상대치 var"
-				label var bj2r "BJ기회불평등지수;상대치 var"
+				label var bj1a "BJ기회불평등지수;절대치, mld"
+				label var bj1r "BJ기회불평등지수;상대치, var"
+				label var bj2r "BJ기회불평등지수;상대치, var"
 			}
 			/*}}}*/
 			/*Group specific control{{{*/
@@ -43,17 +43,18 @@ foreach i in pisa timss {
 				label var group "환경변수"
 				label value group GROUP
 			/*}}}*/
-			/*drop if subject == 3*/
 			save , replace
 		}	
 	}	
 }	
-/*Append each data set with pcagrp{{{*/ local count = 1
+/*Append each data set with pcagrp{{{*/ 
+local count = 1
 foreach i in pisa timss {
 	foreach j in goi rri fg bj {
 		use `i'_`j'_pcagrp1 , clear
 		append using `i'_`j'_pcagrp2
 		append using `i'_`j'_pcagrp3
+		append using `i'_`j'_pcagrp4
 		save temp`count' , replace
 		local Maxcount = `count'
 		local ++count
@@ -61,7 +62,7 @@ foreach i in pisa timss {
 }
 /*}}}*/
 tempfile temp temp2 temp3
-/*merge TIMSS{{{*/
+/*merge PISA{{{*/
 forvalue i = 1/4 {
 	if `i' == 1 {
 		use temp1 , clear
@@ -69,7 +70,7 @@ forvalue i = 1/4 {
 	}
 	else {
 		use `temp' , clear
-		merge m:m datatype wave cntcod using temp`i' , nogen
+		merge 1:1 datatype wave cntcod group subject using temp`i' , nogen
 		save `temp' , replace
 	}
 	if "`c(os)'" == "MacOSX" {
@@ -80,7 +81,7 @@ forvalue i = 1/4 {
 	}
 }
 /*}}}*/
-/*merge PISA{{{*/
+/*merge TIMSS{{{*/
 forvalue i = 5/8 {
 	if `i' == 5 {
 		use temp5 , clear

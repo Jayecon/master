@@ -62,4 +62,4 @@ gen datatype = 1
 	label var index1 "FG1A"
 	label var index2 "FG1R"
 	label var index3 "FG2A"
-save pisa_fg_pcagrp2.dta , replace
+save pisa_fg_pcagrp3.dta , replace
