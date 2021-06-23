@@ -103,13 +103,13 @@ forvalue j=1/7 {
 	/*}}}*/
 	capture drop pv1masc pv1mrsc
 	if "`i'" == "pisa" {
-		egen pv1masc = rowtotal(pv1math pv1scie)
+		egen pv1masc = rowmean(pv1math pv1scie)
 			label var pv1masc "Plausible Value in Math and Science"
-		egen pv1mrsc = rowtotal(pv1math pv1scie)
+		egen pv1mrsc = rowmean(pv1math pv1scie)
 			label var pv1mrsc "Plausible Value in Math, Science and Reading"
 	}
 	else if "`i'" == "timss" {
-		egen pv1masc = rowtotal(pv1math pv1scie)
+		egen pv1masc = rowmean(pv1math pv1scie)
 			label var pv1masc "Plausible Value in Math and Science"
 	}
 	/*Generate the Family Born in the Country Variables{{{*/

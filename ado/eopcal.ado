@@ -5,7 +5,7 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
 	[ENVironment(varname numeric )
 	 GOIndex RRIndex(passthru) Bootstrap(integer 0) Seed(integer 10101)	///Options for calculating indicies.
 	 DOMinance ACCuracy(passthru)										///Options for dominance test.
-	 BJORKlund(passthru) SAVing											///Options for Bjorklund et al. 
+	 BJORKlund(passthru)												///Options for Bjorklund et al. 
 	 CUMDplot KDENplot GRoptions(passthru)								///Options for drawing graphs.
 	 Value(passthru) Percent(passthru) NOZero							///Options for manipulating data range.
 	 STATs																///Options for descriptive statistics.
@@ -199,10 +199,12 @@ else if ("`bjorklund'" != "") {;
 	bjork `varlist' [`weight' `exp'] , type(`bjorktype') cut(`bjorkcrit') ;
 	/*** PRINT of Bjorklund{{{*/
 	return local idxname "Bjorklund;mld" ;
-	di as text "`bjorklund' = " as result %5.4f `r(fg1a)' ;
-	return scalar fg1a=`r(fg1a)' ;
-	return scalar fg1r=`r(fg1r)' ;
-	return scalar fg2r=`r(fg2r)' ;
+	di as text "`bjorklund', mld, absolute = " as result %5.4f `r(bj1a)' ;
+	di as text "`bjorklund', mld, relative = " as result %5.4f `r(bj1r)' ;
+	di as text "`bjorklund', var, relative = " as result %5.4f `r(bj2r)' ;
+	return scalar bj1a=`r(bj1a)' ;
+	return scalar bj1r=`r(bj1r)' ;
+	return scalar bj2r=`r(bj2r)' ;
 	; /*}}}*/
 };
 else if ("`cumdplot'" != "") {;
@@ -575,7 +577,7 @@ capture program drop bjork ;
 program define bjork , rclass; 
 syntax varlist [fw aw pw iw] , TYPE(str) CUT(real) ;
 
-tempvar group nofg resid yhat one ;
+tempvar group nofg resid yhat one u yhatm ;
 
 return local type  "`type'" ;
 return local cut  "`cut'" ;
@@ -605,23 +607,44 @@ foreach i of local glist { ;
 	qui gen u0`count' = resid0`count'*(`k'*`rho0`count'')^(-1) ;
 	local ++count ;
 } ;
-qui egen u = rowtotal(u0*) , missing ;
+qui egen `u' = rowtotal(u0*) , missing ;
 	drop u0* ;
-qui gen yhatm = `depvar' - u ;
+	drop resid0* ;
+qui gen `yhatm' = `depvar' - `u' ;
 
-iop_mld yhatm if !missing(u) [`weight'`exp'] ;
+iop_mld `yhatm' if !missing(`u') [`weight'`exp'] ;
 	local res_FGa=r(mld) ;
-iop_mld `depvar' if !missing(u) [`weight'`exp'] ;
+iop_mld `depvar' if !missing(`u') [`weight'`exp'] ;
 	local res_FGorg=r(mld) ;
 	local res_FGr=`res_FGa'/`res_FGorg' ;
-qui reg `depvar' yhatm if !missing(u) [`weight' `exp' ] ;
+qui reg `depvar' `yhatm' if !missing(`u') [`weight' `exp' ] ;
 	local res_var=e(r2) ;
 
-return scalar fg1a=`res_FGa' ;
-return scalar fg1r=`res_FGr' ;
-return scalar fg2r=`res_var' ;
+return scalar bj1a=`res_FGa' ;
+return scalar bj1r=`res_FGr' ;
+return scalar bj2r=`res_var' ;
 
 end; /*}}}*/
+/***iop_mld{{{*/
+capture program drop iop_mld ;
+	program define iop_mld, rclass;
+	version 9.0 ;
+	syntax varlist(max=1) [if] [in] [iweight fweight] ;
+	preserve ;
+	quietly{ ;
+	marksample touse2 ;
+	keep if `touse2' ;
+	
+	sum `varlist' [`weight'`exp'] ;
+	local mean=r(mean) ;
+	tempvar mld ;
+	gen `mld'=ln(r(mean)/`varlist') ;
+	sum `mld' [`weight'`exp'] ;
+	local MLD=r(mean) ;
+	return scalar mld=r(mean) ;
+	} ;
+end ;
+/*}}}*/
 /** CUMDPLOT PROGRAM {{{*/
 program define cumd, byable(recall);
 syntax varlist [if] [in] [fw aw pw iw] 
@@ -855,26 +878,6 @@ while (`s' < 3) { ;
 return matrix results = `temp1';
 restore ; 
 end; /*}}}*/
-/***iop_mld{{{*/
-capture program drop iop_mld ;
-	program define iop_mld, rclass;
-	version 9.0 ;
-	syntax varlist(max=1) [if] [in] [iweight fweight] ;
-	preserve ;
-	quietly{ ;
-	marksample touse2 ;
-	keep if `touse2' ;
-	
-	sum `varlist' [`weight'`exp'] ;
-	local mean=r(mean) ;
-	tempvar mld ;
-	gen `mld'=ln(r(mean)/`varlist') ;
-	sum `mld' [`weight'`exp'] ;
-	local MLD=r(mean) ;
-	return scalar mld=r(mean) ;
-	} ;
-end ;
-/*}}}*/
 /*}}}*/
 
 #delimit cr

@@ -13,7 +13,7 @@ forvalue k = 1/7 {
 	drop if missing(`grpvar')
 	gen `wgt' = round(stuwgt , 1)
 	levelsof cntcod , local(clist)
-	foreach j in math scie masc mrsc {
+	foreach j in math scie read masc mrsc {
 		foreach i of local clist{
 			/*subtype {{{*/
 			if ("`j'" == "math") {

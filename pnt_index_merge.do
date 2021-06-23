@@ -1,6 +1,8 @@
 cd ~/dropbox
+
 capture label drop GROUP
 label define GROUP 1 "장서, 소유물, 부모교육" 2 "장서, 소유물, 부모교육, 가족이민" 3 "장서, 소유물, 부모교육, 성별" 4 "장서, 소유물, 부모교육, 가족이민, 성별" 
+
 foreach i in pisa timss {
 	foreach j in goi rri fg bj {
 		forvalue k = 1/4 {
@@ -25,15 +27,27 @@ foreach i in pisa timss {
 				label var rri "개천용기회불평등지수"
 			}
 			else if "`j'" == "fg" {
-				capture rename (index1 index2 index3) (fg1a fg1r fg2r)
-				label var fg1a "FG기회불평등지수;절대치, mld"
-				label var fg1r "FG기회불평등지수;상대치, var"
+				capture drop fg1t fg1e
+				capture rename fg1a fg1c
+				capture rename (index1 index2 index3) (fg1c fg1r fg2r)
+				gen fg1t = fg1c*fg1r^(-1)
+				gen fg1e = fg1t - fg1c
+				label var fg1e "FG잔여불평등지수;MLD"
+				label var fg1c "FG기회불평등지수;MLD"
+				label var fg1t "FG결과불평등지수;MLD"
+				label var fg1r "FG기회불평등지수;상대치, MLD"
 				label var fg2r "FG기회불평등지수;상대치, var"
 			}
 			else if "`j'" == "bj" {
-				capture rename (index1 index2 index3) (bj1a bj1r bj2r)
-				label var bj1a "BJ기회불평등지수;절대치, mld"
-				label var bj1r "BJ기회불평등지수;상대치, var"
+				capture drop bj1t bj1e
+				capture rename bj1a bj1c
+				capture rename (index1 index2 index3) (bj1c bj1r bj2r)
+				gen bj1t = bj1c*bj1r^(-1)
+				gen bj1e = bj1t - bj1c
+				label var bj1e "BJ잔여불평등지수;MLD"
+				label var bj1c "BJ기회불평등지수;MLD"
+				label var bj1t "BJ결과불평등지수;MLD"
+				label var bj1r "BJ기회불평등지수;상대치, MLD"
 				label var bj2r "BJ기회불평등지수;상대치, var"
 			}
 			/*}}}*/
@@ -47,7 +61,8 @@ foreach i in pisa timss {
 		}	
 	}	
 }	
-/*Append each data set with pcagrp{{{*/ 
+
+/*Append each data set along with pcagrp{{{*/ 
 local count = 1
 foreach i in pisa timss {
 	foreach j in goi rri fg bj {
@@ -61,17 +76,17 @@ foreach i in pisa timss {
 	}
 }
 /*}}}*/
-tempfile temp temp2 temp3
+tempfile temp1 temp2 
 /*merge PISA{{{*/
 forvalue i = 1/4 {
 	if `i' == 1 {
 		use temp1 , clear
-		save `temp' , replace
+		save `temp1' , replace
 	}
 	else {
-		use `temp' , clear
+		use `temp1' , clear
 		merge 1:1 datatype wave cntcod group subject using temp`i' , nogen
-		save `temp' , replace
+		save `temp1' , replace
 	}
 	if "`c(os)'" == "MacOSX" {
 		rm temp`i'.dta
@@ -100,7 +115,7 @@ forvalue i = 5/8 {
 	}
 }
 /*}}}*/
-append using `temp'
+append using `temp1'
 /*Exception Control{{{*/
 replace cntcod = 276 if cntcod == 280 /* Germany code changed */
 replace cntcod = 705 if cntcod == 890 /* Slovenia code changed */
@@ -117,38 +132,15 @@ merge m:1 cntcod using ~/git/etc/countrycode_1.dta
 	drop _merge
 compress
 /*}}}*/
-/*Labeling and Ordering Variables{{{*/
-label var wave "조사회차"
-label var cntcod "ISO 3166-1 Numeric Code"
-label var cntabc2 "ISO 3166-1 alpha-2 Code"
-label var cntabc3 "ISO 3166-1 alpha-3 Code"
+/*Labeling Variables{{{*/
 rename cntabc? cntab?
 rename datatype dbname
-order dbname wave year cntcod country cntab2 cntab3 continent contcode group , first
+label var wave "조사회차"
+label var cntcod "ISO 3166-1 Numeric Code"
+label var cntab2 "ISO 3166-1 alpha-2 Code"
+label var cntab3 "ISO 3166-1 alpha-3 Code"
+label var dbname "자료명"
 /*}}}*/
+order dbname wave year continent contcode cntcod country cntab2 cntab3 group subject , first
+sort dbname wave cntcod group subject
 save pnt_index.dta , replace
-/*Merge with the pwt91{{{*/
-reshape wide goi-bj2r , i(wave cntcod subject dbname ) j(group)
-order dbname wave year cntcod country cntab2 cntab3 continent contcode , first
-rename cntab3 countrycode
-preserve 
-	keep countrycode cntcod
-	duplicates drop
-	merge 1:m countrycode using "/Users/jay/Dropbox/Z_Extra Datas/pwt91.dta"
-		drop if _merge == 1
-		drop _merge
-	save `temp3' , replace
-restore 
-merge m:1 countrycode year using `temp3'
-	drop if year < 1995
-	levelsof countrycode if inlist(_merge , 1 ,3) , local(clist)
-	gen _temp = 0
-	foreach i of local clist { 
-		replace _temp = 1 if countrycode == "`i'"
-	}
-	drop if !_temp
-	drop _*
-	rename countrycode cntabc3 
-	compress
-/*}}}*/
-save pnt_regress.dta , replace
