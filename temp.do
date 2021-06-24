@@ -1,13 +1,15 @@
-tempvar one
 
-foreach i in pisa timss { 
+
+foreach i in pisa { 
 	forvalue j = 1/7 {
 		di ""
 		di as input "`i'w`j'"
-		qui gen `one' = 1
-		count if !missing(`one')
-		count
-		use ~/dropbox/`i'w`j' , clear
-		sum pca*
+		use  ~/dropbox/pisaw`j' , clear
+		capture drop pv1mrsc
+		egen pv1mrsc = rowmean(pv1math pv1scie pv1read)
+			label var pv1mrsc "Plausible Value in Math, Science and Reading"
+		save , replace
 	}
 }
+
+

@@ -105,7 +105,7 @@ forvalue j=1/7 {
 	if "`i'" == "pisa" {
 		egen pv1masc = rowmean(pv1math pv1scie)
 			label var pv1masc "Plausible Value in Math and Science"
-		egen pv1mrsc = rowmean(pv1math pv1scie)
+		egen pv1mrsc = rowmean(pv1math pv1scie pv1read)
 			label var pv1mrsc "Plausible Value in Math, Science and Reading"
 	}
 	else if "`i'" == "timss" {
