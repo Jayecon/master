@@ -29,6 +29,11 @@ forvalue k = 1/7 {
 			else if ("`j'" == "mrsc") {
 				local subject = 5
 			} /*}}}*/
+			/*Exception control {{{*/
+			if (`i'== 840 & "`j'" == "read") {
+				continue
+			}
+			/*}}}*/
 			di ""
 			di as text " DATA : " as input "PISA" as text " Wave : " as input "`k'" as text " Country : " as input "`i'" as text " Subject : " as input "`j'"
 			eopcal pv1`j' [aw=stuwgt] if cntcod == `i' , env(`grpvar') goi /*Index Calculator HERE*/
