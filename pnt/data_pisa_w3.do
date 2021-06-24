@@ -99,6 +99,7 @@ mvdecode misced   , mv(9=. \ 7=.)
 mvdecode fisced   , mv(9=. \ 7=.)
 mvdecode hisced   , mv(9=. \ 7=.)
 mvdecode pared    , mv(99=. \ 97=.)
+mvdecode pv?read  , mv(9997 = .)
 /*}}}*/
 	isid `stuidlist'
 	keep `stuidlist' `stuvlist' `stuwlist' `scorelist'
