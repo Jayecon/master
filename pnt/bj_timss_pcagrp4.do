@@ -37,9 +37,9 @@ forvalue k = 1/7 {
 			matrix `temp1'[1,1] = `k'        
 			matrix `temp1'[1,2] = `i'        
 			matrix `temp1'[1,3] = `subject'        
-			matrix `temp1'[1,4] = r(fg1a)   
-			matrix `temp1'[1,5] = r(fg1r)   
-			matrix `temp1'[1,6] = r(fg2r)   
+			matrix `temp1'[1,4] = r(bj1a)   
+			matrix `temp1'[1,5] = r(bj1r)   
+			matrix `temp1'[1,6] = r(bj2r)   
 			matrix `temp2' = (nullmat(`temp2') \ `temp1' )
 		}
 	}
@@ -59,7 +59,7 @@ gen datatype = 2
 	label var subject "과목"
 		label define SUBJECT 1 "수학" 2 "과학" 3 "읽기" 4 "수과" 5 "언수과"
 		label value subject SUBJECT
-	label var index1 "FG1A"
-	label var index2 "FG1R"
-	label var index3 "FG2A"
+	label var index1 "BJ1A"
+	label var index2 "BJ1R"
+	label var index3 "BJ2A"
 save timss_bj_pcagrp4.dta , replace
