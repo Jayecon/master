@@ -216,4 +216,4 @@ local edulabel : value label ftredu
 label value paredu `edulabel'
 /*}}}*/
 duplicates drop
-save "~/dropbox/timssr7.dta", replace
+save "~/dropbox/timss/timssr7.dta", replace

@@ -1,5 +1,5 @@
 set more off
-local path ~/git/pnt/
+local path ~/git/timss/
 do `path'data_timss_w1.do
 do `path'data_timss_w2.do
 do `path'data_timss_w3.do

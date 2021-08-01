@@ -126,4 +126,4 @@ merge m:1 cntabc3 using ~/git/etc/countrycode_1.dta
 	drop _merge
 	compress
 /*}}}*/
-save ~/dropbox/pisar7.dta , replace
+save ~/dropbox/pisa/pisar7.dta , replace

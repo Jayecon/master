@@ -1,6 +1,6 @@
 set more off
 set matsize 10000
-cd ~/dropbox
+cd ~/dropbox/timss
 
 local grpvar pcagrp1 /*Input for Environment HERE*/
 

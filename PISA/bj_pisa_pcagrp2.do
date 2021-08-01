@@ -1,6 +1,6 @@
 set more off
 set matsize 10000
-cd ~/dropbox
+cd ~/dropbox/pisa
 
 local grpvar pcagrp2 /*Input for Environment HERE*/
 

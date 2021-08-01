@@ -1,5 +1,5 @@
 set more off
-local path ~/git/pnt/
+local path ~/git/pisa/
 do `path'rri_pisa_pcagrp1.do
 do `path'rri_pisa_pcagrp2.do
 do `path'rri_pisa_pcagrp3.do

@@ -1,5 +1,5 @@
 set more off
-local path ~/git/pnt/
+local path ~/git/pisa/
 do `path'data_pisa_w1.do
 do `path'data_pisa_w2.do
 do `path'data_pisa_w3.do

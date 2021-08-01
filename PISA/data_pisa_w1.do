@@ -209,4 +209,4 @@ egen paredu = rowmax(ftredu mtredu)
 	label var paredu "Parents' education"
 	label value paredu EDUCAT
 /*}}}*/
-save ~/dropbox/pisar1 , replace
+save ~/dropbox/pisa/pisar1 , replace

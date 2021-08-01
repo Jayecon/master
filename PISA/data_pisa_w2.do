@@ -107,4 +107,4 @@ merge m:1 cntcod using ~/git/etc/countrycode_1.dta
 	drop _merge
 	compress
 /*}}}*/
-save ~/dropbox/pisar2.dta , replace
+save ~/dropbox/pisa/pisar2.dta , replace

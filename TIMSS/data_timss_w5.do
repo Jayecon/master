@@ -217,4 +217,4 @@ label var paredu "GEN\HIGHEST EUDC LEVEL\PARENTS"
 local edulabel : value label ftredu
 label value paredu `edulabel'
 /*}}}*/
-save "~/dropbox/timssr5.dta", replace
+save "~/dropbox/timss/timssr5.dta", replace
