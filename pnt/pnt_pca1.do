@@ -15,7 +15,7 @@ foreach i in pisa timss {
 		local datatype = 2
 	} /*}}}*/
 	forvalue j=1/7 {
-		use ~/dropbox/`i'w`j' , clear
+		use ~/dropbox/`i'/`i'w`j' , clear
 		levelsof cntcod , local(clist)
 		local pcalist posbok posses paredu 
 		/* Generate PCA Group1{{{*/
@@ -58,5 +58,5 @@ foreach i in pisa timss {
 		label var datatype "지수유형"	
 		label value datatype DATATYPE
 	/*}}}*/
-	save ~/dropbox/`i'_pcagrp1_eigvec.dta , replace
+	save ~/dropbox/`i'/`i'_pcagrp1_eigvec.dta , replace
 }

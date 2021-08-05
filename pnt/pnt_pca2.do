@@ -15,7 +15,7 @@ foreach i in pisa timss {
 		local datatype = 2
 	} /*}}}*/
 	forvalue j=1/7 {
-		use ~/dropbox/`i'w`j' , clear
+		use ~/dropbox/`i'/`i'w`j' , clear
 		/*Errant Control{{{*/
 		if "`i'" == "pisa" & `j' == 1 {
 			drop if cntcod == 410 /*Korea Missing BRN Variables*/
@@ -69,5 +69,5 @@ foreach i in pisa timss {
 		label var datatype "지수유형"	
 		label value datatype DATATYPE
 	/*}}}*/
-	save ~/dropbox/`i'_pcagrp2_eigvec.dta , replace
+	save ~/dropbox/`i'/`i'_pcagrp2_eigvec.dta , replace
 }

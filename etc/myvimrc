@@ -1,38 +1,41 @@
-" Vundle Setting 
 	set nocompatible " no compatible with the original Vi
 	filetype off
-	" OS Specific Setting" {{{1
-	if has('win32')
-	" Language and Font " {{{2
-		set langmenu=en_US.UTF-8
-		language message en_US.UTF-8
-		set enc=utf8
-		set fileencoding=utf8
-		set guifont=D2coding:h16:cANSI
-		set guifontwide=D2coding:h16
-	" }}}2
-	"STATA Mapping {{{2
-		nnoremap <silent> <F9> :! "c:\stata\stataMP-64.exe" /e do % <CR>:!move %:t:r.log %:p:r.log<CR>:e %:p:r.log <CR>
-		vnoremap <F9> :'<,'>w %:t:s?^?temp_?<CR>:! "c:\stata\stataMP-64.exe" /e do %:t:s?^?temp_? <CR>:!del %:t:s?^?temp_?<CR>:!move %:t:r:s?^?temp_?.log %:p:h/%:t:r:s?^?temp_?.log<CR>:e %:p:h/%:t:r:s?^?temp_?.log<CR>
-	" }}}2
-	elseif has('macunix')
-	" Language and Font " {{{2
-		set linespace=3	
-		set encoding=utf-8
-		set fileencoding=utf8
-		set guifont=D2Codingligature:h22
-		set guifontwide=D2Codingligature:h20
-	" }}}2
-	"STATA {{{2
-		nnoremap <F9> :! /Applications/Stata/StataMP.app/Contents/MacOS/StataMP -e do % <CR>:!mv %:t:r.log %:p:r.log<CR>:e %:p:r.log <CR>
-		vnoremap <F9> :'<,'>w %:t:s?^?temp_?<CR>:! /Applications/Stata/StataMP.app/Contents/MacOS/StataMP -e do %:t:s?^?temp_? <CR>:!rm %:t:s?^?temp_?<CR>:!mv %:t:r:s?^?temp_?.log %:p:h/%:t:r:s?^?temp_?.log<CR>:e %:p:h/%:t:r:s?^?temp_?.log<CR>
-	" }}}2
-	endif
-	" }}}1
+" OS Specific Setting" {{{1
+if has('win32')
+" Language and Font " {{{2
+	set langmenu=en_US.UTF-8
+	language message en_US.UTF-8
+	set enc=utf8
+	set fileencoding=utf8
+	set guifont=D2coding:h16:cANSI
+	set guifontwide=D2coding:h16
+" }}}2
+"STATA Mapping {{{2
+	nnoremap <F8> :!"c:\stata\stataMP-64.exe" doedit %:p<CR><CR>
+	inoremap <F8> :!"c:\stata\stataMP-64.exe" doedit %:p<CR><CR>
+	nnoremap <F9> :silent!"c:\stata\stataMP-64.exe" /e do %:p<CR>:silent!move %:t:r.log %:p:r.log <CR>:e %:p:r.log<CR>
+	vnoremap <F9> :'<,'>w! %:t:s?^?temp_?<CR>:silent!"c:\stata\stataMP-64.exe" /e do %:t:s?^?temp_?<CR>:silent! del %:t:s?^?temp_?<CR>:silent! move %:t:r:s?^?temp_?.log %:p:h/%:t:r:s?^?temp_?.log<CR>:e %:p:h/%:t:r:s?^?temp_?.log<CR>
+" }}}2
+elseif has('macunix')
+" Language and Font " {{{2
+	set linespace=3	
+	set encoding=utf-8
+	set fileencoding=utf8
+	set guifont=D2Codingligature:h22
+	set guifontwide=D2Codingligature:h20
+" }}}2
+"STATA {{{2
+	nnoremap <F8> :! /Applications/Stata/StataMP.app/Contents/MacOS/StataMP doedit %:p<CR>
+	inoremap <F8> :! /Applications/Stata/StataMP.app/Contents/MacOS/StataMP doedit %:p<CR>
+	nnoremap <F9> :silent! /Applications/Stata/StataMP.app/Contents/MacOS/StataMP -e do % <CR>:silent!mv %:t:r.log %:p:r.log<CR>:e %:p:r.log <CR>
+	vnoremap <F9> :'<,'>w %:t:s?^?temp_?<CR>:! /Applications/Stata/StataMP.app/Contents/MacOS/StataMP -e do %:t:s?^?temp_? <CR>:silent!rm %:t:s?^?temp_?<CR>:silent!mv %:t:r:s?^?temp_?.log %:p:h/%:t:r:s?^?temp_?.log<CR>:e %:p:h/%:t:r:s?^?temp_?.log<CR>
+" }}}2
+endif
+" }}}1
 "Plugins list{{{1
 call plug#begin('~/.vim/plugged') " Plugins will be downloaded under the specified directory.
 " Declare the list of plugins.
-	Plug 'junegunn/vim-plug'				"A minimalist Vim plugin mnanager
+	Plug 'junegunn/vim-plug'				"A minimalist Vim plugin manager
 	Plug 'tpope/vim-sensible'
 	Plug 'tpope/vim-surround'				"Quotation and Parenthesis
 	Plug 'tpope/vim-fugitive'				"Git in the Vim
@@ -49,9 +52,9 @@ call plug#begin('~/.vim/plugged') " Plugins will be downloaded under the specifi
 call plug#end()
 	" }}}1
 " Plugins Specific Setting -------------------- {{{1
-" Indent Guide Settigng ---------------------- {{{
+" Indent Guide Settigng ---------------------- {{{2
 	let g:indent_guides_enable_on_vim_startup = 1
-" }}}
+" }}}2
 " NERDTree Settigng ---------------------- {{{2
 	noremap <C-N> :NERDTreeToggle<CR>
 	"open a NERDTree automatically when vim starts up
@@ -93,7 +96,7 @@ call plug#end()
 		endif
 	endfunction
 " }}}2
-	"Change Background by Time{{{
+	"Change Background by Time{{{2
 		let currentHour = strftime("%H")
 		let currentTime = strftime("%Y %b %d %T")
 		if currentHour < 7 + 0
@@ -106,10 +109,10 @@ call plug#end()
 			let g:airline_solarized_bg='dark'
 			set background=dark
 		endif
-	"}}}
+	"}}}2
 " }}}1
-" Non-Vundle Setting ---------------------- {{{1
-	" Basic " {{{
+" Environment Setting ---------------------- {{{1
+	" Basic " {{{2
 		set number				"Show line number
 		set relativenumber		"Show line number relative
 		set showmatch			"Show matching brackets when text indicator is over them
@@ -120,8 +123,8 @@ call plug#end()
 		set foldmethod=marker
 		set nolist
 		syntax enable
-	" }}}
-	" Diff {{{
+	" }}}2
+	" Diff {{{2
 		if &diff
 			set diff
 			set scrollbind
@@ -131,8 +134,8 @@ call plug#end()
 			set foldmethod=diff
 			set diffopt=filler,vertical
 		endif 
-	"}}}
-	"Indentation	" {{{
+	"}}}2
+	"Indentation{{{2
 		set autoindent
 		set showbreak=>>>>
 		set smartindent
@@ -140,8 +143,8 @@ call plug#end()
 		set tabstop=4
 		set softtabstop=4
 		set shiftwidth=4
-	" }}}
-	"Search " {{{
+	" }}}2
+	"Search " {{{2
 		"set hlsearch "Highlighting Search
 		"set incsearch	
 			"augroup vimrc-incsearch-highlight
@@ -151,10 +154,10 @@ call plug#end()
 			"augroup END
 		""set ignorecase	"To ignore case while searching
 		"set smartcase
-	" }}}
+	" }}}2
 " }}}1
 " Key Mappings ---------------------- {{{1
-	" Global {{{
+	" Global {{{2
 		map <F2> :echo 'It is ' . strftime('%c')<cr>
 		"Read, sourcing and backup $MYVIMRC
 			map <leader>ev :e $MYVIMRC<cr> 
@@ -163,11 +166,11 @@ call plug#end()
 			map <leader>bv :w! ~/git/etc/myvimrc<cr>
 			map <leader>box :cd ~/dropbox<cr>
 			map <leader>git :cd ~/git<cr>
-	"}}}
-	" Insert Mode {{{
+	"}}}2
+	" Insert Mode {{{2
 		inoremap jk <esc>
-	"}}}
-	" Normal Mode {{{
+	"}}}2
+	" Normal Mode {{{2
 		nnoremap <leader>dr :cd ~/dropbox
 		nnoremap <space> za
 		nnoremap <c-w>. 10<c-w>>
@@ -178,11 +181,11 @@ call plug#end()
 		nnoremap <leader>) viw<esc>a)<esc>hbi(<esc>lel
 		nnoremap <leader>ff O/*{{{*/<esc>bf*a
 		nnoremap <leader>fc o/*}}}*/<esc>
-	"}}}
-	" Visual Mode {{{
+	"}}}2
+	" Visual Mode {{{2
 		vnoremap <space> iw
-	"}}}
-	"Operator-pending Mode {{{
+	"}}}2
+	"Operator-pending Mode {{{2
 		onoremap in( :<c-u>normal! f(vi(<cr>
 		onoremap il( :<c-u>normal! F)vi(<cr>
 		onoremap in' :<c-u>normal! f'vi'<cr>
@@ -197,14 +200,14 @@ call plug#end()
 		onoremap il{ :<c-u>normal! F}vi{<cr>
 		onoremap in< :<c-u>normal! f<vi<<cr>
 		onoremap il< :<c-u>normal! F>vi<<cr>
-	" }}} 
-	"Window Navigation {{{
+	" }}} 2
+	"Window Navigation {{{2
 		nnoremap <C-h> <C-w>h
 		nnoremap <C-j> <C-w>j
 		nnoremap <C-k> <C-w>k
 		nnoremap <C-l> <C-w>l
-	" }}}
-	" Command Line {{{
+	" }}}2
+	" Command Line {{{2
 		cnoreabbrev VS vs<Bar>bnext
 		cnoreabbrev VP vs<Bar>bprevious
 		cnoreabbrev VD vert diffsplit
@@ -213,8 +216,8 @@ call plug#end()
 		cnoreabbrev H vert h
 		cnoreabbrev HR vert bo h
 		cnoreabbrev Bd bd
-	"}}}
-	" Buffer Opration{{{
+	"}}}2
+	" Buffer Opration{{{2
 		function! SwitchToNextBuffer(incr)
 		  let help_buffer = (&filetype == 'help')
 		  let current = bufnr("%")
@@ -242,5 +245,5 @@ call plug#end()
 		nnoremap <silent> <Tab> :bnext<CR>
 		nnoremap <silent> <S-Tab> :bprevious<CR>
 		nnoremap <Leader><Tab> :set nomore<Bar>:ls<Bar>:set more<CR>:b<Space>
-	"}}}
+	"}}}2
 " }}}1

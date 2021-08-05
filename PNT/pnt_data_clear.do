@@ -1,7 +1,7 @@
 set more off
 foreach i in pisa timss{
 forvalue j=1/7 {
-	use ~/dropbox/`i'r`j' , clear
+	use ~/dropbox/`i'/`i'r`j' , clear
 	/*Errant Countries Control{{{*/
 	if "`i'" == "pisa" & `j' == 6 {
 		drop if cntcod == 8 /*No parental education : Albania*/
@@ -119,6 +119,6 @@ forvalue j=1/7 {
 		label var fambrn "Born in the Country; Family"
 	/*}}}*/
 	compress
-	save ~/dropbox/`i'w`j' , replace
+	save ~/dropbox/`i'/`i'w`j' , replace
 }
 }

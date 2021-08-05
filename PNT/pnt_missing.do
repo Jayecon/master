@@ -13,7 +13,7 @@ forvalue j = 1/7 {
 	else if "`k'" == "timss" {
 		local dbname = 2
 	}
-	use `k'w`j' , clear
+	use `k'/`k'w`j' , clear
 	levelsof cntcod , local(clist)
 	foreach i of local clist{
 		qui count if cntcod == `i' 
@@ -52,4 +52,4 @@ svmat `temp2' , names(matcol)
 	gen mis2 = ngrp2/nsample
 	gen mis3 = ngrp3/nsample
 	gen mis4 = ngrp4/nsample
-save pnt_missing.dta , replace
+save pnt/pnt_missing.dta , replace

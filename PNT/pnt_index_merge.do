@@ -6,7 +6,7 @@ label define GROUP 1 "장서, 소유물, 부모교육" 2 "장서, 소유물, 부
 foreach i in pisa timss {
 	foreach j in goi rri fg bj {
 		forvalue k = 1/4 {
-			use `i'_`j'_pcagrp`k' , clear
+			use `i'/`i'_`j'_pcagrp`k' , clear
 			/*Data specific control{{{*/
 			capture drop year
 			if "`i'" == "pisa" {
@@ -66,10 +66,10 @@ foreach i in pisa timss {
 local count = 1
 foreach i in pisa timss {
 	foreach j in goi rri fg bj {
-		use `i'_`j'_pcagrp1 , clear
-		append using `i'_`j'_pcagrp2
-		append using `i'_`j'_pcagrp3
-		append using `i'_`j'_pcagrp4
+		use `i'/`i'_`j'_pcagrp1 , clear
+		append using `i'/`i'_`j'_pcagrp2
+		append using `i'/`i'_`j'_pcagrp3
+		append using `i'/`i'_`j'_pcagrp4
 		save temp`count' , replace
 		local Maxcount = `count'
 		local ++count
@@ -127,7 +127,7 @@ drop if inlist(cntcod , 201 , 827 , 927 , 438)
 438 Liehitenstein is a small country  */
 /*}}}*/
 /*Merge with the Country List{{{*/
-merge m:1 cntcod using ~/git/etc/countrycode_1.dta 
+merge m:1 cntcod using ~/dropbox/data_extras/countrycode_1.dta 
 	drop if _merge == 2
 	drop _merge
 compress
@@ -140,7 +140,8 @@ label var cntcod "ISO 3166-1 Numeric Code"
 label var cntab2 "ISO 3166-1 alpha-2 Code"
 label var cntab3 "ISO 3166-1 alpha-3 Code"
 label var dbname "자료명"
+label define GROUP 1 "소유,도서,부모교육" 2 "소유,도서,부모교육,이민" 3 "소유,도서,부모교육,성별" 4 "소유,도서,부모교육,이민,성별"
 /*}}}*/
 order dbname wave year continent contcode cntcod country cntab2 cntab3 group subject , first
 sort dbname wave cntcod group subject
-save pnt_index.dta , replace
+save pnt/pnt_index.dta , replace

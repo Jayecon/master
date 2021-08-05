@@ -2,13 +2,13 @@ cd ~/dropbox
 
 tempfile temp1 temp2
 
-use pnt_index.dta , clear
+use pnt/pnt_index.dta , clear
 
 rename cntab3 countrycode
 preserve 
 	keep countrycode cntcod
 	duplicates drop
-	merge 1:m countrycode using "/Users/jay/Dropbox/Z_Extra Datas/pwt100.dta"
+	merge 1:m countrycode using "~/Dropbox/Data/pwt100.dta"
 		drop if _merge == 1
 		drop _merge
 	save `temp1' , replace
@@ -59,7 +59,7 @@ forvalue i = 1/2 {
 			drop _*
 			rename countrycode cntabc3 
 		compress
-		save `dbname'_reg`j'`subname'.dta , replace
+		save `dbname'/`dbname'_reg`j'`subname'.dta , replace
 		restore, preserve  
 		}
 	}
