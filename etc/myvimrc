@@ -13,8 +13,8 @@ if has('win32')
 "STATA Mapping {{{2
 	nnoremap <F8> :!"c:\stata\stataMP-64.exe" doedit %:p<CR><CR>
 	inoremap <F8> :!"c:\stata\stataMP-64.exe" doedit %:p<CR><CR>
-	nnoremap <F9> :silent!"c:\stata\stataMP-64.exe" /e do %:p<CR>:silent!move %:t:r.log %:p:r.log <CR>:e %:p:r.log<CR>
-	vnoremap <F9> :'<,'>w! %:t:s?^?temp_?<CR>:silent!"c:\stata\stataMP-64.exe" /e do %:t:s?^?temp_?<CR>:silent! del %:t:s?^?temp_?<CR>:silent! move %:t:r:s?^?temp_?.log %:p:h/%:t:r:s?^?temp_?.log<CR>:e %:p:h/%:t:r:s?^?temp_?.log<CR>
+	nnoremap <F9> :w<CR> :!"c:\stata\stataMP-64.exe" /e do %:p<CR>:! move %:t:r.log %:p:r.log <CR>:e %:p:r.log<CR>
+	vnoremap <F9> :silent '<,'>w! %:t:s?^?temp_?<CR>:!"c:\stata\stataMP-64.exe" /e do %:t:s?^?temp_?<CR>:silent! del %:t:s?^?temp_?<CR>:silent! move %:t:r:s?^?temp_?.log %:p:h/%:t:r:s?^?temp_?.log<CR>:e %:p:h/%:t:r:s?^?temp_?.log<CR>
 " }}}2
 elseif has('macunix')
 " Language and Font " {{{2

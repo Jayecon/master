@@ -30,19 +30,44 @@ foreach i of varlist goimathp - bjemrsct {
 
 drop ???readt ???mrsct
 
-qui reg goimathp goimatht
-gen pnt = e(sample)
-label var pnt "TIMSS&PISA"
 save "~/Dropbox/PNT/pnt_index.dta" , replace
 
 use data/pwt100
 rename countrycode cntab3
 merge 1:1 cntab3 year using pnt/pnt_index
-drop if !inrange(year , 1995 ,  2019)
+bys cntab3 : egen temp3 = max(cntcod)
+replace cntcod = temp3
 egen temp1 = rownonmiss(goimath?)
 bys cntcod : egen temp2 = max(temp1)
 drop if !temp2
-bys cntab3 : egen temp3 = max(cntcod)
-replace cntcod = temp3
 
+xtset cntcod year
+
+gen pcgdp = rgdpo/pop
+	label var pcgdp "Output-side per capita real GDP at chained PPPs (in mil. 2017US$)"
+gen lnpcgdp = ln(pcgdp)
+	label var pcgdp "log of per capita GDP"
+gen lngdp = ln(rgdpo)
+	label var pcgdp "log of GDP"
+gen pcgrowth = lnpcgdp - l.lnpcgdp
+	label var pcgrowth "Per capita GDP growth rate"
+gen growth = lngdp - l.lngdp
+	label var growth "GDP growth rate"
+gen lnpop = ln(pop)
+	label var lnpop "log of Population"
+	
+qui reg goimathp goimatht
+	gen ypnt = e(sample)
+	label var ypnt "TIMSS&PISA year"
+qui reg goimathp
+	gen ypisa = e(sample)
+	label var ypisa "PISA year"
+qui reg goimatht
+	gen ytimss = e(sample)
+	label var ytimss "TIMSS year"
+drop if !inrange(year , 1994 ,  2019)
+drop _merge
+drop temp?
+
+	
 save "~/Dropbox/PNT/pnt_regdata.dta" , replace
