@@ -5,8 +5,8 @@ label define GROUP 1 "장서, 소유물, 부모교육" 2 "장서, 소유물, 부
 
 foreach i in pisa timss {
 	foreach j in goi rri fg bj {
-		forvalue k = 1/4 {
-			use `i'/`i'_`j'_pcagrp`k' , clear
+        forvalue k = 1/4 {
+	        use `i'/`i'_`j'_pcagrp`k' , clear
 			/*Data specific control{{{*/
 			capture drop year
 			if "`i'" == "pisa" {
@@ -58,9 +58,9 @@ foreach i in pisa timss {
 				label value group GROUP
 			/*}}}*/
 			save , replace
-		}	
-	}	
-}	
+		}
+	}
+}
 
 /*Append each data set along with pcagrp{{{*/ 
 local count = 1
