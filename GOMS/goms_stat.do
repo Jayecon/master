@@ -10,7 +10,6 @@ use ~/dropbox/goms/goms.dta if inrange(f001, `firstyr' , `lastyr') , clear
 /*hist f001 if inrange(f001 , 1997 , 2014 ), freq ylabel(,format(%6.0f)) saving(figure/f001 ,replace) by(sex, total compact)*/
 /*hist f011 if inrange(f011 , 1998 , 2015 ), freq ylabel(,format(%6.0f)) saving(figure/f011 ,replace) by(sex, total compact)*/
 /*}}}*/
-
 /* 출생년별 고교졸업자 수 {{{*/
 tab birthy f001 , matcell(data) matrow(datarow) matcol(datacol)
 	tempname mtx mtx1 mtx2
@@ -63,7 +62,6 @@ preserve
 	export excel using "results/stat_f001_p034", replace
 restore
 /*}}}*/
-
 /*기초통계량 생성{{{*/
 tempname mtx
 preserve
