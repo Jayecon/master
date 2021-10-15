@@ -45,6 +45,9 @@
         Plug 'vim-airline/vim-airline'			"status/tabline for vim
         Plug 'vim-airline/vim-airline-themes'	"vim-airline themes
         Plug 'zizhongyan/vim-stata'				"Running Selected Do-File Lines in Stata
+        Plug 'mhinz/vim-startify'               "The fancy start screen for vim
+        Plug 'junegunn/fzf.vim'                 "
+        Plug '/usr/local/opt/fzf'
     call plug#end()
     " }}}1
     " Plugins Specific Setting -------------------- {{{1
@@ -121,6 +124,7 @@
             set nocursorcolumn
             set foldmethod=marker
             set nolist
+            set noautowrite
             syntax enable
         " }}}2
         " Diff {{{2
@@ -144,41 +148,41 @@
             set shiftwidth=4
         " }}}2
         "Search " {{{2
-            "set hlsearch "Highlighting Search
-            "set incsearch	
-                "augroup vimrc-incsearch-highlight
-                    "autocmd!
-                    "autocmd CmdlineEnter /,\? :set hlsearch
-                    "autocmd CmdlineLeave /,\? :set nohlsearch
-                "augroup END
-            ""set ignorecase	"To ignore case while searching
-            "set smartcase
+            set hlsearch "Highlighting Search
+            set incsearch
+                augroup vimrc-incsearch-highlight
+                    autocmd!
+                    autocmd CmdlineEnter /,\? :set hlsearch
+                    autocmd CmdlineLeave /,\? :set nohlsearch
+                augroup END
+            set ignorecase	"To ignore case while searching
+            set smartcase
         " }}}2
     " }}}1
     " Key Mappings ---------------------- {{{1
         " Global {{{2
-            map <F2> :echo 'It is ' . strftime('%c')<cr>
+            map <leader><leader> :echo 'It is ' . strftime('%c')<cr>
             map <leader>ev  :e $MYVIMRC<cr> 
             map <leader>eV  :vsplit $MYVIMRC<cr> 
             map <leader>sv  :w <cr>:source $MYVIMRC<cr>
             map <leader>bv  :w! ~/git/etc/myvimrc<cr>
             map <leader>uv  :e! ~/git/etc/myvimrc<cr>:w! $MYVIMRC<cr>:source $MYVIMRC<cr>
-            map <leader>l   :set list!<cr>
-            map <leader>box :cd ~/dropbox<cr>
-            map <leader>git :cd ~/git<cr>
+            map <silent> <leader>l   :silent set list!<cr>
+            map <silent> <leader>w   :silent set autowrite!<cr>
+            map <silent> <leader>box :cd ~/dropbox<cr> :pwd<cr>
+            map <silent> <leader>git :cd ~/git<cr> :pwd<cr>
         "}}}2
         " Insert Mode {{{2
             inoremap jk <esc>
         "}}}2
         " Normal Mode {{{2
-            nnoremap <leader>dr :cd ~/dropbox
             nnoremap <space> za
             nnoremap <c-w>. 10<c-w>>
             nnoremap <c-w>, 10<c-w><
-            nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
-            nnoremap <leader>' viw<esc>a'<esc>hbi`<esc>lel
-            nnoremap <leader>> viw<esc>a><esc>hbi<<esc>lel
-            nnoremap <leader>) viw<esc>a)<esc>hbi(<esc>lel
+            nnoremap <leader>" viw<esc>a"<esc>bi"<esc>ee
+            nnoremap <leader>' viw<esc>a'<esc>bi`<esc>ee
+            nnoremap <leader>> viw<esc>a><esc>bi<<esc>ee
+            nnoremap <leader>) viw<esc>a)<esc>bi(<esc>ee
             nnoremap <leader>ff O/*{{{*/<esc>bf*a
             nnoremap <leader>fc o/*}}}*/<esc>
         "}}}2

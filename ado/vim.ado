@@ -1,7 +1,6 @@
 capture program drop vim
 program vim
-	version 8
-	* discard
+	version 14
 	if c(os) == "MacSOX" {
 		winexec mvim `*' 
 	}
