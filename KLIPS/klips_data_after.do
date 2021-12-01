@@ -54,12 +54,16 @@ local lwave  22 /*조사최신회차 입력*/
       label variable wgt2p "가중치(2개년, 가구원곱)"
     /*}}}*/
   /* Generate Dummy Variables {{{*/
-    gen head = (p0102 == 10
+    gen head = (p0102 == 10)
       label variable head "1 = 가구주"
     gen age3050 = inrange(p0107 , 30 , 50)
       label variable age3050 "1 = 30-50세"
     gen h3050 = head*age3050
       label var h3050 "1 = 30-50세 & 가구주"
+    recode h1109 1 = 1 2 = 0
+    recode h1209 1 = 1 2 = 0
+    gen support = inlist(h1109 + h1209 , 1 , 2) 
+      label var support "1 = 부모의 경제적 도움(가구주 또는 배우자)"
     /*}}}*/
     /* Generate Equivalence Income {{{*/
     gen incs = (inch/sqrt(h0150))*(1/gdpdef) /*p??0150 : 가구구성원수*/
@@ -88,6 +92,14 @@ local lwave  22 /*조사최신회차 입력*/
     capture label define JOBGRP -1 "전체"  1 "저숙련" 2 "중숙련" 3 "고숙련"
     capture label values jobgrp JOBGRP
     capture label variable jobgrp "직업환경(가구주부친)"
+    /*}}}*/
+  /* Generate the bplace {{{*/
+    bys pid : egen bplace = max(p9001)
+    label var jobpap "부친 직업"
+    recode bplace -1=. 1=3 2/7=2 8/18 = 1
+    capture label define BPLACE -1 "전체"  3 "특별시" 2 "광역시" 1 "도" 
+    capture label values bplace BPLACE
+    capture label variable bplace "출생지(특별시/광역시/도)"
     /*}}}*/
   /*Generate pcagrp {{{*/
     pca edupap jobpap 

@@ -4,7 +4,7 @@ gr drop _all
 
 local count = 1
 foreach i in goi rri {
-	foreach j in edugrp jobgrp pcagrp2{
+	foreach j in jobgrp {
 		foreach k in all 3050 {
 			use ~/dropbox/klips/`i'_`j'_`k' , clear
 			gen test = "`i'" 

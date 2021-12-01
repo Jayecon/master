@@ -1,0 +1,14 @@
+cd ~/git/klips/
+
+do klips_index_goi_incn1m_edugrp_3050.do
+do klips_index_goi_incn1m_edugrp_all.do
+do klips_index_goi_incn1m_jobgrp_3050.do
+do klips_index_goi_incn1m_jobgrp_all.do
+do klips_index_goi_incn1m_pcagrp_3050.do
+do klips_index_goi_incn1m_pcagrp_all.do
+do klips_index_rri_incn1m_edugrp_3050.do
+do klips_index_rri_incn1m_edugrp_all.do
+do klips_index_rri_incn1m_jobgrp_3050.do
+do klips_index_rri_incn1m_jobgrp_all.do
+do klips_index_rri_incn1m_pcagrp_3050.do
+do klips_index_rri_incn1m_pcagrp_all.do

@@ -1,7 +1,7 @@
 set more off
 clear
 
-cd ~/dropbox/klips ///pwd;원자료는 pwd의 하위폴더 rawdata에 있다고 가정함.
+cd ~/dropbox/klips /*pwd;원자료는 pwd의 하위폴더 rawdata에 있다고 가정함*/
 local fwave  1	/*조사시작회차 입력*/
 local lwave  22 /*조사최신회차 입력*/
 tempfile temp
@@ -11,7 +11,11 @@ tempfile temp
     /* 조사년도별 가구파일 조작{{{*/
       use rawdata/klips`yr'h
       /*가구파일에서 필요변수 선정{{{*/
-      local h`yr'vars hhid`yr' hwave`yr' orghid?? sample?? hwaveent w`yr'h 
+        local h`yr'vars hhid`yr' hwave`yr' orghid?? sample?? hwaveent w`yr'h 
+        /*부모로부터 경제적도움*/
+        if `x' >= 4 {
+          local h`yr'vars `h`yr'vars' h`yr'1109 h`yr'1209 
+        }
         lookfor "가구원수"
         local h`yr'vars `h`yr'vars' `r(varlist)'
         lookfor "PID"
@@ -84,7 +88,7 @@ tempfile temp
             h`yr'2134 h`yr'2136 h`yr'2138 h`yr'2140 h`yr'2142 ///
             h`yr'2152-h`yr'2160 ///
             h`yr'2182-h`yr'2191 (-1=.)
-          gen inc`yr'_e = h`yr'210210                                                                 /*earned income*/
+          gen inc`yr'_e = h`yr'2102                                                                   /*earned income*/
           egen inc`yr'_m = rowtotal(h`yr'2112-h`yr'2116),missing                                      /*financial income*/
           egen inc`yr'_p = rowtotal(h`yr'2122-h`yr'2126),missing                                      /*real estate income*/
           egen inc`yr'_i = rowtotal(h`yr'2134 h`yr'2136 h`yr'2138 h`yr'2140 h`yr'2142),missing        /*social insurance*/
@@ -140,7 +144,9 @@ tempfile temp
     /*조사년도별 개인파일 조작 {{{*/
       use rawdata/klips`yr'p , clear
       /*개인필요변수 선정{{{*/
-        local p`yr'vars pid hhid`yr' hmem`yr' orghid?? sample?? hwaveent p`yr'0102 p`yr'0314 p`yr'0110 p`yr'0111 p`yr'0121 p`yr'0314
+      local p`yr'vars pid hhid`yr' hmem`yr' orghid?? sample?? hwaveent 
+        local p`yr'vars `p`yr'vars' p`yr'0102 p`yr'0314 p`yr'0110 p`yr'0111 p`yr'0121 p`yr'0314
+        local p`yr'vars `p`yr'vars' p`yr'9001  /*출생지*/
         lookfor "표준산업분류"
         local p`yr'vars `p`yr'vars' `r(varlist)'
         lookfor "표준직업분류"
@@ -187,7 +193,7 @@ tempfile temp
       save klips_master ,replace
     }
     else {
-      append using klips_master
+      append using klips_master , force
       save klips_master , replace
     }
   }

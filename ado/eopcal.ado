@@ -2,7 +2,7 @@
   capture program drop eopcal ;
   program eopcal, byable(recall) rclass sortpreserve ;
    syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] , 
-   [ENVironment(varname numeric )
+   [ENVironment(varlist numeric )
     GOIndex RRIndex(passthru) Bootstrap(integer 0) Seed(integer 10101)	///Options for calculating indicies.
     DOMinance ACCuracy(passthru)										                    ///Options for dominance test.
     BJORKlund(passthru)												                          ///Options for Bjorklund et al. 
@@ -612,8 +612,7 @@
         capture program drop itt ;
         program define itt , rclass ;
         syntax varlist [fw aw ] , ENVironment(str) EFTlv(integer) ;
-        /// args : eopdist timew IOPAversion eftlv environment
-        tempvar type nofg eftgrp expost gmean typmean tottypedepvar propo tottypecompen antepr tvar etwgt ltwgt
+        tempvar type eftgrp expost gmean typmean tottypedepvar propo tottypecompen antepr tvar etwgt ltwgt
           epdt idtotepdt totwgt postlin1 eadt idtoteadt antelin1 idtotepdtearly postear1 idtoteadtearly anteear1
           idtotepdtlate postlat1 idtoteadtlate antelat1 ;
         quietly {;
@@ -633,7 +632,7 @@
             local tmin = r(tmin) ;
             local tmax = r(tmax) ;
             if `tmin' != 1 {;
-              local `tmax' = `tmax' - `tmin' + 1 ;
+              local tmax = `tmax' - `tmin' + 1 ;
               gen `tvar' = `tname' - `tmin' + 1;
             };
             else {;
@@ -648,23 +647,22 @@
             forvalue i = 1/`tmax' {;
               local numlate = `numlate' + sqrt(`i' /`tmax') ;
             };
-            gen `ltwgt' = sqrt(`temptime' /  `tmax' )/`numlate' ;
+            gen `ltwgt' = sqrt(`tvar' /  `tmax' )/`numlate' ;
             /*}}}*/
           /*IDENTIFY ENVIRONMENT GROUPS {{{*/
             if "`indepvars'" != "" {;
               egen `type'  = group(`indepvars') ;
             };
             else {;
-              gen `type' = `environment' ;
+              egen `type' = group(`environment') ;
             };
             levelsof `type' , local(typlist) ;
             /*}}}*/
           sort `tvar' `type' `depvar' ;
           /* Generate Ex-post Eop Achievement{{{*/
-            bys `tvar' `type' : gen `nofg' = _n ;
             foreach i of local typlist {;
               forvalue j = 1/`tmax' {;
-                xtile _temp`i'_`j' = `nofg' if `type' == `i' & `tvar' == `j' , n(`eftlv') ;
+                xtile _temp`i'_`j' = `depvar' if `type' == `i' & `tvar' == `j' [`weight' `exp'] , n(`eftlv') ;
               };
             };
             egen `eftgrp' = rowmax(_temp*) ;
@@ -681,7 +679,7 @@
             gen `gmean' = . ;
             forvalue j = 1/`tmax' {;
               sum `depvar' [`weight' `exp'] if `tvar' == `j' , meanonly ;
-            replace `gmean' = r(mean) if `tvar' == `j' ;
+              replace `gmean' = r(mean) if `tvar' == `j' ;
             };
             gen `typmean' = . ;
             foreach i of local typlist { ;
@@ -692,7 +690,7 @@
             };
             bys `tvar' `type' : egen `tottypedepvar' = total( `depvar' * `wgt') ;
             gen `propo' =(`depvar' * `wgt' ) / `tottypedepvar' ;
-            bys `tvar' `type' : egen `tottypecompen' = total((`gmean' - `typmean') * `wgt') ;
+            bys `tvar' `type' : egen `tottypecompen' = total((`gmean' - `typmean') ) ;
             gen `antepr' =`depvar' + ( `tottypecompen' * `propo') ;
             /*}}}*/
           sort `idvar' `tvar' ;
@@ -724,6 +722,7 @@
             egen `antelat1' = total(`idtoteadtlate' * `wgt' / `totwgt' ) ;
             return scalar antelat1 = `antelat1'[1] ;
           };
+          pause;
           end;
         /*}}}*/
       /* Bjorklund PROGRAM {{{*/
