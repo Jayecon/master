@@ -1,45 +1,37 @@
-cd ~/dropbox/goms/results
+cd ~/dropbox/klips/results
 
-use ~/dropbox/goms/goms.dta , clear
-
-preserve
-
-keep if inrange(f001 ,2000 ,2011)
+use ~/dropbox/klips/klips.dta , clear
 
 capture log close
 
-forvalue j = 3/5 {
-	log using goms_domt_edugrp_score`j' , replace
-	bys f001: eopcal score`j' [aw=wgt] , env(edugrp) dom 
-	log close
-
-	log using goms_domt_incgrp_score`j' , replace
-	bys f001: eopcal score`j' [aw=wgt] , env(incgrp) dom 
-	log close
-
-	log using goms_domt_rgngrp_score`j' , replace
-	bys f001: eopcal score`j' [aw=wgt] , env(rgngrp) dom 
-	log close
-
-	log using goms_domt_pcagrp_score`j' , replace
-	bys f001: eopcal score`j' [aw=wgt] , env(pcagrp) dom 
-	log close
+log using klips_domtest_edugrp_all , replace
+forvalue y = 1998/2020 { 
+  di as text "Year = " as input "`y'" 
+  eopcal incn1m [aw=wgt] if year == `y' & head , env(edugrp) dom percent(0.025 0.975)
+  di ""
 }
+log close
 
-	/*log using goms_domt_edugrp_income , replace*/
-	/*bys f001: eopcal income [aw=wgt] , env(edugrp) dom  value(150, 400)*/
-	/*log close*/
+log using klips_domtest_edugrp_3050 , replace
+forvalue y = 1998/2020 { 
+  di as text "Year = " as input "`y'" 
+  eopcal incn1m [aw=wgt] if year == `y' & h3050 , env(edugrp) dom percent(0.025 0.975)
+  di ""
+}
+log close
 
-	/*log using goms_domt_incgrp_income , replace*/
-	/*bys f001: eopcal income [aw=wgt] , env(incgrp) dom value(150, 400)*/
-	/*log close*/
+log using klips_domtest_jobgrp_all , replace
+forvalue y = 1998/2020 { 
+  di as text "Year = " as input "`y'" 
+  eopcal incn1m [aw=wgt] if year == `y' & head , env(jobgrp) dom percent(0.025 0.975)
+  di ""
+}
+log close
 
-	log using goms_domt_rgngrp_income , replace
-	bys f001: eopcal income [aw=wgt] , env(rgngrp) dom value(150, 400)
-	log close
-
-	log using goms_domt_pcagrp_income , replace
-	bys f001: eopcal income [aw=wgt] , env(pcagrp) dom value(150, 400)
-	log close
-
-restore , preserve
+log using klips_domtest_jobgrp_3050 , replace
+forvalue y = 1998/2020 { 
+  di as text "Year = " as input "`y'" 
+  eopcal incn1m [aw=wgt] if year == `y' & h3050 , env(jobgrp) dom percent(0.025 0.975)
+  di ""
+}
+log close

@@ -83,19 +83,6 @@
       }
     }
   /*}}}*/
-  /*Generate interpolated indicies{{{*/
-    xtset cntcod year
-    foreach i in goi rri fgc fge fgr fgt bjc bje bjr bjt {
-      foreach j in math scie read masc mrsc {
-        foreach k in p t {
-          local temp : var label `i'`j'`k'
-          by cntcod : ipolate `i'`j'`k' year , gen (`i'`j'`k'ip)
-          label var `i'`j'`k'ip "`temp', ip"
-        }
-      }
-    }
-  /*}}}*/
-  drop ???readt ???mrsct
   save "~/Dropbox/PNT/pnt_index.dta" , replace
   /*Merge PWT and the Data{{{*/
     use data/pwt100
@@ -142,17 +129,6 @@
     drop _merge
     drop temp?
   /*}}}*/
-  /*Generate OECD variables{{{*/
-    merge 1:1 cntcod year using "~/dropbox/data_extras/oecdlist_long.dta"
-      drop if _merge == 2
-      drop _merge
-      replace oecd = 0 if missing(oecd)
-      label var oecd "OECD"
-    foreach i of varlist goimathp-bjtmrsctip {
-      gen oecdx`i' = oecd*`i'
-      gen noecdx`i' = (1-oecd)*`i'
-    }
-  /*}}}*/
   /*Generate Servey Wave Variables{{{*/
     foreach i in 3 4 5 6 {
       gen wpisa`i' = ceil((year-1999)/`i')
@@ -169,6 +145,30 @@
       replace wtimss`i' = . if wtimss`i' <= 0
       label var wtimss`i' "TIMSS wave`i'"
       drop t
+    }
+  /*}}}*/
+  /*Generate interpolated indicies{{{*/
+    xtset cntcod year
+    foreach i in goi rri fgc fge fgr fgt bjc bje bjr bjt {
+      foreach j in math scie read masc mrsc {
+        foreach k in p t {
+          local temp : var label `i'`j'`k'
+          by cntcod : ipolate `i'`j'`k' year , gen (`i'`j'`k'ip)
+          label var `i'`j'`k'ip "`temp', ip"
+        }
+      }
+    }
+  /*}}}*/
+  drop ???readt ???mrsct
+  /*Generate OECD variables{{{*/
+    merge 1:1 cntcod year using "~/dropbox/data_extras/oecdlist_long.dta"
+      drop if _merge == 2
+      drop _merge
+      replace oecd = 0 if missing(oecd)
+      label var oecd "OECD"
+    foreach i of varlist goimathp-bjtmrsctip {
+      gen oecdx`i' = oecd*`i'
+      gen noecdx`i' = (1-oecd)*`i'
     }
   /*}}}*/
   save "~/Dropbox/PNT/pnt_regdata.dta" , replace

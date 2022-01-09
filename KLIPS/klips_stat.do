@@ -6,8 +6,8 @@ use ~/dropbox/klips/klips.dta , clear
 preserve
 
 foreach j of local envlist {
-forvalue i = 1998/2017 {
-	eopcal incn1tm [aw=wgt] if head & year == `i' , env(`j') stat
+forvalue i = 1998/2020 {
+	eopcal incn [aw=wgtp] if head & year == `i' , env(`j') stat
 	matrix aaa = r(results)
 	svmat aaa , names(matcol)
 	keep aaa*

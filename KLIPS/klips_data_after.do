@@ -6,7 +6,7 @@ xtset pid wave
 sort pid wave
 
 local fwave  1	/*조사시작회차 입력*/
-local lwave  22 /*조사최신회차 입력*/
+local lwave  23 /*조사최신회차 입력*/
 
   /* Generate the GDP Deflator Variable {{{*/
     /*97년지수부터 시작 (2015 = 100) */
@@ -40,11 +40,13 @@ local lwave  22 /*조사최신회차 입력*/
     }
     /*}}}*/
   /* Generate Weight {{{*/
-    tempvar wgtl swh
+    tempvar wgtl swh nwh
     egen wgt = rowtotal(w??h)
     egen `swh' = rowtotal(sw??h)
-      replace wgt = `swh' if wave >= 12
-      label variable wgt "가중치(98표본/11차이후 통합표본)"
+    egen `nwh' = rowtotal(nw??h)
+      replace wgt = `swh' if inrange(wave , 12 , 20)
+      replace wgt = `nwh' if wave >= 21
+      label variable wgt "통합표본 가중치"
       gen wgtp = wgt*h0150
       label variable wgtp "가중치(단년도, 가구원곱)"
     by pid : gen `wgtl' = wgt[_n+1]
@@ -71,7 +73,7 @@ local lwave  22 /*조사최신회차 입력*/
     gen incn = .
     forvalues i = `fwave'/`lwave' {
       local yr : disp %02.0f  = `i'
-      sum incs if wave == `i' [aw = wgtp], meanonly
+      sum incs if wave == `i' & head [aw = wgtp], meanonly
       replace incn = incs/r(mean) if wave == `i'
     }
     label var incn "가계총소득(균등평준화)"

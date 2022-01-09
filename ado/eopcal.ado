@@ -200,6 +200,7 @@
               stats `varlist' [`weight' `exp'] , environment(`environment') `nozero' ;
               matrix `temps' = r(results) ;
               matlist `temps' ;
+              return matrix results = `temps' ;
             }; 
           /*}}}*/
           /** PRINT of GOI{{{*/

@@ -11,7 +11,7 @@ use ~/dropbox/klips/klips , clear
 tempname temp1 temp2
 matrix `temp1' = J(1,9,.)
 
-forvalue i = 1/22 {
+forvalue i = 1/23 {
 	eopcal incn1m [aw=wgt2p] if wave == `i' `cond' , env(`grp') `test' b(1)
 	matrix `temp1'[1,1] = `i'
 	matrix `temp1'[1,2] = r(index)

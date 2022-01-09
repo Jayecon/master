@@ -4,18 +4,18 @@ gr drop _all
 
 local count = 1
 foreach i in goi rri {
-	foreach j in edugrp jobgrp pcagrp2{
+	foreach j in edugrp jobgrp {
 		foreach k in all 3050 {
-			use ~/dropbox/klips/`i'_`j'_`k' , clear
+			use ~/dropbox/klips/results/`i'_`j'_`k' , clear
 			gen test = "`i'" 
 			gen env = "`j'"  
 			gen cond = "`k'"
 			if (`count' == 1) {
-				save incn1tm_index , replace
+				save incn1m_index , replace
 			}
 			else {
-				append using incn1tm_index
-				save incn1tm_index , replace
+				append using incn1m_index
+				save incn1m_index , replace
 			}
 			local ++count
 		}
@@ -26,12 +26,12 @@ gen year = wave + 1997
 format year %02.0f
 replace year = year - 1900 if year < 2000
 replace year = year - 2000 if year >= 2000
-save ~/dropbox/klips/incn1tm_index , replace
+save ~/dropbox/klips/incn1m_index , replace
 
-use ~/dropbox/klips/incn1tm_index , clear
+drop if wave == 23
 
 foreach i in goi rri {
-	foreach j in edugrp jobgrp pcagrp2 {
+	foreach j in edugrp {
 		foreach k in all 3050 {
 			if "`j'" == "edugrp" {
 				local xl1 가구주부친교육환경 
@@ -56,33 +56,15 @@ foreach i in goi rri {
 			}
 			*twoway (rarea uci95 lci95 wave , color(gs14)) (line index wave) if test == "`i'" & env == "`j'" & cond == "`k'" , xtitle(`xl1'하 `xl2': `xl3' , size(automatic))
 			line index wave if test == "`i'" & env == "`j'" & cond == "`k'" , xtitle(`xl1'하 `xl2': `xl3')
-			gr save incn1tm_`j'_`i'_`k' , replace
-			gr export incn1tm_`j'_`i'_`k'.png , as(png) replace
+			gr save incn1m_`j'_`i'_`k' , replace
+			gr export incn1m_`j'_`i'_`k'.png , as(png) replace
 		}
 	}
 }
 
-
-
-
-
 capture gr drop temp1 temp2
-grc1leg incn1tm_jobgrp_goi_all.gph incn1tm_jobgrp_goi_3050.gph , ycommon name(temp1)
-grc1leg incn1tm_jobgrp_rri_all.gph incn1tm_jobgrp_rri_3050.gph , ycommon name(temp2)
+grc1leg incn1m_edugrp_goi_all.gph incn1m_edugrp_goi_3050.gph , ycommon name(temp1)
+grc1leg incn1m_edugrp_rri_all.gph incn1m_edugrp_rri_3050.gph , ycommon name(temp2)
 grc1leg temp1 temp2, col(1)
-gr save incn1tm_jobgrp_index.gph , replace
-gr export incn1tm_jobgrp_index.png , as(png) replace
-
-capture gr drop temp1 temp2
-grc1leg incn1tm_edugrp_goi_all.gph incn1tm_edugrp_goi_3050.gph , ycommon name(temp1)
-grc1leg incn1tm_edugrp_rri_all.gph incn1tm_edugrp_rri_3050.gph , ycommon name(temp2)
-grc1leg temp1 temp2, col(1)
-gr save incn1tm_edugrp_index.gph , replace
-gr export incn1tm_edugrp_index.png , as(png) replace
-
-capture gr drop temp1 temp2
-grc1leg incn1tm_pcagrp2_goi_all.gph incn1tm_pcagrp2_goi_3050.gph , ycommon name(temp1)
-grc1leg incn1tm_pcagrp2_rri_all.gph incn1tm_pcagrp2_rri_3050.gph , ycommon name(temp2)
-grc1leg temp1 temp2, col(1)
-gr save incn1tm_pcagrp_index.gph , replace
-gr export incn1tm_pcagrp_index.png , as(png) replace
+gr save incn1m_edugrp_index.gph , replace
+gr export incn1m_edugrp_index.png , as(png) replace
