@@ -17,7 +17,7 @@
         " }}}2
     elseif has('macunix')
         " Language and Font " {{{2
-        set linespace=3	
+        set linespace=3
         set encoding=utf-8
         set fileencoding=utf8
         set guifont=D2Codingligature:h22
@@ -45,9 +45,13 @@
         Plug 'vim-airline/vim-airline'			"status/tabline for vim
         Plug 'vim-airline/vim-airline-themes'	"vim-airline themes
         Plug 'zizhongyan/vim-stata'				"Running Selected Do-File Lines in Stata
+<<<<<<< Updated upstream
         Plug 'mhinz/vim-startify'               "The fancy start screen for vim
         Plug 'junegunn/fzf.vim'                 "
         Plug '/usr/local/opt/fzf'
+=======
+        Plug 'lervag/vimtex'				    "Running Selected Do-File Lines in Stata
+>>>>>>> Stashed changes
     call plug#end()
     " }}}1
     " Plugins Specific Setting -------------------- {{{1
@@ -60,15 +64,15 @@
         " NERDTree Settigng ---------------------- {{{2
             noremap <C-N> :NERDTreeToggle<CR>
             "open a NERDTree automatically when vim starts up
-                "autocmd vimenter * NERDTree 	
-            "open a NERDTree automatically when vim starts up if no files were specified	
-                "autocmd StdinReadPre * let s:std_in=1 
-                "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif	
+                "autocmd vimenter * NERDTree
+            "open a NERDTree automatically when vim starts up if no files were specified
+                "autocmd StdinReadPre * let s:std_in=1
+                "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
             "open NERDTree automatically when vim starts up on opening a directory
-                "autocmd StdinReadPre * let s:std_in=1 
+                "autocmd StdinReadPre * let s:std_in=1
                 "autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif	
             "close vim if the only window left open is a NERDTree
-                "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif	
+                "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
         " }}}2
         " Synatstic Settigng ---------------------- {{{2
             set statusline+=%#warningmsg#
@@ -167,10 +171,16 @@
             map <leader>sv  :w <cr>:source $MYVIMRC<cr>
             map <leader>bv  :w! ~/git/etc/myvimrc<cr>
             map <leader>uv  :e! ~/git/etc/myvimrc<cr>:w! $MYVIMRC<cr>:source $MYVIMRC<cr>
+<<<<<<< Updated upstream
             map <silent> <leader>l   :silent set list!<cr>
             map <silent> <leader>w   :silent set autowrite!<cr>
             map <silent> <leader>box :cd ~/dropbox<cr> :pwd<cr>
             map <silent> <leader>git :cd ~/git<cr> :pwd<cr>
+=======
+            map <leader>l   :set list!<cr>
+            map <silent> <leader>box :cd ~/dropbox<cr>
+            map <silent> <leader>git :cd ~/git<cr>
+>>>>>>> Stashed changes
         "}}}2
         " Insert Mode {{{2
             inoremap jk <esc>
