@@ -894,353 +894,264 @@ use ~/dropbox/goms/goms_master , clear
     if hsname == 경북후포
     경산고등학교 if hsname == 경산
     경산고등학교 if hsname == 경산고등
-    if hsname == 경산공업고등학교
-    if hsname == 경산과학고등학교
     if hsname == 경산문명
-    if hsname == 경산여
-    if hsname == 경산여상고등학교
-    if hsname == 경산여자
-    if hsname == 경산여자고등학교
-    if hsname == 경산여자상업
-    if hsname == 경산여자상업고등학교
-    if hsname == 경산여자전산
-    if hsname == 경산여자전산고등학교
-    if hsname == 경산여자전자고등학교
-    if hsname == 경산여자정보
+    경산여자고등학교 if hsname == 경산여
+    경산여자상업고등학교 if hsname == 경산여상고등학교
+    경산여자고등학교 if hsname == 경산여자
+    경산여자상업고등학교 if hsname == 경산여자상업
+    경산여자상업고등학교 if hsname == 경산여자전산
+    경산여자상업고등학교 if hsname == 경산여자전산고등학교
+    경산여자상업고등학교 if hsname == 경산여자전자고등학교
+    경산여자상업고등학교 if hsname == 경산여자정보
     if hsname == 경산자동차
-    if hsname == 경상
-    if hsname == 경상 공업
-    if hsname == 경상 여자
-    if hsname == 경상고등학교
-    if hsname == 경상공업
-    if hsname == 경상공업고등학교
-    if hsname == 경상대 사대부속
-    if hsname == 경상대사대부설고등학교
-    if hsname == 경상대사범대부속
-    if hsname == 경상대사범대학부속
-    if hsname == 경상대학교 사범대학 부설고등학교
-    if hsname == 경상대학교부속고등힉교
-    if hsname == 경상대학교사범대학 부설고등학교
-    if hsname == 경상대학교사범대학부설
-    if hsname == 경상대학교사범대학부설고등학교
-    if hsname == 경상대학사범대부설
-    if hsname == 경상대학사범대학부설
-    if hsname == 경상사대부설
-    if hsname == 경상사대부속
+    경상고등학교 if hsname == 경상
+    경상공업고등학교 if hsname == 경상 공업
+    경상여자고등학교 if hsname == 경상 여자
+    경상공업고등학교 if hsname == 경상공업
+    경상대학교사범대학부설고등학교 if hsname == 경상대 사대부속
+    경상대학교사범대학부설고등학교 if hsname == 경상대학교사범대학부설
+    경상대학교사범대학부설고등학교 if hsname == 경상대사대부설고등학교
+    경상대학교사범대학부설고등학교 if hsname == 경상대사범대부속
+    경상대학교사범대학부설고등학교 if hsname == 경상대사범대학부속
+    경상대학교사범대학부설고등학교 if hsname == 경상대학교 사범대학 부설고등학교
+    경상대학교사범대학부설고등학교 if hsname == 경상대학교부속고등힉교
+    경상대학교사범대학부설고등학교 if hsname == 경상대학교사범대학 부설고등학교
+    경상대학교사범대학부설고등학교 if hsname == 경상대학교사범대학부설
+    경상대학교사범대학부설고등학교 if hsname == 경상대학사범대부설
+    경상대학교사범대학부설고등학교 if hsname == 경상대학사범대학부설
+    경상대학교사범대학부설고등학교 if hsname == 경상사대부설
+    경상대학교사범대학부설고등학교 if hsname == 경상사대부속
     if hsname == 경상산업고등학교
-    if hsname == 경상여자
-    if hsname == 경상여자고등학교
-    if hsname == 경상여자고등학교(구 경상여자상업고등..
-    if hsname == 경상여자상업
-    if hsname == 경상여자상업고등학교
+    경상여자고등학교 if hsname == 경상여자
+    경상여자고등학교 if hsname == 경상여자고등학교(구 경상여자상업고등..
+    경상여자고등학교 if hsname == 경상여자상업
+    경상여자고등학교 if hsname == 경상여자상업고등학교
     if hsname == 경상정보전자
-    if hsname == 경성
+    경성고등학교 if hsname == 경성
     if hsname == 경성 예술
-    if hsname == 경성고등학교
     if hsname == 경성여자
-    if hsname == 경성전자
-    if hsname == 경성전자고등학교
-    if hsname == 경성전자고등학교(경성전자정보고등학교)
-    if hsname == 경성전자정보
-    if hsname == 경성전자정보고등학교
-    if hsname == 경성정보통신
+    경성전자고등학교 if hsname == 경성전자
+    경성전자고등학교 if hsname == 경성전자고등학교(경성전자정보고등학교)
+    경성전자고등학교 if hsname == 경성전자정보
+    경성전자고등학교 if hsname == 경성전자정보고등학교
+    경성전자고등학교 if hsname == 경성정보통신
     if hsname == 경순
     if hsname == 경신
-    if hsname == 경신고등
-    if hsname == 경신고등학교
-    if hsname == 경신여자
-    if hsname == 경신여자고등학교
-    if hsname == 경신정보
-    if hsname == 경신정보과학
-    if hsname == 경신정보과학고등학교
+    경신고등 if hsname == 경신고등학교
+    경신여자고등학교 if hsname == 경신여자
+    경신정보과학고등학교 if hsname == 경신정보
+    경신정보과학고등학교 if hsname == 경신정보과학
     if hsname == 경실
     if hsname == 경아
-    if hsname == 경안
-    if hsname == 경안고등학교
-    if hsname == 경안여상
-    if hsname == 경안여자
-    if hsname == 경안여자고등학교
-    if hsname == 경안여자상업고등학교
-    if hsname == 경안여자정보
-    if hsname == 경안여자정보고
-    if hsname == 경암
-    if hsname == 경암고등학교
+    경안고등학교 if hsname == 경안
+    경안여자고등학교 if hsname == 경안여상
+    경안여자고등학교 if hsname == 경안여자
+    경안여자고등학교 if hsname == 경안여자정보
+    경안여자고등학교 if hsname == 경안여자정보고
+    경암고등학교 if hsname == 경암
     if hsname == 경영고등학교
     if hsname == 경영여자
     if hsname == 경영정보
-    if hsname == 경운
-    if hsname == 경운고등학교
-    if hsname == 경원
-    if hsname == 경원고등학교
-    if hsname == 경의
-    if hsname == 경의고등학교
-    if hsname == 경의여자고등학교
-    if hsname == 경인
-    if hsname == 경인 여자
-    if hsname == 경인고등학교
+    경운고등학교 if hsname == 경운
+    경원고등학교 if hsname == 경원
+    경의고등학교 if hsname == 경의
+    경희여자고등학교 if hsname == 경의여자고등학교
+    경인고등학교 if hsname == 경인
+    경인여자고등학교 if hsname == 경인 여자
     if hsname == 경인공업고등학교
-    if hsname == 경인여
-    if hsname == 경인여자
-    if hsname == 경인여자고등학교
-    if hsname == 경인여자상업고등학교
-    if hsname == 경인여자정보상업
-    if hsname == 경일
-    if hsname == 경일경영정보
-    if hsname == 경일고등
-    if hsname == 경일고등학교
-    if hsname == 경일관광
-    if hsname == 경일관광경영
-    if hsname == 경일관광경영고등학교
-    if hsname == 경일여
-    if hsname == 경일여자
-    if hsname == 경일여자고등학교
+    경인여자고등학교 if hsname == 경인여
+    경인여자고등학교 if hsname == 경인여자
+    인천보건고등학교 if hsname == 경인여자상업고등학교
+    인천보건고등학교 if hsname == 경인여자정보상업
+    경일고등학교 if hsname == 경일
+    경일관광경영고등학교 if hsname == 경일경영정보
+    경일고등학교 if hsname == 경일고등
+    경일관광경영고등학교 if hsname == 경일관광
+    경일관광경영고등학교 if hsname == 경일관광경영
+    경일여자고등학교 if hsname == 경일여
+    경일여자고등학교 if hsname == 경일여자
     if hsname == 경일여자상업
-    if hsname == 경일정보산업
-    if hsname == 경일정보통신
+    경일관광경영고등학교 if hsname == 경일정보산업
+    경일관광경영고등학교 if hsname == 경일정보통신
     if hsname == 경일중경영정보고등학교
     if hsname == 경임여자
-    if hsname == 경주
+    경주고등학교 if hsname == 경주
     if hsname == 경주 계림
     if hsname == 경주 정보
     if hsname == 경주감포고등학교
-    if hsname == 경주고등학교
-    if hsname == 경주공고
-    if hsname == 경주공업
-    if hsname == 경주공업고등학교
-    if hsname == 경주디자인
-    if hsname == 경주디자인고등학교
-    if hsname == 경주문화
-    if hsname == 경주문화고등학교
+    경주공업고등학교 if hsname == 경주공고
+    경주공업고등학교 if hsname == 경주공업
+    경주디자인고등학교 if hsname == 경주디자인
+    경주문화고등학교 if hsname == 경주문화
     if hsname == 경주상업
     if hsname == 경주신라공업
-    if hsname == 경주여자
-    if hsname == 경주여자고등학교
-    if hsname == 경주여자상업
-    if hsname == 경주여자정보
-    if hsname == 경주여자정보고등학교
-    if hsname == 경주정보
-    if hsname == 경주정보고등학교
+    경주여자고등학교 if hsname == 경주여자
+    경주여자정보고등학교 if hsname == 경주여자상업
+    경주여자정보고등학교 if hsname == 경주여자정보
+    경주정보고등학교 if hsname == 경주정보
     if hsname == 경주정보처리
     if hsname == 경주종합
-    if hsname == 경주화랑
-    if hsname == 경주화랑고등학교
-    if hsname == 경진
-    if hsname == 경진고등학교
-    if hsname == 경포
-    if hsname == 경포고등학교
-    if hsname == 경해
-    if hsname == 경해고등학교
-    if hsname == 경해여자
-    if hsname == 경해여자고등학교
-    if hsname == 경혜
-    if hsname == 경혜 여자
-    if hsname == 경혜여고
-    if hsname == 경혜여자
-    if hsname == 경혜여자고등학교
-    if hsname == 경호
-    if hsname == 경호고등학교
-    if hsname == 경호고등학교(부산)
+    경주화랑고등학교 if hsname == 경주화랑
+    경진고등학교 if hsname == 경진
+    경포고등학교 if hsname == 경포
+    경해고등학교 if hsname == 경해
+    경해여자고등학교 if hsname == 경해여자
+    경혜여자고등학교 if hsname == 경혜
+    경혜여자고등학교 if hsname == 경혜 여자
+    경혜여자고등학교 if hsname == 경혜여고
+    경혜여자고등학교 if hsname == 경혜여자
+    경호고등학교 if hsname == 경호
     if hsname == 경화
-    if hsname == 경화 여자
-    if hsname == 경화E비즈니스고등학교
+    경화여자고등학교 if hsname == 경화 여자
+    경화여자E비즈니스고등학교 if hsname == 경화E비즈니스고등학교
     if hsname == 경화고등학교
     if hsname == 경화상업
-    if hsname == 경화여고등학교
-    if hsname == 경화여자
-    if hsname == 경화여자E비즈니스고등학교
-    if hsname == 경화여자e비즈니스고등학교
-    if hsname == 경화여자고등학교
-    if hsname == 경화여자상업
-    if hsname == 경희
-    if hsname == 경희고등학교
+    경화여자고등학교 if hsname == 경화여고등학교
+    경화여자고등학교 if hsname == 경화여자
+    경화여자E비즈니스고등학교 if hsname == 경화여자e비즈니스고등학교
+    경화여자E비즈니스고등학교 if hsname == 경화여자상업
+    경희고등학교 if hsname == 경희
     if hsname == 경희공업
     if hsname == 경희남
-    if hsname == 경희여고
-    if hsname == 경희여자
-    if hsname == 경희여자고등학교
-    if hsname == 경희여자상업
-    if hsname == 경희여자상업고등학교
-    if hsname == 계금
-    if hsname == 계남
-    if hsname == 계남고등학교
+    경희여자고등학교 if hsname == 경희여고
+    경희여자고등학교 if hsname == 경희여자
+    경희여자상업고등학교 if hsname == 경희여자상업
+    개금고등학교 if hsname == 계금
+    계남고등학교 if hsname == 계남
     if hsname == 계덕여자
     if hsname == 계동
     if hsname == 계동세무
-    if hsname == 계롱
-    if hsname == 계룡
-    if hsname == 계룡고등학교
-    if hsname == 계룡공
-    if hsname == 계룡공고
-    if hsname == 계룡공업
-    if hsname == 계룡공업고등학교
-    if hsname == 계림
-    if hsname == 계림고등학교
-    if hsname == 계명
-    if hsname == 계명고등학교
-    if hsname == 계산
-    if hsname == 계산고
-    if hsname == 계산고등학교
-    if hsname == 계산공업
-    if hsname == 계산공업고등학교
-    if hsname == 계산여자
-    if hsname == 계산여자고등학교
-    if hsname == 계상여자
-    if hsname == 계성
-    if hsname == 계성 여자상업
-    if hsname == 계성고등학교
-    if hsname == 계성여
-    if hsname == 계성여자
-    if hsname == 계성여자고등학교
-    if hsname == 계성여자상업
-    if hsname == 계성여자상업고등학교
-    if hsname == 계성여자정보
-    if hsname == 계성정보
-    if hsname == 계성정보고등학교
-    if hsname == 계성정보여자
+    계룡고등학교 if hsname == 계롱
+    계룡고등학교 if hsname == 계룡
+    계룡공업고등학교 if hsname == 계룡공
+    계룡공업고등학교 if hsname == 계룡공고
+    계룡공업고등학교 if hsname == 계룡공업
+    계림고등학교 if hsname == 계림
+    계명고등학교 if hsname == 계명
+    계산고등학교 if hsname == 계산
+    계산고등학교 if hsname == 계산고
+    계산공업고등학교 if hsname == 계산공업
+    계산여자고등학교 if hsname == 계산여자
+    계산여자고등학교 if hsname == 계상여자
+    계성고등학교 if hsname == 계성
+    계성여자상업고등학교 if hsname == 계성 여자상업
+    계성여자상업고등학교 if hsname == 계성여
+    계성여자상업고등학교 if hsname == 계성여자
+    계성여자상업고등학교 if hsname == 계성여자상업
+    계성여자상업고등학교 if hsname == 계성여자정보
+    계성여자상업고등학교 if hsname == 계성정보
+    계성여자상업고등학교 if hsname == 계성정보고등학교
+    계성여자상업고등학교 if hsname == 계성정보여자
     if hsname == 계실여자
     if hsname == 계암
-    if hsname == 계양
-    if hsname == 계양고등학교
+    계양고등학교 if hsname == 계양
     if hsname == 계원여자
-    if hsname == 계원예
-    if hsname == 계원예고
-    if hsname == 계원예술
-    if hsname == 계원예술고등학교
+    계원예술고등학교 if hsname == 계원예
+    계원예술고등학교 if hsname == 계원예고
+    계원예술고등학교 if hsname == 계원예술
     if hsname == 계포
     if hsname == 계향정보
     if hsname == 계흥공업
-    if hsname == 고금
-    if hsname == 고금고등학교
-    if hsname == 고금고등학교(구/고금종합고)
-    if hsname == 고금종합
-    if hsname == 고대 부속
-    if hsname == 고대부고
-    if hsname == 고대부속
-    if hsname == 고대부속고등학교
-    if hsname == 고대사대
+    고금고등학교 if hsname == 고금
+    고금고등학교 if hsname == 고금고등학교(구/고금종합고)
+    고금고등학교 if hsname == 고금종합
+    고려대학교사범대학부속고등학교 if hsname == 고대 부속
+    고려대학교사범대학부속고등학교 if hsname == 고대부고
+    고려대학교사범대학부속고등학교 if hsname == 고대부속
+    고려대학교사범대학부속고등학교 if hsname == 고대부속고등학교
+    고려대학교사범대학부속고등학교 if hsname == 고대사대
     if hsname == 고등고등학교
     if hsname == 고등전문고등학교
     if hsname == 고란
-    if hsname == 고려
-    if hsname == 고려고
-    if hsname == 고려고등학교
-    if hsname == 고려대사범대부속
-    if hsname == 고려대사범부속
-    if hsname == 고려대학교 부속
-    if hsname == 고려대학교 사범대학 부속
-    if hsname == 고려대학교부속
-    if hsname == 고려대학교사범대학부속
-    if hsname == 고려대학교사범대학부속고등학교
-    if hsname == 고려대학부속
-    if hsname == 고려사대부속고등학교
-    if hsname == 고령
-    if hsname == 고령고등학교
+    고려고등학교 if hsname == 고려
+    고려대학교사범대학부속고등학교 if hsname == 고려대사범대부속
+    고려고등학교 if hsname == 고려고
+    고려대학교사범대학부속고등학교 if hsname == 고려대사범대부속
+    고려대학교사범대학부속고등학교 if hsname == 고려대사범부속
+    고려대학교사범대학부속고등학교 if hsname == 고려대학교 부속
+    고려대학교사범대학부속고등학교 if hsname == 고려대학교 사범대학 부속
+    고려대학교사범대학부속고등학교 if hsname == 고려대학교부속
+    고려대학교사범대학부속고등학교 if hsname == 고려대학교사범대학부속
+    고려대학교사범대학부속고등학교 if hsname == 고려대학부속
+    고려대학교사범대학부속고등학교 if hsname == 고려사대부속고등학교
+    고령고등학교 if hsname == 고령
     if hsname == 고령공업
     if hsname == 고령대가야
-    if hsname == 고령여자
-    if hsname == 고령여자종합
-    if hsname == 고령여자종합고등학교
-    if hsname == 고명경영고등학교
-    if hsname == 고명상고
-    if hsname == 고명정모산업
-    if hsname == 고명정보산업
-    if hsname == 고명정보산업고등학교
-    if hsname == 고산
-    if hsname == 고산고등학교
-    if hsname == 고산관광정보
-    if hsname == 고산상업(제주도)
-    if hsname == 고산상업고등학교
+    고령여자종합고등학교 if hsname == 고령여자
+    고령여자종합고등학교 if hsname == 고령여자종합
+    고명경영고등학교 if hsname == 고명상고
+    고명경영고등학교 if hsname == 고명정모산업
+    고명경영고등학교 if hsname == 고명정보산업
+    고명경영고등학교 if hsname == 고명정보산업고등학교
+    고산고등학교 if hsname == 고산
+    고산상업고등학교 if hsname == 고산관광정보
+    고산상업고등학교 if hsname == 고산상업(제주도)
     if hsname == 고색고등학교
-    if hsname == 고성
-    if hsname == 고성 중앙
-    if hsname == 고성 중앙-
-    if hsname == 고성고등학교
+    고성고등학교 if hsname == 고성
+    고성중앙고등학교 if hsname == 고성 중앙
+    고성중앙고등학교 if hsname == 고성 중앙-
     if hsname == 고성농공
     if hsname == 고성여자
     if hsname == 고성종고
     if hsname == 고성종합
-    if hsname == 고성중앙
-    if hsname == 고성중앙고등학교
-    if hsname == 고양
+    고성중앙고등학교 if hsname == 고성중앙
+    고양고등학교 if hsname == 고양
     if hsname == 고양 실업
     if hsname == 고양 외국어
     if hsname == 고양 화정
     if hsname == 고양가좌고등학교
-    if hsname == 고양고등학교
     if hsname == 고양동산고등학교
     if hsname == 고양무원고등학교
-    if hsname == 고양실업
-    if hsname == 고양실업고등학교
-    if hsname == 고양여자
-    if hsname == 고양여자고등학교
-    if hsname == 고양예고등학교
-    if hsname == 고양예술
-    if hsname == 고양예술고등학교
-    if hsname == 고양외
-    if hsname == 고양외고
-    if hsname == 고양외고등학교
-    if hsname == 고양외국어
-    if hsname == 고양외국어고등학교
+    고양실업고등학교 if hsname == 고양실업
+    고양여자고등학교 if hsname == 고양여자
+    고양예술고등학교 if hsname == 고양예고등학교
+    고양예술고등학교 if hsname == 고양예술
+    고양외국어고등학교 if hsname == 고양외
+    고양외국어고등학교 if hsname == 고양외고
+    고양외국어고등학교 if hsname == 고양외고등학교
+    고양외국어고등학교 if hsname == 고양외국어
     if hsname == 고양일고등학교
-    if hsname == 고양종합
-    if hsname == 고양종합고등학교
-    if hsname == 고잔
-    if hsname == 고잔고등학교
+    고양종합고등학교 if hsname == 고양종합
+    고잔고등학교 if hsname == 고잔
     if hsname == 고정
-    if hsname == 고창
-    if hsname == 고창 북
-    if hsname == 고창고등학교
-    if hsname == 고창북
-    if hsname == 고창북고등학교
-    if hsname == 고창여자
-    if hsname == 고창여자고등학교
-    if hsname == 고창영선
-    if hsname == 고창영선고등학교
+    고창고등학교 if hsname == 고창
+    고창북고등학교 if hsname == 고창 북
+    고창북고등학교 if hsname == 고창북
+    고창여자고등학교 if hsname == 고창여자
+    고창영선고등학교 if hsname == 고창영선
     if hsname == 고창해리고등학교
-    if hsname == 고척
-    if hsname == 고척고등학교
+    고척고등학교 if hsname == 고척
     if hsname == 고천외국어
-    if hsname == 고한
-    if hsname == 고한고등학교
+    고한고등학교 if hsname == 고한
     if hsname == 고한여자종합
     if hsname == 고혀
     if hsname == 고현
     if hsname == 고현여자고등학교
-    if hsname == 고흥
-    if hsname == 고흥고등학교
-    if hsname == 고흥고등학교(구/고흥여상)
+    고흥고등학교 if hsname == 고흥
+    고흥고등학교 if hsname == 고흥고등학교(구/고흥여상)
     if hsname == 고흥녹동고등학교
-    if hsname == 고흥도화
-    if hsname == 고흥도화고등학교
-    if hsname == 고흥산업과학
-    if hsname == 고흥산업과학고등학교
-    if hsname == 고흥실업
-    if hsname == 고흥실업고등학교
-    if hsname == 고흥여자상업
+    고흥도화고등학교 if hsname == 고흥도화
+    고흥산업과학고등학교 if hsname == 고흥산업과학
+    고흥실업고등학교 if hsname == 고흥실업
+    고흥고등학교 if hsname == 고흥여자상업
     if hsname == 고흥영주고등학교
     if hsname == 고흥영주종합고등학교
     if hsname == 고흥포두고등학교
-    if hsname == 곡성
-    if hsname == 곡성고등학교
+    곡성고등학교 if hsname == 곡성
     if hsname == 곡성실업
     if hsname == 곡성여자고등학교
     if hsname == 곤암
-    if hsname == 곤양
-    if hsname == 곤양고등학교
-    if hsname == 곤지암
-    if hsname == 곤지암고등학교
+    곤양고등학교 if hsname == 곤양
+    곤지암고등학교 if hsname == 곤지암
     if hsname == 골프
     if hsname == 공군기술
-    if hsname == 공군항공과학
-    if hsname == 공군항공과학고등학교
+    공군항공과학고등학교 if hsname == 공군항공과학
     if hsname == (구:공군기술고등..
     if hsname == 공남
-    if hsname == 공누사대부속
-    if hsname == 공동체 비전
-    if hsname == 공동체비전
-    if hsname == 공동체비전고등학교
-    if hsname == 공산
-    if hsname == 공산고등학교
+    공주대학교사범대학부설고등학교 if hsname == 공누사대부속
+    공동체비전고등학교 if hsname == 공동체 비전
+    공동체비전고등학교 if hsname == 공동체비전
+    공산고등학교 if hsname == 공산
     if hsname == 공성
     if hsname == 공실업
     if hsname == 공업
@@ -1248,64 +1159,49 @@ use ~/dropbox/goms/goms_master , clear
     if hsname == 공연예술
     if hsname == 공원
     if hsname == 공의공업
-    if hsname == 공주
+    공주고등학교 if hsname == 공주
     if hsname == 공주 여자
     if hsname == 공주 영명
-    if hsname == 공주고등
-    if hsname == 공주고등학교
+    공주고등학교 if hsname == 공주고등
     if hsname == 공주공업
-    if hsname == 공주금성여자
-    if hsname == 공주금성여자고등학교
-    if hsname == 공주농업
-    if hsname == 공주농업고등학교
-    if hsname == 공주대학교 사범대학 부설고등학교
-    if hsname == 공주대학교사범대학부설
-    if hsname == 공주대학교사범대학부설고등학교
-    if hsname == 공주대학교사범대학부속
-    if hsname == 공주대학교사법대부설
+    공주금성여자고등학교 if hsname == 공주금성여자
+    공주농업고등학교 if hsname == 공주농업
+    공주대학교사범대학부설고등학교 if hsname == 공주대학교 사범대학 부설고등학교
+    공주대학교사범대학부설고등학교 if hsname == 공주대학교사범대학부설
+    공주대학교사범대학부설고등학교 if hsname == 공주대학교사범대학부속
+    공주대학교사범대학부설고등학교 if hsname == 공주대학교사법대부설
     if hsname == 공주마이스터고등학교
-    if hsname == 공주사대부
-    if hsname == 공주사대부고
-    if hsname == 공주사대부설
-    if hsname == 공주사대부속
-    if hsname == 공주사대부속고등학교
-    if hsname == 공주사범대학부설
-    if hsname == 공주사범대학부속
-    if hsname == 공주생명과학
-    if hsname == 공주생명과학고등학교
-    if hsname == 공주여고
-    if hsname == 공주여자
-    if hsname == 공주여자ㅏ
-    if hsname == 공주여자고등학교
-    if hsname == 공주여자상업
-    if hsname == 공주여자상업고등학교
-    if hsname == 공주영명
-    if hsname == 공주영명고등학교
+    공주대학교사범대학부설고등학교 if hsname == 공주사대부
+    공주대학교사범대학부설고등학교 if hsname == 공주사대부고
+    공주대학교사범대학부설고등학교 if hsname == 공주사대부설
+    공주대학교사범대학부설고등학교 if hsname == 공주사대부속
+    공주대학교사범대학부설고등학교 if hsname == 공주사대부속고등학교
+    공주대학교사범대학부설고등학교 if hsname == 공주사범대학부설
+    공주대학교사범대학부설고등학교 if hsname == 공주사범대학부속
+    공주생명과학고등학교 if hsname == 공주생명과학
+    공주여자고등학교 if hsname == 공주여고
+    공주여자고등학교 if hsname == 공주여자
+    공주여자고등학교 if hsname == 공주여자ㅏ
+    공주여자상업고등학교 if hsname == 공주여자상업
+    공주영명고등학교 if hsname == 공주영명
     if hsname == 공주영양
-    if hsname == 공주정보
-    if hsname == 공주정보고등학교
-    if hsname == 공주한일
-    if hsname == 공주한일고등학교
+    공주정보고등학교 if hsname == 공주정보
+    공주한일고등학교 if hsname == 공주한일
     if hsname == 공포
-    if hsname == 공항
-    if hsname == 공항고등학교
+    공항고등학교 if hsname == 공항
     if hsname == 공항상업
     if hsname == 과수
     if hsname == 과양제철
-    if hsname == 과천
-    if hsname == 과천 외국어
+    과천고등학교 if hsname == 과천
+    과천외국어고등학교 if hsname == 과천 외국어
     if hsname == 과천 중앙
-    if hsname == 과천고등학교
-    if hsname == 과천여자
-    if hsname == 과천여자고등학교
-    if hsname == 과천외
-    if hsname == 과천외고
-    if hsname == 과천외국
-    if hsname == 과천외국어
-    if hsname == 과천외국어고등학교
-    if hsname == 과천외대
-    if hsname == 과천중앙
-    if hsname == 과천중앙고등학교
+    과천여자고등학교 if hsname == 과천여자
+    과천외국어고등학교 if hsname == 과천외
+    과천외국어고등학교 if hsname == 과천외고
+    과천외국어고등학교 if hsname == 과천외국
+    과천외국어고등학교 if hsname == 과천외국어
+    과천외국어고등학교 if hsname == 과천외대
+    과천중앙고등학교 if hsname == 과천중앙
     if hsname == 과학
     if hsname == 과학기술고등학교
     if hsname == 과학영재고등학교
@@ -1314,116 +1210,87 @@ use ~/dropbox/goms/goms_master , clear
     if hsname == 관광산업
     if hsname == 관광테크노고등학교
     if hsname == 관광해양
-    if hsname == 관산
-    if hsname == 관산고등학교
+    관산고등학교 if hsname == 관산
     if hsname == 관신정보산업
-    if hsname == 관악
-    if hsname == 관악고등학교
+    관악고등학교 if hsname == 관악
     if hsname == 관악여자상업고등학교
-    if hsname == 관악여자정보산업
-    if hsname == 관악정보
-    if hsname == 관악정보고등학교
-    if hsname == 관악정보산업
-    if hsname == 관악정보산업고
-    if hsname == 관악정보산업고등학교
-    if hsname == 관악정보상업고등학교
-    if hsname == 관양
-    if hsname == 관양고등학교
-    if hsname == 관인
-    if hsname == 관인고등학교
-    if hsname == 관저
-    if hsname == 관저(대전)
-    if hsname == 관저6
-    if hsname == 관저고
-    if hsname == 관저고등학교
-    if hsname == 관지
+    경기글로벌통상고등학교 if hsname == 관악여자정보산업
+    경기글로벌통상고등학교 if hsname == 관악정보
+    경기글로벌통상고등학교 if hsname == 관악정보고등학교
+    경기글로벌통상고등학교 if hsname == 관악정보산업
+    경기글로벌통상고등학교 if hsname == 관악정보산업고
+    경기글로벌통상고등학교 if hsname == 관악정보산업고등학교
+    경기글로벌통상고등학교 if hsname == 관악정보상업고등학교
+    관양고등학교 if hsname == 관양
+    관인고등학교 if hsname == 관인
+    관저고등학교 if hsname == 관저
+    관저고등학교 if hsname == 관저(대전)
+    관저고등학교 if hsname == 관저6
+    관저고등학교 if hsname == 관저고
+    관저고등학교 if hsname == 관지
     if hsname == 광교고등학교
-    if hsname == 광남
-    if hsname == 광남고등학교
+    광남고등학교 if hsname == 광남
     if hsname == 광대
-    if hsname == 광덕
-    if hsname == 광덕고등학교
-    if hsname == 광동
-    if hsname == 광동고등학교
-    if hsname == 광동여고
-    if hsname == 광동여자
-    if hsname == 광동여자고등학교
+    광덕고등학교 if hsname == 광덕
+    광동고등학교 if hsname == 광동
+    광동여자고등학교 if hsname == 광동여고
+    광동여자고등학교 if hsname == 광동여자
     if hsname == 광동종합
     if hsname == 광릉
-    if hsname == 광명
+    광명고등학교 if hsname == 광명
     if hsname == 광명 명문
-    if hsname == 광명 여자
+    광명여자고등학교 if hsname == 광명 여자
     if hsname == 광명 진성
     if hsname == 광명, 광문
-    if hsname == 광명고등학교
-    if hsname == 광명공업
-    if hsname == 광명공업고등학교
-    if hsname == 광명북
-    if hsname == 광명북고등학교
-    if hsname == 광명북구
-    if hsname == 광명여자
-    if hsname == 광명여자고등학교
-    if hsname == 광명정보산업
-    if hsname == 광명정보산업고등학교
-    if hsname == 광문
-    if hsname == 광문고
-    if hsname == 광문고등학교
+    광명공업고등학교 if hsname == 광명공업
+    광명북고등학교 if hsname == 광명북
+    광명북고등학교 if hsname == 광명북구
+    광명여자고등학교 if hsname == 광명여자
+    광명정보산업고등학교 if hsname == 광명정보산업
+    광문고등학교 if hsname == 광문
+    광문고등학교 if hsname == 광문고
     if hsname == 광문전자공업
     if hsname == 광산고등학교
     if hsname == 광산상업고등학교
     if hsname == 광산여자고등학교
-    if hsname == 광선
-    if hsname == 광성
-    if hsname == 광성고등학교
-    if hsname == 광성공업
-    if hsname == 광성공업고등학교
-    if hsname == 광신
-    if hsname == 광신고등학교
-    if hsname == 광신전자
-    if hsname == 광신정보
-    if hsname == 광신정보산업
-    if hsname == 광신정보산업고등학교
-    if hsname == 광신정보상업고등학교
-    if hsname == 광싱
-    if hsname == 광양
-    if hsname == 광양 여자
-    if hsname == 광양고등학교
-    if hsname == 광양백운
-    if hsname == 광양백운고등학교
-    if hsname == 광양실업
-    if hsname == 광양실업고등학교
-    if hsname == 광양여
-    if hsname == 광양여고
-    if hsname == 광양여자
-    if hsname == 광양여자고등학교
+    광성고등학교 if hsname == 광선
+    광성고등학교 if hsname == 광성
+    광성공업고등학교 if hsname == 광성공업
+    광신고등학교 if hsname == 광신
+    광신정보산업고등학교 if hsname == 광신전자
+    광신정보산업고등학교 if hsname == 광신정보
+    광신정보산업고등학교 if hsname == 광신정보산업
+    광신정보산업고등학교 if hsname == 광신정보상업고등학교
+    광신고등학교 if hsname == 광싱
+    광양고등학교 if hsname == 광양
+    광양여자고등학교 if hsname == 광양 여자
+    광양백운고등학교 if hsname == 광양백운
+    광양실업고등학교 if hsname == 광양실업
+    광양여자고등학교 if hsname == 광양여
+    광양여자고등학교 if hsname == 광양여고
+    광양여자고등학교 if hsname == 광양여자
     if hsname == 광양예술
-    if hsname == 광양재철
-    if hsname == 광양제철
-    if hsname == 광양제철고등학교
+    광양제철고등학교 if hsname == 광양재철
+    광양제철고등학교 if hsname == 광양제철
     if hsname == 광양하이텍고등학교
-    if hsname == 광영
-    if hsname == 광영고등학교
-    if hsname == 광영남자
-    if hsname == 광영여자
-    if hsname == 광영여자고등학교
-    if hsname == 광운
-    if hsname == 광운고등학교
-    if hsname == 광운공업
-    if hsname == 광운전자
-    if hsname == 광운전자공업
-    if hsname == 광운전자공업고등학교
+    광영고등학교 if hsname == 광영
+    광영고등학교 if hsname == 광영남자
+    광영여자고등학교 if hsname == 광영여자
+    광운고등학교 if hsname == 광운
+    광운전자공업고등학교 if hsname == 광운공업
+    광운전자공업고등학교 if hsname == 광운전자
+    광운전자공업고등학교 if hsname == 광운전자공업
     if hsname == 광원고등학교
-    if hsname == 광일
-    if hsname == 광일고등학교
-    if hsname == 광주
+    광일고등학교 if hsname == 광일
+    광주고등학교 if hsname == 광주
     if hsname == 광주  정보고등학교
-    if hsname == 광주  제일
+    광주제일고등학교 if hsname == 광주  제일
     if hsname == 광주 대동
     if hsname == 광주 대방여고
     if hsname == 광주 서석
     if hsname == 광주 세광
     if hsname == 광주 수피아
-    if hsname == 광주 여자
+    광주여자고등학교 if hsname == 광주 여자
     if hsname == 광주 용성
     if hsname == 광주 은혜학교-장애인학교
     if hsname == 광주 인성
@@ -1436,19 +1303,15 @@ use ~/dropbox/goms/goms_master , clear
     if hsname == 광주 중앙공립
     if hsname == 광주 체육
     if hsname == 광주건흥
-    if hsname == 광주경신여자
-    if hsname == 광주경신여자고등학교
+    광주경신여자고등학교 if hsname == 광주경신여자
     if hsname == 광주경영고등학교
-    if hsname == 광주고등학교
-    if hsname == 광주고등학교부설 방송통신고등학교
-    if hsname == 광주고등학교부설방송통신
+    광주고등학교부설방송통신고등학교 if hsname == 광주고등학교부설 방송통신고등학교
+    광주고등학교부설방송통신고등학교 if hsname == 광주고등학교부설방송통신
     if hsname == 광주고려
     if hsname == 광주공고
-    if hsname == 광주공업
-    if hsname == 광주공업고등학교
-    if hsname == 광주과학
-    if hsname == 광주과학고
-    if hsname == 광주과학고등학교
+    광주공업고등학교 if hsname == 광주공업
+    광주과학고등학교 if hsname == 광주과학
+    광주과학고등학교 if hsname == 광주과학고
     if hsname == 광주광덕고등학교
     if hsname == 광주국제
     if hsname == 광주국제고등학교
@@ -1463,117 +1326,84 @@ use ~/dropbox/goms/goms_master , clear
     if hsname == 광주대성여자
     if hsname == 광주대신고등학교
     if hsname == 광주동선여자
-    if hsname == 광주동성
-    if hsname == 광주동성고등학교
-    if hsname == 광주동신
-    if hsname == 광주동신고등학교
-    if hsname == 광주동신여자
-    if hsname == 광주동신여자고등학교
+    광주동성고등학교 if hsname == 광주동성
+    광주동신고등학교 if hsname == 광주동신
+    광주동신여자고등학교 if hsname == 광주동신여자
     if hsname == 광주동아여자
     if hsname == 광주동여자
     if hsname == 광주동일정보고등학교
-    if hsname == 광주문성
-    if hsname == 광주문성고등학교
-    if hsname == 광주방송통신고등학교
+    광주문성고등학교 if hsname == 광주문성
+    광주고등학교부설방송통신고등학교 if hsname == 광주방송통신고등학교
     if hsname == 광주보문고등학교
     if hsname == 광주보훈여자
     if hsname == 광주북구 자연과학
     if hsname == 광주삼육고등학교
-    if hsname == 광주상고
-    if hsname == 광주상업
-    if hsname == 광주상업고등학교
+    광주상업고등학교 if hsname == 광주상고
+    광주상업고등학교 if hsname == 광주상업
     if hsname == 광주생명과학
     if hsname == 광주서광
-    if hsname == 광주서석
-    if hsname == 광주서석고등학교
-    if hsname == 광주서진여자
-    if hsname == 광주서진여자고등학교
-    if hsname == 광주서진여자고등학교(구/광주옥천여상)
-    if hsname == 광주석산
-    if hsname == 광주석산고등학교
+    광주서석고등학교 if hsname == 광주서석
+    광주서진여자고등학교 if hsname == 광주서진여자
+    광주서진여자고등학교 if hsname == 광주서진여자고등학교(구/광주옥천여상)
+    광주석산고등학교 if hsname == 광주석산
     if hsname == 광주설원예술
     if hsname == 광주설월
-    if hsname == 광주세종
-    if hsname == 광주세종고등학교
+    광주세종고등학교 if hsname == 광주세종
     if hsname == 광주송원
-    if hsname == 광주수피아여자고등학교
     if hsname == 광주숭의공업고등학교
-    if hsname == 광주숭일
-    if hsname == 광주숭일고등학교
-    if hsname == 광주스피아여자
-    if hsname == 광주여고
-    if hsname == 광주여자
-    if hsname == 광주여자고등학교
-    if hsname == 광주여자사업
-    if hsname == 광주여자산업
-    if hsname == 광주여자상업
-    if hsname == 광주여자상업고등학교
-    if hsname == 광주예술
-    if hsname == 광주예술고등학교
-    if hsname == 광주옥천여자상업
+    광주숭일고등학교 if hsname == 광주숭일
+    광주수피아여자고등학교 if hsname == 광주스피아여자
+    광주여자고등학교 if hsname == 광주여고
+    광주여자고등학교 if hsname == 광주여자
+    광주여자상업고등학교 if hsname == 광주여자사업
+    광주여자상업고등학교 if hsname == 광주여자산업
+    광주여자상업고등학교 if hsname == 광주여자상업
+    광주예술고등학교 if hsname == 광주예술
+    광주서진여자고등학교 if hsname == 광주옥천여자상업
     if hsname == 광주외국인학교
-    if hsname == 광주인성
-    if hsname == 광주인성고등학교
-    if hsname == 광주일
-    if hsname == 광주일고
-    if hsname == 광주자동차설비
-    if hsname == 광주자동화설비공업
-    if hsname == 광주자동화설비공업고등학교
+    광주인성고등학교 if hsname == 광주인성
+    광주제일고등학교 if hsname == 광주일
+    광주제일고등학교 if hsname == 광주일고
+    광주자동화설비공업고등학교 if hsname == 광주자동차설비
+    광주자동화설비공업고등학교 if hsname == 광주자동화설비공업
     if hsname == (구: 광주정..
-    if hsname == 광주자연과학
-    if hsname == 광주자연과학고등학교
-    if hsname == 광주자연과학고등학교(구/광주농업고등..
-    if hsname == 광주전산
-    if hsname == 광주전산고등학교
-    if hsname == 광주전산고등학교(구: 광산상업고등학교)
-    if hsname == 광주전자
-    if hsname == 광주전자공업
-    if hsname == 광주전자공업고등학교
+    광주자연과학고등학교 if hsname == 광주자연과학
+    광주자연과학고등학교 if hsname == 광주자연과학고등학교(구/광주농업고등..
+    광주전산고등학교 if hsname == 광주전산
+    광주전산고등학교 if hsname == 광주전산고등학교(구: 광산상업고등학교)
+    광주전자공업고등학교 if hsname == 광주전자
+    광주전자공업고등학교 if hsname == 광주전자공업
     if hsname == 광주전진
-    if hsname == 광주정보
-    if hsname == 광주정보고등학교
-    if hsname == 광주정보산업
-    if hsname == 광주제일
-    if hsname == 광주제일고
-    if hsname == 광주제일고등학교
-    if hsname == 광주종
-    if hsname == 광주종합
-    if hsname == 광주종합고등학교
-    if hsname == 광주중앙
-    if hsname == 광주중앙고등학 교
-    if hsname == 광주중앙고등학교
-    if hsname == 광주중앙여
-    if hsname == 광주중앙여자
-    if hsname == 광주중앙여자고등학교
-    if hsname == 광주진흥
-    if hsname == 광주진흥고등학교
-    if hsname == 광주체육
-    if hsname == 광주체육고등학 교
-    if hsname == 광주체육고등학교
+    광주자동화설비공업고등학교 if hsname == 광주정보
+    광주자동화설비공업고등학교 if hsname == 광주정보고등학교
+    광주자동화설비공업고등학교 if hsname == 광주정보산업
+    광주제일고등학교 if hsname == 광주제일
+    광주제일고등학교 if hsname == 광주제일고
+    광주종합고등학교 if hsname == 광주종
+    광주종합고등학교 if hsname == 광주종합
+    광주중앙고등학교 if hsname == 광주중앙
+    광주중앙고등학교 if hsname == 광주중앙고등학 교
+    광주중앙여자고등학교 if hsname == 광주중앙여
+    광주중앙여자고등학교 if hsname == 광주중앙여자
+    광주진흥고등학교 if hsname == 광주진흥
+    광주체육고등학교 if hsname == 광주체육
+    광주체육고등학교 if hsname == 광주체육고등학 교
     if hsname == 광주풍암
     if hsname == 광진
     if hsname == 광진 자양
-    if hsname == 광천
-    if hsname == 광천고등학교
+    광천고등학교 if hsname == 광천
     if hsname == 광천상업
     if hsname == 광천정보
-    if hsname == 광천제일
-    if hsname == 광천제일고등학교
-    if hsname == 광탄
-    if hsname == 광탄고등학교
+    광천제일고등학교 if hsname == 광천제일
+    광탄고등학교 if hsname == 광탄
     if hsname == 광편 정보
     if hsname == 광평
-    if hsname == 광혜원
-    if hsname == 광혜원고등학교
-    if hsname == 광희
-    if hsname == 광희고등학교
-    if hsname == 괴산
-    if hsname == 괴산고등
-    if hsname == 괴산고등학교
-    if hsname == 괴정
-    if hsname == 괴정고등학교
-    if hsname == 교동
-    if hsname == 교동고등학교
+    광혜원고등학교 if hsname == 광혜원
+    광희고등학교 if hsname == 광희
+    괴산고등학교 if hsname == 괴산
+    괴산고등학교 if hsname == 괴산고등
+    괴정고등학교 if hsname == 괴정
+    교동고등학교 if hsname == 교동
     if hsname == 교문여자정보
     if hsname == 교원
     if hsname == 교원대 부설
@@ -1595,16 +1425,13 @@ use ~/dropbox/goms/goms_master , clear
     if hsname == 구덕
     if hsname == 구덕고등학교
     if hsname == 구도여자
-    if hsname == 구례
-    if hsname == 구례고
-    if hsname == 구례고등학교
-    if hsname == 구례농업
-    if hsname == 구례농업고등학교
+    구례고등학교 if hsname == 구례
+    구례고등학교 if hsname == 구례고
+    구례농업고등학교 if hsname == 구례농업
     if hsname == 구례여자
     if hsname == 구례자연
-    if hsname == 구로
-    if hsname == 구로고
-    if hsname == 구로고등학교
+    구로고등학교 if hsname == 구로
+    구로고등학교 if hsname == 구로고
     if hsname == 구로여자
     if hsname == 구로여자산업고등학교
     if hsname == 구로여자상업
@@ -1615,62 +1442,47 @@ use ~/dropbox/goms/goms_master , clear
     if hsname == 구룡포종합
     if hsname == 구룡포종합고등학교
     if hsname == 구류여자정보고등학교
-    if hsname == 구리
-    if hsname == 구리고
-    if hsname == 구리고등학교
-    if hsname == 구리여고
-    if hsname == 구리여자
-    if hsname == 구리여자고등학교
-    if hsname == 구리인창
-    if hsname == 구리인창고등학교
-    if hsname == 구림
-    if hsname == 구림공업
-    if hsname == 구림공업고등학교
+    구리고등학교 if hsname == 구리
+    구리고등학교 if hsname == 구리고
+    구리여자고등학교 if hsname == 구리여고
+    구리여자고등학교 if hsname == 구리여자
+    구리인창고등학교 if hsname == 구리인창
+    구림공업고등학교 if hsname == 구림
+    구림공업고등학교 if hsname == 구림공업
     if hsname == 구명고등학교
     if hsname == 구미
-    if hsname == 구미 경구
+    구미 경구 if hsname == 구미고등학교
     if hsname == 구미 금오여고
     if hsname == 구미 금오여자
     if hsname == 구미 사곡
     if hsname == 구미 여자
     if hsname == 구미(구미시)
     if hsname == 구미경구
-    if hsname == 구미고등학교
     if hsname == 구미고등학교부설 방송통신고등학교
     if hsname == 구미공고
     if hsname == 구미공업
-    if hsname == 구미금오
-    if hsname == 구미금오고등학교
+    구미금오고등학교 if hsname == 구미금오
     if hsname == 구미금호
     if hsname == 구미도계
     if hsname == 구미모삼
     if hsname == 구미방송
-    if hsname == 구미여자
-    if hsname == 구미여자고등학교
-    if hsname == 구미여자상업
-    if hsname == 구미여자상업고등학교
+    구미여자고등학교 if hsname == 구미여자
+    구미여자상업고등학교 if hsname == 구미여자상업
     if hsname == 구미여자정보
     if hsname == 구미오상
-    if hsname == 구미전자
-    if hsname == 구미전자공업
-    if hsname == 구미전자공업고등학교
-    if hsname == 구미정보
-    if hsname == 구미정보고등학교
-    if hsname == 구미정보여자
-    if hsname == 구미정보여자고등학교
+    구미전자공업고등학교 if hsname == 구미전자
+    구미전자공업고등학교 if hsname == 구미전자공업
+    구미정보고등학교 if hsname == 구미정보
+    구미정보여자고등학교 if hsname == 구미정보여자
     if hsname == 구미현일
-    if hsname == 구민전자공업
+    구미전자공업고등학교 if if hsname == 구민전자공업
     if hsname == 구봉
-    if hsname == 구성
-    if hsname == 구성고등학교
-    if hsname == 구암
-    if hsname == 구암고등학교
+    구성고등학교 if hsname == 구성
+    구암고등학교 if hsname == 구암
     if hsname == 구영여자
     if hsname == 구용
-    if hsname == 구일
-    if hsname == 구일고등학교
-    if hsname == 구정
-    if hsname == 구정고등학교
+    구일고등학교 if hsname == 구일
+    구정고등학교 if hsname == 구정
     if hsname == 구포
     if hsname == 구포여자상업
     if hsname == 구현고등학교
@@ -1678,25 +1490,23 @@ use ~/dropbox/goms/goms_master , clear
     if hsname == 국내
     if hsname == 국리전통예술
     if hsname == 국립 국악
-    if hsname == 국립구미전자공업고등학교
-    if hsname == 국립국악
-    if hsname == 국립국악고등
-    if hsname == 국립국악고등고등학교
-    if hsname == 국립국악고등학교
-    if hsname == 국립국악예술고등학교
+    구미전자공업고등학교 if hsname == 국립구미전자공업고등학교
+    국립국악고등학교 if hsname == 국립국악
+    국립국악고등학교 if hsname == 국립국악고등
+    국립국악고등학교 if hsname == 국립국악고등고등학교
+    국립전통예술고등학교 if hsname == 국립국악예술고등학교
     if hsname == 국립부산해사고등학교
     if hsname == 국립부산해사고등학교(부산해양고)
-    if hsname == 국립전통예술
-    if hsname == 국립전통예술고등학교
-    if hsname == 국립전통예술중고등학교
+    국립전통예술고등학교 if hsname == 국립전통예술
+    국립전통예술고등학교 if hsname == 국립전통예술중고등학교
     if hsname == 국립해사
     if hsname == 국무기계공업
-    if hsname == 국민전통예술
+    국립전통예술고등학교 if hsname == 국민전통예술
     if hsname == 국산기계공업
-    if hsname == 국악
-    if hsname == 국악고등학교
-    if hsname == 국악예술
-    if hsname == 국악예술고등학교
+    국립국악고등학교 if hsname == 국악
+    국립국악고등학교 if hsname == 국악고등학교
+    국립전통예술고등학교 if hsname == 국악예술
+    국립전통예술고등학교 if hsname == 국악예술고등학교
     if hsname == 국원고등학교
     if hsname == 국제
     if hsname == 국제  금융
@@ -1705,210 +1515,155 @@ use ~/dropbox/goms/goms_master , clear
     if hsname == 국제물류고등학교
     if hsname == 국제영화
     if hsname == 국제외
-    if hsname == 국제외국어
-    if hsname == 국제외국어고등학교
+    국제외국어고등학교 if hsname == 국제외국어
     if hsname == 국제컨벤션고등학교
     if hsname == 국제통상
     if hsname == 국제통상고등학교
     if hsname == 국제통상고등학교고등학교
+    if hsname == 국제통상고등학교
     if hsname == 국제통상부
     if hsname == 국제통상학교
     if hsname == 국제특성화고등학교
     if hsname == 군남종합
-    if hsname == 군북
-    if hsname == 군북고등학교
-    if hsname == 군산
+    군북고등학교 if hsname == 군북
+    군산고등학교 if hsname == 군산
     if hsname == 군산 남
     if hsname == 군산 여자
     if hsname == 군산 영광
     if hsname == 군산 영광 여자
-    if hsname == 군산고
-    if hsname == 군산고등학교
-    if hsname == 군산공업고등학교
-    if hsname == 군산기歌騙?
-    if hsname == 군산기계
-    if hsname == 군산기계고등학교
-    if hsname == 군산기계공업
-    if hsname == 군산기계공업고등학교
-    if hsname == 군산기계공업고등학교(구/군산공업고)
-    if hsname == 군산남
-    if hsname == 군산남고등학교
-    if hsname == 군산남자고등학교
-    if hsname == 군산동
-    if hsname == 군산동고
-    if hsname == 군산동고등학교
+    군산고등학교 if hsname == 군산고
+    군산기계공업고등학교 if hsname == 군산공업고등학교
+    군산기계공업고등학교 if hsname == 군산기歌騙?
+    군산기계공업고등학교 if if hsname == 군산기계
+    군산기계공업고등학교 if hsname if hsname == 군산기계고등학교
+    군산기계공업고등학교 if hsname == 군산기계공업
+    군산기계공업고등학교 if hsname == 군산기계공업고등학교(구/군산공업고)
+    군산남고등학교 if hsname == 군산남
+    군산남고등학교 if hsname == 군산남자고등학교
+    군산동고등학교 if hsname == 군산동
+    군산동고등학교 if hsname == 군산동고
     if hsname == 군산려자상업
     if hsname == 군산상업
     if hsname == 군산상업고등학교
-    if hsname == 군산여고
-    if hsname == 군산여자
-    if hsname == 군산여자고등학교
+    군산여자고등학교 if hsname == 군산여고
+    군산여자고등학교 if hsname == 군산여자
     if hsname == 군산여자상업
     if hsname == 군산여자상업고등학교
-    if hsname == 군산영광 여자
-    if hsname == 군산영광여자
-    if hsname == 군산영광여자고등학교
+    군산영광여자고등학교 if hsname == 군산영광 여자
+    군산영광여자고등학교 if hsname == 군산영광여자
     if hsname == 군산예상
-    if hsname == 군산제일
-    if hsname == 군산제일고등학교
-    if hsname == 군산중앙
-    if hsname == 군산중앙고등학교
-    if hsname == 군산중앙여고
-    if hsname == 군산중앙여자
-    if hsname == 군산중앙여자고등학교
-    if hsname == 군산평화
-    if hsname == 군산평화고등학교
+    군산제일고등학교 if hsname == 군산제일
+    군산중앙고등학교 if hsname == 군산중앙
+    군산중앙여자고등학교 if hsname == 군산중앙여고
+    군산중앙여자고등학교 if hsname == 군산중앙여자
+    군산평화고등학교 if hsname == 군산평화
     if hsname == 군서고등학교
     if hsname == 군성
     if hsname == 군암여자정보고등학교
-    if hsname == 군위
-    if hsname == 군위고등학교
-    if hsname == 군위여자
-    if hsname == 군위여자고등학교
+    군위고등학교 if hsname == 군위
+    군위여자고등학교 if hsname == 군위여자
     if hsname == 군위여자상업고등학교
-    if hsname == 군위정보
-    if hsname == 군위정보고등학교
-    if hsname == 군자
-    if hsname == 군자공업
-    if hsname == 군자공업고등
-    if hsname == 군자공업고등학교
-    if hsname == 군토
-    if hsname == 군포
-    if hsname == 군포 용호
-    if hsname == 군포 용호고등학교
-    if hsname == 군포 정보산업
-    if hsname == 군포E비즈니스
-    if hsname == 군포e비즈니스고등학교
-    if hsname == e비즈니스고등학교(구/군포정보산업..
-    if hsname == 군포e비지니스
-    if hsname == 군포고등학교
-    if hsname == 군포용호
-    if hsname == 군포용호고등학교
-    if hsname == 군포이비지니스
-    if hsname == 군포정보
-    if hsname == 군포정보산업
-    if hsname == 군포정보산업고등학교
+    군위정보고등학교 if hsname == 군위정보
+    군자공업고등학교 if hsname == 군자
+    군자공업고등학교 if hsname == 군자공업
+    군자공업고등학교 if hsname == 군자공업고등
+    군포고등학교 if hsname == 군토
+    군포고등학교 if hsname == 군포
+    군포용호고등학교 if hsname == 군포 용호
+    군포용호고등학교 if hsname == 군포 용호고등학교
+    군포e비즈니스고등학교 if hsname == 군포 정보산업
+    군포e비즈니스고등학교 if hsname == 군포E비즈니스
+    군포e비즈니스고등학교 if hsname == e비즈니스고등학교(구/군포정보산업..
+    군포e비즈니스고등학교 if hsname == 군포e비지니스
+    군포용호고등학교 if hsname == 군포용호
+    군포e비즈니스고등학교 if hsname == 군포이비지니스
+    군포e비즈니스고등학교 if hsname == 군포정보
+    군포e비즈니스고등학교 if hsname == 군포정보산업
+    군포e비즈니스고등학교 if hsname == 군포정보산업고등학교
     if hsname == 궁고별
     if hsname == 권상
-    if hsname == 권선
-    if hsname == 권선고등학교
+    권선고등학교 if hsname == 권선
     if hsname == 균산여자
     if hsname == 극성
     if hsname == 근덕
-    if hsname == 근명
-    if hsname == 근명여자
-    if hsname == 근명여자상업고등학교
-    if hsname == 근명여자정보
-    if hsname == 근명여자정보고등학교
-    if hsname == 근명여자정보상업
-    if hsname == 근영
-    if hsname == 근영 여자
-    if hsname == 근영여고
-    if hsname == 근영여자
-    if hsname == 근영여자고등학교
-    if hsname == 근영여자정보
-    if hsname == 근하
-    if hsname == 근화
-    if hsname == 근화 여자
-    if hsname == 근화여자
-    if hsname == 근화여자고등학교
+    근명여자정보고등학교 if hsname == 근명
+    근명여자정보고등학교 if hsname == 근명여자
+    근명여자정보고등학교 if hsname == 근명여자상업고등학교
+    근명여자정보고등학교 if hsname == 근명여자정보
+    근명여자정보고등학교 if hsname == 근명여자정보상업
+    근영여자고등학교 if hsname == 근영
+    근영여자고등학교 if hsname == 근영 여자
+    근영여자고등학교 if hsname == 근영여고
+    근영여자고등학교 if hsname == 근영여자
+    근명여자정보고등학교 if hsname == 근영여자정보
+    근화여자고등학교 if hsname == 근하
+    근화여자고등학교 if hsname == 근화
+    근화여자고등학교 if hsname == 근화 여자
+    근화여자고등학교 if hsname == 근화여자
     if hsname == 글로벌경영
     if hsname == 금
-    if hsname == 금곡
-    if hsname == 금곡고등학교
-    if hsname == 금곡종합
-    if hsname == 금곡종합고등학교
-    if hsname == 금남
-    if hsname == 금남고등학교
-    if hsname == 금남자고등학교
+    금곡고등학교 if hsname == 금곡
+    금곡종합고등학교 if hsname == 금곡종합
+    금남고등학교 if hsname == 금남
+    금남고등학교 if hsname == 금남자고등학교
     if hsname == 금당
-    if hsname == 금란여자고등학교
-    if hsname == 금명여자
-    if hsname == 금명여자고등학교
-    if hsname == 금명여자정보
-    if hsname == 금명정보
-    if hsname == 금산
-    if hsname == 금산간디학교
-    if hsname == 금산고
-    if hsname == 금산고등학교
-    if hsname == 금산산업
-    if hsname == 금산산업고등학교
-    if hsname == 금산여자
-    if hsname == 금산여자고등학교
-    if hsname == 금산종합
-    if hsname == 금산종합고등학교
-    if hsname == 금산하이텍고등학교
-    if hsname == 금성
-    if hsname == 금성고등학교
+    금명여자고등학교 if hsname == 금명여자
+    근명여자정보고등학교 if hsname == 금명여자정보
+    근명여자정보고등학교 if hsname == 금명정보
+    금산고등학교 if hsname == 금산
+    금산고등학교 if hsname == 금산고
+    금산산업고등학교 if hsname == 금산산업
+    금산여자고등학교 if hsname == 금산여자
+    금산종합고등학교 if hsname == 금산종합
+    금성고등학교 if hsname == 금성
     if hsname == 금성상심
     if hsname == 금성여자
     if hsname == 금성여자상업
     if hsname == 금신여자
-    if hsname == 금암
-    if hsname == 금암고등학교
+    금암고등학교 if hsname == 금암
     if hsname == 금암공업
-    if hsname == 금오
-    if hsname == 금오고등학교
-    if hsname == 금오공업
-    if hsname == 금오공업고등학교
-    if hsname == 금오여자
-    if hsname == 금오여자고등학교
-    if hsname == 금옥
-    if hsname == 금옥여자
-    if hsname == 금옥여자고등학교
+    금오고등학교 if hsname == 금오
+    금오공업고등학교 if hsname == 금오공업
+    금오여자고등학교 if hsname == 금오여자
+    금옥여자고등학교 if hsname == 금옥
+    금옥여자고등학교 if hsname == 금옥여자
     if hsname == 금왕
     if hsname == 금왕공업
     if hsname == 금융고등학교
-    if hsname == 금일
-    if hsname == 금일고등학교
-    if hsname == 금정
-    if hsname == 금정 여자
-    if hsname == 금정 전자공업
-    if hsname == 금정고등학교
-    if hsname == 금정공업
-    if hsname == 금정여고
-    if hsname == 금정여자
-    if hsname == 금정여자고등학교
-    if hsname == 금정전자
-    if hsname == 금정전자고등학교
-    if hsname == 금정전자공업
-    if hsname == 금정전자공업고등학교
+    금일고등학교 if hsname == 금일
+    금정고등학교 if hsname == 금정
+    금정여자고등학교 if hsname == 금정 여자
+    금정전자공업고등학교 if hsname == 금정 전자공업
+    금정전자공업고등학교 if hsname == 금정공업
+    금정여자고등학교 if hsname == 금정여고
+    금정여자고등학교 if hsname == 금정여자
+    금정전자고등학교 if hsname == 금정전자
+    금정전자공업고등학교 if hsname == 금정전자공업
     if hsname == 금좌
-    if hsname == 금천
-    if hsname == 금천고등학교
-    if hsname == 금천여자고등학교
-    if hsname == 금촌
-    if hsname == 금촌고등학교
-    if hsname == 금파
-    if hsname == 금파공고
-    if hsname == 금파공업
-    if hsname == 금파공업고등학교
-    if hsname == 금호
-    if hsname == 금호고등학교
-    if hsname == 금호공업
-    if hsname == 금호공업고등학교
-    if hsname == 금호여자
-    if hsname == 금호여자고등학교
-    if hsname == 금호중앙여자
-    if hsname == 금호중앙여자고등학교
-    if hsname == 금화여자
+    금천고등학교 if hsname == 금천
+    금촌고등학교 if hsname == 금촌
+    금파공업고등학교 if hsname == 금파
+    금파공업고등학교 if hsname == 금파공고
+    금파공업고등학교 if hsname == 금파공업
+    금호고등학교 if hsname == 금호
+    금호공업고등학교 if hsname == 금호공업
+    금호여자고등학교 if hsname == 금호여자
+    금호중앙여자고등학교 if hsname == 금호중앙여자
+    금화여자고등학교 if hsname == 금화여자
     if hsname == 기계
     if hsname == 기계고등학교
     if hsname == 기계공고
     if hsname == 기계공업
     if hsname == 기계공업고등학교
-    if hsname == 기린
-    if hsname == 기린고등학교
+    기린고등학교 if hsname == 기린
     if hsname == 기림
-    if hsname == 기장
-    if hsname == 기장고등학교
+    기장고등학교 if hsname == 기장
     if hsname == 기전
     if hsname == 기전여고
     if hsname == 기전여자
     if hsname == 기타
-    if hsname == 기홍
-    if hsname == 기흥
-    if hsname == 기흥고등학교
+    기흥고등학교 if hsname == 기홍
+    기흥고등학교 if hsname == 기흥
     if hsname == 길성
     if hsname == 길신
     if hsname == 길안여자
@@ -1918,54 +1673,43 @@ use ~/dropbox/goms/goms_master , clear
     if hsname == 길음여자
     if hsname == 길지고등학교
     if hsname == 김고
-    if hsname == 김제
+    김제고등학교 if hsname == 김제
     if hsname == 김제 여자
-    if hsname == 김제고등
-    if hsname == 김제고등학교
+    김제고등학교 if hsname == 김제고등
     if hsname == 김제덕암
     if hsname == 김제만경여자
     if hsname == 김제북
     if hsname == 김제북고
     if hsname == 김제상업
-    if hsname == 김제서
-    if hsname == 김제서고등학교
-    if hsname == 김제여
-    if hsname == 김제여자
-    if hsname == 김제여자고등학교
-    if hsname == 김제자영
-    if hsname == 김제자영고등학교
-    if hsname == 김제자영고등학교(김제농고)
+    김제서고등학교 if hsname == 김제서
+    김제여자고등학교 if hsname == 김제여
+    김제여자고등학교 if hsname == 김제여자
+    김제자영고등학교 if hsname == 김제자영
+    김제자영고등학교 if hsname == 김제자영고등학교(김제농고)
     if hsname == 김제제일
-    if hsname == 김천
+    김천고등학교 if hsname == 김천
     if hsname == 김천 상업
     if hsname == 김천 성의
     if hsname == 김천 아포 공업
-    if hsname == 김천고등학교
-    if hsname == 김천농
-    if hsname == 김천농공
-    if hsname == 김천농공고등학교
-    if hsname == 김천농립
-    if hsname == 김천농업
-    if hsname == 김천상업
-    if hsname == 김천상업고등학교
+    김천농공고등학교 if hsname == 김천농
+    김천농공고등학교 if hsname == 김천농공
+    김천농공고등학교 if hsname == 김천농립
+    김천농공고등학교 if hsname == 김천농업
+    김천상업고등학교 if hsname == 김천상업
     if hsname == 김천생명과학고등학교
     if hsname == 김천성의
     if hsname == 김천성의여자상업
-    if hsname == 김천여고
-    if hsname == 김천여자
-    if hsname == 김천여자고등학교
-    if hsname == 김천예술
-    if hsname == 김천예술고등학교
-    if hsname == 김천중앙
-    if hsname == 김천중앙고 부설 방송통신고등학교
-    if hsname == 김천중앙고등학교
-    if hsname == 김천중앙고등학교부설방송통신고등학교
-    if hsname == 김천중앙고부설방송통신고등학교
+    김천여자고등학교 if hsname == 김천여고
+    김천여자고등학교 if hsname == 김천여자
+    김천예술고등학교 if hsname == 김천예술
+    김천중앙고등학교 if hsname == 김천중앙
+    김천중앙고등학교부설방송통신고등학교 if hsname == 김천중앙고 부설 방송통신고등학교
+    김천중앙고등학교부설방송통신고등학교 if hsname == 김천중앙고부설방송통신고등학교
+    김천중앙고등학교부설방송통신고등학교 if hsname == 김천중앙고부설방송통신고등학교
     if hsname == 김천한일고등학교
     if hsname == 김천한일여자고등학교
-    if hsname == 김포
+    김포고등학교 if hsname == 김포
     if hsname == 김포 제일
-    if hsname == 김포고등학교
     if hsname == 김포기계공업고등학교
     if hsname == 김포여자종합
     if hsname == 김포외국어
