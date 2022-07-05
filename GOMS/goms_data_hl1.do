@@ -26,6 +26,7 @@
       f009       /// /*고등학교 계열*/
       f010       /// /*졸업 대학 입학 구분(입학 혹은 편입)*/
       f011       /// /*졸업 대학 입학/편입 시기_년*/
+      f012       /// /*졸업 대학 입학/편입 시기_월*/
       f018       /// /*졸업한 대학을 선택한 이유*/
       f138       /// /*최종 졸업한 대학 이전에 다른 대학을 다닌 경험 유무*/
       p018       /// /*출생 지역(국내외구분)*/
@@ -102,6 +103,7 @@
       f009       /// /*고등학교 계열*/
       f010       /// /*졸업 대학 입학 구분(입학 혹은 편입)*/
       f011       /// /*졸업 대학 입학/편입 시기_년*/
+      f012       /// /*졸업 대학 입학/편입 시기_월*/
       f018       /// /*졸업한 대학을 선택한 이유*/
       f138       /// /*최종 졸업한 대학 이전에 다른 대학을 다닌 경험 유무*/
       p018       /// /*출생 지역(국내외구분)*/
@@ -124,9 +126,9 @@
         label var medtyp "의예과"
         capture label define MEDTYP 1 "의학" 2 "치의학" 3 "한의학" 4 "수의학" 5 "약학" 
         label value medtyp MEDTYP
-        replace medtyp = 1 if inlist(major , "U06010100003", "U06010100004" , "U06010100005" , "U06010100017" , "U06010100021"  )
+        replace medtyp = 1 if inlist(major , "U06010100003", "U06010100004", "U06010100005", "U06010100006", "U06010100017" , "U06010100021")
         replace medtyp = 2 if inlist(major , "U06010200005" )
-        replace medtyp = 3 if inlist(major , "U06010300002" )
+        replace medtyp = 3 if inlist(major , "U06010100013", "U06010300002" )
         replace medtyp = 4 if inlist(major , "U05020300003" , "U05020300015" )
         replace medtyp = 5 if strpos(major , "U060301" ) 
     /* 대학명 합치기*/
@@ -146,7 +148,7 @@
       rename pid08 pid 
       gen year = 2008
         label var year "조사년도"
-      gen wave =  1
+      gen wave =  2
         label var wave "조사회차"
     append using `tempgoms'
     save `tempgoms' , replace
@@ -179,6 +181,7 @@
       f009       /// /*고등학교 계열*/
       f010       /// /*졸업 대학 입학 구분(입학 혹은 편입)*/
       f011       /// /*졸업 대학 입학/편입 시기_년*/
+      f012       /// /*졸업 대학 입학/편입 시기_월*/
       f014       /// /*입학 전형 (일반 혹은 특별)*/
       f018       /// /*졸업한 대학을 선택한 이유*/
       f138       /// /*최종 졸업한 대학 이전에 다른 대학을 다닌 경험 유무*/
@@ -203,9 +206,9 @@
         label var medtyp "의예과"
         capture label define MEDTYP 1 "의학" 2 "치의학" 3 "한의학" 4 "수의학" 5 "약학" 
         label value medtyp MEDTYP
-        replace medtyp = 1 if inlist(major , "U06010100003", "U06010100004" , "U06010100005" , "U06010100017" , "U06010100021"  )
+        replace medtyp = 1 if inlist(major , "U06010100003", "U06010100004", "U06010100005", "U06010100006", "U06010100017" , "U06010100021")
         replace medtyp = 2 if inlist(major , "U06010200005" )
-        replace medtyp = 3 if inlist(major , "U06010300002" )
+        replace medtyp = 3 if inlist(major , "U06010100013", "U06010300002" )
         replace medtyp = 4 if inlist(major , "U05020300003" , "U05020300015" )
         replace medtyp = 5 if strpos(major , "U060301" ) 
     /* 대학명 합치기*/
@@ -235,7 +238,7 @@
       rename pid09 pid 
       gen year = 2009
         label var year "조사년도"
-      gen wave =  1
+      gen wave =  3
         label var wave "조사회차"
     append using `tempgoms'
     save `tempgoms' , replace
@@ -268,6 +271,7 @@
       f009       /// /*고등학교 계열*/
       f010       /// /*졸업 대학 입학 구분(입학 혹은 편입)*/
       f011       /// /*졸업 대학 입학/편입 시기_년*/
+      f012       /// /*졸업 대학 입학/편입 시기_월*/
       f014       /// /*입학 전형 (일반 혹은 특별)*/
       f018       /// /*졸업한 대학을 선택한 이유*/
       f138       /// /*최종 졸업한 대학 이전에 다른 대학을 다닌 경험 유무*/
@@ -292,9 +296,9 @@
         label var medtyp "의예과"
         capture label define MEDTYP 1 "의학" 2 "치의학" 3 "한의학" 4 "수의학" 5 "약학" 
         label value medtyp MEDTYP
-        replace medtyp = 1 if inlist(major , "U06010100003", "U06010100004" , "U06010100005" , "U06010100017" , "U06010100021"  )
+        replace medtyp = 1 if inlist(major , "U06010100003", "U06010100004", "U06010100005", "U06010100006", "U06010100017" , "U06010100021")
         replace medtyp = 2 if inlist(major , "U06010200005" )
-        replace medtyp = 3 if inlist(major , "U06010300002" )
+        replace medtyp = 3 if inlist(major , "U06010100013", "U06010300002" )
         replace medtyp = 4 if inlist(major , "U05020300003" , "U05020300015" )
         replace medtyp = 5 if strpos(major , "U060301" ) 
     /* 대학명 합치기*/
@@ -324,7 +328,7 @@
       rename pid10 pid 
       gen year = 2010
         label var year "조사년도"
-      gen wave =  1
+      gen wave =  4
         label var wave "조사회차"
     append using `tempgoms'
     save `tempgoms' , replace
@@ -357,6 +361,7 @@
       f009       /// /*고등학교 계열*/
       f010       /// /*졸업 대학 입학 구분(입학 혹은 편입)*/
       f011       /// /*졸업 대학 입학/편입 시기_년*/
+      f012       /// /*졸업 대학 입학/편입 시기_월*/
       f014       /// /*입학 전형 (일반 혹은 특별)*/
       f018       /// /*졸업한 대학을 선택한 이유*/
       f138       /// /*최종 졸업한 대학 이전에 다른 대학을 다닌 경험 유무*/
@@ -381,9 +386,9 @@
         label var medtyp "의예과"
         capture label define MEDTYP 1 "의학" 2 "치의학" 3 "한의학" 4 "수의학" 5 "약학" 
         label value medtyp MEDTYP
-        replace medtyp = 1 if inlist(major , "U06010100003", "U06010100004" , "U06010100005" , "U06010100017" , "U06010100021"  )
+        replace medtyp = 1 if inlist(major , "U06010100003", "U06010100004", "U06010100005", "U06010100006", "U06010100017" , "U06010100021")
         replace medtyp = 2 if inlist(major , "U06010200005" )
-        replace medtyp = 3 if inlist(major , "U06010300002" )
+        replace medtyp = 3 if inlist(major , "U06010100013", "U06010300002" )
         replace medtyp = 4 if inlist(major , "U05020300003" , "U05020300015" )
         replace medtyp = 5 if strpos(major , "U060301" ) 
     /* 대학명 합치기*/
@@ -413,7 +418,7 @@
       rename pid11 pid 
       gen year = 2011
         label var year "조사년도"
-      gen wave =  1
+      gen wave =  5
         label var wave "조사회차"
     append using `tempgoms'
     save `tempgoms' , replace
@@ -446,6 +451,7 @@
       f009       /// /*고등학교 계열*/
       f010       /// /*졸업 대학 입학 구분(입학 혹은 편입)*/
       f011       /// /*졸업 대학 입학/편입 시기_년*/
+      f012       /// /*졸업 대학 입학/편입 시기_월*/
       f014       /// /*입학 전형 (일반 혹은 특별)*/
       f016       /// /*졸업한 대학에 입학하는데 가장 중요했던 요소*/
       f018       /// /*졸업한 대학을 선택한 이유*/
@@ -470,9 +476,9 @@
         label var medtyp "의예과"
         capture label define MEDTYP 1 "의학" 2 "치의학" 3 "한의학" 4 "수의학" 5 "약학" 
         label value medtyp MEDTYP
-        replace medtyp = 1 if inlist(major , "U06010100003", "U06010100004" , "U06010100005" , "U06010100017" , "U06010100021"  )
+        replace medtyp = 1 if inlist(major , "U06010100003", "U06010100004", "U06010100005", "U06010100006", "U06010100017" , "U06010100021")
         replace medtyp = 2 if inlist(major , "U06010200005" )
-        replace medtyp = 3 if inlist(major , "U06010300002" )
+        replace medtyp = 3 if inlist(major , "U06010100013", "U06010300002" )
         replace medtyp = 4 if inlist(major , "U05020300003" , "U05020300015" )
         replace medtyp = 5 if strpos(major , "U060301" ) 
     /* 대학명 합치기*/
@@ -502,7 +508,7 @@
       rename pid12 pid 
       gen year = 2012
         label var year "조사년도"
-      gen wave =  1
+      gen wave =  6
         label var wave "조사회차"
     append using `tempgoms'
     save `tempgoms' , replace
@@ -535,6 +541,7 @@
       f009       /// /*고등학교 계열*/
       f010       /// /*졸업 대학 입학 구분(입학 혹은 편입)*/
       f011       /// /*졸업 대학 입학/편입 시기_년*/
+      f012       /// /*졸업 대학 입학/편입 시기_월*/
       f014       /// /*입학 전형 (일반 혹은 특별)*/
       f016       /// /*졸업한 대학에 입학하는데 가장 중요했던 요소*/
       f018       /// /*졸업한 대학을 선택한 이유*/
@@ -564,9 +571,9 @@
         label var medtyp "의예과"
         capture label define MEDTYP 1 "의학" 2 "치의학" 3 "한의학" 4 "수의학" 5 "약학" 
         label value medtyp MEDTYP
-        replace medtyp = 1 if inlist(major , "U06010100003", "U06010100004" , "U06010100005" , "U06010100017" , "U06010100021"  )
+        replace medtyp = 1 if inlist(major , "U06010100003", "U06010100004", "U06010100005", "U06010100006", "U06010100017" , "U06010100021")
         replace medtyp = 2 if inlist(major , "U06010200005" )
-        replace medtyp = 3 if inlist(major , "U06010300002" )
+        replace medtyp = 3 if inlist(major , "U06010100013", "U06010300002" )
         replace medtyp = 4 if inlist(major , "U05020300003" , "U05020300015" )
         replace medtyp = 5 if strpos(major , "U060301" ) 
     /* 대학명 합치기*/
@@ -596,7 +603,7 @@
       rename pid13 pid 
       gen year = 2013
         label var year "조사년도"
-      gen wave =  1
+      gen wave =  7
         label var wave "조사회차"
     append using `tempgoms'
     save `tempgoms' , replace
@@ -629,6 +636,7 @@
       f009       /// /*고등학교 계열*/
       f010       /// /*졸업 대학 입학 구분(입학 혹은 편입)*/
       f011       /// /*졸업 대학 입학/편입 시기_년*/
+      f012       /// /*졸업 대학 입학/편입 시기_월*/
       f014       /// /*입학 전형 (일반 혹은 특별)*/
       f016       /// /*졸업한 대학에 입학하는데 가장 중요했던 요소*/
       f018       /// /*졸업한 대학을 선택한 이유*/
@@ -654,9 +662,9 @@
         label var medtyp "의예과"
         capture label define MEDTYP 1 "의학" 2 "치의학" 3 "한의학" 4 "수의학" 5 "약학" 
         label value medtyp MEDTYP
-        replace medtyp = 1 if inlist(major , "U06010100003", "U06010100004" , "U06010100005" , "U06010100017" , "U06010100021"  )
+        replace medtyp = 1 if inlist(major , "U06010100003", "U06010100004", "U06010100005", "U06010100006", "U06010100017" , "U06010100021")
         replace medtyp = 2 if inlist(major , "U06010200005" )
-        replace medtyp = 3 if inlist(major , "U06010300002" )
+        replace medtyp = 3 if inlist(major , "U06010100013", "U06010300002" )
         replace medtyp = 4 if inlist(major , "U05020300003" , "U05020300015" )
         replace medtyp = 5 if strpos(major , "U060301" ) 
     /* 대학명 합치기*/
@@ -686,7 +694,7 @@
       rename pid14 pid 
       gen year = 2014
         label var year "조사년도"
-      gen wave =  1
+      gen wave =  8
         label var wave "조사회차"
     append using `tempgoms'
     save `tempgoms' , replace
@@ -719,6 +727,7 @@
       f009       /// /*고등학교 계열*/
       f010       /// /*졸업 대학 입학 구분(입학 혹은 편입)*/
       f011       /// /*졸업 대학 입학/편입 시기_년*/
+      f012       /// /*졸업 대학 입학/편입 시기_월*/
       f013       /// /*대학 입학 모집방법(정시 혹은 수시)*/
       f014       /// /*입학 전형 (일반 혹은 특별)*/
       f016       /// /*졸업한 대학에 입학하는데 가장 중요했던 요소*/
@@ -745,9 +754,9 @@
         label var medtyp "의예과"
         capture label define MEDTYP 1 "의학" 2 "치의학" 3 "한의학" 4 "수의학" 5 "약학" 
         label value medtyp MEDTYP
-        replace medtyp = 1 if inlist(major , "U06010100003", "U06010100004" , "U06010100005" , "U06010100017" , "U06010100021"  )
+        replace medtyp = 1 if inlist(major , "U06010100003", "U06010100004", "U06010100005", "U06010100006", "U06010100017" , "U06010100021")
         replace medtyp = 2 if inlist(major , "U06010200005" )
-        replace medtyp = 3 if inlist(major , "U06010300002" )
+        replace medtyp = 3 if inlist(major , "U06010100013", "U06010300002" )
         replace medtyp = 4 if inlist(major , "U05020300003" , "U05020300015" )
         replace medtyp = 5 if strpos(major , "U060301" ) 
     /* 대학명 합치기*/
@@ -777,7 +786,7 @@
         rename pid15 pid 
       gen year = 2015
         label var year "조사년도"
-      gen wave =  1
+      gen wave =  9
         label var wave "조사회차"
     append using `tempgoms'
     save `tempgoms' , replace
@@ -810,6 +819,7 @@
       f009       /// /*고등학교 계열*/
       f010       /// /*졸업 대학 입학 구분(입학 혹은 편입)*/
       f011       /// /*졸업 대학 입학/편입 시기_년*/
+      f012       /// /*졸업 대학 입학/편입 시기_월*/
       f013       /// /*대학 입학 모집방법(정시 혹은 수시)*/
       f170       /// /*입학 전형 유형 (세부 유형)*/
       f016       /// /*졸업한 대학에 입학하는데 가장 중요했던 요소*/
@@ -838,9 +848,9 @@
         label var medtyp "의예과"
         capture label define MEDTYP 1 "의학" 2 "치의학" 3 "한의학" 4 "수의학" 5 "약학" 
         label value medtyp MEDTYP
-        replace medtyp = 1 if inlist(major , "U06010100003", "U06010100004" , "U06010100005" , "U06010100017" , "U06010100021"  )
+        replace medtyp = 1 if inlist(major , "U06010100003", "U06010100004", "U06010100005", "U06010100006", "U06010100017" , "U06010100021")
         replace medtyp = 2 if inlist(major , "U06010200005" )
-        replace medtyp = 3 if inlist(major , "U06010300002" )
+        replace medtyp = 3 if inlist(major , "U06010100013", "U06010300002" )
         replace medtyp = 4 if inlist(major , "U05020300003" , "U05020300015" )
         replace medtyp = 5 if strpos(major , "U060301" ) 
     /* 대학명 합치기*/
@@ -870,7 +880,7 @@
       rename pid16 pid 
       gen year = 2016
         label var year "조사년도"
-      gen wave =  1
+      gen wave =  10
         label var wave "조사회차"
     append using `tempgoms'
     save `tempgoms' , replace
@@ -903,6 +913,7 @@
       f009       /// /*고등학교 계열*/
       f010       /// /*졸업 대학 입학 구분(입학 혹은 편입)*/
       f011       /// /*졸업 대학 입학/편입 시기_년*/
+      f012       /// /*졸업 대학 입학/편입 시기_월*/
       f013       /// /*대학 입학 모집방법(정시 혹은 수시)*/
       f170       /// /*입학 전형 유형 (세부 유형)*/
       f016       /// /*졸업한 대학에 입학하는데 가장 중요했던 요소*/
@@ -931,9 +942,9 @@
         label var medtyp "의예과"
         capture label define MEDTYP 1 "의학" 2 "치의학" 3 "한의학" 4 "수의학" 5 "약학" 
         label value medtyp MEDTYP
-        replace medtyp = 1 if inlist(major , "U06010100003", "U06010100004" , "U06010100005" , "U06010100017" , "U06010100021"  )
+        replace medtyp = 1 if inlist(major , "U06010100003", "U06010100004", "U06010100005", "U06010100006", "U06010100017" , "U06010100021")
         replace medtyp = 2 if inlist(major , "U06010200005" )
-        replace medtyp = 3 if inlist(major , "U06010300002" )
+        replace medtyp = 3 if inlist(major , "U06010100013", "U06010300002" )
         replace medtyp = 4 if inlist(major , "U05020300003" , "U05020300015" )
         replace medtyp = 5 if strpos(major , "U060301" ) 
     /* 대학명 합치기*/
@@ -963,7 +974,7 @@
       rename pid17 pid 
       gen year = 2017
         label var year "조사년도"
-      gen wave =  1
+      gen wave =  11
         label var wave "조사회차"
     append using `tempgoms'
     save `tempgoms' , replace
