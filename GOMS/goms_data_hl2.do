@@ -170,7 +170,7 @@ use goms_master , clear
         label var f013       "졸업대학교 모집방법(정시/수시)"
             label copy G171F013 F013
             label value f013 F013
-        label var f014       "졸업대학교 입학전형(일반/특별)"
+       label var f014       "졸업대학교 입학전형(일반/특별)"
             label define F014 -1  "모름/무응답" 1  "일반전형" ///
                 2  "일반전형(정시입학)" 3  "일반전형(수시입학)" /// 
                 4 "특별전형" 5  "특별전형(정원내)" 6  "특별전형(정원외)" ///
@@ -263,17 +263,17 @@ use goms_master , clear
         gen temp15 = .
             replace temp15 = 1 if f01315 == 1 & inlist(f01415 , 1 , 2)
             replace temp15 = 2 if f01315 == 2 & inlist(f01415 , 1 , 2)
-            replace temp15 = 3 if inlist(f01315 , 1 , 2 ) & inlist(f01415 , 3 , 4)
-            replace temp15 = 4 if f01315 == 3 | f01415 == 5 
+            replace temp15 = 3 if inlist(f01415 , 5 , 6)
+            replace temp15 = 4 if (f01315 == 3 & f01415 == 1) | f01415 == 7 
         gen temp16 = .
-            replace temp16 = 1 if f01316 == 1 & inlist(f17016 , 1 , 2, 3, 4, 5)
-            replace temp16 = 2 if f01316 == 2 & inlist(f17016 , 1 , 2, 3, 4, 5)
-            replace temp16 = 3 if inlist(f01316 , 1 , 2 ) & inlist(f17016 , 6 , 7)
+            replace temp16 = 1 if f01316 == 1 & f17016 == 5
+            replace temp16 = 2 if f01316 == 2 
+            replace temp16 = 1 if f01316 == 1 & f17016 != 5
             replace temp16 = 4 if f01316 == 3 | f17016 == 8 
         gen temp17 = .
-            replace temp17 = 1 if f01317 == 1 & inlist(f17017 , 1 , 2, 3, 4, 5)
-            replace temp17 = 2 if f01317 == 2 & inlist(f17017 , 1 , 2, 3, 4, 5)
-            replace temp17 = 3 if inlist(f01317 , 1 , 2 ) & inlist(f17017 , 6 , 7)
+            replace temp17 = 1 if f01317 == 1 & f17017 == 5
+            replace temp17 = 2 if f01317 == 2 
+            replace temp17 = 1 if f01317 == 1 & f17017 != 5
             replace temp17 = 4 if f01317 == 3 | f17017 == 8 
         egen f999 = rowlast(temp??) 
             label define F999 1 "일반정시" 2 "일반수시" 3 "특별전형" 4 "기타"
@@ -715,59 +715,59 @@ use goms_master , clear
         label define MAIN 1 "네" 0 "아니오"
         label value main MAIN
         replace main = 0 if unirank
-        replace main = 1 if  uniname == "가천대학교"      /*이원화*/
-        replace main = 1 if  uniname == "가톨릭대학교"    /*교지분할*/
-        replace main = 1 if  uniname == "강원대학교"      /*이원화 : 흡수합병*/
+        replace main = 1 if  uniname == "가천대학교"    
+        replace main = 1 if  uniname == "가톨릭대학교" 
+        replace main = 1 if  uniname == "강원대학교"  
         replace main = 1 if  uniname == "건국대학교"      & inlist(branch , 1 )
-        replace main = 1 if  uniname == "경북대학교"      /*이원화*/
-        replace main = 1 if  uniname == "경상대학교"      /*이원화*/
-        replace main = 1 if  uniname == "경희대학교"      /*이원화*/
+        replace main = 1 if  uniname == "경북대학교" 
+        replace main = 1 if  uniname == "경상대학교"
+        replace main = 1 if  uniname == "경희대학교"
             /*2011년 이후 국제캠은 본교와 통합*/
         replace main = 1 if  uniname == "고려대학교"      & inlist(branch , 1 )
         replace main = 1 if  uniname == "광운대학교"      & inlist(branch , 1 )
         replace main = 1 if  uniname == "광주과학기술원"  & inlist(branch , 1 )
         replace main = 1 if  uniname == "국민대학교"      & inlist(branch , 1 )
-        replace main = 1 if  uniname == "단국대학교"      & inlist(branch , 1 )
+        replace main = 1 if  uniname == "단국대학교"      & inlist(branch , 1 , 3 )
             /*2013년 이후 천안캠은 분교에서 이원캠으로 전환*/
-        replace main = 1 if  uniname == "동국대학교"      /*이원화*/& inlist(branch , 1 )
-        replace main = 1 if  uniname == "명지대학교"      /*교지분할*/& inlist(branch , 1 )
-        replace main = 1 if  uniname == "부경대학교"      & inlist(branch , 1 )
-        replace main = 1 if  uniname == "부산대학교"      /*이원화*/& inlist(branch , 1 )
-        replace main = 1 if  uniname == "서강대학교"      & inlist(branch , 1 )
-        replace main = 1 if  uniname == "서울대학교"      & inlist(branch , 1 )
-        replace main = 1 if  uniname == "서울시립대학교"  & inlist(branch , 1 )
-        replace main = 1 if  uniname == "성균관대학교"    & inlist(branch , 1 )
-        replace main = 1 if  uniname == "세종대학교"      & inlist(branch , 1 )
-        replace main = 1 if  uniname == "숙명여자대학교"  & inlist(branch , 1 )
-        replace main = 1 if  uniname == "순천향대학교"    & inlist(branch , 1 )
-        replace main = 1 if  uniname == "숭실대학교"      & inlist(branch , 1 )
-        replace main = 1 if  uniname == "아주대학교"      & inlist(branch , 1 )
+        replace main = 1 if  uniname == "동국대학교"      & inlist(branch , 1 )
+        replace main = 1 if  uniname == "명지대학교"     
+        replace main = 1 if  uniname == "부경대학교"      
+        replace main = 1 if  uniname == "부산대학교"      
+        replace main = 1 if  uniname == "서강대학교"      
+        replace main = 1 if  uniname == "서울대학교"      
+        replace main = 1 if  uniname == "서울시립대학교"  
+        replace main = 1 if  uniname == "성균관대학교"   
+        replace main = 1 if  uniname == "세종대학교"     
+        replace main = 1 if  uniname == "숙명여자대학교"
+        replace main = 1 if  uniname == "순천향대학교" 
+        replace main = 1 if  uniname == "숭실대학교"  
+        replace main = 1 if  uniname == "아주대학교" 
         replace main = 1 if  uniname == "연세대학교"      & inlist(branch , 1 )
-        replace main = 1 if  uniname == "영남대학교"      & inlist(branch , 1 )
-        replace main = 1 if  uniname == "울산과학기술원"  & inlist(branch , 1 )
-        replace main = 1 if  uniname == "울산대학교"      & inlist(branch , 1 )
-        replace main = 1 if  uniname == "원광대학교"      & inlist(branch , 1 )
-        replace main = 1 if  uniname == "이화여자대학교"  & inlist(branch , 1 )
-        replace main = 1 if  uniname == "인제대학교"      /*교지분할*/& inlist(branch , 1 )
-        replace main = 1 if  uniname == "인천대학교"      & inlist(branch , 1 )
-        replace main = 1 if  uniname == "인하대학교"      & inlist(branch , 1 )
-        replace main = 1 if  uniname == "전남대학교"      /*합병*/& inlist(branch , 1 )
-        replace main = 1 if  uniname == "전북대학교"      & inlist(branch , 1 )
-        replace main = 1 if  uniname == "제주대학교"      & inlist(branch , 1 )
-        replace main = 1 if  uniname == "조선대학교"      & inlist(branch , 1 )
-        replace main = 1 if  uniname == "중앙대학교"      /*이원화*/& inlist(branch , 1 )
+        replace main = 1 if  uniname == "영남대학교"
+        replace main = 1 if  uniname == "울산과학기술원"  
+        replace main = 1 if  uniname == "울산대학교"      
+        replace main = 1 if  uniname == "원광대학교"      
+        replace main = 1 if  uniname == "이화여자대학교"  
+        replace main = 1 if  uniname == "인제대학교"      
+        replace main = 1 if  uniname == "인천대학교"      
+        replace main = 1 if  uniname == "인하대학교"     
+        replace main = 1 if  uniname == "전남대학교"      & inlist(branch , 1 )
+        replace main = 1 if  uniname == "전북대학교"      
+        replace main = 1 if  uniname == "제주대학교"      
+        replace main = 1 if  uniname == "조선대학교"      
+        replace main = 1 if  uniname == "중앙대학교"      
             /*2011년 이후 안성캠은 본교와 통합*/
-        replace main = 1 if  uniname == "충남대학교"      & inlist(branch , 1 )
-        replace main = 1 if  uniname == "충북대학교"      & inlist(branch , 1 )
-        replace main = 1 if  uniname == "포항공과대학교"  & inlist(branch , 1 )
-        replace main = 1 if  uniname == "한국과학기술원"  & inlist(branch , 1 )
-        replace main = 1 if  uniname == "한국교원대학교"  & inlist(branch , 1 )
-        replace main = 1 if  uniname == "한국외국어대학교" /*이원화*/& inlist(branch , 1 )
+        replace main = 1 if  uniname == "충남대학교"      
+        replace main = 1 if  uniname == "충북대학교"      
+        replace main = 1 if  uniname == "포항공과대학교"  
+        replace main = 1 if  uniname == "한국과학기술원"  
+        replace main = 1 if  uniname == "한국교원대학교"  
+        replace main = 1 if  uniname == "한국외국어대학교" & inlist(branch , 1 )
             /*2013년 이후 글로벌캠은 본교와 통합*/
-        replace main = 1 if  uniname == "한국해양대학교"  & inlist(branch , 1 )
-        replace main = 1 if  uniname == "한림대학교"      & inlist(branch , 1 )
-        replace main = 1 if  uniname == "한양대학교"      & inlist(branch , 1 )
-        replace main = 1 if  uniname == "홍익대학교"      /*이원화*/& inlist(branch , 1 )
+        replace main = 1 if  uniname == "한국해양대학교"  
+        replace main = 1 if  uniname == "한림대학교"      
+        replace main = 1 if  uniname == "한양대학교"      
+        replace main = 1 if  uniname == "홍익대학교"      & inlist(branch , 1 )
     /*}}}*/
     /*변수 생성 : 대학등급 {{{*/
         gen score5 = .
@@ -776,7 +776,7 @@ use goms_master , clear
             label value score5 SCORE5
             replace score5 = 1 if school == 1
             replace score5 = 2 if school == 2
-            replace score5 = 3 if !missing(unirank) | school == 3
+            replace score5 = 3 if (!missing(unirank) & main ) | school == 3
             replace score5 = 4 if (inrange(unirank , 1 , 10) & main) | uniname == "서울교육대학교"
             replace score5 = 5 if medtyp | (inlist(unirank , 1, 2, 3, 5, 6) & main)
     /*}}}*/
