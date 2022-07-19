@@ -243,7 +243,7 @@ use goms_master , clear
         label var p033       "대학 편입학 당시 어머님 직업"
             label copy LABEN P033
             label value p033 P033
-            recode p032 (1/3=1) (4=2) (5 7 24=3) (6=4) (8=5) (11/13=6) ///
+            recode p033 (1/3=1) (4=2) (5 7 24=3) (6=4) (8=5) (11/13=6) ///
                 (9/10=7) (14=8) (15/22=9) (23=10) ///
                 if inrange(year , 2007 , 2016)
         label var p034       "대학 편입학 당시 부모님 월평균 소득"
@@ -780,6 +780,58 @@ use goms_master , clear
             replace score5 = 4 if (inrange(unirank , 1 , 10) & main) | uniname == "서울교육대학교"
             replace score5 = 5 if medtyp | (inlist(unirank , 1, 2, 3, 5, 6) & main)
     /*}}}*/
+    /*변수 생성 : 부모 교육년수 {{{*/
+        gen p026y = .
+            label var p026y "아버님 교육년수"
+                replace p026y = 0  if p026 == 1 
+                replace p026y = 4  if p026 == 2 & p027 != 1
+                replace p026y = 6  if p026 == 2 & p027 == 1
+                replace p026y = 8  if p026 == 3 & p027 != 1
+                replace p026y = 9  if p026 == 3 & p027 == 1
+                replace p026y = 11 if p026 == 4 & p027 != 1
+                replace p026y = 12 if p026 == 4 & p027 == 1
+                replace p026y = 13 if p026 == 5 & p027 != 1
+                replace p026y = 14 if p026 == 5 & p027 == 1
+                replace p026y = 15 if p026 == 6 & p027 != 1
+                replace p026y = 16 if p026 == 6 & p027 == 1
+                replace p026y = 18 if p026 == 7 & p027 != 1
+                replace p026y = 20 if p026 == 7 & p027 == 1
+        gen p029y = .
+            label var p029y "어머님 교육년수"
+                replace p029y = 0  if p029 == 1 
+                replace p029y = 4  if p029 == 2 & p030 != 1
+                replace p029y = 6  if p029 == 2 & p030 == 1
+                replace p029y = 8  if p029 == 3 & p030 != 1
+                replace p029y = 9  if p029 == 3 & p030 == 1
+                replace p029y = 11 if p029 == 4 & p030 != 1
+                replace p029y = 12 if p029 == 4 & p030 == 1
+                replace p029y = 13 if p029 == 5 & p030 != 1
+                replace p029y = 14 if p029 == 5 & p030 == 1
+                replace p029y = 15 if p029 == 6 & p030 != 1
+                replace p029y = 16 if p029 == 6 & p030 == 1
+                replace p029y = 18 if p029 == 7 & p030 != 1
+                replace p029y = 20 if p029 == 7 & p030 == 1
+    /*}}}*/
+    /*변수 생성 : 교육과정 {{{*/
+        gen f001g = .
+            labe var f001g "고교졸업년(f001)기준 교육과정"
+            labe define f001g 1 "5차과정" 2 "6차과정" 3 "7차과정" 4 "07개정" 5 "09개정" 6 "15개정"
+            replace f001g = 1 if inrange(f001 , 1994 , 1998 ) 
+            replace f001g = 2 if inrange(f001 , 1999 , 2004 ) 
+            replace f001g = 3 if inrange(f001 , 2005 , 2011 ) 
+            replace f001g = 4 if inrange(f001 , 2012 , 2016 ) 
+            replace f001g = 5 if inrange(f001 , 2017 , 2020 ) 
+            replace f001g = 6 if inrange(f001 , 2021 , 2024 ) 
+        gen f011g = .
+            labe var f011g "대학입학년(f011)기준 교육과정"
+            labe define f011g 1 "5차과정" 2 "6차과정" 3 "7차과정" 4 "07개정" 5 "09개정" 6 "15개정"
+            replace f011g = 1 if inrange(f011 , 1994 , 1998 ) 
+            replace f011g = 2 if inrange(f011 , 1999 , 2004 ) 
+            replace f011g = 3 if inrange(f011 , 2005 , 2011 ) 
+            replace f011g = 4 if inrange(f011 , 2012 , 2016 ) 
+            replace f011g = 5 if inrange(f011 , 2017 , 2020 ) 
+            replace f011g = 6 if inrange(f011 , 2021 , 2024 ) 
+    /*}}}*/
     /*자료 정리 : 잔여변수 drop {{{*/
         foreach i of local numvarlist {
             drop `i'??
@@ -787,7 +839,7 @@ use goms_master , clear
         foreach i of local charvarlist {
             drop `i'??
         }
-        drop hscode??
+        drop hscode?? f016 f017
     /*}}}*/
     /*자료 정리 : 불성실 응답 drop {{{*/
         /*고교졸업연령 0세 이하 사례 제거*/
@@ -806,7 +858,7 @@ use goms_master , clear
     /*자료 정리 : 모든 변수 order {{{*/
         order _all , alpha
         order wave pid year , first
-        order f??? p??? , last
+        order f* p* , last
         sort wave pid
     /*}}}*/
-save ~/dropbox/goms/goms.dta , replace
+save goms.dta , replace
