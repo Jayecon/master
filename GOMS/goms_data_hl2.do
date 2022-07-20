@@ -276,6 +276,7 @@ use goms_master , clear
             replace temp17 = 1 if f01317 == 1 & f17017 != 5
             replace temp17 = 4 if f01317 == 3 | f17017 == 8 
         egen f999 = rowlast(temp??) 
+          replace f999 = 4 if !inrange(f999 , 1 , 3)
             label define F999 1 "일반정시" 2 "일반수시" 3 "특별전형" 4 "기타"
             label var f999 "대입전형 방법"
             label value f999 F999
@@ -778,7 +779,7 @@ use goms_master , clear
             replace score5 = 2 if school == 2
             replace score5 = 3 if (!missing(unirank) & main ) | school == 3
             replace score5 = 4 if (inrange(unirank , 1 , 10) & main) | uniname == "서울교육대학교"
-            replace score5 = 5 if medtyp | (inlist(unirank , 1, 2, 3, 5, 6) & main)
+            replace score5 = 5 if !missing(medtyp) | (inlist(unirank , 1, 2, 3, 5, 6) & main)
     /*}}}*/
     /*변수 생성 : 부모 교육년수 {{{*/
         gen p026y = .
@@ -815,7 +816,8 @@ use goms_master , clear
     /*변수 생성 : 교육과정 {{{*/
         gen f001g = .
             labe var f001g "고교졸업년(f001)기준 교육과정"
-            labe define f001g 1 "5차과정" 2 "6차과정" 3 "7차과정" 4 "07개정" 5 "09개정" 6 "15개정"
+            labe define F001G 1 "5차과정" 2 "6차과정" 3 "7차과정" 4 "07개정" 5 "09개정" 6 "15개정"
+            label value f001g F001G
             replace f001g = 1 if inrange(f001 , 1994 , 1998 ) 
             replace f001g = 2 if inrange(f001 , 1999 , 2004 ) 
             replace f001g = 3 if inrange(f001 , 2005 , 2011 ) 
@@ -824,7 +826,8 @@ use goms_master , clear
             replace f001g = 6 if inrange(f001 , 2021 , 2024 ) 
         gen f011g = .
             labe var f011g "대학입학년(f011)기준 교육과정"
-            labe define f011g 1 "5차과정" 2 "6차과정" 3 "7차과정" 4 "07개정" 5 "09개정" 6 "15개정"
+            labe define F011G 1 "5차과정" 2 "6차과정" 3 "7차과정" 4 "07개정" 5 "09개정" 6 "15개정"
+            label value f011g F011G
             replace f011g = 1 if inrange(f011 , 1994 , 1998 ) 
             replace f011g = 2 if inrange(f011 , 1999 , 2004 ) 
             replace f011g = 3 if inrange(f011 , 2005 , 2011 ) 
