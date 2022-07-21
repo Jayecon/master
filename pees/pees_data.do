@@ -23,9 +23,9 @@ clear
     save `temp' , replace
 	pause
   merge m:m region year using corona.dta
-		drop if region == 99
-		drop if year == 2022
-		foreach i of var confirmed-ndeath {
-			replace `i' = 0  if year == 2019
-		}
+        drop if region == 99
+        drop if year == 2022
+        foreach i of var confirmed-ndeath {
+            replace `i' = 0  if year == 2019
+        }
 save rawdata/pees.dta , replace
