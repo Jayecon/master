@@ -22,6 +22,7 @@ clear
     append using `temp' 
     save `temp' , replace
 	pause
+<<<<<<< Updated upstream
   merge m:m region year using corona.dta
         drop if region == 99
         drop if year == 2022
@@ -29,3 +30,14 @@ clear
             replace `i' = 0  if year == 2019
         }
 save rawdata/pees.dta , replace
+=======
+  merge m:m region year using rawdata/corona.dta , nogen
+		drop if region == 99
+		drop if year == 2022
+		foreach i of var confirmed-ndeath {
+			replace `i' = 0  if year == 2019
+		}
+	merge m:m region year using rawdata/pisummary.dta , nogen
+	merge m:m region year using rawdata/rgnpop.dta , nogen
+save pees.dta , replace
+>>>>>>> Stashed changes

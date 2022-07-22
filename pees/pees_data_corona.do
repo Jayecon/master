@@ -37,6 +37,7 @@ import delimited "rawdata/corona_220704.csv", encoding(UTF-8)
       37 "경북" 24 "광주" 22 "대구" 25 "대전" 21 "부산" ///
       11 "서울" 29 "세종" 26 "울산" 23 "인천" 36 "전남" ///
       35 "전북" 39 "제주" 34 "충남" 33 "충북" 99 "검역"
+    label value region REGION
   /*신규확진자, 신규사망자 변수 만들기*/
     sort region year month day
     bys region year month : gen tempf = _n == 1
