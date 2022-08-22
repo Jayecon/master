@@ -53,9 +53,9 @@ use goms_master , clear
         /* 변수유형 교정*/
             destring daynight11 , replace
             destring school15 , replace
-            foreach i of local numvarlist {
-                egen `i' = rowlast(`i'??)
-            }
+    foreach i of local numvarlist {
+        egen `i' = rowlast(`i'??)
+    }
     /*}}}*/
     /*자료 변환 : 문자형 변수를 long type으로 {{{*/
     local charvarlist ///
@@ -280,202 +280,6 @@ use goms_master , clear
             label define F999 1 "일반정시" 2 "일반수시" 3 "특별전형" 4 "기타"
             label var f999 "대입전형 방법"
             label value f999 F999
-        drop temp??
-    /*}}}*/
-    /*변수 생성 : 고등학교계열 {{{*/
-        recode f00907 (1=2) (2=3) (3 4=7) (5=4) (6/9=1) , gen(temp07)
-        recode f00908 (1=2) (2=3) (3 4=7) (5=4) (6/9=1) , gen(temp08)
-        recode f00909 (1=2) (2=3) (3 4=7) (5=4) (6/9=1) , gen(temp09)
-        recode f00910 (1=2) (2=3) (3 4=7) (5=4) (6/9=1) , gen(temp10)
-        recode f00911 (1=2) (2=3) (3 4=7) (5=4) (6/9=1) , gen(temp11)
-        recode f00912 (1=2) (2=3) (3 4=7) (5=4) (6/9=1) , gen(temp12)
-        recode f00913 (1=2) (2=3) (3 4=7) (5=4) (6/9=1) , gen(temp13)
-        recode f00914 (1=2) (2=3) (3 =7) (7=4) (4 5 6 8 =1) , gen(temp14)
-        recode f00915 (1=2) (2=3) (3 =7) (4=4) (5/10=1) , gen(temp15)
-        recode f00916 (1=2) (2=3) (3 =7) (4=4) (5/10=1) , gen(temp16)
-        recode f00917 (1=2) (2=3) (3 =7) (4=4) (5/10=1) , gen(temp17)
-        egen f998 = rowlast(temp??) 
-            label define F998 1 "기타(특성화등)" 2 "일반계(문과)" ///
-                3 "일반계(이과)" 4 "특목고(예체능)" 5 "강남3구" ///
-                6 "자율고" 7 "특목고(외과국)"
-            label var f998 "고등학교 계열"
-            label value f998 F998
-        /* 특목고(외/과/국) 범주 바로잡기{{{*/
-            replace f998 = 7 if strpos(hsname , "외국어" ) & f998 != 7
-            replace f998 = 7 if strpos(hsname , "과학" ) & f998 != 7
-            replace f998 = 7 if strpos(hsname , "국제" ) & f998 != 7
-            /* from 특목 to 기타{{{*/
-                replace f998 = 1 if strpos(hsname , "영상과학" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "자연과학" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "해양과학" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "조리과학" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "생활과학" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "항공과학" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "생명과학" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "비즈니스" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "마이스터" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "한동국제" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "혜성국제" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "국제특성" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "벨국제" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "테크노" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "테트노" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "자동차" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "디지털" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "인터넷" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "디자인" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "모바일" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "컴퓨터" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "바이오" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "미디어" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "에너지" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "농생명" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "컨베션" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "컨벤션" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "컴벤션" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "산업" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "외식" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "영상" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "물류" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "영화" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "무역" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "해향" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "해양" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "기술" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "전자" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "농공" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "발명" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "아트" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "상업" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "경영" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "세무" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "조리" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "해사" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "공업" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "금융" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "관광" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "통상" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "항공" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "한독" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "정보" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "게임" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "종교" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "도시" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "전산" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "선화" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "화교" ) & f998 == 7
-                replace f998 = 1 if strpos(hsname , "한인" ) & f998 == 7
-            /*}}}*/
-            /* from 특목 to 일반{{{*/
-                replace f998 = 2 if strpos(hsname , "휘문" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "국제" ) & f998 == 7 & f006 == 6
-                replace f998 = 2 if strpos(hsname , "상일여자" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "성덕" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "부광" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "홍천" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "영알" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "청암" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "선덕" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "성남자" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "강산" ) & f998 == 7
-                replace f998 = . if strpos(hsname , "제일외국어" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "목동" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "신목" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "브니엘" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "장안" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "동인" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "동의" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "대동" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "장안" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "경덕여자" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "선일" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "옥련여자" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "영흥" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "서인천" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "호남삼육" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "금호" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "현대" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "구리여자" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "산본" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "심석" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "중앙" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "전북대" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "영생" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "배영" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "여수화양" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "청도" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "순심" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "밀성" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "보광" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "명석" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "원주여자" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "성산" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "부평" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "삼성" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "상서" ) & f998 == 7
-                replace f998 = 2 if strpos(hsname , "성서" ) & f998 == 7
-            /*}}}*/
-            /* from 특목 to 자율{{{*/
-                replace f998 = 6 if strpos(hsname , "해운대" ) & f998 == 7
-            /*}}}*/
-            /* from 특목 to 예술{{{*/
-                replace f998 = 4 if strpos(hsname , "국악" ) & f998 == 7 
-                replace f998 = 4 if strpos(hsname , "예술" ) & f998 == 7 
-                replace f998 = 4 if strpos(hsname , "전통문화" ) & f998 == 7 
-            /*}}}*/
-            /* 강남{{{*/
-                gen temp99 =  inlist(f007 , 101 , 115 , 118)
-                replace f998 = 5 if temp99 & strpos(hsname , "가락")
-                replace f998 = 5 if temp99 & strpos(hsname , "개포")
-                replace f998 = 5 if temp99 & strpos(hsname , "경기")
-                replace f998 = 5 if temp99 & strpos(hsname , "구정")
-                replace f998 = 5 if temp99 & strpos(hsname , "단국")
-                replace f998 = 5 if temp99 & strpos(hsname , "단대")
-                replace f998 = 5 if temp99 & strpos(hsname , "동덕")
-                replace f998 = 5 if temp99 & strpos(hsname , "반포")
-                replace f998 = 5 if temp99 & strpos(hsname , "방산")
-                replace f998 = 5 if temp99 & strpos(hsname , "배명")
-                replace f998 = 5 if temp99 & strpos(hsname , "보성")
-                replace f998 = 5 if temp99 & strpos(hsname , "보인")
-                replace f998 = 5 if temp99 & strpos(hsname , "상문")
-                replace f998 = 5 if temp99 & strpos(hsname , "서문")
-                replace f998 = 5 if temp99 & strpos(hsname , "서울고")
-                replace f998 = 5 if temp99 & strpos(hsname , "청담")
-                replace f998 = 5 if temp99 & strpos(hsname , "현대")
-                replace f998 = 5 if temp99 & strpos(hsname , "서초")
-                replace f998 = 5 if temp99 & strpos(hsname , "세종")
-                replace f998 = 5 if temp99 & strpos(hsname , "세화")
-                replace f998 = 5 if temp99 & strpos(hsname , "숙명")
-                replace f998 = 5 if temp99 & strpos(hsname , "양재")
-                replace f998 = 5 if temp99 & strpos(hsname , "언남")
-                replace f998 = 5 if temp99 & strpos(hsname , "영동")
-                replace f998 = 5 if temp99 & strpos(hsname , "영파")
-                replace f998 = 5 if temp99 & strpos(hsname , "오금")
-                replace f998 = 5 if temp99 & strpos(hsname , "은광")
-                replace f998 = 5 if temp99 & strpos(hsname , "잠신")
-                replace f998 = 5 if temp99 & strpos(hsname , "잠실")
-                replace f998 = 5 if temp99 & strpos(hsname , "정신")
-                replace f998 = 5 if temp99 & strpos(hsname , "중대")
-                replace f998 = 5 if temp99 & strpos(hsname , "중동")
-                replace f998 = 5 if temp99 & strpos(hsname , "중산")
-                replace f998 = 5 if temp99 & strpos(hsname , "중앙대")
-                replace f998 = 5 if temp99 & strpos(hsname , "진선")
-                replace f998 = 5 if temp99 & strpos(hsname , "창덕")
-                replace f998 = 5 if temp99 & strpos(hsname , "휘문")
-                replace f998 = 1 if strpos(hsname , "공업") &f998 == 5
-                replace f998 = 1 if strpos(hsname , "상업") &f998 == 5
-                replace f998 = 1 if strpos(hsname , "산업") &f998 == 5
-                replace f998 = 1 if strpos(hsname , "전자") &f998 == 5
-            /*}}}*/
-            replace f998 = 6 if strpos(hsname , "하나" ) & f007 == 122
-            replace f998 = 6 if strpos(hsname , "청운" ) & f006 == 7
-            replace f998 = 6 if strpos(hsname , "민족" ) & f006 == 9
-            replace f998 = 6 if strpos(hsname , "상산" ) & f007 == 1212
-            replace f998 = 6 if strpos(hsname , "제철" ) & f007 == 1304 
-            replace f998 = 6 if strpos(hsname , "제철" ) & f007 == 1423
-            replace f998 = 6 if strpos(hsname , "해운대") & inrange(f998 , 1, 4) & !strpos(hsname , "공고") & !strpos(hsname , "여자") & !strpos(hsname , "공업")& !strpos(hsname , "관광")& !strpos(hsname , "기계")
-            replace f998 = 7 if strpos(hsname , "영재" ) 
-        /*}}}*/
         drop temp??
     /*}}}*/
     /*변수 생성 : 재수여부 {{{*/
@@ -771,15 +575,23 @@ use goms_master , clear
         replace main = 1 if  uniname == "홍익대학교"      & inlist(branch , 1 )
     /*}}}*/
     /*변수 생성 : 대학등급 {{{*/
-        gen score5 = .
-            label var score5 "대학등급(5)"
-            label define SCORE5 1 "2-3년제" 2 "4년제" 3 "4년제(QS50)" 4 "4년제(QS10)" 5 "4년제(QS05)"
-            label value score5 SCORE5
-            replace score5 = 1 if school == 1
-            replace score5 = 2 if school == 2
-            replace score5 = 3 if (!missing(unirank) & main ) | school == 3
-            replace score5 = 4 if (inrange(unirank , 1 , 10) & main) | uniname == "서울교육대학교"
-            replace score5 = 5 if !missing(medtyp) | (inlist(unirank , 1, 2, 3, 5, 6) & main)
+        gen score50 = .
+            label var score50 "대학등급"
+            label define SCORE50 1 "2-3년제" 2 "4년제" 3 "4년제(QS50)" 4 "4년제(QS10)" 5 "4년제(QS05)"
+            label value score50 SCORE50
+            replace score50 = 1 if school == 1
+            replace score50 = 2 if school == 2
+            replace score50 = 3 if (!missing(unirank) & main ) | school == 3
+            replace score50 = 4 if (inrange(unirank , 1 , 10) & main) | uniname == "서울교육대학교"
+            replace score50 = 5 if !missing(medtyp) | (inlist(unirank , 1, 2, 3, 5, 6) & main)
+        gen score20 = .
+            label var score20 "대학등급(QS20)"
+            label define SCORE20 1 "QS 16-20" 2 "QS 11-15" 3 "QS 6-10" 4 "QS 1-5"
+            label value score20 SCORE20
+            replace score20 = 1 if inrange(unirank , 16, 20) & main
+            replace score20 = 2 if inrange(unirank , 11, 15) & main
+            replace score20 = 3 if inlist(unirank , 4, 7, 8, 9, 10) & main
+            replace score20 = 4 if !missing(medtyp) | (inlist(unirank , 1, 2, 3, 5, 6) & main)
     /*}}}*/
     /*변수 생성 : 부모 교육년수 {{{*/
         gen p026y = .
