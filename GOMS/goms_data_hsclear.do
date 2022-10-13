@@ -67,62 +67,62 @@ set tr off
         }
         /*}}}*/
         /*학교명 예외사례 강제 정정{{{*/
-        replace hsnamec = ""                                 if strlen(hsnamec) <= 2
-        replace hsnamec = hsnamec + "고등학교"               if !ustrregexm(hsnamec , "학교$")
-        replace hsnamec = "KAIST부설한국과학영재학교"        if strpos(hsnamec , "과학영재")                             & f006 == 2
-        replace hsnamec = "경기과학고등학교"                 if hsnamec == "경기과락고등학교"
-        replace hsnamec = "경신고등학교"                     if strpos(hsnamec , "경신")                                 & f007 == 307
-        replace hsnamec = "경일고등학교"                     if strpos(hsnamec , "경일")                                 & f007 == 301
-        replace hsnamec = "광주동신고등학교"                 if hsnamec == "동신고등학교"                                & f006 == 6
-        replace hsnamec = "대성고등학교"                     if strpos(hsnamec , "대성")                                 & f007 == 405
-        replace hsnamec = "대원외국어고등학교"               if strpos(hsnamec , "대원")                                 & f007 == 106 & inlist(f009 , 3 , 9)
-        replace hsnamec = "대일외국어고등학교"               if strpos(hsnamec , "대일")                                 & f007 == 117
-        replace hsnamec = "부산국제외국어고등학교"           if strpos(hsnamec , "국제외")                               & f007 == 216
-        replace hsnamec = "동성고등학교"                     if strpos(hsnamec , "동성")                                 & f007 == 123
-        replace hsnamec = "동신고등학교"                     if hsnamec == "대전동신고등학교"                            & f006 == 4
-        replace hsnamec = "동신고등학교"                     if hsnamec == "동신과학고등학교"                            & f001 <= 2016
-        replace hsnamec = "명덕외국어고등학교"               if strpos(hsnamec , "명덕")                                 & f007 == 104
-        replace hsnamec = "부일외국어고등학교"               if strpos(hsnamec , "부일")                                 & f007 == 210
-        replace hsnamec = "북일고등학교"                     if strpos(hsnamec , "북일")                                 & f007 == 1113
-        replace hsnamec = "북일고등학교"                     if hsnamec == "천안북일고등학교"
-        replace hsnamec = "서울세종고등학교"                 if inlist( hsnamec , "서울세정고등학교" , "세종고등학교")   & inlist(f007 , 101 , 115 )
-        replace hsnamec = "선덕고등학교"                     if strpos(hsnamec , "선덕")                                 & f007 == 110
-        replace hsnamec = "숙명여자고등학교"                 if inlist( hsnamec , "숙명고등학교" , "숙명여고등학교")     & inlist(f007 , 101 , 115 )
-        replace hsnamec = "신일고등학교"                     if strpos(hsnamec , "신일")                                 & f007 == 103
-        replace hsnamec = "안산동산고등학교"                 if strpos(hsnamec , "동산")                                 & f007 == 815
-        replace hsnamec = "언남고등학교"                     if inlist( hsnamec , "서울언남고등학교" , "언남자고등학교") & inlist(f007 , 101 , 115 )
-        replace hsnamec = "용인한국외국어대학교부설고등학교" if strpos(hsnamec , "한국외")                               & f007 == 823
-        replace hsnamec = "이화여자외국어고등학교"           if strpos(hsnamec , "이화")                                 & f007 == 124
-        replace hsnamec = "인천진산고등학교"                 if strpos(hsnamec , "진산")                                 & f007 == 506 & f009 != 3
-        replace hsnamec = "장훈고등학교"                     if strpos(hsnamec , "장훈")                                 & f007 == 120
-        replace hsnamec = "중앙고등학교"                     if strpos(hsnamec , "중앙")                                 & f007 == 123
-        replace hsnamec = "중산외국어고등학교"               if strpos(hsnamec , "증산외")
-        replace hsnamec = "한가람고등학교"                   if strpos(hsnamec , "한가람")                               & f007 == 119
-        replace hsnamec = "한영외국어고등학교"               if strpos(hsnamec , "한영")                                 & f007 == 102
-        replace hsnamec = "현대고등학교"                     if strpos(hsnamec , "현대")                                 & f007 == 101
-        replace hsnamec = "현대청운고등학교"                 if strpos(hsnamec , "청운")                                 & f006 == 7
-        replace hsnamec = "광양제철고등학교"                 if strpos(hsnamec , "제철고등학교")                         & f007 == 1304
-        replace hsnamec = "포항제철고등학교"                 if strpos(hsnamec , "제철고등학교")                         & f007 == 1423
+            replace hsnamec = ""                                 if strlen(hsnamec) <= 2
+            replace hsnamec = hsnamec + "고등학교"               if !ustrregexm(hsnamec , "학교$")
+            replace hsnamec = "KAIST부설한국과학영재학교"        if strpos(hsnamec , "과학영재")                             & f006 == 2
+            replace hsnamec = "경기과학고등학교"                 if hsnamec == "경기과락고등학교"
+            replace hsnamec = "경신고등학교"                     if strpos(hsnamec , "경신")                                 & f007 == 307
+            replace hsnamec = "경일고등학교"                     if strpos(hsnamec , "경일")                                 & f007 == 301
+            replace hsnamec = "광주동신고등학교"                 if hsnamec == "동신고등학교"                                & f006 == 6
+            replace hsnamec = "대성고등학교"                     if strpos(hsnamec , "대성")                                 & f007 == 405
+            replace hsnamec = "대원외국어고등학교"               if strpos(hsnamec , "대원")                                 & f007 == 106 & inlist(f009 , 3 , 9)
+            replace hsnamec = "대일외국어고등학교"               if strpos(hsnamec , "대일")                                 & f007 == 117
+            replace hsnamec = "부산국제외국어고등학교"           if strpos(hsnamec , "국제외")                               & f007 == 216
+            replace hsnamec = "동성고등학교"                     if strpos(hsnamec , "동성")                                 & f007 == 123
+            replace hsnamec = "동신고등학교"                     if hsnamec == "대전동신고등학교"                            & f006 == 4
+            replace hsnamec = "동신고등학교"                     if hsnamec == "동신과학고등학교"                            & f001 <= 2016
+            replace hsnamec = "명덕외국어고등학교"               if strpos(hsnamec , "명덕")                                 & f007 == 104
+            replace hsnamec = "부일외국어고등학교"               if strpos(hsnamec , "부일")                                 & f007 == 210
+            replace hsnamec = "북일고등학교"                     if strpos(hsnamec , "북일")                                 & f007 == 1113
+            replace hsnamec = "북일고등학교"                     if hsnamec == "천안북일고등학교"
+            replace hsnamec = "서울세종고등학교"                 if inlist( hsnamec , "서울세정고등학교" , "세종고등학교")   & inlist(f007 , 101 , 115 )
+            replace hsnamec = "선덕고등학교"                     if strpos(hsnamec , "선덕")                                 & f007 == 110
+            replace hsnamec = "숙명여자고등학교"                 if inlist( hsnamec , "숙명고등학교" , "숙명여고등학교")     & inlist(f007 , 101 , 115 )
+            replace hsnamec = "신일고등학교"                     if strpos(hsnamec , "신일")                                 & f007 == 103
+            replace hsnamec = "안산동산고등학교"                 if strpos(hsnamec , "동산")                                 & f007 == 815
+            replace hsnamec = "언남고등학교"                     if inlist( hsnamec , "서울언남고등학교" , "언남자고등학교") & inlist(f007 , 101 , 115 )
+            replace hsnamec = "용인한국외국어대학교부설고등학교" if strpos(hsnamec , "한국외")                               & f007 == 823
+            replace hsnamec = "이화여자외국어고등학교"           if strpos(hsnamec , "이화")                                 & f007 == 124
+            replace hsnamec = "인천진산고등학교"                 if strpos(hsnamec , "진산")                                 & f007 == 506 & f009 != 3
+            replace hsnamec = "장훈고등학교"                     if strpos(hsnamec , "장훈")                                 & f007 == 120
+            replace hsnamec = "중앙고등학교"                     if strpos(hsnamec , "중앙")                                 & f007 == 123
+            replace hsnamec = "중산외국어고등학교"               if strpos(hsnamec , "증산외")
+            replace hsnamec = "한가람고등학교"                   if strpos(hsnamec , "한가람")                               & f007 == 119
+            replace hsnamec = "한영외국어고등학교"               if strpos(hsnamec , "한영")                                 & f007 == 102
+            replace hsnamec = "현대고등학교"                     if strpos(hsnamec , "현대")                                 & f007 == 101
+            replace hsnamec = "현대청운고등학교"                 if strpos(hsnamec , "청운")                                 & f006 == 7
+            replace hsnamec = "광양제철고등학교"                 if strpos(hsnamec , "제철고등학교")                         & f007 == 1304
+            replace hsnamec = "포항제철고등학교"                 if strpos(hsnamec , "제철고등학교")                         & f007 == 1423
 
-        replace hsnamec = "단국대학교사범대학부속고등학교"   if hsnamec == "단국"                                        & f007 == 101
-        replace hsnamec = "단국대학교사범대학부속고등학교"   if hsnamec == "단국대학교사범대학무"
-        replace hsnamec = "단국대학교사범대학부속고등학교"   if hsnamec == "단대학교사범대학부속고등학교"
-        replace hsnamec = "부일외국어고등학교"               if hsnamec == "부산부일외국어고등학교"
-        replace hsnamec = "제주과학고등학교"                 if hsnamec == "제주고등학교"
-        replace hsnamec = "중앙대학교사범대학부속고등학교"   if hsnamec == "중대학교사범대학부설고등학교"
-        replace hsnamec = "중앙대학교사범대학부속고등학교"   if hsnamec == "중앙대삼범대학부속고등학교"
-        replace hsnamec = "중앙대학교사범대학부속고등학교"   if hsnamec == "중앙대학교사범대학부설고등학교"
-        replace hsnamec = "한성과학고등학교"                 if hsnamec == "한성고등학교"
+            replace hsnamec = "단국대학교사범대학부속고등학교"   if hsnamec == "단국"                                        & f007 == 101
+            replace hsnamec = "단국대학교사범대학부속고등학교"   if hsnamec == "단국대학교사범대학무"
+            replace hsnamec = "단국대학교사범대학부속고등학교"   if hsnamec == "단대학교사범대학부속고등학교"
+            replace hsnamec = "부일외국어고등학교"               if hsnamec == "부산부일외국어고등학교"
+            replace hsnamec = "제주과학고등학교"                 if hsnamec == "제주고등학교"
+            replace hsnamec = "중앙대학교사범대학부속고등학교"   if hsnamec == "중대학교사범대학부설고등학교"
+            replace hsnamec = "중앙대학교사범대학부속고등학교"   if hsnamec == "중앙대삼범대학부속고등학교"
+            replace hsnamec = "중앙대학교사범대학부속고등학교"   if hsnamec == "중앙대학교사범대학부설고등학교"
+            replace hsnamec = "한성과학고등학교"                 if hsnamec == "한성고등학교"
 
-        replace hsnamec = "경기여자고등학교"                 if hsnamec == "서울경기여자고등학교"                        & inlist(f007 , 101 , 115 )
-        replace hsnamec = "동덕여자고등학교"                 if hsnamec == "동덕고등학교"                                & inlist(f007 , 101 , 115 )
-        replace hsnamec = "서문여자고등학교"                 if hsnamec == "서문고등학교"                                & inlist(f007 , 101 , 115 )
-        replace hsnamec = "영동고등학교"                     if hsnamec == "서울영동고등학교"                            & inlist(f007 , 101 , 115 )
-        replace hsnamec = "은광여자고등학교"                 if hsnamec == "은광고등학교"                                & inlist(f007 , 101 , 115 )
-        replace hsnamec = "중산고등학교"                     if hsnamec == "서울중산고등학교"                            & inlist(f007 , 101 , 115 )
-        replace hsnamec = "청담고등학교"                     if hsnamec == "서울청담고등학교"                            & inlist(f007 , 101 , 115 )
-        replace hsnamec = "풍문고등학교"                     if hsnamec == "풍문여자고등학교"                            & inlist(f007 , 101 , 115 )
-        replace hsnamec = "현대고등학교"                     if hsnamec == "서울현대고등학교"                            & inlist(f007 , 101 , 115 )
+            replace hsnamec = "경기여자고등학교"                 if hsnamec == "서울경기여자고등학교"                        & inlist(f007 , 101 , 115 )
+            replace hsnamec = "동덕여자고등학교"                 if hsnamec == "동덕고등학교"                                & inlist(f007 , 101 , 115 )
+            replace hsnamec = "서문여자고등학교"                 if hsnamec == "서문고등학교"                                & inlist(f007 , 101 , 115 )
+            replace hsnamec = "영동고등학교"                     if hsnamec == "서울영동고등학교"                            & inlist(f007 , 101 , 115 )
+            replace hsnamec = "은광여자고등학교"                 if hsnamec == "은광고등학교"                                & inlist(f007 , 101 , 115 )
+            replace hsnamec = "중산고등학교"                     if hsnamec == "서울중산고등학교"                            & inlist(f007 , 101 , 115 )
+            replace hsnamec = "청담고등학교"                     if hsnamec == "서울청담고등학교"                            & inlist(f007 , 101 , 115 )
+            replace hsnamec = "풍문고등학교"                     if hsnamec == "풍문여자고등학교"                            & inlist(f007 , 101 , 115 )
+            replace hsnamec = "현대고등학교"                     if hsnamec == "서울현대고등학교"                            & inlist(f007 , 101 , 115 )
         /*}}}*/
     capture drop f998
         capture label drop F998
@@ -298,60 +298,5 @@ set tr off
             replace f998 = 7 if hsnamec == "풍문고등학교"                   & f006 == 1
             replace f998 = 7 if hsnamec == "현대고등학교"                   & f006 == 1 & ( inrange(f001 , 1989 , 2013) | missing(f001) ) // 서울 강남구
             replace f998 = 7 if hsnamec == "휘문고등학교"                   & f006 == 1 & ( inrange(f001 , 1908 , 2013) | missing(f001) ) // 서울 강남구
-        /*}}}*/
-        /*외국인학교{{{*/
-            /*강남국제학교*/
-            /*거제국제외국인학교*/
-            /*거창국제학교 */
-            /*거창국제학교 */
-            /*경기수원외국인학교(GSIS)*/
-            /*경남국제외국인학교*/
-            /*광주외국인학교*/
-            /*대구국제학교*/
-            /*대전외국인학교(TCIS)*/
-            /*덜위치칼리지서울영국학교(Dulwich College Seoul)*/
-            /*레인보우외국인학교*/
-            /*베일러국제학교 (VIS)*/
-            /*부산국제외국인학교(ISB)*/
-            /*부산외국인학교(BFS)*/
-            /*부산일본인학교*/
-            /*부산화교소학교*/
-            /*부산화교중고등학교*/
-            /*분당국제학교(BIS)*/
-            /*브리티시컬럼비아칼리지잇서울국제학교(BCC)*/
-            /*빅하트크리스챤스쿨 (BHCS)*/
-            /*서울국제학교(SIS)*/
-            /*서울독일학교*/
-            /*서울드와이트외국인학교(DSS)*/
-            /*서울미국인학교(SAHS)*/
-            /*서울스칼라스인터내셔널 (SSI)*/
-            /*서울외국인학교(SFS)*/
-            /*서울용산국제학교(YISS)*/
-            /*서울일본인학교*/
-            /*서울프랑스학교*/
-            /*수원화교중정소학교*/
-            /*아시아퍼시픽국제외국인학교(APIS)*/
-            /*원주화교소학교*/
-            /*의정부국제크리스천외국인학교(ICSU)*/
-            /*인천화교소·중산중고등학교*/
-            /*재한몽골학교*/
-            /*제주국제학교 */
-            /*주한러시아대사관학교*/
-            /*지구촌기독외국인학교*/
-            /*채드윅송도국제학교*/
-            /*청라달튼외국인학교(CDS) */
-            /*코너스톤국제학교(CCAS)*/
-            /*크리스챤스프라웃국제학교 (CSIS)*/
-            /*페이스튼기독국제학*/
-            /*하비에르국제학교*/
-            /*한국기독글로벌스쿨 (KCIS)*/
-            /*한국대구화교소학교*/
-            /*한국대구화교중고등학교*/
-            /*한국영등포화교소학교*/
-            /*한국외국인학교(KIS)*/
-            /*한국조지메이슨대학교*/
-            /*한국켄트외국인학교(KKFS)*/
-            /*한성화교학교*/
-            /*현대외국인학교*/
         /*}}}*/
 save goms , replace
