@@ -1,0 +1,184 @@
+set more off
+set maxvar 30000
+clear
+cd ~/dropbox/goms
+/* 년도별 추출변수 목록 {{{*/
+    local varlist07 pid-gradum sq004-sq011 a001-a077 a116-a355 a388-a389 /// 
+        b001-b047 c001-c003 d001-d061 d106-d253 f001-f053 f073-f074 h001-h060 ///
+        i001-i072 j001-j021 k001-k074 l001-l082 m001-m085           p001-p045 wt
+    local varlist08 pid-gradum sq004-sq011 a001-a057 a116-a296 a388-a389 /// 
+        b001-b067 c001-c006 d001-d060 d106-d249 f001-f061 f073-f074 h001-h062 ///
+        i001-i070 j001-j023 k001-k059 l001-l080 m001-m096 o010-o152 p001-p045 wt
+    local varlist09 pid-gradum sq001-sq011 a001-a079 a116-a296 a388-a389 /// 
+        b001-b067 c001-c006 d001-d060 d106-d249 f001-f061 f073-f074 h001-h062 ///
+        i001-i073 j001-j021 k001-k059 l001-l082 m001-m096 o001-o152 p001-p045 wt
+    local varlist10 pid-gradum sq001-sq011 a001-a085 a114-a355 a388-a389 /// 
+        b001-b067 c001-c021 d001-d060 d106-d249 f001-f061 f073-f074 h001-h062 ///
+        i001-i070 j001-j021 k001-k059 l001-l082 m001-m096 o001-o100 p001-p045 wt
+    local varlist11 pid-gradum sq001-sq011 a001-a085 a114-a355 a388-a389 /// 
+        b001-b067 c001-c021 d001-d060 d106-d249 f001-f061 f073-f074 h001-h062 ///
+        i001-i073 j001-j021 k001-k059 l001-l082 m001-m096 o001-o100 p001-p045 wt
+    local varlist12 pid-gradum sq001-sq011 a001-a085 a114-a355 a388-a389 /// 
+        b001-b067 c001-c021 d001-d079 d106-d249 f001-f061 f073-f074 h001-h062 ///
+        i001-i071 j001-j021 k001-k059 l001-l082 m001-m096 o035-o100 p001-p045 wt
+    local varlist13 pid-gradum sq001-sq011 a001-a085 a114-a355 a388-a389 /// 
+        b001-b067 c001-c021 d001-d079 d106-d249 f001-f061 f073-f074 h001-h062 ///
+        i001-i072 j001-j021 k001-k059 l001-l082 m001-m096 o035-o100 p001-p045 wt
+    local varlist14 pid-gradum sq001-sq011 a001-a074_2018 a114-a355 a388-a389 /// 
+        b001-b068 c001-c021 d001-d079 d106-d249 f001-f061 f073-f074 h001-h062 ///
+        i001-i071 j001-j021 k001-k109 l001-l082 m001-m093 o035-o146 p001-p045 wt
+    local varlist15 pid-gradum sq001-sq011 a001-a074_2018 a114-a355 a388-a389 /// 
+        b001-b068 c001-c021 d001-d079 d106-d249 f001-f061 f073-f074 h001-h062 ///
+        i001-i071 j001-j021 k004-k109 l001-l084 m001-m093 o035-o150 p001-p045 wt
+    local varlist16 pid-gradum sq001-sq011 a001-a074_2018 a114-a355 a388-a389 /// 
+        b001-b068 c001-c021 d001-d079 d106-d249 f001-f061 f073-f074 h001-h062 ///
+        i001-i074 j001-j021 k004-k109 l001-l084 m001-m093 o035-o161 p001-p045 wt
+    local varlist17 pid-gradum sq001-sq011 a001-a074_2018 a114-a355 a388-a389 /// 
+        b001-b068 c001-c021 d001-d079 d106-d249 f001-f061 f073-f074 h001-h062 ///
+        i001-i074 j001-j021 k001-k109 l001-l084 m001-m093           p001-p045 wt
+/*}}}*/
+/*년도별 파일을 goms??.dta 로 각각 저장하기{{{*/
+    forvalue x = 7/17 {
+        local yr : disp %02.0f  = `x'
+        use ~/dropbox/GOMS/rawdata/GP`yr'.dta
+        di "year = " 2000+`x'
+        rename g`yr'1* *
+        drop if missing(sex)
+        keep `varlist`yr''
+        /*년도별 의예계열 선별{{{*/ 
+            gen byte medtyp = .
+            label var medtyp "의예계열전공"
+            label define medtyp 1 "의학" 2 "치의학" 3 "한의학" 4 "수의학" 5 "약학"
+            label value medtyp medtyp
+            if ("`x'" == "7") {
+                replace medtyp = 1 if inlist(major , 1798 , 1799 )
+                replace medtyp = 2 if inlist(major , 2362 )
+                replace medtyp = 3 if inlist(major , 2632 )
+                replace medtyp = 4 if inlist(major , 1306 , 1307 )
+                replace medtyp = 5 if inlist(major , 1516 , 1517 , 1518 , 2173 , 2174 ) 
+            }
+            else {
+                replace medtyp = 1 if inlist(major , "U06010100003", "U06010100004" , "U06010100005" , "U06010100017" , "U06010100021"  )
+                replace medtyp = 2 if inlist(major , "U06010200005" )
+                replace medtyp = 3 if inlist(major , "U06010300002" )
+                replace medtyp = 4 if inlist(major , "U05020300003" , "U05020300015" )
+                replace medtyp = 5 if strpos(major , "U060301" ) 
+                replace medtyp = . if inlist(major , "U06030100021" ) 
+            }
+        /*}}}*/
+        /* 대학 및 고교정보 합치기{{{*/
+            rename pid g`yr'1pid
+            merge 1:1 g`yr'1pid using ~/dropbox/goms/rawdata/goms_gu`yr' , nogen
+            rename g`yr'1* * 
+            capture label var uniname "출신대학명"
+            capture label var unicode "출신대학code"
+            if (`x' >= 9 ){
+                merge 1:1 pid using ~/dropbox/goms/rawdata/goms_gh`yr' , nogen
+                replace hsname = "" if strpos(hsname, "-1")
+                replace hsname = "" if strpos(hsname, "-2")
+                replace hsname = "" if strpos(hsname, "모름")
+                replace hsname = "" if strpos(hsname, "무응답")
+                replace hsname = "" if strpos(hsname, "비공개")
+                replace hsname = "" if strpos(hsname, "거절")
+                replace hsname = "" if strpos(hsname, "탁송")
+                capture label var hsname "출신고교명"
+                capture label var hscode "출신고교code"
+            }
+            rename * *`yr'
+        /*}}}*/
+        /* 예외처리 {{{*/
+            if ("`x'" == "15" ){
+                destring school15 , replace
+            }
+            if (`x' >= 9 ){
+                rename hs????`yr' hs????
+            }
+        /*}}}*/
+        gen year = `x' +2000
+            label var year "조사년도"
+        gen wave = `x' - 6
+            label var wave "조사회차"
+        /*rename uni????`yr' uni????*/
+        mvdecode _all , mv(-1, -3)
+        mvdecode p034* , mv(9, 10)
+        mvdecode p026* , mv(8)
+        mvdecode p029* , mv(8)
+        if ("`x'" == "7") {
+            rename unibran branch07
+            label var branch "본분교"
+            save ~/dropbox/goms/goms_master.dta , replace
+        }
+        else {
+            append using ~/dropbox/goms/goms_master.dta
+            save ~/dropbox/goms/goms_master.dta , replace
+        }
+    }
+/*}}}*/
+/*데이터 정리작업 {{{*/
+/*#delimit ;*/
+    /*egen wave   = rowtotal(wave??) ;				label var wave "조사회차" ;*/
+    /*egen year   = rowtotal(year??) ;				label var year "조사년도" ;*/
+    /*egen majcat = rowtotal(majorcat??),  missing ;label var majcat "전공계열" ; label value majcat G071MAJO ;*/
+    /*egen majtyp = rowtotal(majtyp??),    missing ;label var majtyp "전공구분" ; label value majtyp MAJTYP ;*/
+    /*egen a004   = rowtotal(a004_10??),   missing ;	label var a004 "현직장 산업대분류(10차)" ; label value a004 LABD ;*/
+    /*egen a005   = rowtotal(a005_10??),   missing ;	label var a005 "현직장 산업중분류(10차)" ; label value a005 LABE ;*/
+    /*egen a006   = rowtotal(a006_10??),   missing ;	label var a006 "현직장 산업소분류(10차)" ; label value a006 G171A006 ;*/
+    /*egen a007   = rowtotal(a007_2018??), missing;label var a007 "현직장 직업중분류(2018)" ; label value a007 LABG ;*/
+    /*egen a008   = rowtotal(a008_2018??), missing;label var a008 "현직장 직업소분류(2018)" ; label value a008 LABH ;*/
+    /*egen a009   = rowtotal(a009_2018??), missing;label var a009 "현직장 직업세분류(2018)" ; label value a009 G171A009 ;*/
+    /*egen a010   = rowtotal(a010??),      missing;		label var a010 "기업체 종사자수" ; label value a010 LABI ;*/
+    /*egen a011   = rowtotal(a011??),      missing;		label var a011 "사업체 종사자수" ; label value a011 LABI ;*/
+    /*egen a021   = rowtotal(a021??),      missing;		label var a021 "현직장 종사상지위" ; label value a021 G171A021 ;*/
+    /*egen a022   = rowtotal(a022??),      missing;		label var a022 "계약기간 존재여부" ; label value a022 G171A022 ;*/
+    /*egen a059   = rowtotal(a059??),      missing;		label var a059 "현직장 정규직(응답자판단)" ; label value a059 G171A059 ;*/
+    /*egen a122   = rowtotal(a122??),      missing;		label var a122 "현직장 월평균근로소득(만원)" ; label value a122 LABA ;*/
+    /*egen a356   = rowtotal(a356??),      missing;		label var a356 "주직장외 동시직장여부" ; label value a356 LABAF ;*/
+    /*egen a366   = rowtotal(a366??),      missing;		label var a366 "동시1직장 월평균근로소득(만원)" ; label value a366 LABAG ;*/
+    /*egen a376   = rowtotal(a376??),      missing;		label var a376 "동시2직장 월평균근로소득(만원)" ; label value a376 LABAG ;*/
+    /*egen a386   = rowtotal(a386??),      missing;		label var a386 "동시3직장 월평균근로소득(만원)" ; label value a386 LABAG ;*/
+    /*egen f001   = rowtotal(f001??),      missing ;	label var f001 "출신고 졸업년" ;*/
+    /*egen f002   = rowtotal(f002??),      missing ;	label var f002 "출신고 졸업월" ;*/
+    /*egen f006   = rowtotal(f006??),      missing ;	label var f006 "출신고 소재지" ; label value f006 G171F006 ;*/
+    /*egen f007   = rowtotal(f007??),      missing ;	label var f007 "출신고 소재지(시군구)" ; label value f007 G171F007 ;*/
+    /*egen f010   = rowtotal(f010??),      missing ;	label var f010 "편입여부" ; label value f010 G171F010 ;*/
+    /*egen f011   = rowtotal(f011??),      missing ;	label var f011 "출신대 입학년" ;*/
+    /*egen f012   = rowtotal(f012??),      missing ;	label var f012 "출신대 입학월" ;*/
+    /*egen p026   = rowtotal(p026??),      missing ;	label var p026 "아버지 최종학력" ; label value p026 G171LABEK ; label define G171LABEK 4 "고등학교" , modify ;*/
+    /*egen p027   = rowtotal(p027??),      missing ;	label var p027 "아버지 최종학력 이수여부" ; label value p027 G151P027 ;*/
+    /*egen p029   = rowtotal(p029??),      missing ;	label var p029 "어머니 최종학력" ; label value p029 G171LABEK ;*/
+    /*egen p030   = rowtotal(p030??),      missing ;	label var p030 "어머니 최종학력 이수여부" ; label value p030 G151P030 ;*/
+    /*egen p034   = rowtotal(p034??),      missing ;	label var p034 "대학입학당시 월평균 부모소득" ; label value p034 G171LABEO ;*/
+    /*egen age    = rowtotal(age??),       missing ;		label var age "만나이" ;*/
+    /*egen birthy = rowtotal(birthy??),    missing ;label var birthy "출생년" ;*/
+    /*egen birthm = rowtotal(birthm??),    missing ;label var birthm "출생월" ;*/
+    /*egen graduy = rowtotal(graduy??),    missing ;label var graduy "대학졸업년" ;*/
+    /*egen gradum = rowtotal(gradum??),    missing ;label var gradum "대학졸업월" ;*/
+    /*egen sex    = rowtotal(sex??),       missing ;		label var sex "성별" ;*/
+    /*egen wgt    = rowtotal(wt??),        missing ;		label var wgt "개인가중치" ;*/
+    /*egen branch = rowtotal(branch??),    missing ;label var branch "본분교" ; label value branch G081BRAN ;*/
+    /*egen school = rowtotal(school??),    missing ;label var school "출신대학유형" ; label value school G071SCHO ;*/
+    /*egen pid    = rowtotal(pid??),       missing ;		label var pid "id" ;*/
+/*#delimit cr*/
+/*merge m:1 uniname using ~/dropbox/goms/rawdata/uniranking.dta , nogen*/
+	/*label var unirank "QS2018순위"*/
+	/*[> 07-17까지 뒷자리 제거 {{{<]*/
+	/*rename f009?? f009??mark*/
+	/*rename f013?? f013??mark*/
+	/*rename f014?? f014??mark*/
+	/*rename f170?? f170??mark*/
+	/*rename (f007 f010 f011 f012) (f007mark f010mark f011mark f012mark)*/
+	/*rename (a007 a008 a009 a010 a011) (a007mark a008mark a009mark a010mark a011mark)*/
+	/*forvalue i = 7/17 {*/
+		/*local yr : disp %02.0f = `i'*/
+		/*drop *`yr'*/
+	/*}*/
+	/*}}}*/
+	/*drop unibran*/
+	/*rename *mark **/
+/*}}}*/
+label data "GOMS 07-17"
+	/*order _all , alpha*/
+	order pid?? wave year , first
+	/*sort wave pid*/
+save ~/dropbox/goms/goms_eq_master.dta , replace
+save ~/dropbox/sjho/goms_eq_master.dta , replace
