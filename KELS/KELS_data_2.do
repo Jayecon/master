@@ -30,8 +30,9 @@ tempfile temp
     isid SID
     merge 1:1 SID using   KELS_Y6_student_survey , nogen
     gen byte wave = 6
-    rename * Y6*
-    rename (Y6SID Y6GENDER Y6SCHID Y6wave) (SID GENDER SCHID wave)
+    /*rename * Y6**/
+    /*rename (Y6SID Y6GENDER Y6SCHID Y6wave) (SID GENDER SCHID wave)*/
     append using `temp' 
     save `temp' , replace
+rename _all , upper
 save KELS_master , replace

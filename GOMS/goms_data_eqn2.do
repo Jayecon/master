@@ -16,7 +16,10 @@ use goms_eq_master , clear
       graduy     /// /*졸업년*/
       gradum     /// /*졸업월*/
       a001 a002 a003 ///
+      a004_10 a005_10 a006_10 ///
+      a007a_2018 a007_2018 a008_2018 a009_2018 ///
       a021 a022 ///
+      a116 a117 a118 ///
       a120 a121 a122 ///
       d001 d002 d003 d004 d005 d006 ///
       e001 e002 ///
@@ -27,6 +30,7 @@ use goms_eq_master , clear
       h006 h007 h008 h009 h010z ///
       h026 h027 h028 h029 h030z ///
       h046 h047 h048 h049 h050z ///
+      f001 f002 f006 f007 f008 f009 ///
       wt             /*가중치*/
     foreach i of local numvarlist {
       di "VAR : `i'"
@@ -36,7 +40,8 @@ use goms_eq_master , clear
   /*자료 변환 : 문자형 변수를 long type으로 {{{*/
     local charvarlist ///
       uniname     /// /*출신대학명*/
-      unicode         /*출신대학CODE*/
+      unicode     /// /*출신대학CODE*/
+      hsname          /*출신고교명*/
     foreach i of local charvarlist {
       tostring `i'?? , replace
       gen str1 `i' = ""
@@ -221,6 +226,85 @@ use goms_eq_master , clear
       label value h049 H049  
     local temp : var label h050z19 
       label var h050z " `temp'"
+    local temp : var label a004_1019
+      label var a004_10  "`temp'"
+      label copy G191A004 A004_10
+      label value a004_10 A004_10  
+      rename a004_10 a004_10  
+    local temp : var label a005_1019
+      label var a005_10  "`temp'"
+      label copy G191A005 A005
+      label value a005_10 A005
+      rename a005_10 a005
+    local temp : var label a006_1019
+      label var a006_10  "`temp'"
+      label copy G191A006 A006
+      label value a006_10 A006
+      rename a006_10 a006
+    local temp : var label a007a_201819
+      label var a007a_2018  "`temp'"
+      label copy LABA A007A
+      label value a007a_2018 A007A
+      rename a007a_2018 a007A
+    local temp : var label a007_201819
+      label var a007_2018  "`temp'"
+      label copy LABB A007
+      label value a007_2018 A007
+      rename a007_2018 a007
+    local temp : var label a008_201819
+      label var a008_2018  "`temp'"
+      label copy LABC A008
+      label value a008_2018 A008
+      rename a008_2018 a008
+    local temp : var label a009_201819
+      label var a009_2018  "`temp'"
+      label copy LABD A009
+      label value a009_2018 A009
+      rename a009_2018 a009
+    local temp : var label a11619
+      label var a116  "`temp'"
+      label copy G191A116 A116
+      label value a116 A116  
+    local temp : var label a11719
+      label var a117  "`temp'"
+      label copy G191A117 A117
+      label value a117 A117  
+    local temp : var label a11819
+      label var a118  "`temp'"
+      label copy G191A118 A118
+      label value a118 A118  
+    local temp : var label f00119
+      label var f001  "`temp'"
+      label copy G191F001 F001
+      label value f001 f001  
+    local temp : var label f00219
+      label var f002  "`temp'"
+      label copy G191F002 F002
+      label value f002 f002  
+    local temp : var label f00619
+      label var f006  "`temp'"
+      label copy G191F006 F006
+      label value f006 F006  
+    local temp : var label f00719
+      label var f007  "`temp'"
+      label copy LABF F007
+      label value f007 F007  
+    local temp : var label f00819
+      label var f008  "`temp'"
+      label copy G191F008 F008
+      label value f008 F008  
+    local temp : var label f00919
+      label var f009  "`temp'"
+      label copy G191F009 F009
+      label value f009 F009  
+      recode f009 (3/4=3) (5=4) (9=10) if year == 2007
+      recode f009 (3/4=3) (5=4) (9=10) if year == 2008
+      recode f009 (3/4=3) (5=4) (9=10) if year == 2009
+      recode f009 (3/4=3) (5=4) (9=10) if year == 2010
+      recode f009 (3/4=3) (5=4) (9=10) if year == 2011
+      recode f009 (3/4=3) (5=4) (9=10) if year == 2012
+      recode f009 (3/4=3) (5=4) (9=10) if year == 2013
+      recode f009 (4=6) (5=7) (6=8) (7=4) (8=10) if year == 2014
   /*}}}*/
   /*변수 교정 : 년도별 응답 불일치 {{{*/
     recode a003 (2=1) (1=2) if year == 2007 
