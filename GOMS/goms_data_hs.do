@@ -1,33 +1,38 @@
 set more off
 set maxvar 30000
 cd ~/dropbox/goms
-use goms_eq , clear
-    /* 대학정보 및 고교정보 합치기{{{*/
-      rename pid g`yr'1pid
-      merge 1:1 g`yr'1pid using ~/dropbox/goms/rawdata/goms_gu`yr' , nogen
-      rename g`yr'1* * 
-      capture label var uniname "출신대학명"
-      capture label var unicode "출신대학code"
-      if (`x' >= 9 ){
-        merge 1:1 pid using ~/dropbox/goms/rawdata/goms_gh`yr' , nogen
-        replace hsname = "" if strpos(hsname, "-1")
-        replace hsname = "" if strpos(hsname, "-2")
-        replace hsname = "" if strpos(hsname, "모름")
-        replace hsname = "" if strpos(hsname, "무응답")
-        replace hsname = "" if strpos(hsname, "비공개")
-        replace hsname = "" if strpos(hsname, "거절")
-        replace hsname = "" if strpos(hsname, "탁송")
-        capture label var hsname "출신고교명"
-        capture drop hscode 
-      }
-      else {
-        gen str hsname = ""
-      }
-      rename * *`yr'
-    /*}}}*/
+  /* 고교정보 append and merge {{{*/
+  tempfile temp
+  forvalue x = 9/19 {
+    local yr : disp %02.0f  = `x'
+    use ~/dropbox/goms/rawdata/GP`yr' , clear
+    drop if missing(g`yr'1sex)
+    rename g`yr'1* * 
+    keep pid f001-f002 f006-f009 
+    gen year = 2000 + `x'
+      label var year "조사년도"
+    merge 1:1 pid using ~/dropbox/goms/rawdata/goms_gh`yr' , nogen
+      replace hsname = "" if strpos(hsname, "-1")
+      replace hsname = "" if strpos(hsname, "-2")
+      replace hsname = "" if strpos(hsname, "모름")
+      replace hsname = "" if strpos(hsname, "무응답")
+      replace hsname = "" if strpos(hsname, "비공개")
+      replace hsname = "" if strpos(hsname, "거절")
+      replace hsname = "" if strpos(hsname, "탁송")
+      capture label var hsname "출신고교명"
+      capture drop hscode 
+    if `x' == 9 {
+      save `temp' , replace
+    }
+    else {
+      append using `temp'
+      save `temp' , replace
+    }
+  }
+  /*}}}*/
   capture drop hsnamec
     gen hsnamec = hsname
-    label var hsnamec "출신고교명(교정)"
+    label var hsnamec "출신고교명(cleaned)"
     levelsof hsname , local(hslist)
     /*학교명 필터(DO NOT SORT){{{*/
     foreach i of local hslist {
@@ -150,7 +155,7 @@ use goms_eq , clear
   capture drop f998
     capture label drop F998
     gen f998 = .
-    label var f998 "특목고"
+    label var f998 "특목고(cleaned)"
     label define F998 1 "과학(영재)고" 2 "예술영재고" 3 "외국어고" 4 "국제고" 5 "자사고(전국)" 6 "자사고(광역)" 7 "강남8학군"
     label value f998 F998
     /* 과학고 및 과학영재학교{{{*/
@@ -322,5 +327,5 @@ use goms_eq , clear
       replace f998 = 7 if hsnamec == "현대고등학교"                   & f006 == 1 & ( inrange(f001 , 1989 , 2013) | missing(f001) ) // 서울 강남구
       replace f998 = 7 if hsnamec == "휘문고등학교"                   & f006 == 1 & ( inrange(f001 , 1908 , 2013) | missing(f001) ) // 서울 강남구
     /*}}}*/
-save goms_eq , replace
-save ~/dropbox/sjho/goms_eq , replace
+  drop f001-f002 f006-f009
+save rawdata/goms_data_hs.dta , replace

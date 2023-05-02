@@ -1,34 +1,51 @@
 set more off
 set maxvar 30000
 cd ~/dropbox/goms/
-  /* 대학정보 및 고교정보 합치기{{{*/
+  /* 대학정보 append and merge {{{*/
   tempfile temp
   forvalue x = 7/19 {
     local yr : disp %02.0f  = `x'
-    use ~/dropbox/goms/rawdata/goms_gu`yr' , clear
-    rename g`yr'1* * 
-    gen byte year = 2000 + `x'
+    use ~/dropbox/goms/rawdata/GP`yr' , clear
+    drop if missing(g`yr'1sex)
     if `x' == 7 {
-      drop unibran
+      keep g`yr'1pid              g`yr'1province g`yr'1area g`yr'1school g`yr'1found
     }
-    if `x' >= 18 {
-      rename (code name) (unicode uniname)
+    else {
+      keep g`yr'1pid g`yr'1branch g`yr'1province g`yr'1area g`yr'1school g`yr'1found
     }
-    append using `temp'
+    gen year = 2000 + `x'
+      label var year "조사년도"
+    merge 1:1 g`yr'1pid using ~/dropbox/goms/rawdata/goms_gu`yr' , nogen
+    rename g`yr'1* * 
+    if ("`x'" == "15" ){
+      destring school, replace
+    }
+    if ("`x'" >= "18" ){
+      destring unicode, replace force
+    }
+    if `x' == 7 {
+      save `temp' , replace
+    }
+    else {
+      append using `temp'
+      save `temp' , replace
+    }
   }
-  use `temp'
-    capture label var uniname "출신대학명"
-    capture label var unicode "출신대학code"
   /*}}}*/
-  forvalue x = 7/19 {
-    local yr : disp %02.0f  = `x'
-    use ~/dropbox/GOMS/rawdata/GP`yr'.dta
-    di "year == " 2000+`x'
-    rename g`yr'1* *
-    drop if missing(sex)
-    keep branch province area 
-use goms_eq, clear
-  /*변수 교정 : branch {{{*/
+  use `temp' , clear
+    merge m:1 uniname using rawdata/uniranking.dta , nogen
+    label var unirank "QS2018순위"
+    /*변수 교정 : found{{{*/
+    label var found      "국공사립"
+      label copy G191FOUN FOUND
+      label define FOUND 7 "기타" , add
+      label value found FOUND
+      recode found (4=7) if year == 2011
+      recode found (4=7) if year == 2012
+      recode found (4=7) if year == 2013
+      recode found (4=7) if year == 2014
+    /*}}}*/
+ /*변수 교정 : branch {{{*/
     replace branch = 2 if uniname == "고려대학교세"
     replace branch = 2 if uniname == "고려대학교 세"
     replace branch = 2 if uniname == "고려대학교세종캠퍼스"
@@ -74,13 +91,18 @@ use goms_eq, clear
     replace uniname = "강원관광대학교" if uniname == "강원관광대학"
     replace uniname = "강원도립대학교" if uniname == "강원도립대학"
     replace uniname = "강원전문대학교" if uniname == "강원전문대학"
+    replace uniname = "강동대학교" if uniname == "극동전문대학"
     replace uniname = "거제대학교" if uniname == "거제대학"
     replace uniname = "거창전문대학교" if uniname == "거창전문대학"
     replace uniname = "경기공업대학교" if uniname == "경기공업대학"
     replace uniname = "경기과학기술대학교" if uniname == "경기과학기술대"
     replace uniname = "경남과학기술대학교" if uniname == "경남과학기술대"
+    replace uniname = "경남도립거창대학" if uniname == "경남도립거창대"
     replace uniname = "경남도립거창대학" if uniname == "경남도립거창대교"
+    replace uniname = "경남도립거창대학" if uniname == "거창전문대학교"
+    replace uniname = "경남도립남해대학" if uniname == "경남도립남해대"
     replace uniname = "경남도립남해대학" if uniname == "경남도립남해대교"
+    replace uniname = "경남도립남해대학" if uniname == "남해전문대학"
     replace uniname = "경남정보대학교" if uniname == "경남정보대학"
     replace uniname = "경동정보대학교" if uniname == "경동정보대학"
     replace uniname = "경민대학교" if uniname == "경민대학"
@@ -132,6 +154,7 @@ use goms_eq, clear
     replace uniname = "대동대학교" if uniname == "대동대학"
     replace uniname = "대림대학교" if uniname == "대림대학"
     replace uniname = "대원대학교" if uniname == "대원대학"
+    replace uniname = "대원대학교" if uniname == "대원과학대학"
     replace uniname = "대전보건대학교" if uniname == "대전보건대학"
     replace uniname = "동강대학교" if uniname == "동강대학"
     replace uniname = "동남보건대학교" if uniname == "동남보건대학"
@@ -192,6 +215,7 @@ use goms_eq, clear
     replace uniname = "수원가톨릭대학교" if uniname == "수원가톨릭대학"
     replace uniname = "수원과학대학교" if uniname == "수원과학대학"
     replace uniname = "수원여자대학교" if uniname == "수원여자대학"
+    replace uniname = "수성대학교" if uniname == "대구산업정보대학"
     replace uniname = "순천제일대학교" if uniname == "순천제일대학"
     replace uniname = "순천청암대학교" if uniname == "순천청암대학"
     replace uniname = "숭의여자대학교" if uniname == "숭의여자대학"
@@ -217,7 +241,8 @@ use goms_eq, clear
     replace uniname = "용인송담대학교" if uniname == "용인송담대학"
     replace uniname = "우송대학교" if uniname == "우송대학교(본교)"
     replace uniname = "우송대학교" if uniname == "우송대학교(산업대)"
-    replace uniname = "울산과학기술대학교" if uniname == "울산과학기술대"
+    replace uniname = "울산과학기술원" if uniname == "울산과학기술대"
+    replace uniname = "울산과학기술원" if uniname == "울산과학기술대학교"
     replace uniname = "울산과학대학교" if uniname == "울산과학대학"
     replace uniname = "웅지세무대학교" if uniname == "웅지세무대학"
     replace uniname = "원광보건대학교" if uniname == "원광보건대학"
@@ -298,274 +323,302 @@ use goms_eq, clear
     replace uniname = "홍익대학교" if uniname == "홍익대학교조치원캠퍼스"
     replace uniname = "홍익대학교" if uniname == "홍익대학교 조치원캠퍼스"
   /*}}}*/
-  /*변수 생성 : main(주된캠퍼스) {{{*/
-    gen main =.
-    label var main "주된캠퍼스"
-    label define MAIN 1 "네" 0 "아니오"
-    label value main MAIN
-    replace main = 0 if unirank
-    replace main = 1 if  uniname == "가천대학교"    
-    replace main = 1 if  uniname == "가톨릭대학교" 
-    replace main = 1 if  uniname == "강원대학교"  
-    replace main = 1 if  uniname == "건국대학교"      & inlist(branch , 1 )
-    replace main = 1 if  uniname == "경북대학교" 
-    replace main = 1 if  uniname == "경상대학교"
-    replace main = 1 if  uniname == "경희대학교" /*2011년 이후 국제캠은 본교와 통합*/
-    replace main = 1 if  uniname == "고려대학교"      & inlist(branch , 1 )
-    replace main = 1 if  uniname == "광운대학교"      & inlist(branch , 1 )
-    replace main = 1 if  uniname == "광주과학기술원"  & inlist(branch , 1 )
-    replace main = 1 if  uniname == "국민대학교"      & inlist(branch , 1 )
-    replace main = 1 if  uniname == "단국대학교"      & inlist(branch , 1 , 3 ) /*2013년 이후 천안캠은 분교에서 이원캠으로 전환*/
-    replace main = 1 if  uniname == "동국대학교"      & inlist(branch , 1 )
-    replace main = 1 if  uniname == "명지대학교"     
-    replace main = 1 if  uniname == "부경대학교"      
-    replace main = 1 if  uniname == "부산대학교"      
-    replace main = 1 if  uniname == "서강대학교"      
-    replace main = 1 if  uniname == "서울대학교"      
-    replace main = 1 if  uniname == "서울시립대학교"  
-    replace main = 1 if  uniname == "성균관대학교"   
-    replace main = 1 if  uniname == "세종대학교"     
-    replace main = 1 if  uniname == "숙명여자대학교"
-    replace main = 1 if  uniname == "순천향대학교" 
-    replace main = 1 if  uniname == "숭실대학교"  
-    replace main = 1 if  uniname == "아주대학교" 
-    replace main = 1 if  uniname == "연세대학교"      & inlist(branch , 1 )
-    replace main = 1 if  uniname == "영남대학교"
-    replace main = 1 if  uniname == "울산과학기술원"  
-    replace main = 1 if  uniname == "울산대학교"      
-    replace main = 1 if  uniname == "원광대학교"      
-    replace main = 1 if  uniname == "이화여자대학교"  
-    replace main = 1 if  uniname == "인제대학교"      
-    replace main = 1 if  uniname == "인천대학교"      
-    replace main = 1 if  uniname == "인하대학교"     
-    replace main = 1 if  uniname == "전남대학교"      & inlist(branch , 1 )
-    replace main = 1 if  uniname == "전북대학교"      
-    replace main = 1 if  uniname == "제주대학교"      
-    replace main = 1 if  uniname == "조선대학교"      
-    replace main = 1 if  uniname == "중앙대학교"      /*2011년 이후 안성캠은 본교와 통합*/
-    replace main = 1 if  uniname == "충남대학교"      
-    replace main = 1 if  uniname == "충북대학교"      
-    replace main = 1 if  uniname == "포항공과대학교"  
-    replace main = 1 if  uniname == "한국과학기술원"  
-    replace main = 1 if  uniname == "한국교원대학교"  
-    replace main = 1 if  uniname == "한국외국어대학교" & inlist(branch , 1 ) /*2013년 이후 글로벌캠은 본교와 통합*/
-    replace main = 1 if  uniname == "한국해양대학교"  
-    replace main = 1 if  uniname == "한림대학교"      
-    replace main = 1 if  uniname == "한양대학교"      
-    replace main = 1 if  uniname == "홍익대학교"      & inlist(branch , 1 )
+  /*변수 생성 : unimain {{{*/
+    recode branch 1=1 2/4=0 , gen(unimain)
+    label var unimain "주된캠퍼스"
+    label define UNIMAIN 1 "주된캠퍼스" 0 "기타캠퍼스"
+    label value unimain UNIMAIN
+    replace unimain = 1 if uniname == "가천대학교"    
+    replace unimain = 1 if uniname == "가톨릭대학교" 
+    replace unimain = 1 if uniname == "강원대학교"  
+    replace unimain = 1 if uniname == "건국대학교"      & inlist(branch , 1 )
+    replace unimain = 1 if uniname == "경북대학교" 
+    replace unimain = 1 if uniname == "경상대학교"
+    replace unimain = 1 if uniname == "경희대학교" /*2011년 이후 국제캠은 본교와 통합*/
+    replace unimain = 1 if uniname == "고려대학교"      & inlist(branch , 1 )
+    replace unimain = 1 if uniname == "광운대학교"      & inlist(branch , 1 )
+    replace unimain = 1 if uniname == "광주과학기술원"  & inlist(branch , 1 )
+    replace unimain = 1 if uniname == "국민대학교"      & inlist(branch , 1 )
+    replace unimain = 1 if uniname == "단국대학교"      & inlist(branch , 1 , 3 ) /*2013년 이후 천안캠은 분교에서 이원캠으로 전환*/
+    replace unimain = 1 if uniname == "동국대학교"      & inlist(branch , 1 )
+    replace unimain = 1 if uniname == "명지대학교"     
+    replace unimain = 1 if uniname == "부경대학교"      
+    replace unimain = 1 if uniname == "부산대학교"      
+    replace unimain = 1 if uniname == "서강대학교"      
+    replace unimain = 1 if uniname == "서울대학교"      
+    replace unimain = 1 if uniname == "서울시립대학교"  
+    replace unimain = 1 if uniname == "성균관대학교"   
+    replace unimain = 1 if uniname == "세종대학교"     
+    replace unimain = 1 if uniname == "숙명여자대학교"
+    replace unimain = 1 if uniname == "순천향대학교" 
+    replace unimain = 1 if uniname == "숭실대학교"  
+    replace unimain = 1 if uniname == "아주대학교" 
+    replace unimain = 1 if uniname == "연세대학교"      & inlist(branch , 1 )
+    replace unimain = 1 if uniname == "영남대학교"
+    replace unimain = 1 if uniname == "울산과학기술원"  
+    replace unimain = 1 if uniname == "울산대학교"      
+    replace unimain = 1 if uniname == "원광대학교"      
+    replace unimain = 1 if uniname == "이화여자대학교"  
+    replace unimain = 1 if uniname == "인제대학교"      
+    replace unimain = 1 if uniname == "인천대학교"      
+    replace unimain = 1 if uniname == "인하대학교"     
+    replace unimain = 1 if uniname == "전남대학교"      & inlist(branch , 1 )
+    replace unimain = 1 if uniname == "전북대학교"      
+    replace unimain = 1 if uniname == "제주대학교"      
+    replace unimain = 1 if uniname == "조선대학교"      
+    replace unimain = 1 if uniname == "중앙대학교"      /*2011년 이후 안성캠은 본교와 통합*/
+    replace unimain = 1 if uniname == "충남대학교"      
+    replace unimain = 1 if uniname == "충북대학교"      
+    replace unimain = 1 if uniname == "포항공과대학교"  
+    replace unimain = 1 if uniname == "한국과학기술원"  
+    replace unimain = 1 if uniname == "한국교원대학교"  
+    replace unimain = 1 if uniname == "한국외국어대학교" & inlist(branch , 1 ) /*2013년 이후 글로벌캠은 본교와 통합*/
+    replace unimain = 1 if uniname == "한국해양대학교"  
+    replace unimain = 1 if uniname == "한림대학교"      
+    replace unimain = 1 if uniname == "한양대학교"      
+    replace unimain = 1 if uniname == "홍익대학교"      & inlist(branch , 1 )
+    replace unimain = 1 if missing(unirank) & branch == 3
   /*}}}*/
   /*변수 생성 : uniscr50(QS50) uniscr20(QS20) {{{*/
     gen uniscr50 = .
-      label var uniscr50 "대학등급"
+      label var uniscr50 "대학등급(QS50)"
       label define uniscr50 1 "2-3년제" 2 "4년제" 3 "4년제(QS50)" 4 "4년제(QS10)" 5 "4년제(QS05)"
       label value uniscr50 uniscr50
       replace uniscr50 = 1 if school == 1
       replace uniscr50 = 2 if school == 2
-      replace uniscr50 = 3 if (!missing(unirank) & main ) | school == 3
-      replace uniscr50 = 4 if (inrange(unirank , 1 , 10) & main) | uniname == "서울교육대학교"
-      replace uniscr50 = 5 if (inlist(unirank , 1, 2, 3, 5, 6) & main)
+      replace uniscr50 = 3 if (!missing(unirank) & unimain ) | school == 3
+      replace uniscr50 = 4 if (inrange(unirank , 1 , 10) & unimain) | uniname == "서울교육대학교"
+      replace uniscr50 = 5 if (inlist(unirank , 1, 2, 3, 5, 6) & unimain)
     gen uniscr20 = .
       label var uniscr20 "대학등급(QS20)"
       label define uniscr20 1 "QS 16-20" 2 "QS 11-15" 3 "QS 6-10" 4 "QS 1-5"
       label value uniscr20 uniscr20
-      replace uniscr20 = 1 if inrange(unirank , 16, 20) & main
-      replace uniscr20 = 2 if inrange(unirank , 11, 15) & main
-      replace uniscr20 = 3 if inlist(unirank , 4, 7, 8, 9, 10) & main
-      replace uniscr20 = 4 if (inlist(unirank , 1, 2, 3, 5, 6) & main)
+      replace uniscr20 = 1 if inrange(unirank , 16, 20) & unimain
+      replace uniscr20 = 2 if inrange(unirank , 11, 15) & unimain
+      replace uniscr20 = 3 if inlist(unirank , 4, 7, 8, 9, 10) & unimain
+      replace uniscr20 = 4 if (inlist(unirank , 1, 2, 3, 5, 6) & unimain)
   /*}}}*/
-/*대학별 branch 정리{{{*/
-capture drop unibran 
-capture drop br_* 
-gen unibran = .
-label var unibran "branch(cleaned)"
-label value unibran BRANCH
-tab branch , gen(br_)
-qui levelsof uniname , local(unilist)
-foreach i of local unilist {
-  forvalue j = 1/3 {
-    sum br_`j' if uniname == "`i'" , meanonly
-    if inrange(r(mean) , 0.9 ,1) {
-      replace unibran = `j' if uniname == "`i'"
-    }
-  }
-}
-drop br_?
-/*예외처리*/
-  replace unibran = branch if uniname == "가야대학교"
-  replace unibran = 3      if uniname == "가야대학교"       & inlist(unibran , 2)
-  replace unibran = branch if uniname == "가톨릭대학교"
-  replace unibran = 3      if uniname == "가톨릭대학교"     & inlist(unibran , 2)
-  replace unibran = branch if uniname == "강릉원주대학교"
-  replace unibran = 3      if uniname == "강릉원주대학교"   & inlist(unibran , 2)
-  replace unibran = branch if uniname == "강원대학교"
-  replace unibran = 3      if uniname == "강원대학교"       & inlist(unibran , 2)
-  replace unibran = branch if uniname == "강원대학교"
-  replace unibran = 3      if uniname == "강원대학교"       & inlist(unibran , 2)
-  replace unibran = branch if uniname == "건국대학교"
-  replace unibran = 2      if uniname == "건국대학교"       & inlist(unibran , 3)
-  replace unibran = branch if uniname == "건양대학교"
-  replace unibran = 3      if uniname == "건양대학교"       & inlist(unibran , 2)
-  replace unibran = branch if uniname == "경기대학교"
-  replace unibran = 3      if uniname == "경기대학교"       & inlist(unibran , 2)
-  replace unibran = branch if uniname == "경동대학교"
-  replace unibran = branch if uniname == "경북대학교"
-  replace unibran = 3      if uniname == "경북대학교"       & inlist(unibran , 2)
-  replace unibran = branch if uniname == "경인교육대학교"
-  replace unibran = 3      if uniname == "경인교육대학교"   & inlist(unibran , 2)
-  replace unibran = branch if uniname == "경희대학교"
-  replace unibran = 2      if uniname == "경희대학교"       & inlist(unibran , 3)
-  replace unibran = branch if uniname == "고려대학교"
-  replace unibran = 2      if uniname == "고려대학교"       & inlist(unibran , 3)
-  replace unibran = branch if uniname == "단국대학교"
-  replace unibran = branch if uniname == "대구대학교"
-  replace unibran = 3      if uniname == "대구대학교"       & inlist(unibran , 2)
-  replace unibran = branch if uniname == "동국대학교"
-  replace unibran = 2      if uniname == "동국대학교"       & inlist(unibran , 3)
-  replace unibran = branch if uniname == "명지대학교"
-  replace unibran = 3      if uniname == "명지대학교"       & inlist(unibran , 2)
-  replace unibran = branch if uniname == "부산대학교"
-  replace unibran = 3      if uniname == "부산대학교"       & inlist(unibran , 2)
-  replace unibran = branch if uniname == "상명대학교"
-  replace unibran = branch if uniname == "서남대학교"
-  replace unibran = 3      if uniname == "서남대학교"       & inlist(unibran , 2)
-  replace unibran = branch if uniname == "성균관대학교"
-  replace unibran = 3      if uniname == "성균관대학교"     & inlist(unibran , 2)
-  replace unibran = branch if uniname == "신한대학교"
-  replace unibran = 3      if uniname == "신한대학교"       & inlist(unibran , 2)
-  replace unibran = branch if uniname == "안양대학교"
-  replace unibran = 3      if uniname == "안양대학교"       & inlist(unibran , 2)
-  replace unibran = branch if uniname == "연세대학교"
-  replace unibran = 2      if uniname == "연세대학교"       & inlist(unibran , 3)
-  replace unibran = branch if uniname == "영남대학교"
-  replace unibran = 3      if uniname == "영남대학교"       & inlist(unibran , 2)
-  replace unibran = branch if uniname == "영산대학교"
-  replace unibran = 3      if uniname == "영산대학교"       & inlist(unibran , 2)
-  replace unibran = branch if uniname == "예원예술대학교"
-  replace unibran = 3      if uniname == "예원예술대학교"   & inlist(unibran , 2)
-  replace unibran = branch if uniname == "을지대학교"
-  replace unibran = 3      if uniname == "을지대학교"       & inlist(unibran , 2)
-  replace unibran = branch if uniname == "인제대학교"
-  replace unibran = 3      if uniname == "인제대학교"       & inlist(unibran , 2)
-  replace unibran = branch if uniname == "인천가톨릭대학교"
-  replace unibran = 3      if uniname == "인천가톨릭대학교" & inlist(unibran , 2)
-  replace unibran = branch if uniname == "전남대학교"
-  replace unibran = 3      if uniname == "전남대학교"       & inlist(unibran , 2)
-  replace unibran = branch if uniname == "중앙대학교"
-  replace unibran = 3      if uniname == "중앙대학교"       & inlist(unibran , 2)
-  replace unibran = branch if uniname == "한국외국어대학교"
-  replace unibran = 2      if uniname == "한국외국어대학교" & inlist(unibran , 3)
-  replace unibran = branch if uniname == "한양대학교"
-  replace unibran = 2      if uniname == "한양대학교"       & inlist(unibran , 3)
-  replace unibran = branch if uniname == "홍익대학교"
-  replace unibran = 2      if uniname == "홍익대학교"       & inlist(unibran , 3)
-/*}}}*/
-/*대학별 province 정리{{{*/
-capture drop unizone 
-capture drop pr_* 
-gen unizone = .
-label var unizone "province(cleaned)"
-label value unizone PROVINCE
-tab province , gen(pr_)
-qui levelsof uniname , local(unilist)
-foreach i of local unilist {
-  forvalue j = 1/5 {
-    sum pr_`j' if uniname == "`i'" , meanonly
-    if inrange(r(mean) , 0.8 ,1) {
-      replace unizone = `j' if uniname == "`i'"
-    }
-  }
-}
-drop pr_?
-/*예외처리*/
-  replace unizone = province if uniname == "건국대학교"
-  replace unibran = 2        if uniname == "건국대학교"       & inlist(unizone,3)
-  replace unizone = .        if uniname == "건국대학교"       & inlist(unizone,2,4,5)
-  replace unibran = .        if uniname == "건국대학교"       & inlist(unizone,2,4,5)
-  replace unizone = province if uniname == "경희대학교"
-  replace unibran = 2        if uniname == "경희대학교"       & inlist(unizone,2)
-  replace unizone = .        if uniname == "경희대학교"       & inlist(unizone,3,4,5)
-  replace unibran = .        if uniname == "경희대학교"       & inlist(unizone,3,4,5)
-  replace unizone = province if uniname == "고려대학교"
-  replace unibran = 1        if uniname == "고려대학교"       & inlist(unizone,1)
-  replace unibran = 2        if uniname == "고려대학교"       & inlist(unizone,3)
-  replace unizone = .        if uniname == "고려대학교"       & inlist(unizone,2,4,5)
-  replace unibran = .        if uniname == "고려대학교"       & inlist(unizone,2,4,5)
-  replace unizone = province if uniname == "단국대학교"
-  replace unizone = .        if uniname == "단국대학교"       & inlist(unizone,4,5)
-  replace unibran = .        if uniname == "단국대학교"       & inlist(unizone,4,5)
-  replace unizone = province if uniname == "동국대학교"
-  replace unibran = 2        if uniname == "동국대학교"       & inlist(unizone,4)
-  replace unizone = .        if uniname == "동국대학교"       & inlist(unizone,2,3,5)
-  replace unibran = .        if uniname == "동국대학교"       & inlist(unizone,2,3,5)
-  replace unizone = province if uniname == "명지대학교"
-  replace unibran = 1        if uniname == "명지대학교"       & inlist(unizone,2)
-  replace unizone = .        if uniname == "명지대학교"       & inlist(unizone,3,4,5)
-  replace unibran = .        if uniname == "명지대학교"       & inlist(unizone,3,4,5)
-  replace unizone = province if uniname == "상명대학교"
-  replace unizone = .        if uniname == "상명대학교"       & inlist(unizone,2,4,5)
-  replace unibran = .        if uniname == "상명대학교"       & inlist(unizone,2,4,5)
-  replace unizone = province if uniname == "연세대학교"
-  replace unibran = 2        if uniname == "연세대학교"       & inlist(unizone,2)
-  replace unizone = .        if uniname == "연세대학교"       & inlist(unizone,3,4,5)
-  replace unibran = .        if uniname == "연세대학교"       & inlist(unizone,3,4,5)
-  replace unizone = province if uniname == "중앙대학교"
-  replace unizone = .        if uniname == "중앙대학교"       & inlist(unizone,3,4,5)
-  replace unibran = .        if uniname == "중앙대학교"       & inlist(unizone,3,4,5)
-  replace unizone = province if uniname == "한국농수산대학교"
-  replace unizone = .        if uniname == "한국농수산대학교" & inlist(unizone,3,4)
-  replace unibran = .        if uniname == "한국농수산대학교" & inlist(unizone,3,4)
-  replace unizone = province if uniname == "한국외국어대학교"
-  replace unibran = 2        if uniname == "한국외국어대학교" & inlist(unizone,2)
-  replace unizone = .        if uniname == "한국외국어대학교" & inlist(unizone,3,4,5)
-  replace unibran = .        if uniname == "한국외국어대학교" & inlist(unizone,3,4,5)
-  replace unizone = province if uniname == "한국체육대학교"
-  replace unizone = .        if uniname == "한국체육대학교"   & inlist(unizone,3,4,5)
-  replace unibran = .        if uniname == "한국체육대학교"   & inlist(unizone,3,4,5)
-  replace unizone = province if uniname == "한양대학교"
-  replace unibran = 1        if uniname == "한양대학교"       & inlist(unizone,1)
-  replace unibran = 2        if uniname == "한양대학교"       & inlist(unizone,2)
-  replace unizone = .        if uniname == "한양대학교"       & inlist(unizone,3,4,5)
-  replace unibran = .        if uniname == "한양대학교"       & inlist(unizone,3,4,5)
-  replace unizone = province if uniname == "홍익대학교"
-  replace unibran = 1        if uniname == "홍익대학교"       & inlist(unizone,1)
-  replace unibran = 2        if uniname == "홍익대학교"       & inlist(unizone,3)
-  replace unizone = .        if uniname == "홍익대학교"       & inlist(unizone,2,4,5)
-  replace unibran = .        if uniname == "홍익대학교"       & inlist(unizone,2,4,5)
-  replace unizone = province if uniname == "한국농수산대학"
-  replace unizone = .        if uniname == "한국농수산대학"   & inlist(unizone,1,3,4)
-  replace unibran = .        if uniname == "한국농수산대학"   & inlist(unizone,1,3,4)
-/*}}}*/
-/*대학별 area 정리{{{*/
-  capture drop uniarea
-  capture drop ar_*
-  gen uniarea = .
-  label var uniarea "area(cleaed)"
-  label value uniarea AREA
-  tab area , gen(ar_)
-  qui levelsof uniname , local(unilist)
-  foreach i of local unilist {
-    forvalue j = 1/17 {
-      sum ar_`j' if uniname == "`i'" , meanonly
-      if inrange(r(mean) , 0.8 ,1) {
-        replace uniarea = `j' if uniname == "`i'"
+  /*대학별 found 정리{{{*/
+    gen unifoun = .
+    label var unifoun "found(cleaned)"
+    label value unifoun FOUND
+    tab found , gen(br_)
+    qui levelsof uniname , local(unilist)
+    qui levelsof found , local(foundlist)
+    local foundn : word count `foundlist'
+    foreach i of local unilist {
+      forvalue j = 1/`foundn' {
+        sum br_`j' if uniname == "`i'" , meanonly
+        if inrange(r(mean) , 0.9 ,1) {
+          replace unifoun = `j' if uniname == "`i'"
+        }
       }
     }
-  }
-  levelsof uniname if missing(uniarea), local(unilist)
-  foreach i of local unilist {
-	replace uniarea = area if uniname == "`i'"
-    forvalue j = 1/17 {
-      sum ar_`j' if uniname == "`i'" ,
-      if r(mean) <= 0.01  {
-        replace uniarea = . if uniname == "`i'" & area == `j'
+    drop br_?
+    /*예외처리*/
+     replace unifoun = 6 if uniname == "광주과학기술원"
+     replace unifoun = 4 if uniname == "서울대학교"
+     replace unifoun = 6 if uniname == "울산과학기술원"
+     replace unifoun = 4 if uniname == "인천대학교"
+     replace unifoun = 6 if uniname == "한국과학기술원"
+     replace unifoun = 1 if uniname == "한국농수산대학"
+     replace unifoun = 6 if uniname == "한국전통문화대학교"
+  /*}}}*/
+  /*대학별 branch 정리{{{*/
+    capture drop unibran 
+    capture drop br_* 
+    gen unibran = .
+    label var unibran "branch(cleaned)"
+    label value unibran BRANCH
+    tab branch , gen(br_)
+    qui levelsof uniname , local(unilist)
+    foreach i of local unilist {
+      forvalue j = 1/3 {
+        sum br_`j' if uniname == "`i'" , meanonly
+        if inrange(r(mean) , 0.9 ,1) {
+          replace unibran = `j' if uniname == "`i'"
+        }
       }
     }
-  }
-  drop ar_*
-/*}}}*/
-  replace unizone = . if missing(uniarea)
-  replace unibran = . if missing(uniarea)
-  merge m:1 uniname using rawdata/uniranking.dta , nogen
-  label var unirank "QS2018순위"
-save goms_eq.dta , replace
-save ~/dropbox/sjho/goms_eq.dta , replace
+    label copy G191BRAN BRANCH
+    label value unibran BRANCH 
+    drop br_?
+    /*예외처리*/
+      replace unibran = branch if uniname == "가야대학교"
+      replace unibran = 3      if uniname == "가야대학교"       & inlist(unibran , 2)
+      replace unibran = branch if uniname == "가톨릭대학교"
+      replace unibran = 3      if uniname == "가톨릭대학교"     & inlist(unibran , 2)
+      replace unibran = branch if uniname == "강릉원주대학교"
+      replace unibran = 3      if uniname == "강릉원주대학교"   & inlist(unibran , 2)
+      replace unibran = branch if uniname == "강원대학교"
+      replace unibran = 3      if uniname == "강원대학교"       & inlist(unibran , 2)
+      replace unibran = branch if uniname == "강원대학교"
+      replace unibran = 3      if uniname == "강원대학교"       & inlist(unibran , 2)
+      replace unibran = branch if uniname == "건국대학교"
+      replace unibran = 2      if uniname == "건국대학교"       & inlist(unibran , 3)
+      replace unibran = branch if uniname == "건양대학교"
+      replace unibran = 3      if uniname == "건양대학교"       & inlist(unibran , 2)
+      replace unibran = branch if uniname == "경기대학교"
+      replace unibran = 3      if uniname == "경기대학교"       & inlist(unibran , 2)
+      replace unibran = branch if uniname == "경동대학교"
+      replace unibran = branch if uniname == "경북대학교"
+      replace unibran = 3      if uniname == "경북대학교"       & inlist(unibran , 2)
+      replace unibran = branch if uniname == "경인교육대학교"
+      replace unibran = 3      if uniname == "경인교육대학교"   & inlist(unibran , 2)
+      replace unibran = branch if uniname == "경희대학교"
+      replace unibran = 2      if uniname == "경희대학교"       & inlist(unibran , 3)
+      replace unibran = branch if uniname == "고려대학교"
+      replace unibran = 2      if uniname == "고려대학교"       & inlist(unibran , 3)
+      replace unibran = branch if uniname == "단국대학교"
+      replace unibran = branch if uniname == "대구대학교"
+      replace unibran = 3      if uniname == "대구대학교"       & inlist(unibran , 2)
+      replace unibran = branch if uniname == "동국대학교"
+      replace unibran = 2      if uniname == "동국대학교"       & inlist(unibran , 3)
+      replace unibran = branch if uniname == "명지대학교"
+      replace unibran = 3      if uniname == "명지대학교"       & inlist(unibran , 2)
+      replace unibran = branch if uniname == "부산대학교"
+      replace unibran = 3      if uniname == "부산대학교"       & inlist(unibran , 2)
+      replace unibran = branch if uniname == "상명대학교"
+      replace unibran = branch if uniname == "서남대학교"
+      replace unibran = 3      if uniname == "서남대학교"       & inlist(unibran , 2)
+      replace unibran = branch if uniname == "성균관대학교"
+      replace unibran = 3      if uniname == "성균관대학교"     & inlist(unibran , 2)
+      replace unibran = branch if uniname == "신한대학교"
+      replace unibran = 3      if uniname == "신한대학교"       & inlist(unibran , 2)
+      replace unibran = branch if uniname == "안양대학교"
+      replace unibran = 3      if uniname == "안양대학교"       & inlist(unibran , 2)
+      replace unibran = branch if uniname == "연세대학교"
+      replace unibran = 2      if uniname == "연세대학교"       & inlist(unibran , 3)
+      replace unibran = branch if uniname == "영남대학교"
+      replace unibran = 3      if uniname == "영남대학교"       & inlist(unibran , 2)
+      replace unibran = branch if uniname == "영산대학교"
+      replace unibran = 3      if uniname == "영산대학교"       & inlist(unibran , 2)
+      replace unibran = branch if uniname == "예원예술대학교"
+      replace unibran = 3      if uniname == "예원예술대학교"   & inlist(unibran , 2)
+      replace unibran = branch if uniname == "을지대학교"
+      replace unibran = 3      if uniname == "을지대학교"       & inlist(unibran , 2)
+      replace unibran = branch if uniname == "인제대학교"
+      replace unibran = 3      if uniname == "인제대학교"       & inlist(unibran , 2)
+      replace unibran = branch if uniname == "인천가톨릭대학교"
+      replace unibran = 3      if uniname == "인천가톨릭대학교" & inlist(unibran , 2)
+      replace unibran = branch if uniname == "전남대학교"
+      replace unibran = 3      if uniname == "전남대학교"       & inlist(unibran , 2)
+      replace unibran = branch if uniname == "중앙대학교"
+      replace unibran = 3      if uniname == "중앙대학교"       & inlist(unibran , 2)
+      replace unibran = branch if uniname == "한국외국어대학교"
+      replace unibran = 2      if uniname == "한국외국어대학교" & inlist(unibran , 3)
+      replace unibran = branch if uniname == "한양대학교"
+      replace unibran = 2      if uniname == "한양대학교"       & inlist(unibran , 3)
+      replace unibran = branch if uniname == "홍익대학교"
+      replace unibran = 2      if uniname == "홍익대학교"       & inlist(unibran , 3)
+  /*}}}*/
+  /*대학별 province 정리{{{*/
+    capture drop unizone 
+    capture drop pr_* 
+    gen unizone = .
+    label var unizone "province(cleaned)"
+    label value unizone PROVINCE
+    tab province , gen(pr_)
+    qui levelsof uniname , local(unilist)
+    foreach i of local unilist {
+      forvalue j = 1/5 {
+        sum pr_`j' if uniname == "`i'" , meanonly
+        if inrange(r(mean) , 0.8 ,1) {
+          replace unizone = `j' if uniname == "`i'"
+        }
+      }
+    }
+    drop pr_?
+    /*예외처리*/
+      replace unizone = province if uniname == "건국대학교"
+      replace unibran = 2        if uniname == "건국대학교"       & inlist(unizone,3)
+      replace unizone = .        if uniname == "건국대학교"       & inlist(unizone,2,4,5)
+      replace unibran = .        if uniname == "건국대학교"       & inlist(unizone,2,4,5)
+      replace unizone = province if uniname == "경희대학교"
+      replace unibran = 2        if uniname == "경희대학교"       & inlist(unizone,2)
+      replace unizone = .        if uniname == "경희대학교"       & inlist(unizone,3,4,5)
+      replace unibran = .        if uniname == "경희대학교"       & inlist(unizone,3,4,5)
+      replace unizone = province if uniname == "고려대학교"
+      replace unibran = 1        if uniname == "고려대학교"       & inlist(unizone,1)
+      replace unibran = 2        if uniname == "고려대학교"       & inlist(unizone,3)
+      replace unizone = .        if uniname == "고려대학교"       & inlist(unizone,2,4,5)
+      replace unibran = .        if uniname == "고려대학교"       & inlist(unizone,2,4,5)
+      replace unizone = province if uniname == "단국대학교"
+      replace unizone = .        if uniname == "단국대학교"       & inlist(unizone,4,5)
+      replace unibran = .        if uniname == "단국대학교"       & inlist(unizone,4,5)
+      replace unizone = province if uniname == "동국대학교"
+      replace unibran = 2        if uniname == "동국대학교"       & inlist(unizone,4)
+      replace unizone = .        if uniname == "동국대학교"       & inlist(unizone,2,3,5)
+      replace unibran = .        if uniname == "동국대학교"       & inlist(unizone,2,3,5)
+      replace unizone = province if uniname == "명지대학교"
+      replace unibran = 1        if uniname == "명지대학교"       & inlist(unizone,2)
+      replace unizone = .        if uniname == "명지대학교"       & inlist(unizone,3,4,5)
+      replace unibran = .        if uniname == "명지대학교"       & inlist(unizone,3,4,5)
+      replace unizone = province if uniname == "상명대학교"
+      replace unizone = .        if uniname == "상명대학교"       & inlist(unizone,2,4,5)
+      replace unibran = .        if uniname == "상명대학교"       & inlist(unizone,2,4,5)
+      replace unizone = province if uniname == "연세대학교"
+      replace unibran = 2        if uniname == "연세대학교"       & inlist(unizone,2)
+      replace unizone = .        if uniname == "연세대학교"       & inlist(unizone,3,4,5)
+      replace unibran = .        if uniname == "연세대학교"       & inlist(unizone,3,4,5)
+      replace unizone = province if uniname == "중앙대학교"
+      replace unizone = .        if uniname == "중앙대학교"       & inlist(unizone,3,4,5)
+      replace unibran = .        if uniname == "중앙대학교"       & inlist(unizone,3,4,5)
+      replace unizone = province if uniname == "한국농수산대학교"
+      replace unizone = .        if uniname == "한국농수산대학교" & inlist(unizone,3,4)
+      replace unibran = .        if uniname == "한국농수산대학교" & inlist(unizone,3,4)
+      replace unizone = province if uniname == "한국외국어대학교"
+      replace unibran = 2        if uniname == "한국외국어대학교" & inlist(unizone,2)
+      replace unizone = .        if uniname == "한국외국어대학교" & inlist(unizone,3,4,5)
+      replace unibran = .        if uniname == "한국외국어대학교" & inlist(unizone,3,4,5)
+      replace unizone = province if uniname == "한국체육대학교"
+      replace unizone = .        if uniname == "한국체육대학교"   & inlist(unizone,3,4,5)
+      replace unibran = .        if uniname == "한국체육대학교"   & inlist(unizone,3,4,5)
+      replace unizone = province if uniname == "한양대학교"
+      replace unibran = 1        if uniname == "한양대학교"       & inlist(unizone,1)
+      replace unibran = 2        if uniname == "한양대학교"       & inlist(unizone,2)
+      replace unizone = .        if uniname == "한양대학교"       & inlist(unizone,3,4,5)
+      replace unibran = .        if uniname == "한양대학교"       & inlist(unizone,3,4,5)
+      replace unizone = province if uniname == "홍익대학교"
+      replace unibran = 1        if uniname == "홍익대학교"       & inlist(unizone,1)
+      replace unibran = 2        if uniname == "홍익대학교"       & inlist(unizone,3)
+      replace unizone = .        if uniname == "홍익대학교"       & inlist(unizone,2,4,5)
+      replace unibran = .        if uniname == "홍익대학교"       & inlist(unizone,2,4,5)
+      replace unizone = province if uniname == "한국농수산대학"
+      replace unizone = .        if uniname == "한국농수산대학"   & inlist(unizone,1,3,4)
+      replace unibran = .        if uniname == "한국농수산대학"   & inlist(unizone,1,3,4)
+  /*}}}*/
+  /*대학별 area 정리{{{*/
+    capture drop uniarea
+    capture drop ar_*
+    gen uniarea = .
+    label var uniarea "area(cleaed)"
+    label value uniarea AREA
+    tab area , gen(ar_)
+    qui levelsof uniname , local(unilist)
+    foreach i of local unilist {
+      forvalue j = 1/17 {
+        sum ar_`j' if uniname == "`i'" , meanonly
+        if inrange(r(mean) , 0.8 ,1) {
+          replace uniarea = `j' if uniname == "`i'"
+        }
+      }
+    }
+    levelsof uniname if missing(uniarea), local(unilist)
+    foreach i of local unilist {
+    replace uniarea = area if uniname == "`i'"
+      forvalue j = 1/17 {
+        sum ar_`j' if uniname == "`i'" ,
+        if r(mean) <= 0.01  {
+          replace uniarea = . if uniname == "`i'" & area == `j'
+        }
+      }
+    }
+    drop ar_*
+  /*}}}*/
+    label var uniname "출신대학명"
+    label var unicode "출신대학code"
+    replace unizone = . if missing(uniarea)
+    replace unibran = . if missing(uniarea)
+    /*drop branch school province area found*/
+save rawdata/goms_data_univ.dta , replace
