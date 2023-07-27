@@ -14,6 +14,7 @@ cd ~/dropbox/goms
     /*wage      */ a120-a122 ///
     /*experience*/ d001-d006 d110-d112 e001-e006 e078-e081 e153-e156 ///
     /*exponhs   */ f001-f002 f006-f009 ///
+    /*GPA       */ f073-f074 ///
     /*service   */ p045
   local varlist07 ///
     /*exponuniv */ h001-h002 h006-h009 h026-h029 h046-h049 ///

@@ -182,4 +182,4 @@ label data "GOMS 07-17"
 order pid?? wave year , first
 /*sort wave pid*/
 save ~/dropbox/goms/goms_eq_master.dta , replace
-save ~/dropbox/sjho/goms_eq_master.dta , replace
+save ~/dropbox/HL_sjho/goms_eq_master.dta , replace

@@ -30,6 +30,8 @@ use goms_eq_master , clear
         f012       /// /*졸업 대학 입학/편입 시기_월*/
         f013       /// /*대학 입학 모집방법(정시 혹은 수시)*/
         f014       /// /*전형방법*/
+        f073       /// /*졸업평점유형*/
+        f074       /// /*졸업평점유형*/
         f170       /// /*입학 전형 유형 (세부 유형)*/
         f016       /// /*졸업한 대학에 입학하는데 가장 중요했던 요소*/
         f017       /// /*졸업한 대학에 입학하는데 가장 중요했던 요소(2순위)*/
@@ -201,6 +203,10 @@ use goms_eq_master , clear
             label value f018 F018
             recode f018 (8=10) if year == 2007
             recode f018 (8=10) if year == 2008
+        label var f073       "졸업평점유형"
+            label copy G171F073 F073
+            label value f073 F073 
+        label var f073       "졸업평점점수"
         label var p018       "출생지역(국내외)"
             label copy G171P018 P018
             label value p018 P018
@@ -664,4 +670,4 @@ use goms_eq_master , clear
         drop temp?
     /*}}}*/
 save goms_eq.dta , replace
-save ~/dropbox/sjho/goms_eq.dta , replace
+save ~/dropbox/hl_sjho/goms_eq.dta , replace

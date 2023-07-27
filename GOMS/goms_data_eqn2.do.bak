@@ -31,6 +31,7 @@ use goms_eq , clear
       e003 e004 e005 e006 ///
       e078 e079 e080 e081 ///
       e153 e154 e155 e156 ///
+      f073 f074 ///
       h001 h002 ///
       h006 h007 h008 h009 h010z ///
       h026 h027 h028 h029 h030z ///
@@ -385,6 +386,12 @@ use goms_eq , clear
       recode f009 (3/4=3) (5=4) (9=10) if year == 2012
       recode f009 (3/4=3) (5=4) (9=10) if year == 2013
       recode f009 (4=6) (5=7) (6=8) (7=4) (8=10) if year == 2014
+    local temp : var label f07319
+      label var f073  "`temp'"
+      label copy G191F073 F073
+      label value f073 F073  
+    local temp : var label f07419
+      label var f074  "`temp'"
     local temp : var label p04519
       label var p045  "`temp'"
       label copy G191P045 P045

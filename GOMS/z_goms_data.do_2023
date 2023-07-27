@@ -1,6 +1,7 @@
 set more off
 clear
 cd ~/dropbox/goms
+
 /*List 개인변수 {{{*/
 	/*local demolablelist PID 본분교 국공사립 학위과정유형 주야간 전공계열 전공소분류CODE 전공세분류CODE/전공명 ///
 		학교유형 학교소재권역 학교소재지역 성별 출생년 출생월 연령(조사기준일_당시) 졸업년 졸업월*/
@@ -10,7 +11,7 @@ cd ~/dropbox/goms
 	/*local edulabellist 출신고교_졸업년 출신고교_졸업월 출신고교(국내외) 출신고교(국가명) 출신고교시도(특별시/광역시/도)CODE 출신고교시군구(구/시/군)CODE ///
 		고교/검정고시 고교계열 졸업대학(입학/편입) 졸업대학_입학/편입년 졸업대학_입학/편입월 대입모집(정시/수시) 입학전형(일반/특별) 입학전형세부유형 */
 	local eduvarlist f001 f002 f004 f005 f006 f007 ///
-		f008 f009 f010 f011 f012 f013 f014 f170 /*}}}*/
+		f008 f009 f010 f011 f012 f013 f014 f170 f073 f074 /*}}}*/
 /*List 환경변수 {{{*/
 	/*local envlabellist 출생지역(국내외) 출생지역(국외국가명) 출생지역(특별시/광역시/도)CODE 출생지역(구/시/군)CODE ///
 		아버님_최종학력 아버님_최종학력이수여부 아버님_최종학력_생성변수 어머님_최종학력 어머님_최종학력이수여부 어머님_최종학력_생성변수 ///
@@ -278,6 +279,8 @@ egen f007 = rowtotal(f007??) , missing ;	label var f007 "출신고 소재지(시
 egen f010 = rowtotal(f010??) , missing ;	label var f010 "편입여부" ; label value f010 G171F010 ;
 egen f011 = rowtotal(f011??) , missing ;	label var f011 "출신대 입학년" ;
 egen f012 = rowtotal(f012??) , missing ;	label var f012 "출신대 입학월" ;
+egen f073 = rowtotal(f073??) , missing ;	label var f073 "졸업평점유형" ;
+egen f074 = rowtotal(f074??) , missing ;	label var f074 "졸업평점점수" ;
 egen p026 = rowtotal(p026??) , missing ;	label var p026 "아버지 최종학력" ; label value p026 G171LABEK ;
 	label define G171LABEK 4 "고등학교" , modify ;
 egen p027 = rowtotal(p027??) , missing ;	label var p027 "아버지 최종학력 이수여부" ; label value p027 G151P027 ;

@@ -1,6 +1,7 @@
 set more off
 clear
 cd ~/dropbox/goms
+
 /*List 개인변수 {{{*/
 	/*local demolablelist PID 본분교 국공사립 학위과정유형 주야간 전공계열 전공소분류CODE 전공세분류CODE/전공명 ///
 		학교유형 학교소재권역 학교소재지역 성별 출생년 출생월 연령(조사기준일_당시) 졸업년 졸업월*/

@@ -100,7 +100,7 @@ cd ~/dropbox/goms
   /*학교명 예외사례 강제 정정{{{*/
       replace hsnamec = ""                                 if strlen(hsnamec) <= 2
       replace hsnamec = hsnamec + "고등학교"               if !ustrregexm(hsnamec , "학교$")
-      replace hsnamec = "한국과학영재학교"        if strpos(hsnamec , "과학영재")                             & f006 == 2
+      replace hsnamec = "한국과학영재학교"                 if strpos(hsnamec , "과학영재")                             & f006 == 2
       replace hsnamec = "경기과학고등학교"                 if hsnamec == "경기과락고등학교"
       replace hsnamec = "경신고등학교"                     if strpos(hsnamec , "경신")                                 & f007 == 307
       replace hsnamec = "경일고등학교"                     if strpos(hsnamec , "경일")                                 & f007 == 301
