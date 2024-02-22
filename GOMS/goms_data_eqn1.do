@@ -3,13 +3,13 @@ set maxvar 30000
 clear
 cd ~/dropbox/goms
 /* 년도별 추출변수 목록 {{{*/
-  local varlist00 pid age birthy sex area province graduy gradum majorcat major school found wt ///
+  local varlist00 pid age birthy sex area province graduy gradum majorcat major school wt ///
     /*occyear   */ a001-a002 a003 ///
     /*jobtype   */ a004_10-a006_10 a007a_2018-a009_2018 ///
-    /*jobsize   */ a010 a011 /// 
-    /*jobinfo   */ a012 a014 a020 /// 
-    /*fulljob   */ a021 a022 /// 
-    /*conthur   */ a023 a024 /// 
+    /*jobsize   */ a010 a011 ///
+    /*jobinfo   */ a012 a014 a020 ///
+    /*fulljob   */ a021 a022 ///
+    /*conthur   */ a023 a024 ///
     /*job time  */ a116-a118 ///
     /*wage      */ a120-a122 ///
     /*experience*/ d001-d006 d110-d112 e001-e006 e078-e081 e153-e156 ///
@@ -83,13 +83,13 @@ cd ~/dropbox/goms
       save ~/dropbox/goms/goms_master.dta , replace
     }
     else {
-      append using ~/dropbox/goms/goms_master.dta 
+      append using ~/dropbox/goms/goms_master.dta
       save ~/dropbox/goms/goms_master.dta , replace
     }
   }
 /*}}}*/
 label data "GOMS 09-19"
   order _all , alpha
-	order pid?? wave year , first
+  order pid?? wave year , first
 save ~/dropbox/goms/goms_eq.dta , replace
 save ~/dropbox/hl_sjho/goms_eq.dta , replace
