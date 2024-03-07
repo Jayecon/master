@@ -378,7 +378,10 @@
     drop 항목 단위
     merge 1:1 coname year using `temp' , nogen
 
-    replace coname = "한전KDN(주)" if coname == "한전KDN" /*error fix*/
+    /*error fix and cleaning*/
+      replace coname = "한전KDN(주)" if coname == "한전KDN"
+      replace coname = trim(coname)
+      drop if strpos(coname , "•")
     label define COTYPE 1 "공기업(시장형)" 2 "공기업(준시장형)" 3 "기타공공기관" 4 "준정부기관(기금관리형)" 5 "준정부기관(위탁집행형)"
       replace cotype = "1" if cotype == "공기업(시장형)"
       replace cotype = "2" if cotype == "공기업(준시장형)"
