@@ -1,80 +1,95 @@
-    set nocompatible " no compatible with the original Vi
+ set nocompatible " no compatible with the original Vi
     filetype off
-    " OS Specific Setting" {{{1
+    " Language and Font  {{{1
     if has('win32')
-        " Language and Font " {{{2
         set langmenu=en_US.UTF-8
         language message en_US.UTF-8
-        set enc=utf8
+        set encoding=utf8
         set fileencoding=utf8
-        set guifont=D2coding:h16:cANSI
-        set guifontwide=D2coding:h16
-        " }}}2
-        "STATA Mapping {{{2
-        nnoremap <F8> :!"c:\stata\stataMP-64.exe" doedit %:p<CR><CR>
-        inoremap <F8> :!"c:\stata\stataMP-64.exe" doedit %:p<CR><CR>
-        nnoremap <F9> :w<CR> :!"c:\stata\stataMP-64.exe" /e do %:p<CR>:! move %:t:r.log %:p:r.log <CR>:e %:p:r.log<CR>
-        " }}}2
+        set guifont=hack_nerd_font:h22:cANSI
+        set guifont=D2codingligature:h18:cHANGEUL
     elseif has('macunix')
-        " Language and Font " {{{2
-        set linespace=3
+        "set langmenu=en_US.UTF-8
+        "language message en_US.UTF-8
+        set linespace=3	
         set encoding=utf-8
-        set fileencoding=utf8
-        set guifont=D2Codingligature:h22
-        set guifontwide=D2Codingligature:h20
-        " }}}2
-        "STATA {{{2
-        nnoremap <F8> :! /Applications/Stata/StataMP.app/Contents/MacOS/StataMP doedit %:p<CR>
-        inoremap <F8> :! /Applications/Stata/StataMP.app/Contents/MacOS/StataMP doedit %:p<CR>
-        nnoremap <F9> :silent! /Applications/Stata/StataMP.app/Contents/MacOS/StataMP -e do % <CR>:silent!mv %:t:r.log %:p:r.log<CR>:e %:p:r.log <CR>
-        " }}}2
+        "set fileencoding=utf8
+        set guifont=hack_nerd_font:h22
+        noremap <silent> <f3> :call GfnToggle()<cr>
+        function! GfnToggle()
+            if &gfn == 'hack_nerd_font:h22'
+                set guifont=D2Coding:h22
+            else
+                set guifont=hack_nerd_font:h22
+            endif
+        endfunction
     endif
     " }}}1
-    "Plugins list{{{1
-    call plug#begin('~/.vim/plugged') " Plugins will be downloaded under the specified directory.
-        Plug 'junegunn/vim-plug'				"A minimalist Vim plugin manager
-        Plug 'tpope/vim-sensible'
-        Plug 'tpope/vim-surround'				"Quotation and Parenthesis
-        Plug 'tpope/vim-fugitive'				"Git in the Vim
-        Plug 'airblade/vim-gitgutter'			"shows a git diff in the sign column
-        Plug 'scrooloose/nerdtree'				"A tree expolre plugins for Vim
-        Plug 'scrooloose/syntastic'				"Syntax checking hacks for Vim
-        Plug 'scrooloose/nerdcommenter'			"Vim plugin for commenting
-        Plug 'nathanaelkane/vim-indent-guides'	"Indent guide
-        Plug 'altercation/vim-colors-solarized'	"solarized color scheme
-        Plug 'vim-airline/vim-airline'			"status/tabline for vim
-        Plug 'vim-airline/vim-airline-themes'	"vim-airline themes
-        Plug 'zizhongyan/vim-stata'				"Running Selected Do-File Lines in Stata
-<<<<<<< Updated upstream
-        Plug 'mhinz/vim-startify'               "The fancy start screen for vim
-        Plug 'junegunn/fzf.vim'                 "
-        Plug '/usr/local/opt/fzf'
-=======
-        Plug 'lervag/vimtex'				    "Running Selected Do-File Lines in Stata
->>>>>>> Stashed changes
+    " Plugins list{{{1
+    call plug#begin('~/.vim/plugged')         "Plugins will be downloaded under the specified directory.
+        Plug 'junegunn/vim-plug'                " A minimalist Vim plugin manager
+        Plug 'junegunn/vim-easy-align'          " A simple, easy-to-use Vim alignment plugic
+        Plug 'junegunn/fzf.vim'                 " fzf setting
+        Plug '/opt/homebrew/opt/fzf'            " fzf setting
+        Plug 'airblade/vim-gitgutter'           " Shows a git diff in the sign column
+        Plug 'altercation/vim-colors-solarized' " Solarized color scheme
+        Plug 'dense-analysis/ale'               " Asynchronous Lint Engine
+        Plug 'ervandew/supertab'                " Use <tab> for autocompletion
+        Plug 'frazrepo/vim-rainbow'             " Rainbow Parentheses Improved
+        Plug 'mhinz/vim-startify'               " The fancy start screen for vim
+        Plug 'nathanaelkane/vim-indent-guides'  " Indent guide
+        Plug 'rking/ag.vim'                     " The silver search for Vim
+        Plug 'scrooloose/nerdcommenter'         " Vim plugin for commenting
+        Plug 'preservim/nerdtree'              " A tree expolre plugins for Vim
+            Plug 'Xuyuanp/nerdtree-git-plugin'
+            Plug 'ryanoasis/vim-devicons'                   "
+            Plug 'tiagofumo/vim-nerdtree-syntax-highlight'  "
+            Plug 'PhilRunninger/nerdtree-visual-selection'
+        Plug 'scrooloose/syntastic'             " Syntax checking hacks for Vim
+        Plug 'tpope/vim-fugitive'               " Git in the Vim
+        Plug 'tpope/vim-sensible'               " A universal set of defaults
+        Plug 'tpope/vim-surround'               " Quotation and Parenthesis
+        Plug 'vim-airline/vim-airline'          " status/tabline for vim
+            Plug 'vim-airline/vim-airline-themes'   " Vrvcm-airline themes
+        Plug 'davidhalter/jedi-vim'             " Python autocompletion
+        Plug 'hynek/vim-python-pep8-indent'     " Python auto indent
+        Plug 'nvie/vim-flake8'                  " Python syntax check
+        Plug 'bagrat/vim-buffet'                " Vim buffer improve
     call plug#end()
     " }}}1
     " Plugins Specific Setting -------------------- {{{1
-        " Indent Guide Settigng ---------------------- {{{2
+        " Indent Guide ---------------------- {{{2
             let g:indent_guides_enable_on_vim_startup = 1
             let g:indent_guides_guide_size = 1
             let g:indent_guides_start_level = 2
-            set ts=4 sw=4 et
+            " Indent settings like ts, sw, and et affect this plugin. See the indent ENV. below.
         " }}}2
-        " NERDTree Settigng ---------------------- {{{2
+        " Jedi-vim ---------------------- {{{2
+            let g:jedi#show_call_signatures=0
+            let g:jedi#popup_select_first="0"
+            let g:jedi#force_py_version=3
+        " }}}2
+        " NERDTree ---------------------- {{{2
             noremap <C-N> :NERDTreeToggle<CR>
             "open a NERDTree automatically when vim starts up
-                "autocmd vimenter * NERDTree
-            "open a NERDTree automatically when vim starts up if no files were specified
-                "autocmd StdinReadPre * let s:std_in=1
-                "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+                "autocmd vimenter * NERDTree 	
+            "open a NERDTree automatically when vim starts up if no files were specified	
+                "autocmd StdinReadPre * let s:std_in=1 
+                "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif	
             "open NERDTree automatically when vim starts up on opening a directory
-                "autocmd StdinReadPre * let s:std_in=1
+                "autocmd StdinReadPre * let s:std_in=1 
                 "autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif	
             "close vim if the only window left open is a NERDTree
-                "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+                autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif	
         " }}}2
-        " Synatstic Settigng ---------------------- {{{2
+        " Rainbow Parentheses Improved ---------------------- {{{2
+            let g:rainbow_active = 1
+        " }}}2
+        " Solarized ---------------------- {{{2
+            colorscheme solarized
+            let g:solarized_menu=1
+        " }}}2
+        " Synatstic ---------------------- {{{2
             set statusline+=%#warningmsg#
             set statusline+=%{SyntasticStatuslineFlag()}
             set statusline+=%*
@@ -83,12 +98,9 @@
             let g:syntastic_check_on_open = 1
             let g:syntastic_check_on_wq = 0
         " }}}2
-        " Solarized Settigng ---------------------- {{{2
-            colorscheme solarized
-            let g:solarized_menu=0
-        " }}}2
-        " Vim-airline Settigng ---------------------- {{{2
+        " Vim-airline ---------------------- {{{2
             let g:airline_theme='solarized'
+            let g:airline_powerline_fonts = 1
             let g:airline#extensions#tabline#enabled = 1
             let g:airline#extensions#tabline#formatter = 'default'
             noremap <silent> <f5> :call BgToggle()<cr>
@@ -116,148 +128,248 @@
                 set background=dark
             endif
         "}}}2
-    " }}}1
-    " Environment Setting ---------------------- {{{1
-        " Basic " {{{2
-            set number				"Show line number
-            set relativenumber		"Show line number relative
-            set showmatch			"Show matching brackets when text indicator is over them
-            set history=1000
-            set backspace=eol,start,indent
-            set visualbell
-            set nocursorcolumn
-            set foldmethod=marker
-            set nolist
-            set noautowrite
-            syntax enable
+        " Vim-python-pep8-indent ---------------------- {{{2
+            filetype plugin indent on
         " }}}2
-        " Diff {{{2
-            if &diff
-                set diff
-                set scrollbind
-                set cursorbind
-                set scrollopt
-                set nowrap
-                set foldmethod=diff
-                set diffopt=filler,vertical
-            endif 
-        "}}}2
-        "Indentation{{{2
-            set autoindent
-            set showbreak=>>>>
-            set smartindent
-            set smarttab
-            set tabstop=4
-            set softtabstop=4
-            set shiftwidth=4
+        " Vim-devicons ---------------------- {{{2
+            let g:webdevicons_conceal_nerdtree_brackets = 1
+            "let g:webdevicons_enable_airline_tabline = 1
+            "let g:webdevicons_enable_airline_statusline = 1
+            let g:webdevicons_enable_startify = 1
         " }}}2
-        "Search " {{{2
-            set hlsearch "Highlighting Search
-            set incsearch
-                augroup vimrc-incsearch-highlight
-                    autocmd!
-                    autocmd CmdlineEnter /,\? :set hlsearch
-                    autocmd CmdlineLeave /,\? :set nohlsearch
-                augroup END
-            set ignorecase	"To ignore case while searching
-            set smartcase
+        " Vim-buffet ---------------------- {{{2
+            let g:buffet_use_devicons = 1
+            let g:buffet_show_index = 1
         " }}}2
     " }}}1
+  " Environment Setting ---------------------- {{{1
+    " Basic " {{{2
+        set number                                          " Show line number
+        set relativenumber                                  " Show line number relative
+        set showmatch                                       " Show matching brackets when text indicator is over them
+        set matchpairs+=<:>                                 " Also match < & > with %.
+        set backspace=indent,eol,start                      " Allow backspacing over everything.
+        set history=1000                                    " Keep 1000 lines of command line history.
+        set backup                                          " Keep backup file when writing.
+        set backupext=.bak                                  " Extension for backup files (modified in autocmd below).
+        set backupskip=/tmp/*                               " No backup for these files.
+        set undofile                                        " Save undo to file.
+        set notitle                                         " Don't update term title.
+        set shortmess-=S                                    " Show match count on n.
+        set shortmess+=aFI                                  " a: abbreviate a few things
+                                                            " F: don't show file info with :edit etc.
+                                                            " I: don't show :intro message
+        set virtualedit=block                               " Allow virtual editing in visual block mode.
+        set display=lastline,uhex                           " lastline → Show as much of the last line as possible instead of @.
+                                                            " uhex     → Always show unprintable chars as <xx> instead of ^C.
+        set formatoptions+=ncroqlj                          " n   Recognize numbered lists when formatting (see formatlistpat)
+                                                            " c   Wrap comments with textwidth
+                                                            " r   Insert comment char after enter
+                                                            " o   Insert comment char after o/O
+                                                            " q   Format comments with gq
+                                                            " l   Don't break lines when they were longer than textwidth to start with.
+                                                            " j   Remove comment character when joining lines with J.
+        set updatecount=50                                  " Write to swap every 50 characters.
+        set wildmenu                                        " Better tab completion at the command-line.
+        set wildmode=longest:full                           " Complete longest match, list other matches in wildmenu.
+        set wildignorecase                                  " Case is ignored when completing file names and directories.
+        set wildignore+=*.o,*.png,*.jpg,*.jpeg,*.webp,*.gif " Ignore these files in completion.
+        set wildoptions=pum                                 " Show pop-up menu.
+        set wildcharm=<Tab>                                 " Trigger wild mode from mappings/macros.
+        set completeopt=menuone,noselect                    " Insert mode completion:
+                                                            " menuone   → always show menu, even when there is 1 match.
+                                                            " noselect  → don't select an option when starting.
+        set completepopup=highlight:Pmenu,border:off        " Options for preview popup in completion.
+        set pumheight=10                                    " Don't make completion menu too high.
+        set scrolloff=2                                     " Minimum number of lines to keep above/below cursor.
+        set listchars=tab:!·,trail:·                        " String to use in 'list' mode.
+        set previewheight=6                                 " Height of preview window.
+        set infercase                                       " Like smartcase for insert completion.
+        set textwidth=120                                   " Wrap at ??? characters.
+        set colorcolumn=120                                 " Show a vertical guide at ??? characters.
+        set showcmd                                         " Show partial command in the last line of the screen.
+        set nojoinspaces                                    " Don't add two spaces after interpunction when using J.
+        set switchbuf=useopen,usetab,newtab                 " Use open tab (if any) when trying to jump to a quickfix error.
+        set synmaxcol=5000                                   " Maximum column in which to search for syntax items.
+        set nrformats=unsigned                              " Ignore '-' in front of numbers when increment nrs.
+        set nofoldenable                                    " Disable folds by default.
+        set tabpagemax=500                                  " Max. number of tabs to be open with -p argument or :tab all.
+        set tildeop                                         " Use ~ as an operator to switch case.
+        set visualbell                                      " Use a visual bell instead of beeping.
+        set nocursorcolumn                                  " No highlight the screen column of the cursor.
+        set foldmethod=marker                               " The kind of folding used for the current window.
+        set nolist                                          " No list mode.
+        set noimd
+        syntax enable
+        "set gdefault                                       " Always use the /g flag with :s; add /g to restore the default.
+        "set t_ti= t_te=                                    " Prevent clearing the terminal on exit.
+        "set mouse=                                         " I don't want mouse support.
+        "set paragraphs=                                    " Don't include nroff stuff.
+        "set clipboard=                                     " Never automatically interface with system clipboard.
+    " }}}2
+    " Diff {{{2
+        if &diff
+            set diff
+            set scrollbind
+            set cursorbind
+            set scrollopt
+            set nowrap
+            set foldmethod=diff
+            set diffopt=filler,vertical
+        endif
+    "}}}2
+    "Indentation{{{2
+        set autoindent                         " Copy indent from current line when starting a new line.
+        set copyindent                         " Copy indent for new lines when auto-indenting.
+        set shiftround                         " Round indent to multiple of shiftwidth when using < and >
+        set linebreak                          " Wrap at word.
+        set showbreak=↪                        " Display at the start of line for wrapped lines.
+        set breakindent                        " When wrapping show next line on the same indent level.
+        set breakindentopt=sbr,list:-1         " sbr  → Display showbreak before indent.
+                                                " list → indent list if it matches formatlistpat
+        set noshowmode                         " Don't show mode in cmdline.
+        set smartindent
+        set smarttab                           " Backspace at start of line remove shiftwidith worth of space.
+        set tabstop=4
+        set softtabstop=2
+        set shiftwidth=4
+        set expandtab
+    " }}}2
+    "Search " {{{2
+        set incsearch                          " Jump to match while typing the pattern in /.
+        set hlsearch                           " Highlight last used search pattern.
+        set ignorecase                         " Case-insensitive searching unless \C is in the pattern…
+        set smartcase                          " …or the pattern contains an upper-case letter.
+        set nowrapscan                         " Don't wrap search.
+        "augroup vimrc-incsearch-highlight
+            autocmd!
+            autocmd CmdlineEnter /,\? :set hlsearch
+            autocmd CmdlineLeave /,\? :set nohlsearch
+        "augroup END
+    " }}}2
+  " }}}1
     " Key Mappings ---------------------- {{{1
         " Global {{{2
-            map <leader><leader> :echo 'It is ' . strftime('%c')<cr>
-            map <leader>ev  :e $MYVIMRC<cr> 
-            map <leader>eV  :vsplit $MYVIMRC<cr> 
-            map <leader>sv  :w <cr>:source $MYVIMRC<cr>
-            map <leader>bv  :w! ~/git/etc/myvimrc<cr>
-            map <leader>uv  :e! ~/git/etc/myvimrc<cr>:w! $MYVIMRC<cr>:source $MYVIMRC<cr>
-<<<<<<< Updated upstream
-            map <silent> <leader>l   :silent set list!<cr>
-            map <silent> <leader>w   :silent set autowrite!<cr>
-            map <silent> <leader>box :cd ~/dropbox<cr> :pwd<cr>
-            map <silent> <leader>git :cd ~/git<cr> :pwd<cr>
-=======
-            map <leader>l   :set list!<cr>
-            map <silent> <leader>box :cd ~/dropbox<cr>
-            map <silent> <leader>git :cd ~/git<cr>
->>>>>>> Stashed changes
+        map <leader><leader> :Startify<cr>
+        map <leader>t :echo strftime('%Y년 %B %d일 %X')<cr>
+        map <leader>erc :e $MYVIMRC<cr>
+        map <leader>src :w<cr>:source %<cr>
+        map <leader>brc :w! ~/dropbox/Z_personal/myvimrc<cr>:w! ~/github/master/etc/myvimrc<cr>
+        ".vimrc를 ~/Dropbox/Z_Personal/myvimrc로 백업{{{3
+            "nnoremap  <silent> <leader>brc :call ReplaceIfCurrentIsRecent()<CR> 
+            "function! GetFileModificationTime(filename) " 파일의 생성시간을 반환하는 함수
+                "let modification_epoch = getftime(a:filename)
+                "let modification_date  = strftime("%Y-%m-%d %H:%M:%S", modification_epoch)
+                "return modification_date
+            "endfunction
+            "function! ReplaceIfCurrentIsRecent()
+                "let current_file              = '~/.vimrc'
+                "let bak_file                  = '~/Dropbox/Z_Personal/myvimrc'
+                "let current_modification_time = GetFileModificationTime(current_file)
+                "let bak_modification_time     = GetFileModificationTime(bak_file)
+                "if current_modification_time > bak_modification_time
+                    "silent execute 'w! ' . bak_file
+                    "echo "vimrc를 백업합니다."
+                "else
+                    "echo "백업파일이 최신입니다. 백업을 중지합니다."
+                "endif
+            "endfunction
+            "}}}3
+        map <leader>urc :e! ~/dropbox/Z_personal/myvimrc<cr>:w! $MYVIMRC<cr>:source $MYVIMRC<cr>
+        map <silent> <leader>l :silent set list!<cr>
+        map <silent> <leader>w :silent set autowrite!<cr>
+        map <silent> <leader>box :cd ~/dropbox<cr>:pwd<cr>
+        if has('win32')
+            map <silent> <leader>git :cd ~/git<cr>:pwd<cr>
+        elseif has('macunix')
+            map <silent> <leader>git :cd ~/Github/master<cr>:pwd<cr>
+        endif
         "}}}2
         " Insert Mode {{{2
-            inoremap jk <esc>
+        inoremap jk <esc>
+        inoremap ㅓㅏ <esc>
         "}}}2
         " Normal Mode {{{2
-            nnoremap <space> za
-            nnoremap <c-w>. 10<c-w>>
-            nnoremap <c-w>, 10<c-w><
-            nnoremap <leader>" viw<esc>a"<esc>bi"<esc>ee
-            nnoremap <leader>' viw<esc>a'<esc>bi`<esc>ee
-            nnoremap <leader>> viw<esc>a><esc>bi<<esc>ee
-            nnoremap <leader>) viw<esc>a)<esc>bi(<esc>ee
-            nnoremap <leader>ff O/*{{{*/<esc>bf*a
-            nnoremap <leader>fc o/*}}}*/<esc>
+        nnoremap <space> za
+        nnoremap <c-w>. 10<c-w>>
+        nnoremap <c-w>, 10<c-w><
+        nnoremap <leader>" viW<esc>a"<esc>Bi"<esc>ee
+        nnoremap <leader>` viW<esc>a'<esc>Bi`<esc>ee
+        nnoremap <leader>' viW<esc>a'<esc>Bi'<esc>ee
+        nnoremap <leader>> viW<esc>a><esc>Bi<<esc>ee
+        nnoremap <leader>) viW<esc>a)<esc>Bi(<esc>ee
+        nnoremap <leader>ff O/*{{{*/<esc>bf*a
+        nnoremap <leader>fc o/*}}}*/<esc>
         "}}}2
         " Visual Mode {{{2
-            vnoremap <space> iw
+        vnoremap <space> iw
         "}}}2
         "Operator-pending Mode {{{2
-            onoremap in( :<c-u>normal! f(vi(<cr>
-            onoremap il( :<c-u>normal! F)vi(<cr>
-            onoremap in' :<c-u>normal! f'vi'<cr>
-            onoremap il' :<c-u>normal! F'vi'<cr>
-            onoremap in` :<c-u>normal! f`vi`<cr>
-            onoremap il` :<c-u>normal! F`vi`<cr>
-            onoremap in" :<c-u>normal! f"vi"<cr>
-            onoremap il" :<c-u>normal! F"vi"<cr>
-            onoremap in[ :<c-u>normal! f[vi[<cr>
-            onoremap il[ :<c-u>normal! F]vi[<cr>
-            onoremap in{ :<c-u>normal! f{vi{<cr>
-            onoremap il{ :<c-u>normal! F}vi{<cr>
-            onoremap in< :<c-u>normal! f<vi<<cr>
-            onoremap il< :<c-u>normal! F>vi<<cr>
+        onoremap in( :<c-u>normal! f(vi(<cr>
+        onoremap il( :<c-u>normal! F)vi(<cr>
+        onoremap in' :<c-u>normal! f'vi'<cr>
+        onoremap il' :<c-u>normal! F'vi'<cr>
+        onoremap in` :<c-u>normal! f`vi`<cr>
+        onoremap il` :<c-u>normal! F`vi`<cr>
+        onoremap in" :<c-u>normal! f"vi"<cr>
+        onoremap il" :<c-u>normal! F"vi"<cr>
+        onoremap in[ :<c-u>normal! f[vi[<cr>
+        onoremap il[ :<c-u>normal! F]vi[<cr>
+        onoremap in{ :<c-u>normal! f{vi{<cr>
+        onoremap il{ :<c-u>normal! F}vi{<cr>
+        onoremap in< :<c-u>normal! f<vi<<cr>
+        onoremap il< :<c-u>normal! F>vi<<cr>
         " }}} 2
         "Window Navigation {{{2
-            nnoremap <C-h> <C-w>h
-            nnoremap <C-j> <C-w>j
-            nnoremap <C-k> <C-w>k
-            nnoremap <C-l> <C-w>l
+        nnoremap <C-h> <C-w>h
+        nnoremap <C-j> <C-w>j
+        nnoremap <C-k> <C-w>k
+        nnoremap <C-l> <C-w>l
         " }}}2
         " Command Line {{{2
-            cnoreabbrev VS vs<Bar>bnext
-            cnoreabbrev VP vs<Bar>bprevious
-            cnoreabbrev VD vert diffsplit
-            cnoreabbrev W w
-            cnoreabbrev Wq wq
-            cnoreabbrev H vert h
-            cnoreabbrev HR vert bo h
-            cnoreabbrev Bd bd
+        cnoreabbrev VS vs<Bar>bnext
+        cnoreabbrev VP vs<Bar>bprevious
+        cnoreabbrev VD vert diffsplit
+        cnoreabbrev W w
+        cnoreabbrev Wq wq
+        cnoreabbrev H vert h
+        cnoreabbrev HR vert bo h
+        cnoreabbrev Bd bd
         "}}}2
-        " Buffer Opration{{{2
-            function! SwitchToNextBuffer(incr)
-              let help_buffer = (&filetype == 'help')
-              let current = bufnr("%")
-              let last = bufnr("$")
-              let new = current + a:incr
-              while 1
-                if new != 0 && bufexists(new) && ((getbufvar(new, "&filetype") == 'help') == help_buffer)
-                  execute ":buffer ".new
-                  break
-                else
-                  let new = new + a:incr
-                  if new < 1
-                    let new = last
-                  elseif new > last
-                    let new = 1
-                  endif
-                  if new == current
-                    break
-                  endif
-                endif
-              endwhile
-            endfunction
-            "nnoremap <silent> <Tab> :call SwitchToNextBuffer(1)<CR>
-            "nnoremap <silent> <S-Tab> :call SwitchToNextBuffer(-1)<CR>
-            nnoremap <silent> <Tab> :bnext<CR>
-            nnoremap <silent> <S-Tab> :bprevious<CR>
-            nnoremap <Leader><Tab> :set nomore<Bar>:ls<Bar>:set more<CR>:b<Space>
+        " buffer {{{2
+            nmap <leader>1 <Plug>BuffetSwitch(1)
+            nmap <leader>2 <Plug>BuffetSwitch(2)
+            nmap <leader>3 <Plug>BuffetSwitch(3)
+            nmap <leader>4 <Plug>BuffetSwitch(4)
+            nmap <leader>5 <Plug>BuffetSwitch(5)
+            nmap <leader>6 <Plug>BuffetSwitch(6)
+            nmap <leader>7 <Plug>BuffetSwitch(7)
+            nmap <leader>8 <Plug>BuffetSwitch(8)
+            nmap <leader>9 <Plug>BuffetSwitch(9)
+            nmap <leader>0 <Plug>BuffetSwitch(10)
+            noremap <silent> <Tab> :bn<CR>
+            noremap <silent> <S-Tab> :bp<CR>
+            noremap <silent> <Leader><Tab> :Bw<CR>
+            noremap <silent> <Leader><S-Tab> :Bw!<CR>
+            noremap <silent> <C-t> :tabnew split<CR>
         "}}}2
+        " EasyAlign {{{2
+            nmap ga <Plug>(EasyAlign)
+            xmap ga <Plug>(EasyAlign)
+        "}}}2
+        "Python Mapping {{{2
+        autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+        autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+        " }}}2
+        "STATA Mapping {{{2
+        if has('win32')
+            autocmd FileType stata nnoremap <F8> :!"c:\stata\stataMP-64.exe" doedit %:p<CR><CR>
+            autocmd FileType stata inoremap <F8> :!"c:\stata\stataMP-64.exe" doedit %:p<CR><CR>
+            autocmd FileType stata nnoremap <F9> :w<CR>:!"c:\stata\stataMP-64.exe" /e do %:p<CR>:! move %:t:r.log %:p:r.log <CR>:e %:p:r.log<CR>
+        elseif has('macunix')
+            autocmd FileType stata nnoremap <F8> :! /Applications/Stata/StataMP.app/Contents/MacOS/StataMP doedit %:p<CR>
+            autocmd FileType stata inoremap <F8> :! /Applications/Stata/StataMP.app/Contents/MacOS/StataMP doedit %:p<CR>
+            autocmd FileType stata nnoremap <F9> :w<CR>:! /Applications/Stata/StataMP.app/Contents/MacOS/StataMP -e do %:p<CR>:!mv %:t:r.log %:p:r.log<CR>:e %:p:r.log<CR>
+        endif
+        " }}}2
     " }}}1

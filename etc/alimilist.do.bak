@@ -1,6 +1,6 @@
 clear
-local path ~/dropbox/
-import excel `path'학교개황_20231214_기준.xls , sheet("empty") firstrow allstring
+local path ~/dropbox/data/
+import excel `path'alimi/ALIMI_list_231204.xls , sheet("empty") firstrow allstring
   label data "대학알리미 학교 개황(20231214)"
   compress
   destring _all , replace
@@ -15,8 +15,11 @@ import excel `path'학교개황_20231214_기준.xls , sheet("empty") firstrow al
       label value uniclass UNICLASS
     rename 학교코드 unicode
       label var unicode "학교코드"
-    rename 학교명 uniname
-      label var uniname "학교명"
+    rename 학교명 camname
+      label var camname "캠퍼스명"
+      gen uniname = substr(camname, 1, strpos(camname, "(") - 1)
+      replace uniname = camname if missing(uniname)
+      label var uniname "대학명"
     rename 본분교 branch
       label var branch "본분교"
       label define BRANCH 1 "본교" 2 "분교" 3 "캠퍼스"
@@ -89,11 +92,13 @@ import excel `path'학교개황_20231214_기준.xls , sheet("empty") firstrow al
       replace status = "3" if status == "폐교"
       replace status = "4" if status == "학교명 변경"
       destring status , replace
-      label value status STAUTS
+      label value status STATUS
     gen founddate = date(학교개교일 , "YMD" )
       label var founddate "학교개교일"
       format founddate %td
       drop 학교개교일
-    drop 학교명한자 학교명영문 주소 영문주소 중문주소 우편번호 학교홈페이지 총장명 학교대표번호 학교대표팩스번호
+    rename 주소 address
+        label var address "주소"
+    drop 학교명한자 학교명영문 영문주소 중문주소 우편번호 학교홈페이지 총장명 학교대표번호 학교대표팩스번호
   compress
-save `path'alimilist , replace
+save `path'/dta/alimilist , replace

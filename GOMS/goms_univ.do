@@ -1,40 +1,45 @@
+local path ~/dropbox/data/goms/
 set more off
 set maxvar 30000
-cd ~/dropbox/goms/
-  /* 대학정보 append and merge {{{*/
-  tempfile temp
-  forvalue x = 7/19 {
-    local yr : disp %02.0f  = `x'
-    use ~/dropbox/goms/rawdata/GP`yr' , clear
-    drop if missing(g`yr'1sex)
-    if `x' == 7 {
-      keep g`yr'1pid              g`yr'1province g`yr'1area g`yr'1school g`yr'1found
-    }
-    else {
-      keep g`yr'1pid g`yr'1branch g`yr'1province g`yr'1area g`yr'1school g`yr'1found
-    }
-    gen year = 2000 + `x'
-      label var year "조사년도"
-    merge 1:1 g`yr'1pid using ~/dropbox/goms/rawdata/goms_gu`yr' , nogen
-    rename g`yr'1* * 
-    if ("`x'" == "15" ){
-      destring school, replace
-    }
-    if ("`x'" >= "18" ){
-      destring unicode, replace force
-    }
-    if `x' == 7 {
-      save `temp' , replace
-    }
-    else {
-      append using `temp'
-      save `temp' , replace
-    }
-  }
-  /*}}}*/
-  use `temp' , clear
-    merge m:1 uniname using rawdata/uniranking.dta , nogen
-    label var unirank "QS2018순위"
+    /* 대학정보 append and merge {{{*/
+        tempfile temp
+        forvalue x = 7/19 {
+            local yr : disp %02.0f  = `x'
+            use `path'rawdata/GP`yr' , clear
+            drop if missing(g`yr'1sex)
+            /*keep vars from GOMS body data*/
+                if `x' == 7 {
+                    keep g`yr'1pid              g`yr'1province g`yr'1area g`yr'1school g`yr'1found
+                }
+                else {
+                    keep g`yr'1pid g`yr'1branch g`yr'1province g`yr'1area g`yr'1school g`yr'1found
+                }
+            /*merging body file with the univ. name */
+                merge 1:1 g`yr'1pid using `path'rawdata/goms_gu`yr' , nogen
+                rename g`yr'1* * 
+                gen year = 2000 + `x'
+                    label var year "조사년도"
+            /*exception control*/
+                if ("`x'" == "15" ){
+                    destring school, replace
+                }
+                if ("`x'" >= "18" ){
+                    destring unicode, replace force
+                }
+            /*appending files*/
+                if `x' == 7 {
+                    save `temp' , replace
+                }
+                else {
+                    append using `temp'
+                    save `temp' , replace
+                }
+        }
+    /*}}}*/
+    /*merging with the QS2018 ranking*/
+        use `temp' , clear
+        merge m:1 uniname using `path'rawdata/uniranking.dta , nogen
+        label var unirank "QS2018순위"
     /*변수 교정 : found{{{*/
     label var found      "국공사립"
       label copy G191FOUN FOUND
@@ -621,4 +626,4 @@ cd ~/dropbox/goms/
     replace unizone = . if missing(uniarea)
     replace unibran = . if missing(uniarea)
     /*drop branch school province area found*/
-save rawdata/goms_data_univ.dta , replace
+save `path'rawdata/goms_univ.dta , replace
