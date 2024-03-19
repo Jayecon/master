@@ -1,0 +1,191 @@
+
+  ___  ____  ____  ____  ____ (R)
+ /__    /   ____/   /   ____/
+___/   /   /___/   /   /___/   14.1   Copyright 1985-2015 StataCorp LP
+  Statistics/Data Analysis            StataCorp
+                                      4905 Lakeway Drive
+     MP - Parallel Edition            College Station, Texas 77845 USA
+                                      800-STATA-PC        http://www.stata.com
+                                      979-696-4600        stata@stata.com
+                                      979-696-4601 (fax)
+
+Single-user 8-core Stata perpetual license:
+       Serial number:  10699393
+         Licensed to:  Sungjae Oh
+                       Home
+
+Notes:
+      1.  Stata is running in batch mode.
+      2.  Unicode is supported; see help unicode_advice.
+      3.  More than 2 billion observations are allowed; see help obs_advice.
+      4.  Maximum number of variables is set to 5000; see help set_maxvar.
+
+
+running /Applications/Stata/profile.do ...
+
+. do /Users/jay/GitHub/master/GOMS/goms_univ_cleaning.do 
+
+. local path ~/dropbox/data/
+
+. tempfile tfile1 tfile2 tfile3
+
+. 
+.     use `path'dta/kesslist , clear
+(교육통계서비스 학교 개황(2023))
+
+.         gen kess_uniname = uniname
+
+.         gen kess_zipcode = zipcode
+
+.         /*exception control*/
+.         replace uniname = "가야대학교" if strpos(uniname , "가야대학교")
+(0 real changes made)
+
+.         replace uniname = "건국대학교" if strpos(uniname , "건국대학교")
+(0 real changes made)
+
+.         replace uniname = "고려대학교" if strpos(uniname , "고려대학교")
+(1 real change made)
+
+.         replace uniname = "동국대학교" if strpos(uniname , "동국대학교")
+(0 real changes made)
+
+.         replace uniname = "명지대학교" if strpos(uniname , "명지대학교")
+(2 real changes made)
+
+.         replace uniname = "연세대학교" if strpos(uniname , "연세대학교")
+(1 real change made)
+
+.         replace uniname = "한양대학교" if strpos(uniname , "한양대학교")
+(0 real changes made)
+
+.         replace uniname = "홍익대학교" if strpos(uniname , "홍익대학교")
+(1 real change made)
+
+.         save `tfile1' , replace
+(note: file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_46457.000001 not found)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_46457.000001 saved
+
+. 
+.     use `path'dta/alimilist , clear
+(대학알리미 학교 개황(20231214))
+
+.         gen alimi_uniname = uniname
+
+.         gen alimi_zipcode = zipcode
+
+.         /*exception control*/
+.         replace uniname = "가야대학교" if strpos(uniname , "가야대학교")
+(2 real changes made)
+
+.         replace uniname = "건국대학교" if strpos(uniname , "건국대학교")
+(1 real change made)
+
+.         replace uniname = "고려대학교" if strpos(uniname , "고려대학교")
+(1 real change made)
+
+.         replace uniname = "동국대학교" if strpos(uniname , "동국대학교")
+(1 real change made)
+
+.         replace uniname = "명지대학교" if strpos(uniname , "명지대학교")
+(0 real changes made)
+
+.         replace uniname = "연세대학교" if strpos(uniname , "연세대학교")
+(1 real change made)
+
+.         replace uniname = "한양대학교" if strpos(uniname , "한양대학교")
+(1 real change made)
+
+.         replace uniname = "홍익대학교" if strpos(uniname , "홍익대학교")
+(0 real changes made)
+
+.         save `tfile2' , replace
+(note: file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_46457.000002 not found)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_46457.000002 saved
+
+. 
+.     merge 1:1 uniname zipcode using `tfile1'
+(label FOUND already defined)
+(label STATUS already defined)
+(label AREA already defined)
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                           158
+        from master                        71  (_merge==1)
+        from using                         87  (_merge==2)
+
+    matched                               403  (_merge==3)
+    -----------------------------------------
+
+.         label define UMERGE1 1 "ALIMI only(1)" 2 "KESS only(2)" 3 "matched(3)"
+
+.         label value _merge UMERGE1 
+
+.         sort uniname
+
+.         order _all , alpha
+
+.         order uniname zipcode  br* school* , first
+
+.         save `path'dta/unimerge , replace
+file ~/dropbox/data/dta/unimerge.dta saved
+
+. 
+.     keep  if (inlist(schooldtl , 2 ,5) | inlist(school , 2 , 3)) & _merge !=3 
+(516 observations deleted)
+
+.         list uniname zipcode  br* school* _merge , sep(0)
+
+     +-------------------------------------------------------------------------------------------+
+     |          uniname   zipcode   branch         branchdtl   school   school~l          _merge |
+     |-------------------------------------------------------------------------------------------|
+  1. |       가천대학교     21936        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+  2. |       경동대학교     24865   캠퍼스                 .    4년제          .   ALIMI only(1) |
+  3. |       경북대학교     41944        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+  4. |       경북대학교     37224        .   본교(제3캠퍼스)        .     대학교    KESS only(2) |
+  5. |   경상국립대학교     51391        .   본교(제3캠퍼스)        .     대학교    KESS only(2) |
+  6. |   경상국립대학교     53064        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+  7. |       경희대학교     17104        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+  8. |       계명대학교     42403        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+  9. |       고신대학교     49267        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 10. |       공주대학교     31080        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 11. |       공주대학교     32439        .   본교(제3캠퍼스)        .     대학교    KESS only(2) |
+ 12. | 대구가톨릭대학교     41969        .   본교(제3캠퍼스)        .     대학교    KESS only(2) |
+ 13. | 대구가톨릭대학교     42472        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 14. |       대구대학교     42400        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 15. |   대구한의대학교     38610     본교                 .    4년제          .   ALIMI only(1) |
+ 16. |   대구한의대학교     38609        .   본교(제1캠퍼스)        .     대학교    KESS only(2) |
+ 17. |       동국대학교     10326        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 18. |       동서대학교     48058        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 19. |       동아대학교     49201        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 20. |       동양대학교     11307        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 21. |       부산대학교     50612        .   본교(제3캠퍼스)        .     대학교    KESS only(2) |
+ 22. |       부산대학교     50463        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 23. |       서울대학교      3080        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 24. |     성균관대학교     16419        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 25. |   성신여자대학교      1133        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 26. |       세한대학교     31746        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 27. |     순천향대학교     31151        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 28. |       연세대학교     21983        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 29. |       영남대학교     42415        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 30. |       우석대학교     27841        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 31. |       유원대학교     31415        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 32. |   이화여자대학교      7804        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 33. |       전북대학교     54596        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 34. |       중부대학교     10279        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 35. |       청주대학교     27739        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 36. |   한경국립대학교     17738        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 37. |   한국과학기술원      2455        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 38. |   한국교통대학교     27909        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 39. |   한국교통대학교     16106        .   본교(제3캠퍼스)        .     대학교    KESS only(2) |
+ 40. | 한국외국어대학교     17035        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 41. |       한남대학교     34054        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 42. |       한북대학교     11340        .   본교(제1캠퍼스)        .     대학교    KESS only(2) |
+ 43. |       한서대학교     32158        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+ 44. |       호서대학교     31702        .   본교(제3캠퍼스)        .     대학교    KESS only(2) |
+ 45. |       호서대학교     31066        .   본교(제2캠퍼스)        .     대학교    KESS only(2) |
+     +-------------------------------------------------------------------------------------------+
+
+. 
+end of do-file

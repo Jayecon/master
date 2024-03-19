@@ -1,257 +1,1791 @@
-강원특별자치도 강릉시 죽헌길 7 (지변동) 
-강원특별자치도 원주시 흥업면 남원로 150 
-강원특별자치도 춘천시 강원대학길 1 (효자동) 
-강원특별자치도 삼척시 중앙로 346 (교동) 
-대구광역시 북구 대학로 80 (산격동, 경북대학교) 
-경상남도 진주시 진주대로 501 (가좌동, 경상대학교) 
-충청남도 공주시 공주대학로 56 (신관동, 공주대학교) 
-전라북도 군산시 대학로 558 (미룡동, 군산대학교) 
-경상북도 구미시 대학로 61 (양호동, 금오공과대학교) 
-전라남도 무안군 청계면 영산로 1666 (도림리, 목포대학교) 
-전라남도 목포시 해양대학로 91 (죽교동, 목포해양대학교) 
-부산광역시 남구 용소로 45 (대연동, 부경대학교대연캠퍼스) 
-부산광역시 금정구 부산대학로63번길 2 (장전동, 부산대학교) 
-서울특별시 관악구 관악로 1 (신림동, 서울대학교) 
-전라남도 순천시 중앙로 255 (석현동, 순천대학교) 
-경상북도 안동시 경동로 1375 (송천동, 안동대학교) 
-광주광역시 북구 용봉로 45 (용봉동, 전남대학교) 
-전라남도 여수시 대학로 50 (둔덕동, 전남대학교여수캠퍼스) 
-전라북도 전주시 덕진구 백제대로 567 (금암동, 전북대학교) 
-제주특별자치도 제주시 제주대학로 102 (아라일동, 제주대학교) 
-경상남도 창원시 의창구 창원대학로 20 (사림동, 창원대학교) 
-대전광역시 유성구 대학로 99 (궁동, 충남대학교) 
-충청북도 청주시 서원구 충대로 1 (개신동, 충북대학교) 
-충청북도 청주시 흥덕구 강내면 태성탑연로 250 (다락리, 한국교원대학교) 
-서울특별시 송파구 양재대로 1239 (방이동, 한국체육대학교) 
-부산광역시 영도구 태종로 727 (동삼동, 한국해양대학교) 
-충청북도 충주시 대소원면 대학로 50 (검단리, 한국교통대학교) 
-경상남도 진주시 동진로 33 (칠암동, 경남과학기술대학교) 
-서울특별시 노원구 공릉로 232 (공릉동, 서울과학기술대학교) 
-경기도 안성시 중앙로 327 (석정동, 한경대학교) 
-대전광역시 유성구 동서대로 125 (덕명동, 한밭대학교) 
-서울특별시 동대문구 서울시립대로 163 (전농동, 서울시립대학교) 
-경기도 부천시 원미구 지봉로 43 (역곡동, 가톨릭대학교성심교정) 
-서울특별시 서초구 반포대로 222 (반포동, 가톨릭대학교성의교정) 
-서울특별시 종로구 창경궁로 296-12 (혜화동, 가톨릭대학교성신교정) 
-서울특별시 서대문구 독립문로 56 (냉천동, 감리교신학대학) 
-경기도 용인시 기흥구 강남로 40 (구갈동, 강남대학교) 
-서울특별시 광진구 능동로 120 (화양동, 건국대학교) 
-충청북도 충주시 충원대로 268 (단월동, 건국대학교 글로컬캠퍼스) 
-충청남도 논산시 대학로 121 (내동, 건양대학교) 
-대전광역시 서구 관저동로 158 (관저동, 건양대학교병원) 
-경기도 수원시 영통구 광교산로 154-42 (이의동, 경기대학교) 
-서울특별시 서대문구 경기대로9길 24 (충정로2가, 경기대학교) 
-경상남도 창원시 마산합포구 경남대학로 7 (월영동, 경남대학교) 
-강원특별자치도 고성군 토성면 봉포4길 46 
-경상북도 경산시 한의대로 1(유곡동) 
-부산광역시 남구 수영로 309 (대연동, 경성대학교) 
-경기도 성남시 수정구 성남대로 1342 (복정동, 가천대학교) 
-경상북도 경산시 하양읍 가마실길 50 (부호리, 경일대학교) 
-경상북도 경주시 태종로 188 (효현동, 경주대학교) 
-서울특별시 동대문구 경희대로 26 (회기동, 경희대학교) 
-대구광역시 달서구 달구벌대로 1095 (신당동, 계명대학교성서캠퍼스) 
-서울특별시 성북구 안암로 145 (안암동5가, 고려대학교안암캠퍼스(인문사회계)) 
-세종특별자치시 조치원읍 세종로 2511 (서창리, 고려대학교세종캠퍼스) 
-부산광역시 영도구 와치로 194 (동삼동, 고신대학교) 
-강원특별자치도 강릉시 범일로579번길 24 (내곡동) 
-광주광역시 북구 양산택지소로 36 (본촌동, 광신대학교) 
-서울특별시 노원구 광운로 20 (월계동, 광운대학교) 
-전라남도 나주시 남평읍 중남길 12-25 (남석리, 광주가톨릭대학교) 
-광주광역시 광산구 광주여대길 40 (산정동) 
-서울특별시 성북구 정릉로 77 (정릉동, 국민대학교) 
-서울특별시 강서구 까치산로24길 47 (화곡동, 케이씨대학교) 
-충청북도 음성군 감곡면 대학길 76-32 (왕장리, 극동대학교) 
-충청남도 천안시 서북구 월봉로 48 (쌍용동, 나사렛대학교) 
-경기도 용인시 수지구 죽전로 152 (죽전동, 단국대학교) 
-경상북도 경산시 진량읍 대구대로 201 (내리리, 대구대학교경산캠퍼스) 
-경상북도 칠곡군 가산면 다부거문1길 202 (다부리, 대구예술대학교) 
-경상북도 경산시 하양읍 하양로 13-13 (금락리, 대구가톨릭대학교) 
-전라남도 영암군 삼호읍 녹색로 1113 (산호리, 세한대학교) 
-경상북도 경산시 경청로222길 33 (백천동, 대신대학교) 
-세종특별자치시 전의면 가톨릭대학로 30 (신방리, 대전가톨릭대학교) 
-대전광역시 동구 대학로 62 (용운동, 대전대학교) 
-경기도 포천시 호국로 1007 (선단동, 대진대학교) 
-서울특별시 은평구 갈현로4길 26-2 (신사동, 서울기독대학교) 
-서울특별시 도봉구 삼양로144길 33 (쌍문동, 덕성여자대학교) 
-서울특별시 중구 필동로1길 30 (장충동2가, 동국대학교) 
-경상북도 경주시 동대로 123(석장동) 
-서울특별시 성북구 화랑로13길 60 (하월곡동, 동덕여자대학교) 
-부산광역시 사상구 주례로 47 (주례동, 동서대학교) 
-전라남도 나주시 동신대길 67 (대호동) 
-부산광역시 사하구 낙동대로550번길 37 (하단동, 동아대학교) 
-경상북도 영주시 풍기읍 동양대로 145 (산법리, 동양대학교) 
-부산광역시 부산진구 엄광로 176 (가야동, 동의대학교) 
-경기도 용인시 기흥구 금화로82번길 20 (상갈동, 루터대학교) 
-경기도 용인시 처인구 명지로 116 (남동, 명지대학교용인캠퍼스) 
-서울특별시 서대문구 거북골로 34 (남가좌동, 명지대학교) 
-대전광역시 서구 도안북로 88 (도안동, 목원대학교) 
-대전광역시 서구 배재로 155-40 (도마동, 배재대학교) 
-부산광역시 금정구 오륜대로 57 (부곡동, 부산가톨릭대학교) 
-부산광역시 금정구 금샘로485번길 65 (남산동, 부산외국어대학교) 
-서울특별시 노원구 화랑로 815 (공릉동, 삼육대학교) 
-서울특별시 종로구 홍지문2길 20 (홍지동, 상명대학교) 
-강원특별자치도 원주시 상지대길 83 (우산동) 
-서울특별시 마포구 백범로 35 (신수동, 서강대학교) 
-서울특별시 성북구 서경로 124 (정릉동, 서경대학교) 
-경기도 부천시 소사구 호현로489번길 52 (소사본동, 서울신학대학교) 
-서울특별시 노원구 화랑로 621 (공릉동, 서울여자대학교) 
-경기도 광주시 경안로 145 (경안동, 서울장신대학교) 
-충청북도 청주시 서원구 무심서로 377-3 (모충동, 서원대학교) 
-충청남도 아산시 탕정면 선문로221번길 70 (갈산리, 선문대학교) 
-경기도 안양시 만안구 성결대학로 53 (안양동, 성결대학교) 
-서울특별시 구로구 연동로 320 (항동, 성공회대학교) 
-서울특별시 종로구 성균관로 25-2 (명륜3가, 성균관대학교) 
-서울특별시 성북구 보문로34다길 2 (돈암동, 성신여자대학교) 
-충청북도 제천시 세명로 65 (신월동, 세명대학교) 
-서울특별시 광진구 능동로 209 (군자동, 세종대학교) 
-경기도 화성시 봉담읍 왕림1길 67 (왕림리, 수원가톨릭대학교) 
-경기도 화성시 봉담읍 와우안길 17 (와우리, 수원대학교) 
-서울특별시 용산구 청파로47길 90 (청파동2가, 숙명여자대학교) 
-충청남도 아산시 신창면 순천향로 22 (읍내리, 순천향대학교) 
-서울특별시 동작구 상도로 369 (상도동, 숭실대학교) 
-부산광역시 사상구 백양대로700번길 140 (괘법동, 신라대학교) 
-경기도 양평군 옥천면 경강로 1276 아신대학교
-경기도 수원시 영통구 월드컵로 206 (원천동, 아주대학교) 
-경기도 안양시 만안구 삼덕로37번길 22 (안양동, 안양대학교) 
-인천광역시 강화군 불은면 중앙로 602-14 (삼성리, 안양대학교강화캠퍼스) 
-서울특별시 서대문구 연세로 50 (신촌동, 연세대학교) 
-강원특별자치도 원주시 흥업면 연세대길 1 연세대학교 미래캠퍼스
-경상북도 경산시 대학로 280 (대동, 영남대학교) 
-경상북도 경산시 진량읍 봉회1길 26 (봉회리, 영남신학대학교) 
-충청북도 영동군 영동읍 대학로 310 
-전라남도 영광군 백수읍 성지로 1357 (길용리) 
-경기도 용인시 처인구 용인대학로 134 (삼가동, 용인대학교) 
-전라북도 완주군 삼례읍 삼례로 443 (후정리, 우석대학교) 
-울산광역시 남구 대학로 93 (무거동, 울산대학교) 
-전라북도 익산시 익산대로 460 (신동, 원광대학교) 
-경상북도 경주시 강동면 동해대로 261 (유금리, 위덕대학교) 
-대전광역시 중구 계룡로771번길 77 (목동, 을지대학교대전캠퍼스) 
-경기도 성남시 수정구 산성대로 553 (양지동, 을지대학교) 
-서울특별시 서대문구 이화여대길 52 (대현동, 이화여자대학교) 
-경상남도 김해시 인제로 197 (어방동, 인제대학교) 
-부산광역시 부산진구 복지로 75 (개금동, 백병원) 
-인천광역시 연수구 송도문화로120번길 20 (송도동) 인천가톨릭대학교
-인천광역시 강화군 양도면 고려왕릉로 53-1 (도장리, 인천가톨릭대학교) 
-인천광역시 미추홀구 인하로 100(용현동) 인하대학교
-서울특별시 광진구 광장로5길 25-1 (광장동, 장로회신학대학교) 
-전라북도 전주시 완산구 천잠로 303 (효자동2가, 전주대학교) 
-광주광역시 동구 조선대길 146(서석동) 
-충청남도 금산군 추부면 대학로 201 (마전리, 중부대학교) 
-경기도 안성시 대덕면 서동대로 4726 (내리, 중앙대학교) 
-서울특별시 동작구 흑석로 84 (흑석동, 중앙대학교) 
-경기도 김포시 승가로 147 (풍무동, 중앙승가대학) 
-충청남도 천안시 동남구 백석대학로 1 (안서동) 
-충청북도 청주시 청원구 대성로 298 (내덕동, 청주대학교) 
-서울특별시 동작구 사당로 143 (사당동, 총신대학교) 
-서울특별시 서대문구 북아현로11가길 7 (북아현동, 추계예술대학교) 
-대전광역시 유성구 북유성대로 190 (하기동, 침례신학대학) 
-경기도 용인시 기흥구 마북로 184 (마북동, 칼빈대학교) 
-경기도 평택시 서동대로 3825 (용이동, 평택대학교) 
-경기도 포천시 해룡로 120 (동교동, 포천중문의과대학) 차의과학대학교
-경상북도 포항시 남구 청암로 77 (지곡동, 포항공과대학교) 
-충청남도 천안시 동남구 병천면 충절로 1600 (가전리, 한국기술교육대학교) 
-서울특별시 노원구 동일로214길 32 (상계동, 한국성서대학교) 
-서울특별시 동대문구 이문로 107 (이문동, 한국외국어대학교) 
-경기도 고양시 덕양구 항공대학로 76 (화전동, 한국항공대학교) 
-대전광역시 대덕구 한남로 70 (오정동, 한남대학교) 
-경상북도 포항시 북구 흥해읍 한동로 558 (남송리, 한동대학교) 
-강원특별자치도 원주시 흥업면 한라대길 28 
-강원특별자치도 춘천시 한림대학길 1 (옥천동) 
-충청남도 서산시 해미면 한서1로 46 (대곡리, 한서대학교) 
-서울특별시 성북구 삼선교로16길 116 (삼선동2가, 한성대학교) 
-경기도 군포시 한세로 30 (당정동) 
-경기도 오산시 한신대길 137 (양산동, 한신대학교) 
-서울특별시 성동구 왕십리로 222 (사근동, 한양대학교) 
-경기도 안산시 상록구 한양대학로 55 (사동, 한양대학교) 
-서울특별시 구로구 경인로 290-42 (개봉동) 
-전라북도 완주군 상관면 왜목로 726-15 (신리, 한일장신대학교) 
-경기도 화성시 봉담읍 최루백로 72 (상리, 협성대학교) 
-광주광역시 광산구 호남대길 120 (서봉동, 호남대학본부) 
-광주광역시 남구 제중로 77 (양림동, 호남신학대학교) 
-충청남도 아산시 배방읍 호서로79번길 20 (세출리, 호서대학교) 
-서울특별시 마포구 와우산로 94 (상수동, 홍익대학교) 
-충청북도 청주시 서원구 현도면 상삼길 133 (상삼리, 꽃동네대학교) 
-광주광역시 광산구 남부대길 1 (월계동) 
-전라북도 임실군 신평면 창인로 117 (창인리, 예원예술학교) 
-경기도 양주시 은현면 예원대학로 56 
-전라남도 목포시 영산로 697 (석현동, 목포가톨릭대학교) 
-경상남도 김해시 김해대로 1894-68 (구산동) 
-충청남도 논산시 상월면 상월로 522 (대명리, 금강대학교) 
-전라북도 전주시 완산구 서원로 383 (중화산동1가, 예수대학교) 
-광주광역시 남구 효덕로 277 (진월동, 광주대학교) 
-경기도 화성시 남양읍 남양중앙로 400-5 
-부산광역시 남구 신선로 428 (용당동, 동명대학교) 
-경상남도 양산시 주남로 288 (주남동) 영산대학교 양산캠퍼스
-부산광역시 해운대구 반송순환로 142 (반송동) 영산대학교 해운대캠퍼스
-대전광역시 대덕구 한남로 41 (오정동, 대전신학대학교) 
-충청북도 괴산군 괴산읍 문무로 85 (동부리, 중원대학교) 
-대전광역시 동구 동대전로 171 (자양동, 우송정보대학) 
-경상북도 김천시 대학로 214 (삼락동, 김천대학교) 
-광주광역시 남구 송암로 73 (송하동, 송원대학) 
-경상북도 구미시 산동면 강동로 730 (인덕리, 경운대학교) 
-충청남도 천안시 서북구 성환읍 대학로 91 (매주리, 남서울대학교) 
-전라남도 무안군 무안읍 무안로 380 (성남리, 초당대학교) 
-경기도 시흥시 산기대학로 237 (정왕동) 
-제주특별자치도 제주시 516로 2870 (영평동) 
-경상남도 창원시 마산회원구 팔용로 262 (합성동, 창신대학) 
-울산광역시 울주군 언양읍 유니스트길 50 (반연리, 울산과학기술원) 
-충청남도 공주시 웅진로 27 (봉황동, 공주교육대학교) 
-광주광역시 북구 필문대로 55 (풍향동, 광주교육대학교) 
-대구광역시 남구 중앙대로 219 (대명동, 대구교육대학교) 
-부산광역시 연제구 교대로 24 (거제동, 부산교육대학교) 교무처
-서울특별시 서초구 서초중앙로 96 (서초동, 서울교육대학교) 
-인천광역시 계양구 계산로 62 (계산동, 경인교육대학교) 
-경기도 안양시 만안구 삼막로 155 (석수동, 경인교육대학교) 
-전라북도 전주시 완산구 서학로 50 (동서학동, 전주교육대학교) 
-경상남도 진주시 진양호로369번길 3 (신안동, 진주교육대학교) 
-충청북도 청주시 서원구 청남로 2065 (수곡동, 청주교육대학교) 
-강원특별자치도 춘천시 공지로 126 (석사동) 
-대전광역시 유성구 동서대로 125 (덕명동, 한밭대학교) 
-경기도 안성시 중앙로 327 (석정동, 한경대학교) 
-경상남도 진주시 동진로 33 (칠암동, 경남과학기술대학교) 
-경기도 시흥시 산기대학로 237 (정왕동, 한국산업기술대학교) 
-서울특별시 종로구 대학로 86 (동숭동, 한국방송통신대학교) 
-충청남도 천안시 서북구 성환읍 대학로 91 (매주리, 남서울대학교) 
-대전광역시 동구 동대전로 171 (자양동, 우송정보대학) 
-전라북도 군산시 임피면 호원대3길 64 (월하리, 호원대학교) 
-전라남도 무안군 무안읍 무안로 380 (성남리, 초당대학교) 
-충청남도 홍성군 홍성읍 대학길 25 (남장리, 청운대학교) 
-경상북도 구미시 산동면 강동로 730 (인덕리, 경운대학교) 
-서울특별시 강서구 오정로 576 (공항동) 
-충청북도 제천시 덕산면 도전로 320 (도전리) 
-서울특별시 동대문구 경희대로 26 (회기동, 경희사이버대학교) 
-경기도 수원시 팔달구 경수대로 490 (인계동) 
-경상북도 경산시 진량읍 대구대로 201 (내리리, 대구대학교경산캠퍼스) 
-부산광역시 사상구 주례로 57 (주례동, 부산디지털대학교) 
-서울특별시 강서구 공항대로 424 (화곡동, 서울디지털대학교) 
-서울특별시 강북구 솔매로49길 60 (미아동, 서울사이버대학교) 
-서울특별시 광진구 군자로 121 (군자동, 세종사이버대학) 
-서울특별시 중랑구 망우로 353, C동 9층(상봉프레미어스엠코) 
-전라북도 익산시 익산대로 460 (신동, 원광디지털대학교) 
-서울특별시 종로구 북촌로 106 (계동, 고려사이버대학교) 
-서울특별시 종로구 삼일대로30길 23 (익선동, BIZWELL종로오피스텔) 
-서울특별시 서대문구 통일로37길 60 (홍제동, 디지털서울문화예술대학교) 
-서울특별시 성동구 왕십리로 220 (행당동, 한양사이버대학교) 
-서울특별시 동대문구 이문로 107 (이문동, 한국외국어대학교) 
-부산광역시 연제구 고분로191번길 1 (연산동, 화신사이버대학교) 
-충청남도 천안시 동남구 목천읍 교천지산길 284-88 (지산리, 글로벌사이버대학교) 
-대전광역시 서구 관저동로 158 (관저동, 건양대학교병원) 건양사이버대학교
-대전광역시 유성구 대학로 291 (구성동, 한국과학기술원) 
-광주광역시 북구 첨단과기로 123 (오룡동, 광주과학기술원) 
-대구광역시 달성군 현풍면 테크노중앙대로 333 (상리) 
-서울특별시 성북구 화랑로32길 146-37 (석관동, 한국종합예술학교) 
-강원특별자치도 속초시 도리원길 5 (노학동) 
-강원특별자치도 원주시 문막읍 견훤로 815 
-인천광역시 연수구 아카데미로 119 (송도동, 인천대학교) 
-경기도 동두천시 벌마들로40번길 30 (상패동, 신한대학교) 
-충청남도 천안시 동남구 단대로 119 (안서동, 단국대학교천안캠퍼스) 
-경기도 양주시 경동대학로 27 (고암동) 
-경상남도 김해시 삼계로 208 (삼계동) 
-경상북도 고령군 대가야읍 대가야로 1103 (지산리, 가야대학교) 
-경기도 의정부시 호암로 95 (호원동, 신한대학교) 
-경기도 의정부시 동일로 712 (금오동) 
-세종특별자치시 조치원읍 세종로 2639 (신안리, 홍익대학교세종캠퍼스) 
-충청남도 천안시 동남구 상명대길 31 (안서동, 상명대학교천안캠퍼스) 
-충청남도 부여군 규암면 백제문로 367 (합정리, 한국전통문화대학교) 
-전라남도 나주시 켄텍길 21(빛가람동) 
-서울특별시 종로구 창덕궁5길 22-8 (원서동) 
+cd /Users/jay/Library/CloudStorage/Dropbox/Data/ALIMI/JArating/cleaned
+    tempfile tfile1 tfile2
+    /*4-바-1{{{*/
+        use "대학_4-바-1_2009.dta" /*(2009년_ [4-바-1. 외국학생 현황_])*/
+            gen byte year = 2009
+            keep C1 C12
+            destring C12 , replace
+            label var C1 "학교"
+            label var C12 "총계"
+            rename C1 uniname
+        use "대학_4-바-1_2010.dta" /*(2010년_ [4-바-1. 외국학생 현황_])*/
+            gen byte year = 2010
+            keep C1 C12
+            destring C12 , replace
+            label var C1 "학교"
+            label var C12 "총계"
+            rename C1 uniname
+        use "대학_4-바-1_2011.dta" /*(2011년_ [4-바-1. 외국학생 현황_])*/
+            gen byte year = 2011
+            keep C1 C12
+            destring C12 , replace
+            label var C1 "학교"
+            label var C12 "총계"
+            rename C1 uniname
+        use "대학_4-바-1_2012.dta" /*(2012년_ [4-바-1. 외국학생 현황_])*/
+            gen byte year = 2012
+            keep C1 C12
+            destring C12 , replace
+            label var C1 "학교"
+            label var C12 "총계"
+            rename C1 uniname
+        use "대학_4-바-1_2013.dta" /*(2013년_ [4-바-1. 외국학생 현황_])*/
+            gen byte year = 2013
+            keep C5 C17
+            destring C17 , replace
+            label var C5 "학교"
+            label var C17 "총계(D=A+B+C)"
+            rename C5 uniname
+        use "대학_4-바-1_2014.dta" /*(2014년_ [4-바-1. 외국학생 현황_])*/
+            gen byte year = 2014
+            keep C5 C6
+            destring C6 , replace
+            label var C5 "학교"
+            label var C6 "계 (D=A+B+C)"
+            rename C5 uniname
+        use "대학_4-바-1_2015.dta" /*(2015년_ [4-바-1. 외국학생 현황_])*/
+            gen byte year = 2015
+            keep C5 C6
+            destring C6 , replace
+            label var C5 "학교"
+            label var C6 "계 (D=A+B+C)"
+            rename C5 uniname
+        use "대학_4-바-1_2016.dta" /*(2016년_ [4-바-1. 외국학생 현황_])*/
+            gen byte year = 2016
+            keep C5 C6
+            destring C6 , replace
+            label var C5 "학교"
+            label var C6 "계 (D=A+B+C)"
+            rename C5 uniname
+        use "대학_4-바-1_2017.dta" /*(2017년_ [4-바-1. 외국학생 현황_])*/
+            gen byte year = 2017
+            keep C5 C6
+            destring C6 , replace
+            label var C5 "학교"
+            label var C6 "계 (D=A+B+C)"
+            rename C5 uniname
+        use "대학_4-바-1_2018.dta" /*(2018년_ [4-바-1. 외국학생 현황_])*/
+            gen byte year = 2018
+            keep C5 C6
+            destring C6 , replace
+            label var C5 "학교"
+            label var C6 "계 (D=A+B+C)"
+            rename C5 uniname
+        use "대학_4-바-1_2019.dta" /*(2019년_ [4-바-1. 외국학생 현황_])*/
+            gen byte year = 2019
+            keep C5 C6
+            destring C6 , replace
+            label var C5 "학교"
+            label var C6 "계 (D=A+B+C)"
+            rename C5 uniname
+        use "대학_4-바-1_2020.dta" /*(2020년_ [4-바-1. 외국학생 현황_])*/
+            gen byte year = 2020
+            keep C5 C6
+            destring C6 , replace
+            label var C5 "학교"
+            label var C6 "계 (D=A+B+C)"
+            rename C5 uniname
+    /*}}}*/
+    /*4-바-2{{{*/
+        use "대학_4-바-2_2009.dta" /*(2009년_ [4-바-2. 외국학생 중도탈락 현황_])*/
+            gen byte year = 2009
+            keep C1 C10
+            destring C10 , replace
+            label var C1 "학교"
+            label var C10 "외국인 학생 중도탈락률 (%) (B/A)×100"
+            rename C1 uniname
+        use "대학_4-바-2_2010.dta" /*(2010년_ [4-바-2. 외국학생 중도탈락 현황_])*/
+            gen byte year = 2010
+            keep C1 C10
+            destring C10 , replace
+            label var C1 "학교"
+            label var C10 "외국인 학생 중도탈락률 (%) (B/A)×100"
+            rename C1 uniname
+        use "대학_4-바-2_2011.dta" /*(2011년_ [4-바-2. 외국학생 중도탈락 현황_])*/
+            gen byte year = 2011
+            keep C1 C10
+            destring C10 , replace
+            label var C1 "학교"
+            label var C10 "외국인 학생 중도탈락률 (%) (B/A)×100"
+            rename C1 uniname
+        use "대학_4-바-2_2012.dta" /*(2012년_ [4-바-2. 외국학생 중도탈락 현황_])*/
+            gen byte year = 2012
+            keep C1 C10
+            destring C10 , replace
+            label var C1 "학교"
+            label var C10 "외국인 학생 중도탈락률 (%) (B/A)×100"
+            rename C1 uniname
+        use "대학_4-바-2_2013.dta" /*(2013년_ [4-바-2. 외국학생 중도탈락 현황_])*/
+            gen byte year = 2013
+            keep C5 C18
+            destring C18 , replace
+            label var C5 "학교"
+            label var C18 "외국인유학생 중도탈락률(%) (B/A)×100"
+            rename C5 uniname
+        use "대학_4-바-2_2014.dta" /*(2014년_ [4-바-2. 외국학생 중도탈락 현황_])*/
+            gen byte year = 2014
+            keep C5 C18
+            destring C18 , replace
+            label var C5 "학교"
+            label var C18 "외국인유학생 중도탈락률(%) (B/A)×100"
+            rename C5 uniname
+        use "대학_4-바-2_2015.dta" /*(2015년_ [4-바-2. 외국학생 중도탈락 현황_])*/
+            gen byte year = 2015
+            keep C5 C20
+            destring C20 , replace
+            label var C5 "학교"
+            label var C20 "외국인유학생중도탈락률(%)(B/A)×100"
+            rename C5 uniname
+        use "대학_4-바-2_2016.dta" /*(2016년_ [4-바-2. 외국학생 중도탈락 현황_])*/
+            gen byte year = 2016
+            keep C5 C20
+            destring C20 , replace
+            label var C5 "학교"
+            label var C20 "외국인유학생중도탈락률(%)(B/A)×100"
+            rename C5 uniname
+        use "대학_4-바-2_2017.dta" /*(2017년_ [4-바-2. 외국학생 중도탈락 현황_])*/
+            gen byte year = 2017
+            keep C5 C20
+            destring C20 , replace
+            label var C5 "학교"
+            label var C20 "외국인유학생중도탈락률(%)(B/A)×100"
+            rename C5 uniname
+        use "대학_4-바-2_2018.dta" /*(2018년_ [4-바-2. 외국학생 중도탈락 현황_])*/
+            gen byte year = 2018
+            keep C5 C20
+            destring C20 , replace
+            label var C5 "학교"
+            label var C20 "외국인유학생중도탈락률(%)(B/A)×100"
+            rename C5 uniname
+        use "대학_4-바-2_2019.dta" /*(2019년_ [4-바-2. 외국학생 중도탈락 현황_])*/
+            gen byte year = 2019
+            keep C5 C20
+            destring C20 , replace
+            label var C5 "학교"
+            label var C20 "외국인유학생중도탈락률(%)(B/A)×100"
+            rename C5 uniname
+        use "대학_4-바-2_2020.dta" /*(2020년_ [4-바-2. 외국학생 중도탈락 현황_])*/
+            gen byte year = 2020
+            keep C5 C20
+            destring C20 , replace
+            label var C5 "학교"
+            label var C20 "외국인유학생중도탈락률(%)(B/A)×100"
+            rename C5 uniname
+    /*}}}*/
+    /*4-사{{{*/
+        use "대학_4-사_2008.dta" /*(2008년_ [4-사. 중도탈락 학생 현황_])*/
+            gen byte year = 2008
+            keep C1 C12
+            destring C12 , replace
+            label var C1 "학교"
+            label var C12 "중도탈락학생비율(%) (B/A) × 100"
+            rename C1 uniname
+        use "대학_4-사_2009.dta" /*(2009년_ [4-사. 중도탈락 학생 현황_])*/
+            gen byte year = 2009
+            keep C1 C12
+            destring C12 , replace
+            label var C1 "학교"
+            label var C12 "중도탈락학생비율(%) (B/A) × 100"
+            rename C1 uniname
+        use "대학_4-사_2010.dta" /*(2010년_ [4-사. 중도탈락 학생 현황_])*/
+            gen byte year = 2010
+            keep C1 C12
+            destring C12 , replace
+            label var C1 "학교"
+            label var C12 "중도탈락학생비율(%) (B/A) × 100"
+            rename C1 uniname
+        use "대학_4-사_2011.dta" /*(2011년_ [4-사. 중도탈락 학생 현황_])*/
+            gen byte year = 2011
+            keep C1 C12
+            destring C12 , replace
+            label var C1 "학교"
+            label var C12 "중도탈락학생비율(%) (B/A) × 100"
+            rename C1 uniname
+        use "대학_4-사_2012.dta" /*(2012년_ [4-사. 중도탈락 학생 현황_])*/
+            gen byte year = 2012
+            keep C1 C12
+            destring C12 , replace
+            label var C1 "학교"
+            label var C12 "중도탈락학생비율(%) (B/A) × 100"
+            rename C1 uniname
+        use "대학_4-사_2013.dta" /*(2013년_ [4-사. 중도탈락 학생 현황_])*/
+            gen byte year = 2013
+            keep C5 C16
+            destring C16 , replace
+            label var C5 "학교"
+            label var C16 "중도탈락학생비율(%) (B/A) × 100"
+            rename C5 uniname
+        use "대학_4-사_2014.dta" /*(2014년_ [4-사. 중도탈락 학생 현황_])*/
+            gen byte year = 2014
+            keep C5 C16
+            destring C16 , replace
+            label var C5 "학교"
+            label var C16 "중도탈락학생비율(%) (B/A) × 100"
+            rename C5 uniname
+        use "대학_4-사_2015.dta" /*(2015년_ [4-사. 중도탈락 학생 현황_])*/
+            gen byte year = 2015
+            keep C5 C16
+            destring C16 , replace
+            label var C5 "학교"
+            label var C16 "중도탈락학생비율(%) (B/A) × 100"
+            rename C5 uniname
+        use "대학_4-사_2016.dta" /*(2016년_ [4-사. 중도탈락 학생 현황_])*/
+            gen byte year = 2016
+            keep C5 C16
+            destring C16 , replace
+            label var C5 "학교"
+            label var C16 "중도탈락학생비율(%) (B/A) × 100"
+            rename C5 uniname
+        use "대학_4-사_2017.dta" /*(2017년_ [4-사. 중도탈락 학생 현황_])*/
+            gen byte year = 2017
+            keep C5 C16
+            destring C16 , replace
+            label var C5 "학교"
+            label var C16 "중도탈락학생비율(%) (B/A) × 100"
+            rename C5 uniname
+        use "대학_4-사_2018.dta" /*(2018년_ [4-사. 중도탈락 학생 현황_])*/
+            gen byte year = 2018
+            keep C5 C16
+            destring C16 , replace
+            label var C5 "학교"
+            label var C16 "중도탈락학생비율(%) (B/A) × 100"
+            rename C5 uniname
+        use "대학_4-사_2019.dta" /*(2019년_ [4-사. 중도탈락 학생 현황_])*/
+            gen byte year = 2019
+            keep C5 C16
+            destring C16 , replace
+            label var C5 "학교"
+            label var C16 "중도탈락학생비율(%) (B/A) × 100"
+            rename C5 uniname
+        use "대학_4-사_2020.dta" /*(2020년_ [4-사. 중도탈락 학생 현황_])*/
+            gen byte year = 2020
+            keep C5 C16
+            destring C16 , replace
+            label var C5 "학교"
+            label var C16 "중도탈락학생비율(%) (B/A) × 100"
+            rename C5 uniname
+    /*}}}*/
+    /*5-나-(1){{{*/
+        use "대학_5-나-(1)_2008.dta" /*(2008년_ [5-나-(1). 졸업생의 진학 현황_])*/
+            gen byte year = 2008
+            keep C1 C18
+            destring C18 , replace
+            label var C1 "학교명"
+            label var C18 "진학률(%) (B/A)*100"
+            rename C1 uniname
+        use "대학_5-나-(1)_2009.dta" /*(2009년_ [5-나-(1). 졸업생의 진학 현황_])*/
+            gen byte year = 2009
+            keep C1 C18
+            destring C18 , replace
+            label var C1 "학교명"
+            label var C18 "진학률(%) (B/A)*100"
+            rename C1 uniname
+        use "대학_5-나-(1)_2010.dta" /*(2010년_ [5-나-(1). 졸업생의 진학 현황_])*/
+            gen byte year = 2010
+            keep C1 C18
+            destring C18 , replace
+            label var C1 "학교명"
+            label var C18 "진학률(%) (B/A)*100"
+            rename C1 uniname
+        use "대학_5-나-(1)_2011.dta" /*(2011년_ [5-나-(1). 졸업생의 진학 현황_])*/
+            gen byte year = 2011
+            keep C1 C18
+            destring C18 , replace
+            label var C1 "학교명"
+            label var C18 "진학률(%) (B/A)*100"
+            rename C1 uniname
+        use "대학_5-나-(1)_2012.dta" /*(2012년_ [5-나-(1). 졸업생의 진학 현황_])*/
+            gen byte year = 2012
+            keep C1 C18
+            destring C18 , replace
+            label var C1 "학교명"
+            label var C18 "진학률(%) (B/A)*100"
+            rename C1 uniname
+        use "대학_5-나-(1)_2013.dta" /*(2013년_ [5-나-(1). 졸업생의 진학 현황_])*/
+            gen byte year = 2013
+            keep C5 C22
+            destring C22 , replace
+            label var C5 "학교명"
+            label var C22 "진학률(%) (B/A)*100"
+            rename C5 uniname
+        use "대학_5-나-(1)_2014.dta" /*(2014년_ [5-나-(1). 졸업생의 진학 현황_])*/
+            gen byte year = 2014
+            keep C5 C22
+            destring C22 , replace
+            label var C5 "학교명"
+            label var C22 "진학률(%) (B/A)*100"
+            rename C5 uniname
+        use "대학_5-나-(1)_2015.dta" /*(2015년_ [5-나-(1). 졸업생의 진학 현황_])*/
+            gen byte year = 2015
+            keep C5 C22
+            destring C22 , replace
+            label var C5 "학교명"
+            label var C22 "진학률(%) (B/A)*100"
+            rename C5 uniname
+        use "대학_5-나-(1)_2016.dta" /*(2016년_ [5-나-(1). 졸업생의 진학 현황_])*/
+            gen byte year = 2016
+            keep C5 C22
+            destring C22 , replace
+            label var C5 "학교명"
+            label var C22 "진학률(%) (B/A)*100"
+            rename C5 uniname
+        use "대학_5-나-(1)_2017.dta" /*(2017년_ [5-나-(1). 졸업생의 진학 현황_])*/
+            gen byte year = 2017
+            keep C5 C22
+            destring C22 , replace
+            label var C5 "학교명"
+            label var C22 "진학률(%) (B/A)*100"
+            rename C5 uniname
+        use "대학_5-나-(1)_2018.dta" /*(2018년_ [5-나-(1). 졸업생의 진학 현황_])*/
+            gen byte year = 2018
+            keep C5 C22
+            destring C22 , replace
+            label var C5 "학교명"
+            label var C22 "진학률(%) (B/A)*100"
+            rename C5 uniname
+        use "대학_5-나-(1)_2019.dta" /*(2019년_ [5-나-(1). 졸업생의 진학 현황_])*/
+            gen byte year = 2019
+            keep C5 C22
+            destring C22 , replace
+            label var C5 "학교명"
+            label var C22 "진학률(%) (B/A)*100"
+            rename C5 uniname
+        use "대학_5-나-(1)_2020.dta" /*(2020년_ [5-나-(1). 졸업생의 진학 현황_])*/
+            gen byte year = 2020
+            keep C5 C22
+            destring C22 , replace
+            label var C5 "학교명"
+            label var C22 "진학률(%) (B/A)*100"
+            rename C5 uniname
+    /*}}}*/
+    /*5-다{{{*/
+        use "대학_5-다_2010.dta" /*(2010년_ [5-다. 졸업생의 취업 현황_])*/
+            gen byte year = 2010
+            keep C1 C18
+            destring C18 , replace
+            label var C1 "학교명"
+            label var C18 "(건강보험DB연계) 취업률(%)"
+            rename C1 uniname
+        use "대학_5-다_2011.dta" /*(2011년_ [5-다. 졸업생의 취업 현황_])*/
+            gen byte year = 2011
+            keep C1 C21
+            destring C21 , replace
+            label var C1 "학교명"
+            label var C21 "취업률(%)"
+            rename C1 uniname
+        use "대학_5-다_2012.dta" /*(2012년_ [5-다. 졸업생의 취업 현황_])*/
+            gen byte year = 2012
+            keep C1 C29
+            destring C29 , replace
+            label var C1 "학교명"
+            label var C29 "취업률(%)"
+            rename C1 uniname
+        use "대학_5-다_2013.dta" /*(2013년_ [5-다. 졸업생의 취업 현황_])*/
+            gen byte year = 2013
+            keep C5 C33
+            destring C33 , replace
+            label var C5 "학교명"
+            label var C33 "취업률(%)"
+            rename C5 uniname
+        use "대학_5-다_2014.dta" /*(2014년_ [5-다. 졸업생의 취업 현황_])*/
+            gen byte year = 2014
+            keep C5 C33
+            destring C33 , replace
+            label var C5 "학교명"
+            label var C33 "취업률(%)"
+            rename C5 uniname
+        use "대학_5-다_2015.dta" /*(2015년_ [5-다. 졸업생의 취업 현황_])*/
+            gen byte year = 2015
+            keep C5 C33
+            destring C33 , replace
+            label var C5 "학교명"
+            label var C33 "취업률(%)"
+            rename C5 uniname
+        use "대학_5-다_2016.dta" /*(2016년_ [5-다. 졸업생의 취업 현황_])*/
+            gen byte year = 2016
+            keep C5 C33
+            destring C33 , replace
+            label var C5 "학교명"
+            label var C33 "취업률(%)"
+            rename C5 uniname
+        use "대학_5-다_2017.dta" /*(2017년_ [5-다. 졸업생의 취업 현황_])*/
+            gen byte year = 2017
+            keep C5 C33
+            destring C33 , replace
+            label var C5 "학교명"
+            label var C33 "취업률(%)"
+            rename C5 uniname
+        use "대학_5-다_2018.dta" /*(2018년_ [5-다. 졸업생의 취업 현황_])*/
+            gen byte year = 2018
+            keep C5 C33
+            destring C33 , replace
+            label var C5 "학교명"
+            label var C33 "취업률(%)"
+            rename C5 uniname
+        use "대학_5-다_2019.dta" /*(2019년_ [5-다. 졸업생의 취업 현황_])*/
+            gen byte year = 2019
+            keep C5 C33
+            destring C33 , replace
+            label var C5 "학교명"
+            label var C33 "취업률(%)"
+            rename C5 uniname
+        use "대학_5-다_2020.dta" /*(2020년_ [5-다. 졸업생의 취업 현황_])*/
+            gen byte year = 2020
+            keep C5 C33
+            destring C33 , replace
+            label var C5 "학교명"
+            label var C33 "취업률(%)"
+            rename C5 uniname
+    /*}}}*/
+    /*6-가-1{{{*/
+        use "대학_6-가-1_2009.dta" /*(2009년_ [6-가-1. 전체 교원 대비 전임교원 현황_])*/
+            gen byte year = 2009
+            keep C1 C4 C5 C14 C15
+            destring C4 C5 C14 C15 , replace
+            label var C1 "학교"
+            label var C4 "학부_전임교원_계_남"
+            label var C5 "학부_전임교원_계_여"
+            label var C14 "학부_비전임교원_계_남"
+            label var C15 "학부_비전임교원_계_여"
+            rename C1 uniname
+            rename C5 uniname
+        use "대학_6-가-1_2010.dta" /*(2010년_ [6-가-1. 전체 교원 대비 전임교원 현황_])*/
+            gen byte year = 2010
+            keep C1 C4 C5 C14 C15
+            destring C4 C5 C14 C15 , replace
+            label var C1 "학교"
+            label var C4 "학부_전임교원_계_남"
+            label var C5 "학부_전임교원_계_여"
+            label var C14 "학부_비전임교원_계_남"
+            label var C15 "학부_비전임교원_계_여"
+            rename C1 uniname
+            rename C5 uniname
+        use "대학_6-가-1_2011.dta" /*(2011년_ [6-가-1. 전체 교원 대비 전임교원 현황_])*/
+            gen byte year = 2011
+            keep C1 C4 C5 C14 C15
+            destring C4 C5 C14 C15 , replace
+            label var C1 "학교"
+            label var C4 "학부_전임교원_계_남"
+            label var C5 "학부_전임교원_계_여"
+            label var C14 "학부_비전임교원_계_남"
+            label var C15 "학부_비전임교원_계_여"
+            rename C1 uniname
+            rename C5 uniname
+        use "대학_6-가-1_2012.dta" /*(2012년_ [6-가-1. 전체 교원 대비 전임교원 현황_])*/
+            gen byte year = 2012
+            keep C1 C4 C5 C14 C15
+            destring C4 C5 C14 C15 , replace
+            label var C1 "학교"
+            label var C4 "학부_전임교원_계_남"
+            label var C5 "학부_전임교원_계_여"
+            label var C14 "학부_비전임교원_계_남"
+            label var C15 "학부_비전임교원_계_여"
+            rename C1 uniname
+            rename C5 uniname
+        use "대학_6-가-1_2013.dta" /*(2013년_ [6-가-1. 전체 교원 대비 전임교원 현황_])*/
+            gen byte year = 2013
+            keep C5 C8 C9 C16 C17
+            destring C8 C9 C16 C17 , replace
+            label var C5 "학교"
+            label var C8 "학부_전임교원_계_남"
+            label var C9 "학부_전임교원_계_여"
+            label var C16 "학부_비전임교원_계_남"
+            label var C17 "학부_비전임교원_계_여"
+            rename C5 uniname
+        use "대학_6-가-1_2014.dta" /*(2014년_ [6-가-1. 전체 교원 대비 전임교원 현황_])*/
+            gen byte year = 2014
+            keep C5 C8 C9 C16 C17
+            destring C8 C9 C16 C17 , replace
+            label var C5 "학교"
+            label var C8 "학부_전임교원_계_남"
+            label var C9 "학부_전임교원_계_여"
+            label var C16 "학부_비전임교원_계_남"
+            label var C17 "학부_비전임교원_계_여"
+            rename C5 uniname
+        use "대학_6-가-1_2015.dta" /*(2015년_ [6-가-1. 전체 교원 대비 전임교원 현황_])*/
+            gen byte year = 2015
+            keep C5 C8 C9 C16 C17
+            destring C8 C9 C16 C17 , replace
+            label var C5 "학교"
+            label var C8 "학부_전임교원_계_남"
+            label var C9 "학부_전임교원_계_여"
+            label var C16 "학부_비전임교원_계_남"
+            label var C17 "학부_비전임교원_계_여"
+            rename C5 uniname
+        use "대학_6-가-1_2016.dta" /*(2016년_ [6-가-1. 전체 교원 대비 전임교원 현황_])*/
+            gen byte year = 2016
+            keep C5 C8 C9 C16 C17
+            destring C8 C9 C16 C17 , replace
+            label var C5 "학교"
+            label var C8 "학부_전임교원_계_남"
+            label var C9 "학부_전임교원_계_여"
+            label var C16 "학부_비전임교원_계_남"
+            label var C17 "학부_비전임교원_계_여"
+            rename C5 uniname
+        use "대학_6-가-1_2017.dta" /*(2017년_ [6-가-1. 전체 교원 대비 전임교원 현황_])*/
+            gen byte year = 2017
+            keep C5 C8 C9 C16 C17
+            destring C8 C9 C16 C17 , replace
+            label var C5 "학교"
+            label var C8 "학부_전임교원_계_남"
+            label var C9 "학부_전임교원_계_여"
+            label var C16 "학부_비전임교원_계_남"
+            label var C17 "학부_비전임교원_계_여"
+            rename C5 uniname
+        use "대학_6-가-1_2018.dta" /*(2018년_ [6-가-1. 전체 교원 대비 전임교원 현황_])*/
+            gen byte year = 2018
+            keep C5 C8 C9 C16 C17
+            destring C8 C9 C16 C17 , replace
+            label var C5 "학교"
+            label var C8 "학부_전임교원_계_남"
+            label var C9 "학부_전임교원_계_여"
+            label var C16 "학부_비전임교원_계_남"
+            label var C17 "학부_비전임교원_계_여"
+            rename C5 uniname
+        use "대학_6-가-1_2019.dta" /*(2019년_ [6-가-1. 전체 교원 대비 전임교원 현황_])*/
+            gen byte year = 2019
+            keep C5 C8 C9 C16 C17
+            destring C8 C9 C16 C17 , replace
+            label var C5 "학교"
+            label var C8 "학부_전임교원_계_남"
+            label var C9 "학부_전임교원_계_여"
+            label var C16 "학부_비전임교원_계_남"
+            label var C17 "학부_비전임교원_계_여"
+            rename C5 uniname
+        use "대학_6-가-1_2020.dta" /*(2020년_ [6-가-1. 전체 교원 대비 전임교원 현황_])*/
+            gen byte year = 2020
+            keep C5 C8 C9 C16 C17
+            destring C8 C9 C16 C17 , replace
+            label var C5 "학교"
+            label var C8 "학부_전임교원_계_남"
+            label var C9 "학부_전임교원_계_여"
+            label var C16 "학부_비전임교원_계_남"
+            label var C17 "학부_비전임교원_계_여"
+            rename C5 uniname
+    /*}}}*/
+    /*6-다-2{{{*/
+        use "대학_6-다-2_2008.dta" /*(2008년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])*/
+            gen byte year = 2008
+            keep C1 C2 C3
+            destring C2 C3 , replace
+            label var C1 "학교"
+            label var C2 "전임교원_계_남"
+            label var C3 "전임교원_계_여"
+            rename C1 uniname
+        use "대학_6-다-2_2009.dta" /*(2009년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])*/
+            gen byte year = 2009
+            keep C1 C2 C3
+            destring C2 C3 , replace
+            label var C1 "학교"
+            label var C2 "전임교원_계_남"
+            label var C3 "전임교원_계_여"
+            rename C1 uniname
+        use "대학_6-다-2_2010.dta" /*(2010년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])*/
+            gen byte year = 2010
+            keep C1 C2 C3
+            destring C2 C3 , replace
+            label var C1 "학교"
+            label var C2 "전임교원_계_남"
+            label var C3 "전임교원_계_여"
+            rename C1 uniname
+        use "대학_6-다-2_2011.dta" /*(2011년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])*/
+            gen byte year = 2011
+            keep C1 C2 C3
+            destring C2 C3 , replace
+            label var C1 "학교"
+            label var C2 "전임교원_계_남"
+            label var C3 "전임교원_계_여"
+            rename C1 uniname
+        use "대학_6-다-2_2012.dta" /*(2012년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])*/
+            gen byte year = 2012
+            keep C1 C2 C3
+            destring C2 C3 , replace
+            label var C1 "학교"
+            label var C2 "전임교원_계_남"
+            label var C3 "전임교원_계_여"
+            rename C1 uniname
+        use "대학_6-다-2_2013.dta" /*(2013년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])*/
+            gen byte year = 2013
+            keep C5 C6 C7 C8
+            destring C6 C7 C8 , replace
+            label var C5 "학교"
+            label var C6 "계열"
+            label var C7 "전임교원_계_남"
+            label var C8 "전임교원_계_여"
+            rename C5 uniname
+        use "대학_6-다-2_2014.dta" /*(2014년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])*/
+            gen byte year = 2014
+            keep C5 C6 C7 C8
+            destring C6 C7 C8 , replace
+            label var C5 "학교"
+            label var C6 "계열"
+            label var C7 "전임교원_계_남"
+            label var C8 "전임교원_계_여"
+            rename C5 uniname
+        use "대학_6-다-2_2015.dta" /*(2015년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])*/
+            gen byte year = 2015
+            keep C5 C6 C7 C8
+            destring C6 C7 C8 , replace
+            label var C5 "학교"
+            label var C6 "계열"
+            label var C7 "전임교원_계_남"
+            label var C8 "전임교원_계_여"
+            rename C5 uniname
+        use "대학_6-다-2_2016.dta" /*(2016년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])*/
+            gen byte year = 2016
+            keep C5 C6 C7 C8
+            destring C6 C7 C8 , replace
+            label var C5 "학교"
+            label var C6 "계열"
+            label var C7 "전임교원_계_남"
+            label var C8 "전임교원_계_여"
+            rename C5 uniname
+        use "대학_6-다-2_2017.dta" /*(2017년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])*/
+            gen byte year = 2017
+            keep C5 C6 C7 C8
+            destring C6 C7 C8 , replace
+            label var C5 "학교"
+            label var C6 "계열"
+            label var C7 "전임교원_계_남"
+            label var C8 "전임교원_계_여"
+            rename C5 uniname
+        use "대학_6-다-2_2018.dta" /*(2018년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])*/
+            gen byte year = 2018
+            keep C5 C6 C7 C8
+            destring C6 C7 C8 , replace
+            label var C5 "학교"
+            label var C6 "계열"
+            label var C7 "전임교원_계_남"
+            label var C8 "전임교원_계_여"
+            rename C5 uniname
+        use "대학_6-다-2_2019.dta" /*(2019년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])*/
+            gen byte year = 2019
+            keep C5 C6 C7 C8
+            destring C6 C7 C8 , replace
+            label var C5 "학교"
+            label var C6 "계열"
+            label var C7 "전임교원_계_남"
+            label var C8 "전임교원_계_여"
+            rename C5 uniname
+        use "대학_6-다-2_2020.dta" /*(2020년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])*/
+            gen byte year = 2020
+            keep C5 C6 C7 C8
+            destring C6 C7 C8 , replace
+            label var C5 "학교"
+            label var C6 "계열"
+            label var C7 "전임교원_계_남"
+            label var C8 "전임교원_계_여"
+            rename C5 uniname
+    /*}}}*/
+    /*7-가{{{*/
+        use "대학_7-가_2008.dta" /*(2008년_ [7-가. 전임교원의 연구 실적_])*/
+            gen byte year = 2008
+            keep C1 C2 C3
+            destring C2 C3 , replace
+            label var C1 "학교"
+            label var C2 "전임 교원"
+            label var C3 "연구실적 (논문)_총계"
+            rename C1 uniname
+        use "대학_7-가_2009.dta" /*(2009년_ [7-가. 전임교원의 연구 실적_])*/
+            gen byte year = 2009
+            keep C1 C2 C3
+            destring C2 C3 , replace
+            label var C1 "학교"
+            label var C2 "전임 교원"
+            label var C3 "연구실적 (논문)_총계"
+            rename C1 uniname
+        use "대학_7-가_2010.dta" /*(2010년_ [7-가. 전임교원의 연구 실적_])*/
+            gen byte year = 2010
+            keep C1 C2 C3
+            destring C2 C3 , replace
+            label var C1 "학교"
+            label var C2 "전임 교원"
+            label var C3 "연구실적 (논문)_총계"
+            rename C1 uniname
+        use "대학_7-가_2011.dta" /*(2011년_ [7-가. 전임교원의 연구 실적_])*/
+            gen byte year = 2011
+            keep C1 C2 C3
+            destring C2 C3 , replace
+            label var C1 "학교"
+            label var C2 "전임 교원"
+            label var C3 "연구실적 (논문)_총계"
+            rename C1 uniname
+        use "대학_7-가_2012.dta" /*(2012년_ [7-가. 전임교원의 연구 실적_])*/
+            gen byte year = 2012
+            keep C1 C2 C3
+            destring C2 C3 , replace
+            label var C1 "학교"
+            label var C2 "전임 교원"
+            label var C3 "연구실적 (논문)_총계"
+            rename C1 uniname
+        use "대학_7-가_2013.dta" /*(2013년_ [7-가. 전임교원의 연구 실적_])*/
+            gen byte year = 2013
+            keep C5 C6 C7
+            destring C6 C7 , replace
+            label var C5 "학교"
+            label var C6 "전임 교원"
+            label var C7 "연구실적 (논문)_총계"
+            rename C5 uniname
+        use "대학_7-가_2014.dta" /*(2014년_ [7-가. 전임교원의 연구 실적_])*/
+            gen byte year = 2014
+            keep C5 C6 C7
+            destring C6 C7 , replace
+            label var C5 "학교"
+            label var C6 "전임교원"
+            label var C7 "논문 실적"
+            rename C5 uniname
+        use "대학_7-가_2015.dta" /*(2015년_ [7-가. 전임교원의 연구 실적_])*/
+            gen byte year = 2015
+            keep C5 C6 C7
+            destring C6 C7 , replace
+            label var C5 "학교"
+            label var C6 "전임교원"
+            label var C7 "논문 실적"
+            rename C5 uniname
+        use "대학_7-가_2016.dta" /*(2016년_ [7-가. 전임교원의 연구 실적_])*/
+            gen byte year = 2016
+            keep C5 C6 C7
+            destring C6 C7 , replace
+            label var C5 "학교"
+            label var C6 "전임교원"
+            label var C7 "논문 실적"
+            rename C5 uniname
+        use "대학_7-가_2017.dta" /*(2017년_ [7-가. 전임교원의 연구 실적_])*/
+            gen byte year = 2017
+            keep C5 C6 C9 C10
+            destring C6 C9 C10 , replace
+            label var C5 "학교"
+            label var C6 "전임 교원"
+            label var C9 "논문 실적_총계_남"
+            label var C10 "논문 실적_총계_여"
+            rename C5 uniname
+        use "대학_7-가_2018.dta" /*(2018년_ [7-가. 전임교원의 연구 실적_])*/
+            gen byte year = 2018
+            keep C5 C6 C9
+            destring C6 C9 , replace
+            label var C5 "학교"
+            label var C6 "전임 교원_계"
+            label var C9 "논문 실적_총계_계"
+            rename C5 uniname
+        use "대학_7-가_2019.dta" /*(2019년_ [7-가. 전임교원의 연구 실적_])*/
+            gen byte year = 2019
+            keep C5 C6 C9
+            destring C6 C9 , replace
+            label var C5 "학교"
+            label var C6 "전임 교원_계"
+            label var C9 "논문 실적_총계_계"
+            rename C5 uniname
+        use "대학_7-가_2020.dta" /*(2020년_ [7-가. 전임교원의 연구 실적_])*/
+            gen byte year = 2020
+            keep C5 C6 C9
+            destring C6 C9 , replace
+            label var C5 "학교"
+            label var C6 "전임 교원_계"
+            label var C9 "논문 실적_총계_계"
+            rename C5 uniname
+    /*}}}*/
+    /*8-아{{{*/
+        use "대학_8-아_2008.dta" /*(2008년_ [8-아. 기부금 현황_])*/
+            gen byte year = 2008
+            keep C1 C5
+            destring C5 , replace
+            label var C1 "학교명"
+            label var C5 "당해연도 합계 (D=A+B+C)"
+            rename C1 uniname
+            rename C5 uniname
+        use "대학_8-아_2009.dta" /*(2009년_ [8-아. 기부금 현황_])*/
+            gen byte year = 2009
+            keep C1 C5
+            destring C5 , replace
+            label var C1 "학교명"
+            label var C5 "당해연도 합계 (D=A+B+C)"
+            rename C1 uniname
+            rename C5 uniname
+        use "대학_8-아_2010.dta" /*(2010년_ [8-아. 기부금 현황_])*/
+            gen byte year = 2010
+            keep C1 C5
+            destring C5 , replace
+            label var C1 "학교명"
+            label var C5 "당해연도 합계 (D=A+B+C)"
+            rename C1 uniname
+            rename C5 uniname
+        use "대학_8-아_2011.dta" /*(2011년_ [8-아. 기부금 현황_])*/
+            gen byte year = 2011
+            keep C1 C5
+            destring C5 , replace
+            label var C1 "학교명"
+            label var C5 "당해연도 합계 (D=A+B+C)"
+            rename C1 uniname
+            rename C5 uniname
+        use "대학_8-아_2012.dta" /*(2012년_ [8-아. 기부금 현황_])*/
+            gen byte year = 2012
+            keep C1 C5
+            destring C5 , replace
+            label var C1 "학교명"
+            label var C5 "당해연도 합계 (D=A+B+C)"
+            rename C1 uniname
+            rename C5 uniname
+        use "대학_8-아_2013.dta" /*(2013년_ [8-아. 기부금 현황_])*/
+            gen byte year = 2013
+            keep C5 C9
+            destring C9 , replace
+            label var C5 "학교"
+            label var C9 "당해연도 합계 (D=A+B+C)"
+            rename C5 uniname
+        use "대학_8-아_2014.dta" /*(2014년_ [8-아. 기부금 현황_])*/
+            gen byte year = 2014
+            keep C5 C9
+            destring C9 , replace
+            label var C5 "학교"
+            label var C9 "당해연도 합계 (D=A+B+C)"
+            rename C5 uniname
+        use "대학_8-아_2015.dta" /*(2015년_ [8-아. 기부금 현황_])*/
+            gen byte year = 2015
+            keep C5 C9
+            destring C9 , replace
+            label var C5 "학교"
+            label var C9 "당해연도 합계 (D=A+B+C)"
+            rename C5 uniname
+        use "대학_8-아_2016.dta" /*(2016년_ [8-아. 기부금 현황_])*/
+            gen byte year = 2016
+            keep C5 C9
+            destring C9 , replace
+            label var C5 "학교"
+            label var C9 "당해연도 합계 (D=A+B+C)"
+            rename C5 uniname
+        use "대학_8-아_2017.dta" /*(2017년_ [8-아. 기부금 현황_])*/
+            gen byte year = 2017
+            keep C5 C9
+            destring C9 , replace
+            label var C5 "학교"
+            label var C9 "당해연도 합계 (D=A+B+C)"
+            rename C5 uniname
+        use "대학_8-아_2018.dta" /*(2018년_ [8-아. 기부금 현황_])*/
+            gen byte year = 2018
+            keep C5 C9
+            destring C9 , replace
+            label var C5 "학교"
+            label var C9 "당해연도 합계 (D=A+B+C)"
+            rename C5 uniname
+        use "대학_8-아_2019.dta" /*(2019년_ [8-아. 기부금 현황_])*/
+            gen byte year = 2019
+            keep C5 C9
+            destring C9 , replace
+            label var C5 "학교"
+            label var C9 "당해연도 합계 (D=A+B+C)"
+            rename C5 uniname
+        use "대학_8-아_2020.dta" /*(2020년_ [8-아. 기부금 현황_])*/
+            gen byte year = 2020
+            keep C5 C9
+            destring C9 , replace
+            label var C5 "학교"
+            label var C9 "당해연도 합계 (D=A+B+C)"
+            rename C5 uniname
+    /*}}}*/
+    /*8-차-1{{{*/
+        use "대학_8-차-1_2010.dta" /*(2010년_ [8-차-1. 등록금 현황_])*/
+            gen byte year = 2010
+            keep C1 C5
+            destring C5 , replace
+            label var C1 "학교명"
+            label var C5 "등록금 (D=B+C)"
+            rename C1 uniname
+            rename C5 uniname
+        use "대학_8-차-1_2011.dta" /*(2011년_ [8-차-1. 등록금 현황_])*/
+            gen byte year = 2011
+            keep C1 C5
+            destring C5 , replace
+            label var C1 "학교명"
+            label var C5 "등록금 (D=B+C)"
+            rename C1 uniname
+            rename C5 uniname
+        use "대학_8-차-1_2012.dta" /*(2012년_ [8-차-1. 등록금 현황_])*/
+            gen byte year = 2012
+            keep C1 C5
+            destring C5 , replace
+            label var C1 "학교명"
+            label var C5 "등록금 (D=B+C)"
+            rename C1 uniname
+            rename C5 uniname
+        use "대학_8-차-1_2013.dta" /*(2013년_ [8-차-1. 등록금 현황_])*/
+            gen byte year = 2013
+            keep C5 C9
+            destring C9 , replace
+            label var C5 "학교"
+            label var C9 "등록금 (D=B+C)"
+            rename C5 uniname
+        use "대학_8-차-1_2014.dta" /*(2014년_ [8-차-1. 등록금 현황_])*/
+            gen byte year = 2014
+            keep C5 C9
+            destring C9 , replace
+            label var C5 "학교"
+            label var C9 "등록금 (D=B+C)"
+            rename C5 uniname
+        use "대학_8-차-1_2015.dta" /*(2015년_ [8-차-1. 등록금 현황_])*/
+            gen byte year = 2015
+            keep C5 C9
+            destring C9 , replace
+            label var C5 "학교"
+            label var C9 "등록금 (D=B+C)"
+            rename C5 uniname
+        use "대학_8-차-1_2016.dta" /*(2016년_ [8-차-1. 등록금 현황_])*/
+            gen byte year = 2016
+            keep C5 C9
+            destring C9 , replace
+            label var C5 "학교"
+            label var C9 "등록금 (D=B+C)"
+            rename C5 uniname
+        use "대학_8-차-1_2017.dta" /*(2017년_ [8-차-1. 등록금 현황_])*/
+            gen byte year = 2017
+            keep C5 C8
+            destring C8 , replace
+            label var C5 "학교"
+            label var C8 "등록금 (D=B)"
+            rename C5 uniname
+        use "대학_8-차-1_2018.dta" /*(2018년_ [8-차-1. 등록금 현황_])*/
+            gen byte year = 2018
+            keep C5 C8
+            destring C8 , replace
+            label var C5 "학교"
+            label var C8 "등록금 (D=B)"
+            rename C5 uniname
+        use "대학_8-차-1_2019.dta" /*(2019년_ [8-차-1. 등록금 현황_])*/
+            gen byte year = 2019
+            keep C5 C8
+            destring C8 , replace
+            label var C5 "학교"
+            label var C8 "등록금 (D=B)"
+            rename C5 uniname
+        use "대학_8-차-1_2020.dta" /*(2020년_ [8-차-1. 등록금 현황_])*/
+            gen byte year = 2020
+            keep C5 C8
+            destring C8 , replace
+            label var C5 "학교"
+            label var C8 "등록금 (D=B)"
+            rename C5 uniname
+    /*}}}*/
+    /*12-다-1{{{*/
+        use "대학_12-다-1_2009.dta" /*(2009년_ [12-다-1. 장학금 수혜 현황_])*/
+            gen byte year = 2009
+            keep C1 C21
+            destring C21 , replace
+            label var C1 "학교명"
+            label var C21 "재학생 1인당 장학금"
+            rename C1 uniname
+        use "대학_12-다-1_2010.dta" /*(2010년_ [12-다-1. 장학금 수혜 현황_])*/
+            gen byte year = 2010
+            keep C1 C21
+            destring C21 , replace
+            label var C1 "학교명"
+            label var C21 "재학생 1인당 장학금"
+            rename C1 uniname
+        use "대학_12-다-1_2011.dta" /*(2011년_ [12-다-1. 장학금 수혜 현황_])*/
+            gen byte year = 2011
+            keep C1 C21
+            destring C21 , replace
+            label var C1 "학교명"
+            label var C21 "재학생 1인당 장학금"
+            rename C1 uniname
+        use "대학_12-다-1_2012.dta" /*(2012년_ [12-다-1. 장학금 수혜 현황_])*/
+            gen byte year = 2012
+            keep C1 C25
+            destring C25 , replace
+            label var C1 "학교명"
+            label var C25 "재학생 1인당 장학금"
+            rename C1 uniname
+        use "대학_12-다-1_2013.dta" /*(2013년_ [12-다-1. 장학금 수혜 현황_])*/
+            gen byte year = 2013
+            keep C5 C29
+            destring C29 , replace
+            label var C5 "학교명"
+            label var C29 "재학생 1인당 장학금"
+            rename C5 uniname
+        use "대학_12-다-1_2014.dta" /*(2014년_ [12-다-1. 장학금 수혜 현황_])*/
+            gen byte year = 2014
+            keep C5 C18
+            destring C18 , replace
+            label var C5 "학교명"
+            label var C18 "재학생 1인당 장학금"
+            rename C5 uniname
+        use "대학_12-다-1_2015.dta" /*(2015년_ [12-다-1. 장학금 수혜 현황_])*/
+            gen byte year = 2015
+            keep C5 C18
+            destring C18 , replace
+            label var C5 "학교명"
+            label var C18 "재학생 1인당 장학금"
+            rename C5 uniname
+        use "대학_12-다-1_2016.dta" /*(2016년_ [12-다-1. 장학금 수혜 현황_])*/
+            gen byte year = 2016
+            keep C5 C19
+            destring C19 , replace
+            c5 학교명
+            label var C19 "재학생 1인당 장학금"
+            rename C5 uniname
+        use "대학_12-다-1_2017.dta" /*(2017년_ [12-다-1. 장학금 수혜 현황_])*/
+            gen byte year = 2017
+            keep C5 C19
+            destring C19 , replace
+            label var C5 "학교명"
+            label var C19 "재학생 1인당 장학금"
+            rename C5 uniname
+        use "대학_12-다-1_2018.dta" /*(2018년_ [12-다-1. 장학금 수혜 현황_])*/
+            gen byte year = 2018
+            keep C5 C19
+            destring C19 , replace
+            label var C5 "학교명"
+            label var C19 "재학생 1인당 장학금"
+            rename C5 uniname
+        use "대학_12-다-1_2019.dta" /*(2019년_ [12-다-1. 장학금 수혜 현황_])*/
+            gen byte year = 2019
+            keep C5 C19
+            destring C19 , replace
+            label var C5 "학교명"
+            label var C19 "재학생 1인당 장학금"
+            rename C5 uniname
+        use "대학_12-다-1_2020.dta" /*(2020년_ [12-다-1. 장학금 수혜 현황_])*/
+            gen byte year = 2020
+            keep C5 C19
+            destring C19 , replace
+            label var C5 "학교명"
+            label var C19 "재학생 1인당 장학금"
+            rename C5 uniname
+    /*}}}*/
+    /*12-라-2{{{*/
+        use "대학_12-라-2_2008.dta" /*(2008년_ [12-라-2. 외국대학과 학점 교류 현황_])*/
+            gen byte year = 2008
+            keep C1 C2 C3
+            destring C2 C3 , replace
+            label var C1 "학교명"
+            label var C2 "파견인원 (자대학교 → 타대학교)"
+            label var C3 "유치인원 (타대학교 → 자대학교)"
+            rename C1 uniname
+        use "대학_12-라-2_2009.dta" /*(2009년_ [12-라-2. 외국대학과 학점 교류 현황_])*/
+            gen byte year = 2009
+            keep C1 C2 C3
+            destring C2 C3 , replace
+            label var C1 "학교명"
+            label var C2 "파견인원 (자대학교 → 타대학교)"
+            label var C3 "유치인원 (타대학교 → 자대학교)"
+            rename C1 uniname
+        use "대학_12-라-2_2010.dta" /*(2010년_ [12-라-2. 외국대학과 학점 교류 현황_])*/
+            gen byte year = 2010
+            keep C1 C2 C3
+            destring C2 C3 , replace
+            label var C1 "학교명"
+            label var C2 "파견인원 (자대학교 → 타대학교)"
+            label var C3 "유치인원 (타대학교 → 자대학교)"
+            rename C1 uniname
+        use "대학_12-라-2_2011.dta" /*(2011년_ [12-라-2. 외국대학과 학점 교류 현황_])*/
+            gen byte year = 2011
+            keep C1 C2 C3
+            destring C2 C3 , replace
+            label var C1 "학교명"
+            label var C2 "파견인원 (자대학교 → 타대학교)"
+            label var C3 "유치인원 (타대학교 → 자대학교)"
+            rename C1 uniname
+        use "대학_12-라-2_2012.dta" /*(2012년_ [12-라-2. 외국대학과 학점 교류 현황_])*/
+            gen byte year = 2012
+            keep C1 C2 C3
+            destring C2 C3 , replace
+            label var C1 "학교명"
+            label var C2 "파견인원 (자대학교 → 타대학교)"
+            label var C3 "유치인원 (타대학교 → 자대학교)"
+            rename C1 uniname
+        use "대학_12-라-2_2013.dta" /*(2013년_ [12-라-2. 외국대학과 학점 교류 현황_])*/
+            gen byte year = 2013
+            keep C5 C6 C7
+            destring C6 C7 , replace
+            label var C5 "학교명"
+            label var C6 "파견인원 (자대학교 → 타대학교)"
+            label var C7 "유치인원 (타대학교 → 자대학교)"
+            rename C5 uniname
+        use "대학_12-라-2_2014.dta" /*(2014년_ [12-라-2. 외국대학과 학점 교류 현황_])*/
+            gen byte year = 2014
+            keep C5 C6 C7
+            destring C6 C7 , replace
+            label var C5 "학교명"
+            label var C6 "파견인원 (자대학교 → 타대학교)"
+            label var C7 "유치인원 (타대학교 → 자대학교)"
+            rename C5 uniname
+        use "대학_12-라-2_2015.dta" /*(2015년_ [12-라-2. 외국대학과 학점 교류 현황_])*/
+            gen byte year = 2015
+            keep C5 C6 C7
+            destring C6 C7 , replace
+            label var C5 "학교명"
+            label var C6 "파견인원 (자대학교 → 타대학교)"
+            label var C7 "유치인원 (타대학교 → 자대학교)"
+            rename C5 uniname
+        use "대학_12-라-2_2016.dta" /*(2016년_ [12-라-2. 외국대학과 학점 교류 현황_])*/
+            gen byte year = 2016
+            keep C5 C6 C7
+            destring C6 C7 , replace
+            label var C5 "학교명"
+            label var C6 "파견인원 (자대학교 → 타대학교)"
+            label var C7 "유치인원 (타대학교 → 자대학교)"
+            rename C5 uniname
+        use "대학_12-라-2_2017.dta" /*(2017년_ [12-라-2. 외국대학과 학점 교류 현황_])*/
+            gen byte year = 2017
+            keep C5 C6 C7
+            destring C6 C7 , replace
+            label var C5 "학교명"
+            label var C6 "파견인원 (자대학교 → 타대학교)"
+            label var C7 "유치인원 (타대학교 → 자대학교)"
+            rename C5 uniname
+        use "대학_12-라-2_2018.dta" /*(2018년_ [12-라-2. 외국대학과 학점 교류 현황_])*/
+            gen byte year = 2018
+            keep C5 C6 C7
+            destring C6 C7 , replace
+            label var C5 "학교명"
+            label var C6 "파견인원 (자대학교 → 타대학교)"
+            label var C7 "유치인원 (타대학교 → 자대학교)"
+            rename C5 uniname
+        use "대학_12-라-2_2019.dta" /*(2019년_ [12-라-2. 외국대학과 학점 교류 현황_])*/
+            gen byte year = 2019
+            keep C5 C6 C7
+            destring C6 C7 , replace
+            label var C5 "학교명"
+            label var C6 "파견인원 (자대학교 → 타대학교)"
+            label var C7 "유치인원 (타대학교 → 자대학교)"
+            rename C5 uniname
+        use "대학_12-라-2_2020.dta" /*(2020년_ [12-라-2. 외국대학과 학점 교류 현황_])*/
+            gen byte year = 2020
+            keep C5 C6 C7
+            destring C6 C7 , replace
+            label var C5 "학교명"
+            label var C6 "파견인원 (자대학교 → 타대학교)"
+            label var C7 "유치인원 (타대학교 → 자대학교)"
+            rename C5 uniname
+    /*}}}*/
+    /*12-아{{{*/
+        use "대학_12-아_2008.dta" /*(2008년_ [12-아. 산업체 경력 전임교원 현황_])*/
+            gen byte year = 2008
+            keep C1 C2 C3 C4 C5
+            destring C2 C3 C4 C5 , replace
+            label var C1 "학교"
+            label var C2 "산업체 경력 전임교원_1년 미만"
+            label var C3 "산업체 경력 전임교원_1년 ~ 3년 미만"
+            label var C4 "산업체 경력 전임교원_3년 ~ 5년 미만"
+            label var C5 "산업체 경력 전임교원_5년 이상"
+            rename C1 uniname
+            rename C5 uniname
+        use "대학_12-아_2009.dta" /*(2009년_ [12-아. 산업체 경력 전임교원 현황_])*/
+            gen byte year = 2009
+            keep C1 C2 C3 C4 C5
+            destring C2 C3 C4 C5 , replace
+            label var C1 "학교"
+            label var C2 "산업체 경력 전임교원_1년 미만"
+            label var C3 "산업체 경력 전임교원_1년 ~ 3년 미만"
+            label var C4 "산업체 경력 전임교원_3년 ~ 5년 미만"
+            label var C5 "산업체 경력 전임교원_5년 이상"
+            rename C1 uniname
+            rename C5 uniname
+        use "대학_12-아_2011.dta" /*(2011년_ [12-아. 산업체 경력 전임교원 현황_])*/
+            gen byte year = 2011
+            keep C1 C2 C3 C4 C5
+            destring C2 C3 C4 C5 , replace
+            label var C1 "학교"
+            label var C2 "산업체 경력 전임교원_1년 미만"
+            label var C3 "산업체 경력 전임교원_1년 ~ 3년 미만"
+            label var C4 "산업체 경력 전임교원_3년 ~ 5년 미만"
+            label var C5 "산업체 경력 전임교원_5년 이상"
+            rename C1 uniname
+            rename C5 uniname
+        use "대학_12-아_2012.dta" /*(2012년_ [12-아. 산업체 경력 전임교원 현황_])*/
+            gen byte year = 2012
+            keep C1 C2 C3 C4 C5 C6 C7
+            destring C2 C3 C4 C5 C6 C7 , replace
+            label var C1 "학교"
+            label var C2 "학교_경력없음"
+            label var C3 "산업체 경력 전임교원_1년 미만"
+            label var C4 "산업체 경력 전임교원_1년 ~ 3년 미만"
+            label var C5 "산업체 경력 전임교원_3년 ~ 5년 미만"
+            label var C6 "산업체 경력 전임교원_5년~10년미만"
+            label var C7 "산업체 경력 전임교원_10년 이상"
+            rename C1 uniname
+            rename C5 uniname
+        use "대학_12-아_2013.dta" /*(2013년_ [12-아. 산업체 경력 전임교원 현황_])*/
+            gen byte year = 2013
+            keep C5 C6 C7 C8 C9 C10 C11
+            destring C6 C7 C8 C9 C10 C11 , replace
+            label var C5 "학교"
+            label var C6 "5년 이내 신규임용 전임교원_경력없음"
+            label var C7 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_1년 미만"
+            label var C8 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_1년 ~ 3년 미만"
+            label var C9 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_3년 ~ 5년 미만"
+            label var C10 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_5년~10년미만"
+            label var C11 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_10년 이상"
+            rename C5 uniname
+        use "대학_12-아_2014.dta" /*(2014년_ [12-아. 산업체 경력 전임교원 현황_])*/
+            gen byte year = 2014
+            keep C5 C6 C7 C8 C9 C10 C11
+            destring C6 C7 C8 C9 C10 C11 , replace
+            label var C5 "학교"
+            label var C6 "5년 이내 신규임용 전임교원_경력없음"
+            label var C7 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_1년 미만"
+            label var C8 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_1년 ~ 3년 미만"
+            label var C9 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_3년 ~ 5년 미만"
+            label var C10 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_5년~10년미만"
+            label var C11 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_10년 이상"
+            rename C5 uniname
+        use "대학_12-아_2015.dta" /*(2015년_ [12-아. 산업체 경력 전임교원 현황_])*/
+            gen byte year = 2015
+            keep C5 C6 C7 C8 C9 C10 C11
+            destring C6 C7 C8 C9 C10 C11 , replace
+            label var C5 "학교"
+            label var C6 "5년 이내 신규임용 전임교원_경력없음"
+            label var C7 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_1년 미만"
+            label var C8 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_1년 ~ 3년 미만"
+            label var C9 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_3년 ~ 5년 미만"
+            label var C10 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_5년~10년미만"
+            label var C11 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_10년 이상"
+            rename C5 uniname
+        use "대학_12-아_2016.dta" /*(2016년_ [12-아. 산업체 경력 전임교원 현황_])*/
+            gen byte year = 2016
+            keep C5 C6 C7 C8 C9 C10 C11
+            destring C6 C7 C8 C9 C10 C11 , replace
+            label var C5 "학교"
+            label var C6 "5년 이내 신규임용 전임교원_경력없음"
+            label var C7 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_1년 미만"
+            label var C8 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_1년 ~ 3년 미만"
+            label var C9 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_3년 ~ 5년 미만"
+            label var C10 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_5년~10년미만"
+            label var C11 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_10년 이상"
+            rename C5 uniname
+        use "대학_12-아_2017.dta" /*(2017년_ [12-아. 산업체 경력 전임교원 현황_])*/
+            gen byte year = 2017
+            keep C5 C6 C7 C8 C9 C10 C11
+            destring C6 C7 C8 C9 C10 C11 , replace
+            label var C5 "학교"
+            label var C6 "5년 이내 신규임용 전임교원_경력없음"
+            label var C7 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_1년 미만"
+            label var C8 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_1년 ~ 3년 미만"
+            label var C9 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_3년 ~ 5년 미만"
+            label var C10 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_5년~10년미만"
+            label var C11 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_10년 이상"
+            rename C5 uniname
+        use "대학_12-아_2018.dta" /*(2018년_ [12-아. 산업체 경력 전임교원 현황_])*/
+            gen byte year = 2018
+            keep C5 C6 C7 C8 C9 C10 C11
+            destring C6 C7 C8 C9 C10 C11 , replace
+            label var C5 "학교"
+            label var C6 "5년 이내 신규임용 전임교원_경력없음"
+            label var C7 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_1년 미만"
+            label var C8 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_1년 ~ 3년 미만"
+            label var C9 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_3년 ~ 5년 미만"
+            label var C10 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_5년~10년미만"
+            label var C11 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_10년 이상"
+            rename C5 uniname
+        use "대학_12-아_2019.dta" /*(2019년_ [12-아. 산업체 경력 전임교원 현황_])*/
+            gen byte year = 2019
+            keep C5 C6 C7 C8 C9 C10 C11
+            destring C6 C7 C8 C9 C10 C11 , replace
+            label var C5 "학교"
+            label var C6 "5년 이내 신규임용 전임교원_경력없음"
+            label var C7 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_1년 미만"
+            label var C8 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_1년 ~ 3년 미만"
+            label var C9 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_3년 ~ 5년 미만"
+            label var C10 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_5년~10년미만"
+            label var C11 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_10년 이상"
+            rename C5 uniname
+        use "대학_12-아_2020.dta" /*(2020년_ [12-아. 산업체 경력 전임교원 현황_])*/
+            gen byte year = 2020
+            keep C5 C6 C7 C8 C9 C10 C11
+            destring C6 C7 C8 C9 C10 C11 , replace
+            label var C5 "학교"
+            label var C6 "5년 이내 신규임용 전임교원_경력없음"
+            label var C7 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_1년 미만"
+            label var C8 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_1년 ~ 3년 미만"
+            label var C9 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_3년 ~ 5년 미만"
+            label var C10 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_5년~10년미만"
+            label var C11 "5년 이내 신규임용 전임교원_산업체 경력 전임교원_10년 이상"
+            rename C5 uniname
+    /*}}}*/
+    /*12-카-1{{{*/
+        use "대학_12-카-1_2008.dta" /*(2008년_ [12-카-1. 현장실습 운영 현황_])*/
+            gen byte year = 2008
+            keep C1 C2
+            destring C2 , replace
+            label var C1 "학교"
+            label var C2 "현장실습 이수 학생수(B)"
+            rename C1 uniname
+        use "대학_12-카-1_2009.dta" /*(2009년_ [12-카-1. 현장실습 운영 현황_])*/
+            gen byte year = 2009
+            keep C1 C2
+            destring C2 , replace
+            label var C1 "학교"
+            label var C2 "현장실습 이수 학생수(B)"
+            rename C1 uniname
+        use "대학_12-카-1_2010.dta" /*(2010년_ [12-카-1. 현장실습 운영 현황_])*/
+            gen byte year = 2010
+            keep C1 C2
+            destring C2 , replace
+            label var C1 "학교"
+            label var C2 "현장실습 이수 학생수(B)"
+            rename C1 uniname
+        use "대학_12-카-1_2011.dta" /*(2011년_ [12-카-1. 현장실습 운영 현황_])*/
+            gen byte year = 2011
+            keep C1 C2
+            destring C2 , replace
+            label var C1 "학교"
+            label var C2 "현장실습 이수 학생수(B)"
+            rename C1 uniname
+        use "대학_12-카-1_2012.dta" /*(2012년_ [12-카-1. 현장실습 운영 현황_])*/
+            gen byte year = 2012
+            keep C1 C2
+            destring C2 , replace
+            label var C1 "학교"
+            label var C2 "현장실습 이수 학생수(B)"
+            rename C1 uniname
+        use "대학_12-카-1_2013.dta" /*(2013년_ [12-카-1. 현장실습 운영 현황_])*/
+            gen byte year = 2013
+            keep C5 C6
+            destring C6 , replace
+            label var C5 "학교"
+            label var C6 "현장실습 이수 학생수(B)"
+            rename C5 uniname
+        use "대학_12-카-1_2014.dta" /*(2014년_ [12-카-1. 현장실습 운영 현황_])*/
+            gen byte year = 2014
+            keep C5 C6
+            destring C6 , replace
+            label var C5 "학교"
+            label var C6 "현장실습 이수 학생수(B)"
+            rename C5 uniname
+        use "대학_12-카-1_2015.dta" /*(2015년_ [12-카-1. 현장실습 운영 현황_])*/
+            gen byte year = 2015
+            keep C5 C7 C9 C11
+            destring C7 C9 C11 , replace
+            label var C5 "학교"
+            label var C7 "실습기간_4주 이상(160~320시간)_현장실습 이수학생 수"
+            label var C9 "실습기간_8주 이상(320~480시간)_현장실습 이수학생 수"
+            label var C11 "실습기간_12주 이상(480시간 이상)_현장실습 이수학생 수"
+            rename C5 uniname
+        use "대학_12-카-1_2016.dta" /*(2016년_ [12-카-1. 현장실습 운영 현황_])*/
+            gen byte year = 2016
+            keep C1 C6 C7 C11 C15
+            destring C6 C7 C11 C15 , replace
+            label var C1 "학교"
+            label var C6 "재학생 수"
+            label var C7 "실습기간_4주 이상(160~320시간)_현장실습 이수학생 수"
+            label var C11 "실습기간_8주 이상(320~480시간)_현장실습 이수학생 수"
+            label var C15 "실습기간_12주 이상(480시간 이상)_현장실습 이수학생 수"
+            rename C1 uniname
+        use "대학_12-카-1_2017.dta" /*(2017년_ [12-카-1. 현장실습 운영 현황_])*/
+            gen byte year = 2017
+            keep C1 C6 C7 C11 C15
+            destring C6 C7 C11 C15 , replace
+            label var C1 "학교"
+            label var C6 "재학생 수"
+            label var C7 "실습기간_4주 이상(160~320시간)_이수학생 수"
+            label var C11 "실습기간_8주 이상(320~480시간)_이수학생 수"
+            label var C15 "실습기간_12주 이상(480시간 이상)_이수학생 수"
+            rename C1 uniname
+        use "대학_12-카-1_2018.dta" /*(2018년_ [12-카-1. 현장실습 운영 현황_])*/
+            gen byte year = 2018
+            keep C1 C6 C13 C20
+            destring C6 C13 C20 , replace
+            label var C6 "str46 %46s 실습기간_4주 이상(120시간 이상~240시간 미만)_이수학생 수"
+            label var C13 "str46 %46s 실습기간_8주 이상(240시간 이상~360시간 미만)_이수학생 수"
+            label var C20 "str46 %46s 실습기간_12주 이상(360시간 이상)_이수학생 수"
+            rename C1 uniname
+        use "대학_12-카-1_2019.dta" /*(2019년_ [12-카-1. 현장실습 운영 현황_])*/
+            gen byte year = 2019
+            keep C1 C6 C13 C20
+            destring C6 C13 C20 , replace
+            label var C1 "str46 %46s 학교"
+            label var C6 "str46 %46s 실습기간_4주 이상(120시간 이상~240시간 미만)_이수학생 수"
+            label var C13 "str46 %46s 실습기간_8주 이상(240시간 이상~360시간 미만)_이수학생 수"
+            label var C20 "str46 %46s 실습기간_12주 이상(360시간 이상)_이수학생 수"
+            rename C1 uniname
+        use "대학_12-카-1_2020.dta" /*(2020년_ [12-카-1. 현장실습 운영 현황_])*/
+            gen byte year = 2020
+            keep C1 C6 C15 C24
+            destring C6 C15 C24 , replace
+            label var C1 "학교"
+            label var C6 "실습기간_4주 이상(실제출석일 기준 20일 이상)_이수학생 수"
+            label var C15 "실습기간_8주 이상(실제출석일 기준 40일 이상)_이수학생 수"
+            label var C24 "실습기간_12주 이상(실제출석일 기준 60일 이상)_이수학생 수"
+            rename C1 uniname
+    /*}}}*/
+    /*12-타{{{*/
+        use "대학_12-타_2009.dta" /*(2009년_ [12-타. 기술이전 수입료 및 계약 실적_])*/
+            gen byte year = 2009
+            keep C1 C2 C3
+            destring C2 C3 , replace
+            label var C1 "학교명"
+            label var C2 "건수"
+            label var C3 "수입료 (천원)"
+            rename C1 uniname
+        use "대학_12-타_2010.dta" /*(2010년_ [12-타. 기술이전 수입료 및 계약 실적_])*/
+            gen byte year = 2010
+            keep C1 C2 C3
+            destring C2 C3 , replace
+            label var C1 "학교명"
+            label var C2 "건수"
+            label var C3 "수입료 (천원)"
+            rename C1 uniname
+        use "대학_12-타_2011.dta" /*(2011년_ [12-타. 기술이전 수입료 및 계약 실적_])*/
+            gen byte year = 2011
+            keep C1 C2 C3
+            destring C2 C3 , replace
+            label var C1 "학교명"
+            label var C2 "건수"
+            label var C3 "수입료 (천원)"
+            rename C1 uniname
+        use "대학_12-타_2012.dta" /*(2012년_ [12-타. 기술이전 수입료 및 계약 실적_])*/
+            gen byte year = 2012
+            keep C1 C2 C3
+            destring C2 C3 , replace
+            label var C1 "학교명"
+            label var C2 "건수"
+            label var C3 "수입료 (천원)"
+            rename C1 uniname
+        use "대학_12-타_2013.dta" /*(2013년_ [12-타. 기술이전 수입료 및 계약 실적_])*/
+            gen byte year = 2013
+            keep C5 C6 C7
+            destring C6 C7 , replace
+            label var C5 "학교명"
+            label var C6 "건수"
+            label var C7 "수입료 (천원)"
+            rename C5 uniname
+        use "대학_12-타_2014.dta" /*(2014년_ [12-타. 기술이전 수입료 및 계약 실적_])*/
+            gen byte year = 2014
+            keep C5 C6 C7
+            destring C6 C7 , replace
+            label var C5 "학교명"
+            label var C6 "건수"
+            label var C7 "수입료 (천원)"
+            rename C5 uniname
+        use "대학_12-타_2015.dta" /*(2015년_ [12-타. 기술이전 수입료 및 계약 실적_])*/
+            gen byte year = 2015
+            keep C5 C6 C7
+            destring C6 C7 , replace
+            label var C5 "학교명"
+            label var C6 "건수"
+            label var C7 "수입료 (천원)"
+            rename C5 uniname
+        use "대학_12-타_2016.dta" /*(2016년_ [12-타. 기술이전 수입료 및 계약 실적_])*/
+            gen byte year = 2016
+            keep C5 C6 C7
+            destring C6 C7 , replace
+            label var C5 "학교명"
+            label var C6 "건수"
+            label var C7 "수입료 (천원)"
+            rename C5 uniname
+        use "대학_12-타_2017.dta" /*(2017년_ [12-타. 기술이전 수입료 및 계약 실적_])*/
+            gen byte year = 2017
+            keep C5 C6 C7
+            destring C6 C7 , replace
+            label var C5 "학교명"
+            label var C6 "건수"
+            label var C7 "수입료 (천원)"
+            rename C5 uniname
+        use "대학_12-타_2018.dta" /*(2018년_ [12-타. 기술이전 수입료 및 계약 실적_])*/
+            gen byte year = 2018
+            keep C5 C6 C7
+            destring C6 C7 , replace
+            label var C5 "학교명"
+            label var C6 "건수"
+            label var C7 "수입료 (천원)"
+            rename C5 uniname
+        use "대학_12-타_2019.dta" /*(2019년_ [12-타. 기술이전 수입료 및 계약 실적_])*/
+            gen byte year = 2019
+            keep C5 C6 C7
+            destring C6 C7 , replace
+            label var C5 "학교명"
+            label var C6 "건수"
+            label var C7 "수입료 (원)"
+            rename C5 uniname
+        use "대학_12-타_2020.dta" /*(2020년_ [12-타. 기술이전 수입료 및 계약 실적_])*/
+            gen byte year = 2020
+            keep C5 C6 C7
+            destring C6 C7 , replace
+            label var C5 "학교명"
+            label var C6 "건수"
+            label var C7 "수입료 (원)"
+            rename C5 uniname
+    /*}}}*/
+    /*12-하-1-(1){{{*/
+        use "대학_12-하-1-(1)_2009.dta" /*(2009년_ [12-하-1-(1). 교원의 창업 및 창업지원 현황_])*/
+            gen byte year = 2009
+            keep C1 C4
+            destring C4 , replace
+            label var C1 "학교"
+            label var C4 "교원창업현황 (현재실제 사업을 하고 있는 교원수)"
+            rename C1 uniname
+        use "대학_12-하-1-(1)_2010.dta" /*(2010년_ [12-하-1-(1). 교원의 창업 및 창업지원 현황_])*/
+            gen byte year = 2010
+            keep C1 C4
+            destring C4 , replace
+            label var C1 "학교"
+            label var C4 "교원창업현황 (현재실제 사업을 하고 있는 교원수)"
+            rename C1 uniname
+        use "대학_12-하-1-(1)_2011.dta" /*(2011년_ [12-하-1-(1). 교원의 창업 및 창업지원 현황_])*/
+            gen byte year = 2011
+            keep C1 C4
+            destring C4 , replace
+            label var C1 "학교"
+            label var C4 "교원창업현황 (현재실제 사업을 하고 있는 교원수)"
+            rename C1 uniname
+        use "대학_12-하-1-(1)_2012.dta" /*(2012년_ [12-하-1-(1). 교원의 창업 및 창업지원 현황_])*/
+            gen byte year = 2012
+            keep C1 C2
+            destring C2 , replace
+            label var C1 "학교"
+            label var C2 "교원 창업 현황"
+            rename C1 uniname
+        use "대학_12-하-1-(1)_2013.dta" /*(2013년_ [12-하-1-(1). 교원의 창업 및 창업지원 현황_])*/
+            gen byte year = 2013
+            keep C5 C6
+            destring C6 , replace
+            label var C5 "학교"
+            label var C6 "교원 창업 현황_창업자 수"
+            rename C5 uniname
+        use "대학_12-하-1-(1)_2014.dta" /*(2014년_ [12-하-1-(1). 교원의 창업 및 창업지원 현황_])*/
+            gen byte year = 2014
+            keep C5 C6
+            destring C6 , replace
+            label var C5 "학교"
+            label var C6 "교원 창업 현황"
+            rename C5 uniname
+        use "대학_12-하-1-(1)_2015.dta" /*(2015년_ [12-하-1-(1). 교원의 창업 및 창업지원 현황_])*/
+            gen byte year = 2015
+            keep C5 C6
+            destring C6 , replace
+            label var C5 "학교"
+            label var C6 "교원 창업 현황"
+            rename C5 uniname
+        use "대학_12-하-1-(1)_2016.dta" /*(2016년_ [12-하-1-(1). 교원의 창업 및 창업지원 현황_])*/
+            gen byte year = 2016
+            keep C5 C6
+            destring C6 , replace
+            label var C5 "학교"
+            label var C6 "교원 창업 현황_창업자 수"
+            rename C5 uniname
+        use "대학_12-하-1-(1)_2017.dta" /*(2017년_ [12-하-1-(1). 교원의 창업 및 창업지원 현황_])*/
+            gen byte year = 2017
+            keep C5 C6
+            destring C6 , replace
+            label var C5 "학교"
+            label var C6 "교원 창업 현황_창업자 수"
+            rename C5 uniname
+        use "대학_12-하-1-(1)_2018.dta" /*(2018년_ [12-하-1-(1). 교원의 창업 및 창업지원 현황_])*/
+            gen byte year = 2018
+            keep C5 C6
+            destring C6 , replace
+            label var C5 "학교"
+            label var C6 "교원 창업 현황"
+            rename C5 uniname
+        use "대학_12-하-1-(1)_2019.dta" /*(2019년_ [12-하-1-(1). 교원의 창업 및 창업지원 현황_])*/
+            gen byte year = 2019
+            keep C5 C6
+            destring C6 , replace
+            label var C5 "학교"
+            label var C6 "교원 창업 현황"
+            rename C5 uniname
+        use "대학_12-하-1-(1)_2020.dta" /*(2020년_ [12-하-1-(1). 교원의 창업 및 창업지원 현황_])*/
+            gen byte year = 2020
+            keep C5 C6
+            destring C6 , replace
+            label var C5 "학교"
+            label var C6 "교원 창업 현황"
+            rename C5 uniname
+    /*}}}*/
+    /*12-하-1-(2){{{*/
+        use "대학_12-하-1-(2)_2009.dta" /*(2009년_ [12-하-1-(2). 학생의 창업 및 창업지원 현황_])*/
+            gen byte year = 2009
+            keep C1 C2 C3
+            destring C2 C3 , replace
+            label var C1 "학교"
+            label var C2 "학생창업현황(2009)_창업자수"
+            label var C3 "학생창업현황(2009)_창업기업수"
+            rename C1 uniname
+        use "대학_12-하-1-(2)_2010.dta" /*(2010년_ [12-하-1-(2). 학생의 창업 및 창업지원 현황_])*/
+            gen byte year = 2010
+            keep C1 C2 C3
+            destring C2 C3 , replace
+            label var C1 "학교"
+            label var C2 "학생창업현황(2009)_창업자수"
+            label var C3 "학생창업현황(2009)_창업기업수"
+            rename C1 uniname
+        use "대학_12-하-1-(2)_2011.dta" /*(2011년_ [12-하-1-(2). 학생의 창업 및 창업지원 현황_])*/
+            gen byte year = 2011
+            keep C1 C2 C3
+            destring C2 C3 , replace
+            label var C1 "학교"
+            label var C2 "학생창업현황(2010)_창업자수"
+            label var C3 "학생창업현황(2010)_창업기업수"
+            rename C1 uniname
+        use "대학_12-하-1-(2)_2012.dta" /*(2012년_ [12-하-1-(2). 학생의 창업 및 창업지원 현황_])*/
+            gen byte year = 2012
+            keep C1 C2 C3
+            destring C2 C3 , replace
+            label var C1 "학교"
+            label var C2 "학생창업현황_창업자수"
+            label var C3 "학생창업현황_창업기업수"
+            rename C1 uniname
+        use "대학_12-하-1-(2)_2013.dta" /*(2013년_ [12-하-1-(2). 학생의 창업 및 창업지원 현황_])*/
+            gen byte year = 2013
+            keep C5 C6 C7
+            destring C6 C7 , replace
+            label var C5 "학교"
+            label var C6 "학생창업현황_창업자수"
+            label var C7 "학생창업현황_창업기업수"
+            rename C5 uniname
+        use "대학_12-하-1-(2)_2014.dta" /*(2014년_ [12-하-1-(2). 학생의 창업 및 창업지원 현황_])*/
+            gen byte year = 2014
+            keep C5 C6 C7
+            destring C6 C7 , replace
+            label var C5 "학교"
+            label var C6 "학생창업현황_창업자수"
+            label var C7 "학생창업현황_창업기업수"
+            rename C5 uniname
+        use "대학_12-하-1-(2)_2015.dta" /*(2015년_ [12-하-1-(2). 학생의 창업 및 창업지원 현황_])*/
+            gen byte year = 2015
+            keep C5 C6 C7
+            destring C6 C7 , replace
+            label var C5 "학교"
+            label var C6 "학생창업현황_창업자수"
+            label var C7 "학생창업현황_창업기업수"
+            rename C5 uniname
+        use "대학_12-하-1-(2)_2016.dta" /*(2016년_ [12-하-1-(2). 학생의 창업 및 창업지원 현황_])*/
+            gen byte year = 2016
+            keep C5 C6 C7
+            destring C6 C7 , replace
+            label var C5 "학교"
+            label var C6 "학생창업현황_창업자수"
+            label var C7 "학생창업현황_창업기업수"
+            rename C5 uniname
+        use "대학_12-하-1-(2)_2017.dta" /*(2017년_ [12-하-1-(2). 학생의 창업 및 창업지원 현황_])*/
+            gen byte year = 2017
+            keep C5 C6 C7 C8
+            destring C6 C7 C8 , replace
+            label var C5 "학교"
+            label var C6 "학생창업현황_창업자 수"
+            label var C7 "학생창업현황_창업기업 수_교내"
+            label var C8 "학생창업현황_창업기업 수_교외"
+            rename C5 uniname
+        use "대학_12-하-1-(2)_2018.dta" /*(2018년_ [12-하-1-(2). 학생의 창업 및 창업지원 현황_])*/
+            gen byte year = 2018
+            keep C5 C6 C7 C8
+            destring C6 C7 C8 , replace
+            label var C5 "학교"
+            label var C6 "학생창업현황_창업자 수"
+            label var C7 "학생창업현황_창업기업 수_교내"
+            label var C8 "학생창업현황_창업기업 수_교외"
+            rename C5 uniname
+        use "대학_12-하-1-(2)_2019.dta" /*(2019년_ [12-하-1-(2). 학생의 창업 및 창업지원 현황_])*/
+            gen byte year = 2019
+            keep C5 C6 C7 C8
+            destring C6 C7 C8 , replace
+            label var C5 "학교"
+            label var C6 "학생창업현황_창업자 수"
+            label var C7 "학생창업현황_창업기업 수_교내"
+            label var C8 "학생창업현황_창업기업 수_교외"
+            rename C5 uniname
+        use "대학_12-하-1-(2)_2020.dta" /*(2020년_ [12-하-1-(2). 학생의 창업 및 창업지원 현황_])*/
+            gen byte year = 2020
+            keep C5 C6 C7 C8
+            destring C6 C7 C8 , replace
+            label var C5 "학교"
+            label var C6 "학생창업현황_창업자 수"
+            label var C7 "학생창업현황_창업기업 수_교내"
+            label var C8 "학생창업현황_창업기업 수_교외"
+            rename C5 uniname
+    /*}}}*/
+    /*12-하-2{{{*/
+        use "대학_12-하-2_2009.dta" /*(2009년_ [12-하-2. 창업교육 지원 현황_])*/
+            gen byte year = 2009
+            keep C1 C11
+            destring C11 , replace
+            label var C1 "학교"
+            label var C11 "창업교육센터 현황_창업강좌 수"
+            rename C1 uniname
+        use "대학_12-하-2_2010.dta" /*(2010년_ [12-하-2. 창업교육 지원 현황_])*/
+            gen byte year = 2010
+            keep C1 C11
+            destring C11 , replace
+            label var C1 "학교"
+            label var C11 "창업교육센터 현황_창업강좌 수"
+            rename C1 uniname
+        use "대학_12-하-2_2011.dta" /*(2011년_ [12-하-2. 창업교육 지원 현황_])*/
+            gen byte year = 2011
+            keep C1 C11
+            destring C11 , replace
+            label var C1 "학교"
+            label var C11 "창업교육센터 현황_창업강좌 수"
+            rename C1 uniname
+        use "대학_12-하-2_2012.dta" /*(2012년_ [12-하-2. 창업교육 지원 현황_])*/
+            gen byte year = 2012
+            keep C1 C11
+            destring C11 , replace
+            label var C1 "학교"
+            label var C11 "창업교육센터 현황_창업강좌 수"
+            rename C1 uniname
+        use "대학_12-하-2_2013.dta" /*(2013년_ [12-하-2. 창업교육 지원 현황_])*/
+            gen byte year = 2013
+            keep C5 C17
+            destring C17 , replace
+            label var C5 "학교"
+            label var C17 "창업교육센터 현황_창업강좌 수"
+            rename C5 uniname
+        use "대학_12-하-2_2014.dta" /*(2014년_ [12-하-2. 창업교육 지원 현황_])*/
+            gen byte year = 2014
+            keep C5 C17
+            destring C17 , replace
+            label var C5 "학교"
+            label var C17 "창업교육센터 현황_창업강좌 수"
+            rename C5 uniname
+        use "대학_12-하-2_2015.dta" /*(2015년_ [12-하-2. 창업교육 지원 현황_])*/
+            gen byte year = 2015
+            keep C5 C17
+            destring C17 , replace
+            label var C5 "학교"
+            label var C17 "창업교육센터 현황_창업강좌 수"
+            rename C5 uniname
+        use "대학_12-하-2_2016.dta" /*(2016년_ [12-하-2. 창업교육 지원 현황_])*/
+            gen byte year = 2016
+            keep C5 C17
+            destring C17 , replace
+            label var C5 "학교"
+            label var C17 "창업교육센터 현황_창업강좌 수"
+            rename C5 uniname
+        use "대학_12-하-2_2017.dta" /*(2017년_ [12-하-2. 창업교육 지원 현황_])*/
+            gen byte year = 2017
+            keep C5 C6 C8 C10 C12
+            destring C6 C8 C10 C12 , replace
+            label var C5 "학교"
+            label var C6 "창업강좌 현황_교양과목_이론형 과목_강좌 수"
+            label var C8 "창업강좌 현황_교양과목_실습형 과목_강좌 수"
+            label var C10 "창업강좌 현황_전공과목_이론형 과목_강좌 수"
+            label var C12 "창업강좌 현황_전공과목_실습형 과목_강좌 수"
+            rename C5 uniname
+        use "대학_12-하-2_2018.dta" /*(2018년_ [12-하-2. 창업교육 지원 현황_])*/
+            gen byte year = 2018
+            keep C5 C6 C8 C10 C12
+            destring C6 C8 C10 C12 , replace
+            label var C5 "학교"
+            label var C6 "창업강좌 현황_교양과목_이론형 과목_강좌 수"
+            label var C8 "창업강좌 현황_교양과목_실습형 과목_강좌 수"
+            label var C10 "창업강좌 현황_전공과목_이론형 과목_강좌 수"
+            label var C12 "창업강좌 현황_전공과목_실습형 과목_강좌 수"
+            rename C5 uniname
+        use "대학_12-하-2_2019.dta" /*(2019년_ [12-하-2. 창업교육 지원 현황_])*/
+            gen byte year = 2019
+            keep C5 C6 C8 C10 C12
+            destring C6 C8 C10 C12 , replace
+            label var C5 "학교"
+            label var C6 "창업강좌 현황_교양과목_이론형 과목_강좌 수"
+            label var C8 "창업강좌 현황_교양과목_실습형 과목_강좌 수"
+            label var C10 "창업강좌 현황_전공과목_이론형 과목_강좌 수"
+            label var C12 "창업강좌 현황_전공과목_실습형 과목_강좌 수"
+            rename C5 uniname
+        use "대학_12-하-2_2020.dta" /*(2020년_ [12-하-2. 창업교육 지원 현황_])*/
+            gen byte year = 2020
+            keep C5 C6 C8 C10 C12
+            destring C6 C8 C10 C12 , replace
+            label var C5 "학교"
+            label var C6 "창업강좌 현황_교양과목_이론형 과목_강좌 수"
+            label var C8 "창업강좌 현황_교양과목_실습형 과목_강좌 수"
+            label var C10 "창업강좌 현황_전공과목_이론형 과목_강좌 수"
+            label var C12 "창업강좌 현황_전공과목_실습형 과목_강좌 수"
+    /*}}}*/

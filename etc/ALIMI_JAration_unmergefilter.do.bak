@@ -1,0 +1,41 @@
+/*! PANDAS unmerged dta file에 대한 후처리*/
+    //reshape to wide
+    destring level_1 , replace
+    levelsof level_0 , local(list0)
+        local fword0 : word 1 of `list0'
+        local varmax : word count `list0'
+        local varmax = `varmax' -1
+        label data "`fword0'"
+    drop if level_0 == "`fword0'"
+        replace level_0  = subinstr(level_0 , "Unnamed: ", "", .)
+        destring level_0  , replace
+            reshape wide C , i(level_1) j(level_0)
+    egen temp = rowmiss(_all)
+        drop if temp == `varmax'
+        drop temp
+    drop level_1
+
+    // 열의 갯수 확인
+    ds
+        local maxcol : word count `r(varlist)'
+        di "`maxcol'"
+
+    // Header행(누락된 값이 존재하는 행) 확인
+    egen rmiss = rowmiss(_all)
+        qui tab rmiss
+        local maxrow = r(r) - 1 
+        di "`maxrow'"
+
+    // unmerge 과정에서 누락된 값을 이전 열에서 복사하여 채움
+    forvalue i = 1/`maxcol' {
+        forvalue j = 1/`maxrow' {
+            if C`i'[`j'] == "" {
+                local box = `i' - 1
+                if  C`i'[`maxrow'] != "" { 
+                    local temp C`box'[`j']
+                    replace C`i' = `temp' in `j' 
+                }
+            }
+        }
+    }
+

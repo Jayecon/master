@@ -1,7 +1,7 @@
 set more off
 set maxvar 30000
 clear
-cd ~/dropbox/goms
+local path ~/dropbox/data/
 /* 년도별 추출변수 목록 {{{*/
   local varlist00 pid age birthy sex area province graduy gradum majorcat major school wt ///
     /*occyear   */ a001-a002 a003 ///
@@ -59,7 +59,7 @@ cd ~/dropbox/goms
 /*년도별 파일을 goms??.dta 로 각각 저장하기{{{*/
   forvalue x = 7/19 {
     local yr : disp %02.0f  = `x'
-    use ~/dropbox/GOMS/rawdata/GP`yr'.dta
+    use `path'GOMS/rawdata/GP`yr'.dta
     rename g`yr'1* *
     drop if missing(sex)
     keep `varlist`yr'' `varlist00'
@@ -80,16 +80,16 @@ cd ~/dropbox/goms
       label var wave "조사회차(07==1)"
     mvdecode _all , mv(-1, -3)
     if ("`x'" == "7") {
-      save ~/dropbox/goms/goms_master.dta , replace
+      save `path'goms/goms_master.dta , replace
     }
     else {
-      append using ~/dropbox/goms/goms_master.dta
-      save ~/dropbox/goms/goms_master.dta , replace
+      append using `path'goms/goms_master.dta
+      save `path'goms/goms_master.dta , replace
     }
   }
 /*}}}*/
 label data "GOMS 09-19"
   order _all , alpha
   order pid?? wave year , first
-save ~/dropbox/goms/goms_eq.dta , replace
+save `path'goms/goms_eq.dta , replace
 save ~/dropbox/hl_sjho/goms_eq.dta , replace

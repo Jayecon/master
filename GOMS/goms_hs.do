@@ -1,18 +1,18 @@
 clear
 set more off
 set maxvar 30000
-cd ~/dropbox/goms
+local path ~/dropbox/data/
   /* 고교정보 append and merge {{{*/
     tempfile temp
     forvalue x = 9/19 {
       local yr : disp %02.0f  = `x'
-      use ~/dropbox/goms/rawdata/GP`yr' , clear
+      use `path'goms/rawdata/GP`yr' , clear
       drop if missing(g`yr'1sex)
       rename g`yr'1* * 
       keep pid f001-f002 f006-f009 
       gen year = 2000 + `x'
         label var year "조사년도"
-      merge 1:1 pid using ~/dropbox/goms/rawdata/goms_gh`yr' , nogen
+      merge 1:1 pid using `path'goms/rawdata/goms_gh`yr' , nogen
         replace hsname = "" if strpos(hsname, "-1")
         replace hsname = "" if strpos(hsname, "-2")
         replace hsname = "" if strpos(hsname, "모름")
@@ -2920,4 +2920,4 @@ cd ~/dropbox/goms
         replace f998 = 7 if rhsname == "휘문고등학교"                   & f006 == 1 & ( inrange(f001 , 1908 , 2013) | missing(f001) )
       /*}}}*/
   /*}}}*/
-save rawdata/goms_data_hs.dta , replace
+save `path'goms/rawdata/goms_hs.dta , replace

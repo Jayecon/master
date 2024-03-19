@@ -1,4 +1,4 @@
- set nocompatible " no compatible with the original Vi
+set nocompatible " no compatible with the original Vi
     filetype off
     " Language and Font  {{{1
     if has('win32')
@@ -13,12 +13,12 @@
         "language message en_US.UTF-8
         set linespace=3	
         set encoding=utf-8
-        "set fileencoding=utf8
-        set guifont=hack_nerd_font:h22
+        set fileencoding=utf8
+        set guifont=D2CodingLigature\ Nerd\ Font:h22
         noremap <silent> <f3> :call GfnToggle()<cr>
         function! GfnToggle()
             if &gfn == 'hack_nerd_font:h22'
-                set guifont=D2Coding:h22
+                set guifont=D2CodingLigature\ Nerd\ Font:h22
             else
                 set guifont=hack_nerd_font:h22
             endif
@@ -58,6 +58,20 @@
     call plug#end()
     " }}}1
     " Plugins Specific Setting -------------------- {{{1
+        "Change Background by Time{{{2
+            let currentHour = strftime("%H")
+            let currentTime = strftime("%Y %b %d %T")
+            if currentHour < 7 + 0
+                let g:airline_solarized_bg='dark'
+                set background=dark
+            elseif currentHour < 18 + 0
+                let g:airline_solarized_bg='light'
+                set background=light
+            else
+                let g:airline_solarized_bg='dark'
+                set background=dark
+            endif
+        "}}}2
         " Indent Guide ---------------------- {{{2
             let g:indent_guides_enable_on_vim_startup = 1
             let g:indent_guides_guide_size = 1
@@ -71,19 +85,48 @@
         " }}}2
         " NERDTree ---------------------- {{{2
             noremap <C-N> :NERDTreeToggle<CR>
-            "open a NERDTree automatically when vim starts up
-                "autocmd vimenter * NERDTree 	
-            "open a NERDTree automatically when vim starts up if no files were specified	
-                "autocmd StdinReadPre * let s:std_in=1 
-                "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif	
-            "open NERDTree automatically when vim starts up on opening a directory
-                "autocmd StdinReadPre * let s:std_in=1 
-                "autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif	
             "close vim if the only window left open is a NERDTree
                 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif	
+            " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+                autocmd BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+                \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+            "Lines in the file are displayed as shown below. 
+                let g:NERDTreeFileLines = 0
+            "Ignore some files
+                let NERDTreeIgnore = [
+                    \ '\.log$' ,
+                    \ '\.bak$' ,
+                    \ ]
+                let NERDTreeSortOrder = [
+                    \ '\/$'    ,
+                    \ '\.do$'  ,
+                    \ '\.ado$' ,
+                    \ '\.py$'  ,
+                    \ '\.csv$' ,
+                    \ '\.txt$' ,
+                    \ '*'      ,
+                    \ '\.dta$' ,
+                    \ '\.log$' ,
+                    \ '\.swp$' ,
+                    \ '\.bak$' ,
+                    \ '\~$'    ,
+                    \ '\.old$' ,
+                    \]
+                let NERDTreeNaturalSort = 1
+            "From nerdtree-git-plugin
+                "let g:NERDTreeGitStatusUntrackedFilesMode = 'all' " a heavy feature too. default: normal
+                let g:NERDTreeGitStatusGitBinPath = 'git' " default: git (auto find in path)
+                let g:NERDTreeGitStatusShowClean = 1 " default: 0
+                let g:NERDTreeGitStatusConcealBrackets = 1 " default: 0
         " }}}2
         " Rainbow Parentheses Improved ---------------------- {{{2
             let g:rainbow_active = 1
+        " }}}2
+        " Startify ---------------------- {{{2
+            let g:startify_skiplist = [
+                \ '\.log$',
+                \ '\.bak$',
+                \ ]
         " }}}2
         " Solarized ---------------------- {{{2
             colorscheme solarized
@@ -114,99 +157,91 @@
                 endif
             endfunction
         " }}}2
-        "Change Background by Time{{{2
-            let currentHour = strftime("%H")
-            let currentTime = strftime("%Y %b %d %T")
-            if currentHour < 7 + 0
-                let g:airline_solarized_bg='dark'
-                set background=dark
-            elseif currentHour < 18 + 0
-                let g:airline_solarized_bg='light'
-                set background=light
-            else
-                let g:airline_solarized_bg='dark'
-                set background=dark
-            endif
-        "}}}2
         " Vim-python-pep8-indent ---------------------- {{{2
             filetype plugin indent on
         " }}}2
         " Vim-devicons ---------------------- {{{2
             let g:webdevicons_conceal_nerdtree_brackets = 1
-            "let g:webdevicons_enable_airline_tabline = 1
-            "let g:webdevicons_enable_airline_statusline = 1
+            let g:webdevicons_enable_airline_tabline = 1
+            let g:webdevicons_enable_airline_statusline = 1
             let g:webdevicons_enable_startify = 1
+            " add or override individual additional filetypes
+                let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+                let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ado'] = '⚙️'
+                let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['do'] = '🛠️'
+                let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['dta'] = '💾'
+                let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['old'] = '☠️'
         " }}}2
         " Vim-buffet ---------------------- {{{2
             let g:buffet_use_devicons = 1
             let g:buffet_show_index = 1
         " }}}2
     " }}}1
-  " Environment Setting ---------------------- {{{1
-    " Basic " {{{2
-        set number                                          " Show line number
-        set relativenumber                                  " Show line number relative
-        set showmatch                                       " Show matching brackets when text indicator is over them
-        set matchpairs+=<:>                                 " Also match < & > with %.
-        set backspace=indent,eol,start                      " Allow backspacing over everything.
-        set history=1000                                    " Keep 1000 lines of command line history.
-        set backup                                          " Keep backup file when writing.
-        set backupext=.bak                                  " Extension for backup files (modified in autocmd below).
-        set backupskip=/tmp/*                               " No backup for these files.
-        set undofile                                        " Save undo to file.
-        set notitle                                         " Don't update term title.
-        set shortmess-=S                                    " Show match count on n.
-        set shortmess+=aFI                                  " a: abbreviate a few things
-                                                            " F: don't show file info with :edit etc.
-                                                            " I: don't show :intro message
-        set virtualedit=block                               " Allow virtual editing in visual block mode.
-        set display=lastline,uhex                           " lastline → Show as much of the last line as possible instead of @.
-                                                            " uhex     → Always show unprintable chars as <xx> instead of ^C.
-        set formatoptions+=ncroqlj                          " n   Recognize numbered lists when formatting (see formatlistpat)
-                                                            " c   Wrap comments with textwidth
-                                                            " r   Insert comment char after enter
-                                                            " o   Insert comment char after o/O
-                                                            " q   Format comments with gq
-                                                            " l   Don't break lines when they were longer than textwidth to start with.
-                                                            " j   Remove comment character when joining lines with J.
-        set updatecount=50                                  " Write to swap every 50 characters.
-        set wildmenu                                        " Better tab completion at the command-line.
-        set wildmode=longest:full                           " Complete longest match, list other matches in wildmenu.
-        set wildignorecase                                  " Case is ignored when completing file names and directories.
-        set wildignore+=*.o,*.png,*.jpg,*.jpeg,*.webp,*.gif " Ignore these files in completion.
-        set wildoptions=pum                                 " Show pop-up menu.
-        set wildcharm=<Tab>                                 " Trigger wild mode from mappings/macros.
-        set completeopt=menuone,noselect                    " Insert mode completion:
-                                                            " menuone   → always show menu, even when there is 1 match.
-                                                            " noselect  → don't select an option when starting.
-        set completepopup=highlight:Pmenu,border:off        " Options for preview popup in completion.
-        set pumheight=10                                    " Don't make completion menu too high.
-        set scrolloff=2                                     " Minimum number of lines to keep above/below cursor.
-        set listchars=tab:!·,trail:·                        " String to use in 'list' mode.
-        set previewheight=6                                 " Height of preview window.
-        set infercase                                       " Like smartcase for insert completion.
-        set textwidth=120                                   " Wrap at ??? characters.
-        set colorcolumn=120                                 " Show a vertical guide at ??? characters.
-        set showcmd                                         " Show partial command in the last line of the screen.
-        set nojoinspaces                                    " Don't add two spaces after interpunction when using J.
-        set switchbuf=useopen,usetab,newtab                 " Use open tab (if any) when trying to jump to a quickfix error.
-        set synmaxcol=5000                                   " Maximum column in which to search for syntax items.
-        set nrformats=unsigned                              " Ignore '-' in front of numbers when increment nrs.
-        set nofoldenable                                    " Disable folds by default.
-        set tabpagemax=500                                  " Max. number of tabs to be open with -p argument or :tab all.
-        set tildeop                                         " Use ~ as an operator to switch case.
-        set visualbell                                      " Use a visual bell instead of beeping.
-        set nocursorcolumn                                  " No highlight the screen column of the cursor.
-        set foldmethod=marker                               " The kind of folding used for the current window.
-        set nolist                                          " No list mode.
-        set noimd
-        syntax enable
-        "set gdefault                                       " Always use the /g flag with :s; add /g to restore the default.
-        "set t_ti= t_te=                                    " Prevent clearing the terminal on exit.
-        "set mouse=                                         " I don't want mouse support.
-        "set paragraphs=                                    " Don't include nroff stuff.
-        "set clipboard=                                     " Never automatically interface with system clipboard.
-    " }}}2
+    " Environment Setting ---------------------- {{{1
+        " Basic " {{{2
+            set number                                          " Show line number
+            set relativenumber                                  " Show line number relative
+            set showmatch                                       " Show matching brackets when text indicator is over them
+            set matchpairs+=<:>                                 " Also match < & > with %.
+            set backspace=indent,eol,start                      " Allow backspacing over everything.
+            set history=1000                                    " Keep 1000 lines of command line history.
+            set backup                                          " Keep backup file when writing.
+            set backupext=.bak                                  " Extension for backup files (modified in autocmd below).
+            set backupskip=/tmp/*                               " No backup for these files.
+            set undofile                                        " Save undo to file.
+            set notitle                                         " Don't update term title.
+            set shortmess-=S                                    " Show match count on n.
+            set shortmess+=aFI                                  " a: abbreviate a few things
+                                                                " F: don't show file info with :edit etc.
+                                                                " I: don't show :intro message
+            set virtualedit=block                               " Allow virtual editing in visual block mode.
+            set display=lastline,uhex                           " lastline → Show as much of the last line as possible instead of @.
+                                                                " uhex     → Always show unprintable chars as <xx> instead of ^C.
+            set formatoptions+=ncroqlj                          " n   Recognize numbered lists when formatting (see formatlistpat)
+                                                                " c   Wrap comments with textwidth
+                                                                " r   Insert comment char after enter
+                                                                " o   Insert comment char after o/O
+                                                                " q   Format comments with gq
+                                                                " l   Don't break lines when they were longer than textwidth to start with.
+                                                                " j   Remove comment character when joining lines with J.
+            set updatecount=50                                  " Write to swap every 50 characters.
+            set wildmenu                                        " Better tab completion at the command-line.
+            set wildmode=longest:full                           " Complete longest match, list other matches in wildmenu.
+            set wildignorecase                                  " Case is ignored when completing file names and directories.
+            set wildignore+=*.o,*.png,*.jpg,*.jpeg,*.webp,*.gif " Ignore these files in completion.
+            set wildoptions=pum                                 " Show pop-up menu.
+            set wildcharm=<Tab>                                 " Trigger wild mode from mappings/macros.
+            set completeopt=menuone,noselect                    " Insert mode completion:
+                                                                " menuone   → always show menu, even when there is 1 match.
+                                                                " noselect  → don't select an option when starting.
+            set completepopup=highlight:Pmenu,border:off        " Options for preview popup in completion.
+            set pumheight=10                                    " Don't make completion menu too high.
+            set scrolloff=2                                     " Minimum number of lines to keep above/below cursor.
+            set listchars=tab:!·,trail:·                        " String to use in 'list' mode.
+            set previewheight=6                                 " Height of preview window.
+            set infercase                                       " Like smartcase for insert completion.
+            set textwidth=120                                   " Wrap at ??? characters.
+            set colorcolumn=120                                 " Show a vertical guide at ??? characters.
+            set showcmd                                         " Show partial command in the last line of the screen.
+            set nojoinspaces                                    " Don't add two spaces after interpunction when using J.
+            set switchbuf=useopen,usetab,newtab                 " Use open tab (if any) when trying to jump to a quickfix error.
+            set synmaxcol=5000                                   " Maximum column in which to search for syntax items.
+            set nrformats=unsigned                              " Ignore '-' in front of numbers when increment nrs.
+            set nofoldenable                                    " Disable folds by default.
+            set tabpagemax=500                                  " Max. number of tabs to be open with -p argument or :tab all.
+            set tildeop                                         " Use ~ as an operator to switch case.
+            set visualbell                                      " Use a visual bell instead of beeping.
+            set nocursorcolumn                                  " No highlight the screen column of the cursor.
+            set foldmethod=marker                               " The kind of folding used for the current window.
+            set nolist                                          " No list mode.
+            set noimd
+            syntax enable
+            "set gdefault                                       " Always use the /g flag with :s; add /g to restore the default.
+            "set t_ti= t_te=                                    " Prevent clearing the terminal on exit.
+            "set mouse=                                         " I don't want mouse support.
+            "set paragraphs=                                    " Don't include nroff stuff.
+            "set clipboard=                                     " Never automatically interface with system clipboard.
+        " }}}2
     " Diff {{{2
         if &diff
             set diff
@@ -247,7 +282,7 @@
             autocmd CmdlineLeave /,\? :set nohlsearch
         "augroup END
     " }}}2
-  " }}}1
+    " }}}1
     " Key Mappings ---------------------- {{{1
         " Global {{{2
         map <leader><leader> :Startify<cr>
@@ -365,11 +400,12 @@
         if has('win32')
             autocmd FileType stata nnoremap <F8> :!"c:\stata\stataMP-64.exe" doedit %:p<CR><CR>
             autocmd FileType stata inoremap <F8> :!"c:\stata\stataMP-64.exe" doedit %:p<CR><CR>
-            autocmd FileType stata nnoremap <F9> :w<CR>:!"c:\stata\stataMP-64.exe" /e do %:p<CR>:! move %:t:r.log %:p:r.log <CR>:e %:p:r.log<CR>
+            autocmd FileType stata nnoremap <F9> :w<CR>:!"c:\stata\stataMP-64.exe" /e do %:p<CR>:! move %:t:r.log %:p:r.log <CR>:e %:p:r.log<CR>:set syntax=stata<CR>
         elseif has('macunix')
             autocmd FileType stata nnoremap <F8> :! /Applications/Stata/StataMP.app/Contents/MacOS/StataMP doedit %:p<CR>
             autocmd FileType stata inoremap <F8> :! /Applications/Stata/StataMP.app/Contents/MacOS/StataMP doedit %:p<CR>
-            autocmd FileType stata nnoremap <F9> :w<CR>:! /Applications/Stata/StataMP.app/Contents/MacOS/StataMP -e do %:p<CR>:!mv %:t:r.log %:p:r.log<CR>:e %:p:r.log<CR>
+            autocmd FileType stata nnoremap <F9> :w<CR>:! /Applications/Stata/StataMP.app/Contents/MacOS/StataMP -e do %:p<CR>:!mv %:t:r.log %:p:r.log<CR>:e %:p:r.log<CR>:set syntax=stata<CR>
         endif
         " }}}2
     " }}}1
+syntax on "force to the syntax highlight function

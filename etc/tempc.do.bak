@@ -1,0 +1,2 @@
+local path ~/Dropbox/Data/ALIMI/JArating/cleaned/
+import excel  `path'2008년_대학_4-사.중도탈락 학생 현황_학교별자료_unmerged.xlsx , sheet("Sheet1") firstrow allstring clear

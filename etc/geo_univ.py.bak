@@ -1,12 +1,24 @@
+"""
+This module is to get GPS codes from Korean addesses using NAVERopenAPI.
+"""
+
 import csv
 import requests
 from geopy.distance import geodesic
 
 
 def get_coordinates(address):
-    client_id = 'hm7vxmbsn9'  # 네이버 개발자 센터에서 발급한 Client ID 입력
-    client_secret = 'BkfdSsA0nWPUcZAKzWEnrAq2PdGTA1a0Wtwpo3mv'  # 네이버 개발자 센터에서 발급한 Client Secret 입력
-    url = f'https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query={address}'
+    """
+    address : 한글주소
+    return : GPS 위도와 경도
+    """
+    # 네이버 개발자 센터에서 발급한 Client ID 입력
+    client_id = 'hm7vxmbsn9'
+    # 네이버 개발자 센터에서 발급한 Client Secret 입력
+    client_secret = 'BkfdSsA0nWPUcZAKzWEnrAq2PdGTA1a0Wtwpo3mv'
+    url = ('https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?'
+           f'query={address}'
+           )
     headers = {
         'X-NCP-APIGW-API-KEY-ID': client_id,
         'X-NCP-APIGW-API-KEY': client_secret
@@ -23,29 +35,37 @@ def get_coordinates(address):
 
 
 def main():
-    input_csv_filename = 'ALIMI_list_231214_4ytest.csv'  # 입력 CSV 파일명
-    output_csv_filename = 'ALIMI_list_231214_4y_geoinfo.csv'  # 결과 CSV 파일명
+    """
+    아래의 두 CVS 파일명을 입력 할 것.
+    """
+    input_csv_filename = 'akgaddresslist.csv'           # 입력 CSV 파일명
+    output_csv_filename = 'akgeoinfo.csv'  # 결과 CSV 파일명
     seoul_namsan_tower_coordinates = (37.551169, 126.988227)  # 서울 남산타워의 좌표
 
     # CSV 파일에서 주소를 읽어옴
     rows = []
-    with open(input_csv_filename, 'r', newline='', encoding='utf-8') as csvfile:
+    with open(input_csv_filename, 'r', newline='',
+              encoding='utf-8') as csvfile:
         csv_reader = csv.reader(csvfile)
-        next(csv_reader)  # 헤더를 건너뜁니다.
+        next(csv_reader)       # 헤더를 건너뜁니다.
         for row in csv_reader:
-            unicode = row[1]  # 대학코드
-            uniname = row[2]  # 대학명
-            branch  = row[3]  # 본분교
-            address = row[12]  # 주소가 있는 열의 인덱스에 따라 수정해주세요
+            uniname = row[1]   # 대학코드
+            zipcode = row[2]   # 대학명
+            address = row[6]   # 주소
             source_coordinates = get_coordinates(address)
             if source_coordinates is not None:
                 print(f"{uniname}의 정보를 얻습니다")
-                distance = geodesic(seoul_namsan_tower_coordinates, source_coordinates).kilometers
-                rows.append([unicode, uniname, branch, address, source_coordinates[0], source_coordinates[1], distance])
+                distance = geodesic(seoul_namsan_tower_coordinates,
+                                    source_coordinates).kilometers
+                rows.append([uniname, zipcode, address,
+                             source_coordinates[0], source_coordinates[1],
+                             distance])
     # 결과를 CSV 파일로 저장
-    with open(output_csv_filename, 'w', newline='', encoding='utf-8') as csvfile:
+    with open(output_csv_filename, 'w', newline='',
+              encoding='utf-8') as csvfile:
         csv_writer = csv.writer(csvfile)
-        csv_writer.writerow(['unicode', 'uniname', 'branch', 'address', 'latitude', 'longitude', 'distance'])
+        csv_writer.writerow(['uniname', 'zipcode', 'address',
+                             'latitude', 'longitude', 'distance'])
         csv_writer.writerows(rows)
 
 
