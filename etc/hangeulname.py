@@ -1,6 +1,3 @@
-"""
-폴더내 한글파일명의 자소분리 해결
-"""
 import os
 import unicodedata
 
@@ -19,6 +16,7 @@ def normalize_text(text):
 
 def fix_hangul_filenames(FOLDER_PATH):
     """주어진 폴더 내의 파일 이름에 있는 한글 자소분리를 수정하는 함수"""
+    files_fixed = False
     for filename in os.listdir(FOLDER_PATH):
         # 파일 이름에 한글 자음 또는 모음이 있는지 확인합니다.
         if contains_hangul_jaso(filename):
@@ -35,9 +33,14 @@ def fix_hangul_filenames(FOLDER_PATH):
             )
 
             print("Fixed file:", normalized_filename)
+            files_fixed = True
+
+    if not files_fixed:
+        print("고칠 파일명이 없습니다.")
 
 # 수정할 폴더의 경로를 지정합니다.
-FOLDER_PATH = '/Users/jay/Library/CloudStorage/Dropbox/Data/ALIMI/JArating/cleaned'
+# FOLDER_PATH = '/Users/jay/Downloads'
+FOLDER_PATH = '/Users/jay/Library/CloudStorage/Dropbox/Data/ALIMI/JArating'
 
 # 함수를 호출하여 파일 이름을 수정합니다.
 fix_hangul_filenames(FOLDER_PATH)

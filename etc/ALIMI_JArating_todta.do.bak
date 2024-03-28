@@ -731,3 +731,41 @@ local path ~/Dropbox/Data/ALIMI/JArating/cleaned/
         qui do ALIMI_JArating_unmergedfilter.do
         save "`path'대학_8-차-1_2020" , replace
     /*}}}*/
+    /*additional : 4-다 {{{*/
+    import excel "`path'2009년_대학_4-다.신입생 충원 현황_학교별자료" , sheet("Sheet1") firstrow allstring clear
+        qui do ALIMI_JArating_unmergedfilter.do
+        save "`path'대학_4-다_2009" , replace
+    import excel "`path'2010년_대학_4-다.신입생 충원 현황_학교별자료" , sheet("Sheet1") firstrow allstring clear
+        qui do ALIMI_JArating_unmergedfilter.do
+        save "`path'대학_4-다_2010" , replace
+    import excel "`path'2011년_대학_4-다.신입생 충원 현황_학교별자료" , sheet("Sheet1") firstrow allstring clear
+        qui do ALIMI_JArating_unmergedfilter.do
+        save "`path'대학_4-다_2011" , replace
+    import excel "`path'2012년_대학_4-다.신입생 충원 현황_학교별자료" , sheet("Sheet1") firstrow allstring clear
+        qui do ALIMI_JArating_unmergedfilter.do
+        save "`path'대학_4-다_2012" , replace
+    import excel "`path'2013년_대학_4-다.신입생 충원 현황_학교별자료" , sheet("Sheet1") firstrow allstring clear
+        qui do ALIMI_JArating_unmergedfilter.do
+        save "`path'대학_4-다_2013" , replace
+    import excel "`path'2014년_대학_4-다.신입생 충원 현황_학교별자료" , sheet("Sheet1") firstrow allstring clear
+        qui do ALIMI_JArating_unmergedfilter.do
+        save "`path'대학_4-다_2014" , replace
+    import excel "`path'2015년_대학_4-다.신입생 충원 현황_학교별자료" , sheet("Sheet1") firstrow allstring clear
+        qui do ALIMI_JArating_unmergedfilter.do
+        save "`path'대학_4-다_2015" , replace
+    import excel "`path'2016년_대학_4-다.신입생 충원 현황_학교별자료" , sheet("Sheet1") firstrow allstring clear
+        qui do ALIMI_JArating_unmergedfilter.do
+        save "`path'대학_4-다_2016" , replace
+    import excel "`path'2017년_대학_4-다.신입생 충원 현황_학교별자료" , sheet("Sheet1") firstrow allstring clear
+        qui do ALIMI_JArating_unmergedfilter.do
+        save "`path'대학_4-다_2017" , replace
+    import excel "`path'2018년_대학_4-다.신입생 충원 현황_학교별자료" , sheet("Sheet1") firstrow allstring clear
+        qui do ALIMI_JArating_unmergedfilter.do
+        save "`path'대학_4-다_2018" , replace
+    import excel "`path'2019년_대학_4-다.신입생 충원 현황_학교별자료" , sheet("Sheet1") firstrow allstring clear
+        qui do ALIMI_JArating_unmergedfilter.do
+        save "`path'대학_4-다_2019" , replace
+    import excel "`path'2020년_대학_4-다.신입생 충원 현황_학교별자료" , sheet("Sheet1") firstrow allstring clear
+        qui do ALIMI_JArating_unmergedfilter.do
+        save "`path'대학_4-다_2020" , replace
+    /*}}}*/

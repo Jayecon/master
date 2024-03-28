@@ -1,3 +1,7 @@
+"""
+폴더에 있는 모든 엑셀파일의 병합된 셀을 풀어주고 cleaned 하위폴더에 저장
+"""
+
 import os
 import pandas as pd
 

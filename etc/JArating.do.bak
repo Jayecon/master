@@ -9,4 +9,4 @@ import delimited "/Users/jay/GitHub/master/etc/joongang_unirank_1995-2019.csv", 
     keep jrank year uniname
     replace uniname = trim(uniname)
   compress
-save `path'jarating , replace
+save `path'unijrank , replace

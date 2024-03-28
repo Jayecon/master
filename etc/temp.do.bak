@@ -1,5 +1,5 @@
 cd /Users/jay/Library/CloudStorage/Dropbox/Data/ALIMI/JArating/cleaned
-set linesize 90
+set linesize 140
 use "대학_12-다-1_2009.dta"
     de
 use "대학_12-다-1_2010.dta"
@@ -197,6 +197,30 @@ use "대학_12-하-2_2018.dta"
 use "대학_12-하-2_2019.dta"
     de
 use "대학_12-하-2_2020.dta"
+    de
+use "대학_4-다_2009.dta"
+    de
+use "대학_4-다_2010.dta"
+    de
+use "대학_4-다_2011.dta"
+    de
+use "대학_4-다_2012.dta"
+    de
+use "대학_4-다_2013.dta"
+    de
+use "대학_4-다_2014.dta"
+    de
+use "대학_4-다_2015.dta"
+    de
+use "대학_4-다_2016.dta"
+    de
+use "대학_4-다_2017.dta"
+    de
+use "대학_4-다_2018.dta"
+    de
+use "대학_4-다_2019.dta"
+    de
+use "대학_4-다_2020.dta"
     de
 use "대학_4-바-1_2009.dta"
     de

@@ -486,7 +486,7 @@ use `path'goms/goms_eq_raw , clear
     /*}}}*/
   drop branch school area 
   merge 1:1 year pid using `path'goms/rawdata/goms_hs.dta , nogen
-  merge 1:1 year pid using `path'goms/rawdata/goms_univ.dta  
+  merge 1:1 year pid using `path'goms/rawdata/goms_univ.dta
     drop if _merge != 3
     drop _merge
 save `path'goms/goms_eq.dta , replace
