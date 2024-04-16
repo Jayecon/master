@@ -1,0 +1,370 @@
+cd ~/dropbox/data/RES/
+
+use rawdata/res_2008_y_a , clear
+	destring _all , replace
+	gen area = v1
+	replace area = round(area/100 , 1)
+	gen head = (v2 == 1)
+	gen men	= (v3 == 1)
+	gen age1865 = (inrange(v4 , 18 , 65) )
+	gen worker = (inlist(v40 , 1 , 2 , 3 ))
+	gen income = v42 
+	gen wgt = v48
+	gen year = 2008
+	gen period = 1
+	drop v*
+	save res.dta , replace
+use rawdata/res_2009_y_a , clear
+	destring _all , replace
+	gen area = v1
+	replace area = round(area/100 , 1)
+	gen head = (v2 == 1)
+	gen men	= (v3 == 1)
+	gen age1865 = (inrange(v4 , 18 , 65) )
+	gen worker = (inlist(v37 , 1 , 2 , 3 ))
+	gen income = v39 
+	gen wgt = v46
+	gen year = 2009
+	gen period = 1
+	drop v*
+	append using res.dta
+	save res.dta , replace
+use rawdata/res_2010_y_a , clear
+	destring _all , replace
+	gen area = v1
+	replace area = round(area/100 , 1)
+	gen head = (v2 == 1)
+	gen men	= (v3 == 1)
+	gen age1865 = (inrange(v4 , 18 , 65) )
+	gen worker = (inlist(v39 , 1 , 2 , 3 ))
+	gen income = v42 
+	gen wgt = v48
+	gen year = 2010
+	gen period = 1
+	drop v*
+	append using res.dta
+	save res.dta , replace
+use rawdata/res_2011_1q_a , clear
+	destring _all , replace
+	gen area = v2
+	replace area = round(area/100 , 1)
+	gen head = (v3 == 1)
+	gen men	= (v4 == 1)
+	gen age1865 = (inrange(v5 , 18 , 65) )
+	gen worker = (inlist(v33 , 1 , 2 , 3 ))
+	gen income = v35 
+	gen wgt = v41
+	gen year = 2011
+	gen period = 2
+	drop v*
+	append using res.dta
+	save res.dta , replace
+use rawdata/res_2011_2q_a , clear
+	destring _all , replace
+	gen area = v2
+	replace area = round(area/100 , 1)
+	gen head = (v3 == 1)
+	gen men	= (v4 == 1)
+	gen age1865 = (inrange(v5 , 18 , 65) )
+	gen worker = (inlist(v33 , 1 , 2 , 3 ))
+	gen income = v35 
+	gen wgt = v41
+	gen year = 2011
+	gen period = 3
+	drop v*
+	append using res.dta
+	save res.dta , replace
+use rawdata/res_2011_3q_a , clear
+	destring _all , replace
+	gen area = v2
+	replace area = round(area/100 , 1)
+	gen head = (v3 == 1)
+	gen men	= (v4 == 1)
+	gen age1865 = (inrange(v5 , 18 , 65) )
+	gen worker = (inlist(v39 , 1 , 2 , 3 ))
+	gen income = v42 
+	gen wgt = v48
+	gen year = 2011
+	gen period = 4
+	drop v*
+	append using res.dta
+	save res.dta , replace
+use rawdata/res_2011_4q_a , clear
+	destring _all , replace
+	gen area = v2
+	replace area = round(area/100 , 1)
+	gen head = (v3 == 1)
+	gen men	= (v4 == 1)
+	gen age1865 = (inrange(v5 , 18 , 65) )
+	gen worker = (inlist(v34 , 1 , 2 , 3 ))
+	gen income = v36 
+	gen wgt = v46
+	gen year = 2011
+	gen period = 5
+	drop v*
+	append using res.dta
+	save res.dta , replace
+use rawdata/res_2012_1q_a , clear
+	destring _all , replace
+	gen area = v2
+	replace area = round(area/100 , 1)
+	gen head = (v3 == 1)
+	gen men	= (v4 == 1)
+	gen age1865 = (inrange(v5 , 18 , 65) )
+	gen worker = (inlist(v34 , 1 , 2 , 3 ))
+	gen income = v36 
+	gen wgt = v42
+	gen year = 2012
+	gen period = 2
+	drop v*
+	append using res.dta
+	save res.dta , replace
+use rawdata/res_2012_2q_a , clear
+	destring _all , replace
+	gen area = v2
+	replace area = round(area/100 , 1)
+	gen head = (v3 == 1)
+	gen men	= (v4 == 1)
+	gen age1865 = (inrange(v5 , 18 , 65) )
+	gen worker = (inlist(v33 , 1 , 2 , 3 ))
+	gen income = v35 
+	gen wgt = v41
+	gen year = 2012
+	gen period = 3
+	drop v*
+	append using res.dta
+	save res.dta , replace
+use rawdata/res_2012_3q_a , clear
+	destring _all , replace
+	gen area = v2
+	replace area = round(area/100 , 1)
+	gen head = (v3 == 1)
+	gen men	= (v4 == 1)
+	gen age1865 = (inrange(v5 , 18 , 65) )
+	gen worker = (inlist(v39 , 1 , 2 , 3 ))
+	gen income = v42 
+	gen wgt = v48
+	gen year = 2012
+	gen period = 4
+	drop v*
+	append using res.dta
+	save res.dta , replace
+use rawdata/res_2012_4q_a , clear
+	destring _all , replace
+	gen area = v2
+	replace area = round(area/100 , 1)
+	gen head = (v3 == 1)
+	gen men	= (v4 == 1)
+	gen age1865 = (inrange(v5 , 18 , 65) )
+	gen worker = (inlist(v34 , 1 , 2 , 3 ))
+	gen income = v36 
+	gen wgt = v46
+	gen year = 2012
+	gen period = 5
+	drop v*
+	append using res.dta
+	save res.dta , replace
+use rawdata/res_2013_1h_c , clear
+	destring _all , replace
+	gen area = v2
+	gen head = (v3 == 1)
+	gen men	= (v4 == 1)
+	gen age1865 = (inrange(v5 , 18 , 65) )
+	gen worker = (inlist(v38 , 1 , 2 ))
+	gen income = v40 
+	gen wgt = v52
+	gen year = 2013
+	gen period = 6
+	drop v*
+	append using res.dta
+	save res.dta , replace
+use rawdata/res_2013_2h_c , clear
+	destring _all , replace
+	gen area = v2
+	gen head = (v3 == 1)
+	gen men	= (v4 == 1)
+	gen age1865 = (inrange(v5 , 18 , 65) )
+	gen worker = (inlist(v38 , 1 , 2))
+	gen income = v41 
+	gen wgt = v54
+	gen year = 2013
+	gen period = 7
+	drop v*
+	append using res.dta
+	save res.dta , replace
+use rawdata/res_2014_1h_c , clear
+	destring _all , replace
+	gen area = v2
+	gen head = (v3 == 1)
+	gen men	= (v4 == 1)
+	gen age1865 = (inrange(v5 , 18 , 65) )
+	gen worker = (inlist(v39 , 1 , 2))
+	gen income = v43 
+	gen wgt = v55
+	gen year = 2014
+	gen period = 6
+	drop v*
+	append using res.dta
+	save res.dta , replace
+use rawdata/res_2014_2h_c , clear
+	destring _all , replace
+	gen area = v2	
+	gen head = (v3 == 1)
+	gen men	= (v4 == 1)
+	gen age1865 = (inrange(v5 , 18 , 65) )
+	gen worker = (inlist(v38 , 1 , 2))
+	gen income = v40
+	gen wgt = v50
+	gen year = 2014
+	gen period = 7
+	drop v*
+	append using res.dta
+	save res.dta , replace
+use rawdata/res_2015_1h_c , clear
+	destring _all , replace
+	gen area = v2	
+	gen head = (v3 == 1)
+	gen men	= (v4 == 1)
+	gen age1865 = (inrange(v5 , 18 , 65) )
+	gen worker = (inlist(v24 , 1 , 2))
+	gen income = v33
+	gen wgt = v53
+	gen year = 2015
+	gen period = 6
+	drop v*
+	append using res.dta
+	save res.dta , replace
+use rawdata/res_2015_2h_c , clear
+	destring _all , replace
+	gen area = v2	
+	gen head = (v3 == 1)
+	gen men	= (v4 == 1)
+	gen age1865 = (inrange(v5 , 18 , 65) )
+	gen worker = (inlist(v25 , 1 , 2))
+	gen income = v28
+	gen wgt = v49
+	gen year = 2015
+	gen period = 7
+	drop v*
+	append using res.dta
+	save res.dta , replace
+use rawdata/res_2016_1h_c , clear
+	destring _all , replace
+	gen area = v2	
+	gen head = (v3 == 1)
+	gen men	= (v4 == 1)
+	gen age1865 = (inrange(v5 , 18 , 65) )
+	gen worker = (inlist(v24 , 1 , 2))
+	gen income = v33
+	gen wgt = v55
+	gen year = 2016
+	gen period = 6
+	drop v*
+	append using res.dta
+	save res.dta , replace
+use rawdata/res_2016_2h_c , clear
+	destring _all , replace
+	gen area = v2	
+	gen head = (v3 == 1)
+	gen men	= (v4 == 1)
+	gen age1865 = (inrange(v5 , 18 , 65) )
+	gen worker = (inlist(v25 , 1 , 2))
+	gen income = v28
+	gen wgt = v51
+	gen year = 2016
+	gen period = 7
+	drop v*
+	append using res.dta
+	save res.dta , replace
+use rawdata/res_2017_1h_c , clear
+	destring _all , replace
+	gen area = v2	
+	gen head = (v3 == 1)
+	gen men	= (v4 == 1)
+	gen age1865 = (inrange(v5 , 18 , 65) )
+	gen worker = (inlist(v24 , 1 , 2))
+	gen income = v33
+	gen wgt = v55
+	gen year = 2017
+	gen period = 6
+	drop v*
+	append using res.dta
+	save res.dta , replace
+use rawdata/res_2017_2h_c , clear
+	destring _all , replace
+	gen area = v2	
+	gen head = (v3 == 1)
+	gen men	= (v4 == 1)
+	gen age1865 = (inrange(v5 , 18 , 65) )
+	gen worker = (inlist(v25 , 1 , 2))
+	gen income = v28
+	gen wgt = v49
+	gen year = 2017
+	gen period = 7
+	drop v*
+	append using res.dta
+	save res.dta , replace
+use rawdata/res_2018_1h_c , clear
+	destring _all , replace
+	gen area = v2	
+	gen head = (v3 == 1)
+	gen men	= (v4 == 1)
+	gen age1865 = (inrange(v5 , 18 , 65) )
+	gen worker = (inlist(v24 , 1 , 2))
+	gen income = v33
+	gen wgt = v55
+	gen year = 2018
+	gen period = 6
+	drop v*
+	append using res.dta
+	save res.dta , replace
+use rawdata/res_2018_2h_c , clear
+	destring _all , replace
+	gen area = v2	
+	gen head = (v3 == 1)
+	gen men	= (v4 == 1)
+	gen age1865 = (inrange(v5 , 18 , 65) )
+	gen worker = (inlist(v25 , 1 , 2))
+	gen income = v28
+	gen wgt = v50
+	gen year = 2018
+	gen period = 7
+	drop v*
+	append using res.dta
+	save res.dta , replace
+use rawdata/res_2019_1h_c , clear
+	destring _all , replace
+	gen area = v2	
+	gen head = (v3 == 1)
+	gen men	= (v4 == 1)
+	gen age1865 = (inrange(v5 , 18 , 65) )
+	gen worker = (inlist(v25 , 1 , 2))
+	gen income = v34
+	gen wgt = v56
+	gen year = 2019
+	gen period = 6
+	drop v*
+	append using res.dta
+	save res.dta , replace
+use rawdata/res_2019_2h_c , clear
+	destring _all , replace
+	gen area = v2	
+	gen head = (v3 == 1)
+	gen men	= (v4 == 1)
+	gen age1865 = (inrange(v5 , 18 , 65) )
+	gen worker = (inlist(v25 , 1 , 2))
+	gen income = v28
+	gen wgt = v50
+	gen year = 2019
+	gen period = 7
+	drop v*
+	append using res.dta
+	
+	recode area (11=1) (21=2) (22=3) (23=5) (24=6) (25=4) (26=7) (29=17) (31=8) (32=9) (33=10) (34=11) (35=12) (36=13) (37=14) (38=15) (39=16)
+	label define varea 0"전국" 1 "서울" 2"부산" 3"대구" 5"인천" 6"광주" 4"대전" 7"울산" 17"세종" 8"경기" 9"강원" 10"충북" 11"충남" 12"전북" 13"전남" 14"경북" 15"경남" 16"제주"
+	label value area varea
+	
+	label define vperiod 1"년간" 2"1분기" 3"2분기" 4"3분기" 5"4분기" 6"전반기" 7"후반기"
+	label value period vperiod
+
+	save res.dta , replace

@@ -167,10 +167,11 @@ set nocompatible " no compatible with the original Vi
             let g:webdevicons_enable_startify = 1
             " add or override individual additional filetypes
                 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
-                let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ado'] = '⚙️'
+                let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ado'] = '🧰'
                 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['do'] = '🛠️'
                 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['dta'] = '💾'
                 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['old'] = '☠️'
+                let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['log'] = '🧭'
         " }}}2
         " Vim-buffet ---------------------- {{{2
             let g:buffet_use_devicons = 1
@@ -220,8 +221,8 @@ set nocompatible " no compatible with the original Vi
             set listchars=tab:!·,trail:·                        " String to use in 'list' mode.
             set previewheight=6                                 " Height of preview window.
             set infercase                                       " Like smartcase for insert completion.
-            set textwidth=120                                   " Wrap at ??? characters.
-            set colorcolumn=120                                 " Show a vertical guide at ??? characters.
+            set textwidth=250                                   " Wrap at ??? characters.
+            set colorcolumn=90                                  " Show a vertical guide at ??? characters.
             set showcmd                                         " Show partial command in the last line of the screen.
             set nojoinspaces                                    " Don't add two spaces after interpunction when using J.
             set switchbuf=useopen,usetab,newtab                 " Use open tab (if any) when trying to jump to a quickfix error.
@@ -287,8 +288,8 @@ set nocompatible " no compatible with the original Vi
         " Global {{{2
         map <leader><leader> :Startify<cr>
         map <leader>t :echo strftime('%Y년 %B %d일 %X')<cr>
+        map <leader>sc :w<cr>:source %<cr>
         map <leader>erc :e $MYVIMRC<cr>
-        map <leader>src :w<cr>:source %<cr>
         map <leader>brc :w! ~/dropbox/Z_personal/myvimrc<cr>:w! ~/github/master/etc/myvimrc<cr>
         ".vimrc를 ~/Dropbox/Z_Personal/myvimrc로 백업{{{3
             "nnoremap  <silent> <leader>brc :call ReplaceIfCurrentIsRecent()<CR> 
@@ -334,7 +335,8 @@ set nocompatible " no compatible with the original Vi
         nnoremap <leader>> viW<esc>a><esc>Bi<<esc>ee
         nnoremap <leader>) viW<esc>a)<esc>Bi(<esc>ee
         nnoremap <leader>ff O/*{{{*/<esc>bf*a
-        nnoremap <leader>fc o/*}}}*/<esc>
+        nnoremap <leader>fc mgo/*}}}*/<esc>`g
+        nnoremap :: :<up><cr>
         "}}}2
         " Visual Mode {{{2
         vnoremap <space> iw

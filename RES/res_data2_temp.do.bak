@@ -1,0 +1,1017 @@
+	cd ~/dropbox/data/res/rawdata/
+	
+	use 2008_연간자료.dta
+		label var v1 행정구역
+		label var v2 가구주와의 관계
+		label var v3 성별
+		label var v4 연령(만나이)
+		label var v5 교육정도(학력)
+		label var v6 계열
+		label var v7 교육정도(수학여부)
+		label var v8 혼인상태
+		label var v9 7.지난1주간활동상태
+		label var v10 8.지난1주간취업여부
+		label var v11 9.일시휴직여부
+		label var v14 12.취업구분
+		label var v15 12-1.주업시간
+		label var v16 12-2.부업시간
+		label var v17 12-3.총취업시간
+		label var v38 25_산업코드
+		label var v39 26_직업코드
+		label var v40 27.종사상지위
+		label var v41 28_직업시작년월
+		label var v42 29_월평균임금
+		label var v43 30.고용계약여부
+		label var v44 30-1.고용계약기간
+		label var v45 31.직업교육(훈련)여부
+		label var v46 사업체소재지
+		label var v47 시군 가중치
+		label var v48 경제활동구분
+	
+	use 2009_연간자료.dta
+		label var v1 행정구역(시군)
+		label var v2 가구주와의 관계
+		label var v3 성별
+		label var v4 연령(만나이)
+		label var v5 교육정도(학력)
+		label var v6 계열
+		label var v7 교육정도(수학여부)
+		label var v8 6.혼인상태
+		label var v9 7.지난1주간활동상태
+		label var v10 8.지난1주간취업여부
+		label var v11 9.일시휴직여부
+		label var v13 11.부업여부
+		label var v14 12.취업구분
+		label var v15 12-1.주업시간
+		label var v16 12-2.부업시간
+		label var v17 12-3.총취업시간
+		label var v35 25_산업코드
+		label var v36 26_직업코드
+		label var v37 27.종사상지위
+		label var v38 28_직업시작년월
+		label var v39 29_월평균임금
+		label var v40 30.고용계약여부
+		label var v41 30-1.고용계약기간
+		label var v43 사업체소재지
+		label var v44 교육정도컨버전
+		label var v45 시군가중치
+		label var v46 경제활동구분
+	
+	use 2010_연간자료.dta
+		label var v1 행정구역
+		label var v2 가구주와의 관계
+		label var v3 성별
+		label var v4 연령(만나이)
+		label var v5 5-1.교육정도(학력)
+		label var v6 5-2.계열(고등학교인 경우)
+		label var v7 5-3.계열(전문대 이상)
+		label var v8 5-4.교육정도(수학여부)
+		label var v9 6.혼인상태
+		label var v11 8.지난1주간활동상태
+		label var v12 9.지난1주간취업여부
+		label var v13 10.일시휴직여부
+		label var v15 12.부업여부
+		label var v16 13.취업구분
+		label var v17 13-1.주업시간
+		label var v18 13-2.부업시간
+		label var v19 13-3.총취업시간
+		label var v37 26.산업코드
+		label var v38 27.직업코드
+		label var v39 28.종사상지위
+		label var v40 29.직장시작년월
+		label var v41 30.동일직업 근무기간
+		label var v42 31.3개월 평균임금
+		label var v43 32.고용계약여부
+		label var v44 32-1.고용계약기간
+		label var v45 사업체소재지코드
+		label var v46 교육정도컨버전
+		label var v47 시군가중치
+		label var v48 경제활동구분
+	
+	use 2011_1분기.dta
+		label var v1 조사년,분기
+		label var v2 행정구역
+		label var v3 가구주와의 관계
+		label var v4 성별
+		label var v5 연령(만나이)
+		label var v6 5-1.교육정도(학력)
+		label var v7 5-2.계열
+		label var v8 5-4.교육정도(수학여부)
+		label var v9 6.혼인상태
+		label var v10 7.지난1주간활동상태
+		label var v11 8.지난1주간취업여부
+		label var v12 9.일시휴직여부
+		label var v14 11.부업여부
+		label var v15 12.취업구분
+		label var v16 12-1.주업시간
+		label var v17 12-2.부업시간
+		label var v18 12-3.총취업시간
+		label var v31 22.산업코드
+		label var v32 23.직업코드
+		label var v33 24.종사상지위
+		label var v34 25.직장시작년월
+		label var v35 26.3개월 평균임금
+		label var v36 27.근로기간 계약여부
+		label var v37 27-1.근로기간
+		label var v38 사업체소재지코드
+		label var v39 교육정도컨버전
+		label var v40 시군가중치
+		label var v41 경제활동구분
+	
+	use 2011_2분기.dta
+		label var v1 조사년,분기
+		label var v2 행정구역
+		label var v3 가구주와의 관계
+		label var v4 성별
+		label var v5 연령(만나이)
+		label var v6 5-1.교육정도(학력)
+		label var v7 5-3.계열
+		label var v8 5-4.교육정도(수학여부)
+		label var v9 6.혼인상태
+		label var v10 7.지난1주간활동상태
+		label var v11 8.지난1주간취업여부
+		label var v12 9.일시휴직여부
+		label var v14 11.부업여부
+		label var v15 12.취업구분
+		label var v16 12-1.주업시간
+		label var v17 12-2.부업시간
+		label var v18 12-3.총취업시간
+		label var v31 22.산업코드
+		label var v32 23.직업코드
+		label var v33 24.종사상지위
+		label var v34 25.직장시작년월
+		label var v35 26.3개월 평균임금
+		label var v36 27.근로기간 계약여부
+		label var v37 27-1.근로기간
+		label var v38 사업체소재지코드
+		label var v39 교육정도컨버전
+		label var v40 시군가중치
+		label var v41 경제활동구분
+	
+	use 2011_3분기.dta
+		label var v1 조사년,분기
+		label var v2 행정구역
+		label var v3 가구주와의 관계
+		label var v4 성별
+		label var v5 연령(만나이)
+		label var v6 5-1.교육정도(학력)
+		label var v7 5-2.계열(고등학교인 경우)
+		label var v8 5-3.계열(전문대 이상)
+		label var v9 5-4.교육정도(수학여부)
+		label var v10 6.혼인상태
+		label var v11 7.지난1주간활동상태
+		label var v12 8.지난1주간취업여부
+		label var v14 10.4주내 구직활동 여부
+		label var v15 11.부업여부
+		label var v16 12.취업구분
+		label var v17 12-1.주업시간
+		label var v18 12-2.부업시간
+		label var v19 12-3.총취업시간
+		label var v37 25.산업코드
+		label var v38 26.직업코드
+		label var v39 27.종사상지위
+		label var v40 29.직장시작 년,월
+		label var v41 30.이 직업에서 일한 기간
+		label var v42 31.3개월 평균임금
+		label var v43 32.근로기간 계약여부
+		label var v44 32-1.근로기간
+		label var v45 사업체소재지코드
+		label var v46 교육정도컨버전
+		label var v47 시군가중치
+		label var v48 경제활동구분
+	
+	use 2011_4분기.dta
+		label var v1 조사년,분기
+		label var v2 행정구역
+		label var v3 2.가구주와의 관계
+		label var v4 3.성별
+		label var v5 4.연령(만나이)
+		label var v6 5-1.교육정도(학력)
+		label var v7 5-2.계열(고등학교)
+		label var v8 5-3.계열(전문대 이상)
+		label var v9 5-4.교육정도(수학여부)
+		label var v10 6.혼인상태
+		label var v11 7.지난1주간활동상태
+		label var v12 8.지난1주간취업여부
+		label var v13 9.일시휴직여부
+		label var v15 11.부업여부
+		label var v16 12.취업구분
+		label var v17 12-1.주업시간
+		label var v18 12-2.부업시간
+		label var v19 12-3.총취업시간
+		label var v32 21.산업코드
+		label var v33 22.직업코드
+		label var v34 23.종사상지위
+		label var v35 24.직장시작 년,월
+		label var v36 25.3개월 평균임금
+		label var v37 26.근로기간 계약여부
+		label var v38 26-1.근로기간
+		label var v43 사업체소재지코드
+		label var v44 교육정도컨버전
+		label var v45 시군가중치
+		label var v46 경제활동구분
+	
+	use 2012_1분기.dta
+		label var v1 조사년,분기
+		label var v2 행정구역
+		label var v3 가구주와의 관계
+		label var v4 성별
+		label var v5 연령(만나이)
+		label var v6 5-1.교육정도(학력)
+		label var v7 5-2.계열(고등학교)
+		label var v8 5-3.계열(전문대 이상)
+		label var v9 5-4.교육정도(수학여부)
+		label var v10 6.혼인상태
+		label var v11 7.지난1주간활동상태
+		label var v12 8.지난1주간취업여부
+		label var v13 9.일시휴직여부
+		label var v15 11.부업여부
+		label var v16 12.취업구분
+		label var v17 12-1.주업시간
+		label var v18 12-2.부업시간
+		label var v19 12-3.총취업시간
+		label var v32 22.산업코드
+		label var v33 23.직업코드
+		label var v34 24.종사상지위
+		label var v35 25.직장시작년월
+		label var v36 26.3개월 평균임금
+		label var v37 27.근로기간 계약여부
+		label var v38 27-1.근로기간
+		label var v39 사업체소재지코드
+		label var v40 교육정도컨버전
+		label var v41 시군가중치
+		label var v42 경제활동상태구분
+	
+	use 2012_2분기.dta
+		label var v1 조사년,분기
+		label var v2 행정구역
+		label var v3 2.가구주와의 관계
+		label var v4 3.성별
+		label var v5 4.연령(만나이)
+		label var v6 5-1.교육정도(학력)
+		label var v7 5-3.계열
+		label var v8 5-4.교육정도(수학여부)
+		label var v9 6.혼인상태
+		label var v10 7.지난1주간활동상태
+		label var v11 8.지난1주간취업여부
+		label var v12 9.일시휴직여부
+		label var v14 11.부업여부
+		label var v15 12.취업구분
+		label var v16 12-1.주업시간
+		label var v17 12-2.부업시간
+		label var v18 12-3.총취업시간
+		label var v31 22.산업코드
+		label var v32 23.직업코드
+		label var v33 24.종사상지위
+		label var v34 25.직장시작년월
+		label var v35 26.3개월 평균임금
+		label var v36 27.근로기간 계약여부
+		label var v37 27-1.근로기간
+		label var v38 사업체소재지코드
+		label var v39 교육정도컨버전
+		label var v40 시군가중치
+		label var v41 경제활동상태
+	
+	use 2012_3분기.dta
+		label var v1 조사년,분기
+		label var v2 행정구역
+		label var v3 가구주와의 관계
+		label var v4 성별
+		label var v5 4.연령(만나이)
+		label var v6 5-1.교육정도(학력)
+		label var v7 5-2.계열(고등학교인 경우)
+		label var v8 5-3.계열(전문대 이상)
+		label var v9 5-4.교육정도(수학여부)
+		label var v10 6.혼인상태
+		label var v11 7.지난1주간활동상태
+		label var v12 8.지난1주간취업여부
+		label var v13 9.일시휴직여부
+		label var v15 11.부업여부
+		label var v16 12.취업구분
+		label var v17 12-1.주업시간
+		label var v18 12-2.부업시간
+		label var v19 12-3.총취업시간
+		label var v37 25.산업코드
+		label var v38 26.직업코드
+		label var v39 27.종사상지위
+		label var v40 28.직장시작 년,월
+		label var v41 29.이 직업에서 일한 기간
+		label var v42 30.3개월 평균임금
+		label var v43 31.근로기간 계약여부
+		label var v44 31-1.근로기간
+		label var v45 사업체소재지코드
+		label var v46 교육정도컨버전
+		label var v47 시군가중치
+		label var v48 경제활동상태구분
+	
+	use 2012_4분기.dta
+		label var v1 조사년,분기
+		label var v2 행정구역
+		label var v3 가구주와의 관계
+		label var v4 성별
+		label var v5 연령(만나이)
+		label var v6 5-1.교육정도(학력)
+		label var v7 5-2.계열(고등학교인 경우)
+		label var v8 5-3.계열(전문대 이상)
+		label var v9 5-4.교육정도(수학여부)
+		label var v10 혼인상태
+		label var v11 지난1주간활동상태
+		label var v12 지난1주간취업여부
+		label var v13 일시휴직여부
+		label var v15 부업여부
+		label var v16 취업구분
+		label var v17 12-1.주업시간
+		label var v18 12-2.부업시간
+		label var v19 12-3.총취업시간
+		label var v32 산업코드
+		label var v33 직업코드
+		label var v34 종사상지위
+		label var v35 직장시작 시기
+		label var v36 월평균임금
+		label var v37 근로기간 계약여부
+		label var v43 사업체소재지코드
+		label var v44 교육정도컨버전
+		label var v45 시군가중치
+		label var v46 경제활동상태
+	
+	use 2013_상반기.dta
+		label var v1 조사년월
+		label var v2 행정구역
+		label var v3 가구주와의 관계
+		label var v4 성별
+		label var v5 연령(만나이)
+		label var v6 5-1.교육정도(학력)
+		label var v7 5-2.계열(고등학교인 경우)
+		label var v8 5-3.계열(전문대 이상)
+		label var v9 5-4.교육정도(수학여부)
+		label var v10 혼인상태
+		label var v11 지난1주간활동상태
+		label var v12 지난1주간취업여부
+		label var v13 일시휴직여부
+		label var v15 부업여부
+		label var v16 취업구분
+		label var v17 12-1.주업시간
+		label var v18 12-2.부업시간
+		label var v19 12-3.총취업시간
+		label var v32 산업코드
+		label var v33 직업코드
+		label var v34 종사상지위
+		label var v35 직장시작 시기
+		label var v36 월평균임금
+		label var v37 근로기간 계약여부
+		label var v38 27-1.고용계약기간
+		label var v39 사업체소재지코드
+		label var v40 교육정도컨버전
+		label var v41 시군 가중치
+		label var v42 경제활동구분
+	
+	use 2013_하반기.dta
+		label var v1 조사년월
+		label var v2 행정구역
+		label var v3 가구주와의 관계
+		label var v4 성별
+		label var v5 연령(만나이)
+		label var v6 5-1.교육정도(학력)
+		label var v7 5-2.계열(고등학교인 경우)
+		label var v8 5-3.계열(전문대 이상)
+		label var v9 5-4.교육정도(수학여부)
+		label var v10 교육정도컨버전
+		label var v11 혼인상태
+		label var v12 지난1주간활동상태
+		label var v13 지난1주간취업여부
+		label var v14 일시휴직여부
+		label var v16 부업여부
+		label var v17 취업구분
+		label var v18 12-1.주업시간
+		label var v19 12-2.부업시간
+		label var v20 12-3.총취업시간
+		label var v33 산업코드
+		label var v34 사업체소재지코드
+		label var v35 직업코드
+		label var v36 종사상지위
+		label var v37 직장시작 시기
+		label var v38 현 직업 기간
+		label var v39 월평균임금
+		label var v40 근로기간 계약여부
+		label var v41 28-1.고용계약기간
+		label var v42 시군 가중치
+		label var v43 경제활동구분
+	
+	use 2014_상반기.dta
+		label var v1 조사년월
+		label var v2 행정구역
+		label var v3 가구주와의 관계
+		label var v4 성별
+		label var v5 연령(만나이)
+		label var v6 5-1.교육정도(학력)
+		label var v7 5-2.계열(고등학교인 경우)
+		label var v8 5-3.계열(전문대 이상)
+		label var v9 5-4.교육정도(수학여부)
+		label var v10 교육정도컨버전
+		label var v11 혼인상태
+		label var v12 지난1주간활동상태
+		label var v13 지난1주간취업여부
+		label var v14 일시휴직여부
+		label var v16 부업여부
+		label var v17 주업부업구분
+		label var v18 12-1.주업시간
+		label var v19 12-2.부업시간
+		label var v20 12-3.총계
+		label var v33 산업코드
+		label var v34 사업체소재지코드
+		label var v35 직업코드
+		label var v36 종사상지위
+		label var v37 직장시작 시기
+		label var v38 월평균임금
+		label var v39 고용계약여부
+		label var v40 27-1.고용계약기간
+		label var v41 시군 가중치
+		label var v42 경제활동구분
+	
+	use 2014_하반기.dta
+		label var v1 조사년월
+		label var v2 행정구역
+		label var v3 가구주와의 관계
+		label var v4 성별
+		label var v5 연령(만나이)
+		label var v6 교육정도컨버전
+		label var v7 5-1.교육정도(학력)
+		label var v8 5-2.계열(고등학교인 경우)
+		label var v9 5-3.계열(전문대 이상)
+		label var v10 5-4.교육정도(수학여부)
+		label var v11 혼인상태
+		label var v12 조사대상주간 주로 한일
+		label var v13 지난1주간취업여부
+		label var v14 일시휴직여부
+		label var v16 부업여부
+		label var v17 주업부업구분
+		label var v18 12-1.주업시간
+		label var v19 12-2.부업시간
+		label var v20 12-3.총취업시간
+		label var v33 산업코드
+		label var v34 사업체소재지(시도)
+		label var v35 직업코드
+		label var v36 직장(일) 지위
+		label var v37 직장시작 시기
+		label var v38 월평균임금
+		label var v39 근로기간 여부
+		label var v40 27-1.고용계약기간
+		label var v41 시군 가중치
+		label var v42 경제활동상태
+	
+	use 2015_상반기.dta
+		label var v1 조사연월
+		label var v2 행정구역시군코드
+		label var v3 가구주관계코드
+		label var v4 성별코드
+		label var v5 만연령
+		label var v6 교육정도코드
+		label var v7 교육정도_고등학교계열코드
+		label var v8 교육정도_전문대이상계열코드
+		label var v9 교육정도_수학구분코드
+		label var v10 교육정도변환코드
+		label var v11 혼인상태코드
+		label var v12 조사대상주간수입목적종사여부
+		label var v13 조사대상주간_무급종사여부
+		label var v14 조사대상주간일시휴직여부
+		label var v15 조사대상주간일시휴직_사유코드
+		label var v16 조사대상주간부업여부
+		label var v17 조사대상주간주업근무시간수
+		label var v18 조사대상주간부업근무시간수
+		label var v19 조사대상주간근무총계시간수
+		label var v20 주업부업총계시간구분코드
+		label var v21 10차산업중분류코드
+		label var v22 근무사업체소재지코드
+		label var v23 7차_2자리직업중분류코드
+		label var v24 종사상지위코드
+		label var v25 조사대상주간직장시작연월
+		label var v26 고용계약기간정함여부
+		label var v27 고용계약기간코드
+		label var v28 최근3개월간평균급여
+		label var v44 경제활동구분코드
+		label var v45 시군가중값
+	
+	use 2015_하반기.dta
+		label var v1 조사연월
+		label var v2 행정구역코드
+		label var v3 가구주관계코드
+		label var v4 성별코드
+		label var v5 만연령
+		label var v6 교육정도코드
+		label var v7 교육정도_고등학교계열코드
+		label var v8 교육정도_전문대이상계열코드
+		label var v9 교육정도_수학구분코드
+		label var v10 교육정도변환코드
+		label var v11 혼인상태코드
+		label var v12 조사대상주간수입목적종사여부
+		label var v13 조사대상주간_무급종사여부
+		label var v14 조사대상주간일시휴직여부
+		label var v15 조사대상주간일시휴직_사유코드
+		label var v16 조사대상주간부업여부
+		label var v17 조사대상주간주업근무시간수
+		label var v18 조사대상주간부업근무시간수
+		label var v19 조사대상주간근무총계시간수
+		label var v20 주업부업총계시간구분코드
+		label var v21 10차_산업분류코드
+		label var v22 사업체소재지행정구역코드
+		label var v23 7차_직업분류코드
+		label var v24 조사대상주간직장시작연월
+		label var v25 종사상지위코드
+		label var v26 고용계약기간정함여부
+		label var v27 고용계약기간코드
+		label var v28 최근3개월평균급여
+		label var v44 경제활동구분코드
+		label var v45 시군가중값
+	
+	use 2016_상반기.dta
+		label var v1 조사연월
+		label var v2 행정구역시군코드
+		label var v3 가구주관계코드
+		label var v4 성별코드
+		label var v5 만연령
+		label var v6 교육정도코드
+		label var v7 교육정도_고등학교계열코드
+		label var v8 교육정도_전문대이상계열코드
+		label var v9 교육정도_수학구분코드
+		label var v10 교육정도변환코드
+		label var v11 혼인상태코드
+		label var v12 조사대상주간수입목적종사여부
+		label var v13 조사대상주간_무급종사여부
+		label var v14 조사대상주간일시휴직여부
+		label var v15 조사대상주간일시휴직_사유코드
+		label var v16 조사대상주간부업여부
+		label var v17 조사대상주간주업근무시간수
+		label var v18 조사대상주간부업근무시간수
+		label var v19 조사대상주간근무총계시간수
+		label var v20 주업부업총계시간구분코드
+		label var v21 10차산업중분류코드
+		label var v22 근무사업체소재지코드
+		label var v23 7차_2자리직업중분류코드
+		label var v24 종사상지위코드
+		label var v25 조사대상주간직장시작연월
+		label var v26 고용계약기간정함여부
+		label var v27 고용계약기간코드
+		label var v28 최근3개월간평균급여
+		label var v44 경제활동구분코드
+		label var v45 시군가중값
+	
+	use 2016_하반기.dta
+		label var v1 조사연월
+		label var v2 행정구역코드
+		label var v3 가구주관계코드
+		label var v4 성별코드
+		label var v5 만연령
+		label var v6 교육정도코드
+		label var v7 교육정도_고등학교계열코드
+		label var v8 교육정도_전문대이상계열코드
+		label var v9 교육정도_수학구분코드
+		label var v10 교육정도변환코드
+		label var v11 혼인상태코드
+		label var v12 조사대상주간수입목적종사여부
+		label var v13 조사대상주간_무급종사여부
+		label var v14 조사대상주간일시휴직여부
+		label var v15 조사대상주간일시휴직_사유코드
+		label var v16 조사대상주간부업여부
+		label var v17 조사대상주간주업근무시간수
+		label var v18 조사대상주간부업근무시간수
+		label var v19 조사대상주간근무총계시간수
+		label var v20 주업부업총계시간구분코드
+		label var v21 10차_산업분류코드
+		label var v22 7차_직업분류코드
+		label var v23 사업체소재지행정구역코드
+		label var v24 조사대상주간직장시작연월
+		label var v25 종사상지위코드
+		label var v26 고용계약기간정함여부
+		label var v27 고용계약기간코드
+		label var v28 최근3개월평균급여
+		label var v44 경제활동구분코드
+		label var v45 시군가중값
+	
+	use 2017_상반기.dta
+		label var v1 조사연월
+		label var v2 행정구역시군코드
+		label var v3 가구주관계코드
+		label var v4 성별코드
+		label var v5 만연령
+		label var v6 교육정도코드
+		label var v7 교육정도_고등학교계열코드
+		label var v8 교육정도_전문대이상계열코드
+		label var v9 교육정도_수학구분코드
+		label var v10 교육정도변환코드
+		label var v11 혼인상태코드
+		label var v12 조사대상주간수입목적종사여부
+		label var v13 조사대상주간_무급종사여부
+		label var v14 조사대상주간일시휴직여부
+		label var v15 조사대상주간일시휴직_사유코드
+		label var v16 조사대상주간부업여부
+		label var v17 조사대상주간주업근무시간수
+		label var v18 조사대상주간부업근무시간수
+		label var v19 조사대상주간근무총계시간수
+		label var v20 주업부업총계시간구분코드
+		label var v21 10차산업중분류코드
+		label var v22 근무사업체소재지코드
+		label var v23 7차_2자리직업중분류코드
+		label var v24 종사상지위코드
+		label var v25 조사대상주간직장시작연월
+		label var v26 고용계약기간정함여부
+		label var v27 고용계약기간코드
+		label var v28 최근3개월간평균급여
+		label var v44 경제활동구분코드
+		label var v45 시군가중값
+	
+	use 2017_하반기.dta
+		label var v1 조사연월
+		label var v2 행정구역코드
+		label var v3 가구주관계코드
+		label var v4 성별코드
+		label var v5 만연령
+		label var v6 교육정도코드
+		label var v7 교육정도_고등학교계열코드
+		label var v8 교육정도_전문대이상계열코드
+		label var v9 교육정도_수학구분코드
+		label var v10 교육정도변환코드
+		label var v11 혼인상태코드
+		label var v12 조사대상주간수입목적종사여부
+		label var v13 조사대상주간_무급종사여부
+		label var v14 조사대상주간일시휴직여부
+		label var v15 조사대상주간일시휴직_사유코드
+		label var v16 조사대상주간부업여부
+		label var v17 조사대상주간주업근무시간수
+		label var v18 조사대상주간부업근무시간수
+		label var v19 조사대상주간근무총계시간수
+		label var v20 주업부업총계시간구분코드
+		label var v21 10차_산업분류코드
+		label var v22 7차_직업분류코드
+		label var v23 사업체소재지행정구역코드
+		label var v24 조사대상주간직장시작연월
+		label var v25 종사상지위코드
+		label var v26 고용계약기간정함여부
+		label var v27 고용계약기간코드
+		label var v28 최근3개월평균급여
+		label var v46 경제활동구분코드
+		label var v47 시군가중값
+	
+	use 2018_상반기.dta
+		label var v1 조사연월
+		label var v2 행정구역시군코드
+		label var v3 가구주관계코드
+		label var v4 성별코드
+		label var v5 만연령
+		label var v6 교육정도코드
+		label var v7 교육정도_고등학교계열코드
+		label var v8 교육정도_전문대이상계열코드
+		label var v9 교육정도_수학구분코드
+		label var v10 교육정도변환코드
+		label var v11 혼인상태코드
+		label var v12 조사대상주간수입목적종사여부
+		label var v13 조사대상주간_무급종사여부
+		label var v14 조사대상주간일시휴직여부
+		label var v15 조사대상주간일시휴직_사유코드
+		label var v16 조사대상주간부업여부
+		label var v17 조사대상주간주업근무시간수
+		label var v18 조사대상주간부업근무시간수
+		label var v19 조사대상주간근무총계시간수
+		label var v20 주업부업총계시간구분코드
+		label var v21 10차산업중분류코드
+		label var v22 근무사업체소재지코드
+		label var v23 7차_2자리직업중분류코드
+		label var v24 종사상지위코드
+		label var v25 조사대상주간직장시작연월
+		label var v26 고용계약기간정함여부
+		label var v27 고용계약기간코드
+		label var v28 최근3개월간평균급여
+		label var v44 경제활동구분코드
+		label var v45 시군가중값
+	
+	use 2018_하반기.dta
+		label var v1 조사연월
+		label var v2 행정구역코드
+		label var v3 가구주관계코드
+		label var v4 성별코드
+		label var v5 만연령
+		label var v6 교육정도코드
+		label var v7 교육정도_고등학교계열코드
+		label var v8 교육정도_전문대이상계열코드
+		label var v9 교육정도_수학구분코드
+		label var v10 교육정도변환코드
+		label var v11 혼인상태코드
+		label var v12 조사대상주간수입목적종사여부
+		label var v13 조사대상주간_무급종사여부
+		label var v14 조사대상주간일시휴직여부
+		label var v15 조사대상주간일시휴직_사유코드
+		label var v16 조사대상주간부업여부
+		label var v17 조사대상주간주업근무시간수
+		label var v18 조사대상주간부업근무시간수
+		label var v19 조사대상주간근무총계시간수
+		label var v20 주업부업총계시간구분코드
+		label var v21 10차_산업분류코드
+		label var v22 7차_직업분류코드
+		label var v23 사업체소재지행정구역코드
+		label var v24 조사대상주간직장시작연월
+		label var v25 종사상지위코드
+		label var v26 고용계약기간정함여부
+		label var v27 고용계약기간코드
+		label var v28 최근3개월평균급여
+		label var v46 경제활동구분코드
+		label var v47 시군가중값
+	
+	use 2019_상반기.dta
+		label var v1 조사연월
+		label var v2 행정구역시군코드
+		label var v3 가구주관계코드
+		label var v4 성별코드
+		label var v5 만연령
+		label var v6 교육정도코드
+		label var v7 만연령변환코드
+		label var v8 교육정도_고등학교계열코드
+		label var v9 교육정도_전문대이상계열코드
+		label var v10 교육정도_수학구분코드
+		label var v11 교육정도변환코드
+		label var v12 혼인상태코드
+		label var v13 조사대상주간수입목적종사여부
+		label var v14 조사대상주간_무급종사여부
+		label var v15 조사대상주간일시휴직여부
+		label var v16 조사대상주간일시휴직_사유코드
+		label var v17 조사대상주간부업여부
+		label var v18 조사대상주간주업근무시간수
+		label var v19 조사대상주간부업근무시간수
+		label var v20 조사대상주간근무총계시간수
+		label var v21 주업부업총계시간구분코드
+		label var v22 10차산업중분류코드
+		label var v23 근무사업체소재지코드
+		label var v24 7차_2자리직업중분류코드
+		label var v25 종사상지위코드
+		label var v26 조사대상주간직장시작연월
+		label var v27 고용계약기간정함여부
+		label var v28 고용계약기간코드
+		label var v29 최근3개월간평균급여
+		label var v45 경제활동구분코드
+		label var v46 시군가중값
+	
+	use 2019_하반기.dta
+		label var v1 조사연월
+		label var v2 행정구역코드
+		label var v3 가구주관계코드
+		label var v4 성별코드
+		label var v5 만연령
+		label var v6 교육정도코드
+		label var v7 교육정도_고등학교계열코드
+		label var v8 교육정도_전문대이상계열코드
+		label var v9 교육정도_수학구분코드
+		label var v10 교육정도변환코드
+		label var v11 혼인상태코드
+		label var v12 조사대상주간수입목적종사여부
+		label var v13 조사대상주간_무급종사여부
+		label var v14 조사대상주간일시휴직여부
+		label var v15 조사대상주간일시휴직_사유코드
+		label var v16 조사대상주간부업여부
+		label var v17 조사대상주간주업근무시간수
+		label var v18 조사대상주간부업근무시간수
+		label var v19 조사대상주간근무총계시간수
+		label var v20 주업부업총계시간구분코드
+		label var v21 10차_산업분류코드
+		label var v22 7차_직업분류코드
+		label var v23 사업체소재지행정구역코드
+		label var v24 조사대상주간직장시작연월
+		label var v25 종사상지위코드
+		label var v26 고용계약기간정함여부
+		label var v27 고용계약기간코드
+		label var v28 최근3개월평균급여
+		label var v46 경제활동구분코드
+		label var v47 시군가중값
+	
+	use 2020_상반기.dta
+		label var v1 조사연월
+		label var v2 행정구역시군코드
+		label var v3 가구주관계코드
+		label var v4 성별코드
+		label var v5 만연령
+		label var v6 교육정도코드
+		label var v7 만연령변환코드
+		label var v8 교육정도_고등학교계열코드
+		label var v9 교육정도_전문대이상계열코드
+		label var v10 교육정도_수학구분코드
+		label var v11 교육정도변환코드
+		label var v12 혼인상태코드
+		label var v13 조사대상주간수입목적종사여부
+		label var v14 조사대상주간_무급종사여부
+		label var v15 조사대상주간일시휴직여부
+		label var v16 조사대상주간일시휴직_사유코드
+		label var v17 조사대상주간부업여부
+		label var v18 조사대상주간주업근무시간수
+		label var v19 조사대상주간부업근무시간수
+		label var v20 조사대상주간근무총계시간수
+		label var v21 주업부업총계시간구분코드
+		label var v22 10차산업중분류코드
+		label var v23 근무사업체소재지코드
+		label var v24 7차_2자리직업중분류코드
+		label var v25 종사상지위코드
+		label var v26 조사대상주간직장시작연월
+		label var v27 고용계약기간정함여부
+		label var v28 고용계약기간코드
+		label var v29 최근3개월간평균급여
+		label var v45 경제활동구분코드
+		label var v46 시군가중값
+	
+	use 2020_하반기.dta
+		label var v1 조사연월
+		label var v2 행정구역코드
+		label var v3 가구주관계코드
+		label var v4 성별코드
+		label var v5 만연령
+		label var v6 교육정도코드
+		label var v7 교육정도_고등학교계열코드
+		label var v8 교육정도_전문대이상계열코드
+		label var v9 교육정도_수학구분코드
+		label var v10 교육정도변환코드
+		label var v11 혼인상태코드
+		label var v12 조사대상주간수입목적종사여부
+		label var v13 조사대상주간_무급종사여부
+		label var v14 조사대상주간일시휴직여부
+		label var v15 조사대상주간일시휴직_사유코드
+		label var v16 조사대상주간부업여부
+		label var v17 조사대상주간주업근무시간수
+		label var v18 조사대상주간부업근무시간수
+		label var v19 조사대상주간근무총계시간수
+		label var v20 주업부업총계시간구분코드
+		label var v21 10차_산업분류코드
+		label var v22 7차_직업분류코드
+		label var v23 사업체소재지행정구역코드
+		label var v24 조사대상주간직장시작연월
+		label var v25 종사상지위코드
+		label var v26 고용계약기간정함여부
+		label var v27 고용계약기간코드
+		label var v28 최근3개월평균급여
+		label var v46 경제활동구분코드
+		label var v47 시군가중값
+	
+	use 2021_상반기.dta
+		label var v1 조사연월
+		label var v2 가구주관계코드
+		label var v3 4자리_행정구역분류코드
+		label var v4 성별코드
+		label var v5 만연령
+		label var v6 교육정도코드
+		label var v7 만연령변환코드
+		label var v8 교육정도_고등학교계열코드
+		label var v9 교육정도_전문대이상계열코드
+		label var v10 교육정도_수학구분코드
+		label var v11 혼인상태코드
+		label var v12 조사대상주간수입목적종사여부
+		label var v13 교육정도변환코드
+		label var v14 조사대상주간_무급종사여부
+		label var v15 조사대상주간일시휴직여부
+		label var v16 조사대상주간일시휴직_사유코드
+		label var v17 조사대상주간부업여부
+		label var v18 조사대상주간주업근무시간수
+		label var v19 조사대상주간부업근무시간수
+		label var v20 조사대상주간근무총계시간수
+		label var v21 주업부업총계시간구분코드
+		label var v22 근무사업체소재지코드
+		label var v23 직장종사자규모코드
+		label var v24 10차산업_대분류코드
+		label var v25 7차_1자리직업대분류코드
+		label var v26 종사상지위코드
+		label var v27 조사대상주간직장시작연월
+		label var v28 고용계약기간정함여부
+		label var v29 고용계약기간코드
+		label var v30 최근3개월간평균급여
+		label var v46 시군구가중값
+		label var v47 경제활동구분코드
+	
+	use 2021_하반기.dta
+		label var v1 조사연월
+		label var v2 가구주관계코드
+		label var v3 성별코드
+		label var v4 만연령
+		label var v5 교육정도코드
+		label var v6 교육정도_고등학교계열코드
+		label var v7 교육정도_전문대이상계열코드
+		label var v8 교육정도_수학구분코드
+		label var v9 혼인상태코드
+		label var v10 조사대상주간수입목적종사여부
+		label var v11 조사대상주간_무급종사여부
+		label var v12 조사대상주간일시휴직여부
+		label var v13 조사대상주간일시휴직_사유코드
+		label var v14 조사대상주간부업여부
+		label var v15 조사대상주간주업근무시간수
+		label var v16 조사대상주간부업근무시간수
+		label var v17 조사대상주간근무총계시간수
+		label var v18 주업부업총계시간구분코드
+		label var v19 사업체소재지행정구역코드
+		label var v20 직장종사자규모코드
+		label var v21 10차_산업분류코드
+		label var v22 7차_직업분류코드
+		label var v23 조사대상주간직장시작연월
+		label var v24 종사상지위코드
+		label var v25 고용계약기간정함여부
+		label var v26 고용계약기간코드
+		label var v27 최근3개월평균급여
+		label var v45 행정구역코드
+		label var v46 시군구가중값
+		label var v47 경제활동구분코드
+		label var v48 만연령변환코드
+		label var v49 교육정도변환코드
+	
+	use 2022_상반기.dta
+		label var v1 조사연월
+		label var v2 가구주관계코드
+		label var v3 4자리_행정구역분류코드
+		label var v4 성별코드
+		label var v5 만연령
+		label var v6 교육정도코드
+		label var v7 만연령변환코드
+		label var v8 교육정도_고등학교계열코드
+		label var v9 교육정도_전문대이상계열코드
+		label var v10 교육정도_수학구분코드
+		label var v11 혼인상태코드
+		label var v12 조사대상주간수입목적종사여부
+		label var v13 교육정도변환코드
+		label var v14 조사대상주간_무급종사여부
+		label var v15 조사대상주간일시휴직여부
+		label var v16 조사대상주간일시휴직_사유코드
+		label var v17 조사대상주간부업여부
+		label var v18 조사대상주간주업근무시간수
+		label var v19 조사대상주간부업근무시간수
+		label var v20 조사대상주간근무총계시간수
+		label var v21 주업부업총계시간구분코드
+		label var v22 근무사업체소재지코드
+		label var v23 직장종사자규모코드
+		label var v24 10차산업_대분류코드
+		label var v25 7차_1자리직업대분류코드
+		label var v26 종사상지위코드
+		label var v27 조사대상주간직장시작연월
+		label var v28 고용계약기간정함여부
+		label var v29 고용계약기간코드
+		label var v30 최근3개월간평균급여
+		label var v46 시군구가중값
+		label var v47 경제활동구분코드
+	
+	use 2022_하반기.dta
+		label var v1 조사연월
+		label var v2 가구주관계코드
+		label var v3 성별코드
+		label var v4 만연령
+		label var v5 교육정도코드
+		label var v6 교육정도_고등학교계열코드
+		label var v7 교육정도_전문대이상계열코드
+		label var v8 교육정도_수학구분코드
+		label var v9 혼인상태코드
+		label var v10 조사대상주간수입목적종사여부
+		label var v11 조사대상주간_무급종사여부
+		label var v12 조사대상주간일시휴직여부
+		label var v13 조사대상주간일시휴직_사유코드
+		label var v14 조사대상주간부업여부
+		label var v15 조사대상주간주업근무시간수
+		label var v16 조사대상주간부업근무시간수
+		label var v17 조사대상주간근무총계시간수
+		label var v18 주업부업총계시간구분코드
+		label var v19 사업체소재지행정구역코드
+		label var v20 직장종사자규모코드
+		label var v21 10차_산업분류코드
+		label var v22 7차_직업분류코드
+		label var v23 조사대상주간직장시작연월
+		label var v24 종사상지위코드
+		label var v25 고용계약기간정함여부
+		label var v26 고용계약기간코드
+		label var v27 최근3개월평균급여
+		label var v45 행정구역코드
+		label var v46 시군구가중값
+		label var v47 경제활동구분코드
+		label var v48 만연령변환코드
+		label var v49 교육정도변환코드
+	
+	use 2023_상반기.dta
+		label var v1 조사연월
+		label var v2 가구주관계코드
+		label var v3 4자리_행정구역분류코드
+		label var v4 성별코드
+		label var v5 만연령
+		label var v6 교육정도코드
+		label var v7 만연령변환코드
+		label var v8 교육정도_고등학교계열코드
+		label var v9 교육정도_전문대이상계열코드
+		label var v10 교육정도_수학구분코드
+		label var v11 혼인상태코드
+		label var v12 조사대상주간수입목적종사여부
+		label var v13 교육정도변환코드
+		label var v14 조사대상주간_무급종사여부
+		label var v15 조사대상주간일시휴직여부
+		label var v16 조사대상주간일시휴직_사유코드
+		label var v17 조사대상주간부업여부
+		label var v18 조사대상주간주업근무시간수
+		label var v19 조사대상주간부업근무시간수
+		label var v20 조사대상주간근무총계시간수
+		label var v21 주업부업총계시간구분코드
+		label var v22 근무사업체소재지코드
+		label var v23 직장종사자규모코드
+		label var v24 10차산업_대분류코드
+		label var v25 7차_1자리직업대분류코드
+		label var v26 종사상지위코드
+		label var v27 조사대상주간직장시작연월
+		label var v28 고용계약기간정함여부
+		label var v29 고용계약기간코드
+		label var v30 최근3개월간평균급여
+		label var v46 시군구가중값
+        label var v47 경제활동구분코드
+save `path'res_data2_temp.do, replace

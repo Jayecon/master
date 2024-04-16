@@ -1,0 +1,26 @@
+" 폴더 내의 모든 .do 파일에 대해 반복
+for file in split(glob("*.do"), '\n')
+    " 파일을 읽기 모드로 열기
+    execute "edit " . file
+
+    " 파일 내용을 읽어오기
+    let contents = getline(1, "$")
+
+    " 각 줄에 대해 반복
+    for i in range(len(contents))
+        " 해당 줄에 "save" 단어가 있는지 확인
+        if contents[i] =~# 'save'
+            " "("부터 "."의 앞까지의 문자열 삭제
+            let modified_line = substitute(contents[i], '([^\.]*)\.', '', '')
+            " 변경된 줄로 대체
+            call setline(i + 1, modified_line)
+            " 변경된 내용 저장
+            w
+            " 반복문 종료
+            break
+        endif
+    endfor
+
+    " 파일 닫기
+    bd
+endfor

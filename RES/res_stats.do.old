@@ -1,0 +1,21 @@
+use ~/dropbox/klips/klips_area.dta , clear
+preserve
+
+forvalue i = 1998/2018 {
+	eopcal income [aw=wgt] if head & age1865 & men & worker & year == `i' , env(area) stat
+	matrix aaa = r(results)
+	svmat aaa , names(matcol)
+	keep aaa*
+	rename aaa* *
+	drop if missing(N)
+	label value Group varea
+	gen year = `i'
+	if (`i' == 1998) {
+		save klips_stat.dta , replace
+	}
+	else {
+		append using klips_stat.dta
+		save klips_stat.dta , replace
+	}
+	restore , preserve
+}
