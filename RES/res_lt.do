@@ -2,30 +2,30 @@ local path ~/dropbox/data/res/
 tempfile tfile1
 save `tfile1' , replace emptyok
 
-    use `path'rawdata/res.dta ///
+    use `path'/res.dta ///
         if (inlist(edulv , 4 , 5 , 6 , 7) | (edulv == 3 & educp == 1)) ////
             & ((inrange(age , 20 , 34) & sex == 1) | (inrange(age , 18 , 34) & sex == 2)) ///
             , clear
-        do ~/github/master/res/res_collapse.do
+        do ~/github/master/res/res_lt_collapse.do
         rename * *_hs
         rename (aread sdate) (aread sdate)
         save `tfile1' , replace
 
-    use `path'rawdata/res.dta ///
+    use `path'/res.dta ///
         if (inlist(edulv , 5 , 6 , 7) | (edulv == 4 & educp == 1)) ///
             & ((inrange(age , 22 , 34) & sex == 1) | (inrange(age , 20 , 34) & sex == 2)) ///
             , clear
-        do ~/github/master/res/res_collapse.do
+        do ~/github/master/res/res_lt_collapse.do
         rename * *_cc
         rename (aread sdate) (aread sdate)
         merge 1:1 aread sdate using `tfile1' , nogen
     save `tfile1' , replace
 
-    use `path'rawdata/res.dta ///
+    use `path'/res.dta ///
         if (inlist(edulv , 6 , 7) | (edulv == 5 & educp == 1)) ///
             & ((inrange(age , 24 , 34) & sex == 1) | (inrange(age , 22 , 34) & sex == 2)) ///
             , clear
-        do ~/github/master/res/res_collapse.do
+        do ~/github/master/res/res_lt_collapse.do
         rename * *_uv
         rename (aread sdate) (aread sdate)
         merge 1:1 aread sdate using `tfile1' , nogen
@@ -72,4 +72,4 @@ save `tfile1' , replace emptyok
         order _all , alpha
         order area aread sdate , first
         sort area aread sdate
-save `path'res_localtalent , replace
+save `path'res_lt , replace

@@ -274,6 +274,7 @@ set nocompatible " no compatible with the original Vi
     "Search " {{{2
         set incsearch                          " Jump to match while typing the pattern in /.
         set hlsearch                           " Highlight last used search pattern.
+            nnoremap <silent> <leader>h :silent set hls!<cr>
         set ignorecase                         " Case-insensitive searching unless \C is in the pattern…
         set smartcase                          " …or the pattern contains an upper-case letter.
         set nowrapscan                         " Don't wrap search.
@@ -289,7 +290,7 @@ set nocompatible " no compatible with the original Vi
         map <leader><leader> :Startify<cr>
         map <leader>t :echo strftime('%Y년 %B %d일 %X')<cr>
         map <leader>sc :w<cr>:source %<cr>
-        map <leader>erc :e $MYVIMRC<cr>
+        map <leader>rc :e $MYVIMRC<cr>
         map <leader>brc :w! ~/dropbox/Z_personal/myvimrc<cr>:w! ~/github/master/etc/myvimrc<cr>
         ".vimrc를 ~/Dropbox/Z_Personal/myvimrc로 백업{{{3
             "nnoremap  <silent> <leader>brc :call ReplaceIfCurrentIsRecent()<CR> 
@@ -313,7 +314,6 @@ set nocompatible " no compatible with the original Vi
             "}}}3
         map <leader>urc :e! ~/dropbox/Z_personal/myvimrc<cr>:w! $MYVIMRC<cr>:source $MYVIMRC<cr>
         map <silent> <leader>l :silent set list!<cr>
-        map <silent> <leader>w :silent set autowrite!<cr>
         map <silent> <leader>box :cd ~/dropbox<cr>:pwd<cr>
         if has('win32')
             map <silent> <leader>git :cd ~/git<cr>:pwd<cr>
@@ -322,10 +322,12 @@ set nocompatible " no compatible with the original Vi
         endif
         "}}}2
         " Insert Mode {{{2
+        inoremap <F2> <C-o>:w<CR>
         inoremap jk <esc>
         inoremap ㅓㅏ <esc>
         "}}}2
         " Normal Mode {{{2
+        nnoremap <F2> :w<cr>
         nnoremap <space> za
         nnoremap <c-w>. 10<c-w>>
         nnoremap <c-w>, 10<c-w><
@@ -334,9 +336,11 @@ set nocompatible " no compatible with the original Vi
         nnoremap <leader>' viW<esc>a'<esc>Bi'<esc>ee
         nnoremap <leader>> viW<esc>a><esc>Bi<<esc>ee
         nnoremap <leader>) viW<esc>a)<esc>Bi(<esc>ee
-        nnoremap <leader>ff O/*{{{*/<esc>bf*a
-        nnoremap <leader>fc mgo/*}}}*/<esc>`g
         nnoremap :: :<up><cr>
+        nnoremap Y y$
+        nnoremap cw viwc
+        nnoremap <leader>ff O<c-d>/*{{{*/<esc>bf*a
+        nnoremap <leader>fc mgo<c-d>/*}}}*/<esc>`g
         "}}}2
         " Visual Mode {{{2
         vnoremap <space> iw
@@ -373,17 +377,7 @@ set nocompatible " no compatible with the original Vi
         cnoreabbrev HR vert bo h
         cnoreabbrev Bd bd
         "}}}2
-        " buffer {{{2
-            nmap <leader>1 <Plug>BuffetSwitch(1)
-            nmap <leader>2 <Plug>BuffetSwitch(2)
-            nmap <leader>3 <Plug>BuffetSwitch(3)
-            nmap <leader>4 <Plug>BuffetSwitch(4)
-            nmap <leader>5 <Plug>BuffetSwitch(5)
-            nmap <leader>6 <Plug>BuffetSwitch(6)
-            nmap <leader>7 <Plug>BuffetSwitch(7)
-            nmap <leader>8 <Plug>BuffetSwitch(8)
-            nmap <leader>9 <Plug>BuffetSwitch(9)
-            nmap <leader>0 <Plug>BuffetSwitch(10)
+        " Buffer {{{2
             noremap <silent> <Tab> :bn<CR>
             noremap <silent> <S-Tab> :bp<CR>
             noremap <silent> <Leader><Tab> :Bw<CR>
@@ -400,10 +394,12 @@ set nocompatible " no compatible with the original Vi
         " }}}2
         "STATA Mapping {{{2
         if has('win32')
+            autocmd FileType stata set iskeyword-=_
             autocmd FileType stata nnoremap <F8> :!"c:\stata\stataMP-64.exe" doedit %:p<CR><CR>
             autocmd FileType stata inoremap <F8> :!"c:\stata\stataMP-64.exe" doedit %:p<CR><CR>
             autocmd FileType stata nnoremap <F9> :w<CR>:!"c:\stata\stataMP-64.exe" /e do %:p<CR>:! move %:t:r.log %:p:r.log <CR>:e %:p:r.log<CR>:set syntax=stata<CR>
         elseif has('macunix')
+            autocmd FileType stata set iskeyword-=_
             autocmd FileType stata nnoremap <F8> :! /Applications/Stata/StataMP.app/Contents/MacOS/StataMP doedit %:p<CR>
             autocmd FileType stata inoremap <F8> :! /Applications/Stata/StataMP.app/Contents/MacOS/StataMP doedit %:p<CR>
             autocmd FileType stata nnoremap <F9> :w<CR>:! /Applications/Stata/StataMP.app/Contents/MacOS/StataMP -e do %:p<CR>:!mv %:t:r.log %:p:r.log<CR>:e %:p:r.log<CR>:set syntax=stata<CR>

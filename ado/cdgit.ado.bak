@@ -1,10 +1,10 @@
   capture program drop cdgit
   program cdgit
     if "`c(os)'" == "MacOSX" {
-        cd ~/github/master/`1'
+        cd ~/github/master
     }
     else {
-        cd ~/git/`1'
+        cd ~/git
     }
   end
   

@@ -1,0 +1,58 @@
+tempfile tfile1
+save `tfile1' , replace emptyok
+    /*관측치*/
+        preserve
+        collapse (count) wgt , by(aread sdate)
+            rename wgt n
+        save `tfile1' , replace
+    /*장기실업자비율(6개월)*/
+        restore , preserve
+        gen ump6 = inrange(jstime , 6 , 99)
+        mvdecode ump6 if missing(jstime) , mv(0)
+        collapse (mean) ump6 [pw=wgt] , by(aread sdate)
+        merge 1:1 sdate aread using `tfile1' , nogen
+        save `tfile1' , replace
+    /*장기실업자비율(9개월)*/
+        restore , preserve
+        gen ump9 = inrange(jstime , 9 , 99)
+        mvdecode ump9 if missing(jstime) , mv(0)
+        collapse (mean) ump9 [pw=wgt] , by(aread sdate)
+        merge 1:1 sdate aread using `tfile1' , nogen
+        save `tfile1' , replace
+    /*장기실업자비율(12개월)*/
+        restore , preserve
+        gen ump12 = inrange(jstime , 12 , 99)
+        mvdecode ump12 if missing(jstime) , mv(0)
+        collapse (mean) ump12 [pw=wgt] , by(aread sdate)
+        merge 1:1 sdate aread using `tfile1' , nogen
+        save `tfile1' , replace
+    /*실업률*/
+        restore , preserve
+        tab eastat , gen(eastat)
+        mvdecode eastat2 if eastat3 , mv(0)
+        collapse (mean) eastat2 [pw=wgt] , by(aread sdate)
+            rename eastat2 urate
+        merge 1:1 sdate aread using `tfile1' , nogen
+        save `tfile1' , replace
+    /*경활참가율*/
+        restore , preserve
+        tab eastat , gen(eastat)
+        collapse (mean) eastat3 [pw=wgt] , by(aread sdate)
+            replace eastat3 = abs(1- eastat3)
+            rename eastat3 prate
+        merge 1:1 sdate aread using `tfile1' , nogen
+        save `tfile1' , replace
+    /*월평균임금*/
+        restore , preserve
+        mvdecode wage , mv(0)
+        collapse (p50) wage [pw=wgt] , by(aread sdate)
+            rename wage wagep50
+        merge 1:1 sdate aread using `tfile1' , nogen
+        save `tfile1' , replace
+    /*월평균시급*/
+        restore 
+        mvdecode wage , mv(0)
+        gen hrate = wage / mhour
+        collapse (p50) hrate [pw=wgt] , by(aread sdate)
+            rename hrate hratep50
+        merge 1:1 sdate aread using `tfile1' , nogen
