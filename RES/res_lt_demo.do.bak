@@ -1,0 +1,2 @@
+import delimited "/Users/jay/Library/CloudStorage/Dropbox/Data/RES/kosis/110_DT_11001N_2013_A001_20240422180451.csv", encoding(UTF-8)clear
+rename (년 I J K L M N O P Q R S) (2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019 2020)

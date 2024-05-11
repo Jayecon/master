@@ -317,3 +317,4 @@ label data "GOMS 07-17"
 	order pid wave year , first
 	sort wave pid
 save ~/dropbox/goms/goms_master.dta , replace
+

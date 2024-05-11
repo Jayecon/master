@@ -38,6 +38,7 @@ use `path'goms/goms_eq_raw , clear
         h046 h047 h048 h049 h050z ///
         f001 f002 f006 f007 f008 f009 ///
         p045 ///
+        f036 f037 f038 f039 f040 f041 l001 l003 l016 l042 l068 m001 m002 /// /*eq 2nd rv */
         wt             /*가중치*/
         foreach i of local numvarlist {
         di "VAR : `i'"
@@ -378,14 +379,14 @@ use `path'goms/goms_eq_raw , clear
         label var f009  "`temp'"
         label copy G191F009 F009
         label value f009 F009
-        recode f009 (3/4=3) (5=4) (9=10) if year == 2007
-        recode f009 (3/4=3) (5=4) (9=10) if year == 2008
-        recode f009 (3/4=3) (5=4) (9=10) if year == 2009
-        recode f009 (3/4=3) (5=4) (9=10) if year == 2010
-        recode f009 (3/4=3) (5=4) (9=10) if year == 2011
-        recode f009 (3/4=3) (5=4) (9=10) if year == 2012
-        recode f009 (3/4=3) (5=4) (9=10) if year == 2013
-        recode f009 (4=6) (5=7) (6=8) (7=4) (8=10) if year == 2014
+            recode f009 (3/4=3) (5=4) (9=10) if year == 2007
+            recode f009 (3/4=3) (5=4) (9=10) if year == 2008
+            recode f009 (3/4=3) (5=4) (9=10) if year == 2009
+            recode f009 (3/4=3) (5=4) (9=10) if year == 2010
+            recode f009 (3/4=3) (5=4) (9=10) if year == 2011
+            recode f009 (3/4=3) (5=4) (9=10) if year == 2012
+            recode f009 (3/4=3) (5=4) (9=10) if year == 2013
+            recode f009 (4=6) (5=7) (6=8) (7=4) (8=10) if year == 2014
         local temp : var label f07319
         label var f073  "`temp'"
         label copy G191F073 F073
@@ -396,6 +397,49 @@ use `path'goms/goms_eq_raw , clear
         label var p045  "`temp'"
         label copy G191P045 P045
         label value p045 P045
+        /*eq 2nd rv */
+            local temp : var label f03619
+            label var f036  "`temp'"
+            label copy G191F036 F036
+            label value f036 F036
+            local temp : var label f03719
+            label var f037  "`temp'"
+            label copy G191F037 F037
+            label value f037 F037
+            local temp : var label f03819
+            label var f038  "`temp'"
+            label copy G191F038 F038
+            label value f038 F038
+            local temp : var label f03919
+            label var f039  "`temp'"
+            label copy G191F039 F039
+            label value f039 F039
+            local temp : var label f04019
+            label var f040  "`temp'"
+            label copy G191F040 F040
+            label value f040 F040
+            local temp : var label f04119
+            label var f041  "`temp'"
+            label copy G191F041 F041
+            label value f041 F041
+            local temp : var label l00119
+            label var l001  "`temp'"
+            label copy G191L001 L001
+            label value l001 L001
+            local temp : var label l00319
+            label var l003  "`temp'"
+            local temp : var label l01619
+            label var l016  "`temp'"
+            local temp : var label l04219
+            label var l042  "`temp'"
+            local temp : var label l06819
+            label var l068  "`temp'"
+            local temp : var label m00119
+            label var m001  "`temp'"
+            label copy G191M001 M001
+            label value m001 M001
+            local temp : var label m00219
+            label var m002  "`temp'"
     /*}}}*/
     /*변수 교정 : 년도별 응답 불일치 {{{*/
         recode a003 (2=1) (1=2) if inlist(year, 2007 )
@@ -484,10 +528,18 @@ use `path'goms/goms_eq_raw , clear
             drop if !inrange(temp2 , -2 , 0 )
             drop temp?
     /*}}}*/
-  drop branch school area 
-  merge 1:1 year pid using `path'goms/rawdata/goms_hs.dta , nogen
-  merge 1:1 year pid using `path'goms/rawdata/goms_univ.dta  
-    drop if _merge != 3
-    drop _merge
+    drop branch school area 
+    merge 1:1 year pid using `path'goms/rawdata/goms_hs.dta , nogen
+    merge 1:1 year pid using `path'goms/rawdata/goms_univ.dta
+        drop if _merge != 3
+        drop _merge
+    merge m:1 year area using `path'KOSIS/kosis_ind_gomseq.dta
+        drop if _merge != 3
+        drop _merge
+    merge m:1 year area using `path'KOSIS/kosis_pop_gomseq.dta
+        drop if _merge != 3
+        drop _merge
+    gen l999 = l016 + l042 + l068
+        label var l999 "직업 교육/훈련기간_총 시간"
 save `path'goms/goms_eq.dta , replace
 save ~/dropbox/hl_sjho/goms_eq.dta , replace

@@ -290,7 +290,7 @@ set nocompatible " no compatible with the original Vi
         map <leader><leader> :Startify<cr>
         map <leader>t :echo strftime('%Y년 %B %d일 %X')<cr>
         map <leader>sc :w<cr>:source %<cr>
-        map <leader>erc :e $MYVIMRC<cr>
+        map <leader>rc :e $MYVIMRC<cr>
         map <leader>brc :w! ~/dropbox/Z_personal/myvimrc<cr>:w! ~/github/master/etc/myvimrc<cr>
         ".vimrc를 ~/Dropbox/Z_Personal/myvimrc로 백업{{{3
             "nnoremap  <silent> <leader>brc :call ReplaceIfCurrentIsRecent()<CR> 
@@ -314,7 +314,6 @@ set nocompatible " no compatible with the original Vi
             "}}}3
         map <leader>urc :e! ~/dropbox/Z_personal/myvimrc<cr>:w! $MYVIMRC<cr>:source $MYVIMRC<cr>
         map <silent> <leader>l :silent set list!<cr>
-        map <silent> <leader>w :silent set autowrite!<cr>
         map <silent> <leader>box :cd ~/dropbox<cr>:pwd<cr>
         if has('win32')
             map <silent> <leader>git :cd ~/git<cr>:pwd<cr>
@@ -323,10 +322,12 @@ set nocompatible " no compatible with the original Vi
         endif
         "}}}2
         " Insert Mode {{{2
+        inoremap <F2> <C-o>:w<CR>
         inoremap jk <esc>
         inoremap ㅓㅏ <esc>
         "}}}2
         " Normal Mode {{{2
+        nnoremap <F2> :w<cr>
         nnoremap <space> za
         nnoremap <c-w>. 10<c-w>>
         nnoremap <c-w>, 10<c-w><
@@ -338,7 +339,7 @@ set nocompatible " no compatible with the original Vi
         nnoremap :: :<up><cr>
         nnoremap Y y$
         nnoremap cw viwc
-        noremap <leader>ff O<c-d>/*{{{*/<esc>bf*a
+        nnoremap <leader>ff O<c-d>/*{{{*/<esc>bf*a
         nnoremap <leader>fc mgo<c-d>/*}}}*/<esc>`g
         "}}}2
         " Visual Mode {{{2

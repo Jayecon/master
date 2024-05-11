@@ -61,6 +61,7 @@ save `tfile1' , replace emptyok
         save `tfile1' , replace
     /*가중치*/
         restore 
-        collapse (sum) ws = wgt , by(aread sdate)
+        collapse (sum) wgt , by(aread sdate)
+            rename wgt ws
         merge 1:1 sdate aread using `tfile1' , nogen
         save `tfile1' , replace
