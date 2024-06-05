@@ -2679,7 +2679,7 @@ save temp , replace
         save `tfile2' , replace
     /*}}}*/
 
-    label data "중앙일보 대학평가 평가항목 from 대학알리"
+    label data "중앙일보 대학평가 평가항목 from 대학알리미"
     order _all , alpha
     order uniname year  , first
     sort uniname year

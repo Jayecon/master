@@ -16,7 +16,9 @@ local path ~/dropbox/data/
     /*exponhs   */ f001-f002 f006-f009 ///
     /*GPA       */ f073-f074 ///
     /*service   */ p045 ///
-    /*eq 2nd rv */ l001 l003 m001 m002 /*직업교육개월수 총합 */
+    /*family income  */ p034 p035 ///
+    /*eq 2nd rv */ l001 l003 m001 m002 ///
+    /*job edu mismatch */ a142-a144 
   local varlist07 ///
     /*exponuniv */ h001-h002 h006-h009 h026-h029 h046-h049 ///
     /*4sure     */ a157-a165

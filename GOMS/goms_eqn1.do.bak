@@ -16,7 +16,9 @@ local path ~/dropbox/data/
     /*exponhs   */ f001-f002 f006-f009 ///
     /*GPA       */ f073-f074 ///
     /*service   */ p045 ///
-    /*eq 2nd rv */ l001 l003 m001 m002 /*직업교육개월수 총합 */
+    /*family income  */ p034 p035 ///
+    /*eq 2nd rv */ l001 l003 m001 m002 ///
+    /*job edu mismatch */ a142-a144 
   local varlist07 ///
     /*exponuniv */ h001-h002 h006-h009 h026-h029 h046-h049 ///
     /*4sure     */ a157-a165
@@ -27,7 +29,7 @@ local path ~/dropbox/data/
   local varlist09 branch ///
     /*exponuniv */ h001-h002 h010z h030z h050z ///
     /*4sure     */ a157-a165 ///
-    /*eq 2nd rv */ f036-f041 l016 l042 l068 l018 l044 l070 l022 l048 l074 l030 l056 l082
+    /*eq 2nd rv */ f036-f041 l016 l042 l068
   local varlist10 branch ///
     /*exponuniv */ h001-h002 h010z h030z h050z ///
     /*4sure     */ a157-a165 ///

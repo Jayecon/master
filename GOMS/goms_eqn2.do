@@ -24,6 +24,7 @@ use `path'goms/goms_eq_raw , clear
         a023 a024 ///
         a116 a117 a118 ///
         a120 a121 a122 ///
+        a142 a143 a144 ///
         a157 a158 a159 a160 a161 a162 a163 a164 a165 ///
         d001 d002 d003 d004 d005 d006 ///
         d110 d111 d112 ///
@@ -37,6 +38,7 @@ use `path'goms/goms_eq_raw , clear
         h026 h027 h028 h029 h030z ///
         h046 h047 h048 h049 h050z ///
         f001 f002 f006 f007 f008 f009 ///
+        p034 p035 ///
         p045 ///
         f036 f037 f038 f039 f040 f041 l001 l003 l016 l042 l068 m001 m002 /// /*eq 2nd rv */
         wt             /*가중치*/
@@ -440,6 +442,26 @@ use `path'goms/goms_eq_raw , clear
             label value m001 M001
             local temp : var label m00219
             label var m002  "`temp'"
+        local temp : var label a14219
+        label var a142  "`temp'"
+        label copy G191A142 A142
+        label value a142 A142
+        local temp : var label a14319
+        label var a143  "`temp'"
+        label copy G191A143 A143
+        label value a143 A143
+        local temp : var label a14419
+        label var a144  "`temp'"
+        label copy G191A144 A144
+        label value a144 A144
+        local temp : var label p03419
+        label var p034  "`temp'"
+        label copy G191P034 P034
+        label value p034 P034
+        local temp : var label p03519
+        label var p035  "`temp'"
+        label copy G191P035 P035
+        label value p035 P035
     /*}}}*/
     /*변수 교정 : 년도별 응답 불일치 {{{*/
         recode a003 (2=1) (1=2) if inlist(year, 2007 )
@@ -528,18 +550,61 @@ use `path'goms/goms_eq_raw , clear
             drop if !inrange(temp2 , -2 , 0 )
             drop temp?
     /*}}}*/
-    drop branch school area 
+    drop branch school area l018?? l022?? l030?? l044?? l048?? l056?? l070?? l074?? l082??
     merge 1:1 year pid using `path'goms/rawdata/goms_hs.dta , nogen
     merge 1:1 year pid using `path'goms/rawdata/goms_univ.dta
         drop if _merge != 3
         drop _merge
-    merge m:1 year area using `path'KOSIS/kosis_ind_gomseq.dta
-        drop if _merge != 3
-        drop _merge
-    merge m:1 year area using `path'KOSIS/kosis_pop_gomseq.dta
-        drop if _merge != 3
-        drop _merge
+    /*통계청 지역벌 산업조사*/
+    /*merge m:1 year area using `path'KOSIS/kosis_ind_gomseq.dta*/
+        /*drop if _merge != 3*/
+        /*drop _merge*/
+    /*통계청 지역벌 인구조사*/
+    /*merge m:1 year area using `path'KOSIS/kosis_pop_gomseq.dta*/
+        /*drop if _merge != 3*/
+        /*drop _merge*/
     gen l999 = l016 + l042 + l068
         label var l999 "직업 교육/훈련기간_총 시간"
 save `path'goms/goms_eq.dta , replace
 save ~/dropbox/HL_SJHO/GOMS_EducationalQuality/goms_eq.dta , replace
+
+
+gen one = 1
+levelsof p034 , local(arglist) 
+local small = 10^(-10)
+qui sum dragi8t if dra07 > 
+qui sum if p034 == 1 [aw=wt]
+count if p034 == 1
+local num1 = r(N)
+countZZ
+local num = r(N)
+di `num1/num
+`num1 invalid name
+r(198);
+
+di `num1'/`num'
+.0188978
+
+count if !missing(a122)
+  116,662
+
+local num122 = r(N)
+
+di `num122'`num1'/`num'
+6917.6679
+
+di round(`num122'`num1'/`num' ,1)
+6918
+
+sort a122
+
+gen test = 1
+
+drop test
+
+gen test = .
+(168,644 missing values generated)
+
+replace test = 1 if _n <= round(`num122'`num1'/`num' ,1)
+(6,918 real changes made)
+
