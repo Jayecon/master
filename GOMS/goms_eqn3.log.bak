@@ -1,0 +1,293 @@
+
+  ___  ____  ____  ____  ____ (R)
+ /__    /   ____/   /   ____/
+___/   /   /___/   /   /___/   14.1   Copyright 1985-2015 StataCorp LP
+  Statistics/Data Analysis            StataCorp
+                                      4905 Lakeway Drive
+     MP - Parallel Edition            College Station, Texas 77845 USA
+                                      800-STATA-PC        http://www.stata.com
+                                      979-696-4600        stata@stata.com
+                                      979-696-4601 (fax)
+
+Single-user 8-core Stata perpetual license:
+       Serial number:  10699393
+         Licensed to:  Sungjae Oh
+                       Home
+
+Notes:
+      1.  Stata is running in batch mode.
+      2.  Unicode is supported; see help unicode_advice.
+      3.  More than 2 billion observations are allowed; see help obs_advice.
+      4.  Maximum number of variables is set to 5000; see help set_maxvar.
+
+
+running /Applications/Stata/profile.do ...
+
+. do /Users/jay/GitHub/master/GOMS/goms_eqn3.do 
+
+. set more off
+
+. 
+. use ~/dropbox/data/goms/goms_eq.dta , clear
+(GOMS 09-19)
+
+. 
+.     tempvar one gr
+
+.     tempfile tfile1 tfile2
+
+. 
+.     gen `one' = 1
+
+.     gen `gr' = p034 if p034 <= 8
+(11,910 missing values generated)
+
+. 
+.     preserve
+
+. 
+.         forvalue j=2001/2015 {
+  2.             keep if f011 == `j'
+  3. 
+.             levelsof `gr', local(grlevels)
+  4.             local grcount : word count `grlevels'
+  5.             local grmid = `grcount' - 1
+  6. 
+.             qui sum `one' [aw=wt] if !missing(`gr')
+  7.             scalar totnum = r(sum_w)
+  8. 
+.             local grlist ""
+  9.             foreach i of local grlevels {
+ 10.                 sum `one' [aw=wt] if !missing(`gr') & `gr' <= `i' , meanonly
+ 11.                 scalar gr`i' = (r(sum_w)*100)/totnum
+ 12.                 if gr`i' != 100 {
+ 13.                     local grlist `grlist' `=gr`i''
+ 14.                 }
+ 15.             }
+ 16. 
+.             scalar pctile0 = 0
+ 17.             scalar pctile`grcount' = 9999999
+ 18.             _pctile a121 , p(`grlist')
+ 19.             forvalue i = 1/`grmid' {
+ 20.                 scalar pctile`i' = r(r`i')
+ 21.             }
+ 22.             gen a121_p034 = .
+ 23.             foreach i of local grlevels {
+ 24.                 local im = `i' - 1
+ 25.                 replace a121_p034 = `i' if inrange(a121 , pctile`im' , pctile`i')
+ 26.             }
+ 27. 
+.             keep pid year a121_p034
+ 28.             if `j' != 2001 {
+ 29.                 append using `tfile1'
+ 30.             }
+ 31.             save `tfile1' , replace
+ 32.             restore, preserve
+ 33.         }
+(160,805 observations deleted)
+1 2 3 4 5 6 7 8
+(7,839 missing values generated)
+(144 real changes made)
+(822 real changes made)
+(1,645 real changes made)
+(1,699 real changes made)
+(1,103 real changes made)
+(946 real changes made)
+(301 real changes made)
+(258 real changes made)
+(note: file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_49432.000001 not found)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_49432.000001 saved
+(158,473 observations deleted)
+1 2 3 4 5 6 7 8
+(10,171 missing values generated)
+(160 real changes made)
+(938 real changes made)
+(2,096 real changes made)
+(1,996 real changes made)
+(1,552 real changes made)
+(1,155 real changes made)
+(524 real changes made)
+(362 real changes made)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_49432.000001 saved
+(157,322 observations deleted)
+1 2 3 4 5 6 7 8
+(11,322 missing values generated)
+(182 real changes made)
+(994 real changes made)
+(2,478 real changes made)
+(2,434 real changes made)
+(1,822 real changes made)
+(1,075 real changes made)
+(504 real changes made)
+(374 real changes made)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_49432.000001 saved
+(157,531 observations deleted)
+1 2 3 4 5 6 7 8
+(11,113 missing values generated)
+(212 real changes made)
+(854 real changes made)
+(2,266 real changes made)
+(2,206 real changes made)
+(1,514 real changes made)
+(1,015 real changes made)
+(459 real changes made)
+(375 real changes made)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_49432.000001 saved
+(157,124 observations deleted)
+1 2 3 4 5 6 7 8
+(11,520 missing values generated)
+(209 real changes made)
+(924 real changes made)
+(2,004 real changes made)
+(2,483 real changes made)
+(1,632 real changes made)
+(1,128 real changes made)
+(557 real changes made)
+(340 real changes made)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_49432.000001 saved
+(157,770 observations deleted)
+1 2 3 4 5 6 7 8
+(10,874 missing values generated)
+(160 real changes made)
+(813 real changes made)
+(1,593 real changes made)
+(2,177 real changes made)
+(1,688 real changes made)
+(1,148 real changes made)
+(485 real changes made)
+(377 real changes made)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_49432.000001 saved
+(157,644 observations deleted)
+1 2 3 4 5 6 7 8
+(11,000 missing values generated)
+(142 real changes made)
+(665 real changes made)
+(1,735 real changes made)
+(2,257 real changes made)
+(1,965 real changes made)
+(1,225 real changes made)
+(612 real changes made)
+(378 real changes made)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_49432.000001 saved
+(156,901 observations deleted)
+1 2 3 4 5 6 7 8
+(11,743 missing values generated)
+(181 real changes made)
+(709 real changes made)
+(1,798 real changes made)
+(2,394 real changes made)
+(1,949 real changes made)
+(1,386 real changes made)
+(652 real changes made)
+(410 real changes made)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_49432.000001 saved
+(156,211 observations deleted)
+1 2 3 4 5 6 7 8
+(12,433 missing values generated)
+(151 real changes made)
+(670 real changes made)
+(1,693 real changes made)
+(2,240 real changes made)
+(2,327 real changes made)
+(1,425 real changes made)
+(721 real changes made)
+(467 real changes made)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_49432.000001 saved
+(155,582 observations deleted)
+1 2 3 4 5 6 7 8
+(13,062 missing values generated)
+(206 real changes made)
+(641 real changes made)
+(1,648 real changes made)
+(2,285 real changes made)
+(2,276 real changes made)
+(1,636 real changes made)
+(880 real changes made)
+(548 real changes made)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_49432.000001 saved
+(155,414 observations deleted)
+1 2 3 4 5 6 7 8
+(13,230 missing values generated)
+(239 real changes made)
+(735 real changes made)
+(1,567 real changes made)
+(2,193 real changes made)
+(2,035 real changes made)
+(1,708 real changes made)
+(892 real changes made)
+(632 real changes made)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_49432.000001 saved
+(156,856 observations deleted)
+1 2 3 4 5 6 7 8
+(11,788 missing values generated)
+(204 real changes made)
+(596 real changes made)
+(1,563 real changes made)
+(1,688 real changes made)
+(2,056 real changes made)
+(1,537 real changes made)
+(937 real changes made)
+(604 real changes made)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_49432.000001 saved
+(159,174 observations deleted)
+1 2 3 4 5 6 7 8
+(9,470 missing values generated)
+(146 real changes made)
+(519 real changes made)
+(907 real changes made)
+(1,393 real changes made)
+(1,463 real changes made)
+(1,225 real changes made)
+(761 real changes made)
+(529 real changes made)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_49432.000001 saved
+(162,353 observations deleted)
+1 2 3 4 5 6 7 8
+(6,291 missing values generated)
+(122 real changes made)
+(386 real changes made)
+(769 real changes made)
+(843 real changes made)
+(1,024 real changes made)
+(854 real changes made)
+(534 real changes made)
+(319 real changes made)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_49432.000001 saved
+(164,776 observations deleted)
+1 2 3 4 5 6 7 8
+(3,868 missing values generated)
+(67 real changes made)
+(221 real changes made)
+(345 real changes made)
+(596 real changes made)
+(538 real changes made)
+(454 real changes made)
+(247 real changes made)
+(192 real changes made)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_49432.000001 saved
+
+. 
+.     merge 1:1 pid year using `tfile1'
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                        12,920
+        from master                    12,920  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                           155,724  (_merge==3)
+    -----------------------------------------
+
+.     drop _*
+
+.     label var a121_p034 "Group of a121 by p034 in f011"
+
+. 
+. save ~/dropbox/data/goms/goms_igm.dta , replace
+file ~/dropbox/data/goms/goms_igm.dta saved
+
+. save ~/Dropbox/HL_SJHO/GOMS_IGM/goms_igm.dta , replace
+file ~/Dropbox/HL_SJHO/GOMS_IGM/goms_igm.dta saved
+
+. 
+end of do-file

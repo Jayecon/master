@@ -153,7 +153,7 @@ tempfile tfile1 tfile2 tfile3
             foreach j in 1학기 2학기 {
                 use "대학_2-가-2_`i'.dta" /*(2009년_ [2-가-2. 외국학생 현황_])*/
                     replace C5 = C5[_n-1] if missing(C5)
-                    keep C3 C5 C6 C8-C33 
+                    keep C5 C6 C8-C33 
                     keep if C6 == "`j'"
                     gen year = `i'
                     destring _all , replace
@@ -166,7 +166,7 @@ tempfile tfile1 tfile2 tfile3
                         gen GPA = 100*C9 + 94*C11 + 0*C13 + 89*C15 + 84*C17 + 0*C19 ///
                             + 79*C21 + 74*C23 + 0*C25 + 69*C27 + 64*C29 + 0*C31 + 59*C33
                     }
-                    rename (C3 C5) (area uniname)
+                    rename C5 uniname 
                     replace uniname = subinstr(uniname, " _", "_", .)
                     replace uniname = trim(uniname)
                     drop if strpos(uniname , "폐교")
@@ -187,7 +187,7 @@ tempfile tfile1 tfile2 tfile3
             foreach j in 1학기 2학기 {
                 use "대학_2-가-2_`i'.dta" /*(2009년_ [2-가-2. 외국학생 현황_])*/
                     replace C5 = C5[_n-1] if missing(C5)
-                    keep C3 C5 C6 C9-C34 
+                    keep C5 C6 C9-C34 
                     keep if C6 == "`j'"
                     gen year = `i'
                     destring _all , replace
@@ -200,7 +200,7 @@ tempfile tfile1 tfile2 tfile3
                         gen GPA = 100*C10 + 94*C12 + 0*C14 + 89*C16 + 84*C18 + 0*C20 ///
                             + 79*C22 + 74*C24 + 0*C26 + 69*C28 + 64*C30 + 0*C32 + 59*C34
                     }
-                    rename (C3 C5) (area uniname)
+                    rename C5 uniname 
                     replace uniname = subinstr(uniname, " _", "_", .)
                     replace uniname = trim(uniname)
                     drop if strpos(uniname , "폐교")
@@ -2753,45 +2753,18 @@ save temp , replace
     /*}}}*/
 
     label data "중앙일보 대학평가 평가항목 from 대학알리미"
-        sort uniname year
-        label define AREA 1  "서울" 2  "부산" 3  "대구" 4  "대전" 5  "인천" 6  "광주" ///
-        7 "울산" 8  "경기" 9  "강원" 10 "충북" 11 "충남" 12 "전북" 13 "전남" 14 "경북" ///
-        15 "경남" 16 "제주" 17 "세종"
-            replace area = "1"  if area == "서울"
-            replace area = "2"  if area == "부산"
-            replace area = "3"  if area == "대구"
-            replace area = "4"  if area == "대전"
-            replace area = "5"  if area == "인천"
-            replace area = "6"  if area == "광주"
-            replace area = "7"  if area == "울산"
-            replace area = "8"  if area == "경기"
-            replace area = "9"  if area == "강원"
-            replace area = "10" if area == "충북"
-            replace area = "11" if area == "충남"
-            replace area = "12" if area == "전북"
-            replace area = "13" if area == "전남"
-            replace area = "14" if area == "경북"
-            replace area = "15" if area == "경남"
-            replace area = "16" if area == "제주"
-            replace area = "17" if area == "세종"
-            destring area, replace
-            label value area AREA
-            local i = 1
-            while `i' < 10 {
-                qui replace area = area[_n+1] if missing(area) & uniname == uniname[_n+1]
-                local ++i
-            }
+    order _all , alpha
+    order uniname year  , first
+    sort uniname year
         label var uniname      "학교명"
         label var year         "조사년도"
-        egen GPAm = rowmean(GPAm?s)
-            replace GPAm = GPAm/100
+        egen GPAm = rowmean(GPAm1s GPAm2s)/100
             label var GPAm     "전공학점평균"
             drop GPAm?s
-        egen GPAl = rowmean(GPAl?s)
-            replace GPAl = GPAl/100
+        egen GPAl = rowmean(GPAl1s GPAl2s)/100
             label var GPAl     "교양학점평균"
             drop GPAl?s
-        egen GPA = rowmean(GPA?)
+        egen GPA = rowmean(GPAm GPAl)
             label var GPA     "학점평균(전공,교양 단순평균)"
         egen v12_ah = rowtotal(v12_ah_?)
             label var v12_ah "산업체 전임교원수"
@@ -2825,17 +2798,12 @@ save temp , replace
         egen v6_ga_1_9 = rowtotal(v6_ga_1_3 v6_ga_1_4)
             label var v6_ga_1_9 "학부 비전임교원수"
             drop v6_ga_1_3 v6_ga_1_4
-        egen v7_ga  = rowtotal(v7_ga_2  v7_ga_3  v7_ga_4)
-            replace v7_ga  = v7_ga / v7_ga_1
+        gen v7_ga  = (v7_ga_2 + v7_ga_3 + v7_ga_4)/v7_ga_1
             label var v7_ga "전임교원당 총 논문 실적"
             drop v7_ga_?
         label var v8_ah        "기부금 합계"
         label var v8_cha_1     "등록금"
-        order _all , alpha
-        order uniname year  , first
-        compress
 save ~/dropbox/data/dta/ALIMI_Jarating , replace
-save ~/Dropbox/HL_SJHO/GOMS_EducationalQuality/ALIMI_Jarating , replace
 
     /*6-다-2 : 외국인 전임교원 현황 계산불가{{{*/
         /*use "대학_6-다-2_2008.dta" [>(2008년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/

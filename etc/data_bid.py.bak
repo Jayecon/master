@@ -1,0 +1,73 @@
+import os
+import calendar
+import requests
+import pandas as pd
+from datetime import datetime, timedelta
+from dateutil.relativedelta import relativedelta
+
+# API 키와 엔드포인트 설정
+DECODING_KEY = 'iH00EqQbsktpVE3cUMmXmTpoQ+1YPATpJGqcYWUCgvVXR8nK3q0PrF6ZvVp1iYGY695j1OMRscAAbptePgiGIw=='
+URL = 'http://apis.data.go.kr/1230000/PubDataOpnStdService/getDataSetOpnStdBidPblancInfo'
+
+# 시작일과 종료일 설정
+start_date = datetime(2012, 1, 1, 00, 00, 00)
+end_date = datetime(2013, 3, 31, 23, 59, 59)
+
+# 반복문을 통해 데이터 조회
+while start_date <= end_date:
+    # 해당 월의 시작일과 종료일 계산
+    year = start_date.year
+    month = start_date.month
+    days_in_month = calendar.monthrange(year, month)[1]
+    bidNtceBgnDt = start_date.strftime('%Y%m') + '010000'
+    bidNtceEndDt = start_date.strftime('%Y%m') + f'{days_in_month}2359'
+    # 파라미터 설정
+    params = {
+        'serviceKey': DECODING_KEY,
+        'pageNo': '1',
+        'numOfRows': '10',
+        'type': 'json',
+        'bidNtceBgnDt': bidNtceBgnDt,
+        'bidNtceEndDt': bidNtceEndDt
+    }
+
+    # API 호출
+    response = requests.get(URL, params=params)
+
+    if response.status_code == 200:
+        try:
+            data = response.json()
+            items = data.get('response', {}).get('body', {}).get('items', [])
+            # 데이터를 리스트에 저장
+            rows = []
+            for item in items:
+                row = {
+                    'Bid Notice No': item.get('bidNtceNo'),
+                    'Bid Notice Name': item.get('bidNtceNm'),
+                    'Bid Date': item.get('bidDt'),
+                    'Successful Bidder': item.get('sucssflBidderNm'),
+                    'Bid Div Name': item.get('bsnsDivNm'),
+                    'Contract Type Name': item.get('cntrctCnclsSttusNm'),
+                    'Contract Type Method': item.get('cntrctCnclsMthdNm'),
+                    'Bid Decision Method': item.get('bidwinrFcsnMthdNm'),
+                    'Demander Name': item.get('dmndlnsttNM'),
+                    'Demander Code': item.get('dmndlnsttCd'),
+                    'Budget Amount': item.get('asignBdgtAmt'),
+                    'Price': item.get('presmptPrce'),
+                    'Region Restriction': item.get('rgnLmtYn')
+                }
+                rows.append(row)
+            # 데이터프레임 생성
+            df = pd.DataFrame(rows)
+            # CSV 파일 저장 경로 지정
+            save_path = os.path.expanduser(f'~/dropbox/bid_public_info_{start_date.strftime("%Y%m")}.csv')
+            # CSV 파일로 저장
+            df.to_csv(save_path, index=False, encoding='utf-8-sig')
+            print(f'CSV 파일이 성공적으로 생성되었습니다: {save_path}')
+        except ValueError:
+            print("응답 데이터를 JSON으로 파싱할 수 없습니다.")
+    else:
+        print(f"Error: {response.status_code}")
+        print(response.content)  # 응답 내용 출력
+    # 다음 달로 넘어감
+    start_date = start_date + relativedelta(months=1)

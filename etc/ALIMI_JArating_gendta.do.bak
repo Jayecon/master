@@ -1,6 +1,227 @@
-cd /Users/jay/Library/CloudStorage/Dropbox/Data/ALIMI/JArating/cleaned
-    tempfile tfile1 tfile2
+cd /Users/jay/Library/CloudStorage/Dropbox/Data/ALIMI/JArating/cleaned 
+tempfile tfile1 tfile2 tfile3
 
+    /*2-가-1{{{*/
+        forvalue i = 2009/2012 {
+            foreach j in 1학기 2학기 {
+                use "대학_2-가-1_`i'.dta" /*(2009년_ [2-가-1. 외국학생 현황_])*/
+                    replace C1 = C1[_n-1] if missing(C1)
+                    keep C1 C2 C4-C29 
+                    keep if C2 == "`j'"
+                    gen year = `i'
+                    destring _all , replace
+                    /* 총학점 4.3 4.5 구분*/
+                    gen C99 = C9 + C15 + C21 + C27
+                    if C99 { 
+                        gen GPA = 100*C5 + 96*C7 + 93*C9 + 89*C11 + 86*C13 + 83*C15 ///
+                            + 79*C17 + 76*C19 + 73*C21 + 69*C23 + 66*C25 + 63*C27 + 59*C29
+                    }
+                    else {
+                        gen GPA = 100*C5 + 94*C7 + 0*C9 + 89*C11 + 84*C13 + 0*C15 ///
+                            + 79*C17 + 74*C19 + 0*C21 + 69*C23 + 64*C25 + 0*C27 + 59*C29
+                    }
+                    rename C1 uniname 
+                    replace uniname = subinstr(uniname, " _", "_", .)
+                    replace uniname = trim(uniname)
+                    drop if strpos(uniname , "폐교")
+                    drop C*
+                    if "`j'" == "1학기" {
+                        rename GPA GPA1s
+                        save `tfile3' , replace
+                    }
+                    else {
+                        rename GPA GPA2s
+                        merge 1:1 year uniname using `tfile3' , nogen
+                    }
+                if `i' != 2009 | "`j'" != "1학기" {
+                    append using `tfile1'
+                }
+                save `tfile1' , replace
+            }
+        }
+        forvalue i = 2013/2013 {
+            foreach j in 1학기 2학기 {
+                use "대학_2-가-1_`i'.dta" /*(2009년_ [2-가-1. 외국학생 현황_])*/
+                    replace C5 = C5[_n-1] if missing(C5)
+                    keep C5 C6 C8-C33 
+                    keep if C6 == "`j'"
+                    gen year = `i'
+                    destring _all , replace
+                    gen C99 = C13 + C19 + C25 + C31
+                    if C99 {
+                        gen GPA = 100*C9 + 96*C11 + 93*C13 + 89*C15 + 86*C17 + 83*C19 ///
+                            + 79*C21 + 76*C23 + 73*C25 + 69*C27 + 66*C29 + 63*C31 + 59*C33
+                    }
+                    else {
+                        gen GPA = 100*C9 + 94*C11 + 0*C13 + 89*C15 + 84*C17 + 0*C19 ///
+                            + 79*C21 + 74*C23 + 0*C25 + 69*C27 + 64*C29 + 0*C31 + 59*C33
+                    }
+                    rename C5 uniname 
+                    replace uniname = subinstr(uniname, " _", "_", .)
+                    replace uniname = trim(uniname)
+                    drop if strpos(uniname , "폐교")
+                    drop C*
+                    if "`j'" == "1학기" {
+                        rename GPA GPA1s
+                        save `tfile3' , replace
+                    }
+                    else {
+                        rename GPA GPA2s
+                        merge 1:1 year uniname using `tfile3' , nogen
+                    }
+                append using `tfile1'
+                save `tfile1' , replace
+            }
+        }
+        forvalue i = 2014/2020 {
+            foreach j in 1학기 2학기 {
+                use "대학_2-가-1_`i'.dta" /*(2009년_ [2-가-1. 외국학생 현황_])*/
+                    replace C5 = C5[_n-1] if missing(C5)
+                    keep C5 C6 C9-C34 
+                    keep if C6 == "`j'"
+                    gen year = `i'
+                    destring _all , replace
+                    gen C99 = C14 + C20 + C26 + C32
+                    if C99 {
+                        gen GPA = 100*C10 + 96*C12 + 93*C14 + 89*C16 + 86*C18 + 83*C20 ///
+                            + 79*C22 + 76*C24 + 73*C26 + 69*C28 + 66*C30 + 63*C32 + 59*C34
+                    }
+                    else {
+                        gen GPA = 100*C10 + 94*C12 + 0*C14 + 89*C16 + 84*C18 + 0*C20 ///
+                            + 79*C22 + 74*C24 + 0*C26 + 69*C28 + 64*C30 + 0*C32 + 59*C34
+                    }
+                    rename C5 uniname 
+                    replace uniname = subinstr(uniname, " _", "_", .)
+                    replace uniname = trim(uniname)
+                    drop if strpos(uniname , "폐교")
+                    drop C*
+                    if "`j'" == "1학기" {
+                        rename GPA GPA1s
+                        save `tfile3' , replace
+                    }
+                    else {
+                        rename GPA GPA2s
+                        merge 1:1 year uniname using `tfile3' , nogen
+                    }
+                append using `tfile1'
+                save `tfile1' , replace
+            }
+        }
+        drop if missing(GPA2s)
+        rename GPA?s GPAm?s
+        save `tfile2' , replace
+    /*}}}*/
+    /*2-가-2{{{*/
+        forvalue i = 2009/2012 {
+            foreach j in 1학기 2학기 {
+                use "대학_2-가-2_`i'.dta" /*(2009년_ [2-가-2. 외국학생 현황_])*/
+                    replace C1 = C1[_n-1] if missing(C1)
+                    keep C1 C2 C4-C29 
+                    keep if C2 == "`j'"
+                    gen year = `i'
+                    destring _all , replace
+                    /* 총학점 4.3 4.5 구분*/
+                    gen C99 = C9 + C15 + C21 + C27
+                    if C99 { 
+                        gen GPA = 100*C5 + 96*C7 + 93*C9 + 89*C11 + 86*C13 + 83*C15 ///
+                            + 79*C17 + 76*C19 + 73*C21 + 69*C23 + 66*C25 + 63*C27 + 59*C29
+                    }
+                    else {
+                        gen GPA = 100*C5 + 94*C7 + 0*C9 + 89*C11 + 84*C13 + 0*C15 ///
+                            + 79*C17 + 74*C19 + 0*C21 + 69*C23 + 64*C25 + 0*C27 + 59*C29
+                    }
+                    rename C1 uniname 
+                    replace uniname = subinstr(uniname, " _", "_", .)
+                    replace uniname = trim(uniname)
+                    drop if strpos(uniname , "폐교")
+                    drop C*
+                    if "`j'" == "1학기" {
+                        rename GPA GPA1s
+                        save `tfile3' , replace
+                    }
+                    else {
+                        rename GPA GPA2s
+                        merge 1:1 year uniname using `tfile3' , nogen
+                    }
+                if `i' != 2009 | "`j'"!= "1학기" {
+                    append using `tfile1'
+                }
+                save `tfile1' , replace
+            }
+        }
+        forvalue i = 2013/2013 {
+            foreach j in 1학기 2학기 {
+                use "대학_2-가-2_`i'.dta" /*(2009년_ [2-가-2. 외국학생 현황_])*/
+                    replace C5 = C5[_n-1] if missing(C5)
+                    keep C3 C5 C6 C8-C33 
+                    keep if C6 == "`j'"
+                    gen year = `i'
+                    destring _all , replace
+                    gen C99 = C13 + C19 + C25 + C31
+                    if C99 {
+                        gen GPA = 100*C9 + 96*C11 + 93*C13 + 89*C15 + 86*C17 + 83*C19 ///
+                            + 79*C21 + 76*C23 + 73*C25 + 69*C27 + 66*C29 + 63*C31 + 59*C33
+                    }
+                    else {
+                        gen GPA = 100*C9 + 94*C11 + 0*C13 + 89*C15 + 84*C17 + 0*C19 ///
+                            + 79*C21 + 74*C23 + 0*C25 + 69*C27 + 64*C29 + 0*C31 + 59*C33
+                    }
+                    rename (C3 C5) (area uniname)
+                    replace uniname = subinstr(uniname, " _", "_", .)
+                    replace uniname = trim(uniname)
+                    drop if strpos(uniname , "폐교")
+                    drop C*
+                    if "`j'" == "1학기" {
+                        rename GPA GPA1s
+                        save `tfile3' , replace
+                    }
+                    else {
+                        rename GPA GPA2s
+                        merge 1:1 year uniname using `tfile3' , nogen
+                    }
+                append using `tfile1'
+                save `tfile1' , replace
+            }
+        }
+        forvalue i = 2014/2020 {
+            foreach j in 1학기 2학기 {
+                use "대학_2-가-2_`i'.dta" /*(2009년_ [2-가-2. 외국학생 현황_])*/
+                    replace C5 = C5[_n-1] if missing(C5)
+                    keep C3 C5 C6 C9-C34 
+                    keep if C6 == "`j'"
+                    gen year = `i'
+                    destring _all , replace
+                    gen C99 = C14 + C20 + C26 + C32
+                    if C99 {
+                        gen GPA = 100*C10 + 96*C12 + 93*C14 + 89*C16 + 86*C18 + 83*C20 ///
+                            + 79*C22 + 76*C24 + 73*C26 + 69*C28 + 66*C30 + 63*C32 + 59*C34
+                    }
+                    else {
+                        gen GPA = 100*C10 + 94*C12 + 0*C14 + 89*C16 + 84*C18 + 0*C20 ///
+                            + 79*C22 + 74*C24 + 0*C26 + 69*C28 + 64*C30 + 0*C32 + 59*C34
+                    }
+                    rename (C3 C5) (area uniname)
+                    replace uniname = subinstr(uniname, " _", "_", .)
+                    replace uniname = trim(uniname)
+                    drop if strpos(uniname , "폐교")
+                    drop C*
+                    if "`j'" == "1학기" {
+                        rename GPA GPA1s
+                        save `tfile3' , replace
+                    }
+                    else {
+                        rename GPA GPA2s
+                        merge 1:1 year uniname using `tfile3' , nogen
+                    }
+                append using `tfile1'
+                save `tfile1' , replace
+            }
+        }
+        drop if missing(GPA2s)
+        rename GPA?s GPAl?s
+        merge 1:1 year uniname using `tfile2' , nogen
+        save `tfile2' , replace
+    /*}}}*/
     /*4-다{{{*/
         use "대학_4-다_2009.dta" /*(2010년_ [4-다. 졸업생의 취업 현황_])*/
             keep C1 C2 C16 C17
@@ -148,6 +369,7 @@ cd /Users/jay/Library/CloudStorage/Dropbox/Data/ALIMI/JArating/cleaned
         replace uniname = subinstr(uniname, " _", "_", .)
         replace uniname = trim(uniname)
         drop if strpos(uniname , "폐교")
+        merge 1:1 year uniname using `tfile2' , nogen
         save `tfile2' , replace
     /*}}}*/
     /*4-바-1{{{*/
@@ -958,155 +1180,6 @@ save temp , replace
         drop if strpos(uniname , "폐교")
         merge 1:1 year uniname using `tfile2' , nogen
         save `tfile2' , replace
-    /*}}}*/
-    /*6-다-2 : 외국인 전임교원 현황 계산불가{{{*/
-        /*use "대학_6-다-2_2008.dta" [>(2008년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/
-            /*keep C1 C2 C3*/
-            /*gen year = 2008*/
-            /*destring C2 C3 , replace*/
-                /*label var C1 "학교"*/
-                /*label var C2 "전임교원_계_남"*/
-                /*label var C3 "전임교원_계_여"*/
-            /*rename C1 uniname*/
-            /*rename (C2 C3) (v6_da_2_1 v6_da_2_2)*/
-            /*save `tfile1' , replace*/
-        /*use "대학_6-다-2_2009.dta" [>(2009년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/
-            /*keep C1 C2 C3*/
-            /*gen year = 2009*/
-            /*destring C2 C3 , replace*/
-                /*label var C1 "학교"*/
-                /*label var C2 "전임교원_계_남"*/
-                /*label var C3 "전임교원_계_여"*/
-            /*rename C1 uniname*/
-            /*rename (C2 C3) (v6_da_2_1 v6_da_2_2)*/
-            /*append using `tfile1'*/
-            /*save `tfile1' , replace*/
-        /*use "대학_6-다-2_2010.dta" [>(2010년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/
-            /*keep C1 C2 C3*/
-            /*gen year = 2010*/
-            /*destring C2 C3 , replace*/
-                /*label var C1 "학교"*/
-                /*label var C2 "전임교원_계_남"*/
-                /*label var C3 "전임교원_계_여"*/
-            /*rename C1 uniname*/
-            /*rename (C2 C3) (v6_da_2_1 v6_da_2_2)*/
-            /*append using `tfile1'*/
-            /*save `tfile1' , replace*/
-        /*use "대학_6-다-2_2011.dta" [>(2011년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/
-            /*keep C1 C2 C3*/
-            /*gen year = 2011*/
-            /*destring C2 C3 , replace*/
-                /*label var C1 "학교"*/
-                /*label var C2 "전임교원_계_남"*/
-                /*label var C3 "전임교원_계_여"*/
-            /*rename C1 uniname*/
-            /*rename (C2 C3) (v6_da_2_1 v6_da_2_2)*/
-            /*append using `tfile1'*/
-            /*save `tfile1' , replace*/
-        /*use "대학_6-다-2_2012.dta" [>(2012년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/
-            /*keep C1 C2 C3*/
-            /*gen year = 2012*/
-            /*destring C2 C3 , replace*/
-                /*label var C1 "학교"*/
-                /*label var C2 "전임교원_계_남"*/
-                /*label var C3 "전임교원_계_여"*/
-            /*rename C1 uniname*/
-            /*rename (C2 C3) (v6_da_2_1 v6_da_2_2)*/
-            /*append using `tfile1'*/
-            /*save `tfile1' , replace*/
-        /*use "대학_6-다-2_2013.dta" [>(2013년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/
-            /*keep C5 C7 C8*/
-            /*gen year = 2013*/
-            /*destring C7 C8 , replace*/
-                /*label var C5 "학교"*/
-                /*label var C7 "전임교원_계_남"*/
-                /*label var C8 "전임교원_계_여"*/
-            /*rename C5 uniname*/
-            /*rename (C7 C8) (v6_da_2_1 v6_da_2_2)*/
-            /*append using `tfile1'*/
-            /*save `tfile1' , replace*/
-        /*use "대학_6-다-2_2014.dta" [>(2014년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/
-            /*keep C5 C7 C8*/
-            /*gen year = 2014*/
-            /*destring C7 C8 , replace*/
-                /*label var C5 "학교"*/
-                /*label var C7 "전임교원_계_남"*/
-                /*label var C8 "전임교원_계_여"*/
-            /*rename C5 uniname*/
-            /*rename (C7 C8) (v6_da_2_1 v6_da_2_2)*/
-            /*append using `tfile1'*/
-            /*save `tfile1' , replace*/
-        /*use "대학_6-다-2_2015.dta" [>(2015년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/
-            /*keep C5 C7 C8*/
-            /*gen year = 2015*/
-            /*destring C7 C8 , replace*/
-                /*label var C5 "학교"*/
-                /*label var C7 "전임교원_계_남"*/
-                /*label var C8 "전임교원_계_여"*/
-            /*rename C5 uniname*/
-            /*rename (C7 C8) (v6_da_2_1 v6_da_2_2)*/
-            /*append using `tfile1'*/
-            /*save `tfile1' , replace*/
-        /*use "대학_6-다-2_2016.dta" [>(2016년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/
-            /*keep C5 C7 C8*/
-            /*gen year = 2016*/
-            /*destring C7 C8 , replace*/
-                /*label var C5 "학교"*/
-                /*label var C7 "전임교원_계_남"*/
-                /*label var C8 "전임교원_계_여"*/
-            /*rename C5 uniname*/
-            /*rename (C7 C8) (v6_da_2_1 v6_da_2_2)*/
-            /*append using `tfile1'*/
-            /*save `tfile1' , replace*/
-        /*use "대학_6-다-2_2017.dta" [>(2017년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/
-            /*keep C5 C7 C8*/
-            /*gen year = 2017*/
-            /*destring C7 C8 , replace*/
-                /*label var C5 "학교"*/
-                /*label var C7 "전임교원_계_남"*/
-                /*label var C8 "전임교원_계_여"*/
-            /*rename C5 uniname*/
-            /*rename (C7 C8) (v6_da_2_1 v6_da_2_2)*/
-            /*append using `tfile1'*/
-            /*save `tfile1' , replace*/
-        /*use "대학_6-다-2_2018.dta" [>(2018년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/
-            /*keep C5 C7 C8*/
-            /*gen year = 2018*/
-            /*destring C7 C8 , replace*/
-                /*label var C5 "학교"*/
-                /*label var C7 "전임교원_계_남"*/
-                /*label var C8 "전임교원_계_여"*/
-            /*rename C5 uniname*/
-            /*rename (C7 C8) (v6_da_2_1 v6_da_2_2)*/
-            /*append using `tfile1'*/
-            /*save `tfile1' , replace*/
-        /*use "대학_6-다-2_2019.dta" [>(2019년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/
-            /*keep C5 C7 C8*/
-            /*gen year = 2019*/
-            /*destring C7 C8 , replace*/
-                /*label var C5 "학교"*/
-                /*label var C7 "전임교원_계_남"*/
-                /*label var C8 "전임교원_계_여"*/
-            /*rename C5 uniname*/
-            /*rename (C7 C8) (v6_da_2_1 v6_da_2_2)*/
-            /*append using `tfile1'*/
-            /*save `tfile1' , replace*/
-        /*use "대학_6-다-2_2020.dta" [>(2020년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/
-            /*keep C5 C7 C8*/
-            /*gen year = 2020*/
-            /*destring C7 C8 , replace*/
-                /*label var C5 "학교"*/
-                /*label var C7 "전임교원_계_남"*/
-                /*label var C8 "전임교원_계_여"*/
-            /*rename C5 uniname*/
-            /*rename (C7 C8) (v6_da_2_1 v6_da_2_2)*/
-            /*append using `tfile1'*/
-            /*save `tfile1' , replace*/
-        /*replace uniname = subinstr(uniname, " _", "_", .)*/
-        /*replace uniname = trim(uniname)*/
-        /*drop if strpos(uniname , "폐교")*/
-        /*merge 1:1 year uniname using `tfile2' , nogen*/
-        /*save `tfile2' , replace*/
     /*}}}*/
     /*7-가{{{*/
         use "대학_7-가_2008.dta" /*(2008년_ [7-가. 전임교원의 연구 실적_])*/
@@ -2680,11 +2753,46 @@ save temp , replace
     /*}}}*/
 
     label data "중앙일보 대학평가 평가항목 from 대학알리미"
-    order _all , alpha
-    order uniname year  , first
-    sort uniname year
+        sort uniname year
+        label define AREA 1  "서울" 2  "부산" 3  "대구" 4  "대전" 5  "인천" 6  "광주" ///
+        7 "울산" 8  "경기" 9  "강원" 10 "충북" 11 "충남" 12 "전북" 13 "전남" 14 "경북" ///
+        15 "경남" 16 "제주" 17 "세종"
+            replace area = "1"  if area == "서울"
+            replace area = "2"  if area == "부산"
+            replace area = "3"  if area == "대구"
+            replace area = "4"  if area == "대전"
+            replace area = "5"  if area == "인천"
+            replace area = "6"  if area == "광주"
+            replace area = "7"  if area == "울산"
+            replace area = "8"  if area == "경기"
+            replace area = "9"  if area == "강원"
+            replace area = "10" if area == "충북"
+            replace area = "11" if area == "충남"
+            replace area = "12" if area == "전북"
+            replace area = "13" if area == "전남"
+            replace area = "14" if area == "경북"
+            replace area = "15" if area == "경남"
+            replace area = "16" if area == "제주"
+            replace area = "17" if area == "세종"
+            destring area, replace
+            label value area AREA
+            local i = 1
+            while `i' < 10 {
+                qui replace area = area[_n+1] if missing(area) & uniname == uniname[_n+1]
+                local ++i
+            }
         label var uniname      "학교명"
         label var year         "조사년도"
+        egen GPAm = rowmean(GPAm?s)
+            replace GPAm = GPAm/100
+            label var GPAm     "전공학점평균"
+            drop GPAm?s
+        egen GPAl = rowmean(GPAl?s)
+            replace GPAl = GPAl/100
+            label var GPAl     "교양학점평균"
+            drop GPAl?s
+        egen GPA = rowmean(GPA?)
+            label var GPA     "학점평균(전공,교양 단순평균)"
         egen v12_ah = rowtotal(v12_ah_?)
             label var v12_ah "산업체 전임교원수"
             drop v12_ah_?
@@ -2717,10 +2825,164 @@ save temp , replace
         egen v6_ga_1_9 = rowtotal(v6_ga_1_3 v6_ga_1_4)
             label var v6_ga_1_9 "학부 비전임교원수"
             drop v6_ga_1_3 v6_ga_1_4
-        gen v7_ga  = (v7_ga_2 + v7_ga_3 + v7_ga_4)/v7_ga_1
+        egen v7_ga  = rowtotal(v7_ga_2  v7_ga_3  v7_ga_4)
+            replace v7_ga  = v7_ga / v7_ga_1
             label var v7_ga "전임교원당 총 논문 실적"
             drop v7_ga_?
         label var v8_ah        "기부금 합계"
         label var v8_cha_1     "등록금"
+        order _all , alpha
+        order uniname year  , first
+        compress
 save ~/dropbox/data/dta/ALIMI_Jarating , replace
+save ~/Dropbox/HL_SJHO/GOMS_EducationalQuality/ALIMI_Jarating , replace
 
+    /*6-다-2 : 외국인 전임교원 현황 계산불가{{{*/
+        /*use "대학_6-다-2_2008.dta" [>(2008년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/
+            /*keep C1 C2 C3*/
+            /*gen year = 2008*/
+            /*destring C2 C3 , replace*/
+                /*label var C1 "학교"*/
+                /*label var C2 "전임교원_계_남"*/
+                /*label var C3 "전임교원_계_여"*/
+            /*rename C1 uniname*/
+            /*rename (C2 C3) (v6_da_2_1 v6_da_2_2)*/
+            /*save `tfile1' , replace*/
+        /*use "대학_6-다-2_2009.dta" [>(2009년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/
+            /*keep C1 C2 C3*/
+            /*gen year = 2009*/
+            /*destring C2 C3 , replace*/
+                /*label var C1 "학교"*/
+                /*label var C2 "전임교원_계_남"*/
+                /*label var C3 "전임교원_계_여"*/
+            /*rename C1 uniname*/
+            /*rename (C2 C3) (v6_da_2_1 v6_da_2_2)*/
+            /*append using `tfile1'*/
+            /*save `tfile1' , replace*/
+        /*use "대학_6-다-2_2010.dta" [>(2010년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/
+            /*keep C1 C2 C3*/
+            /*gen year = 2010*/
+            /*destring C2 C3 , replace*/
+                /*label var C1 "학교"*/
+                /*label var C2 "전임교원_계_남"*/
+                /*label var C3 "전임교원_계_여"*/
+            /*rename C1 uniname*/
+            /*rename (C2 C3) (v6_da_2_1 v6_da_2_2)*/
+            /*append using `tfile1'*/
+            /*save `tfile1' , replace*/
+        /*use "대학_6-다-2_2011.dta" [>(2011년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/
+            /*keep C1 C2 C3*/
+            /*gen year = 2011*/
+            /*destring C2 C3 , replace*/
+                /*label var C1 "학교"*/
+                /*label var C2 "전임교원_계_남"*/
+                /*label var C3 "전임교원_계_여"*/
+            /*rename C1 uniname*/
+            /*rename (C2 C3) (v6_da_2_1 v6_da_2_2)*/
+            /*append using `tfile1'*/
+            /*save `tfile1' , replace*/
+        /*use "대학_6-다-2_2012.dta" [>(2012년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/
+            /*keep C1 C2 C3*/
+            /*gen year = 2012*/
+            /*destring C2 C3 , replace*/
+                /*label var C1 "학교"*/
+                /*label var C2 "전임교원_계_남"*/
+                /*label var C3 "전임교원_계_여"*/
+            /*rename C1 uniname*/
+            /*rename (C2 C3) (v6_da_2_1 v6_da_2_2)*/
+            /*append using `tfile1'*/
+            /*save `tfile1' , replace*/
+        /*use "대학_6-다-2_2013.dta" [>(2013년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/
+            /*keep C5 C7 C8*/
+            /*gen year = 2013*/
+            /*destring C7 C8 , replace*/
+                /*label var C5 "학교"*/
+                /*label var C7 "전임교원_계_남"*/
+                /*label var C8 "전임교원_계_여"*/
+            /*rename C5 uniname*/
+            /*rename (C7 C8) (v6_da_2_1 v6_da_2_2)*/
+            /*append using `tfile1'*/
+            /*save `tfile1' , replace*/
+        /*use "대학_6-다-2_2014.dta" [>(2014년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/
+            /*keep C5 C7 C8*/
+            /*gen year = 2014*/
+            /*destring C7 C8 , replace*/
+                /*label var C5 "학교"*/
+                /*label var C7 "전임교원_계_남"*/
+                /*label var C8 "전임교원_계_여"*/
+            /*rename C5 uniname*/
+            /*rename (C7 C8) (v6_da_2_1 v6_da_2_2)*/
+            /*append using `tfile1'*/
+            /*save `tfile1' , replace*/
+        /*use "대학_6-다-2_2015.dta" [>(2015년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/
+            /*keep C5 C7 C8*/
+            /*gen year = 2015*/
+            /*destring C7 C8 , replace*/
+                /*label var C5 "학교"*/
+                /*label var C7 "전임교원_계_남"*/
+                /*label var C8 "전임교원_계_여"*/
+            /*rename C5 uniname*/
+            /*rename (C7 C8) (v6_da_2_1 v6_da_2_2)*/
+            /*append using `tfile1'*/
+            /*save `tfile1' , replace*/
+        /*use "대학_6-다-2_2016.dta" [>(2016년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/
+            /*keep C5 C7 C8*/
+            /*gen year = 2016*/
+            /*destring C7 C8 , replace*/
+                /*label var C5 "학교"*/
+                /*label var C7 "전임교원_계_남"*/
+                /*label var C8 "전임교원_계_여"*/
+            /*rename C5 uniname*/
+            /*rename (C7 C8) (v6_da_2_1 v6_da_2_2)*/
+            /*append using `tfile1'*/
+            /*save `tfile1' , replace*/
+        /*use "대학_6-다-2_2017.dta" [>(2017년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/
+            /*keep C5 C7 C8*/
+            /*gen year = 2017*/
+            /*destring C7 C8 , replace*/
+                /*label var C5 "학교"*/
+                /*label var C7 "전임교원_계_남"*/
+                /*label var C8 "전임교원_계_여"*/
+            /*rename C5 uniname*/
+            /*rename (C7 C8) (v6_da_2_1 v6_da_2_2)*/
+            /*append using `tfile1'*/
+            /*save `tfile1' , replace*/
+        /*use "대학_6-다-2_2018.dta" [>(2018년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/
+            /*keep C5 C7 C8*/
+            /*gen year = 2018*/
+            /*destring C7 C8 , replace*/
+                /*label var C5 "학교"*/
+                /*label var C7 "전임교원_계_남"*/
+                /*label var C8 "전임교원_계_여"*/
+            /*rename C5 uniname*/
+            /*rename (C7 C8) (v6_da_2_1 v6_da_2_2)*/
+            /*append using `tfile1'*/
+            /*save `tfile1' , replace*/
+        /*use "대학_6-다-2_2019.dta" [>(2019년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/
+            /*keep C5 C7 C8*/
+            /*gen year = 2019*/
+            /*destring C7 C8 , replace*/
+                /*label var C5 "학교"*/
+                /*label var C7 "전임교원_계_남"*/
+                /*label var C8 "전임교원_계_여"*/
+            /*rename C5 uniname*/
+            /*rename (C7 C8) (v6_da_2_1 v6_da_2_2)*/
+            /*append using `tfile1'*/
+            /*save `tfile1' , replace*/
+        /*use "대학_6-다-2_2020.dta" [>(2020년_ [6-다-2. 전공계열별 외국인 전임교원 현황_])<]*/
+            /*keep C5 C7 C8*/
+            /*gen year = 2020*/
+            /*destring C7 C8 , replace*/
+                /*label var C5 "학교"*/
+                /*label var C7 "전임교원_계_남"*/
+                /*label var C8 "전임교원_계_여"*/
+            /*rename C5 uniname*/
+            /*rename (C7 C8) (v6_da_2_1 v6_da_2_2)*/
+            /*append using `tfile1'*/
+            /*save `tfile1' , replace*/
+        /*replace uniname = subinstr(uniname, " _", "_", .)*/
+        /*replace uniname = trim(uniname)*/
+        /*drop if strpos(uniname , "폐교")*/
+        /*merge 1:1 year uniname using `tfile2' , nogen*/
+        /*save `tfile2' , replace*/
+    /*}}}*/

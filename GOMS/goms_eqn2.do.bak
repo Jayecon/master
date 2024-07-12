@@ -41,6 +41,7 @@ use `path'goms/goms_eq_raw , clear
         p034 p035 ///
         p045 ///
         f036 f037 f038 f039 f040 f041 l001 l003 l016 l042 l068 m001 m002 /// /*eq 2nd rv */
+        f010 f011 f012 ///
         wt             /*가중치*/
         foreach i of local numvarlist {
         di "VAR : `i'"
@@ -462,6 +463,12 @@ use `path'goms/goms_eq_raw , clear
         label var p035  "`temp'"
         label copy G191P035 P035
         label value p035 P035
+        local temp : var label f01019
+        label var f010  "`temp'"
+        local temp : var label f01119
+        label var f011  "`temp'"
+        local temp : var label f01219
+        label var f012  "`temp'"
     /*}}}*/
     /*변수 교정 : 년도별 응답 불일치 {{{*/
         recode a003 (2=1) (1=2) if inlist(year, 2007 )
@@ -567,43 +574,3 @@ use `path'goms/goms_eq_raw , clear
         label var l999 "직업 교육/훈련기간_총 시간"
 save `path'goms/goms_eq.dta , replace
 save ~/dropbox/HL_SJHO/GOMS_EducationalQuality/goms_eq.dta , replace
-
-
-gen one = 1
-levelsof p034 , local(arglist) 
-local small = 10^(-10)
-qui sum if p034 == 1 [aw=wt]
-count if p034 == 1
-local num1 = r(N)
-count
-local num = r(N)
-di `num1/num
-`num1 invalid name
-r(198);
-
-di `num1'/`num'
-.0188978
-
-count if !missing(a122)
-  116,662
-
-local num122 = r(N)
-
-di `num122'`num1'/`num'
-6917.6679
-
-di round(`num122'`num1'/`num' ,1)
-6918
-
-sort a122
-
-gen test = 1
-
-drop test
-
-gen test = .
-(168,644 missing values generated)
-
-replace test = 1 if _n <= round(`num122'`num1'/`num' ,1)
-(6,918 real changes made)
-

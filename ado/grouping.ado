@@ -1,7 +1,24 @@
-#delimit ;
-program define groupby ;
+  #delimit ;
+  capture program drop eopcal ;
+  program eopcal, byable(recall) rclass sortpreserve ;
+   syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] , 
+   [ENVironment(varlist numeric )
+    GOIndex RRIndex(passthru) Bootstrap(integer 0) Seed(integer 10101)	///Options for calculating indicies.
+    DOMinance ACCuracy(passthru)										                    ///Options for dominance test.
+    BJORKlund(passthru)												                          ///Options for Bjorklund et al. 
+    ITT												                                ///Options for Intertemporal Iop.
+    CUMDplot KDENplot GRoptions(passthru)                               ///Options for drawing graphs.
+    Value(passthru) Percent(passthru) NOZero                            ///Options for manipulating data range.
+    STATs																                                ///Options for descriptive statistics.
+    EXPost                                                              ///Options for EOp distributions.
+capture program drop groupby ;
+program define groupby , byable(recall) rclass sortpreserve ;
     // 명령줄 인자 구문 설정
-    syntax varlist(numeric) [if] [in] [pweight aweight fweight] , by(varname) [GENerate(string) REPlace] ;
+    syntax varlist(numeric) [if] [in] [pweight aweight fweight] ,
+    BYGroup(varname) [GENerate(string) REPlace] ;
+
+    marksample touse  ;
+    markout `touse' `environment' ;
 
     // 변수 목록 보기
     describe `by' ;

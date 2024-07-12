@@ -346,9 +346,10 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
         }; /*}}}*/
     /* GENERATE THE GROUP VARIABLE EQUAL PERCENTILE TO THE ENV{{{*/
         if ("`group'" != "") {;
+            sort `environment' `varlist' ;
             tempvar one temp1 temp2 temp3 temp4 ;
-            gen `one' == 1 ; 
             /* Identifing the minimum group and its obs */
+            gen `one' == 1 ; 
             qui sum `one' [`weight' `exp'] if !missing(`environment') , meanonly;
             local totnum = r(sum_w)
             foreach i of global typlist {; 

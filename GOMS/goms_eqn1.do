@@ -18,7 +18,8 @@ local path ~/dropbox/data/
     /*service   */ p045 ///
     /*family income  */ p034 p035 ///
     /*eq 2nd rv */ l001 l003 m001 m002 ///
-    /*job edu mismatch */ a142-a144 
+    /*job edu mismatch */ a142-a144 ///
+    /*enterance*/ f010-f012
   local varlist07 ///
     /*exponuniv */ h001-h002 h006-h009 h026-h029 h046-h049 ///
     /*4sure     */ a157-a165

@@ -769,3 +769,167 @@ local path ~/Dropbox/Data/ALIMI/JArating/cleaned/
         qui do ALIMI_JArating_unmergedfilter.do
         save "`path'대학_4-다_2020" , replace
     /*}}}*/
+    /*2-가-1{{{*/
+        import excel "`path'2008년 _대학_2-가-1. 전공과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-1_2008" , replace
+        import excel "`path'2009년 _대학_2-가-1. 전공과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-1_2009" , replace
+        import excel "`path'2010년 _대학_2-가-1. 전공과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-1_2010" , replace
+        import excel "`path'2011년 _대학_2-가-1. 전공과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-1_2011" , replace
+        import excel "`path'2012년 _대학_2-가-1. 전공과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-1_2012" , replace
+        import excel "`path'2013년 _대학_2-가-1. 전공과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-1_2013" , replace
+        import excel "`path'2014년 _대학_2-가-1. 전공과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-1_2014" , replace
+        import excel "`path'2015년 _대학_2-가-1. 전공과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-1_2015" , replace
+        import excel "`path'2016년 _대학_2-가-1. 전공과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-1_2016" , replace
+        import excel "`path'2017년 _대학_2-가-1. 전공과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-1_2017" , replace
+        import excel "`path'2018년 _대학_2-가-1. 전공과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-1_2018" , replace
+        import excel "`path'2019년 _대학_2-가-1. 전공과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-1_2019" , replace
+        import excel "`path'2020년 _대학_2-가-1. 전공과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-1_2020" , replace
+    /*}}}*/
+    /*2-가-2{{{*/
+        import excel "`path'2008년 _대학_2-가-2. 교양과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-2_2008" , replace
+        import excel "`path'2009년 _대학_2-가-2. 교양과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-2_2009" , replace
+        import excel "`path'2010년 _대학_2-가-2. 교양과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-2_2010" , replace
+        import excel "`path'2011년 _대학_2-가-2. 교양과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-2_2011" , replace
+        import excel "`path'2012년 _대학_2-가-2. 교양과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-2_2012" , replace
+        import excel "`path'2013년 _대학_2-가-2. 교양과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-2_2013" , replace
+        import excel "`path'2014년 _대학_2-가-2. 교양과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-2_2014" , replace
+        import excel "`path'2015년 _대학_2-가-2. 교양과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-2_2015" , replace
+        import excel "`path'2016년 _대학_2-가-2. 교양과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-2_2016" , replace
+        import excel "`path'2017년 _대학_2-가-2. 교양과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-2_2017" , replace
+        import excel "`path'2018년 _대학_2-가-2. 교양과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-2_2018" , replace
+        import excel "`path'2019년 _대학_2-가-2. 교양과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-2_2019" , replace
+        import excel "`path'2020년 _대학_2-가-2. 교양과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-2_2020" , replace
+    /*}}}*/
+    /*2-가-3{{{*/
+        import excel "`path'2008년 _대학_2-가-3. 교직과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-3_2008" , replace
+        import excel "`path'2009년 _대학_2-가-3. 교직과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-3_2009" , replace
+        import excel "`path'2010년 _대학_2-가-3. 교직과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-3_2010" , replace
+        import excel "`path'2011년 _대학_2-가-3. 교직과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-3_2011" , replace
+        import excel "`path'2012년 _대학_2-가-3. 교직과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-3_2012" , replace
+        import excel "`path'2013년 _대학_2-가-3. 교직과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-3_2013" , replace
+        import excel "`path'2014년 _대학_2-가-3. 교직과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-3_2014" , replace
+        import excel "`path'2015년 _대학_2-가-3. 교직과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-3_2015" , replace
+        import excel "`path'2016년 _대학_2-가-3. 교직과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-3_2016" , replace
+        import excel "`path'2017년 _대학_2-가-3. 교직과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-3_2017" , replace
+        import excel "`path'2018년 _대학_2-가-3. 교직과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-3_2018" , replace
+        import excel "`path'2019년 _대학_2-가-3. 교직과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-3_2019" , replace
+        import excel "`path'2020년 _대학_2-가-3. 교직과목 성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-3_2020" , replace
+    /*}}}*/
+    /*2-가-4{{{*/
+        import excel "`path'2008년 _대학_2-가-4. 졸업생의 졸업성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-4_2008" , replace
+        import excel "`path'2009년 _대학_2-가-4. 졸업생의 졸업성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-4_2009" , replace
+        import excel "`path'2010년 _대학_2-가-4. 졸업생의 졸업성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-4_2010" , replace
+        import excel "`path'2011년 _대학_2-가-4. 졸업생의 졸업성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-4_2011" , replace
+        import excel "`path'2012년 _대학_2-가-4. 졸업생의 졸업성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-4_2012" , replace
+        import excel "`path'2013년 _대학_2-가-4. 졸업생의 졸업성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-4_2013" , replace
+        import excel "`path'2014년 _대학_2-가-4. 졸업생의 졸업성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-4_2014" , replace
+        import excel "`path'2015년 _대학_2-가-4. 졸업생의 졸업성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-4_2015" , replace
+        import excel "`path'2016년 _대학_2-가-4. 졸업생의 졸업성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-4_2016" , replace
+        import excel "`path'2017년 _대학_2-가-4. 졸업생의 졸업성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-4_2017" , replace
+        import excel "`path'2018년 _대학_2-가-4. 졸업생의 졸업성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-4_2018" , replace
+        import excel "`path'2019년 _대학_2-가-4. 졸업생의 졸업성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-4_2019" , replace
+        import excel "`path'2020년 _대학_2-가-4. 졸업생의 졸업성적 분포_학교별자료.xlsx" , sheet("Sheet1") firstrow allstring clear
+            qui do ALIMI_JArating_unmergedfilter.do
+            save "`path'대학_2-가-4_2020" , replace
+    /*}}}*/
