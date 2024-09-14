@@ -64,13 +64,13 @@ clear
                     label var wave "조사회차(07==1)"
             /*control excpetions{{{*/
                 /*gen slack variables*/
-                    if ("`x'" == "7") {
-                        gen f00707 = .
-                        gen f00807 = .
-                    }
-                    if ("`x'" == "19" ){
-                        gen p04119 = .
-                    }
+                    /*if ("`x'" == "7") {*/
+                        /*gen f00707 = .*/
+                        /*gen f00807 = .*/
+                    /*}*/
+                    /*if ("`x'" == "19" ){*/
+                        /*gen p04119 = .*/
+                    /*}*/
                 /*control string|numeric*/
                     if ("`x'" == "7") {
                         tostring major07, replace force

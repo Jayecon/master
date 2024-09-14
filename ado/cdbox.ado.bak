@@ -1,4 +1,4 @@
-  capture program drop cdbox
+ p031z  capture program drop cdbox
   program cdbox
     cd ~/dropbox/`1'
   end

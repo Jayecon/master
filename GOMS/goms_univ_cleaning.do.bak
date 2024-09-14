@@ -139,7 +139,7 @@ tempfile tfile1 tfile2 tfile3
                 /*경상국립대학교 칠암캠퍼스 2021-*/
                 /*경상국립대학교 진주캠퍼스 2021-*/
         /*}}}*/
-    save `tfile3' , replace
+        save `tfile3' , replace
 
     /*gen akglist.dta by merging gomslist.dta and aklist.dta*/
     use `path'dta/aklist , clear
@@ -407,6 +407,6 @@ tempfile tfile1 tfile2 tfile3
             drop _merge
         save `path'dta/akglist , replace
 
-        /*gen goms_univ.dta*/
-            keep uniname-schooldtl area* found* status unimain-uniscr50 address-distance pid year
-            save `path'goms/rawdata/goms_univ , replace 
+    /*gen goms_univ.dta*/
+        keep uniname-schooldtl area* found* status unimain-uniscr50 address-distance pid year
+        save `path'goms/rawdata/goms_univ , replace 

@@ -370,4 +370,4 @@ use `path'goms_eq_raw , clear
         unimain uniname unirank uniscr20 uniscr50 wave wt zipcode , first
     
 save `path'goms_im.dta , replace
-save ~/dropbox/HL_SJHO/GOMS_IGM/goms_im.dta , replace
+save ~/dropbox/HL_SJHO/GOMS_EducationalQuality/goms_im.dta , replace

@@ -1,0 +1,16 @@
+capture program drop redraw
+program redraw
+    use `c(filename)' , clear
+end
+
+program red
+    redraw
+end
+
+program redr
+    redraw
+end
+
+program redra
+    redraw
+end
