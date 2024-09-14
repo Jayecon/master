@@ -1,0 +1,345 @@
+
+  ___  ____  ____  ____  ____ (R)
+ /__    /   ____/   /   ____/
+___/   /   /___/   /   /___/   14.1   Copyright 1985-2015 StataCorp LP
+  Statistics/Data Analysis            StataCorp
+                                      4905 Lakeway Drive
+     MP - Parallel Edition            College Station, Texas 77845 USA
+                                      800-STATA-PC        http://www.stata.com
+                                      979-696-4600        stata@stata.com
+                                      979-696-4601 (fax)
+
+Single-user 8-core Stata perpetual license:
+       Serial number:  10699393
+         Licensed to:  Sungjae Oh
+                       Home
+
+Notes:
+      1.  Stata is running in batch mode.
+      2.  Unicode is supported; see help unicode_advice.
+      3.  More than 2 billion observations are allowed; see help obs_advice.
+      4.  Maximum number of variables is set to 5000; see help set_maxvar.
+
+
+running /Applications/Stata/profile.do ...
+
+. do /Users/jay/GitHub/master/GObid/biddata.do 
+
+. cd ~/dropbox/data/gobid
+/Users/jay/Library/CloudStorage/Dropbox/Data/GObid
+
+. tempfile tfile1 tfile2
+
+. 
+.     forvalue year= 2012/2022 {
+  2.         import delimited "bid_public_info_goods_`year'.csv", encoding(utf-8) clear
+  3. 
+.         /*exception control*/
+.         di as text "Year == " as result "`year'"
+  4.         tostring fnlsucsfdate , replace
+  5.         tostring fnlsucsfcorpofcl , replace
+  6.         tostring linkinsttnm , replace
+  7.         if inlist(`year' , 2016, 2018 , 2019) {
+  8.             replace sucsfbidrate = "." if strpos(sucsfbidrate , "#")
+  9.             destring sucsfbidrate , replace
+ 10.         }
+ 11. 
+.         label var bidntceno        "입찰공고번호"
+ 12.         label var bidntceord       "입찰공고차수"
+ 13.         label var bidclsfcno       "입찰분류번호"
+ 14.         label var rbidno           "재입찰번호"
+ 15.         label var ntcedivcd        "공고구분코드"
+ 16.         label var bidntcenm        "입찰공고명"
+ 17.         label var prtcptcnum       "참가업체수"
+ 18.         label var bidwinnrnm       "최종낙찰업체명"
+ 19.         label var bidwinnrbizno    "최종낙찰업체사업자등록번호"
+ 20.         label var bidwinnrceonm    "최종낙찰업체대표자명"
+ 21.         label var bidwinnradrs     "최종낙찰업체주소"
+ 22.         label var bidwinnrtelno    "최종낙찰업체전화번호"
+ 23.         label var sucsfbidamt      "최종낙찰금액"
+ 24.         label var rlopengdt        "실개찰일시"
+ 25.         label var dminsttcd        "수요기관코드"
+ 26.         label var dminsttnm        "수요기관명"
+ 27.         label var rgstdt           "등록일시"
+ 28.         label var fnlsucsfdate     "최종낙찰일자"
+ 29.         label var fnlsucsfcorpofcl "최종낙찰업체담당자"
+ 30.         label var linkinsttnm      "연계기관명"
+ 31.         if `year' != 2012 {
+ 32.             append using `tfile1'
+ 33.         }
+ 34.         save `tfile1' , replace
+ 35.     }
+(21 vars, 4090 obs)
+Year == 2012
+fnlsucsfdate already string; no replace
+fnlsucsfcorpofcl already string; no replace
+linkinsttnm was byte now str1
+(note: file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_59184.000001 not found)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_59184.000001 saved
+(21 vars, 2680 obs)
+Year == 2013
+fnlsucsfdate already string; no replace
+fnlsucsfcorpofcl already string; no replace
+linkinsttnm was byte now str1
+(note: variable bidwinnrnm was str56, now str62 to accommodate using data's values)
+(note: variable dminsttnm was str91, now str101 to accommodate using data's values)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_59184.000001 saved
+(21 vars, 9970 obs)
+Year == 2014
+fnlsucsfdate already string; no replace
+fnlsucsfcorpofcl already string; no replace
+linkinsttnm was byte now str1
+(note: variable bidclsfcno was byte, now long to accommodate using data's values)
+(note: variable bidntcenm was str131, now str140 to accommodate using data's values)
+(note: variable bidwinnrtelno was str13, now str14 to accommodate using data's values)
+(note: variable dminsttnm was str91, now str101 to accommodate using data's values)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_59184.000001 saved
+(21 vars, 6940 obs)
+Year == 2015
+fnlsucsfdate was byte now str1
+fnlsucsfcorpofcl was byte now str1
+linkinsttnm was byte now str1
+(note: variable bidclsfcno was byte, now long to accommodate using data's values)
+(note: variable dminsttnm was str86, now str101 to accommodate using data's values)
+(note: variable fnlsucsfdate was str1, now str10 to accommodate using data's values)
+(note: variable fnlsucsfcorpofcl was str1, now str9 to accommodate using data's values)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_59184.000001 saved
+(21 vars, 2720 obs)
+Year == 2016
+fnlsucsfdate was byte now str1
+fnlsucsfcorpofcl was byte now str1
+linkinsttnm was byte now str1
+(1 real change made)
+sucsfbidrate has all characters numeric; replaced as double
+(25 missing values generated)
+(note: variable bidclsfcno was byte, now long to accommodate using data's values)
+(note: variable bidntcenm was str140, now str145 to accommodate using data's values)
+(note: variable bidwinnrnm was str60, now str68 to accommodate using data's values)
+(note: variable bidwinnradrs was str132, now str140 to accommodate using data's values)
+(note: variable bidwinnrtelno was str13, now str14 to accommodate using data's values)
+(note: variable dminsttnm was str91, now str101 to accommodate using data's values)
+(note: variable fnlsucsfdate was str1, now str10 to accommodate using data's values)
+(note: variable fnlsucsfcorpofcl was str1, now str9 to accommodate using data's values)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_59184.000001 saved
+(21 vars, 18440 obs)
+Year == 2017
+fnlsucsfdate already string; no replace
+fnlsucsfcorpofcl already string; no replace
+linkinsttnm already string; no replace
+(note: variable bidclsfcno was int, now long to accommodate using data's values)
+(note: variable sucsfbidrate was float, now double to accommodate using data's values)
+(note: variable dminsttnm was str95, now str101 to accommodate using data's values)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_59184.000001 saved
+(21 vars, 2130 obs)
+Year == 2018
+fnlsucsfdate already string; no replace
+fnlsucsfcorpofcl already string; no replace
+linkinsttnm was byte now str1
+(1 real change made)
+sucsfbidrate has all characters numeric; replaced as double
+(28 missing values generated)
+(note: variable bidclsfcno was byte, now long to accommodate using data's values)
+(note: variable bidntcenm was str129, now str145 to accommodate using data's values)
+(note: variable bidwinnrceonm was str33, now str36 to accommodate using data's values)
+(note: variable bidwinnradrs was str133, now str151 to accommodate using data's values)
+(note: variable bidwinnrtelno was str13, now str14 to accommodate using data's values)
+(note: variable dminsttnm was str92, now str101 to accommodate using data's values)
+(note: variable linkinsttnm was str1, now str18 to accommodate using data's values)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_59184.000001 saved
+(21 vars, 18530 obs)
+Year == 2019
+fnlsucsfdate already string; no replace
+fnlsucsfcorpofcl already string; no replace
+linkinsttnm already string; no replace
+(1 real change made)
+sucsfbidrate has all characters numeric; replaced as double
+(345 missing values generated)
+(note: variable bidclsfcno was int, now long to accommodate using data's values)
+(note: variable bidntcenm was str143, now str145 to accommodate using data's values)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_59184.000001 saved
+(21 vars, 1000 obs)
+Year == 2020
+fnlsucsfdate already string; no replace
+fnlsucsfcorpofcl already string; no replace
+linkinsttnm was byte now str1
+(note: variable bidclsfcno was byte, now long to accommodate using data's values)
+(note: variable bidntcenm was str127, now str145 to accommodate using data's values)
+(note: variable bidwinnrnm was str66, now str83 to accommodate using data's values)
+(note: variable bidwinnrceonm was str24, now str42 to accommodate using data's values)
+(note: variable bidwinnradrs was str134, now str158 to accommodate using data's values)
+(note: variable bidwinnrtelno was str13, now str14 to accommodate using data's values)
+(note: variable sucsfbidrate was float, now double to accommodate using data's values)
+(note: variable dminsttnm was str92, now str104 to accommodate using data's values)
+(note: variable fnlsucsfcorpofcl was str27, now str30 to accommodate using data's values)
+(note: variable linkinsttnm was str1, now str18 to accommodate using data's values)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_59184.000001 saved
+(21 vars, 1000 obs)
+Year == 2021
+fnlsucsfdate already string; no replace
+fnlsucsfcorpofcl already string; no replace
+linkinsttnm was byte now str1
+(note: variable bidclsfcno was byte, now long to accommodate using data's values)
+(note: variable bidntcenm was str128, now str145 to accommodate using data's values)
+(note: variable bidwinnrnm was str57, now str83 to accommodate using data's values)
+(note: variable bidwinnrceonm was str15, now str42 to accommodate using data's values)
+(note: variable bidwinnradrs was str151, now str158 to accommodate using data's values)
+(note: variable sucsfbidrate was float, now double to accommodate using data's values)
+(note: variable dminsttnm was str92, now str104 to accommodate using data's values)
+(note: variable linkinsttnm was str1, now str18 to accommodate using data's values)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_59184.000001 saved
+(21 vars, 1000 obs)
+Year == 2022
+fnlsucsfdate already string; no replace
+fnlsucsfcorpofcl already string; no replace
+linkinsttnm was byte now str1
+(note: variable bidclsfcno was byte, now long to accommodate using data's values)
+(note: variable bidntcenm was str127, now str145 to accommodate using data's values)
+(note: variable bidwinnrnm was str63, now str83 to accommodate using data's values)
+(note: variable bidwinnrceonm was str33, now str42 to accommodate using data's values)
+(note: variable bidwinnradrs was str125, now str158 to accommodate using data's values)
+(note: variable sucsfbidrate was float, now double to accommodate using data's values)
+(note: variable dminsttnm was str89, now str104 to accommodate using data's values)
+(note: variable linkinsttnm was str1, now str18 to accommodate using data's values)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_59184.000001 saved
+
+.     gen bidtype = 1
+
+.     save `tfile2' , replace
+(note: file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_59184.000002 not found)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_59184.000002 saved
+
+. 
+.     forvalue year= 2012/2022 {
+  2.         import delimited "bid_public_info_cons_`year'.csv", encoding(utf-8) clear
+  3.         /*exception control*/
+.         di as text "Year == " as result "`year'"
+  4.         tostring fnlsucsfdate , replace
+  5.         tostring fnlsucsfcorpofcl , replace
+  6.         tostring linkinsttnm , replace
+  7. 
+.         label var bidntceno        "입찰공고번호"
+  8.         label var bidntceord       "입찰공고차수"
+  9.         label var bidclsfcno       "입찰분류번호"
+ 10.         label var rbidno           "재입찰번호"
+ 11.         label var ntcedivcd        "공고구분코드"
+ 12.         label var bidntcenm        "입찰공고명"
+ 13.         label var prtcptcnum       "참가업체수"
+ 14.         label var bidwinnrnm       "최종낙찰업체명"
+ 15.         label var bidwinnrbizno    "최종낙찰업체사업자등록번호"
+ 16.         label var bidwinnrceonm    "최종낙찰업체대표자명"
+ 17.         label var bidwinnradrs     "최종낙찰업체주소"
+ 18.         label var bidwinnrtelno    "최종낙찰업체전화번호"
+ 19.         label var sucsfbidamt      "최종낙찰금액"
+ 20.         label var sucsfbidrate     "최종낙찰률"
+ 21.         label var rlopengdt        "실개찰일시"
+ 22.         label var dminsttcd        "수요기관코드"
+ 23.         label var dminsttnm        "수요기관명"
+ 24.         label var rgstdt           "등록일시"
+ 25.         label var fnlsucsfdate     "최종낙찰일자"
+ 26.         label var fnlsucsfcorpofcl "최종낙찰업체담당자"
+ 27.         label var linkinsttnm      "연계기관명"
+ 28.         if `year' != 2012 {
+ 29.             append using `tfile1'
+ 30.         }
+ 31.         save `tfile1' , replace
+ 32.     }
+(21 vars, 11130 obs)
+Year == 2012
+fnlsucsfdate already string; no replace
+fnlsucsfcorpofcl already string; no replace
+linkinsttnm was byte now str1
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_59184.000001 saved
+(21 vars, 13180 obs)
+Year == 2013
+fnlsucsfdate was byte now str1
+fnlsucsfcorpofcl was byte now str1
+linkinsttnm was byte now str1
+(note: variable bidwinnrnm was str50, now str52 to accommodate using data's values)
+(note: variable bidwinnrtelno was str14, now str17 to accommodate using data's values)
+(note: variable dminsttnm was str91, now str96 to accommodate using data's values)
+(note: variable fnlsucsfdate was str1, now str10 to accommodate using data's values)
+(note: variable fnlsucsfcorpofcl was str1, now str9 to accommodate using data's values)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_59184.000001 saved
+(21 vars, 190 obs)
+Year == 2014
+fnlsucsfdate was byte now str1
+fnlsucsfcorpofcl was byte now str1
+linkinsttnm was byte now str1
+(note: variable bidntcenm was str95, now str141 to accommodate using data's values)
+(note: variable bidwinnrnm was str37, now str52 to accommodate using data's values)
+(note: variable bidwinnrceonm was str9, now str42 to accommodate using data's values)
+(note: variable bidwinnradrs was str98, now str135 to accommodate using data's values)
+(note: variable bidwinnrtelno was str13, now str17 to accommodate using data's values)
+(note: variable dminsttnm was str61, now str96 to accommodate using data's values)
+(note: variable fnlsucsfdate was str1, now str10 to accommodate using data's values)
+(note: variable fnlsucsfcorpofcl was str1, now str9 to accommodate using data's values)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_59184.000001 saved
+(21 vars, 9340 obs)
+Year == 2015
+fnlsucsfdate was byte now str1
+fnlsucsfcorpofcl was byte now str1
+linkinsttnm was byte now str1
+(note: variable bidntcenm was str127, now str141 to accommodate using data's values)
+(note: variable bidwinnradrs was str133, now str135 to accommodate using data's values)
+(note: variable bidwinnrtelno was str14, now str17 to accommodate using data's values)
+(note: variable dminsttnm was str88, now str96 to accommodate using data's values)
+(note: variable fnlsucsfdate was str1, now str10 to accommodate using data's values)
+(note: variable fnlsucsfcorpofcl was str1, now str9 to accommodate using data's values)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_59184.000001 saved
+(21 vars, 7080 obs)
+Year == 2016
+fnlsucsfdate was byte now str1
+fnlsucsfcorpofcl was byte now str1
+linkinsttnm was byte now str1
+(note: variable bidntcenm was str129, now str141 to accommodate using data's values)
+(note: variable bidwinnrnm was str50, now str63 to accommodate using data's values)
+(note: variable bidwinnrceonm was str25, now str42 to accommodate using data's values)
+(note: variable bidwinnradrs was str132, now str135 to accommodate using data's values)
+(note: variable bidwinnrtelno was str13, now str17 to accommodate using data's values)
+(note: variable dminsttnm was str87, now str96 to accommodate using data's values)
+(note: variable fnlsucsfdate was str1, now str10 to accommodate using data's values)
+(note: variable fnlsucsfcorpofcl was str1, now str9 to accommodate using data's values)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_59184.000001 saved
+(21 vars, 130 obs)
+Year == 2017
+fnlsucsfdate was byte now str1
+fnlsucsfcorpofcl was byte now str1
+linkinsttnm was byte now str1
+(note: variable bidntcenm was str108, now str141 to accommodate using data's values)
+(note: variable bidwinnrnm was str37, now str63 to accommodate using data's values)
+(note: variable bidwinnrceonm was str9, now str42 to accommodate using data's values)
+(note: variable bidwinnradrs was str95, now str135 to accommodate using data's values)
+(note: variable bidwinnrtelno was str13, now str17 to accommodate using data's values)
+(note: variable sucsfbidamt was long, now double to accommodate using data's values)
+(note: variable dminsttnm was str59, now str96 to accommodate using data's values)
+(note: variable fnlsucsfdate was str1, now str10 to accommodate using data's values)
+(note: variable fnlsucsfcorpofcl was str1, now str9 to accommodate using data's values)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_59184.000001 saved
+(21 vars, 200 obs)
+Year == 2018
+fnlsucsfdate already string; no replace
+fnlsucsfcorpofcl already string; no replace
+linkinsttnm was byte now str1
+(note: variable bidntcenm was str98, now str141 to accommodate using data's values)
+(note: variable bidwinnrnm was str37, now str63 to accommodate using data's values)
+(note: variable bidwinnrceonm was str9, now str42 to accommodate using data's values)
+(note: variable bidwinnradrs was str127, now str135 to accommodate using data's values)
+(note: variable bidwinnrtelno was str13, now str17 to accommodate using data's values)
+(note: variable dminsttnm was str83, now str96 to accommodate using data's values)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_59184.000001 saved
+(21 vars, 1340 obs)
+Year == 2019
+fnlsucsfdate already string; no replace
+fnlsucsfcorpofcl already string; no replace
+linkinsttnm was byte now str1
+(note: variable bidntcenm was str121, now str141 to accommodate using data's values)
+(note: variable bidwinnrceonm was str13, now str42 to accommodate using data's values)
+(note: variable bidwinnradrs was str115, now str135 to accommodate using data's values)
+(note: variable bidwinnrtelno was str13, now str17 to accommodate using data's values)
+(note: variable dminsttnm was str91, now str96 to accommodate using data's values)
+file /var/folders/6x/78_0brmj06g_g41nz2bn66lr0000gn/T//S_59184.000001 saved
+file bid_public_info_cons_2020.csv not found
+r(601);
+
+end of do-file
+r(601);

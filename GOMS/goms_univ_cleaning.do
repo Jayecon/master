@@ -5,41 +5,40 @@ tempfile tfile1 tfile2 tfile3
         gen kess_uniname = uniname
         gen kess_zipcode = zipcode
         /*exception control for merging*/
-        replace uniname = "가야대학교" if strpos(uniname , "가야대학교")
-        replace uniname = "건국대학교" if strpos(uniname , "건국대학교")
-        replace uniname = "고려대학교" if strpos(uniname , "고려대학교")
-        replace uniname = "동국대학교" if strpos(uniname , "동국대학교")
-        replace uniname = "명지대학교" if strpos(uniname , "명지대학교")
-        replace uniname = "연세대학교" if strpos(uniname , "연세대학교")
-        replace uniname = "한양대학교" if strpos(uniname , "한양대학교")
-        replace uniname = "홍익대학교" if strpos(uniname , "홍익대학교")
+            replace uniname = "가야대학교" if strpos(uniname , "가야대학교")
+            replace uniname = "건국대학교" if strpos(uniname , "건국대학교")
+            replace uniname = "고려대학교" if strpos(uniname , "고려대학교")
+            replace uniname = "동국대학교" if strpos(uniname , "동국대학교")
+            replace uniname = "명지대학교" if strpos(uniname , "명지대학교")
+            replace uniname = "연세대학교" if strpos(uniname , "연세대학교")
+            replace uniname = "한양대학교" if strpos(uniname , "한양대학교")
+            replace uniname = "홍익대학교" if strpos(uniname , "홍익대학교")
         save `tfile1' , replace
 
     use `path'dta/alimilist , clear
         gen alimi_uniname = uniname
         gen alimi_zipcode = zipcode
         /*exception control for merging*/
-        replace uniname = "가야대학교" if strpos(uniname , "가야대학교")
-        replace uniname = "건국대학교" if strpos(uniname , "건국대학교")
-        replace uniname = "고려대학교" if strpos(uniname , "고려대학교")
-        replace uniname = "동국대학교" if strpos(uniname , "동국대학교")
-        replace uniname = "명지대학교" if strpos(uniname , "명지대학교")
-        replace uniname = "연세대학교" if strpos(uniname , "연세대학교")
-        replace uniname = "한양대학교" if strpos(uniname , "한양대학교")
-        replace uniname = "홍익대학교" if strpos(uniname , "홍익대학교")
+            replace uniname = "가야대학교" if strpos(uniname , "가야대학교")
+            replace uniname = "건국대학교" if strpos(uniname , "건국대학교")
+            replace uniname = "고려대학교" if strpos(uniname , "고려대학교")
+            replace uniname = "동국대학교" if strpos(uniname , "동국대학교")
+            replace uniname = "명지대학교" if strpos(uniname , "명지대학교")
+            replace uniname = "연세대학교" if strpos(uniname , "연세대학교")
+            replace uniname = "한양대학교" if strpos(uniname , "한양대학교")
+            replace uniname = "홍익대학교" if strpos(uniname , "홍익대학교")
         save `tfile2' , replace
 
     /*gen aklist.dta by merging alimilist.dta and kesslist.dta*/
-    merge 1:1 uniname zipcode using `tfile1'
-        label data "대학명부 from ALIMI and KESS"
-        label define AKMERGE 1 "ALIMI only(1)" 2 "KESS only(2)" 3 "matched(3)"
-        label value _merge AKMERGE 
-        rename _merge akmerge
-        sort uniname
-        order _all , alpha
-        order uniname zipcode  br* school* , first
+        merge 1:1 uniname zipcode using `tfile1'
+            label data "대학명부 from ALIMI and KESS"
+            label define AKMERGE 1 "ALIMI only(1)" 2 "KESS only(2)" 3 "matched(3)"
+            label value _merge AKMERGE 
+            rename _merge akmerge
+            sort uniname
+            order _all , alpha
+            order uniname zipcode  br* school* , first
         save `path'dta/aklist , replace
-
 
     use `path'dta/gomslist , clear
         gen area = uniarea
@@ -408,7 +407,6 @@ tempfile tfile1 tfile2 tfile3
             drop _merge
         save `path'dta/akglist , replace
 
-        /*gen goms_univ.dta*/
-            keep uniname-schooldtl area* found* status unimain-uniscr50 address-distance pid year
-            save `path'goms/rawdata/goms_univ , replace 
-
+    /*gen goms_univ.dta*/
+        keep uniname-schooldtl area* found* status unimain-uniscr50 address-distance pid year
+        save `path'goms/rawdata/goms_univ , replace 

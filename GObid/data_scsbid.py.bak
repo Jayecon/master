@@ -119,6 +119,6 @@ fetch_data_and_save_as_csv(
     ),
     start_date='202201010000',
     end_date='202212312359',
-    save_path=os.path.expanduser('~/dropbox/data/GObid/bid_public_info_frgn_2022.csv')
+    save_path=os.path.expanduser('~/dropbox/bid_public_info_frgn_2022.csv')
 )
 

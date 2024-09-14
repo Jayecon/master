@@ -2,479 +2,208 @@ set more off
 set maxvar 30000
 local path ~/dropbox/data/
 use `path'goms/goms_eq_raw , clear
-    /*자료 변환 : 숫자형 변수를 long type으로 {{{*/
-        local numvarlist ///
-        pid        /// /*본분교*/
-        branch     /// /*본분교*/
-        birthy     /// /*출생년*/
-        majorcat   /// /*전공계열*/
-        school     /// /*학교유형*/
-        province   /// /*학교소재권역*/
-        area       /// /*학교소재지역*/
-        sex        /// /*성별*/
-        age        /// /*연령(조사기준일 당시)*/
-        graduy     /// /*졸업년*/
-        gradum     /// /*졸업월*/
-        a001 a002 a003 ///
-        a004_10 a005_10 a006_10 ///
-        a007a_2018 a007_2018 a008_2018 a009_2018 ///
-        a010 a011 ///
-        a012 a014 a020 ///
-        a021 a022 ///
-        a023 a024 ///
-        a116 a117 a118 ///
-        a120 a121 a122 ///
-        a142 a143 a144 ///
-        a157 a158 a159 a160 a161 a162 a163 a164 a165 ///
-        d001 d002 d003 d004 d005 d006 ///
-        d110 d111 d112 ///
-        e001 e002 ///
-        e003 e004 e005 e006 ///
-        e078 e079 e080 e081 ///
-        e153 e154 e155 e156 ///
-        f073 f074 ///
-        h001 h002 ///
-        h006 h007 h008 h009 h010z ///
-        h026 h027 h028 h029 h030z ///
-        h046 h047 h048 h049 h050z ///
-        f001 f002 f006 f007 f008 f009 ///
-        p034 p035 ///
-        p045 ///
-        f036 f037 f038 f039 f040 f041 l001 l003 l016 l042 l068 m001 m002 /// /*eq 2nd rv */
-        f010 f011 f012 ///
-        wt             /*가중치*/
-        foreach i of local numvarlist {
-        di "VAR : `i'"
-        egen `i' = rowlast(`i'??)
-        }
+    /* gen vars to convert data from wide to long{{{*/
+        /*num vars*/
+            local numvarlist ///
+                pid birthy majorcat province sex age graduy gradum ///
+                a001 a002 a003 a004_10 a005_10 a006_10 a007a_2018 a007_2018 a008_2018 ///
+                a009_2018 a010 a011 a012 a014 a020 a021 a022 a023 a024 a116 a117 a118 a120 ///
+                    a121 a122 a142 a143 a144 a157 a158 a159 a160 a161 a162 a163 a164 a165 ///
+                d001 d002 d003 d004 d005 d006 d110 d111 d112 ///
+                e001 e002 e003 e004 e005 e006 e078 e079 e080 e081 e153 e154 e155 e156 ///
+                h001 h002 h006 h007 h008 h009 h026 h027 h028 h029 h046 h047 h048 h049 ///
+                f001 f002 f006 f007 f008 f009 f010 f011 f012 f073 f074 f036 f037 f038 f039 ///
+                    f040 f041 ///
+                l001 l003 l016 l030 l042 l056 l068 l082 ///
+                m001 m002 ///
+                p034 p035 p045 ///
+                wt
+            foreach i of local numvarlist {
+                di "VAR : `i'"
+                egen `i' = rowlast(`i'??)
+            }
+        /*str vars*/
+            local charvarlist major
+            foreach i of local charvarlist {
+                tostring `i'?? , replace force
+                gen str1 `i' = ""
+                replace `i' = `i'07 if year == 2007
+                replace `i' = `i'08 if year == 2008
+                replace `i' = `i'09 if year == 2009
+                replace `i' = `i'10 if year == 2010
+                replace `i' = `i'11 if year == 2011
+                replace `i' = `i'12 if year == 2012
+                replace `i' = `i'13 if year == 2013
+                replace `i' = `i'14 if year == 2014
+                replace `i' = `i'15 if year == 2015
+                replace `i' = `i'16 if year == 2016
+                replace `i' = `i'17 if year == 2017
+                replace `i' = `i'18 if year == 2018
+                replace `i' = `i'19 if year == 2019
+            }
     /*}}}*/
-    /*자료 변환 : 문자형 변수를 long type으로 {{{*/
-        local charvarlist ///
-        major          /*전공코드*/
-        foreach i of local charvarlist {
-        tostring `i'?? , replace force
-        gen str1 `i' = ""
-        replace `i' = `i'07 if year == 2007
-        replace `i' = `i'08 if year == 2008
-        replace `i' = `i'09 if year == 2009
-        replace `i' = `i'10 if year == 2010
-        replace `i' = `i'11 if year == 2011
-        replace `i' = `i'12 if year == 2012
-        replace `i' = `i'13 if year == 2013
-        replace `i' = `i'14 if year == 2014
-        replace `i' = `i'15 if year == 2015
-        replace `i' = `i'16 if year == 2016
-        replace `i' = `i'17 if year == 2017
-        replace `i' = `i'18 if year == 2018
-        replace `i' = `i'19 if year == 2019
-        }
+    /*merge with hs and univ data*/
+        merge 1:1 year pid using `path'goms/rawdata/goms_hs.dta , nogen
+        merge 1:1 year pid using `path'goms/rawdata/goms_univ.dta
+        drop if _merge != 3
+        drop _merge
+    /*labeling all vars {{{*/
+        # delimit ;
+        label var pid        "개인ID"              ;
+        label var major      "전공 세분류 "        ;
+        label var majorcat   "전공 대분류"         ; label copy G191MAJO MAJORCAT ; label value majorcat MAJORCAT ;
+        label var province   "졸업대학교 소재권역" ; label copy G191PROV PROVINCE ; label value province PROVINCE ;
+        label var sex        "성별"                ; label copy G191SEX SEX       ; label value sex SEX ;
+        label var birthy     "출생년"              ;
+        label var age        "연령(조사기준일)"    ;
+        label var graduy     "졸업년"              ;
+        label var gradum     "졸업월"              ;
+        label var wt         "가중치"              ;
+        local temp : var label a00119 ; label var a001  "`temp'" ; label copy G191A001 A001 ; label value a001 A001 ;
+        local temp : var label a00219 ; label var a002  "`temp'" ; label copy G191A002 A002 ; label value a002 A002 ;
+        local temp : var label a00319 ; label var a003  "`temp'" ; label copy G191A003 A003 ; label value a003 A003 ;
+        local temp : var label a004_1019 ; label var a004_10 "`temp'" ; label copy G191A004 A004_10 ; label value a004_10 A004_10 ;
+        local temp : var label a005_1019 ; label var a005_10 "`temp'" ; label copy G191A005 A005 ; label value a005_10 A005 ;
+        local temp : var label a006_1019 ; label var a006_10 "`temp'" ; label copy G191A006 A006 ; label value a006_10 A006 ;
+        local temp : var label a007a_201819 ; label var a007a_2018 "`temp'" ; label copy LABA A007A ; label value a007a_2018 A007A ;
+        local temp : var label a007_201819 ; label var a007_2018 "`temp'" ; label copy LABB A007 ; label value a007_2018 A007 ;
+        local temp : var label a008_201819 ; label var a008_2018 "`temp'" ; label copy LABC A008 ; label value a008_2018 A008 ;
+        local temp : var label a009_201819 ; label var a009_2018 "`temp'" ; label copy LABD A009 ; label value a009_2018 A009 ;
+        local temp : var label a01019 ; label var a010  "`temp'" ; label copy G191A010 A010 ; label value a010 A010 ;
+        local temp : var label a01119 ; label var a011  "`temp'" ; label copy G191A011 A011 ; label value a011 A011 ;
+        local temp : var label a01219 ; label var a012  "`temp'" ; label copy G191A012 A012 ; label value a012 A012 ;
+        local temp : var label a01419 ; label var a014  "`temp'" ; label copy LABE A014     ; label value a014 A014 ;
+        local temp : var label a02319 ; label var a023  "`temp'" ; label copy G191A023 A023 ; label value a023 A023 ;
+        local temp : var label a02419 ; label var a024  "`temp'" ; label copy G191A024 A024 ; label value a024 A024 ;
+        local temp : var label a11619 ; label var a116  "`temp'" ; label copy G191A116 A116 ; label value a116 A116 ;
+        local temp : var label a11719 ; label var a117  "`temp'" ; label copy G191A117 A117 ; label value a117 A117 ;
+        local temp : var label a11819 ; label var a118  "`temp'" ; label copy G191A118 A118 ; label value a118 A118 ;
+        local temp : var label a14219 ; label var a142  "`temp'" ; label copy G191A142 A142 ; label value a142 A142 ;
+        local temp : var label a14319 ; label var a143  "`temp'" ; label copy G191A143 A143 ; label value a143 A143 ;
+        local temp : var label a14419 ; label var a144  "`temp'" ; label copy G191A144 A144 ; label value a144 A144 ;
+        local temp : var label a15707 ; label var a157  "`temp'" ; label copy G071A157 A157 ; label value a157 A157 ;
+        local temp : var label a15819 ; label var a158  "`temp'" ; label copy G191A158 A158 ; label value a158 A158 ;
+        local temp : var label a15919 ; label var a159  "`temp'" ; label copy G191A159 A159 ; label value a159 A159 ;
+        local temp : var label a16019 ; label var a160  "`temp'" ; label copy G191A160 A160 ; label value a160 A160 ;
+        local temp : var label a16119 ; label var a161  "`temp'" ; label copy G191A161 A161 ; label value a161 A161 ;
+        local temp : var label a16219 ; label var a162  "`temp'" ; label copy G191A162 A162 ; label value a162 A162 ;
+        local temp : var label a16307 ; label var a163  "`temp'" ; label copy G071A163 A163 ; label value a163 A163 ;
+        local temp : var label a16419 ; label var a164  "`temp'" ; label copy G191A164 A164 ; label value a164 A164 ;
+        local temp : var label a16519 ; label var a165  "`temp'" ; label copy G191A165 A165 ; label value a165 A165 ;
+        local temp : var label a02019 ; label var a020  "`temp'" ; label copy G191A020 A020 ; label value a020 A020 ;
+        local temp : var label a02119 ; label var a021  "`temp'" ; label copy G191A021 A021 ; label value a021 A021 ;
+        local temp : var label a02219 ; label var a022  "`temp'" ; label copy G191A022 A022 ; label value a022 A022 ;
+        local temp : var label a12019 ; label var a120  "`temp'" ; label copy G191A120 A120 ; label value a120 A120 ;
+        local temp : var label a12119 ; label var a121  "`temp'" ; label copy G191A121 A121 ; label value a121 A121 ;
+        local temp : var label a12219 ; label var a122  "`temp'" ; label copy G191A122 A122 ; label value a122 A122 ;
+        local temp : var label d00119 ; label var d001  "`temp'" ; label copy G191D001 D001 ; label value d001 D001 ;
+        local temp : var label d00219 ; label var d002  "`temp'" ;
+        local temp : var label d00319 ; label var d003  "`temp'" ;
+        local temp : var label d00419 ; label var d004  "`temp'" ;
+        local temp : var label d00519 ; label var d005  "`temp'" ;
+        local temp : var label d00619 ; label var d006  "`temp'" ; label copy G191D006 D006 ; label value d006 D006 ;
+        local temp : var label d11019 ; label var d110  "`temp'" ; label copy G191D110 D110 ; label value d110 D110 ;
+        local temp : var label d11119 ; label var d111  "`temp'" ; label copy G191D111 D111 ; label value d111 D111 ;
+        local temp : var label d11219 ; label var d112  "`temp'" ; label copy G191D112 D112 ; label value d112 D112 ;
+        local temp : var label e00119 ; label var e001  "`temp'" ; label copy G191E001 E001 ; label value e001 E001 ;
+        local temp : var label e00219 ; label var e002  "`temp'" ;
+        local temp : var label e00319 ; label var e003  "`temp'" ;
+        local temp : var label e00419 ; label var e004  "`temp'" ;
+        local temp : var label e00519 ; label var e005  "`temp'" ;
+        local temp : var label e00619 ; label var e006  "`temp'" ;
+        local temp : var label e07819 ; label var e078  "`temp'" ;
+        local temp : var label e07919 ; label var e079  "`temp'" ;
+        local temp : var label e08019 ; label var e080  "`temp'" ;
+        local temp : var label e08119 ; label var e081  "`temp'" ;
+        local temp : var label e15319 ; label var e153  "`temp'" ;
+        local temp : var label e15419 ; label var e154  "`temp'" ;
+        local temp : var label e15519 ; label var e155  "`temp'" ;
+        local temp : var label e15619 ; label var e156  "`temp'" ;
+        local temp : var label f00119 ; label var f001  "`temp'" ; label copy G191F001 F001 ; label value f001 f001 ;
+        local temp : var label f00219 ; label var f002  "`temp'" ; label copy G191F002 F002 ; label value f002 f002 ;
+        local temp : var label f00619 ; label var f006  "`temp'" ; label copy G191F006 F006 ; label value f006 F006 ;
+        local temp : var label f00719 ; label var f007  "`temp'" ; label copy LABF F007     ; label value f007 F007 ;
+        local temp : var label f00819 ; label var f008  "`temp'" ; label copy G191F008 F008 ; label value f008 F008 ;
+        local temp : var label f00919 ; label var f009  "`temp'" ; label copy G191F009 F009 ; label value f009 F009 ;
+        local temp : var label f01019 ; label var f010  "`temp'" ;
+        local temp : var label f01119 ; label var f011  "`temp'" ;
+        local temp : var label f01219 ; label var f012  "`temp'" ;
+        local temp : var label f07319 ; label var f073  "`temp'" ; label copy G191F073 F073 ; label value f073 F073 ;
+        local temp : var label f07419 ; label var f074  "`temp'" ;
+        local temp : var label f03619 ; label var f036  "`temp'" ; label copy G191F036 F036 ; label value f036 F036 ;
+        local temp : var label f03719 ; label var f037  "`temp'" ; label copy G191F037 F037 ; label value f037 F037 ;
+        local temp : var label f03819 ; label var f038  "`temp'" ; label copy G191F038 F038 ; label value f038 F038 ;
+        local temp : var label f03919 ; label var f039  "`temp'" ; label copy G191F039 F039 ; label value f039 F039 ;
+        local temp : var label f04019 ; label var f040  "`temp'" ; label copy G191F040 F040 ; label value f040 F040 ;
+        local temp : var label f04119 ; label var f041  "`temp'" ; label copy G191F041 F041 ; label value f041 F041 ;
+        local temp : var label h00119 ; label var h001  "`temp'" ; label copy G191H001 H001 ; label value h001 H001 ;
+        local temp : var label h00219 ; label var h002  "`temp'" ;
+        local temp : var label h00619 ; label var h006  "`temp'" ; label copy G191H006 H006 ; label value h006 H006 ;
+        local temp : var label h00719 ; label var h007  "`temp'" ; label copy G191H007 H007 ; label value h007 H007 ;
+        local temp : var label h00819 ; label var h008  "`temp'" ; label copy G191H008 H008 ; label value h008 H008 ;
+        local temp : var label h00919 ; label var h009  "`temp'" ; label copy G191H009 H009 ; label value h009 H009 ;
+        local temp : var label h02619 ; label var h026  "`temp'" ; label copy G191H026 H026 ; label value h026 H026 ;
+        local temp : var label h02719 ; label var h027  "`temp'" ; label copy G191H027 H027 ; label value h027 H027 ;
+        local temp : var label h02819 ; label var h028  "`temp'" ; label copy G191H028 H028 ; label value h028 H028 ;
+        local temp : var label h02919 ; label var h029  "`temp'" ; label copy G191H029 H029 ; label value h029 H029 ;
+        local temp : var label h04619 ; label var h046  "`temp'" ; label copy G191H046 H046 ; label value h046 H046 ;
+        local temp : var label h04719 ; label var h047  "`temp'" ; label copy G191H047 H047 ; label value h047 H047 ;
+        local temp : var label h04819 ; label var h048  "`temp'" ; label copy G191H048 H048 ; label value h048 H048 ;
+        local temp : var label h04919 ; label var h049  "`temp'" ; label copy G191H049 H049 ; label value h049 H049 ;
+        local temp : var label l00119 ; label var l001  "`temp'" ; label copy G191L001 L001 ; label value l001 L001 ;
+        local temp : var label l00319 ; label var l003  "`temp'" ;
+        local temp : var label l01619 ; label var l016  "`temp'" ;
+        local temp : var label l04219 ; label var l042  "`temp'" ;
+        local temp : var label l06819 ; label var l068  "`temp'" ;
+        local temp : var label m00119 ; label var m001  "`temp'" ; label copy G191M001 M001 ; label value m001 M001 ;
+        local temp : var label m00219 ; label var m002  "`temp'" ;
+        local temp : var label p03419 ; label var p034  "`temp'" ; label copy G191P034 P034 ; label value p034 P034 ;
+        local temp : var label p03519 ; label var p035  "`temp'" ; label copy G191P035 P035 ; label value p035 P035 ;
+        local temp : var label p04519 ; label var p045  "`temp'" ; label copy G191P045 P045 ; label value p045 P045 ;
+        #delimit cr
     /*}}}*/
-    /*자료 변환 : 모든 변수 labeling {{{*/
-        label var pid "개인ID"
-        label var branch     "본분교"
-        label copy G191BRAN BRANCH
-        recode branch (4=3)
-        label value branch BRANCH
-        label var major      "전공 세분류 "
-        label var majorcat   "전공 대분류"
-        label copy G191MAJO MAJORCAT
-        label value majorcat MAJORCAT
-        label var school     "학교유형"
-            label copy G191SCHO SCHOOL
-            label value school SCHOOL
-        label var province   "졸업대학교 소재권역"
-        label copy G191PROV PROVINCE
-        label value province PROVINCE
-        label var area       "졸업대학교 소재지역"
-        label copy G191AREA AREA
-        label value area AREA
-        label var sex        "성별"
-        label copy G191SEX SEX
-        label value sex SEX
-        label var birthy     "출생년"
-        label var age        "연령(조사기준일)"
-        label var graduy     "졸업년"
-        label var gradum     "졸업월"
-        label var wt         "가중치"
-        local temp : var label a00119
-        label var a001  "`temp'"
-        label copy G191A001 A001
-        label value a001 A001
-        local temp : var label a00219
-        label var a002  "`temp'"
-        label copy G191A002 A002
-        label value a002 A002
-        local temp : var label a00319
-        label var a003  "`temp'"
-        label copy G191A003 A003
-        label value a003 A003
-        local temp : var label a01219
-        label var a012  "`temp'"
-        label copy G191A012 A012
-        label value a012 A012
-        local temp : var label a01419
-        label var a014  "`temp'"
-        label copy LABE A014
-        label value a014 A014
-        local temp : var label a02019
-        label var a020  "`temp'"
-        label copy G191A020 A020
-        label value a020 A020
-        local temp : var label a02119
-        label var a021  "`temp'"
-        label copy G191A021 A021
-        label value a021 A021
-        local temp : var label a02219
-        label var a022  "`temp'"
-        label copy G191A022 A022
-        label value a022 A022
-        local temp : var label a12019
-        label var a120  "`temp'"
-        label copy G191A120 A120
-        label value a120 A120
-        local temp : var label a12119
-        label var a121  "`temp'"
-        label copy G191A121 A121
-        label value a121 A121
-        local temp : var label a12219
-        label var a122  "`temp'"
-        label copy G191A122 A122
-        label value a122 A122
-        local temp : var label d00119
-        label var d001  "`temp'"
-        label copy G191D001 D001
-        label value d001 D001
-        local temp : var label d00219
-        label var d002  "`temp'"
-        local temp : var label d00319
-        label var d003  "`temp'"
-        local temp : var label d00419
-        label var d004  "`temp'"
-        local temp : var label d00519
-        label var d005  "`temp'"
-        local temp : var label d00619
-        label var d006  "`temp'"
-        label copy G191D006 D006
-        label value d006 D006
-        local temp : var label d11019
-        label var d110  "`temp'"
-        label copy G191D110 D110
-        label value d110 D110
-        local temp : var label d11119
-        label var d111  "`temp'"
-        label copy G191D111 D111
-        label value d111 D111
-        local temp : var label d11219
-        label var d112  "`temp'"
-        label copy G191D112 D112
-        label value d112 D112
-        local temp : var label e00119
-        label var e001  "`temp'"
-        label copy G191E001 E001
-        label value e001 E001
-        local temp : var label e00219
-        label var e002  "`temp'"
-        local temp : var label e00319
-        label var e003  "`temp'"
-        local temp : var label e00419
-        label var e004  "`temp'"
-        local temp : var label e00519
-        label var e005  "`temp'"
-        local temp : var label e00619
-        label var e006  "`temp'"
-        local temp : var label e07819
-        label var e078  "`temp'"
-        local temp : var label e07919
-        label var e079  "`temp'"
-        local temp : var label e08019
-        label var e080  "`temp'"
-        local temp : var label e08119
-        label var e081  "`temp'"
-        local temp : var label e15319
-        label var e153  "`temp'"
-        local temp : var label e15419
-        label var e154  "`temp'"
-        local temp : var label e15519
-        label var e155  "`temp'"
-        local temp : var label e15619
-        label var e156  "`temp'"
-        local temp : var label h00119
-        label var h001  "`temp'"
-        label copy G191H001 H001
-        label value h001 H001
-        local temp : var label h00219
-        label var h002  "`temp'"
-        local temp : var label h00619
-        label var h006  "`temp'"
-        label copy G191H006 H006
-        label value h006 H006
-        local temp : var label h00719
-        label var h007  "`temp'"
-        label copy G191H007 H007
-        label value h007 H007
-        local temp : var label h00819
-        label var h008  "`temp'"
-        label copy G191H008 H008
-        label value h008 H008
-        local temp : var label h00919
-        label var h009  "`temp'"
-        label copy G191H009 H009
-        label value h009 H009
-        local temp : var label h010z19
-        label var h010z "`temp'"
-        local temp : var label h02619
-        label var h026  "`temp'"
-        label copy G191H026 H026
-        label value h026 H026
-        local temp : var label h02719
-        label var h027  "`temp'"
-        label copy G191H027 H027
-        label value h027 H027
-        local temp : var label h02819
-        label var h028  "`temp'"
-        label copy G191H028 H028
-        label value h028 H028
-        local temp : var label h02919
-        label var h029  "`temp'"
-        label copy G191H029 H029
-        label value h029 H029
-        local temp : var label h030z19
-        label var h030z "`temp'"
-        local temp : var label h04619
-        label var h046  "`temp'"
-        label copy G191H046 H046
-        label value h046 H046
-        local temp : var label h04719
-        label var h047  "`temp'"
-        label copy G191H047 H047
-        label value h047 H047
-        local temp : var label h04819
-        label var h048  "`temp'"
-        label copy G191H048 H048
-        label value h048 H048
-        local temp : var label h04919
-        label var h049  "`temp'"
-        label copy G191H049 H049
-        label value h049 H049
-        local temp : var label h050z19
-        label var h050z " `temp'"
-        local temp : var label a004_1019
-        label var a004_10  "`temp'"
-        label copy G191A004 A004_10
-        label value a004_10 A004_10
-        rename a004_10 a004_10
-        local temp : var label a005_1019
-        label var a005_10  "`temp'"
-        label copy G191A005 A005
-        label value a005_10 A005
+    /*rename vars {{{*/
+        rename a004_10 a004
         rename a005_10 a005
-        local temp : var label a006_1019
-        label var a006_10  "`temp'"
-        label copy G191A006 A006
-        label value a006_10 A006
         rename a006_10 a006
-        local temp : var label a007a_201819
-        label var a007a_2018  "`temp'"
-        label copy LABA A007A
-        label value a007a_2018 A007A
         rename a007a_2018 a007A
-        local temp : var label a007_201819
-        label var a007_2018  "`temp'"
-        label copy LABB A007
-        label value a007_2018 A007
         rename a007_2018 a007
-        local temp : var label a008_201819
-        label var a008_2018  "`temp'"
-        label copy LABC A008
-        label value a008_2018 A008
         rename a008_2018 a008
-        local temp : var label a009_201819
-        label var a009_2018  "`temp'"
-        label copy LABD A009
-        label value a009_2018 A009
         rename a009_2018 a009
-        local temp : var label a01019
-        label var a010  "`temp'"
-        label copy G191A010 A010
-        label value a010 A010
-        local temp : var label a01119
-        label var a011  "`temp'"
-        label copy G191A011 A011
-        label value a011 A011
-        local temp : var label a02319
-        label var a023  "`temp'"
-        label copy G191A023 A023
-        label value a023 A023
-        recode a023 (4=5) (5=7) if year == 2007
-        local temp : var label a02419
-        label var a024  "`temp'"
-        label copy G191A024 A024
-        label value a024 A024
-        local temp : var label a11619
-        label var a116  "`temp'"
-        label copy G191A116 A116
-        label value a116 A116
-        local temp : var label a11719
-        label var a117  "`temp'"
-        label copy G191A117 A117
-        label value a117 A117
-        local temp : var label a11819
-        label var a118  "`temp'"
-        label copy G191A118 A118
-        label value a118 A118
-        local temp : var label a15707
-        label var a157  "`temp'"
-        label copy G071A157 A157
-        label value a157 A157
-        local temp : var label a15819
-        label var a158  "`temp'"
-        label copy G191A158 A158
-        label value a158 A158
-        local temp : var label a15919
-        label var a159  "`temp'"
-        label copy G191A159 A159
-        label value a159 A159
-        local temp : var label a16019
-        label var a160  "`temp'"
-        label copy G191A160 A160
-        label value a160 A160
-        local temp : var label a16119
-        label var a161  "`temp'"
-        label copy G191A161 A161
-        label value a161 A161
-        local temp : var label a16219
-        label var a162  "`temp'"
-        label copy G191A162 A162
-        label value a162 A162
-        local temp : var label a16307
-        label var a163  "`temp'"
-        label copy G071A163 A163
-        label value a163 A163
-        local temp : var label a16419
-        label var a164  "`temp'"
-        label copy G191A164 A164
-        label value a164 A164
-        local temp : var label a16519
-        label var a165  "`temp'"
-        label copy G191A165 A165
-        label value a165 A165
-        local temp : var label f00119
-        label var f001  "`temp'"
-        label copy G191F001 F001
-        label value f001 f001
-        local temp : var label f00219
-        label var f002  "`temp'"
-        label copy G191F002 F002
-        label value f002 f002
-        local temp : var label f00619
-        label var f006  "`temp'"
-        label copy G191F006 F006
-        label value f006 F006
-        local temp : var label f00719
-        label var f007  "`temp'"
-        label copy LABF F007
-        label value f007 F007
-        local temp : var label f00819
-        label var f008  "`temp'"
-        label copy G191F008 F008
-        label value f008 F008
-        local temp : var label f00919
-        label var f009  "`temp'"
-        label copy G191F009 F009
-        label value f009 F009
-            recode f009 (3/4=3) (5=4) (9=10) if year == 2007
-            recode f009 (3/4=3) (5=4) (9=10) if year == 2008
-            recode f009 (3/4=3) (5=4) (9=10) if year == 2009
-            recode f009 (3/4=3) (5=4) (9=10) if year == 2010
-            recode f009 (3/4=3) (5=4) (9=10) if year == 2011
-            recode f009 (3/4=3) (5=4) (9=10) if year == 2012
-            recode f009 (3/4=3) (5=4) (9=10) if year == 2013
-            recode f009 (4=6) (5=7) (6=8) (7=4) (8=10) if year == 2014
-        local temp : var label f07319
-        label var f073  "`temp'"
-        label copy G191F073 F073
-        label value f073 F073
-        local temp : var label f07419
-        label var f074  "`temp'"
-        local temp : var label p04519
-        label var p045  "`temp'"
-        label copy G191P045 P045
-        label value p045 P045
-        /*eq 2nd rv */
-            local temp : var label f03619
-            label var f036  "`temp'"
-            label copy G191F036 F036
-            label value f036 F036
-            local temp : var label f03719
-            label var f037  "`temp'"
-            label copy G191F037 F037
-            label value f037 F037
-            local temp : var label f03819
-            label var f038  "`temp'"
-            label copy G191F038 F038
-            label value f038 F038
-            local temp : var label f03919
-            label var f039  "`temp'"
-            label copy G191F039 F039
-            label value f039 F039
-            local temp : var label f04019
-            label var f040  "`temp'"
-            label copy G191F040 F040
-            label value f040 F040
-            local temp : var label f04119
-            label var f041  "`temp'"
-            label copy G191F041 F041
-            label value f041 F041
-            local temp : var label l00119
-            label var l001  "`temp'"
-            label copy G191L001 L001
-            label value l001 L001
-            local temp : var label l00319
-            label var l003  "`temp'"
-            local temp : var label l01619
-            label var l016  "`temp'"
-            local temp : var label l04219
-            label var l042  "`temp'"
-            local temp : var label l06819
-            label var l068  "`temp'"
-            local temp : var label m00119
-            label var m001  "`temp'"
-            label copy G191M001 M001
-            label value m001 M001
-            local temp : var label m00219
-            label var m002  "`temp'"
-        local temp : var label a14219
-        label var a142  "`temp'"
-        label copy G191A142 A142
-        label value a142 A142
-        local temp : var label a14319
-        label var a143  "`temp'"
-        label copy G191A143 A143
-        label value a143 A143
-        local temp : var label a14419
-        label var a144  "`temp'"
-        label copy G191A144 A144
-        label value a144 A144
-        local temp : var label p03419
-        label var p034  "`temp'"
-        label copy G191P034 P034
-        label value p034 P034
-        local temp : var label p03519
-        label var p035  "`temp'"
-        label copy G191P035 P035
-        label value p035 P035
-        local temp : var label f01019
-        label var f010  "`temp'"
-        local temp : var label f01119
-        label var f011  "`temp'"
-        local temp : var label f01219
-        label var f012  "`temp'"
     /*}}}*/
-    /*변수 교정 : 년도별 응답 불일치 {{{*/
-        recode a003 (2=1) (1=2) if inlist(year, 2007 )
-        recode d006 (2=1) (1=2) if inlist(year, 2007, 2008)
+    /*recoding variables to fix year varing value problems{{{*/
+        if ("`x'" == "7") {
+            recode a003 (2=1) (1=2)
+            recode d006 (2=1) (1=2)
+            recode a023 (4=5) (5=7)
+            recode f009 (3/4=3) (5=4) (9=10)
+        }
+        if ("`x'" == "8" ){
+            recode f009 (3/4=3) (5=4) (9=10)
+            recode d006 (2=1) (1=2)
+        }
+        if ("`x'" == "9" ){
+            recode l001 (1/2=1) (3=2)
+            recode f009 (3/4=3) (5=4) (9=10)
+        }
+        if ("`x'" == "10" ){
+            recode l001 (1/2=1) (3=2)
+            recode f009 (3/4=3) (5=4) (9=10)
+        }
+        if ("`x'" == "11" ){
+            recode f009 (3/4=3) (5=4) (9=10)
+        }
+        if ("`x'" == "12" ){
+            recode f009 (3/4=3) (5=4) (9=10)
+        }
+        if ("`x'" == "13" ){
+            recode f009 (3/4=3) (5=4) (9=10)
+        }
+        if ("`x'" == "14" ){
+            recode f009 (4=6) (5=7) (6=8) (7=4) (8=10)
+        }
     /*}}}*/
-    /*변수 생성 : a999 a998 {{{*/
+    /*gen a999 a998 {{{*/
         capture drop a999
         egen a999 = rowlast(a157 a158 a159)
         local temp : var label a157
@@ -488,7 +217,7 @@ use `path'goms/goms_eq_raw , clear
             label copy A163 A998
             label value a998 A998
     /*}}}*/
-    /*변수 생성 : expm? {{{*/
+    /*gen : expm? {{{*/
         capture drop expm?
         gen expm1 = (d004*12 +d005) - (d002*12 +d003) +1 if d001 == 1
         label var expm1 "첫일자리근무(월)"
@@ -508,7 +237,7 @@ use `path'goms/goms_eq_raw , clear
         replace expm`i' = . if expm`i' < 0
         }
     /*}}}*/
-    /*변수 생성 : medtyp {{{*/
+    /*gen : medtyp {{{*/
         gen byte medtyp = .
         label var medtyp "의예계열전공"
         label define MEDTYP 1 "의학" 2 "치의학" 3 "한의학" 4 "수의학" 5 "약학"
@@ -525,7 +254,7 @@ use `path'goms/goms_eq_raw , clear
         replace medtyp = 5 if year != 2007 & strpos(major , "U060301" )
         replace medtyp = . if year != 2007 & inlist(major , "U06030100021" )
     /*}}}*/
-    /*변수 생성 : innoarea {{{*/
+    /*gen : innoarea {{{*/
         gen byte innoarea = .
         label var innoarea "혁신도시지역"
         replace innoarea = 1  if area == 2
@@ -544,7 +273,11 @@ use `path'goms/goms_eq_raw , clear
         label define innoarea 1 "부산" 2 "대구" 3 "울산" 4 "강원" 5 "충북" 6 "전북" 7 "광주전남" 8 "경북" 9 "경남" 10 "제주" 97 "세종" 98 "수도권" 99 "개별"
         label value innoarea innoarea
     /*}}}*/
-    /*자료 정리 : 잔여변수 drop {{{*/
+    /*gen : l999{{{*/
+        gen l999 = l016 + l042 + l068
+        label var l999 "직업 교육/훈련기간_총 시간"
+    /*}}}*/
+    /*drop vars {{{*/
         foreach i of local numvarlist {
             drop `i'??
         }
@@ -557,20 +290,15 @@ use `path'goms/goms_eq_raw , clear
             drop if !inrange(temp2 , -2 , 0 )
             drop temp?
     /*}}}*/
-    drop branch school area l018?? l022?? l030?? l044?? l048?? l056?? l070?? l074?? l082??
-    merge 1:1 year pid using `path'goms/rawdata/goms_hs.dta , nogen
-    merge 1:1 year pid using `path'goms/rawdata/goms_univ.dta
-        drop if _merge != 3
-        drop _merge
     /*통계청 지역벌 산업조사*/
-    /*merge m:1 year area using `path'KOSIS/kosis_ind_gomseq.dta*/
+        /*merge m:1 year area using `path'KOSIS/kosis_ind_gomseq.dta*/
         /*drop if _merge != 3*/
         /*drop _merge*/
     /*통계청 지역벌 인구조사*/
-    /*merge m:1 year area using `path'KOSIS/kosis_pop_gomseq.dta*/
+        /*merge m:1 year area using `path'KOSIS/kosis_pop_gomseq.dta*/
         /*drop if _merge != 3*/
         /*drop _merge*/
-    gen l999 = l016 + l042 + l068
-        label var l999 "직업 교육/훈련기간_총 시간"
+    order _all , alpha
+    order pid year branch branchdtl school schooldtl birthy majorcat province provincecl area areadtl sex age graduy gradum address , first
 save `path'goms/goms_eq.dta , replace
-save ~/dropbox/HL_SJHO/GOMS_EducationalQuality/goms_eq.dta , replace
+/*save ~/dropbox/HL_SJHO/GOMS_EducationalQuality/goms_eq.dta , replace*/
