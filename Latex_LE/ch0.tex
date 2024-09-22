@@ -1,0 +1,219 @@
+%----------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------
+
+\documentclass[aspectratio=169,xcolor=dvipsnames,handout]{beamer}
+\usetheme{Darmstadt}
+\usecolortheme{seahorse}
+\usepackage[hangul]{kotex}
+\usepackage{hyperref}
+\usepackage{graphicx, array, adjustbox}
+\usepackage[table]{xcolor}
+\usepackage{booktabs, multicol, multirow}
+\setbeamercovered{transparent}
+
+\definecolor{myblue}{RGB}{184, 185, 226}
+%----------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------
+
+\title[들어가는 말]{노사관계론 관련 배경지식} % The short title appears at the bottom of every slide, the full title is only on the title page
+\subtitle{노사관계론}
+\author[오성재]{오성재}
+\institute[CNU] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+    충남대학교 경제학과\\
+}
+%\date{\today} 
+\date{2024년 9월 2일} 
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{목차}
+    \tableofcontents
+\end{frame}
+
+\begin{frame}{들어가는 말}
+    \begin{itemize}
+        \item 본격적인 수업의 진행에 앞서 두 가지 배경지식을 습득.
+        \begin{itemize}
+            \item 노동과 근로소득은 불가분의 관계이고, 따라서 소득에 대한 이해는 학습에 도움이 됨.
+            \item 수업의 특성상 노동관련 법이 자주 등장하므로 배경지식으로 짚고 넘어갈 필요가 있음.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+%------------------------------------------------
+\section{한국의 소득}
+%------------------------------------------------
+
+\begin{frame}{가계금융복지조사}
+    \begin{itemize}
+        \item 통계청 주관으로 2012년부터 전국 2만 가구를 표본으로 매년 실시되는 조사.
+        \item 가구단위의 자산, 부채, 소득, 지출 등을 조사.
+        \begin{itemize}
+            \item 가구 : 1인 또는 2인 이상이 모여 주거 또는 소득과 지출 등 생계를 같이 하는 생활 단위.
+        \end{itemize}
+        \item 각종 정책의 기준으로 매우 중요한 자료.
+        \begin{itemize}
+            \item 중산층의 기준 : 중위소득의 50-150\%.
+            \item 소득분위 : 국가장학금 신청의 기준.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{가구소득의 구성}
+    \begin{itemize}
+        \item 근로소득.
+        \item 사업소득.
+        \item 재산소득 : 금융소득, 임대소득.
+        \item 공적이전소득.
+        \begin{itemize}
+            \item 연금 : 공적연금, 기초연금.
+            \item 수당 : 양육수당, 장애수당.
+        \end{itemize}
+        \item 사적이전소득
+        \begin{itemize}
+            \item 용돈, 상속, 유산 등등. 
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{가구소득 분포}
+\centering
+\begin{figure}
+    \includegraphics[width=\textwidth]{pic/가구소득 구간별 가구분포.png}
+    \caption{가구소득 구간별 가구분포}
+\end{figure}
+
+\end{frame}
+\begin{frame}{소득원천별 가구소득}
+\begin{columns}
+    \begin{column}{.5\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[width=.8\textwidth]{pic/소득원천별 가구소득 평균.png}
+            \caption{소득원천별 가구소득 평균}
+        \end{figure}
+    \end{column}    
+    \begin{column}{.5\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[width=.8\textwidth]{pic/소득원천별 가구소득 구성비.png}
+            \caption{소득원천별 가구소득 구성비}
+        \end{figure}
+    \end{column}    
+\end{columns}
+\end{frame}
+
+\begin{frame}{가구특성 및 가구소득 구간별 가구분포}
+    \begin{table}
+        \raggedleft % 왼쪽 정렬
+        \tiny{(단위 : \%)} % 자료 출처
+        \hspace*{2em} % 좌측 여백을 추가
+        \\
+        \centering
+        \resizebox{.95\textwidth}{!}{
+           \input{tab/가구특성 및 가구소득 구간별 가구분포}
+        }
+       \caption{가구특성 및 가구소득 구간별 가구분포} 
+    \end{table}
+\end{frame}
+
+\begin{frame}{소득원천별 가구소득 평균 및 구성비}
+    \begin{table}
+        \raggedleft % 왼쪽 정렬
+        \tiny{(단위 : 만원, \%, \%p)} % 자료 출처
+        \hspace*{2em} % 좌측 여백을 추가
+        \\
+        \centering
+        \resizebox{.95\textwidth}{!}{
+           \input{tab/소득원천별 가구소득 평균 및 구성비}
+        }
+       \caption{소득원천별 가구소득 평균 및 구성비}
+    \end{table}
+\end{frame}
+
+\begin{frame}{소득원천별 가구소득 평균 및 구성비 상세}
+    \begin{table}
+        \raggedleft % 왼쪽 정렬
+        \tiny{(단위 : 만원, \%)} % 자료 출처
+        \hspace*{2em} % 좌측 여백을 추가
+        \\
+        \centering
+        \resizebox{.95\textwidth}{!}{
+           \input{tab/소득원천별 가구소득 평균 및 구성비 상세}
+        }
+       \caption{소득원천별 가구소득 평균 및 구성비 상세}
+    \end{table}
+\end{frame}
+
+\begin{frame}{균등화처분가능소득}
+    \begin{itemize}
+        \item 균등화소득 :  가구원수가 다른 가구 간의 후생(복지)수준을 비교할 수 있도록 가구소득을 $\sqrt{\text{가구원수}}$ 로 나눈 소득
+        \item 시장소득 = 근로소득 + 사업소득 + 재산소득 + 사적 이전소득 – 사적 이전지출.
+        \item 처분가능소득 = 시장소득 + 공적 이전소득 － 공적 이전지출.
+        \item 분배 및 불평등 관련 소득은 \textbf{균등화처분가능소득}이 기준.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{균등화처분가능소득 분포}
+\centering
+\begin{figure}
+    \includegraphics[width=\textwidth]{pic/균등화처분가능소득분포.png}
+    \caption{균등화처분가능소득 분포}
+\end{figure}
+\end{frame}
+
+%------------------------------------------------
+\section{한국의 법 체계}
+%------------------------------------------------
+
+\begin{frame}{우리법 체계}
+    \begin{itemize}
+        \item 우리 법은 헌법, 법률, 명령, 조례 및 규칙 순으로 위계를 가짐.
+        \item 상위 법은 하위 법을 규정함 : 제정, 시행, 처벌 등등.
+        \item 하위 법은 상위 법을 어길 수 없음.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{헌법}
+    \begin{itemize}
+        \item 대한민국의 최고 규범으로서, 국가의 기본 구조와 국민의 기본권을 규정.
+        \item 헌법 제1조 제2항 "대한민국의 주권은 국민에게 있고, 모든 권력은 국민으로부터 나온다".
+        \item 헌법 개정은 국회 재적의원의 $2/3$ 동의로 발의되고 국민투표에서 과반수를 넘겨야 가능.
+        \item 헌법 제32조 근로의 권리.
+        \item 헌법 제33조 근로자의 단결권.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{법률}
+    \begin{itemize}
+        \item 국회에서 제정된 법으로, 헌법의 위임을 받아 구체적인 사항을 규율.
+        \item 법률은 모든 국민에게 적용되며, 하위 법령인 명령, 규칙 등은 법률을 집행하기 위한 세부 규정.
+        \item 헌법 제40조 "입법권은 국회에 속한다".
+        \item 근로기준법, 노조법, 산업안전보건법, 최저임금법, 공무원노조법 등등.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{명령}
+    \begin{itemize}
+        \item 행정부에서 법률을 집행하기 위해 발하는 법령으로 대통령령, 총리령, 부령 등이 존재.
+        \item 헌법 제75조 "대통령은 법률에서 구체적으로 범위를 정하여 위임받은 사항과 법률을 집행하기 위하여 필요한 사항에 관하여 명령을 발할 수 있다".
+        \item 각 법률의 시행령 등등.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{조례 및 규칙}
+    \begin{itemize}
+        \item 조례는 지방자치단체의 의회에서 제정하는 법규, 지방자치단체의 자치권을 행사하기 위한 구체적인 규정. 
+        \item 규칙은 지방자치단체장이 법령 또는 조례의 범위 내에서 제정하는 규범.
+        \item 헌법 제117조 제1항 "지방자치단체는 법령의 범위 안에서 그 사무에 관하여 조례를 제정할 수 있다".
+    \end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\end{document}
