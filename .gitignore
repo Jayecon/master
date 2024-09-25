@@ -1,5 +1,14 @@
 *.log
 *.swp
-.DS_Store
-.bak
-.un~
+*.DS_Store
+*.bak
+*.un~
+*.aux
+*.out
+*.snm
+*.toc
+*.fls
+*.fdb_latexmk
+*.gz
+*.nav
+*.pdf
