@@ -66,4 +66,3 @@ use `tfile1' , clear
     order area year , first
     compress
     save ~/dropbox/data/kosis/kosis_ind_gomseq.dta , replace
-

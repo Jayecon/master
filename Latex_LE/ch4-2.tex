@@ -1,0 +1,295 @@
+%----------------------------------------------------------
+% PACKAGES AND THEMES
+%----------------------------------------------------------
+\documentclass[aspectratio=169,xcolor=dvipsnames,handout]{beamer}
+
+\usetheme{Darmstadt}
+\usecolortheme{seahorse}
+
+\usepackage[hangul]{kotex}
+\usepackage{hyperref}
+\usepackage{graphicx, array, adjustbox, makecell}
+\usepackage{booktabs, multicol, multirow}
+\setbeamercovered{transparent}
+
+%----------------------------------------------------------
+% TITLE PAGE
+%----------------------------------------------------------
+\title{단체협약}
+\subtitle{노사관계의 이론과 실제}
+\author{오성재}
+\institute[CNU]
+{\relax
+    충남대학교 경제학과\\
+}
+\date{2024년 9월 30일}
+
+%----------------------------------------------------------
+\begin{document}
+%----------------------------------------------------------
+
+\frame{\titlepage}
+
+\begin{frame}{목차}
+    \small
+    %아래 둘 중 하나만 쓸 것
+    \tableofcontents[hideallsubsections]
+    %\tableofcontents
+\end{frame}
+
+\section{단체협약의 개념과 성격}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{의의와 개념}
+    \begin{block}{단체협약 (collective agreement)}
+        노동조합 또는 그 연합체와 사용자 또는 사용자 단체간 체결되는 집단적 근로관계에 관한 계약 
+    \end{block}
+    \begin{itemize}[<+->]
+        \item 단체협약의 의의
+        \begin{itemize}[<+->]
+            \item 개별근로자와 사용자간의 자유로운 계약은 양자간의 힘의 불균형으로 평등한 계약이 어려움
+            \item 개별 근로자들은 단결하여 노동조합을 결성
+            \item 집단으로 부터 발생하는 교섭력을 통해 사용자와 대등한 입장에서 교섭을 하여 임금 기타 근로조건 등을 결정 
+            \item 이를 문서화된 것이 단체협약
+        \end{itemize}
+    \framebreak\relax
+    \item 단체협약의 내용: 당사자가 체결하는 서면상의 계약
+        \begin{itemize}[<+->]
+            \item 임금, 근로시간, 기타 근로자의 대우에 관한 사항 
+            \item 조합원의 범위, 숍 (shop) 제도 
+            \item 조합활동을 위한 절차와 요건
+            \item 단체교섭절차, 쟁의행위에 관한 사항 등등
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{성격}
+    \begin{itemize}[<+->]
+    \item 형식적 측면: 노사 양측에 의한 단체적인 약속인 합의
+        \begin{itemize}[<+->]
+            \item 근로계약: 노사 합의라는 측면에서 유사. 계약 당사자가 개별 근로자라는 점이 상이 
+            \item 취업규칙: 계약 당사자 측면에서 유사. 사용자가 사전에 일방적으로 결정했다는 점에서 상이
+                \begin{exampleblock}{노동조합법 제 33조 제 1항}
+                    단체협약에 정한 근로조건 기타 근로자의 대우에 관한 기준에 위반하는 취업규칙 또는 근로계약의 부분은 무효로 한다
+                \end{exampleblock}
+        \end{itemize}
+    \item 노사관계적 측면: 노사간의 일시적인 합의. 즉, 휴전조약과 같은 성격
+        \begin{itemize}[<+->]
+            \item 대립적 고용관계에서 발생하는 분쟁의 소지를 해소
+            \item 단체협약을 통해 약속된 기간동안 산업의 평화를 유지
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{기능}
+    \begin{itemize}[<+->]
+        \item 집단노동관계의 당사자인 노동조합과 사용자의 행동을 규제하는 자체 규범
+        \begin{itemize}[<+->]
+            \item 협약의 성실한 이행과 운용이 필요
+        \end{itemize}
+        \begin{enumerate}[<+->]
+            \item 근로조건 개선기능: 근로자에 대한 노동조건의 개선기능
+            \begin{itemize}[<+->]
+                \item 개별 근로자와 사용자간의 관계에서 성립될 수 있는 것보다 훨씬 유리한 근로조건을 단체협약을 통해 확보 가능
+                \item 이는 노동조합이 단결권 및 쟁의행동권을 바탕으로 강한 교섭력을 갖고 있기 때문
+            \end{itemize}
+            \item 산업평화 기능: 단체협약 유효기간동안 노사 쌍방이 평화의무 준수
+            \begin{itemize}[<+->]
+                \item 단체협약의 평화기능: 단체협약의 유효기간 동안 무의미한 분쟁을 피하고 협약내용을 성실히 준수할 의무를 가짐
+            \end{itemize}
+        \end{enumerate}
+    \end{itemize}
+\end{frame}
+
+\section{단체협약의 성립과 관리}
+
+\begin{frame}
+    \frametitle{단체협약의 당사자 및 작성방식}
+    \begin{itemize}[<+->]
+        \item 단체협약의 당사자
+        \begin{itemize}[<+->]
+            \item 협약능력을 가진 자로서 노동조합과 사용자 또는 사용자 단체
+        \end{itemize}
+        \item 단체협약의 작성방식
+        \begin{itemize}[<+->]
+            \item 서면으로 작성하여 당사자 쌍방이 서명·날인
+            \item 단체협약 체결일로부터 15일 이내에 행정관청에 당사자 쌍방의 연명으로 신고
+            \item 행정관청은 단체협약의 내용 중에 위법한 내용이 있는 경우 노동위원회의 의결을 얻어 그 시정을 명할 수 있음
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{단체협약의 유효기간}
+    \begin{itemize}[<+->]
+        \item 단체협약의 유효기간
+        \begin{itemize}[<+->]
+            \item 단체협약이 3년을 초과하는 유효기간을 정할 수 없음
+            \item 유효기간을 정하지 않았거나 3년을 초과하여 정할 경우 유효기간은 3년이 됨
+            \item 새로운 단체협약을 체결하지 못할 경우 구 단체협약이 3개월 유효 연장.
+            \item 단, 임금협약의 유효기간을 1년으로 약정하는 것은 유효함.
+        \end{itemize}
+    \end{itemize}
+    
+\end{frame}
+
+\section{단체협약의 내용}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{노조안정과 경영권}
+    \begin{itemize}[<+->]
+        \item 노조: 활동의 안정과 보장을 위해 숍제도, 노조활동 등을 요구
+        \item 사용자: 경영권보호에 집중
+    \end{itemize}
+    \begin{enumerate}[<+->]
+    \item 숍제도
+        \begin{itemize}[<+->]
+            \item 비조합원의 존재로 인한 조합의 불이익을 막기 위한 조치
+            \item union shop: 근로자의 3분의 2 이상을 대표하는 노동조합에게 인정하는 숍제도로서 약 36.9\% 규정 
+            \item open shop: 단체협약에 약 56\% 규정하고 있음 
+        \end{itemize}
+    \framebreak\relax
+    \item 노조활동 조항: 노조활동 보장, 근무시간 중 조합활동, 노조 전임자, 조합비 공제편의제공 등등
+        \begin{itemize}[<+->]
+            \item 조합활동의 보장조항: 헌법 제31조 및 「노동조합 및 노동관계조정법』에 의해 보장되어 있음
+            \begin{itemize}[<+->]
+                \item 대부분의 단체협약에서 `조합활동의 자유 (및 불이익처우의 금지)' 등의 규정으로 설정
+            \end{itemize}
+            \item 근로시간 중 조합활동조항: 기업별 노조의 경우 노무 제공과 정당한 노조활동이 중복될 수 있으므로 이에 대한 규정 설정 필요
+            \item 노조전임자 규정: 전임자의 필요성으로 생긴 조항으로 전임자 수, 인선 시 간섭 배제, 전임중의 급여, 노동조건, 전임 소멸 후 직장복귀, 전임시간 등에 대한 규정 설정
+            \item 조합비공제편의제공조항: check-off system에 대한 규정
+        \end{itemize}
+    \item 경영권: 회사운영과 노동력 지휘 등 사용자가 가지는 전통적인 기능 (인사권, 관리권 등등)
+        \begin{itemize}[<+->]
+            \item 경영권은 사용자의 고유 권한이므로 조합원이 간섭할 수 없도록 규정하는 경우가 많음
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{보수}
+    \begin{itemize}[<+->]
+        \item 임금조항: 임금조항을 규정하고 있는 협약이 적음
+        \begin{itemize}[<+->]
+            \item 대체로 임금협정이 별도로 이루어지기 때문에 임금조항은 상대적으로 적음 
+            \item 임금공제항목, 비상지불조항, 휴업수당 등에 관한 조항 등이 있음
+            \item 상여금 및 퇴직금 지급기준 등
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{인사조항}
+    \begin{itemize}[<+->]
+        \item 노동조합측: 인사권에 대한 영향력 강화 요구
+        \item 사용자측: 인사권은 경영권
+        \begin{itemize}[<+->]
+            \item 사용자측의 방침이나 조합의 관심 등에 따라 인사조항에 차이가 발생
+        \end{itemize}
+    \end{itemize}
+    \begin{enumerate}[<+->]
+        \item 수습기간: 일정한 수습기간을 규정하는 협약
+        \item 해고협의: 해고는 조합의 동의 (또는 협의)를 요한다는 식의 협의조항
+        \begin{itemize}[<+->]
+            \item 해고협의 조항은 해고권에 관한 자율적 제약을 확립한 것이기 때문에 이 조항을 위반한 해고는 법적으로는 무효.
+            \begin{itemize}[<+->]
+                \item 노사가 동의한 약정을 위반한 해고는 무효
+            \end{itemize}
+            \item 이 조항에서 동의는 노동조합의 해고에 대한 실질적인 동의를 의미.
+            \begin{itemize}[<+->]
+                \item 노사가 타결점을 발견하기 위해 성실한 심의를 수행. 
+                \item 반드시 합의점에 도달할 필요는 없음.
+            \end{itemize}
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{복리후생조항}
+    \begin{itemize}[<+->]
+        \item 근로자복지제도는 법정복지제도와 법정 외 복지제도로 구분할 수 있음
+        \item 법정복지제도
+        \begin{itemize}[<+->]
+            \item 건강보험, 연금보험, 고용보험, 산재보험
+        \end{itemize}
+        \item 법정 외 복지제도 임금, 보험 이외에 기업이 제공하는 모든 편익을 의미함
+            \begin{itemize}[<+->]
+                \item 주거비지원, 보건의료지원, 식비지원, 문화체육활동지원, 경조비지원, 보육비지원
+            \end{itemize}
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{산업안전보건 조항}
+    \begin{itemize}[<+->]
+        \item OECD 평균 대비 산업재해의 대형화·심각화, 직업병의 이환 (발병)가능성 증대
+        \begin{itemize}[<+->]
+            \item 노조의 작업안전 및 보건 등에 관심 요구됨
+        \end{itemize}
+    \item 노동조합: 작업환경 및 시설의 개선, 임금노동조건의 개선, 관리체계의 합리화, 보건에 대한 교육기회의 확대 등을 요구
+        \begin{itemize}[<+->]
+            \item 산업안전보건위원회 구성
+            \item 작업환경 측정
+            \item 건강진단
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{근로시간과 교대제}
+    \begin{itemize}
+        \item 근로시간 
+        \begin{itemize}[<+->]
+            \item 실무시간: 사용자의 지휘명령 하에서 노무를 제공하는 시간
+            \item 구속시간: 노무의 제공에서 벗어나는 휴식시간을 포함한 시간
+            \item 『근로기준법』 「산업안전보건법』에서 정한 근로기준시간
+            \begin{itemize}[<+->]
+                \item 일반 성인근로자: 1주일 40시간
+                \item 유해위험작업 종사자: 1일 6시간, 1주 34시간 
+                \item (15--18세) 연소근로자: 1일 7시간, 1주 40시간
+                \item 연장근로시간은 주 최대 12시간
+            \end{itemize}
+        \end{itemize}
+    \framebreak\relax
+    \item 교대제
+        \begin{itemize}[<+->]
+            \item 근무제도는 인력, 근로시간, 법정수당과 긴밀하게 연관되어 있음 
+            \item 단체교섭에서 논의되는 주된 내용임
+            \begin{itemize}[<+->]
+                \item 사업체의 운영시간이 일일 근로시간 (보통 8시간)보다 길 경우 교대제를 운영 
+                \item 예: 2조 격일제, 2조2교대제, 주간연속 2교대제, 3조2교대제, 4조3교대제 등등
+                \item 2조 격일제와 2조2교대제가 보편적으로 많이 활용되며 장시간 근로의 근무형태
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{단체교섭·쟁의·노사협의제}
+    \begin{itemize}[<+->]
+        \item 단체교섭조항을 별도로 규정
+        \begin{itemize}[<+->]
+            \item 교섭 실시에 따른 절차·운영에 대한 사항 사전 정하기 위해
+            \item 내용: 사전요청서 제출규정, 협약의 갱신, 운영에 관한 사항, 단체교섭의 인원수 및 선임방법 등등
+        \end{itemize}
+        \item 노사협의제 조항: 『근로자 참여 및 협력에 관한 법률』 제정으로 노사협의제를 별도로 규율
+        \begin{itemize}[<+->]
+            \item 노사협의회 합의사항의 준수 및 이행을 단체협약에서 재차 규정 (54.4\% 규정)
+        \end{itemize}
+    \framebreak\relax
+        \item 쟁의조항: 쟁의행위를 감행할 때의 규범을 정한 협약조항
+        \begin{itemize}[<+->]
+            \item 예고조항: 쟁의행위 실시 수일 전 상대방에게 통고
+            \item 불참가자조항: 쟁의행위에 참가하지 않는 사람의 범위 규정 (예: 보안요원 등)
+            \item 대체근로 금지조항: 쟁의 중 임시 고용된 사람이 쟁의조합원 부서업무를 대체하지 못한다는 규정
+            \item 평화의무조항: 분쟁을 평화적 교섭으로 해결하기 위해 쟁의행위 개시, 요건 및 제한 등의 규정
+        \end{itemize}
+        \item 노조측는 쟁의행위 억제효과가 있으므로 반대, 사용자측은 동일한 이유에서 찬성하는 경향
+    \end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\end{document}
+%------------------------------------------------

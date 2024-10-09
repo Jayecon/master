@@ -27,5 +27,5 @@ use gobid , clear
         label data "연도별·업체별 공공조달 낙찰금액(2012-2022)"
         compress
         format id %10.0f
-        save bidamount , replace
-        save ~/dropbox/HW_OHONG/bidamount , replace
+        save bidamount.dta , replace
+        save ~/dropbox/HW_OHONG/bidamount.dta , replace

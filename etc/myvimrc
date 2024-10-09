@@ -1,5 +1,4 @@
-set nocompatible " no compatible with the original Vi
-    filetype off
+set nocompatible " no compatible with the original Vi filetype off
     " Language and Font  {{{1
     if has('win32')
         set langmenu=en_US.UTF-8
@@ -55,6 +54,10 @@ set nocompatible " no compatible with the original Vi
         Plug 'hynek/vim-python-pep8-indent'     " Python auto indent
         Plug 'nvie/vim-flake8'                  " Python syntax check
         Plug 'bagrat/vim-buffet'                " Vim buffer improve
+        Plug 'lervag/vimtex'                    " Latex editor for Vim
+        Plug 'git@github.com:honza/vim-snippets.git'
+            Plug 'git@github.com:SirVer/ultisnips.git'
+        Plug 'ludovicchabant/vim-gutentags'     " management of tags files in Vim
     call plug#end()
     " }}}1
     " Plugins Specific Setting -------------------- {{{1
@@ -94,6 +97,14 @@ set nocompatible " no compatible with the original Vi
                 let g:NERDTreeFileLines = 0
             "Ignore some files
                 let NERDTreeIgnore = [
+                    \ '\.aux$' ,
+                    \ '\.fdb_latexmk$' ,
+                    \ '\.fls$' ,
+                    \ '\.nav$' ,
+                    \ '\.out$' ,
+                    \ '\.snm$' ,
+                    \ '\.synctex.gz$' ,
+                    \ '\.toc$' ,
                     \ '\.log$' ,
                     \ '\.bak$' ,
                     \ ]
@@ -102,10 +113,16 @@ set nocompatible " no compatible with the original Vi
                     \ '\.do$'  ,
                     \ '\.ado$' ,
                     \ '\.py$'  ,
-                    \ '\.csv$' ,
+                    \ '\.tex$'  ,
                     \ '\.txt$' ,
-                    \ '*'      ,
                     \ '\.dta$' ,
+                    \ '\.csv$' ,
+                    \ '\.xls$' ,
+                    \ '\.xlsx$' ,
+                    \ '\.xlsx$' ,
+                    \ 'myvimrc' ,
+                    \ '\.snippets$' ,
+                    \ '*'      ,
                     \ '\.log$' ,
                     \ '\.swp$' ,
                     \ '\.bak$' ,
@@ -122,15 +139,15 @@ set nocompatible " no compatible with the original Vi
         " Rainbow Parentheses Improved ---------------------- {{{2
             let g:rainbow_active = 1
         " }}}2
+        " Solarized ---------------------- {{{2
+            colorscheme solarized
+            let g:solarized_menu=1
+        " }}}2
         " Startify ---------------------- {{{2
             let g:startify_skiplist = [
                 \ '\.log$',
                 \ '\.bak$',
                 \ ]
-        " }}}2
-        " Solarized ---------------------- {{{2
-            colorscheme solarized
-            let g:solarized_menu=1
         " }}}2
         " Synatstic ---------------------- {{{2
             set statusline+=%#warningmsg#
@@ -140,6 +157,21 @@ set nocompatible " no compatible with the original Vi
             let g:syntastic_auto_loc_list = 1
             let g:syntastic_check_on_open = 1
             let g:syntastic_check_on_wq = 0
+        " }}}2
+        " UltiSnips ---------------------- {{{2
+            " Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
+            " - https://github.com/Valloric/YouCompleteMe
+            " - https://github.com/nvim-lua/completion-nvim
+            let g:UltiSnipsExpandTrigger="<tab>"
+            let g:UltiSnipsJumpForwardTrigger="<c-p>"
+            let g:UltiSnipsJumpBackwardTrigger="<c-n>"
+            " Debug
+            let g:UltiSnipsDebug=1
+            let g:UltiSnipsLogFile="~/ultisnips_debug.log"
+            " If you want :UltiSnipsEdit to split your window.
+            let g:UltiSnipsEditSplit="vertical"
+            " Change the snipptes path
+            let g:UltiSnipsSnippetDirectories = ['~/GitHub/master/etc', '~/.vim/UltiSnips']
         " }}}2
         " Vim-airline ---------------------- {{{2
             let g:airline_theme='solarized'
@@ -157,8 +189,9 @@ set nocompatible " no compatible with the original Vi
                 endif
             endfunction
         " }}}2
-        " Vim-python-pep8-indent ---------------------- {{{2
-            filetype plugin indent on
+        " Vim-buffet ---------------------- {{{2
+            let g:buffet_use_devicons = 1
+            let g:buffet_show_index = 1
         " }}}2
         " Vim-devicons ---------------------- {{{2
             let g:webdevicons_conceal_nerdtree_brackets = 1
@@ -167,16 +200,39 @@ set nocompatible " no compatible with the original Vi
             let g:webdevicons_enable_startify = 1
             " add or override individual additional filetypes
                 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
-                let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ado'] = '🧰'
-                let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['do'] = '🛠️'
-                let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['dta'] = '💾'
-                let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['old'] = '☠️'
-                let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['log'] = '🧭'
+                let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['dta'] = ''
+                let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['old'] = '󰯆'
+                let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['log'] = ''
+                let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tex'] = ''
+                let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['do'] = ''
+                let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ado'] = ''
+                let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['snippets'] = ''  
+                let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['pdf'] = ''
+                let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['csv'] = ''
+                let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['xls'] = ''
+                let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['xlsx'] = ''
+                "refer from the nerdfont on the web
         " }}}2
-        " Vim-buffet ---------------------- {{{2
-            let g:buffet_use_devicons = 1
-            let g:buffet_show_index = 1
+        " Vim-python-pep8-indent ---------------------- {{{2
+            filetype plugin indent on
         " }}}2
+        "Vimtex{{{2
+            " PDF 뷰어를 Skim으로 설정
+                let g:vimtex_view_method = 'skim'
+            " latexmk를 사용하여 실시간 자동 컴파일 설정
+                let g:vimtex_compiler_method = 'latexmk'
+            " Skim에서 PDF 파일을 열 때, 파일을 자동으로 다시 불러오도록 설정
+                let g:vimtex_view_skim_activate = 1
+                let g:tex_flavor = 'latex'
+            " Vimtex의 디버깅 모드 활성화
+                let g:vimtex_log_verbose = 1
+                let g:vimtex_log_file = '/tmp/vimtex_debug.log'
+            " Vimtex의 toc창을 오른쪽으로
+                let g:vimtex_toc_config = {
+                    \'split_pos'   : ':vert :botright',
+                    \'split_width':  50,
+                \}
+                        "}}}2
     " }}}1
     " Environment Setting ---------------------- {{{1
         " Basic " {{{2
@@ -211,7 +267,7 @@ set nocompatible " no compatible with the original Vi
             set wildignorecase                                  " Case is ignored when completing file names and directories.
             set wildignore+=*.o,*.png,*.jpg,*.jpeg,*.webp,*.gif " Ignore these files in completion.
             set wildoptions=pum                                 " Show pop-up menu.
-            set wildcharm=<Tab>                                 " Trigger wild mode from mappings/macros.
+            set wildcharm=<tab>                                 " Trigger wild mode from mappings/macros.
             set completeopt=menuone,noselect                    " Insert mode completion:
                                                                 " menuone   → always show menu, even when there is 1 match.
                                                                 " noselect  → don't select an option when starting.
@@ -254,18 +310,18 @@ set nocompatible " no compatible with the original Vi
             set diffopt=filler,vertical
         endif
     "}}}2
-    "Indentation{{{2
-        set autoindent                         " Copy indent from current line when starting a new line.
-        set copyindent                         " Copy indent for new lines when auto-indenting.
-        set shiftround                         " Round indent to multiple of shiftwidth when using < and >
-        set linebreak                          " Wrap at word.
-        set showbreak=↪                        " Display at the start of line for wrapped lines.
-        set breakindent                        " When wrapping show next line on the same indent level.
-        set breakindentopt=sbr,list:-1         " sbr  → Display showbreak before indent.
-                                                " list → indent list if it matches formatlistpat
-        set noshowmode                         " Don't show mode in cmdline.
+    "Indent{{{2
+        set autoindent                 " Copy indent from current line when starting a new line.
+        set copyindent                 " Copy indent for new lines when auto-indenting.
+        set shiftround                 " Round indent to multiple of shiftwidth when using < and >
+        set linebreak                  " Wrap at word.
+        set showbreak=↪                " Display at the start of line for wrapped lines.
+        set breakindent                " When wrapping show next line on the same indent level.
+        set breakindentopt=sbr,list:-1 " sbr  → Display showbreak before indent.
+                                       " list → indent list if it matches formatlistpat
+        set noshowmode                 " Don't show mode in cmdline.
         set smartindent
-        set smarttab                           " Backspace at start of line remove shiftwidith worth of space.
+        set smarttab                   " Backspace at start of line remove shiftwidith worth of space.
         set tabstop=4
         set softtabstop=2
         set shiftwidth=4
@@ -289,10 +345,10 @@ set nocompatible " no compatible with the original Vi
         " Global {{{2
         map <leader><leader> :Startify<cr>
         map <leader>t :echo strftime('%Y년 %B %d일 %X')<cr>
-        map <leader>sc :w<cr>:source %<cr>
+        map <leader>sc :w<cr>:soucce %<cr>
         map <leader>rc :e $MYVIMRC<cr>
         map <leader>brc :w! ~/dropbox/Z_personal/myvimrc<cr>:w! ~/github/master/etc/myvimrc<cr>
-        ".vimrc를 ~/Dropbox/Z_Personal/myvimrc로 백업{{{3
+        "vimrc를 ~/Dropbox/Z_Personal/myvimrc로 백업{{{3
             "nnoremap  <silent> <leader>brc :call ReplaceIfCurrentIsRecent()<CR> 
             "function! GetFileModificationTime(filename) " 파일의 생성시간을 반환하는 함수
                 "let modification_epoch = getftime(a:filename)
@@ -313,7 +369,7 @@ set nocompatible " no compatible with the original Vi
             "endfunction
             "}}}3
         map <leader>urc :e! ~/dropbox/Z_personal/myvimrc<cr>:w! $MYVIMRC<cr>:source $MYVIMRC<cr>
-        map <silent> <leader>l :silent set list!<cr>
+        map <silent> <leader>l :set list!<cr>
         map <silent> <leader>box :cd ~/dropbox<cr>:pwd<cr>
         if has('win32')
             map <silent> <leader>git :cd ~/git<cr>:pwd<cr>
@@ -338,7 +394,7 @@ set nocompatible " no compatible with the original Vi
         nnoremap <leader>) viW<esc>a)<esc>Bi(<esc>ee
         nnoremap :: :<up><cr>
         nnoremap Y y$
-        nnoremap cw viwc
+        nnoremap cW viwc
         nnoremap <leader>ff O<c-d>/*{{{*/<esc>bf*a
         nnoremap <leader>fc mgo<c-d>/*}}}*/<esc>`g
         "}}}2

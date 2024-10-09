@@ -5,14 +5,14 @@ cd ~/dropbox/data/goms
 clear
     /*list of common variables */
     local varlist00 ///
-        pid age birthy sex province graduy gradum majorcat major wt     /// drmographic info*/ 
+        pid age birthy sex province graduy gradum majorcat major wt                 ///
         a001-a002 a003 a004_10-a006_10 a007a_2018-a009_2018 a010 a011 a012 a014     ///
-        a020 a021 a022 a023 a024 a116-a118 a120-a122 a142-a144                      /// present job*/ 
-        d001-d006 d110-d112 e001-e006 e078-e081 e153-e156                           /// past job exp*/ 
-        f001-f002 f006-f009 f010-f012 f073-f074 f101 f102 f104 f108 f112 f116 f120  /// education*/ 
-        h001 h002 h020 h040 h060                                                    /// jobs on univ */ 
-        l001 l003 m001 m002                                                         /// traininigs and cert.*/ 
-        p014 p026-p031z p032-p033 p034 p035 p045                                      /*parents info */ 
+            a020 a021 a022 a023 a024 a116-a118 a120-a122 a142-a144                  ///
+        d001-d006 d110-d112 e001-e006 e078-e081 e153-e156                           ///
+        f001-f002 f006-f009 f010-f012 f073-f074 f101 f102 f104 f108 f112 f116 f120  ///
+        h001 h002 h020 h040 h060                                                    ///
+        l001 l003 m001 m002                                                         ///
+        p014 p026-p031z p032-p033 p034 p035 p045
     /*loop*/
         forvalue x = 7/19 {
             local yr : disp %02.0f  = `x'
@@ -51,6 +51,17 @@ clear
                     else {
                         local varlist `varlist' a158-a165
                     }
+                /*어학연수횟수*/
+                    if (`x' != 9) {
+                        local varlist `varlist' i002
+                    }
+                /*영어 및 기타 외국어 시험 응시여부*/
+                    if ( `x' >= 16 | `x' <= 12) {
+                        local varlist `varlist' i018
+                    }
+                    else {
+                        local varlist `varlist' i019
+                    }
             /*}}}*/
             use rawdata/GP`yr'.dta
             /*control commons*/
@@ -63,14 +74,6 @@ clear
                 gen wave = `x' - 6
                     label var wave "조사회차(07==1)"
             /*control excpetions{{{*/
-                /*gen slack variables*/
-                    /*if ("`x'" == "7") {*/
-                        /*gen f00707 = .*/
-                        /*gen f00807 = .*/
-                    /*}*/
-                    /*if ("`x'" == "19" ){*/
-                        /*gen p04119 = .*/
-                    /*}*/
                 /*control string|numeric*/
                     if ("`x'" == "7") {
                         tostring major07, replace force
