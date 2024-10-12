@@ -11,10 +11,12 @@ use `path'goms_eq_raw , clear
                     a121 a122 a142 a143 a144 a157 a158 a159 a160 a161 a162 a163 a164 a165 ///
                 d001 d002 d003 d004 d005 d006 d110 d111 d112 ///
                 e001 e002 e003 e004 e005 e006 e078 e079 e080 e081 e153 e154 e155 e156 ///
-                h001 h002 h006 h007 h008 h009 h020 h026 h027 h028 h029 h040 h046 h047 h048 h049 h060 ///
                 f001 f002 f006 f007 f008 f009 f010 f011 f012 f073 f074 f036 f037 f038 f039 ///
                     f040 f041 f078 f079 f080 f081 f082 f083 f084 f085 f101 f102 f104 f108 f112 f116 f120 ///
+                h001 h002 h006 h007 h008 h009 h020 h026 h027 h028 h029 h040 h046 h047 h048 h049 h060 ///
+                i002 i004 i009 i014 i018 i019 i050 ///
                 l001 l003 l016 l030 l042 l056 l068 l082 ///
+                n001 n010 n024 n038 n045 n083 n096 n113 n130 ///
                 m001 m002 ///
                 p014 p026 p027 p028z p029 p030 p031z p032 p033 p034 p035 p041 p042 p043 p044 p045 ///
                 wt
@@ -170,6 +172,9 @@ use `path'goms_eq_raw , clear
         local temp : var label h04819 ; label var h048  "`temp'" ; label copy G191H048 H048 ; label value h048 H048 ;
         local temp : var label h04919 ; label var h049  "`temp'" ; label copy G191H049 H049 ; label value h049 H049 ;
         local temp : var label h06019 ; label var h060  "`temp'" ; label copy G191H060 H060 ; label value h060 H060 ;
+        local temp : var label i00219 ; label var i002  "`temp'" ; 
+        local temp : var label i01819 ; label var i018  "`temp'" ; label copy G191I018 I018 ; label value i018 I018 ;
+        local temp : var label i05019 ; label var i050  "`temp'" ; label copy G191I050 I050 ; label value i050 I050 ;
         local temp : var label l00119 ; label var l001  "`temp'" ; label copy G191L001 L001 ; label value l001 L001 ;
         local temp : var label l00319 ; label var l003  "`temp'" ;
         local temp : var label l01619 ; label var l016  "`temp'" ;
@@ -180,6 +185,10 @@ use `path'goms_eq_raw , clear
         local temp : var label l08219 ; label var l082  "`temp'" ;
         local temp : var label m00119 ; label var m001  "`temp'" ; label copy G191M001 M001 ; label value m001 M001 ;
         local temp : var label m00219 ; label var m002  "`temp'" ;
+        local temp : var label n08319 ; label var n083  "`temp'" ; label copy G191N083 N083 ; label value n083 N083 ;
+        local temp : var label n09619 ; label var n096  "`temp'" ; label copy G191N096 N096 ; label value n096 N096 ;
+        local temp : var label n11319 ; label var n113  "`temp'" ; label copy G191N113 N113 ; label value n113 N113 ;
+        local temp : var label n13019 ; label var n130  "`temp'" ; label copy G191N130 N130 ; label value n130 N130 ;
         local temp : var label p01419 ; label var p014  "`temp'" ; label copy G191P014 P014 ; label value p014 P014 ;
         local temp : var label p02619 ; label var p026  "`temp'" ; label copy G191P026 P026 ; label value p026 P026 ;
         local temp : var label p02719 ; label var p027  "`temp'" ; label copy G191P027 P027 ; label value p027 P027 ;
@@ -208,29 +217,29 @@ use `path'goms_eq_raw , clear
         rename a009_2018 a009
     /*}}}*/
     /*recoding variables to fix year varing value problems{{{*/
-            recode a003 (2=1) (1=2)                    if inlist(year , 2007)
-            recode a023 (4=5) (5=7)                    if inlist(year , 2007)
-            recode d006 (2=1) (1=2)                    if inlist(year , 2007 , 2008)
-            recode f009 (3/4=3) (5=4) (9=10)           if inrange(year , 2007 , 2013)
-            recode f009 (4=6) (5=7) (6=8) (7=4) (8=10) if inlist(year , 2007)
-            recode f104 (9=1) (10=9)                   if inrange(year , 2015 , 2019)
-            recode f108 (9=1) (10=9)                   if inrange(year , 2015 , 2019)
-            recode f112 (9=1) (10=9)                   if inrange(year , 2015 , 2019)
-            recode f116 (9=1) (10=9)                   if inrange(year , 2015 , 2019)
-            recode f120 (9=1) (10=9)                   if inrange(year , 2015 , 2019)
-            recode l001 (1/2=1) (3=2)                  if inlist(year , 2009 , 2010)
-            recode p026 (8=.)                          if inlist(year , 2012 , 2013)
-            recode p027 (8=.)                          if inrange(year , 2012 , 2015)
-            recode p028z (8=.)                         if inrange(year , 2012 , 2013)
-            recode p029 (8=.)                          if inlist(year , 2012 , 2013)
-            recode p030 (8=.)                          if inrange(year , 2012 , 2015)
-            recode p031z (8=.)                         if inrange(year , 2012 , 2013)
-            recode p032 (1/3=1) (4=2) (5 7 24=3) (6=4) (8=5) (11/13=6) (9/10=7) ///
-                (14=8) (15/22=9) (23=10) (25=11) (26=12) ///
-                if inrange(year , 2007 , 2016)
-            recode p033 (1/3=1) (4=2) (5 7 24=3) (6=4) (8=5) (11/13=6) (9/10=7) ///
-                (14=8) (15/22=9) (23=10) (25=11) (26=12) ///
-                if inrange(year , 2007 , 2016)
+        recode a003 (2=1) (1=2)                    if inlist(year,  2007)
+        recode a023 (4=5) (5=7)                    if inlist(year,  2007)
+        recode d006 (2=1) (1=2)                    if inlist(year,  2007 , 2008)
+        recode f009 (3/4=3) (5=4) (9=10)           if inrange(year, 2007 , 2013)
+        recode f009 (4=6) (5=7) (6=8) (7=4) (8=10) if inlist(year,  2007)
+        recode f104 (9=1) (10=9)                   if inrange(year, 2015 , 2019)
+        recode f108 (9=1) (10=9)                   if inrange(year, 2015 , 2019)
+        recode f112 (9=1) (10=9)                   if inrange(year, 2015 , 2019)
+        recode f116 (9=1) (10=9)                   if inrange(year, 2015 , 2019)
+        recode f120 (9=1) (10=9)                   if inrange(year, 2015 , 2019)
+        recode l001 (1/2=1) (3=2)                  if inlist(year,  2009 , 2010)
+        recode p026 (8=.)                          if inlist(year,  2012 , 2013)
+        recode p027 (8=.)                          if inrange(year, 2012 , 2015)
+        recode p028z (8=.)                         if inrange(year, 2012 , 2013)
+        recode p029 (8=.)                          if inlist(year,  2012 , 2013)
+        recode p030 (8=.)                          if inrange(year, 2012 , 2015)
+        recode p031z (8=.)                         if inrange(year, 2012 , 2013)
+        recode p032 (1/3=1) (4=2) (5 7 24=3) (6=4) (8=5) (11/13=6) (9/10=7) ///
+            (14=8) (15/22=9) (23=10) (25=11) (26=12) ///
+            if inrange(year , 2007 , 2016)
+        recode p033 (1/3=1) (4=2) (5 7 24=3) (6=4) (8=5) (11/13=6) (9/10=7) ///
+            (14=8) (15/22=9) (23=10) (25=11) (26=12) ///
+            if inrange(year , 2007 , 2016)
     /*}}}*/
     /*gen : a998 a999 {{{*/
         capture drop a999
@@ -251,14 +260,14 @@ use `path'goms_eq_raw , clear
         egen temp1 = rowtotal(f079-f085)
         egen temp2 = rowmax(f079-f085)
         gen f997 =  .
-        replace f997 = 1 if temp2 == f079 | f078 == 1
-        replace f997 = 2 if temp2 == f080 | f078 == 8
-        replace f997 = 3 if temp2 == f081 | f078 == 5
-        replace f997 = 4 if temp2 == f082 | f078 == 3
-        replace f997 = 5 if temp2 == f083 | f078 == 6
-        replace f997 = 6 if temp2 == f084 | inlist(f078 , 2 , 3)
-        replace f997 = 7 if temp2 == f085 | f078 == 8
-        replace f997 = . if !inlist(temp1 , 0 , 100)
+            replace f997 = 1 if temp2 == f079 | f078 == 1
+            replace f997 = 2 if temp2 == f080 | f078 == 8
+            replace f997 = 3 if temp2 == f081 | f078 == 5
+            replace f997 = 4 if temp2 == f082 | f078 == 3
+            replace f997 = 5 if temp2 == f083 | f078 == 6
+            replace f997 = 6 if temp2 == f084 | inlist(f078 , 2 , 3)
+            replace f997 = 7 if temp2 == f085 | f078 == 8
+            replace f997 = . if !inlist(temp1 , 0 , 100)
         drop temp1 temp2
         label var f997 "대학학비조달방법"
         label define F997 1 "부모" 2 "학자금 대출" 3 "본인" 4 "장학금" 5 "배우자" 6 "형제·자매 등 친인척" 7 "기타"
@@ -267,23 +276,52 @@ use `path'goms_eq_raw , clear
     /*gen : f999 {{{*/
         capture drop f999
         gen f999 = 0 
-        replace f999 = f999 + 1 if f104 == 7
-        replace f999 = f999 + 1 if f108 == 7
-        replace f999 = f999 + 1 if f112 == 7
-        replace f999 = f999 + 1 if f116 == 7
-        replace f999 = f999 + 1 if f120 == 7
+            replace f999 = f999 + 1 if f104 == 7
+            replace f999 = f999 + 1 if f108 == 7
+            replace f999 = f999 + 1 if f112 == 7
+            replace f999 = f999 + 1 if f116 == 7
+            replace f999 = f999 + 1 if f120 == 7
         label var f999 "경제적인 이유의 휴학횟수"
     /*}}}*/
+    /*modify : i002 {{{*/
+        capture drop i00209
+        egen i00209 = rowtotal(i00409  i00909  i01409)
+        replace i002 = i00209 if year == 2009
+        drop i004 i009 i014
+    /*}}}*/
+    /*modify : i018 {{{*/
+        replace i018 = i019 if inrange(year, 2013, 2015)
+        drop i019
+        label var i018 "I6. 최근 2년동안(13-15는 입학후부터) 영어 시험을 본 경험 유무"
+    /*}}}*/
+    /*modify : n083 {{{*/
+        replace n083 = 1 if year == 2007 & (n00107 == 1 | n04507 == 1)
+        replace n083 = 2 if year == 2007 & (n00107 == 2 & n04507 == 2)
+        replace n083 = . if year == 2007 & missing(n00107) & missing(n04507)
+    /*}}}*/
+    /*modify : n096 {{{*/
+        replace n096 = n01007 if year == 2007
+    /*}}}*/
+    /*modify : n113 {{{*/
+        replace n113 = n02407 if year == 2007
+    /*}}}*/
+    /*modify : n130 {{{*/
+        replace n130 = n03807 if year == 2007
+    /*}}}*/
+    /*gen : n999{{{*/
+        egen n999 = rowtotal(n096 n113 n130) , mis
+        label var n999 "시험준비_총 시험 응시 횟수_회"
+    /*}}}*/
     /*gen : l999{{{*/
-        gen l999 = l016 + l042 + l068
+        egen l999 = rowtotal(l016 l042 l068) , mis
         label var l999 "직업 교육/훈련기간_총 시간"
     /*}}}*/
     /*gen : p999 {{{*/
         capture drop p999
         gen p999 = . 
-        replace p999 =   p042 if p041 == 1 & p043 == 2
-        replace p999 = - p044 if p041 == 2 & p043 == 1
-        replace p999 = p042 - p044 if p041 == 1 & p043 == 1
+            replace p999 = p042        if p041 == 1 & p043 == 2
+            replace p999 =      - p044 if p041 == 2 & p043 == 1
+            replace p999 = p042 - p044 if p041 == 1 & p043 == 1
         label var p999 "순 월평균 지원액(가족에게 받는, 원)"
     /*}}}*/
     /*gen : expm? {{{*/
@@ -311,35 +349,39 @@ use `path'goms_eq_raw , clear
         label var medtyp "의예계열전공"
         label define MEDTYP 1 "의학" 2 "치의학" 3 "한의학" 4 "수의학" 5 "약학"
         label value medtyp MEDTYP
-        replace medtyp = 1 if year == 2007 & inlist(major , "1798" , "1799" )
-        replace medtyp = 2 if year == 2007 & inlist(major , "2362" )
-        replace medtyp = 3 if year == 2007 & inlist(major , "2632" )
-        replace medtyp = 4 if year == 2007 & inlist(major , "1306" , "1307" )
-        replace medtyp = 5 if year == 2007 & inlist(major , "1516" , "1517" , "1518" , "2173" , "2174" )
-        replace medtyp = 1 if year != 2007 & inlist(major , "U06010100003", "U06010100004" , "U06010100005" , "U06010100017" , "U06010100021"  )
-        replace medtyp = 2 if year != 2007 & inlist(major , "U06010200005" )
-        replace medtyp = 3 if year != 2007 & inlist(major , "U06010300002" )
-        replace medtyp = 4 if year != 2007 & inlist(major , "U05020300003" , "U05020300015" )
-        replace medtyp = 5 if year != 2007 & strpos(major , "U060301" )
-        replace medtyp = . if year != 2007 & inlist(major , "U06030100021" )
+            replace medtyp = 1 if year == 2007 & inlist(major , "1798" , "1799" )
+            replace medtyp = 2 if year == 2007 & inlist(major , "2362" )
+            replace medtyp = 3 if year == 2007 & inlist(major , "2632" )
+            replace medtyp = 4 if year == 2007 & inlist(major , "1306" , "1307" )
+            replace medtyp = 5 if year == 2007 & inlist(major , "1516" , "1517" , ///
+                "1518" , "2173" , "2174" )
+            replace medtyp = 1 if year != 2007 & inlist(major , "U06010100003", ///
+                "U06010100004" , "U06010100005" , "U06010100017" , "U06010100021"  )
+            replace medtyp = 2 if year != 2007 & inlist(major , "U06010200005" )
+            replace medtyp = 3 if year != 2007 & inlist(major , "U06010300002" )
+            replace medtyp = 4 if year != 2007 & inlist(major , "U05020300003" , ///
+                "U05020300015" )
+            replace medtyp = 5 if year != 2007 & strpos(major , "U060301" )
+            replace medtyp = . if year != 2007 & inlist(major , "U06030100021" )
     /*}}}*/
     /*gen : innoarea {{{*/
         gen byte innoarea = .
         label var innoarea "혁신도시지역"
-        replace innoarea = 1  if area == 2
-        replace innoarea = 2  if area == 3
-        replace innoarea = 3  if area == 7
-        replace innoarea = 4  if area == 9
-        replace innoarea = 5  if area == 10
-        replace innoarea = 6  if area == 12
-        replace innoarea = 7  if inlist(area , 6 , 13)
-        replace innoarea = 8  if area == 14
-        replace innoarea = 9  if area == 15
-        replace innoarea = 10 if area == 16
-        replace innoarea = 97 if area == 17
-        replace innoarea = 98 if inlist(area , 1 , 5 , 8)
+            replace innoarea = 1  if area == 2
+            replace innoarea = 2  if area == 3
+            replace innoarea = 3  if area == 7
+            replace innoarea = 4  if area == 9
+            replace innoarea = 5  if area == 10
+            replace innoarea = 6  if area == 12
+            replace innoarea = 7  if inlist(area , 6 , 13)
+            replace innoarea = 8  if area == 14
+            replace innoarea = 9  if area == 15
+            replace innoarea = 10 if area == 16
+            replace innoarea = 97 if area == 17
+            replace innoarea = 98 if inlist(area , 1 , 5 , 8)
         destring innoarea , replace
-        label define innoarea 1 "부산" 2 "대구" 3 "울산" 4 "강원" 5 "충북" 6 "전북" 7 "광주전남" 8 "경북" 9 "경남" 10 "제주" 97 "세종" 98 "수도권" 99 "개별"
+        label define innoarea 1 "부산" 2 "대구" 3 "울산" 4 "강원" 5 "충북" 6 "전북" ///
+            7 "광주전남" 8 "경북" 9 "경남" 10 "제주" 97 "세종" 98 "수도권" 99 "개별"
         label value innoarea innoarea
     /*}}}*/
     /*drop vars {{{*/
@@ -349,6 +391,7 @@ use `path'goms_eq_raw , clear
         foreach i of local charvarlist {
             drop `i'??
         }
+        drop n001 n010 n024 n038 n045
         /*현재나이 답변이상 사례 제거*/
             gen temp1 = age + birthy
             gen temp2 = year - temp1
@@ -370,4 +413,4 @@ use `path'goms_eq_raw , clear
         unimain uniname unirank uniscr20 uniscr50 wave wt zipcode , first
     
 save `path'goms_im.dta , replace
-save ~/dropbox/HL_SJHO/GOMS_EducationalQuality/goms_im.dta , replace
+save ~/dropbox/HL_SJHO/GOMS_IGM/goms_im.dta , replace

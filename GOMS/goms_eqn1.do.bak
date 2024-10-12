@@ -10,8 +10,7 @@ clear
             a020 a021 a022 a023 a024 a116-a118 a120-a122 a142-a144                  ///
         d001-d006 d110-d112 e001-e006 e078-e081 e153-e156                           ///
         f001-f002 f006-f009 f010-f012 f073-f074 f101 f102 f104 f108 f112 f116 f120  ///
-        h001 h002 h020 h040 h060                                                    ///
-        l001 l003 m001 m002                                                         ///
+        h001 h002 h020 h040 h060 i050 l001 l003 m001 m002                           ///
         p014 p026-p031z p032-p033 p034 p035 p045
     /*loop*/
         forvalue x = 7/19 {
@@ -52,16 +51,27 @@ clear
                         local varlist `varlist' a158-a165
                     }
                 /*어학연수횟수*/
-                    if (`x' != 9) {
+                    if (`x' == 9) {
+                        local varlist `varlist' i004 i009 i014
+                    }
+                    else {
                         local varlist `varlist' i002
                     }
-                /*영어 및 기타 외국어 시험 응시여부*/
+                /*영어 시험 YN*/
                     if ( `x' >= 16 | `x' <= 12) {
                         local varlist `varlist' i018
                     }
                     else {
                         local varlist `varlist' i019
                     }
+                /*취업시험*/
+                    if (`x' == 7) {
+                        local varlist `varlist' n001 n010 n024 n038 n045 
+                    }
+                    else {
+                        local varlist `varlist' n083 n096 n113 n130
+                    }
+
             /*}}}*/
             use rawdata/GP`yr'.dta
             /*control commons*/
