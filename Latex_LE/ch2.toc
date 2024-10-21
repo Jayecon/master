@@ -1,9 +1,0 @@
-\beamer@sectionintoc {1}{한국 고용관계의 발전과정}{4}{0}{1}
-\beamer@subsectionintoc {1}{1}{노동운동 태동기 (1876년--1919년)}{4}{0}{1}
-\beamer@subsectionintoc {1}{2}{일제하의 고용관계 (1920년--1945년)}{6}{0}{1}
-\beamer@subsectionintoc {1}{3}{미군정하의 고용관계 (1945년--1948년)}{8}{0}{1}
-\beamer@subsectionintoc {1}{4}{제1공화국의 고용관계 (1948년--1960년)}{10}{0}{1}
-\beamer@subsectionintoc {1}{5}{경제개발기의 고용관계 (1961년--1987년)}{12}{0}{1}
-\beamer@subsectionintoc {1}{6}{민주화 이행기의 고용관계 (1987년--1996년)}{16}{0}{1}
-\beamer@subsectionintoc {1}{7}{IMF 경제위기 이후 고용관계 (1997년-2007년)}{20}{0}{1}
-\beamer@subsectionintoc {1}{8}{2008년-현재}{23}{0}{1}

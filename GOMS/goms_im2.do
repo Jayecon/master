@@ -275,7 +275,7 @@ use `path'goms_eq_raw , clear
     /*}}}*/
     /*gen : f999 {{{*/
         capture drop f999
-        gen f999 = 0 
+        gen f999 = 0
             replace f999 = f999 + 1 if f104 == 7
             replace f999 = f999 + 1 if f108 == 7
             replace f999 = f999 + 1 if f112 == 7

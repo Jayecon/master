@@ -5,12 +5,22 @@
 
 \usetheme{Darmstadt}
 \usecolortheme{seahorse}
+\setbeamercovered{transparent}
 
-\usepackage[hangul]{kotex}
+\usepackage{kotex}
 \usepackage{hyperref}
 \usepackage{graphicx, array, adjustbox, makecell}
 \usepackage{booktabs, multicol, multirow}
-\setbeamercovered{transparent}
+
+%\usepackage{fontspec}
+%\setmainfont{Times New Roman}
+%\setmainhangulfont{NanumGothic}
+
+\usepackage{newunicodechar}
+\newunicodechar{•}{$\cdot$}
+\newunicodechar{➔}{$\implies$}
+\newunicodechar{∴}{$\therefore$}
+\newunicodechar{∵}{$\because$}
 
 %----------------------------------------------------------
 % TITLE PAGE
@@ -20,7 +30,7 @@
 \author{오성재}
 \institute[CNU]
 {\relax
-    충남대학교 경제학과\
+    충남대학교 경제학과
     }
 \date{2024년 10월 7일}
 
@@ -176,7 +186,7 @@
 \begin{frame}{참가의 수준}
     \begin{itemize}[<+->]
         \item 전략적 수준 (strategic level)의 의사결정참가: 기업의 장기정책 혹은 전략의 의사결정과정에 종업원 혹은 종업원 대표가 참가하는 형태
-        \item 기능적 수준 (functional level)의 의사결정가: 단체협상이나 기업의 인사, 노무관리에 노동조합을 통하거나 각종 위원회를 통해서 참가하는 형태
+        \item 기능적 수준 (functional level)의 의사결정참가: 단체협상이나 기업의 인사, 노무관리에 노동조합을 통하거나 각종 위원회를 통해서 참가하는 형태
         \item 작업장 수준 (workplace level)의 의사결정참가: 실제 작업장에서 발생하는 일상적인 활동이나 직무설계나 작업장 배치와 같은 종업원의 근무환경에 영향을 미치는 의사결정에 참가하는 형태
     \end{itemize}
 \end{frame}
@@ -194,12 +204,13 @@
         \begin{itemize}[<+->]
             \item 인사위원회, 징계나 해고와 관련된 참여, 복리후생적 노동조건의 개선, 인사고과 등에 관련된 참여 등
         \end{itemize}
-        \item 효율성 지향 경영참가: 참여를 통해 노동자의 자율성과 창의성을 개발함으로써 이를 품질개선과 생산성 향상 등 조직성과의 향상에 기여할 수 있도록 하기 위해 설계․추진되는 경영참여
+        \item 효율성 지향 경영참가: 참여를 통해 노동자의 자율성과 창의성을 개발함으로써 이를 품질개선과 생산성 향상 등 조직성과의 향상에 기여할 수 있도록 하기 위해 설계, 추진되는 경영참여
         \begin{itemize}[<+->]
             \item 주로 사용자 주도적, 조직성과의 향상을 위한 다양한 혁신활동: QC, 제안활동, 문제해결팀 등
         \end{itemize}
     \end{itemize}
 \end{frame}
+
 
 %------------------------------------------------
 \end{document}

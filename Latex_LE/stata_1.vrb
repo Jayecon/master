@@ -1,0 +1,28 @@
+\frametitle{자료의 순서 및 임시저장}
+    \begin{itemize}[<+->]
+        \item order: 변수의 순서변경
+        \item sort: 관측치의 순서변경
+        \item preserve: 자료의 임시저장
+        \item restore: 임시저장된 자료로 복원
+    \end{itemize}
+    \framebreak\relax
+    \begin{verbatim}
+    preserve
+    de
+    order _all , alpha
+    de
+    order make foreign , first
+    de
+
+    restore , preserve
+    list
+    sort price
+    list
+    sort rep78 price
+    list
+
+    restore
+    restore
+
+    cmdlog close
+    \end{verbatim}

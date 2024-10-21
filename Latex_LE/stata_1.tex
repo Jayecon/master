@@ -1,0 +1,264 @@
+%----------------------------------------------------------
+% PACKAGES AND THEMES
+%----------------------------------------------------------
+\documentclass[aspectratio=169,xcolor=dvipsnames,handout]{beamer}
+
+\usetheme{Darmstadt}
+\usecolortheme{seahorse}
+
+\usepackage[hangul]{kotex}
+\usepackage{hyperref}
+\usepackage{graphicx, xcolor}
+\usepackage{booktabs, array, adjustbox, makecell, multicol, multirow}
+
+\setbeamercovered{transparent}
+
+%----------------------------------------------------------
+% TITLE PAGE
+%----------------------------------------------------------
+\title{Stata를 활용한 자료분석 입문}
+\subtitle{}
+\author{오성재}
+\institute[CNU]
+{\relax
+    전북대학교 Stata 특강\
+}
+\date{2024년 10월 17 일}
+
+%----------------------------------------------------------
+\begin{document}
+%----------------------------------------------------------
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{학습목표}
+    \begin{itemize}[<+->]
+    \item Stata를 처음 실행시키는 수준에서 출발하여 자료를 살펴보는 기초를 다진다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{목차}
+    \small
+    \tableofcontents[hideallsubsections]
+\end{frame}
+
+\section{살펴보기}
+
+\begin{frame}[fragile]
+\frametitle{폴더설정}
+    \begin{verbatim}
+    cmdlog using mylogfile, replace
+    pwd
+
+    creturn list
+        di c(os)
+        di c(sysdir_stata)
+
+    cd ~
+    \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{자료 호출하기}
+    \begin{verbatim}
+    sysuse auto
+        gen test = 1
+        sysuse auto
+
+    clear
+    sysuse auto
+        gen test = 1
+    sysuse auto , clear
+    \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{자료 다루기의 기초}
+    \begin{verbatim}
+    list
+    br
+    
+    de
+    sum
+    sum , detail
+    sum , meanonly
+    inspect
+    \end{verbatim}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{변수의 종류}
+    \begin{itemize}[<+->]
+        \item 문자형: str\#
+        \item 숫자형: byte, int, long, double
+        \begin{itemize}[<+->]
+            \item 실수형: 소득, 자산, 점수, 연령, 시점 등등.
+            \item 범주형: 학력, 지역, dummy 등등.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{명령어 생략}
+    \begin{verbatim}
+    d
+    de
+    describe
+
+    s
+    su
+    summarize
+    \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{조건부 명령 (in \& if)}
+    \begin{verbatim}
+    list
+    list in 1/10
+    list in 1/10 , sep(0)
+    list price rep78 in 1/10
+    list p r in 1/10
+    list m in 1/10
+    list p r in 1/10 if p < 5000
+    list p r in f/5
+    list p r in 40/l
+    \end{verbatim}
+\end{frame}
+
+\section{연산자}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{비교연산자}
+    \begin{itemize}[<+->]
+        \item grater than: $>$.
+        \item less than: $<$.
+        \item no more: $<=$.
+        \item no less: $>=$.
+        \item equal: $==$.
+        \item not equal: $!=$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{논리연산자}
+    \begin{itemize}[<+->]
+        \item AND:\@ \&.
+        \item OR:\@ $|$.
+        \item NOT:\@! or \textasciitilde.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks, fragile]
+    \frametitle{연산자 예시}
+    \begin{verbatim}
+    sum if price >= 4500
+    sum if price < 4500
+    sum if rep78 == 3
+    sum if rep78 != 2
+     
+    sum if price >= 4500 & price <= 13000
+    sum if inrange(price, 4500 , 13000)
+    sum if price < 4500 | price > 13000
+    sum if !inrange(price, 4500 , 13000)
+
+    sum if rep78 == 3 and rep78 == 4
+    sum if rep78 == 3 or rep78 == 4
+
+    sum if rep78 == 3 & rep78 == 4
+    sum if rep78 == 3 | rep78 == 4
+    sum if inlist(rep78 , 3 ,4)
+    \end{verbatim}
+\end{frame}
+
+\section{자세히 살펴보기}
+\begin{frame}[allowframebreaks, fragile]
+    \frametitle{이산변수 살펴보기}
+    \begin{verbatim}
+    tab rep78
+    tab rep78 foreign
+    tab foreign rep78
+    tab turn rep78 foreign
+    table turn rep78 foreign
+
+    tab1 turn rep78 foreign
+    tab2 turn rep78 foreign
+
+    tab1
+    tab1 _all
+
+    tab f , sum(p)
+    bysort f: sum p
+    bys f: sum p
+
+    tabstat p , by(r) stat(n mean sd min max)
+    tabstat p , by(r) stat(n mean sd min max) missing
+    \end{verbatim}
+\end{frame}
+
+\begin{frame}[allowframebreaks, fragile]
+    \frametitle{연속변수 살펴보기}
+    \begin{verbatim}
+    hist price
+    hist price , by(f)
+
+    scatter rep78 weight
+    scatter rep78 weight , by(f)
+
+    kdensity price
+    \end{verbatim}
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, fragile]
+    \frametitle{결측치}
+    \begin{verbatim}
+    tab foreign rep78
+    tab foreign rep78 , mis
+
+    sum if rep78 > 4
+    sum if rep78 > 4 & rep78 < .
+    sum if rep78 > 4 & !missing(rep78)
+    \end{verbatim}
+\end{frame}
+
+
+
+\section{단순 조작}
+\begin{frame}[allowframebreaks, fragile]
+    \frametitle{자료의 순서 및 임시저장}
+    \begin{itemize}[<+->]
+        \item order: 변수의 순서변경
+        \item sort: 관측치의 순서변경
+        \item preserve: 자료의 임시저장
+        \item restore: 임시저장된 자료로 복원
+    \end{itemize}
+    \framebreak\relax
+    \begin{verbatim}
+    preserve
+    de
+    order _all , alpha
+    de
+    order make foreign , first
+    de
+
+    restore , preserve
+    list
+    sort price
+    list
+    sort rep78 price
+    list
+
+    restore
+    restore
+
+    cmdlog close
+    \end{verbatim}
+\end{frame}
+
+
+%------------------------------------------------
+\end{document}
+%------------------------------------------------
+
