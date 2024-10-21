@@ -57,7 +57,6 @@ set nocompatible " no compatible with the original Vi filetype off
         Plug 'lervag/vimtex'                    " Latex editor for Vim
         Plug 'git@github.com:honza/vim-snippets.git'
             Plug 'git@github.com:SirVer/ultisnips.git'
-        Plug 'ludovicchabant/vim-gutentags'     " management of tags files in Vim
     call plug#end()
     " }}}1
     " Plugins Specific Setting -------------------- {{{1
@@ -162,16 +161,24 @@ set nocompatible " no compatible with the original Vi filetype off
             " Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
             " - https://github.com/Valloric/YouCompleteMe
             " - https://github.com/nvim-lua/completion-nvim
-            let g:UltiSnipsExpandTrigger="<tab>"
-            let g:UltiSnipsJumpForwardTrigger="<c-p>"
-            let g:UltiSnipsJumpBackwardTrigger="<c-n>"
-            " Debug
+          " Debug
             let g:UltiSnipsDebug=1
             let g:UltiSnipsLogFile="~/ultisnips_debug.log"
             " If you want :UltiSnipsEdit to split your window.
             let g:UltiSnipsEditSplit="vertical"
             " Change the snipptes path
-            let g:UltiSnipsSnippetDirectories = ['~/GitHub/master/etc', '~/.vim/UltiSnips']
+            let g:UltiSnipsSnippetDirectories=['~/GitHub/master/snippets', 'UltiSnips']
+            " SuperTab 기본 설정
+            let g:SuperTabDefaultCompletionType="context"
+            let g:SuperTabContextUltiSnips = 1
+            " UltiSnips 설정: Tab 키를 스니펫 확장 및 이동에 사용
+            let g:UltiSnipsExpandTrigger="<tab>"
+            let g:UltiSnipsJumpForwardTrigger="<tab>"
+            let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+            " SuperTab과 UltiSnips 통합 설정
+            let g:SuperTabContextDefaults = {'&omnifunc': 'context', 'g:UltiSnipsExpandTrigger': 'UltiSnips'}
+            let g:SuperTabContextUltiSnips = 1
+            let g:SuperTabCompletionContexts = ['UltiSnips', 's:context_text', 's:context_text_start']
         " }}}2
         " Vim-airline ---------------------- {{{2
             let g:airline_theme='solarized'
@@ -217,6 +224,14 @@ set nocompatible " no compatible with the original Vi filetype off
             filetype plugin indent on
         " }}}2
         "Vimtex{{{2
+            " Vimtex의 특정 경고를 무시
+            let g:vimtex_quickfix_ignore_filters = [
+                \ '.*You should put a space in front of parenthesis.*',
+                \ '.*Redefining Unicode character.*'
+                \ ]
+            " chktex의 경고를 무시 
+                let g:vimtex_lint_enabled = 1
+                let g:vimtex_lint_progname = 'chktex'
             " PDF 뷰어를 Skim으로 설정
                 let g:vimtex_view_method = 'skim'
             " latexmk를 사용하여 실시간 자동 컴파일 설정
@@ -232,7 +247,20 @@ set nocompatible " no compatible with the original Vi filetype off
                     \'split_pos'   : ':vert :botright',
                     \'split_width':  50,
                 \}
-                        "}}}2
+            " Vim 종료시 보조파일 삭제
+                autocmd VimLeave * if exists(':VimtexClean') | VimtexClean | endif
+            " Vimtex의 compiler 변경
+                "let g:vimtex_compiler_latexmk = {
+                    "\ 'executable' : 'latexmk',
+                    "\ 'options' : [
+                    "\ '-pdf',
+                    "\ '-xelatex',
+                    "\ '-file-line-error',
+                    "\ '-synctex=1',
+                    "\ '-interaction=nonstopmode',
+                    "\ ],
+                "\}
+        "}}}2
     " }}}1
     " Environment Setting ---------------------- {{{1
         " Basic " {{{2
@@ -345,7 +373,8 @@ set nocompatible " no compatible with the original Vi filetype off
         " Global {{{2
         map <leader><leader> :Startify<cr>
         map <leader>t :echo strftime('%Y년 %B %d일 %X')<cr>
-        map <leader>sc :w<cr>:soucce %<cr>
+        map <leader>sc :w<cr>:source %<cr>
+        map <leader>sp :UltiSnipsEdit<cr>
         map <leader>rc :e $MYVIMRC<cr>
         map <leader>brc :w! ~/dropbox/Z_personal/myvimrc<cr>:w! ~/github/master/etc/myvimrc<cr>
         "vimrc를 ~/Dropbox/Z_Personal/myvimrc로 백업{{{3
@@ -369,7 +398,7 @@ set nocompatible " no compatible with the original Vi filetype off
             "endfunction
             "}}}3
         map <leader>urc :e! ~/dropbox/Z_personal/myvimrc<cr>:w! $MYVIMRC<cr>:source $MYVIMRC<cr>
-        map <silent> <leader>l :set list!<cr>
+        map <leader>l :set list!<cr>
         map <silent> <leader>box :cd ~/dropbox<cr>:pwd<cr>
         if has('win32')
             map <silent> <leader>git :cd ~/git<cr>:pwd<cr>
