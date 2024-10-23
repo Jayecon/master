@@ -1,0 +1,261 @@
+snippet bpre "Beamer Preamble"
+\\documentclass[aspectratio=169,xcolor=dvipsnames,handout]{beamer}
+%----------------------------------------------------------
+% PACKAGES AND THEMES
+%----------------------------------------------------------
+\\usetheme{Darmstadt}
+\\usecolortheme{seahorse}
+
+\\usepackage[hangul]{kotex}
+\\usepackage{hyperref}
+\\usepackage{graphicx, array, adjustbox, makecell}
+\\usepackage{booktabs, multicol, multirow}
+\\setbeamercovered{transparent}
+
+% font조정
+%\usepackage{fontspec}
+%\setmainfont{Times New Roman}
+%\setmainhangulfont{NanumGothic}
+
+\\usepackage{newunicodechar}
+\\newunicodechar{•}{$\cdot$}
+\\newunicodechar{➔}{$\implies$}
+\\newunicodechar{∴}{$\therefore$}
+\\newunicodechar{∵}{$\because$}
+
+%----------------------------------------------------------
+% TITLE PAGE
+%----------------------------------------------------------
+\\title{${1:title}}
+\\subtitle{노사관계의 이론과 실제}
+\\author{오성재}
+\\institute[CNU]
+{\relax
+	충남대학교 경제학과\\
+	}
+\\date{2024년 ${2:date}}
+
+%----------------------------------------------------------
+\\begin{document}
+%----------------------------------------------------------
+
+\\frame{\titlepage}
+
+\\begin{frame}{목차}
+	\\small
+	\\tableofcontents[hideallsubsections]
+\\end{frame}
+
+\\section{${3:section}}
+
+
+%------------------------------------------------
+\\end{document}
+%------------------------------------------------
+
+endsnippet
+
+snippet ben "enumerate for pastes on Beamer" 
+\\begin{enumerate}[<+->]
+\\end{enumerate}
+endsnippet
+
+snippet bit "items for pastes on Beamer" 
+\\begin{itemize}[<+->]
+\\end{itemize}
+endsnippet
+
+snippet bvt "verbatim for Beamer" 
+\\begin{verbatim}
+	${1:your codes here}
+\\end{verbatim}
+endsnippet
+
+snippet ablk "example block" 
+\\begin{alterblock}{${1:title}}
+	${2:body here}
+\\end{alterblock}
+endsnippet
+
+snippet eblk "example block" 
+\\begin{exampleblock}{${1:title}}
+	${2:body here}
+\\end{exampleblock}
+endsnippet
+
+snippet blk "block" 
+\\begin{block}{${1:title}}
+	${2:body here}
+\\end{block}
+endsnippet
+
+snippet bfe "Beamer breakable frame with enumerate" 
+\\begin{frame}[allowframebreaks]
+	\\frametitle{${1:frame title}}
+	\\begin{enumerate}[<+->]
+	\\end{enumerate}
+\\end{frame}
+
+endsnippet
+
+snippet bfi "Beamer breakable frame with itemize" 
+\\begin{frame}[allowframebreaks]
+	\\frametitle{${1:frame title}}
+	\\begin{itemize}[<+->]
+	\\end{itemize}
+\\end{frame}
+
+endsnippet
+
+snippet bff "Beamer fragile frame with itemize" 
+\\begin{frame}[allowframebreaks, fragile]
+	\\frametitle{${1:frame title}}
+	\\begin{verbatim}
+	\\end{verbatim}
+\\end{frame}
+
+endsnippet
+
+snippet bsec "Beamer section" 
+\\section{${1:section title}}
+
+endsnippet
+
+snippet bsub "Beamer subsection" 
+\\subsection{${1:section title}}
+
+endsnippet
+
+snippet fb "framebreak and relax"
+\\framebreak\relax
+endsnippet
+
+snippet bfig "figure for Beamer"
+\\centering
+\\begin{figure}
+	\\includegraphics[width=.3\textwidth]{${1:filename}}
+	\\caption{${2:title}}
+\\end{figure}
+endsnippet
+
+snippet btab "table for Beamer"
+\\begin{table}
+	\\centering
+	\\resizebox{.6\textwidth}{!}{\relax
+		\\input{${1:filename}}
+	\}
+	\\caption{${2:title}}
+\\end{table}
+endsnippet
+
+snippet bsrc "source for Beamer"
+\\\
+\\raggedright
+\\hspace{1em}
+\\tiny{자료: ${1:source}}
+endsnippet
+
+snippet imp "imply"
+$\implies$
+endsnippet
+
+snippet tf "therefore"
+$\therefore$
+endsnippet
+
+snippet bc "because"
+$\because$
+endsnippet
+
+
+snippet xpre "Exam Preamble"
+\\documentclass{exam}
+%----------------------------------------------------------
+% PACKAGES AND THEMES
+%----------------------------------------------------------
+\\usepackage[]{kotex}
+\\usepackage{lastpage}
+\\usepackage{multicol}
+\\usepackage{setspace}
+\\usepackage{framed}
+
+% "point"와 "points"를 "점"으로 변경
+    \\renewcommand{\pointname}{점}
+    \\renewcommand{\points}{\pointname}
+% 줄 간격 및 문단 간격 조정
+    \\setlength{\parskip}{0pt}  % 문단 간 여백 제거
+    \\setstretch{1.2}  % 줄 간격 조정
+% 선택지 번호를 숫자로 변경
+    %\renewcommand{\thechoice}{\arabic{choice}}
+% 선택지 번호를 한글 자모로 변경하는 매크로 (ㄱ, ㄴ, ㄷ, ㄹ)
+    \\newcommand{\koreanChoice}{
+        \\ifcase\numexpr\value{choice}-1\relax ㄱ\or\relax ㄴ\or\relax ㄷ\or\relax
+        ㄹ\or\relax ㅁ\or\relax ㅂ\or\relax ㅅ\or\relax ㅇ\or\relax ㅈ\or\relax
+        ㅊ\or\relax ㅋ\or\relax ㅌ\or\relax ㅍ\or\relax ㅎ\fi
+    }
+    \\renewcommand{\thechoice}{\koreanChoice}
+% 페이지 번호를 하단에 출력
+    \\firstpagefooter{}{\thepage/\pageref{LastPage} 쪽}{}
+    \\runningfooter{}{\thepage/\pageref{LastPage} 쪽}{}
+
+%----------------------------------------------------------
+\\begin{document}
+%----------------------------------------------------------
+% TITLE
+    \\title{\relax
+        2024년 2학기 중간고사 \\
+        \\Large
+        노사관계의 이론과 실재
+    }
+    \\author{담당교수: 오성재}
+    \\date{\today}
+    \\maketitle
+
+% 학생 이름과 학번 입력란
+    \\noindent
+    성명: \makebox[.3\textwidth]{\hrulefill} \\[3pt]
+    학번: \makebox[.3\textwidth]{\hrulefill}
+
+\\begin{questions}
+	${1:contents here}
+\\end{questions}
+%------------------------------------------------
+\end{document}
+%------------------------------------------------
+endsnippet
+
+snippet qch "Multiple choice question"
+\\question[${1:points}] ${2:question here}
+    \\begin{choices}
+    \\choice\relax ${3:1st choice}
+    \\choice\relax ${4:2nd choice}
+    \\choice\relax ${5:3rd choice}
+    \\choice\relax ${6:4th choice}
+    \\end{choices}
+endsnippet
+
+snippet qcc "Correct choice item"
+    \\CorrectChoice\relax
+endsnippet
+
+snippet qci "Choice item"
+    \\choice\relax
+endsnippet
+
+snippet qfi "Fill in the blanks question"
+\\question[${1:points}] ${6:before blank} \fillin[${6:answers}]{}${6:after blank}.
+endsnippet
+
+snippet qwr "Writing questions"
+\\question[${1:points}] ${2:question here} \\[3pt]
+\\ifprintanswers\relax
+    ${3:your reasons here}
+\\else
+    \\rule{\linewidth}{0.4pt} \\[3pt]
+    \\rule{\linewidth}{0.4pt} \\[3pt]
+    \\rule{\linewidth}{0.4pt} \\[3pt]
+    \\rule{\linewidth}{0.4pt} \\[3pt]
+    \\rule{\linewidth}{0.4pt}
+\\fi
+endsnippet
+

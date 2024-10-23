@@ -8,7 +8,7 @@
 
 \usepackage[hangul]{kotex}
 \usepackage{hyperref}
-\usepackage{graphicx, xcolor}
+\usepackage{graphicx, xcolor, amsmath}
 \usepackage{booktabs, array, adjustbox, makecell, multicol, multirow}
 
 \setbeamercovered{transparent}
@@ -16,14 +16,13 @@
 %----------------------------------------------------------
 % TITLE PAGE
 %----------------------------------------------------------
-\title{Data Management Using Stata }
-\subtitle{Michael Mitchell, 2020}
+\title{코딩의 기초}
 \author{오성재}
 \institute[CNU]
 {\relax
     전북대학교 Stata 특강\
 }
-\date{2024년 10월 17 일}
+\date{2024년 10월 24일}
 
 %----------------------------------------------------------
 \begin{document}
@@ -34,7 +33,8 @@
 \begin{frame}
 \frametitle{학습목표}
     \begin{itemize}[<+->]
-    \item Stata를 처음 실행시키는 수준에서 출발하여 실전에서 사용가능한 자료 작성의 기법을 습득한다.
+    \item 첫 시간은 Stata에서 사용하는 dta 파일의 자료를 살펴보는 법을 익혔다.
+    \item 이번 시간의 목표는 dta 파일을 가공하는 법을 익히는 것이다.
     \end{itemize}
 \end{frame}
 
@@ -45,23 +45,80 @@
 
 \section{편리한 환경 만들기}
 
-\begin{frame}[allowframebreaks, fragile]
+\begin{frame}[fragile]
     \frametitle{폴더관리}
     \begin{itemize}[<+->]
         \item dropbox: 자료공유 및 접근 용이.
         \begin{verbatim}
             ~/dropbox/data/your_data/rawdata
         \end{verbatim}
-        \item 폴더명은 영어로: 한글을 폴더명으로 할 경우 인식문제 발생.
-        \item 스네이크 케이스 (snake case)사용 추천: 공백은 `\_' 로 대체.
+        \item 폴더명은 영어로: 영어 이외의 문자를 폴더명으로 할 경우 인식문제 발생. 오랜 관습
+        \item 스네이크 케이스 (snake case)사용 추천: 파일 및 폴더명의 공백은 `\_' 로 대체. 공백으로 둘 경우 불편함 발생
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{Github}
+    \begin{enumerate}[<+->]
+        \item GitHub이란 무엇인가?
+        \begin{itemize}[<+->]
+            \item Git: 코드 버전 관리를 위한 도구로, 코드를 저장하고 변경 이력을 추적할 수 있습니다.
+            \item GitHub: Git을 기반으로 하는 클라우드 플랫폼으로, 팀원들과 협업하여 코드 프로젝트를 관리하고 공유할 수 있습니다.
+            \item 주요 특징:
+            \begin{itemize}[<+->]
+                \item 저장소 (Repository): 프로젝트 파일과 변경 기록을 저장하는 공간.
+                \item 버전 관리: 코드의 과거 상태를 보관하고, 이전 버전으로 쉽게 돌아갈 수 있음.
+                \item 협업: 팀원들이 각자 작업한 코드를 쉽게 통합하고 관리할 수 있음.
+            \end{itemize}
+        \end{itemize}
+        \framebreak%
+        \item GitHub의 기본 개념
+        \begin{itemize}[<+->]
+            \item Commit: 코드를 변경한 후 저장하는 작업, 변경 이력이 기록됩니다.
+            \item Branch: 새로운 기능을 개발할 때 기존 코드와 분리된 별도의 작업 공간을 만듭니다.
+            \item Pull Request: 자신이 작업한 코드를 다른 팀원이 검토할 수 있도록 요청하는 과정.
+            \item Fork \& Clone: 다른 사람의 프로젝트를 내 저장소로 복사하거나 로컬 컴퓨터에 가져와 수정할 수 있습니다.
+        \end{itemize}
+        \item GitHub의 이점:
+        \begin{itemize}[<+->]
+            \item 안전한 코드 보관
+            \item 효율적인 협업
+            \item 자동화된 배포 및 테스트
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{Text Editor}
+    \begin{itemize}[<+->]
+        \item Text Editor란 무엇인가?
+        \begin{itemize}[<+->]
+            \item 텍스트 파일을 작성하고 수정할 수 있는 프로그램입니다.
+            \item 코드 작성, 노트 기록, 메모 등을 간편하게 할 수 있습니다.
+        \end{itemize}
+        \item 왜 Text Editor를 사용해야 하나요?
+        \begin{itemize}[<+->]
+            \item 빠르고 가볍습니다: 빠르게 실행되며, 복잡한 기능 없이 간단히 텍스트 작업을 할 수 있습니다.
+            \item 다양한 파일 형식 지원: 텍스트, 코드 파일, 설정 파일 등 다양한 형식의 파일을 편집할 수 있습니다.
+            \item 어디서나 사용 가능: 대부분의 운영 체제에서 기본 제공되며, 무료로 사용할 수 있는 다양한 프로그램이 있습니다.
+        \end{itemize}
+        \item 주요 이점
+        \begin{itemize}[<+->]
+            \item 직관적 사용법: 복잡한 워드 프로세서보다 직관적이며, 배우기 쉽습니다.
+            \item 간단한 작업에 최적화: 빠르게 메모를 하거나, 간단한 설정 파일을 수정할 때 유용합니다.
+            \item 프로그래밍의 첫 걸음: 코드를 작성하고 저장하는 첫 번째 단계로 많이 사용됩니다.
+        \end{itemize}
+        \item 추천 프로그램
+        \begin{itemize}[<+->]
+            \item Sublime Text + Stata Enhanced
+            \item Atom + Stata Kernel
+            \item VSCode + VSCode-Stata-Enhanced 또는 Stata Automation
+        \end{itemize}
     \end{itemize}
 \end{frame}
 
 
-
-\section{자료 살펴보기}
-
-\begin{frame}[fragile]
+\begin{frame}[ fragile]
 \frametitle{폴더설정}
     \begin{verbatim}
     pwd
@@ -71,163 +128,161 @@
         di c(sysdir_stata)
 
     cd ~
+    cd
     \end{verbatim}
 \end{frame}
 
-\begin{frame}[fragile]
-    \frametitle{자료 호출하기}
-    \begin{verbatim}
-    sysuse auto
-        gen test = 1
-        sysuse auto
-
-    clear
-    sysuse auto
-        gen test = 1
-    sysuse auto , clear
-    \end{verbatim}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{자료 다루기의 기초}
-    \begin{verbatim}
-    list
-    br
-    
-    de
-    sum
-    sum , detail
-    sum , meanonly
-    inspect
-    \end{verbatim}
-\end{frame}
+\section{코딩의 기초}
 
 \begin{frame}[allowframebreaks]
-    \frametitle{변수의 종류}
+    \frametitle{Stata의 연산자}
     \begin{itemize}[<+->]
-        \item 문자형: str\#
-        \item 숫자형: byte, int, long, double
+        \item 계산
         \begin{itemize}[<+->]
-            \item 실수형: 소득, 자산, 점수, 연령, 시점 등등.
-            \item 범주형: 학력, 지역, dummy 등등.
+            \item 더하기: $+$
+            \item 빼기: $-$
+            \item 곱하기: $*$
+            \item 나누기: $/$
+            \item 승: \textasciicircum\relax
+            \item 부정: $-$
+            \item 문자연결: $+$
+        \end{itemize}
+        \framebreak\relax
+        \item 논리
+        \begin{itemize}[<+->]
+            \item AND:\@ \&
+            \item OR:\@ $|$
+        \item NOT:\@! or \textasciitilde\relax
+        \end{itemize}
+        \item 관계
+        \begin{itemize}[<+->]
+            \item grater than: $>$
+            \item less than: $<$
+            \item no more: $<=$
+            \item no less: $>=$
+            \item equal: $==$
+            \item not equal: $!=$
         \end{itemize}
     \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
-    \frametitle{명령어 생략}
-    \begin{verbatim}
-    d
-    de
-    describe
-
-    s
-    su
-    summarize
-    \end{verbatim}
+\begin{frame}[allowframebreaks, fragile]
+    \frametitle{연산자 해석}
+    \begin{itemize}[<+->]
+        \item 컴퓨터는 조건문에 대하여 참이면 1 거짓이면 0을 반환함.
+        \item 컴퓨터는 조건문에 대하여 1 보다 큰 값이면 참으로 간주한다.
+        \item AND는 $\times$ OR은 $+$, NOT은 $\times -1$로 간주하면 편하다.
+    \end{itemize}
+    \begin{exampleblock}{연산자 계산}
+        김수현은 대한민국의 35세 남성이라고 하자. 그는 대한민국 남성 또는 30대라는 조건에 포함된다. 조건문으로 해석하면 \[
+            male == 1 \& nation == Korea | age == 35
+        \]로 표현할 수 있다. 연산 결과는 1 $\times$ 1 $+$ 1 = 2 가 되어 참이다.\\
+        김수현은 대한민국 20대 남성이라는 조건에는 벗어난다. 이를 조건문으로 해석하면 \[
+            male == 1 \& nation == Korea \& inrange(age, 20, 29)
+        \]로 표현할 수 있다. 연산 결과는 1 $\times$ 1 $\times$ 0 = 0 이 되어 거짓이다.
+    \end{exampleblock}
 \end{frame}
 
-\begin{frame}[fragile]
-    \frametitle{조건부 명령 (in \& if)}
+\begin{frame}[allowframebreaks, fragile]
+    \frametitle{코멘트}
+    \begin{itemize}[<+->]
+        \item 모든 코딩은 코멘트가 매우 중요함
+        \begin{itemize}[<+->]
+            \item 코딩격언: 니가 짠 코딩은 오직 신과 너만이 안다. 이제는 오직 신만이 안다.
+            \item 코드생성 및 디버깅 중에 일부 코드를 실행에서 누락 시켜야.
+        \end{itemize}
+    \item 코멘트의 종류
+        \item 명령줄 뒤
+        \item 명령줄 전체
+        \item 블록: 명령줄 여럿
+    \end{itemize}
     \begin{verbatim}
-    list
-    list in 1/10
-    list in 1/10 , sep(0)
-    list price rep78 in 1/10
-    list p r in 1/10
-    list m in 1/10
-    list p r in 1/10 if p < 5000
-    list p r in f/5
-    list p r in 40/l
+    sum mpg  // This summarizes the mpg variable
+
+    * sum mpg
+
+    /* 
+    This is a block comment.
+    It spans multiple lines.
+    */
     \end{verbatim}
 \end{frame}
-
-\section{연산자}
 
 \begin{frame}[allowframebreaks]
-    \frametitle{비교연산자}
+    \frametitle{들여쓰기}
     \begin{itemize}[<+->]
-        \item grater than: $>$.
-        \item less than: $<$.
-        \item no more: $<=$.
-        \item no less: $>=$.
-        \item equal: $==$.
-        \item not equal: $!=$.
+        \item 들여쓰기 (indent)는 코드 가독성의 핵심
+        \item 일부 언어는 들여쓰기에 민감하게 반응하기도 함. 대표적으로 python.
     \end{itemize}
+\end{frame}
+
+
+\section{자료가공하기}
+
+\begin{frame}[allowframebreaks, fragile]
+    \frametitle{drop, keep}
+    \begin{itemize}[<+->]
+        \item drop은 참인 대상을 데이터에서 drop
+        \item keep은 참인 대상을 남기고 나머지를 데이터에서 drop
+        \item keep과 drop은 서로 반대개념
+    \end{itemize}
+    \begin{verbatim}
+        cmdlog using mylogfile, replace
+        sysuse auto
+        sum
+        preserve
+        drop price
+        sum
+        restore , preserve
+        drop if price >= 5000
+        sum
+        restore , preserve
+        drop in 40/l
+        sum
+        restore , preserve
+    \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{[], \_n \& \_N}
+       \begin{verbatim}
+            di price[3]
+            gen id = _n
+            gen nobs = _N
+            bys rep78: gen repid = _n
+            bys foreign: gen fobs = _N
+
+            gen lagp = price[_n-1]
+            gen leadp = price[_n+1]
+            restore , preserve
+        \end{verbatim}
 \end{frame}
 
 \begin{frame}[allowframebreaks]
-    \frametitle{논리연산자}
+    \frametitle{isid \& duplicates}
     \begin{itemize}[<+->]
-        \item AND:\@ \&.
-        \item OR:\@ $|$.
-        \item NOT:\@! or \textasciitilde.
+        \item isid: 해당 변수 또는 변수조합이 id인지 알려주는 명령어.
+        \item duplicates: 만약 id인데 isid를 통과 못한다면 어떤식의 문제가 있는지 살펴보는 명령어.
     \end{itemize}
 \end{frame}
 
-\begin{frame}[allowframebreaks, fragile]
-    \frametitle{연산자 예시}
-    \begin{verbatim}
-    sum if price >= 4500
-    sum if price < 4500
-    sum if rep78 == 3
-    sum if rep78 != 2
-     
-    sum if price >= 4500 & price <= 13000
-    sum if inrange(price, 4500 , 13000)
-    sum if price < 4500 | price > 13000
-    sum if !inrange(price, 4500 , 13000)
-
-    sum if rep78 == 3 and rep78 == 4
-    sum if rep78 == 3 or rep78 == 4
-
-    sum if rep78 == 3 & rep78 == 4
-    sum if rep78 == 3 | rep78 == 4
-    sum if inlist(rep78 , 3 ,4)
-    \end{verbatim}
-\end{frame}
-
-\section{자료를 자세히 살펴보기}
-\begin{frame}[allowframebreaks, fragile]
-    \frametitle{table}
-    \begin{verbatim}
-    tab rep78
-    tab rep78 foreign
-    tab foreign rep78
-    tab turn rep78 foreign
-    table turn rep78 foreign
-    tab1 turn rep78 foreign
-    tab2 turn rep78 foreign
-    tab1
-    tab1 _all
-    \end{verbatim}
-\end{frame}
 
 \begin{frame}[allowframebreaks, fragile]
-    \frametitle{결측치}
-    \begin{verbatim}
-    tab foreign rep78
-    tab foreign rep78 , mis
-
-    sum if rep78 >4
-    sum if rep78 >4 & rep78 < .
-    sum if rep78 >4 & !missing(rep78)
-    \end{verbatim}
-\end{frame}
-
-
-
-\section{자료를 단순히 조작하기}
-\begin{frame}[allowframebreaks, fragile]
-    \frametitle{자료의 순서 및 임시저장}
+    \frametitle{reshape}
     \begin{itemize}[<+->]
-        \item order: 변수의 순서변경
-        \item sort: 관측치의 순서변경
-        \item preserve: 자료의 임시저장
-        \item restore: 임시저장된 자료로 복원
+        \item 자료유형은 크게 time을 자료구조에 어떻게 반영했는가에 의해 long, wide 두 가지 유형이 존재
+        \item 시간변수가 별도로 존재하면 long타입.
+        \item gdp98 gdp99 같이 다른 시점의 동일정보를 다른 변수로 취급하면 wide 타입.
+        \item \textbf{패널자료는 long 타입이 기본임}.
     \end{itemize}
+    \begin{verbatim}
+        h reshape
+        gen year = runiform()
+        replace year = 2000 + round(year*100/2,1)
+        reshape wide p-g , i(make) j(year)
+        reshape long
+    \end{verbatim}
 \end{frame}
-
 
 %------------------------------------------------
 \end{document}

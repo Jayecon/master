@@ -1,0 +1,14 @@
+\frametitle{reshape}
+    \begin{itemize}[<+->]
+        \item 자료유형은 크게 time을 자료구조에 어떻게 반영했는가에 의해 long, wide 두 가지 유형이 존재
+        \item 시간변수가 별도로 존재하면 long타입.
+        \item gdp98 gdp99 같이 다른 시점의 동일정보를 다른 변수로 취급하면 wide 타입.
+        \item \textbf{패널자료는 long 타입이 기본임}.
+    \end{itemize}
+    \begin{verbatim}
+        h reshape
+        gen year = runiform()
+        replace year = 2000 + round(year*100/2,1)
+        reshape wide p-g , i(make) j(year)
+        reshape long
+    \end{verbatim}
