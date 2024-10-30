@@ -71,7 +71,6 @@ clear
                     else {
                         local varlist `varlist' n083 n096 n113 n130
                     }
-
             /*}}}*/
             use rawdata/GP`yr'.dta
             /*control commons*/
