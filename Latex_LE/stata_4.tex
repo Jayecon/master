@@ -1,0 +1,260 @@
+%----------------------------------------------------------
+% PACKAGES AND THEMES
+%----------------------------------------------------------
+\documentclass[aspectratio=169,xcolor=dvipsnames,handout]{beamer}
+
+\usetheme{Darmstadt}
+\usecolortheme{seahorse}
+
+\usepackage[hangul]{kotex}
+\usepackage{hyperref}
+\usepackage{graphicx, xcolor, amsmath}
+\usepackage{booktabs, array, adjustbox, makecell, multicol, multirow}
+
+\setbeamercovered{transparent}
+
+%----------------------------------------------------------
+% TITLE PAGE
+%----------------------------------------------------------
+\title{자료 가공하기}
+\author{오성재}
+\institute[CNU]
+{\relax
+    전북대학교 Stata 특강\
+}
+\date{2024년 11월 7일}
+
+%----------------------------------------------------------
+\begin{document}
+%----------------------------------------------------------
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{학습목표}
+    \begin{itemize}[<+->]
+    \item 추출한 rawdata를 가공하여 연구자에게 필요한 변수를 만드는 법을 익힌다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{목차}
+    \small
+    \tableofcontents[hideallsubsections]
+\end{frame}
+
+\section{do file}
+
+\begin{frame}[fragile]
+    \frametitle{do file}
+    \begin{itemize}[<+->]
+        \item 지금까지는 command 창에 하나의 명령어 만을 단순하게 입력했음.
+        \item 그러나 자료 cleaning 및 회귀분석 같은 현실적인 사용에서는 여러 명령어가 연속적으로 사용됨.
+        \item Stata는 여러 명령어를 do 확장자 파일로 저장함.
+    \end{itemize}
+    \begin{verbatim}
+    do abc.do
+    doedit abc.do
+    \end{verbatim}
+\end{frame}
+
+\section{loop}
+
+\begin{frame}[allowframebreaks, fragile]
+    \begin{itemize}[<+->]
+        \item macro는 특정 문구를 저장하는 이름.
+        \item 다양한 macro 가운데 local, tempvar, tempfile, tempname 의 넷만 배운다.
+        \item local: 숫자, 문자 (변수명, 파일명)등을 저
+        \item tempvar: 임시변수명
+        \item tempfile: 임시파일명
+        \item tempname: 임시 매트릭스명
+    \end{itemize}
+    \frametitle{macro}
+    \begin{verbatim}
+    local x 1
+    local y = 1
+    local z1 `x' + 1
+    local z2 "`y' + 1"
+    local z3 `x' + `y' +1
+    di "macro x = `x' and marco y = `y'" 
+    di "macro x = " `x' " and marco y = "`y' 
+    di "macro z1 = `z1', macro z2 = `z2' and macro z3 = `z3'" 
+    di "macro z1 = "`z1', "macro z2 = "`z2' " and macro z3 = "`z3' 
+
+    local x = foo
+    local y bar
+    di "macro x = `x' and marco y = `y'" 
+    di "macro x = " `x' " and marco y = "`y' 
+    di "macro z1 = `z1', macro z2 = `z2' and macro z3 = `z3'" 
+    di "macro z1 = "`z1', "macro z2 = "`z2' " and macro z3 = "`z3' 
+
+    local yr : disp %02.0f  = 7
+    di "`yr'"
+    \end{verbatim}
+    \framebreak%
+    \begin{verbatim}
+    sysuse auto , clear
+    tempfile tfile //임시파일
+    preserve
+        gen tag = 1
+        save `tfile'
+    restore
+    append using `tfile' //파일간 수직결합
+    de
+    \end{verbatim}
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, fragile]
+    \frametitle{if loop}
+    \begin{verbatim}
+    di p
+    di p[1]
+    if p >= 3000 {
+        sum
+    }
+    if p >= 6000 {
+        sum
+    }
+
+    local year = 2007
+    if "`year'" == "2007" {
+        sum 
+    }
+    if "`year'" == "2006" {
+        sum 
+    }
+    \end{verbatim}
+\framebreak%
+    \begin{verbatim}
+    if "`year'" == "2006" {
+        sum 
+    }
+    else{
+       di "local year != 2006"
+    }
+    \end{verbatim}
+\framebreak%
+    \begin{verbatim}
+    if "`year'" == "2006" {
+        sum 
+    }
+    else if "`year'" < "2006" {
+       di "local year < 2006"
+    }
+    else {
+       di "local year > 2006"
+    }
+    \end{verbatim}
+\end{frame}
+
+\begin{frame}[allowframebreaks, fragile]
+    \frametitle{foreach loop}
+    \begin{verbatim}
+    sysuse auto , clear
+    foreach i of varlist p-f {
+        di `i'
+        di "`i'"
+    }
+
+    foreach i in foo bar{
+        di "`i'"
+    }
+
+    local mylist foo bar
+    foreach i of local mylist {
+        di "`i'"
+    }
+
+    foreach i of local mylist {
+        di `i'
+    }
+    \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{forvalue loop}
+    \begin{verbatim}
+    forvalue i = 1/5 {
+        di "`i'"
+    }
+
+    forvalue i = 1(2)9 {
+        di "`i'"
+    }
+    \end{verbatim}
+\end{frame}
+
+\begin{frame}[allowframebreaks, fragile]
+    \frametitle{Nested loop}
+    \begin{verbatim}
+    forvalue i = 7/9 {
+        local yr : disp %02.0f  = `i'
+        foreach j in foo bar {
+            di "`j'`i'"
+            di "`j'`yr'"
+            di as text "Year == " as result "`yr'"
+            }
+    }
+    \end{verbatim}
+\framebreak%
+    \small
+    \begin{verbatim}
+    forvalue i = 7/9 {
+        foreach j in foo bar {
+            if `i' == 7 {
+                di "`j'`i'"
+            }
+            else {
+                di "nope"
+            }
+        }
+    }
+    \end{verbatim}
+\end{frame}
+
+\section{data step1}%
+
+\begin{frame}[allowframebreaks,fragile]
+    \frametitle{some commands}
+    \begin{itemize}[<+->]
+        \item rename: 변수의 이름을 변경
+        \item gen: 새로운 변수 만들기 (단순)
+        \item label: 라벨 붙이기
+            \begin{itemize}[<+->]
+                \item label data 
+                \item label var
+                \item label define 
+                \item label value
+            \end{itemize}
+    \framebreak%
+        \item tostring: 숫자변수를 문자변수로
+        \item destring: 문자변수를 숫자변수로 
+        \item mvencode: 변수의 missing value를 특정한 값으로
+        \item mvdecode: 변수의 특정한 값을 missing value로 
+    \end{itemize}
+ \end{frame}
+
+\begin{frame}
+    \frametitle{자료정리의 구조}
+    \begin{enumerate}[<+->]
+        \item 필요한 변수를 선정: local 사용 + tempfile, tempvar 등등
+        \item 년도에 대한 forvalue루프 만들기
+            \begin{itemize}[<+->]
+                \item 년도별 rawdata 부르기: use
+                \begin{itemize}[<+->]
+                    \item 년도별로 필요한 변수가 상이할 수 있음: if문 + local 수정 + keep or drop
+                    \item 년도별로 변수를 만들 경우도: gen + label
+                \end{itemize}
+                \item 그 밖의 예외처리
+                \begin{itemize}[<+->]
+                    \item 변수형 (숫자형, 문자형) 불일치: destrign, tostring
+                    \item 변수별 missing 예외발생: mvdecode, mvencode
+                \end{itemize}
+            \end{itemize}
+        \item  년도별 추출 및 수정된 파일들 합치기: append
+    \end{enumerate}
+\end{frame}
+
+%----------------------------------------------------------
+\end{document}
+%----------------------------------------------------------

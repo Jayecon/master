@@ -1,0 +1,545 @@
+%----------------------------------------------------------
+% PACKAGES AND THEMES
+%----------------------------------------------------------
+\documentclass[aspectratio=169,xcolor=dvipsnames,handout]{beamer}
+
+\usetheme{Darmstadt}
+\usecolortheme{seahorse}
+\setbeamercovered{transparent}
+
+\usepackage[hangul]{kotex}
+\usepackage{hyperref}
+\usepackage{graphicx, array, adjustbox, makecell}
+\usepackage{booktabs, multicol, multirow, tabularx}
+
+% font조정
+%\usepackage{fontspec}
+%\setmainfont{Times New Roman}
+%\setmainhangulfont{NanumGothic}
+
+% 문자열 대체{노사관계론 전용}
+\usepackage{newunicodechar}
+\newunicodechar{•}{$\cdot$}
+\newunicodechar{➔}{$\implies$}
+\newunicodechar{}{$\implies$}
+\newunicodechar{∴}{$\therefore$}
+\newunicodechar{∵}{$\because$}
+
+%----------------------------------------------------------
+% TITLE PAGㄱ
+%----------------------------------------------------------
+\title{무노조기업의 고용관계}
+\subtitle{노사관계의 이론과 실제}
+\author{오성재}
+\institute[CNU]
+{\relax
+    충남대학교 경제학과\
+    }
+\date{2024년 11월 4일}
+
+%----------------------------------------------------------
+\begin{document}
+%----------------------------------------------------------
+\frame{\titlepage}
+
+\begin{frame}{목차}
+    \small
+    \tableofcontents[hideallsubsections]
+\end{frame}
+
+\section{등장의 배경}
+\begin{frame}
+    \frametitle{무노조와 비노조}
+    \begin{itemize}[<+->]
+        \item 노조 영향력이 쇠퇴하면서 개별고용관계를 규율하는 법령과 제도의 중요성 증대
+        \begin{itemize}
+            \item ∵ 단체협약이 없는 상황에서 개별근로자를 보호하는 유력한 수단
+        \end{itemize}
+        \begin{itemize}
+            \item 무노조 (non-union): 노조의 유무를 표현하는 가치중립적인 용어, 학문적 또는 공식적 용어로 적합. 유노조의 반대
+            \item 비노조 (union-free): 사용자가 노조 없이 경영하도록 한 선택의 결과를 의미, 노조가 없는 상태를 선호하는 의미. 전략적으로 노조를 배제하는 정책을 펴는 기업에서 사용하는 용어
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{노조조직률의 하락}
+    \begin{itemize}[<+->]
+        \item 21세기 세계 고용관계의 가장 큰 이슈: 노동조합 조직률의 지속적 하락
+        \begin{itemize}
+            \item 지난 수십 년간 지속된 노조 쇠퇴가 앞으로도 지속   노조가 유명무실한 존재?
+            \item 재 반등의 실마리  시장경제사회의 중심세력으로 존속? 
+        \end{itemize}
+        \item 전세계적인 노조 조직률 감소경향: 특히 상이한 문화와 정치제도, 서로 다른 발전단계, 상이한 노조형태 등을 감안할 때 노동운동의 침체는 노동계의 위기의식을 이끌어 내는 데 충분
+        \item 노동쟁의도 감소 추세: 노조 조직률 하락과 맞물려 노조의 세력과 활동이 쇠퇴하는 것이 아닌가?
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{노조조직률 하락의 원인}
+    \begin{itemize}[<+->]
+        \item 노동조합 조직률의 하락현상은 주로 선진국에서 나타나는 공통적인 현상: 아래의 6가지 이유가 주 원인
+    \end{itemize}
+    \begin{enumerate}[<+->]
+        \item  경제구조 변화
+        \begin{itemize}
+                \item 전통적으로 노조 조직률이 낮았던 서비스 산업과 화이트칼라 직종의 확대
+                \item 노조 조직률이 낮은 여성노동력, 고령인력, 비정규직, 외국인인력 등의 증가 등 노동력 구성의 변화
+        \end{itemize}
+        \framebreak%
+        \item  세계화와 경쟁의 격화: 자본의 이동은 자유롭고, 노동의 이동은 국가간 경계에 머무름
+        \begin{itemize}
+                \item 국경을 넘어 여러 국가에서 경영활동을 수행하는 다국적기업이 일반화
+                \item 외국의 투자유인을 위해 다국적기업의 경영에 유리한 노동환경 조성 등
+                    \item 2018년 이래로 미중간 무역갈등 심화와 2019년 코로나 판데믹 등의 영향으로 글로벌 밸류 체인이 붕괴되어 글로벌 양상이 글로컬하게 (Glocalization) 변모
+                        \item $\implies$국가간 협업이 불안정해지면 리쇼어링 (reshoring) 현상이 강화됨에 따라 자국내 노조조직률 또는 노동환경에 영향을 미칠 가능성이 높아짐
+        \end{itemize}
+        \framebreak%
+        \item  기술의 발달로 인한 새로운 고용형태의 증가: 비정규, 특고, 플랫폼노동의 증가
+        \begin{itemize}
+                \item 전통적으로 안정적인 피고용인들을 대상으로 조직되어왔던 노동조합이 기술진보로 확산되고 있는 프리랜서형 노동자의 등장으로 노조조직률의 위축에 영향을 미침 
+        \end{itemize}
+        \item  다양한 정체성 그룹의 등장
+        \begin{itemize}
+                \item 여성, 청년, 소수민족, 성소수자, 이민자, 노령인력 등 다양한 정체그룹 형성
+                \item 노동과 자본의 대항적 관점에 기초하던 전통적인 노동조합의 정체성이 약화
+        \end{itemize}
+        \item  신자유주의와 노조에 대한 부정적인 여론
+        \begin{itemize}
+                \item 반노조적인 사회정치적 분위기를 배경으로 한 사용자들의 노조 회피전략 적극적 활용
+                \item 노조 조직화 성향이낮은 지역이나 사업부문으로의 사업 중심을 이전
+                \item 개별적인 인적자원관리 제도 활성화와 합리적인 고충처리절차 제공 등 노조 서비스 대체하는 제공
+        \end{itemize}
+        \framebreak%
+        \item  개별노동법안의 노조대체현상
+        \begin{itemize}
+                \item 개별 노동기본권에 대한 정부의 입법 강화 추세로 집단 노사관계의 중요성이 약화: 고용평등법, 차별금지법, 모성보호법, 장애인고용촉진법, 성희롱 금지법, 직장갑질 금지법 등
+                \item 부당한 대우에 대해 개별 노동자의 대응이 노조에서 기업을 상대로 소송하는 방식 증대 
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\section{노조화}
+\begin{frame}[allowframebreaks]
+    \frametitle{노조화 이론}
+    \begin{itemize}[<+->]
+        \item 유노조기업은 무노조 기업의 직원들이 노조를 결성함으로써 발생 $\implies$ 노조화는 직무불만족과 노조의 수단성의 함수
+        \[
+            \text{노조화} = f(\text{직무불만족, 노조의 수단성})
+        \]
+        \item 직원들의 직무불만족이 높고 노조가 이를 해소할 수 있다고 믿을 때 노조화의 가능성이 높아짐
+        \framebreak%
+        \item 직무불만족: 고용안정, 임금, 상급자, 근로조건에 대한 불만 등 직무불만족이 높으면 직원들은 이직 (exit option)과 노조결성 (voice option)의 두 가지 선택에 직면하게 됨
+        \item 노조의 수단성 (union instrumentality): 불만이 많은 직원들이 노조를 통하여 자신들의 직무 불만족을 해소할 수 있을 것이라고 믿음 $\implies$  노조의 수단성이 높으면 직무불만족한 직원은 이직보다는 노조결성을 택하게 됨
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{노조결성이유}
+    \begin{itemize}[<+->]
+        \item 공정하지 않고 일관성 없는 직원처벌로 인사문제를 경영층이 즉흥적으로 결정한다는 인상을 줌
+        \item 경영층과 직원간의 공식, 비공식 의사소통 라인의 부재
+        \item 중요 인사정책의 실시 시 직원의 의사를 전혀 반영치 않음
+        \item 일부 그룹의 직원들을 편애, 우대하는 인사관행
+        \item 회사의 경영성과에 대하여 직원들에게 전혀 알리지 않음
+        \item 직원들의 불만이나 고충을 호소할 마땅한 채널이 존재하지 않음
+        \item 직원의 정당한 불만이 전달되었음에도 여러 가지 이유로 해결되지 않음
+        \item 직원들에 대한 훈련이 충분치 않아 직무수행에 애로 발생
+        \item 능력위주의 승진원칙을 표명하고 객관적으로 능력이 있는 고참직원보다 그렇지 못한 신참직원을 승진시킴
+        \item 사고나 질병의 위험이 높은 작업장 환경
+        \item 제품 수요 감소에 따른 해고가능성을 줄일 노력을 기울이지 않음으로써 대량채용과 대량해고의 반복
+        \item 경영층, 사무직, 생산직 지원간의 차별적인 대우: 식당, 주차장 등
+        \item 임금과 수당이 경쟁기업보다 현저히 낮은 경우
+    \end{itemize}
+\end{frame}
+
+\section{노조화 방지전략}
+\begin{frame}
+    \frametitle{개괄}
+    \begin{itemize}[<+->]
+        \item 무노조기업의 노조결성 반대 이유
+        \begin{itemize}
+            \item 경영권 침해 우려
+            \item 노동비용 증가
+        \end{itemize}
+        \item 노조화 방지방안: 노조탄압, 노조회피, 노조대체 등
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{노조탄압}
+    \begin{enumerate}[<+->]
+        \item 노조파괴전문가 활용
+        \begin{itemize}
+        \item 노조탄압은 대부분 부당노동행위에 가까운 수단
+            \item 노조파괴전문가 활용: 사용자가 신생노조의 결성 또는 기존 노동조합 활동을 적극 방해하려는 활동으로 노조파괴전문가를 활용
+            \begin{itemize}
+                \item 미국의 경우: 기존의 노동조합을 파괴하는 전문적 노조파괴전문 (union buster) 직업 존재
+                \item 우리나라: 심각한 노사갈등을 겪고 있던 일부 기업에서 노조파괴전문가 고용
+            \end{itemize}
+            \item 이러한 활동을 적극적으로 하는 기업들은 전통적으로 무노조전략을 추구하는 기업들임
+        \end{itemize}
+        \framebreak%
+        \item 사용자의 노조결성추진세력 해고
+        \begin{itemize}
+            \item 노조결성을 적극적으로 억압하고자 법망을 피하여 노조결성 추진세력 해고
+            \item 우리나라의 경우: 사용자의 부당노동행위를 노동위원회가 판정하더라도 상습적이지 않으면 원상회복주의를 취하기 때문에 복직과 밀린 임금의 지급이 요구될 뿐임
+            \item 노동운동으로 해고 후 복직된 근로자 입장에서는 보면 해고기간 중의 공백기간을 거친 후 다시 노조결성을 하여야 하므로 처음부터 다시 시작해야 하는 어려움이 있음
+        \end{itemize}
+        \framebreak%
+        \item 교섭거부
+        \begin{itemize}
+            \item 정당한 사유없이 이미 결성된 노동조합과의 교섭 거 (부당노동행위에 속함) $\implies$ 적당한 이유를 들어 노조와의 교섭을 계속 피하고 무관심 속에서 노조를 대하면서 노조의 활동력을 저하시킴
+            \item 단체교섭에 임하지만 교섭을 해태하는 전술을 쓰기도 함
+        \end{itemize}
+        \item 노조해산
+        \begin{itemize}
+            \item 노조 집행부를 반대하는 조합원을 모아서 노조해산 결의 유 (재적조합원의 과반수 찬성 시 가능)
+            \item 사용자가 노조의 의사결정에 개입하였기 때문에 부당노동행위이지만 입증하기 곤란
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{노조회피}
+    \begin{itemize}
+            \item 노조회피: 노조 결성을 막고 최소한 확산되는 것을 막으려는 회사의 전략적 입장
+    \end{itemize}
+    \begin{enumerate}[<+->]
+        \item  적극적 인적자원관리
+        \begin{itemize}
+            \item 경쟁대상인 노조기업보다 임금수준과 근로조건을 보다 더 좋게 제 (무노조 프리미엄)하여 노조 결성 의지를 약화. 즉, 근로자의 직무만족도를 향상시켜 노조를 원하지 않도록 하는 효과
+        \end{itemize}
+        \framebreak%
+        \item  병렬형 관리 (double breasting)
+        \begin{itemize}
+            \item 유노조 사업장과 무노조 사업장을 함께 가진 기업에서 노조의 영향을 약화시키기 위해 유노조 사업장은 축소하고 무노조 사업장은 확대하여 관리 $\implies$ 중장기적으로 무노조 사업장에 투자와 고용을 늘리고 반대로 유노조 사업장은 투자 감축 및 고용 축소로 자연스럽게 노조 위축을 유도
+        \item 또는 노조가 있는 공장을 국내외의 무노조지역으로 이전하여 노조를 제거하는 방법도 있음
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{노조대체 (union substitution)}
+    \begin{itemize}[<+->]
+        \item 노조의 순기능을 대신할 수 있는 대안적 의사소통기 (alternative voice channel)을 운영하여 노조 결성을 막으려는 방법
+        \begin{itemize}
+            \item 노와 사가 공동체임을 강조하고 조직에 대한 충성심을 고취시킴
+            \item 근로자의 고충처리나 제안을 적극 활용
+            \item $\implies$ 노사협의회와 같은 조직을 적극 활용
+        \end{itemize}
+        \item 근로자의 의견을 반영하는 제 (예: 평사원협의회, 청년이사회, 청년중역회 등)를 통해 노조의 필요성을 약화시키고 노조결성 요구를 낮추기도 함
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{무노조기업의 유형과 특징}
+    \begin{table}
+        \centering
+        \resizebox{.8\textwidth}{!}{\relax
+            \input{tab/무노조기업.tex}
+        }
+    \end{table}
+\end{frame}
+
+\section{노사협의회}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{노사협의회의 성격}
+    \begin{itemize}[<+->]
+        \item 작업장 단위에서 사용자와 근로자가 작업에서의 문제해결과 공동관심사를 협의하는 제도
+        \begin{itemize}
+            \item 근로자들의 의견이 경영에 반영된다는 점에서 종업원참여제도의 일종
+            \item 단체교섭이 노사간 이익대립 경향인 반면, 노사협의회는 작업장 단위의 종업원 참여를 목표로 설립
+        \end{itemize}
+        \begin{exampleblock}{국가별 노사협의회의 형태}
+            \begin{itemize}
+                \item 노사협의회 (labor-management committee): \linebreak 한국, 프랑스, 벨기에 등. 노사대표로 구성
+                \item 작업장평의회 (works council): \linebreak 독일, 오스트리아, 네덜란드, 스페인 등. 근로자 대표만으로 구성
+            \end{itemize}
+        \end{exampleblock}
+        \item 일부 유럽과 아시아 등 법률로 강제, 영국과 미국은 노사간의 합의로 실시
+        \item 한국의 노사협의회 (『근로자참여 및 협력증진에 관한 법률』) 
+        \begin{itemize}
+            \item 법률로 시행이 강제
+            \item 근로자와 사용자가 참여와 협력을 통하여 근로자의 복지증진과 기업의 건전한 발전을 도모함을 목적으로 구성하는 협의기구
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{단체교섭과의 비교}
+    \begin{table}
+        \centering
+        \resizebox{.8\textwidth}{!}{\relax
+            \input{tab/노사협의회.tex}
+        }
+        \caption{노사협의회와 단체교섭의 비교}
+    \end{table}
+\end{frame}
+
+\begin{frame}
+    \frametitle{단체교섭과의 관계}
+    \begin{itemize}[<+->]
+        \item 노사협의회와 단체교섭의 관계: 노동조합의 단체교섭이나 그 밖의 모든 활동은 노사협의회법에 의하여 영향을 받지 않음. $\because$ 근로자참여 및 협력 증진에 관한 법률 (근참법) 제5조 (노동조합과의 관계).
+        \begin{itemize}
+            \item 분리형: 단체교섭과 노사협의회를 별도의 제도로 분리하여 운영하는 방식
+            \begin{itemize}
+                \item 노사협의회에서는 단체교섭사항을 다루지 않는 방식
+            \end{itemize}
+            \item 연결형: 단체교섭과 노사협의회 제도를 유기적으로 운영하는 방식
+            \begin{itemize}
+                \item 단체교섭과 노사협의회를 각각 별도의 제도로 분리해 운영하지만
+                \item 단체교섭사항에 대해 노사협의회에서 예비적으로 의견교환과 절충을 행함
+            \end{itemize}
+            \item 대체형: 두 제도간 구분없이 운영하는 방식
+            \begin{itemize}
+                \item 단체교섭과 노사협의회 양 제도를 서로 구분하지 않고 노사협의회에서 단체교섭사항까지 논의하는 방식
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{구성}
+    \begin{itemize}[<+->]
+        \item 『근로자참여 및 협력증진에 관한 법률』에 의하면 30인 이상의 사업장에서 반드시 구성해야 함
+        \begin{itemize}
+            \item 노사협의회 구성
+            \item 근로자와 사용자를 대표하는 동수의 위원으로 구성하되 그 수는 각 3--10명 이내
+            \item 의장은 위원 중에서 호선
+            \item 근로자위원
+            \begin{itemize}
+                \item 근로자의 과반수로 조직된 노동조합이 있는 경우에는 노조 대표자와 그 노동조합이 위촉
+                \item 노동조합원이 과반수를 넘지 못하거나 노동조합이 없는 경우에는 근로자의 과반수가 참여하여 직접·비밀·무기명투표로 선출
+            \end{itemize}
+            \item 위원의 임기: 3년으로 하되 연임이 가능
+            \item 비상임·무보수
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{운영 및 임무}
+    \begin{enumerate}[<+->]
+        \item 운영
+        \begin{itemize}
+            \item 3개월마다 정기적으로 개최
+            \item 과반수 이상의 출석으로 개최하고 출석위원 3분의 2 이상의 찬성으로 의결
+        \end{itemize}
+        \item 임무
+        \begin{itemize}
+            \item 보고사항: 경영정보 공유의  성질을 가진 사항
+            \item 협의사항: 노사가 상호 협의하여 합의에 도달할 수 있는 생산·노무·인사관리에 관한 사항
+            \item 의결사항: 반드시 협의회의 의결을 거쳐야만 시행할 수 있는 사항
+            \begin{itemize}
+                \item 교육훈련 및 능력개발 기본계획 수립, 복지시설 설치 및 관리, 사내근로복지기금 설치, 각종 노사 공동기구의 설치 관리 등
+            \end{itemize}
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{고충처리제도}
+    \begin{itemize}[<+->]
+        \item 고충처리위원: 상시 30인 이상의 근로자를 사용하는 사업장
+        \item 구성: 노사를 대표하여 3인 이내의 위원으로 구성
+        \begin{itemize}
+            \item 노사협의회가 설치되어 있는 경우: 협의회가 그 위원 중에서 선임
+            \item 노사협의회가 없는 경우: 사용자가 위촉
+        \end{itemize}
+        \item 고충 처리: 근로자로부터 고충사항을 청취한 때에는 10일 이내에 조치사항 기타 처리결과를 당해 근로자에게 통보하여야 함
+        \begin{itemize}
+            \item 고충처리가 곤란한 경우에는 협의회에 부의하여 협의·처리
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+
+\section{노동시장의 새로운 행위자}
+\begin{frame}
+    \frametitle{등장배경}
+    \begin{itemize}[<+->]
+        \item 노동이해대변의 새로운 행위자 등장배경
+        \begin{itemize}
+            \item 지속적인 노동조합 조직률의 하락
+            \item 사회양극화로 인한 주변부 및 비정규직 근로자의 증가
+            \item 인터넷, SNS 등 새로운 압력 제기 방식의 등장 (Cyber Unionism)
+        \end{itemize}
+        \item 다양한 명칭으로 불림
+        \begin{itemize}
+            \item 시민사회단체 (Civil Society Organizations) 준노조 (Quasi-Unions), 노동인권단체 (Labor Rights Organizations), 노동NGOs (Labor NGOs) 등등
+            \item 알바노조, 청년유니온, 청소년유니온, 노년유니온, 여성민우회, 외국인근로자쉼터 등등 
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{준노조의 특징}
+    \begin{block}{준노조}
+        현대 경제구조의 다양한 고용관계 하에서 기존의 방식으로 대표되지 못하는 집단의 이해관계를 대변하기 위해, 일시적이며 다양한 조건 하에서 서로 연대하는 작은 조직, 회원제 조합 및 현상 그 자체
+    \end{block}
+    \begin{itemize}[<+->]
+        \item 준노조의 구분
+        \begin{itemize}
+            \item 회원조직
+            \item 후원조직
+            \item 회원조직과 후원조직을 겸하는 조직
+        \end{itemize}
+        \framebreak%
+        \item 준노조의 특징
+        \begin{itemize}
+            \item 기존 노조의 관심이 부족한 영역에 초점을 맞춤
+            \item 거리에서의 목격 (witnesses on the street)
+        \end{itemize}
+        \item 준노조의 활동
+        \begin{itemize}
+            \item 주장 지향 활동: 정치적 압력 행사, 여론조성, 정치적 투쟁
+            \item 서비스 지향 활동: 상호부조, 노동교육 및 법률 자문
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{노동조합과의 비교}
+    \begin{table}
+        \centering
+        \resizebox{.8\textwidth}{!}{\relax
+            \input{tab/준노조.tex}
+        }
+        \caption{노동조합과 준노조의 비교}
+    \end{table}
+\end{frame}
+
+\begin{frame}
+    \frametitle{한계와 성패요인}
+    \begin{itemize}[<+->]
+        \item 준노조의 한계
+        \begin{itemize}
+            \item 활동 기간이 단기에 그치는 경향
+            \item 재정적으로 취약
+            \item 영향력이 미약
+            \item 본래 활동 목적에서 이탈하거나 목적이 변질될 가능성
+            \item 소규모 지역단위 위주의 활동
+        \end{itemize}
+        \item 준노조의 성패 요인
+        \begin{itemize}
+            \item 이해대변 집단의 수요를 효과적으로 반영할 것 
+            \item 계속 참여자나 지원자를 확대하여 재정적으로 안정된 지속가능한 조직으로 유지
+            \item 사회적으로 여론의 관심을 집중
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\section{개별적 근로관계에 대한 노동법 이슈}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{근로기준법상의 보호}
+    \begin{itemize}[<+->]
+        \item 경영상의 이유로 해고가 가능하기 위한 3가지 조건을 준수하고 최소한 30일 전에 해고 예고
+        \begin{itemize}
+            \item 긴박한 경영상의 필요가 인정되어야 하며
+            \item 사용자는 해고를 피하기 위한 노력을 다하여야 하며
+            \item 합리적이고 공정한 해고의 기준을 정하고 이에 따라 그 대상자를 선정
+        \end{itemize}
+        \item 탄력적 근로시간제와 선택적 근로시간제
+        \begin{itemize}
+            \item 탄력적 근로시간제: 2주 혹은 3개월 단 (6개월짜리도 최근 신설)로, 주당 52시간·일 12시간을 넘을 수 없음
+            \item 선택적 근로시간제: 1달 이내 (연구개발 3개월짜리 최근 신설), 근로자가 근무시간 선택·결정
+        \end{itemize}
+        \item `여성'과 15세 미만의 `소년'에 대한 보호 규정
+        \begin{itemize}
+            \item 15세 미만의 소년은 원칙적으로 근로자로 사용하지 못함 
+            \item 18세 미만인 경우에도 친권자나 후견인의 동의 필요
+            \item 18세 미만자와 여성의 경우에는 임산부는 도덕상 또는 보건상 유해·위험한 사업에 사용하지 못함
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{파견근로자 보호}
+    \begin{itemize}[<+->]
+        \item 「 파견근로자 보호 등에 관한 법률」
+        \begin{itemize}
+            \item 파견 대상이 될 수 없는 업무: 제조업의 직접생산공정 업무와 건설공사현장 업무, 하역업무, 선원의 업무, 유해하거나 위험한 업무 등
+            \item 파견기간은 원칙적으로 1년을 초과할 수 없으나 당사자 합의시 1년 연장가능 (1+1 시스템)
+            \item 무분별한 파견근로 활용 방지를 위해 일정한 조건에 해당할 경우 사용사업주가 파견근로자를 직접 고용하도록 규정
+        \end{itemize}
+        \item 「기간제 및 단시간근로자 보호 등에 관한 법률」
+        \begin{itemize}
+            \item 기간제 근로자도 총 고용기간을 2년으로 한정하고 2년이 되면 사용자는 기간제 근로자와의 계약을 종료하거나 `기간의 정함이 없는 근로계약' (무기계약)을 체결한 근로자로 고용하여야 함
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{남여 고용평등}
+    \begin{block}{『남여고용평등과 일·가정 양립지원에 관한 법률 (남녀고용평등법)}
+        고용에서 남녀평등 기회와 대우를 보장하고 모성보호와 여성 고용을 촉진하여 남녀 고용 평등을 실현하고 근로자의 일과 가정의 양립을 지원하기 위해 제정된 법
+    \end{block}
+    \begin{itemize}
+        \item 근로자를 모집하거나 채용시에 남녀 차별을 금지
+        \item 동일한 사업내의 동일 가치 노동에 대해서는 동일한 임금을 지급
+        \item 복리후생이나 교육․배치 및 승진, 정년․퇴직 및 해고 등에 있어서도 남녀 차별 금지
+        \item 직장내 성희롱 금지, 직업능력개발과 경력단절여성에 대한 고용 촉진 의무
+        \item 모성보호: 배우자 출산휴가 및 난임치료휴가, 육아기 근로시간 단축 등 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{장애인고용촉진}
+    \begin{itemize}[<+->]
+        \item 장애인고용촉진등에 관한 법률
+        \begin{itemize}
+            \item 장애인의 고용촉진과 직업재활을 위해 국가와 지방자치단체의 책임을 부과
+            \item 직장내에서 장애인에 대한 인식개선을 위한 교육실시 의무
+            \item 장애인에 대해 상시 근로자 50인 이상이 되는 기업에 의무고용률을 부과
+            \item 장애를 이유로 한 차별을 금지하고 장애를 이유로 차별받은 사람의 권익보호를 강화
+            \item 장애인 의무고용률 2022년 현재 민간기업 3.1%, 공무원/공공기관 3.6%
+        \end{itemize}
+        \framebreak%
+        \item 『장애인 차별금지 및 권리구제 등에 관한 법률』
+        \begin{itemize}
+            \item 사용자가 모집이나 채용, 임금 및 복리후생, 교육배치승진전보, 정년퇴직해고 등에 있어서 장애인을 차별하지 않도록 규정 
+            \item 장애인이 직무를 수행함에 있어서 장애인이 아닌 사람과 동등한 노동조건에서 일할 수 있도록 필요한 정당한 편의를 제공할 의무를 사용자에게 부과
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{외국인 근로자 보호}
+    \begin{itemize}[<+->]
+        \item 1993년 외국인 산업연수제도 도입
+        \begin{itemize}
+            \item 산업연수생제도 하에서 외국인 노동자는 연수생이라는 신분을 이유로 `노동자성'을 인정받지 못함
+            \item 근로기준법상 보호를 받지 못하여 저임금과 높은 노동강도, 노동권과 폭력 등 인권침해 등으로 사업장을 이탈 불법 체류자가 되는 경우 증가
+        \end{itemize}
+        \framebreak%
+        \item 2003년 외국인근로자의 고용허가제 도입
+        \begin{itemize}
+            \item 취업기간 동안에는 내국인과 동일하게 건강보험과 산재보험 등 4대 보험의 적용
+            \item 부당한 차별금지
+            \item 외국인 노동자의 취업활동은 입국한 날부터 3년, 1회에 한해 2년이내에서 연장 가능 (3 + 2 시스템) 
+            \item 현 외국인 노동자 고용허가제의 문제점: 사업장 변경 제한에 관한 사항, 체류기간 만료 후에 불법체류 상태에서의 노동
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{산업안전과 산업재해}
+    \begin{itemize}[<+->]
+        \item 산재사고 사망률이 경제협력개발기구 (OECD) 회원국 중 가장 높은 편
+        \begin{itemize}
+                \item 산업재해가 중소기업과 하청업체 중심으로 발생: `위험의 외주화'
+        \end{itemize}
+        \item 사업장의 안전과 관련된 2가지 법적 규율 방안
+        \begin{itemize}
+            \item 「산업안전보건법」: 산업재해를 예방하고 쾌적한 작업환경을 조성하여 노동자의 안전 보건을 유지·증진
+            \item 「산업재해보상보험법」: 노동자가 업무상 재해를 입은 경우 신속하고 공정한 보상
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\end{document}
+%------------------------------------------------

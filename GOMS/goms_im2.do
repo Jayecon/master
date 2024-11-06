@@ -25,8 +25,8 @@ use `path'goms_eq_raw , clear
                 egen `i' = rowlast(`i'??)
             }
         /*str vars*/
-            local charvarlist major
-            foreach i of local charvarlist {
+            local strvarlist major
+            foreach i of local strvarlist {
                 tostring `i'?? , replace force
                 gen str1 `i' = ""
                 replace `i' = `i'07 if year == 2007
@@ -388,7 +388,7 @@ use `path'goms_eq_raw , clear
         foreach i of local numvarlist {
             drop `i'??
         }
-        foreach i of local charvarlist {
+        foreach i of local strvarlist {
             drop `i'??
         }
         drop n001 n010 n024 n038 n045
@@ -412,5 +412,6 @@ use `path'goms_eq_raw , clear
         area areadtl sex age graduy gradum address rhsname status ///
         unimain uniname unirank uniscr20 uniscr50 wave wt zipcode , first
     
+compress
 save `path'goms_im.dta , replace
 save ~/dropbox/HL_SJHO/GOMS_IGM/goms_im.dta , replace
