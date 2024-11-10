@@ -1,5 +1,4 @@
-    doedit abc.do
-    do abc.do
+     sysuse auto
 
     /*local; number case*/
         local x 1
@@ -13,14 +12,18 @@
         di "macro z1 = `z1', macro z2 = `z2' and macro z3 = `z3'" 
         di "macro z1 = "`z1', "macro z2 = "`z2' " and macro z3 = "`z3' 
         di "macro z4 = "`z4' 
+		di "macro z4 = `z4'" 
 
     /*local; 07-09 표현 만들기*/
         local yr : disp %02.0f  = 7
         di "`yr'"
 
     /*local; string case*/
-        local x = foo
+        *local x = foo
+		local x foo
         local y bar
+		local x price
+		local y make
         di "macro x = `x' and marco y = `y'" 
         di "macro x = " `x' " and marco y = "`y' 
         di "macro z1 = `z1', macro z2 = `z2' and macro z3 = `z3'" 
@@ -32,11 +35,16 @@
         di `r78list'
 
     /*factor variables*/
+		h factor variable
         reg price rep78
         reg price i.rep78
-        reg price weight#weight
-        reg price weight##weight
-
+		reg price c.rep78
+		reg price weight
+		reg price weight#weight
+        reg price c.weight#c.weight
+        reg price c.weight##c.weight
+		reg price c.weight##i.re
+		
     /*appending*/
         sysuse auto , clear
         tempfile tfile //임시파일
@@ -69,14 +77,16 @@
         }
 
     /*else*/
+		local year = 2007
         if "`year'" == "2006" {
             sum 
         }
         else{
-        di "local year != 2006"
+			di "local year != 2006"
         }
 
     /*else if*/
+		local year = 2007
         if "`year'" == "2006" {
             sum 
         }
@@ -87,6 +97,8 @@
         di "local year > 2006"
         }
 
+		h ds
+		
     /*foreach: varlist*/
         sysuse auto , clear
         foreach i of varlist p-f {
@@ -139,15 +151,13 @@
     }
 
     /*rename vars and wildcard char*/
-        rename a004_10 a004
-        rename a004??? a004
-        rename a004* a004
+        h rename
 
     /*Simple architecture for generate a *.dta file*/
         /*settings*/
             set more off
             set maxvar 30000
-            tempfile tfile
+            tempfile tfile tfile2 // local x /// local y
             cd // your datapat
             clear
         /*list of common variables */
@@ -159,10 +169,10 @@
                 /*list of year varing variables*/
                     local varlist `varlist00'
                     if `x' >= 8 {
-                        local varlist `varlist' // add your year varing variables
+                        local varlist `varlist' foo // add your year varing variables
                     }
                     if `x' >= 9 & `x' <= 18 {
-                        local varlist `varlist' // add your year varing variables
+                        local varlist `varlist' bar // add your year varing variables
                     }
                     if `x' == 7 | `x' >= 11 {
                         local varlist `varlist' // add your year varing variables
@@ -196,7 +206,7 @@
     /*Simple architecture for generate a *.dta file*/
         pause on // For debug your do file
         numlabel , add // Improve readability of the tab command
-        use goms_eq_raw.dta , clear
+        use ~/dropbox/data/goms/goms_eq_raw.dta , clear
         /* Gen vars to convert data from wide to long*/
             local numvarlist ///
                 pid birthy majorcat province sex age graduy gradum ///
@@ -240,6 +250,7 @@
         pause
 
         /*merge*/
+			h isid
             merge 1:1 year pid using `path'rawdata/goms_hs.dta , nogen
             merge 1:1 year pid using `path'rawdata/goms_univ.dta
             drop if _merge != 3
@@ -257,7 +268,7 @@
             label var a001  "`temp'" 
         /*labeling a value of variable from another variable*/
             label copy G191A001 A001 
-            label value a001 A001 ;
+            label value a001 A001
         /*labeling a data*/
             label data "foobar"
 
@@ -271,7 +282,7 @@
             (14=8) (15/22=9) (23=10) (25=11) (26=12) ///
             if inrange(year , 2007 , 2016)
     /*egen*/
-        de n096 n113 n130
+        de n096 n09619 n113 n11319 n130 n13019
             egen n999 = rowtotal(n096 n113 n130) , mis
             label var n999 "시험준비_총 시험 응시 횟수_회"
         de a157 a158 a159
@@ -321,3 +332,7 @@
 
 compress
 save ~/dropbox/goms_test.dta
+
+
+/*string function*/
+h strpos
