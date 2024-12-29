@@ -1,0 +1,247 @@
+%------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%------------------------------------------------------------------------------
+
+\documentclass[aspectratio=169,xcolor=dvipsnames,]{beamer}
+\usetheme{Darmstadt}
+\usecolortheme{seahorse}
+\usepackage[hangul]{kotex}
+\usepackage{hyperref}
+\usepackage{amsfonts, amssymb}
+\usepackage{graphicx} 
+\usepackage{array, booktabs, multicol, multirow} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\setbeamercovered{transparent}
+
+%------------------------------------------------------------------------------
+%	MY COMMAND
+%------------------------------------------------------------------------------
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\y}{\mathbf{y}}
+
+%------------------------------------------------------------------------------
+%	TITLE PAGE
+%------------------------------------------------------------------------------
+
+\title[분배정의 사례 예시]{분배정의 사례 예시} 
+\subtitle{경제정의와 불평등}
+\author[오성재]{오성재}
+\institute[HNU] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
+{
+    한남대학교 \\
+    탈메이지 교양학부 \\
+}
+\date{\today} 
+
+%------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%------------------------------------------------------------------------------
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{목차}
+    \tableofcontents
+\end{frame}
+
+\section{예비군 훈련으로 시험 못 본 학생들}
+
+\begin{frame}[<+->]
+\frametitle{사건소개}
+    \begin{exampleblock}{데일리안 20221103}
+        S대학교의 A 교수가 예비군 훈련 참석으로 퀴즈 시험에 응시하지 못한 학생들에게 '0점'을 부여해 논란이 일고 있다.
+        A교수는 2022학년도 2학기 수업을 진행하며 사전 공지 없이 퀴즈 시험을 봤다.
+        문제는 시험 당일 예비군 훈련에 참석해 응시하지 못한 학생이 다수 있었다는 점이다.
+        A교수는 이 학생들 모두에게 0점을 부여한 것으로 알려졌다. 
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{A 교수의 주장}
+    \begin{itemize}
+        \item 학기 첫 시간에 수업 운영 방침에 대해 공지했고, 퀴즈는 선공지 하지 않음.
+        \item '유고 결석 포함해 미응시 경우 0점 처리'라고 분명히 사전 공지.
+        \item 학생들과 학교 모두 예비군 일정에 대한 어떠한 사전 공지도 (본인에게) 하지 않음.
+        \item 항상 최대한 공정하게 수업을 운영하려고 노력.
+        \begin{itemize}
+            \item 같은 퀴즈를 봐야 하는데, 다른 시간에 보는 건 유출 등 문제로 불공정.
+            \item 리포트나 다른 퀴즈로 대체할 경우, 동일한 평가 체계가 되지 않아 불공정.
+            \item 그 학생들에게 다른 기회를 주는 건 다른 학생들에게 공정하지 못함.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{우리 법}
+    \begin{itemize}
+        \item 예비군법 제10조 2항 :  '고등학교 이상의 학교의 장은 예비군대원으로 동원되거나 훈련을 받는 학생에 대하여 그 기간을 결석으로 처리하거나 그 동원이나 훈련을 이유로 불리하게 처우하지 못한다'.
+        \item 예비군법 제15조 : '예비군 대원으로 동원되거나 훈련을 받는 사람에 대하여 정당한 사유 없이 불리한 처우를 한 사람은 2년 이하의 징역 또는 2,000만 원 이하의 벌금에 처한다.'
+        \item 법의 순위 : 
+        \begin{itemize}
+            \item 헌법(국민투표) > 법률(국회) > 명령(대통령) > 조례(지자체 의회) > 규칙(지자체의 장)
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{분배적 정의의 문제 설정}
+    \begin{itemize}
+        \item 분배의 대상은 \textbf{시험 기회}.
+        \item 분배적 정의의 문제는 : 유고결석 학생들이 시험기회를 얻지 못하는 것이 정의로운가의 문제.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{분배적 정의의 원칙 적용}
+    \begin{itemize}
+        \item 효용의 원칙 : 시험기회를 박탈하는 것이 사회의 효용을 늘리는데 도움이 되는가?
+        \item 우선의 원칙 : 유고결석자에게 시험기회를 우선 제공해야 하는가?
+        \item 평등의 원칙 : 유고결석이라 하더라도 반드시 시험기회를 제공해야 한다.
+        \item 충분의 원칙 : 어떤 경우에도 시험 기회를 주는 것이 충분성의 기준인가?
+        \item 자격의 원칙 : 유고결석자는 시험응시 자격이 있는가 없는가?
+        \item 자유의 원칙 : 유고결석자에 대한 시험기회 박탈은 결석자와 교수 모두의 자유의지의 결과인가?
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{효용의 원칙}
+    \begin{itemize}
+        \item 시험기회를 박탈하는 것이 사회의 효용을 늘리는데 도움이 되는가?
+        \begin{itemize}
+            \item 이 경우 사회는 교수 및 학생으로 구성되고 사회의 목표는 학생들의 학업 증진.
+            \item 기존 응시자들이 교수를 신뢰하고 더욱 학업에 증진할 가능성.
+            \item 결석자들이 퀴즈 0점에 실망하여 이후 학업을 포기할 가능성. 
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{우선의 원칙 및 자격의 원칙}
+    \begin{itemize}
+        \item 유고결석자에게 시험기회를 우선 제공해야 하는가?
+        \begin{itemize}
+            \item 강의 공지에 따르면 유고결석자는 우선의 원칙의 적용대상이 아님.
+            \item 마찬가지로 유고결석자는 시험기회를 받을 자격이 없음.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{자유의 원칙 }
+    \begin{itemize}
+        \item 유고결석자에 대한 시험기회 박탈은 결석자와 교수 모두의 자유의지의 결과인가?
+        \begin{itemize}
+            \item 공지를 확인 했음에도 수강을 계속하는건 자유의지.
+            \item 만약 대체 불가능한 전공필수라면 수강생의 자유가 충분히 보장되지 않음.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}[<+->]
+\frametitle{각 이론에 따른 분배적 정의의 달성여부}
+    \begin{itemize}
+        \item 우파적 자유주의 : 법치주의를 위배하므로 정의롭지 못함.
+        \item 좌파적 자유주의 : 기회평등의 원칙에 위배되므로 정의롭지 못함.
+        \item 자유지상주의 : 강의 공지는 법률에 우선할 수 없으므로 교수는 시험기회를 박탈할 자격이 없음.
+    \end{itemize}
+\end{frame}
+
+\section{참사 유족·부상자 퇴직시 실업급여 지급}
+
+\begin{frame}[<+->]
+\frametitle{사건소개}
+    \begin{exampleblock}{동아일보 20221103}
+        ‘이태원 참사’ 관련 부상자와 유가족이 정신적 충격 등 사고 후유증으로 퇴사하는 경우에도 실업급여를 받을 수 있게 된다. 1일 상한액은 6만 6000원으로 최소 120일, 최대 270일까지 받을 수 있다. 원칙적으로 실업급여는 근로자가 비자발적으로 퇴직한 경우 지급된다.  하지만 고용부는 이번 참사로 중상자나 유가족이 정신적 충격, 간병 등으로 불가피하게 퇴직하는 경우에도 실업급여를 받을 수 있도록 수급요건을 완화할 계획이다.  이와 함께 적극적인 재취업 활동 요건도 유예한다. 참사 관련자가 사고 후유증으로 재취업 활동이 어려운 경우 상병급여에 준해 실업급여를 지급한다는 것으로 사실상 재취업 요건을 면제한다.  이번 조치 대상자는 사고의 중상자 및 사망자의 직계 존비속(부모, 증조부모, 아들, 딸, 손자 등) 형제자매, 배우자 등이다.
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{실업급여}
+    \begin{itemize}
+        \item 고용보험에 가입된 근로자가 실직하게 되었을 경우, 재취업을 하기 위해 필요한 소정의 급여. 실업으로 인해 발생된 생계불안 극복을 지원하고 생활의 안정을 도와주면서 재취업을 할 수 있도록 지원해주는 제도.
+        \item 신청조건
+        \begin{itemize}
+            \item 실직일 이전 18개월 중 고용보험 가입기간이 180일 이상.
+            \item 재취업을 하기 위해서 적극적인 노력을 지속하고 있는 상태.
+            \item 근로를 하려는 의지와 능력이 있지만 취업을 하지 못한 상태.
+            \item 이직사유가 자발적이 아닌 \textbf{비자발적인 사유}인 경우.(예: 경영악화로 인한 권고사직, 계약만료 등)
+        \end{itemize}
+
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{분배적 정의의 문제 설정}
+    \begin{itemize}
+        \item 분배의 대상은 \textbf{정부재정 즉, 현금임.}.
+        \item 분배적 정의의 문제는 : 참사관련 유가족이 실업급여를 받는것이 정의로운가의 문제.
+        \item 유가족은 자발적 실업으로 실업급여 신청 대상자가 아닌 것으로 가정.
+   \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{분배적 정의의 원칙 적용}
+    \begin{itemize}
+        \item 효용의 원칙 : 유가족에게 실업급여를 지급하는 것이 사회의 효용을 늘리는데 도움이 되는가?
+        \item 우선의 원칙 : 유가족에게 실업급여를 우선 지급해야 하는가?
+        \item 평등의 원칙 : 유가족에게 실업급여를 지급한다면 무자격자에게도 실업급여를 지급해야 하나?
+        \item 충분의 원칙 : 유가족에게 실업급여를 지급하는 것이 충분성의 기준인가?
+        \item 자격의 원칙 : 유가족들은 실업급여를 받을 자격이 있는가?
+        \item 자유의 원칙 : 유가족들에 대한 실업급여 지급은 관계자 모두의 자유의지의 결과인가?
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{효용의 원칙}
+    \begin{itemize}
+        \item 유가족에게 실업급여를 지급하는 것이 사회의 효용을 늘리는데 도움이 되는가?
+        \begin{itemize}
+            \item 실업자에게 실업급여를 지급하는 것은 효용의 원칙을 지키려는 의도이고 유가족이든 아니든 무관.
+            \item 다만 일반적인 자발적 실업자에게 실업급여를 지급하는 것은 사회적 후생의 감소로 간주.
+            \begin{itemize}
+                \item 특정인에게 취업의욕 저하.
+                \item 실업급여 남발로 인한 납세자의 부담 가중.
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{우선의 원칙, 충분성 및 자격의 원칙}
+    \begin{itemize}
+        \item 유가족에게 실업급여를 (우선)지급해야 하는가? 이것은 충분성의 기준인가?
+        \begin{itemize}
+            \item 유가족은 실업급여 지급 대상자가 아니므로 급여를 지급할 필요가 없음
+            \item 우선 지급할 필요는 더더군다나 없음.
+            \item 마찬가지 충분성의 기준이 될 수 없음.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{평등의 원칙}
+    \begin{itemize}
+        \item 유가족에게 실업급여를 지급한다면 무자격자에게도 실업급여를 지급해야 하나?
+        \begin{itemize}
+            \item 형평의 원칙에 따르면 만약 유가족에게 실업급여를 지급할 경우, 가족의 사망으로 인해 정신적 충격 등으로 퇴사하는 모든 경우에 대하여 실업급여를 지급해야 정의로움.
+            \item 이번 참사를 제외하고 극히 드문 경우임.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}[<+->]
+\frametitle{각 이론에 따른 분배적 정의의 달성여부}
+    \begin{itemize}
+        \item 우파적 자유주의 : 법치주의를 위배하므로 정의롭지 못함. 예외적인 실업급여 지급에 대한 사회후생 증감에 대한 고려가 전혀 없음.
+        \item 좌파적 자유주의 : 현재 최소수혜자에 대한 소득의 이전은 사회적으로 정의로운 분배.
+        \item 자유지상주의 : 실업급여 획들의 자격을 갖추었는지 여부, 정당한 이전의 원칙에 맞는지 여부.
+        \item 사견 : 실업급여의 예외적 적용의 기준이 참사의 크기인가? 비슷하지만 규모가 작은 비극에도 동일하게 적용할 수 있는가? 차라리 혜택을 주고 싶다면 다른 방안을 고려해야 하지 않는가?
+    \end{itemize}
+\end{frame}
+
+\end{document}

@@ -1,0 +1,249 @@
+\documentclass[11pt,answers]{exam} %정답지를 만들경우 answers 옵션을 넣을 것.
+%----------------------------------------------------------
+% PACKAGES AND THEMES
+%----------------------------------------------------------
+\usepackage{kotex}
+\usepackage{lastpage, setspace, amsmath}
+
+% "point"와 "points"를 "점"으로 변경
+    \renewcommand{\pointname}{점}
+    \renewcommand{\points}{\pointname}
+% 줄 간격 및 문단 간격 조정
+    \setlength{\parskip}{0pt}  % 문단 간 여백 제거
+    \setstretch{1.2}  % 줄 간격 조정
+% 선택지 번호를 숫자로 변경
+    \renewcommand{\thechoice}{\arabic{choice}}
+% 선택지 번호를 한글 자모로 변경하는 매크로 (ㄱ, ㄴ, ㄷ, ㄹ)
+    %\newcommand{\koreanChoice}{
+        %\ifcase\numexpr\value{choice}-1\relax ㄱ\or\relax ㄴ\or\relax ㄷ\or\relax
+        %ㄹ\or\relax ㅁ\or\relax ㅂ\or\relax ㅅ\or\relax ㅇ\or\relax ㅈ\or\relax
+        %ㅊ\or\relax ㅋ\or\relax ㅌ\or\relax ㅍ\or\relax ㅎ\fi
+    %}
+    %\renewcommand{\thechoice}{\koreanChoice}
+% part 문제 번호를 한글 자모(ㄱ, ㄴ, ㄷ)로 변경하는 매크로
+    \newcommand{\koreanPart}{
+        \ifcase\value{part}
+            ㄱ\or\relax ㄴ\or\relax ㄷ\or\relax ㄹ\or\relax ㅁ\or\relax
+            ㅂ\or\relax ㅅ\or\relax ㅇ\or\relax ㅈ\or\relax
+            ㅊ\or\relax ㅋ\or\relax ㅌ\or\relax ㅍ\or\relax ㅎ\fi
+    }
+    \renewcommand{\thepart}{\koreanPart}
+    \renewcommand{\partlabel}{\thepart.}
+% 페이지 번호를 하단에 출력
+    \firstpagefooter{}{\thepage/\pageref{LastPage} 쪽}{}
+    \runningfooter{}{\thepage/\pageref{LastPage} 쪽}{}
+%----------------------------------------------------------
+\begin{document}
+%----------------------------------------------------------
+
+% TITLE
+    \title{\relax
+        2024년 2학기 기말고사 \\
+        \Large
+        노사관계의 이론과 실재
+    }
+    \author{담당교수: 오성재}
+    \date{2024년 12월 18일}
+    \maketitle
+
+% 학생 이름과 학번 입력란
+    \noindent
+    성명: \makebox[.3\textwidth]{\hrulefill} \\[3pt]
+    학번: \makebox[.3\textwidth]{\hrulefill}
+
+% 점수 추적을 시작
+    \addpoints\relax
+    %\begin{center}
+        %\gradetable[h][questions] 
+    %\end{center}
+
+\section*{객관식 문제: (문제당 2점)}
+
+\begin{questions}
+
+\question임금에 대한 설명으로 옳지 않은 것은?
+    \begin{choices}
+    \choice\relax 임금수준의 상한선은 기업이 지불할 수 있는 능력에 달려 있다.
+    \choice\relax 초임수준이 낮고 기술진보의 속도가 급격하지 않았던 시기에는 연공급이 바람직했다. 
+    \CorrectChoice\relax 직능급은 현재 담당하고 있는 일의 가치를 평가하여 임금을 지급한다
+    \choice\relax 성과급은 업무간 상호의존성이 높은 경우에는 시행이 어렵다. 
+    \end{choices}
+
+\question무노조기업에 관한 설명으로 옳지 않은 것은? 
+    \begin{choices}
+    \choice\relax 개인 차원의 고용관련 보호법안 통과로 집단노사관계의 필요성이 감소하여 무노조기업이 증가해왔다.
+    \choice\relax 철학적 무노조 기업은 직원들의 처우를 좋게 하고 의사소통 채널을 둠으로써 노조 결성의 필요성과 의욕을 감소시킨다.  
+    \CorrectChoice\relax 정책적 무노조기업은 근로자의 직무만족도를 높이기 위한 인적자원관리제도를 활용하는 대신 수단과 방법을 가리지 않고 노조를 회피하는 전략을 사용한다 
+    \choice\relax 사용자의 지불능력이 미약한 한계기업은 노동조합을 결성하여도 처우 향상의 보장이 없으므로 무노조 기업이 된다.  
+    \end{choices}
+
+\question노사협의회 구성원의 역할과 관련하여 올바른 설명은?
+    \begin{choices}
+    \choice\relax 노동자 대표만이 의결권을 갖는다.
+    \choice\relax 경영진 대표는 의결권이 없으며, 오직 자문 역할만 수행한다.
+    \CorrectChoice\relax 노사 양측 대표는 의결권을 공유하며, 협의회의 결정에 동등하게 참여한다.
+    \choice\relax 경영진 대표만이 최종 결정권을 갖는다.
+    \end{choices}
+
+\question우리나라 공공부문에 대한 설명으로 옳지 않은 것은?
+    \begin{choices}
+    \choice\relax 높은 노동조합 조직률로 인해 미래 한국의 고용관계의 중심축은 민간부문에서 공공부문으로 옮겨갈 가능성이 크다.
+    \CorrectChoice\relax 우리나라 공무원 노조는 단체교섭은 가능하지만 단체협약을 체결할 권리가 없다
+    \choice\relax 공공부문의 노동권 보장을 반대하는 사람들은 공공부문에서는 노사가 유착하여 과다한 임금인상과 근로조건 개선을 도모할 것이라고 주장한다. 
+    \choice\relax 1999년 『교원의 노동조합 설립 및 운영에 관한 법률』제정으로 합법화된 전국교직원노동조합은 해고자를 조합원으로 받아들였다는 이유로 법외노조 판정을 받았다. 
+    \end{choices}
+
+\question다음 중 옳은 것은?
+    \begin{choices}
+    \CorrectChoice\relax 평균임금에 기업의 사회보험료를 합한 금액을 보수비용이라 한다.
+    \choice\relax 산업재해보상금은 통상임금에 근거하여 산정한다.
+    \choice\relax 연장근로 수당은 평균임금의 50/100 이상을 가산하여 지급한다.
+    \choice\relax 사용자의 잘못으로 근로자가 일을 쉬게 되었을 경우에 사용자는 임금을 전액 지급해야 한다. 
+    \end{choices}
+
+\question다음 중 옳지 않은 것은?
+    \begin{choices}
+    \choice\relax 최저임금을 결정하기 위한 생계비를 실제생계비 방법으로 조사하면 소득 충격에 따른 가계지출 변동으로 생계비가 과소추정되거나 과대추정되는 문제가 있다. 
+    \CorrectChoice\relax 퇴직금 제도를 퇴직연금 가입 의무화로 바꾼 것은 영세 중소기업 근로자보다 대기업 근로자에게 안정적인 노후대책 수단이 될 가능성을 제고했다.  
+    \choice\relax 기업은 비슷한 자격이 있는 직원에게 비슷한 수준의 임금을 지급하여 직원들이 불만을 갖지 않도록 임금을 관리한다.
+    \choice\relax　300인 이상 사업장은 미만인 사업장보다 연공급 임금체계를 가지는 비중이 훨씬 높다. 
+    \end{choices}
+
+\question다음중 ILO 비준장려협약 가운데 핵심협약이 아닌 것은?
+    \begin{choices}
+    \choice\relax 차별금지관련
+    \CorrectChoice\relax 산업안전보건
+    \choice\relax 강제근로관련
+    \choice\relax 아동근로
+    \end{choices}
+
+\question다음 중 옳지 않은 것은?
+    \begin{choices}
+    \choice\relax 교원은 통일교섭만 허용된다.
+    \choice\relax 교원의 노사관계에서 사용자측은 단체교섭 시 교섭을 위임할 수 없다.
+    \choice\relax 교원노동조합은 1960년 4․19혁명 이후 처음 결성되었다. 
+    \CorrectChoice\relax 대학교수의 노동조합 가입을 불허하고 있다.
+    \end{choices}
+
+\question다음중 해고와 관련된 설명으로 틀린 것은?
+    \begin{choices}
+    \CorrectChoice\relax 최소 3개월 이전에 해고를 예고해야 한다.
+    \choice\relax 긴박한 경영상의 필요가 인정되어야 한다.
+    \choice\relax 사용자는 해고를 피하기위한 노력을 다해야 한다.
+    \choice\relax 합리적이고 공정한 해고의 기준을 정하고 이에 따라 그 대상자를 선정해야 한다.
+    \end{choices}
+\section*{빈 칸 채우기: (빈 칸당 2점)}
+
+\question\fillin[스톡옵션]{}을/를 도입하는 취지는 유동성이 부족한 중소기업이 유능한 인재를 유치할 수 있도록 하기 위한 것이다.  
+\question우리나라는 2003년 외국인근로자의 \fillin[고용허가제]{}을/를 도입한 이후 외국인 근로자와 내국인 근로자를 동등하게 대우하고 있다. 
+\question파견근로자보호법은 파견근로기간은 원칙적으로 \fillin[1]{}년을 초과하지 못하도록 규정하고 있다. 
+\question사용자는 신생노조의 결성 또는 기존 노동조합 활동을 방해하기 위해 \fillin[노조파괴전문가]{}을/를 활용한다.
+\question\fillin[성과배분]{}은/는 피고용인이 기업의 경영에 참가하여 성과를 향상시키기 위해 노력하여 발생한 이익을 금전적 형태로 피고용인에게 배분하는 제도이다. 
+\question\fillin[비노조]{}은/는 사용자가 노조 없이 경영하도록 한 선택의 결과를 의미하며 전략적으로 노조를 배제하는 정책을 펴는 기업에서 사용하는 용어이다. 
+\question\fillin[통상임금]{}은/는 매월정기적, 일률적, 고정적으로 지급되는 급여를 의미한다. 여기에 각종 수당을 더해 월 급여로 받는 모든 금액을 \fillin[평균임금]{}이라고 한다.
+\question우리나라는 ILO 핵심협약 가운데 105호를 비준하지 않고 있다. 이는 \fillin[정치적 견해표명 등]{}에 의한 처벌로 강제노동을 금지하는 것이다.
+\question한국, 미국, 일본, 영국을 ILO 협약 비준이 많은 순서대로 나열하면 \fillin[영국, 일본, 한국, 미국]{} 이다. 
+\pagebreak
+
+\section*{약술형 문제}
+모든 약술형 답은 \textbf{수업시간에 배운 개념}을 바탕으로 답과 근거를 모두 쓰시오.
+
+\question조별활동과 관련하여 다음의 질문에 답하시오.
+\begin{parts}
+    \part[10] 자기 조에서 발표한 사례에 대한 분석 및 시사점을 요약하시오
+        \ifprintanswers\relax
+            \begin{itemize}
+                \item \textbf{설명}: 가나다라마바사
+                \item \textbf{부분점수}: 
+                    \begin{itemize}
+                        \item 가나다라마바사
+                    \end{itemize}
+            \end{itemize}
+        \else 
+            \\[3pt]
+            \rule{\linewidth}{0.4pt} \\[3pt]
+            \rule{\linewidth}{0.4pt} \\[3pt]
+            \rule{\linewidth}{0.4pt} \\[3pt]
+            \rule{\linewidth}{0.4pt} \\[3pt]
+            \rule{\linewidth}{0.4pt} \\[3pt]
+            \rule{\linewidth}{0.4pt} \\[3pt]
+            \rule{\linewidth}{0.4pt} \\[3pt]
+            \rule{\linewidth}{0.4pt}
+        \fi
+    \stepcounter{part}
+    \part[15] 자기 조에서 논평한 사례에 대한 제언을 쓰시오. (발표당시 제언이 부족하다는 지적을 받은 경우, 논평을 그대로 쓴다면 낮은 점수를 받을 것임.)
+        \ifprintanswers\relax
+            \begin{itemize}
+                \item \textbf{설명}: 가나다라마바사
+                \item \textbf{부분점수}: 가나다라마바사
+            \end{itemize}
+        \else
+            \\[3pt]
+            \rule{\linewidth}{0.4pt} \\[3pt]
+            \rule{\linewidth}{0.4pt} \\[3pt]
+            \rule{\linewidth}{0.4pt} \\[3pt]
+            \rule{\linewidth}{0.4pt} \\[3pt]
+            \rule{\linewidth}{0.4pt} \\[3pt]
+            \rule{\linewidth}{0.4pt} \\[3pt]
+            \rule{\linewidth}{0.4pt} \\[3pt]
+            \rule{\linewidth}{0.4pt}
+        \fi
+\end{parts}
+
+\question[20]  노조조직률 하락은 선진국에서 나타나는 공통적인 현상이다. 현상의 원인에 대해 설명하시오.
+    \ifprintanswers\relax
+        \begin{itemize}
+            \item \textbf{설명}: 가나다라마바사
+            \item \textbf{부분점수}: 가나다라마바사
+        \end{itemize}
+    \else
+        \\[3pt]
+        \rule{\linewidth}{0.4pt} \\[3pt]
+        \rule{\linewidth}{0.4pt} \\[3pt]
+        \rule{\linewidth}{0.4pt} \\[3pt]
+        \rule{\linewidth}{0.4pt} \\[3pt]
+        \rule{\linewidth}{0.4pt} \\[3pt]
+        \rule{\linewidth}{0.4pt} \\[3pt]
+        \rule{\linewidth}{0.4pt} \\[3pt]
+        \rule{\linewidth}{0.4pt}
+    \fi
+\question[10] 최근 일어난 대통령 탄핵과 관련하여, 정의의 관점 가운데 하나를 택하여 의견을 제시하시오. (찬반 여부는 채점하지 않고, 오로지 자신의 입장을 정당화 하는 과정에 대해서만 채점함.)
+    \ifprintanswers\relax
+        \begin{itemize}
+            \item \textbf{설명}: 가나다라마바사
+            \item \textbf{부분점수}: 가나다라마바사
+        \end{itemize}
+    \else
+        \\[3pt]
+        \rule{\linewidth}{0.4pt} \\[3pt]
+        \rule{\linewidth}{0.4pt} \\[3pt]
+        \rule{\linewidth}{0.4pt} \\[3pt]
+        \rule{\linewidth}{0.4pt} \\[3pt]
+        \rule{\linewidth}{0.4pt} \\[3pt]
+        \rule{\linewidth}{0.4pt} \\[3pt]
+        \rule{\linewidth}{0.4pt} \\[3pt]
+        \rule{\linewidth}{0.4pt}
+    \fi
+
+\question[10] 중대재해처벌법의 영향과 시사점을 서술하시오.
+    \ifprintanswers\relax
+        \begin{itemize}
+            \item \textbf{설명}: 가나다라마바사
+            \item \textbf{부분점수}: 가나다라마바사
+        \end{itemize}
+    \else
+        \\[3pt]
+        \rule{\linewidth}{0.4pt} \\[3pt]
+        \rule{\linewidth}{0.4pt} \\[3pt]
+        \rule{\linewidth}{0.4pt} \\[3pt]
+        \rule{\linewidth}{0.4pt} \\[3pt]
+        \rule{\linewidth}{0.4pt} \\[3pt]
+        \rule{\linewidth}{0.4pt} \\[3pt]
+        \rule{\linewidth}{0.4pt} \\[3pt]
+        \rule{\linewidth}{0.4pt}
+    \fi
+
+\end{questions}
+%------------------------------------------------
+\end{document}
+%------------------------------------------------

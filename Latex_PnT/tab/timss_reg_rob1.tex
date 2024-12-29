@@ -1,0 +1,54 @@
+\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{회귀분석 결과 : TIMSS, 지수비교 \label{tab:timss_rob1}}
+\begin{tabular}{l*{8}{c}}
+\toprule
+                    &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}&\multicolumn{1}{c}{(6)}&\multicolumn{1}{c}{(7)}&\multicolumn{1}{c}{(8)}\\
+                    &\multicolumn{1}{c}{BJ지수}&\multicolumn{1}{c}{FG지수}&\multicolumn{1}{c}{BJ지수}&\multicolumn{1}{c}{FG지수}&\multicolumn{1}{c}{BJ지수}&\multicolumn{1}{c}{FG지수}&\multicolumn{1}{c}{BJ지수}&\multicolumn{1}{c}{FG지수}\\
+\midrule
+L.ln1인당GDP        &       0.807\sym{***}&       0.819\sym{***}&       0.774\sym{***}&       0.778\sym{***}&       0.817\sym{***}&       0.826\sym{***}&       0.778\sym{***}&       0.772\sym{***}\\
+                    &     [12.39]         &     [13.50]         &     [10.45]         &     [10.85]         &     [12.17]         &     [13.83]         &     [10.02]         &     [10.60]         \\
+\addlinespace
+L.총불평등          &      -4.649\sym{*}  &      -0.792         &                     &                     &                     &                     &                     &                     \\
+                    &     [-1.92]         &     [-0.84]         &                     &                     &                     &                     &                     &                     \\&                     &                     &                     &                     &                     &                     &                     \\
+\addlinespace
+L.OECD $\times$ 총불평등&                     &                     &       8.889\sym{*}  &       14.48\sym{***}&                     &                     &                     &                     \\
+                    &                     &                     &      [1.81]         &      [3.05]         &                     &                     &                     &                     \\
+\addlinespace
+L.비OECD $\times$ 총불평등&                     &                     &      -3.814\sym{*}  &      -0.612         &                     &                     &                     &                     \\
+                    &                     &                     &     [-1.73]         &     [-0.69]         &                     &                     &                     &                     \\
+\addlinespace
+L.기회불평등        &                     &                     &                     &                     &      -16.65\sym{**} &      -14.68         &                     &                     \\
+                    &                     &                     &                     &                     &     [-2.27]         &     [-1.38]         &                     &                     \\
+\addlinespace
+L.노력불평등        &                     &                     &                     &                     &      -2.334         &       0.316         &                     &                     \\
+                    &                     &                     &                     &                     &     [-0.91]         &      [0.24]         &                     &                     \\
+\addlinespace
+L.OECD $\times$ 기회불평등&                     &                     &                     &                     &                     &                     &      -19.54         &      -42.67\sym{*}  \\
+                    &                     &                     &                     &                     &                     &                     &     [-1.29]         &     [-1.89]         \\
+\addlinespace
+L.OECD $\times$ 노력불평등&                     &                     &                     &                     &                     &                     &       15.81\sym{**} &       26.39\sym{***}\\
+                    &                     &                     &                     &                     &                     &                     &      [2.30]         &      [3.40]         \\
+\addlinespace
+L.비OECD $\times$ 기회불평등&                     &                     &                     &                     &                     &                     &      -14.97\sym{*}  &      -15.99\sym{*}  \\
+                    &                     &                     &                     &                     &                     &                     &     [-1.92]        &     [-1.73]         \\
+\addlinespace
+L.비OECD $\times$ 노력불평등&                     &                     &                     &                     &                     &                     &      -1.575         &       0.631         \\
+                    &                     &                     &                     &                     &                     &                     &     [-0.69]         &      [0.62]         \\
+\addlinespace
+L.투자재가격        &      0.0628         &       0.111         &    -0.00447         &     0.00342         &      0.0520         &       0.114         &     0.00122         &      0.0241         \\
+                    &      [0.60]         &      [1.03]         &     [-0.04]         &      [0.03]         &      [0.55]         &      [1.13]         &      [0.01]         &      [0.25]         \\
+\addlinespace
+L.ln인구            &      -0.174\sym{**} &      -0.160\sym{**} &      -0.223\sym{***}&      -0.221\sym{***}&      -0.178\sym{**} &      -0.157\sym{**} &      -0.226\sym{***}&      -0.221\sym{***}\\
+                    &     [-2.43]         &     [-2.33]         &     [-2.75]         &     [-2.68]         &     [-2.43]         &     [-2.28]         &     [-2.73]         &     [-2.62]         \\
+\addlinespace
+Constant            &       2.518\sym{***}&       2.281\sym{***}&       2.925\sym{***}&       2.804\sym{***}&       2.446\sym{***}&       2.215\sym{***}&       2.896\sym{***}&       2.858\sym{***}\\
+                    &      [3.76]         &      [3.63]         &      [3.96]         &      [3.90]         &      [3.57]         &      [3.56]         &      [3.79]         &      [3.90]         \\
+\midrule
+r2                  &                     &                     &                     &                     &                     &                     &                     &                     \\
+N                   &         238         &         238         &         238         &         238         &         238         &         238         &         238         &         238         \\
+N\_g                 &          71         &          71         &          71         &          71         &          71         &          71         &          71         &          71         \\
+\bottomrule
+\multicolumn{9}{l}{\footnotesize \textit{t} statistics in brackets}\\
+\multicolumn{9}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}

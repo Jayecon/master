@@ -1,0 +1,153 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Welcome to Overleaf --- just edit your LaTeX on the left,
+% and we'll compile it for you on the right. If you open the
+% 'Share' menu, you can invite other users to edit at the same
+% time. See www.overleaf.com/learn for more info. Enjoy!
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ===============================================
+% MATH 790: Real Analysis           Spring 2022
+% hw_template.tex
+% ===============================================
+
+% -------------------------------------------------------------------------
+% The preamble that follows can be ignored. Go on
+% down to the section that says "START HERE" 
+% -------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,hyperref,graphicx}
+\usepackage[hangul]{kotex}
+\usepackage[shortlabels]{enumitem}
+\usepackage{booktabs, multicol, multirow} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\newcommand{\R}{\mathbf{R}}  
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\Q}{\mathbf{Q}}
+
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+\renewcommand{\labelenumiii}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}}
+\renewcommand{\labelenumiv}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.\arabic{enumiv}}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+
+\begin{document}
+
+% ------------------------------------------ %
+%                 START HERE                  %
+% ------------------------------------------ %
+
+\title{경제정의와 불평등 중간고사} % Replace with appropriate title
+\author{담당교수 : 오성재} % Replace "Author's Name" with your name
+\date{\today}
+
+\maketitle
+
+% -----------------------------------------------------
+% The following two environments (theorem, proof) are
+% where you will enter the statement and proof of your
+% first problem for this assignment.
+%
+% In the theorem environment, you can replace the word
+% "theorem" in the \begin and \end commands with
+% "exercise", "problem", "lemma", etc., depending on
+% what you are submitting. 
+% -----------------------------------------------------
+\begin{enumerate}[{\bf 문제 \arabic*.}]
+    \item 자유지상주의의 정의관을 엄밀하게 정의 하시오.
+    
+    \item 한남시는 젠트리피케이션 문제로 고통받는 A지역의 상권을 활성화 하기 위하여 인근에 시 예산으로 공원을 짓는 사업을 시행하려 한다. 이때 발생할 수 있는 문제점을 수업시간에 배운 개념을 이용하여 설명하시오.
+    
+    \item 한남시 시의회는 복지정책의 일환으로 다음의 두 정책 가운데 한 가지에 예산을 편성하려 한다. 
+        \begin{itemize}
+            \item 한부모가정의 주거 안정을 위하여 전세자금을 낮은 이자율로 대출해준다.
+            \item 저소득 청소년들의 건강한 성장을 위하여 방학중에도 식비를 보조하는 바우처 제도를 시행한다. 
+        \end{itemize}
+        수업시간에 배운 개념을 바탕으로 시의원들은 어떤 예산안을 통과시킬 지에 대하여 논하시오.
+
+    \item 놀이공원인 L월드는 모든 이용객에게 기본 입장료를 받는다. 인기있는 놀이기구는 주요 연휴에는 최대 2시간 이상을 대기해야 이용할 수 있다. 이에 놀이공원은 추가요금을 지불하면 대기없이 기구를 이용할 수 있는 우선권을 판매하고 있다. 놀이공원이 즐거움이 아닌 시간을 판매하는 문제에 대하여 다음의 질문에 최대한 정확하게 답하시오(질문에 대한 답이 아닌 답의 근거만을 평가 하겠음).
+        \begin{enumerate}
+            \item 우파적 자유주의의 입장에서 이는 정의로운 분배인가?
+            \item 좌파적 자유주의의 입장에서 이는 정의로운 분배인가?
+            \item 자유지상주의의 입장에서 이는 정의로운 분배인가?
+        \end{enumerate}
+    
+
+\pagebreak
+
+    \item 표 \ref{tab:incomed}는 세 사회의 구성원의 소득을 조사한 자료이다.
+        \begin{table}[htbp]
+            \centering
+            \begin{tabular}{c|c|c|c}
+                \toprule
+                   사회 A & 3 & 4 & 5 \\
+                   사회 B & 12 & 4 & 7 \\
+                   사회 C & 16 & 17 & 8 \\
+                \bottomrule
+            \end{tabular}
+            \caption{소득조사}
+            \label{tab:incomed}
+        \end{table}
+        \begin{enumerate}
+            \item 각각의 사회의 로렌츠 곡선을 그리고, 로렌츠 지배 여부를 판단하라.
+            \item 각 사회의 지니계수를 각각 구하라.
+        \end{enumerate}
+        
+    \item 표 \ref{tab:income}는 두 사회의 구성원의 소득을 조사한 자료이다.
+        \begin{table}[htbp]
+            \centering
+            \begin{tabular}{c|c|c|c|c}
+                \toprule
+                   사회 D & 3 & 4 & 5 & 7 \\
+                   사회 E & 2 & 3 & 6 & 9 \\ 
+                \bottomrule
+            \end{tabular}
+            \caption{소득조사}
+            \label{tab:income}
+        \end{table}
+        \begin{enumerate}
+            \item 공리주의, 우파적 자유주의(각 개인소득의 단순 곱), 롤즈주의 각각에서 어떤 사회가 더 나은가?
+            \item 공리주의, 평등주의, 롤즈주의에서 균등분배 대등소득을 구하시오.
+            \item 우파적 자유주의와 롤즈주의 각각의 입장에서 애킨슨 지수를 구하시오.
+        \end{enumerate}
+        
+    \item 팔마비율(Palma ratio)를 정의하고 그 특성에 대하여 설명하시오.
+        \begin{enumerate}
+            \item 평준화 특성에 대하여 정의하고, 팔마비율이 그 특성을 만족하는지 설명하시오.
+            \item 피구달튼 원칙에 대하여 정의하고, 팔마비율이 그 특성을 만족하는지 설명하시오.
+        \end{enumerate}
+
+    
+
+\vspace{3cm}
+
+    \centering
+    \large{한 학기동안 고생하셨습니다.}
+  
+\end{enumerate}
+
+
+
+% ---------------------------------------------------
+% Anything after the \end{document} will be ignored by the typesetting.
+% ----------------------------------------------------
+
+\end{document}

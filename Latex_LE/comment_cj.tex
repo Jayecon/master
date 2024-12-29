@@ -1,0 +1,168 @@
+%----------------------------------------------------------
+% PACKAGES AND THEMES
+%----------------------------------------------------------
+\documentclass[aspectratio=169,xcolor=dvipsnames,handout]{beamer}
+
+\usetheme{Darmstadt}
+\usecolortheme{seahorse}
+\setbeamercovered{transparent}
+
+\usepackage[hangul]{kotex}
+\usepackage{hyperref}
+\usepackage{graphicx, array, adjustbox, makecell}
+\usepackage{booktabs, multicol, multirow}
+
+% font조정
+%\usepackage{fontspec}
+%\setmainfont{Times New Roman}
+%\setmainhangulfont{NanumGothic}
+
+% 문자열 대체{노사관계론 전용}
+\usepackage{newunicodechar}
+\newunicodechar{•}{$\cdot$}
+\newunicodechar{➔}{$\implies$}
+\newunicodechar{∴}{$\therefore$}
+\newunicodechar{∵}{$\because$}
+
+%----------------------------------------------------------
+% TITLE PAGE
+%----------------------------------------------------------
+\title{Climate Justice에 대한 논평}
+\subtitle{홍현우* 주병기}
+\author{오성재}
+\institute[CNU]
+    {\relax
+        한국경제학회 충청지회·한국지역정책학회 추계학술대회
+    }
+\date{2024년 11월 29일}
+
+%----------------------------------------------------------
+\begin{document}
+%----------------------------------------------------------
+
+\frame{\titlepage}
+
+\begin{frame}{목차}
+    \tableofcontents
+\end{frame}
+
+\section{발표문 요약}
+
+\begin{frame}
+    \frametitle{문제와 목표}
+    \begin{itemize}[<+->]
+        \item 문제 정의
+        \begin{itemize}
+            \item 기후정의의 갈등:
+            \begin{itemize}
+               \item 개발도상국의 책임을 강조한 역사적 책임성과
+               \item 모든 국가의 이익을 보장하는 국제 파레토주의 간의 충돌.
+            \end{itemize}
+            \item 교토의정서 비판:
+            \begin{itemize}
+               \item 선진국에 과도한 책임을 부과, 개발도상국과 선진국 간의 불균형 유발.
+            \end{itemize}
+        \end{itemize}
+        \item 연구 목표
+        \begin{itemize}
+            \item 역사적 책임성과 국제 파레토주의를 경제 모델 내 배분 규칙의 공리로 공식화.
+            \item 두 공리의 호환성 검증 및 대체 기후 협약 설계 가능성 탐구.
+            \item 기존 교토의정서와 새 배분 규칙 비교.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{결과 및 결론}
+    \begin{itemize}[<+->]
+        \item 주요 결과
+        \begin{itemize}
+            \item 국제 파레토주의와 역사적 책임성의 비호환성 확인.
+            \item 새로운 배분 규칙 (EPC, HEPC, EPDD 등)은 개발도상국에 유리한 재분배 가능성을 제시.
+            \item EPDD 규칙은 국제 파레토주의를 충족하지만 선진국에 불리.
+        \end{itemize}
+        \item 결론
+        \begin{itemize}
+            \item 재분배의 필요성:
+            \begin{itemize}
+                \item 개발도상국의 기후 피해 및 낮은 배출량을 고려한 지원 강조.
+            \end{itemize}
+            \item 역사적 책임성과 국제 파레토주의를 동시에 충족하는 배분 규칙 설계의 어려움.
+            \item 정책적 시사점:
+            \begin{itemize}
+                \item 기후 피해와 감축 비용을 반영한 공정한 협약 필요.
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\section{제언}%
+
+\begin{frame}
+    \frametitle{Development Opprotunities (성장기회)}
+    \begin{itemize}[<+->]
+        \item 그림에서는 성장기회를 (1인당) GDP와 같은 의미로 사용.
+        \begin{itemize}[<+->]
+            \item 총생산이 성장의 기회로 재정의되는 과정이 누락됨.
+            \item GDP는 성장의 기회가 아닌 결과.
+            \item GDP성장률?
+        \end{itemize}
+        \item $\gamma^A_i$: the values of \textbf{development opportunities} afforded by a unit of emissions allowances with agreement
+        \begin{itemize}[<+->]
+            \item $d_i$/$\gamma^A_i$: country i’s damage (of the disagreement) measured in equivalent \textbf{units of emissions} under international agreement
+            \item $\gamma^A_i = GDP_i/c_i$ and $\gamma^D_i = 0$ 
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{내생성}
+    \begin{itemize}[<+->]
+        \item $d_i$: the damage from climate disasters caused by climate change
+        \begin{itemize}
+            \item is a function of GDP (e.g. 사대강$\downarrow$, VSL$\uparrow$)
+        \end{itemize}
+        \item $\gamma^A_i$: the values of development opportunities afforded by a unit of emissions allowances with agreement
+        \begin{itemize}
+            \item is a function of $a_i$: the cost of abating one unit of pollutant.
+        \end{itemize}
+        \item $a_i$: the cost of abating one unit of pollutant.
+        \begin{itemize}
+            \item is a function of GDP
+        \end{itemize}
+        \item $c_i$: the amount of current and future (BAU) emissions
+        \begin{itemize}
+            \item is a function of $a_i$
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{기타}
+    \begin{itemize}[<+->]
+        \item 모든 변수들은 시간에 따라 다른 값을 가진다.
+            \begin{itemize}[<+->]
+                \item 하첨자 t가 생략?
+            \end{itemize}
+        \item 모든 국가가 아닌 특정 국가집단을 대상으로 했을때는 어떤 룰이 유효한가?
+            \begin{itemize}[<+->]
+                \item 미중 
+                \item G7 or OECD
+                \item Emission top 10 등등.
+            \end{itemize}
+
+    \end{itemize}
+\end{frame}
+
+
+\section*{}%
+\begin{frame}
+    \centering
+    \huge
+    감사합니다.
+\end{frame}
+
+%------------------------------------------------
+\end{document}
+%------------------------------------------------
+

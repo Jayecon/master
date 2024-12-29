@@ -1,0 +1,35 @@
+\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{PISA 총불평등\label{tab:pisasimp}}
+\begin{tabular}{l*{6}{c}}
+\toprule
+                    &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}&\multicolumn{1}{c}{(6)}\\ &\multicolumn{1}{c}{OLS}&\multicolumn{1}{c}{FE}&\multicolumn{1}{c}{Sys. GMM}&\multicolumn{1}{c}{OLS}&\multicolumn{1}{c}{FE}&\multicolumn{1}{c}{Sys. GMM}\\
+\midrule
+ln1인당GDP        &       0.931\sym{***}&       0.601\sym{***}&       0.817\sym{***}&       0.932\sym{***}&       0.602\sym{***}&       0.797\sym{***}\\
+                    &     [58.96]         &     [14.25]         &     [12.91]         &     [54.78]         &     [14.31]         &     [11.49]         \\
+\addlinespace
+총불평등          &      -3.248\sym{***}&      -4.625\sym{***}&      -2.332         &                     &                     &                     \\
+                    &     [-2.99]         &     [-3.27]         &     [-0.58]         &                     &                     &                     \\
+\addlinespace
+OECD$ \times$ 총불평등&                     &                     &                     &      -3.562\sym{***}&      -2.107         &       0.737         \\
+                    &                     &                     &                     &     [-2.70]         &     [-0.95]         &      [0.12]         \\
+\addlinespace
+OECD$ \times$ 총불평등&                     &                     &                     &      -3.268\sym{***}&      -4.875\sym{***}&      -3.968         \\
+                    &                     &                     &                     &     [-3.00]         &     [-3.43]         &     [-1.08]         \\
+\addlinespace
+투자재가격        &     -0.0552         &      -0.139\sym{**} &      0.0206         &     -0.0509         &      -0.148\sym{**} &     -0.0433         \\
+                    &     [-1.21]         &     [-2.32]         &      [0.13]         &     [-1.17]         &     [-2.46]         &     [-0.40]         \\
+\addlinespace
+ln인구            &    -0.00777\sym{**} &      -0.200\sym{**} &      -0.184\sym{**} &    -0.00737\sym{**} &      -0.209\sym{**} &      -0.186\sym{**} \\
+                    &     [-2.36]         &     [-2.23]         &     [-2.03]         &     [-2.18]         &     [-2.32]         &     [-2.15]         \\
+\addlinespace
+Constant            &       0.968\sym{***}&       4.886\sym{***}&       2.495\sym{***}&       0.957\sym{***}&       4.874\sym{***}&       2.736\sym{***}\\
+                    &      [6.40]         &      [9.23]         &      [3.57]         &      [5.90]         &      [9.23]         &      [3.75]         \\
+\midrule
+r2                  &       0.980         &       0.803         &                     &       0.980         &       0.804         &                     \\
+N                   &         334         &         334         &         334         &         334         &         334         &         334         \\
+N\_g                 &                     &          77         &          77         &                     &          77         &          77         \\
+\bottomrule
+\multicolumn{7}{l}{\footnotesize \textit{t} statistics in brackets}\\
+\multicolumn{7}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}

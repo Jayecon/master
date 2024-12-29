@@ -1,0 +1,501 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+\documentclass[aspectratio=169,xcolor=dvipsnames,handout]{beamer}
+\usetheme{Darmstadt}
+\usecolortheme{seahorse}
+
+\usepackage[hangul]{kotex}
+
+\usepackage{hyperref}
+\usepackage{amsfonts, amssymb}
+\usepackage{graphicx} % Allows including images
+\usepackage{array, booktabs, multicol, multirow} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\setbeamercovered{transparent}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\y}{\mathbf{y}}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[자유지상주의]{자유지상주의} % The short title appears at the bottom of every slide, the full title is only on the title page
+\subtitle{경제정의와 불평등}
+
+\author[오성재]{오성재}
+
+\institute[HNU] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
+{
+    한남대학교 \\
+    탈메이지 교양학부 \\
+}
+\date{\today} % Date, can be changed to a custom date
+
+
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{목차}
+    \tableofcontents
+\end{frame}
+
+\section{들어가늘 말}
+
+\begin{frame}[<+->]
+\frametitle{자유지상주의}
+    \begin{itemize}
+        \item 자유지상주의는 개인의 삶에 국가에 의한 법에 강압적 지배가 없어야 한다는 사상 중 하나.
+        \begin{itemize}
+            \item 모든 개인은 자신의 행동이 평등한 타인의 자유권을 침해하지 않는 한, 스스로 무엇을 할 것인지 결정할 자유가 있음.
+        \end{itemize}
+    \item 국가는 구성원들의 활동의 자유가 서로 일관되게 하기 위해서만 간섭.
+        \begin{itemize}
+        \item 국가는 폭력, 절도, 기만 등으로부터 구성원을 보호하는 역할.
+        \item 가부장적 정부(예: 안전벨트 착용 의무화, 마약 사용 금지, 결혼에 대한 특정 견해 시행 등)의 역할을 하거나 재분배를 추구해서는 안됨.
+        \item 그러한 국가권력 행사는 구성원 일부의 자유를 부당하게 제한하기 때문.
+        \end{itemize}
+    \item 이러한 자유지상주의 원칙은 단순하면서도 강력함.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{자유지상주의의 권한}
+    \begin{itemize}
+        \item 자유지상주의 원칙은 권한의 한계에 대한 원칙.
+        \item 권한의 원초적 한계는 개인과 국가에 동일하게 적용.
+        \item 국가는 권한 자체의 제한이나 국가에 추가 권한이 부여된 계약에서 비롯된 권한 외에는 어떠한 권한도 없음.
+        \begin{itemize}
+            \item 국가는 모든 개인이 스스로의 권리를 존중받는 데 이용될 수 있음.
+            \item 국가는 사회구성원과의 계약에 의해 추가적인 권한을 가질 수 있음.
+            \item 그러나 국가는 그러한 계약이 없으면 사회구성원의 일관된 자유 행사를 보장하는 것 이상의 권한을 가질 수 없음.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{주요 학습내용}
+    \begin{itemize}
+        \item 자유의 원칙이 정치적 권위의 강제적인 행사, 재산권 및 계약 권리의 근거 및 범위와 어떻게 일치하는가.
+        \item 왜 자유지상주의자들이 기회의 평등 추구나 부와 소득의 공정한 분배가 부당하고 부당하다고 생각하는 경향이 있는가.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{국가의 크기}
+    \begin{itemize}
+        \item 자유지상주의자들이 이야기 하는 작은 국가의 기준은 무엇인가?
+        \begin{itemize}
+            \item 국가의 규모는 지출 측면에서(예: GDP대비 정부부채).
+            \item 공공 고용 측면에서(예: 총인구 대비 공무원 수).
+            \item 구성원의 생활에 대한 규제의 갯수.
+        \end{itemize}
+        \item Nozick은 권위의 범위 측면에서 국가의 크기를 정의.
+        \begin{itemize}
+            \item 절대 군주는 백성의 생활 전체를 통제할 수 있는 강력한 권한을 가질 수 있지만 직위나 법을 만들지 않고도 가능(군주의 뜻 하나로도 가능).
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{작은 국가}
+    \begin{itemize}
+        \item 가장 작은 국가는 주어진 영토에서 강제력 사용을 독점하여 다른 대리인이 강제력을 사용할 수 없도록 하는 국가(긴급 상황 제외).
+        \item 작은 국가는 주어진 영토에서 강제 사용에 대한 독점을 행사하고 영토에 거주하는 모든 개인의 권리가 보호되도록 보장하며 그밖에는 어떤것도 하지 않는 국가.
+        \begin{itemize}
+            \item 공공재, 빈민구제, 의료, 교육마저도 제공하지 않음. 단, 사회구성원의 (자유)권리를 보장하기 위해 필요한 경우는 예외.
+            \item 구성원의 원래 권리와 획득한 권리를 확보하는 것 이외의 목표를 추구하는 국가는 작은 국가보다 "더 큰" 국가.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\section{무정부주의와의 구분}
+
+\begin{frame}[<+->]
+\frametitle{무정부주의 vs. 자유지상주의}
+    \begin{itemize}
+        \item  무정부주의자 : 국가는 누구의 권리도 침해하지 않고 존재할 수 없으며, 구성원들의 권리는 항상 국가의 행동에 의해 침해된다.
+        \begin{itemize}
+            \item 정치적 권위의 기원 : 권리의 침해가 없는 국가의 정치적 권위의 불가능.
+            \item 권한의 행사 : 국가 운영에는 권리 침해가 수반.
+        \end{itemize}
+        \item Nozick : 정치철학의 근본적인 문제는 국가를 조직하는 방법이 아니라 “국가가 존재해야 하는지의 여부.”
+        \begin{itemize}
+            \item Nozick은 무정부 상태에서 허용되는(즉, 권리를 침해하지 않는) 행위에 의해서만 국가가 생성될 수 있는 방법을 제시.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{자연의 상태(State of nature)I}
+    \begin{itemize}
+        \item 자연 상태는 인간이 사회 상태에 들어가기 이전의 (시간적으로, 이론적으로, 정치적으로) 가상의 상황.
+        \item 홉스는 자연 상태를 정의의 규범을 정의하고 집행할 공적 권한이 없는 상태로 설명.
+        \begin{itemize}
+           \item  인간의 성향, 욕구, 물질적 상황, 공권력의 부재가 결합된 상황에서 자연 상태는 필연적으로 \textbf{만인에 대한 만인의 전쟁 상태}가 되어 문화, 과학, 기술의 발전이 불가능하고, 대부분의 사람들의 삶은 “추잡하고, 고독하고, 가난하고, 야만적이며, 짧다."
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{자연의 상태(State of nature)II}
+    \begin{itemize}
+        \item 루소는 자연상태에 있는 인간의 욕망과 경향은 인간 사회의 고정된 성품이 아니라 그 자체로 인간 사회의 산물이라고 주장.
+        \item 로크는 정의의 규범이 사회의 상태뿐만 아니라 자연 상태에서도 의미가 있다고 주장.
+        \begin{itemize}
+            \item 자연의 상태는 스스로를 돌보고 타인의 권리(생명, 자유 등)를 존중하도록 요구하는 자연 법칙의 지배를 받음.
+        \end{itemize}
+        \item 칸트에게 자연 상태는 다른 사람의 재산이나 서비스에 대한 권리가 생성되기 이전의 상황.
+        \begin{itemize}
+            \item 개인은 자신의 자연적 권리(자유의 원칙에서 직접적으로 도출되는 권리)만 가짐.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{자연의 상태(State of nature)III}
+    \begin{itemize}
+        \item Nozick은 자연 상태에 대한 로크의 관점을 수용.
+        \item  법률, 경찰, 법원 등 정치적 권위가 없는 로크의 자연 상태를 가정.
+        \begin{itemize}
+           \item  자연 상태에 있는 사람들은 나쁜 본성이 없음; 비정상적으로 어리석거나, 탐욕스럽거나, 악의적이거나, 허영심이 많거나, 질투하거나 시기하는 경향 등등.
+           \item  특별히 좋은 본성 역시 없음; 초인간적인 지능이나 지식, 천사같은 미덕 등등.
+        \end{itemize}
+       \item  다른 사람들의 의견에 영향을 받지도 않음. 그러나 개인들이 보통 대부분의 경우 타인의 권리를 존중하는 경향이 있다고 가정.
+        \begin{itemize}
+            \item 만인의 만인에 대한 투쟁과 같은 홉스식 자연 상태와 구분.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{자연상태에서의 권리}
+    \begin{itemize}
+        \item Nozick의 자연 상태에는 두 가지 종류의 권리가 존재.
+        \item 선천적 권리는 자유의 원칙에서 직접적으로 발생하는 권리.
+        \begin{itemize}
+           \item  (다른 사람의 권리를 침해하지 않는 한)원하는 대로 자신을 처분할 수 있는 권리, 폭력과 기만, 강도 및 절도로부터의 자유. 
+        \end{itemize}
+        \item 후천적 권리는 행위를 통해 얻을 수 있는 권리 : 재산권과 계약의 권리.
+        \begin{itemize}
+           \item  재산권은 물건을 처분할 수 있는 권리; 물건의 원래 소유(예: 수렵) 또는 선물이나 거래를 통해 다른 사람으로부터 양도함으로써 재산을 취득.
+           \item  계약의 권리는 다른 사람의 행동에 대한 권리; 물물교환에서 양도에 대한 계약 권리를 가질 수 있음.
+        \end{itemize}
+       \item  자연상태를 넘어서는 상태에서의 모든 권리는 자유의 원칙, 재화의 소유 또는 개인 간의 계약(동의에 의함)에서 발생.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{국가의 필요성}
+    \begin{itemize}
+       \item 자연 상태는 여전히 무정부 상태.
+        \begin{itemize}
+           \item 자연 상태에서는 개인들에게 선천적 권리가 있고 서로의 선천적, 후천적 권리를 존중 
+           \item 그럼에도 개인들이 정치적 권위에 종속되지 않는다는 의미에서 무정부 상태.
+        \end{itemize}
+       \item  국가가 자연상태에서 누구의 권리도 침해하지 않고 생겨날 수 있는가.
+       \item  Nozick은 주장의 출발점은 자연의 상태가 개인들에게 여전히 불편함을 준다는 점.
+       \begin{itemize}
+           \item 개인들은 서로의 권리를 존중하지만, 자신이 어떤 권리를 가지고 있는지 무지.
+           \item 다른 사람들이 자신의 권리를 존중할 것인가 라는 불확실성의 문제에 직면. 
+           \item 자신의 권리를 행사하고 침해된 경우 배상을 추구하는 데 따르는 위험과 비용.
+           \item 효과적인 지출을 위한 규칙, 분쟁이 발생한 경우 판결할 수 있는 기구, 정의를 집행할 경찰도 없음.
+       \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{상호보호협회(mutual-protection association)I}
+    \begin{itemize}
+       \item 개인들은 상호 작용의 정확한 규칙을 정의하고 분쟁을 판결하며 각자의 권리를 행사하는 데 도움이 되는 독립적인 기구를 만드는 데 동의할 수 있음.
+       \item  그러한 단체를 만드는 개인들은 즉각적인 자기 방어의 경우를 제외하고 타인에게 자신의 권리를 행사할 수 있는 개인의 권리를 자연스럽게 포기.
+       \item  분쟁의 판결과 권리의 집행을 위한 기구를 만들기로 한 합의는 구성원 개인의 강압적 권리를 포기하고 그러한 기구의 결정을 따르기로 하는 상호 계약을 통해 이루어짐.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{상호보호협회(mutual-protection association)II}
+    \begin{itemize}
+       \item Nozick은 그러한 협회를 "상호보호협회"라고 명명. 
+       \item 구성원 전체 및 각자에게 위협이 될 수 있는 협회 외부의 사람들로부터 상호 보호를 위해 형성됨.
+       \item 분쟁해결 이외에도 편의성과 비용 효율성 그리고 경쟁하는 보호 협회의 비교우위를 고려할 때 시간이 지남에 따라 하나의 보호 협회가 지역에서 지배적이 될 가능성이 큼.
+       \item  그러나 지배적인 보호 협회라도 국가가 되지는 못함.
+        \begin{itemize}
+           \item 첫째, 다른 보호 협회가 그곳에서 활동하거나 개인이 부분적인 집행 권한을 보유할 수 있기 때문에 해당 지역에서 무력 사용에 대한 독점이 없기 때문.
+           \item 둘째, 지배적 보호 협회는 해당 지역에 거주하는 모든 사람을 포함하지 않고 그 구성원만 포함.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{무력의 독점}
+    \begin{itemize}
+        \item  상호보호협회가 국가로 발전하기 위해 지배적인 협회가 무력 사용을 독점해야 함.
+        \item 무력사용에 대한 독점은 분쟁해결 수단의 생성과 적용에서 기원.
+        \begin{itemize}
+             \item 자유는 개인이 타인에 대한 권리를 침해, 즉 분쟁과 관련하여 모두가 신뢰할 수 있고 동시에 공정한 절차(재판)를 이용할 권리를 가짐.
+             \item 재판받을 권리는 다른 협회(의 회원) 또는 무소속 개인들의 권리 침해애 대해서도 적용 되어야.
+             \item 지배적인 협회는 다른 협회의 절차역시 공정하고 신뢰할 수 있는지 여부를 결정하고 자신의 구성원에 대해 결정된 절차만 사용하도록 강제하며, 지배적이기 때문에 다른 협회는 이에 반하는 동일한 수준의 권한을 행사할 수 없음.
+             \item 따라서 지배적인 협회가 존재하면, 자신의 영역에서 절차의 신뢰성과 공정성 기준에 대한 견해를 강요할 권한을 행사.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{독점적 영토}
+    \begin{itemize}
+        \item  상호보호협회가 국가로 발전하기 위해 지배적인 협회는 영토에 거주하는 모든 개인을 소속시켜야 함.
+        \begin{itemize}
+            \item 지배적인 협회가 강제력 사용에서, 어떤 절차가 신뢰할 수 있고 공정한지를 결정하기 위해 무력과 권력의 사용을 사실상 독점을 하게 되면, 비협회원은 협회원에 대하여 자신의 권리를 행사할 수 있는 능력이 심각하게 제한됨.
+             \item 지배적인 협회는 비회원이 소속 회원에 대하여 권리를 행사하는 것을 금지함.
+             \item  단, 이러한 금지는 비회원이 그로 인한 불이익에 대해 보상을 받는 경우에만 허용되며, 보상은 당연히 비회원에게 기관의 보호서비스를 무료 또는 기준가 이하의 수수료로 제공하는 형태로 해야.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{국가의 탄생}
+    \begin{itemize}
+        \item 지배적 보호 기관은 영토 내에서 무력 사용에 대한 독점권을 가지며 그 영토에 거주하는 모든 개인을 보호.
+        \item 구성원의 권리를 보호하고, 침해 시 신뢰할 수 있고 공정하다고 여기는 제도에 따라 분쟁을 심판하고 처벌.
+        \item 최소한의 국가는 자유의 원칙과 그 원칙에 따라 행동하는 사람들에 의해 생성될 수 있는 다양한 자연적, 계약적, 절차적 권리에 의해 위임된 기능 외에는 어떤 기능도 수행하지 않음.
+        \item 최소한의 국가는 무정부상태와 다름;  
+        \begin{itemize}
+            \item 국가 강압적의 행사는 개인의 권리를 계약을 통해 국가에 이전함으로써 발생한다는 점에서 개인의 자기 보호적 강압 활동과 구분.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\section{자격 이론}
+\begin{frame}[<+->]
+\frametitle{소유의 정의}
+    \begin{itemize}
+        \item Nozick은 정부가 구성원들에게 분배해야할 대상 그 자체가 없다고 주장.
+        \item 분배는 어떤 정당한 분배로부터 합법적인 수단을 통해서 이뤄질 때만 정당.
+        \item 합법적인 수단은 자원의 최초 획득 그리고 재화와 용역의 이전을 규정짓는 원칙에 의해 지정.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}[<+->]
+\frametitle{자격 이론}
+    \begin{itemize}
+        \item Nozick의 분배 정의는 자격의 문제; 자격을 갖추 소유만이 정의.
+        \begin{itemize}
+            \item 정당한 획득의 원칙 : 소유된 역사가 없는 자원의 원초적 할당에 대하여.
+            \item 정당한 이전의 원칙 : 재화와 용역의 개인간 교환에 대하여.
+            \item 교정의 원칙 : 위 두 원칙이 위반될 경우에 대하여.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+  
+\begin{frame}[<+->]
+\frametitle{정당한 획득의 원칙}
+    \begin{itemize}
+        \item 자연의 상태에는 다양한 (천연)자원이 존재.
+        \item 인간의 능력(노동력)과 결합하여 새로운 자원으로 전환.
+        \item 자원의 소유에는 두 가지 조건이 존재 :
+        \begin{itemize}
+            \item 개인은 자신이 훌륭하게 사용할 수 있는 정도 이상을 가질 수 없음.
+            \item 타인을 위하여 충분하면서 훌륭한 잔여물이 존재해야.
+        \end{itemize}
+        \item 원초적 소유는 타인의 상황을 악화 시키지 말아야.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{정당한 이전의 원칙}
+    \begin{itemize}
+        \item 정당한 이전은 당사자의 자발적 선택을 알린다는 점에서 하는 자유의 원칙.
+        \item 정당한 이전을 통해 물건을 얻는다면, 정당한 획득을 만족.
+        \item 정당햔 이전이 반복되는 한 모든 획득은 정당함.
+        \item 정당한 획득의 조건은 타인의 상황을 악화시키지 말아야 하고, 이는 정당한 이전의 원칙에 대한 제약으로 작용(예 : 물과 같은 필수재의 독점).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{교정의 원칙}
+    \begin{itemize}
+        \item 교정의 원칙은 단순하면서 강력함; 불의는 교정되어야 한다.
+        \item 그렇다면 불의란 무엇인가?
+        \item 모든 부당한 이전(예: 장물은 취득도 불법).
+        \item 그러나 Nozick은 부당한 이전이 어디까지 거슬러 올라가야 하는가에 대해서는 말하지 않음.
+        \begin{itemize}
+            \item 각국의 수탈당한 해외 문화재.
+            \item 식민지 경험에 대한 보상 등등.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{정의로운 분배 : 자유, 소유권, 계약}
+    \begin{itemize}
+        \item Nozick은 소유에 대한 개인의 권리라는 관점에서 분배적 정의를 설명.
+        \item 정당한 획득 또는 정당한 이전을 통한 획득만이 소유권을 인정받음.
+        \item 이 과정을 통한 소유가 아닌 경우, 교정의 원칙이 작동하여 현재의 소유를 부당하게 하는 모든 불의의 교정을 강제.
+        \item 교정의 원칙이 충족되고 과거에 교정이 필요한 부당함이 현재 소유로 이어지지 않으면 현재 소유는 정당하며, 모든 개인은 자신이 소유를 인정받을 자격을 획득.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{정의로운 분배 : 자유, 소유권, 계약}
+    \begin{itemize}
+        \item 하나의 분배가 다른 분배상태에서 이전에 의한 결과라면, 어떤 여건에 관계없이 그 자체로 정당.
+        \item 빈곤 또는 불평등의 정도, 개인의 특성이나 운, 행복감 등등의 어떤 요소도 무관.
+        \item 자원의 분배가 정당성은 소유자의 자격을 통해서만 판단.
+        \item 분배의 정의는 분배의 역사의 결과이며, 그 역사가 정의롭다면 분배도 정의로움.
+    \end{itemize}
+\end{frame}
+
+\section{작은 국가}
+
+\begin{frame}[<+->]
+\frametitle{재분배에 대한 시각}
+    \begin{itemize}
+        \item Nozick은 모든 재분배를 통한 분배적 정의의 개선시도는 부당하다고 주장.
+        \begin{itemize}
+            \item 개인은 정당한 소유물에 대한 권리가 존재.
+            \item 개인은 소유권을 가진 물건에 대하여 사용 및 처분권 역시 존재.
+            \begin{itemize}
+                \item 예를들어 개인이 자신의 칼을 팔거나, 창고에 두거나, 버릴 수 있지만, 타인에게 상처 입히거나 타인의 소유물을 상하게 할 수 없음.
+                \item 타인이 소유자의의 의지에 반해 칼을 가져간다면 절도이며 따라서 부당.
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{작은 국가}
+    \begin{itemize}
+        \item 작은 국가 이상의 기능을 가진 국가를 만들려는 모든 시도는 일부 사회 구성원의 권리를 침해.
+        \begin{itemize}
+            \item 개인의 재산을 가져가는 사람이 타인이든 공무원이든 개인에게는 동일.
+            \item 따라서 재산을 빼앗는 것과 관련된 (재)분배적 정의를 추구하는 것은 단순히 절도이며 권리에 대한 부당한 침해.
+            \item 국가 기능은 과세를 통해서만 얻을 수 있는 자금이 필요하기 때문이고, 따라서 구성원의 재산권을 침해.
+            \item 재분배적 과세는 "강제 노동과 동등"하다고 표현.
+            \item 사회 구성원에게 일하고 세금을 내는 것에 대한 대안이 없기 때문.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{분배정의에 대한 Nozick의 분류}
+    \begin{itemize}
+        \item 경향성의 유무.
+        \begin{itemize}
+            \item 키, 나이, 단순 평등, 신분 계층, 요구(needs)에 따른 분배는 유형이 있는 분배.
+            \item 자유나 효용의 원칙은 경향성이 없는 원칙.
+        \end{itemize}
+        \item 최종상태/이력(history)
+        \begin{itemize}
+            \item 분배적 정의의 요소로 시간 개념을 도입.
+            \item 역사적 원칙에 따르면 분배가 정당한지 아닌지는 그 역사에 달려 있음.
+            \item 최종상태의 원칙은 비역사적.
+            \begin{itemize}
+                \item 평등주의 원칙은 분배가 정당성을 오직 현재상태로만 판단.
+                \item 공리주의는 미래의 예상되는 결과를 고려하여 현재의 분배를 판단.
+            \end{itemize}
+        \end{itemize}
+        \item  Nozick의 자격 이론은 경향성이 없으며 동시에 역사적.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{자유 vs. 경향성}
+    \begin{itemize}
+        \item 자유는 경향성을 파괴하기 때문에 둘을 모두 만족 할 수 없음.
+        \begin{itemize}
+            \item 평등주의 분배 vs. 자발적 거래.
+            \item 평등사회에서 뛰어난 개인이 등장 한다면?
+            \item 시장에서 개인의 자발적인 거래는 모든 경향성을 파괴하고 대신 욕망, 재능, 장점, 노력 및 행운의 복잡한 기능에 따라 다양한 분배를 실현시키기 때문.
+        \end{itemize}
+        \item 자유와 경향성 사이에 양자택일의 문제 발생.
+        \begin{itemize}
+            \item 우리가 자유의 원칙을 받아들인다면 분배 정의의 모든 경향성 있는 원칙을 포기해야.
+            \item 효용의 원칙은 비역사적이지만 경향성은 없음.
+            \item 하지만 효용의 원칙 역시 자유를 저해할 수 있음.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{자유 지상주의 vs. 우파적 자유주의}
+    \begin{itemize}
+        \item Hayek : 자유를 누릴때 선의 총량이 극대화; 자유와 효용의 결합.
+        \item Nozick : 자유가 선의 총량을 극대화 하는 특성은 없고, 오히려 양자택일의 상황이 존재.
+        \begin{itemize}
+            \item 탈모제 vs.에이즈 신약, 의사 vs. 연예인.
+        \end{itemize}
+        \item 분배 정의의 경향성 있는 원칙을 추구하는 것은 일반적 자유와 구체적인 개인의 권리를 모두 침해하며 허용되지 않음.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{자유지상주의와 기회}
+    \begin{itemize}
+        \item 평등한 기회의 원칙에도 마찬가지로 적용 됨.
+        \begin{itemize}
+            \item 국가가 어떤 종류의 차별을 행하는 것 역시 불의; 국가는 영토에 거주하는 모든 사람에게 동등하게 권리를 보장할 의무가 있음.
+            \item 그러나, 평등한 기회를 추구하려면 더 많은 기회를 가진 사람들의 상황을 악화시키거나 기회가 적은 사람들의 상황을 개선해야.
+            \item 개인에게 자격이 있는 소유는 다른 사람들에게 기회의 평등을 제공하기 위해서 몰수할 수 없음.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{자유 지상주의 vs. 좌파적 자유주의I}
+    \begin{itemize}
+        \item 롤즈의 정의 이론은 정확하게 최종 상태만을 고려하는 이론이 아님. 
+        \begin{itemize}
+            \item 공정함으로서의 정의의 원칙에 의해 잘 정돈된 사회에서 분배의 정의는 역사의 결과.
+            \item 개인들은 그 사회의 규칙에 따라 행동하여 재산을 얻었다면 소유에 대한 자격이 있음.
+        \end{itemize}
+        \item 롤즈의 정의 이론은 경향성만으로 구분할 수 없음.
+        \begin{itemize}
+             \item 롤즈의 정의 원칙은 기본적인 자유, 기회의 공정한 평등을 보장하고 시간이 지남에 따라 부와 소득의 분배가 가장 적게 가진 사람들에게 유리하게 되는 경향이 있는 제도의 설계.
+             \item 차등의 원칙은 부와 소득의 분배가 따라야 하는 경향성을 규정하는 원칙이 아님.
+             \item 구성원이 사회의 경제 제도의 설계에 대해 어떻게 생각해야 하는지를 규정.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{자유 지상주의 vs. 좌파적 자유주의II}
+    \begin{itemize}
+        \item 롤즈의 정의 이론은 사회 구성원의 권리 침해를 정당화하지 않고,시간이 지남에 따라 공정성을 보장하기 위해 자격 제도를 설계하도록 유도.
+        \begin{itemize}
+            \item 정의가 공평하게 규정한 사회에서 개인들은 시간이 지남에 따라 그러한 거래의 누적 결과가 공정하다는 것을 보장하도록 설계된 제도에서 발생하는 자발적 거래에 의해 소유물을 얻을 자격을 획득.
+            \item 시장에서 자발적인 거래에 참여하는 개인들의 결과인 분배는 평등이나 효용 등의 경향성을 가지더라도 공정하고 정당.
+        \end{itemize}
+        \item 개인들은 세후 소득과 세금을 뺀 재산 가치에 대한 자격을 얻음.
+        \begin{itemize}
+            \item 소득이나 재산에 대해 세금을 부과받는 경우, 이 세금은 자격에서 제외되는 것으로 간주.
+            \item 세금은 개인들이 받을 자격이 있는 것을 정의하는 제도의 일부.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{자유 지상주의 vs. 좌파적 자유주의(권리론)}
+    \begin{itemize}
+        \item 자유지상주의자들은 자격이 사회보다 우선하며 사회는 개인들이 가진 기존 자격을 보호하고 확보하기 위해 만들어졌다고 생각.
+        \begin{itemize}
+             \item 개인에게는 국가가 보호하고 존중해야 하는 재산권과 계약을 체결할 권리가 존재.
+        \end{itemize}
+        \item 좌파적 자유주의자들은 사회의 핵심이 기존의 자격이나 권리를 확보하는 것이라는 주장에 이견.
+        \begin{itemize}
+            \item 사회가 시간이 지남에 따라 분배의 공정성을 보장할 수 있는 자격 제도를 만들어야.
+            \item 개인들이 가져야 하는 재산권 및 계약권은 공정하고 효율적인 경제를 보장하기 위해 제도를 가장 잘 설계할 수 있는 방법에 달려.
+        \end{itemize}
+        \item 좌파적 자유주의자에게 사회는 공정하고 효율적인 사회적 협력을 가능하게 하기 위해 존재하며, 권리와 제도는 시간이 지남에 따라 공정한 협력을 촉진하고 보장하도록 설계되어야.
+    \end{itemize}
+\end{frame}
+
+\end{document}

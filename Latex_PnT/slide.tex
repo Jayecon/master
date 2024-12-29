@@ -1,0 +1,519 @@
+\documentclass[handout, 10pt]{beamer}
+\usepackage[hangul]{kotex}
+\usepackage[T1]{fontenc}
+
+% other packages
+\usepackage{natbib}
+\usepackage{graphicx,float,pstricks,listings,stackengine,xcolor,calligra}
+\usepackage{amsmath,amssymb,latexsym}
+\usepackage{booktabs,longtable,multicol,multirow,lscape,rotating}
+\usepackage{caption,subcaption}
+    \newcommand{\source}[1]{\subcaption*{\raggedright 자료: {#1} } }
+\usepackage{threeparttable} % Align column caption, table, and notes
+\usepackage{adjustbox} % Shrink stuff
+%\usepackage{showframe} % Useful for debugging
+
+\author{오성재}
+\title{기회불평등과 경제성장}
+%\subtitle{}
+%\institute{서울대학교 경제학과 박사과정 \\ 박사학위 논문심사}
+\institute{한남대학교 탈메지이 교양학부}
+\date{\today}
+\usetheme{Darmstadt}
+%\usepackage{warehouse/PekingU}
+
+% defs
+\def\cmd#1{\texttt{\color{red}\footnotesize $\backslash$#1}}
+\def\env#1{\texttt{\color{blue}\footnotesize #1}}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{halfgray}{gray}{0.55}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\bfseries\color{deepblue},
+    emphstyle=\ttfamily\color{deepred},    % Custom highlighting style
+    stringstyle=\color{deepgreen},
+    numbers=left,
+    numberstyle=\small\color{halfgray},
+    rulesepcolor=\color{red!20!green!20!blue!20},
+    frame=shadowbox,
+}
+
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+    %\begin{figure}[htpb]
+        %\begin{center}
+            %\includegraphics[width=0.2\linewidth]{pic/PKU_logo.png}
+        %\end{center}
+    %\end{figure}
+\end{frame}
+
+%\AtBeginSection[]
+%{
+  %\begin{frame}
+    %\frametitle{Table of Contents}
+    %\tableofcontents[sectionstyle=show,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide,currentsection]
+  %\end{frame}
+%}
+
+\begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[sectionstyle=show,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
+\end{frame}
+
+\section{문제제기}
+\begin{frame}
+    \begin{itemize}
+        \item 불평등과 경제성장의 단기 관계에 대한 실증연구는 다양한 결과를 제시함.
+    \end{itemize}
+    \begin{figure}[htpb]
+        \begin{center}
+            \caption{경제성장, 불평등 그리고 빈곤의 관계}
+            \includegraphics[scale=0.35]{fig/triangle_relations.png}
+            \source{\cite{cetl21}} 
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\section{선행연구}
+
+\subsection{불평등과 경제성장}
+\begin{frame}{한 경제의 불평등이 경제성장에 미치는 효과}
+    \begin{itemize}
+        \item 이론적 연구
+        \begin{itemize}
+            \item 물적 자본.
+            \item 인적 자본(\cite{gnz93}).
+            \item 소득재분배(\cite{anr94}; \cite{pnt94}).
+            \item 정치 불안정 등등.
+        \end{itemize}
+        \item 실증적 연구
+        \begin{itemize}
+            \item 횡단면 자료.
+            \item 국가별 패널자료.
+            \item 국가별 패널자료 $+$ 기타 고려사항.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{실증연구의 동향}
+    \begin{itemize}
+        \item 횡단면 자료: \cite{barro91}, \cite{anr94}, \cite{pnt94}
+        \begin{itemize}
+            \item 불평등은 경제성장에 부의 영향
+        \end{itemize}
+        \item 국가별 패널자료: \cite{lnz98}, \cite{barro20}, \cite{forbes00}, \cite{bnd03}
+        \begin{itemize}
+            \item 효과의 방향이 불확실, 부/영/정의 영향
+        \end{itemize}
+        \item 국가별 패널자료 + 국가별 이질성 및 세부 구성요인:
+        \begin{itemize}
+            \item \cite{voit05, voit11}: 중상위 불평등, 중하위 불평등
+            \item \cite{cc10}: 중/저소득 vs. 고소득 국가 집단
+            \item \cite{hetl14}: 단기 vs. 장기
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+
+\subsection{기회불평등}
+\begin{frame}{기회불평등과 경제성장}
+    \begin{itemize}
+        \item \cite{mnr13} : 미국내 주를 대상으로 연구를 진행하여 기회불평등이 경제성장에 부정적인 반면 잔여 불평등은 긍정적임을 보임.
+        \begin{itemize}
+            \item 미국의 50개 주가 분석대상, 1970-1990년대 말.
+            \item 사람들의 자유로운 이동이 가능한 경우 기회불평등의 효과 추정치 편의.
+        \end{itemize}
+        \item \cite{fetl18} : 기회불평등과 경제성장의 관계에 대하여 연구를 진행. 총불평등과 기회불평등이 경제성장과 부의 관계를 가짐을 확인.
+        \begin{itemize}
+            \item 전 세계 42개국의 가구조사 및 건강조사 미시자료 이용, 1985-2005년.
+            \item 경제적 기회의 핵심변수인 부모의 경제력 변수(부모의 학력, 소득, 재산 등)가 부재한 상태 에서 기회불평등도 측정.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{기회불평등과 경제성장}
+    \begin{itemize}
+        \item \cite{ane20} : 기회불평등과 소득불평등의 교차항을 통해 기회불평등한 국가에서 소득의 불평등이 경제성장과 부의 관계를 가짐을 보임.
+        \begin{itemize}
+            \item 기회불평등을 세대간 소득$\cdot$교육탄력성으로 측정.
+            \item 성취에 대한 기회와 노력의 기여에 대한 구분이 없음.
+        \end{itemize}
+        \item \cite{kno17} : 교육의 불평등을 기회의 불평등과 잔여 불평등으로 분해. OECD 국가들의 경우 기회의 불평등은 경제성장에 부정적 영향을 주고 잔여 불평등은 경제성장에 긍정적 영향을 미침.
+        \begin{itemize}
+            \item 국제교육평가자료인 TIMSS를 사용.
+            \item 기회불평등의 최소한으로 측정하는 불평등지수 사용.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\section{연구방법}
+\subsection{기회불평등지수}
+\begin{frame}{기호}
+    \begin{itemize}
+        \item  $i$ : 개인, $(i \in \{1,\ldots,N \} )$.
+        \item 환경변수 $C_{ic}$ : 개인 $i$의 성취에 영향을 주면서 그 개인이 스스로의 의지로 선택할 수 없는 요인.(부모의 소득, 학력, 인종, 성별 등등.).
+        \item 환경 $C_i$ : 개인 $i$가 속한 환경변수$C_{ci}$ 들의 c-터플(c-turple) $C_i = (C_{1i}, \ldots , C_{ci})$. 
+        \item 환경유형 $T= \{1, \ldots , t \}$, $t= ||C_1|| \times \cdots \times ||C_c||$ : 가능한 모든 환경의 지표(index).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{성취, 환경 그리고 노력}
+    \begin{itemize}
+        \item 개인 $i$의 성취인 성적점수를 $y_i$, 그가 속한 환경을 $C_i$, 노력을 $e_i$라고 표시하자.
+        \item 기회불평등의 관점에서 성취는 개인이 속한 환경 및 환경과 무관한 개인의 노력의 결과라고 정의한다.
+        \item 개인 $i$ 성취 $y_i$는 환경 $C_i$ 및 노력 $e_i$에 대하여 다음의 선형함수관계를 가진다고 가정한다.
+        \begin{equation}
+            \label{eq:ols}
+             y_{i} =\beta _0 +  \beta _1 C_{1i} + \cdots + \beta _c C_{ci} + \epsilon _i
+        \end{equation}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\cite{fng11}}
+    \begin{itemize}
+        \item 성취의 불평등을 기회의 불평등과 노력의 불평등으로 분해하기 위해 가산적 분해가능성(additively decomposibility)이 있는 타일-0(Theil-0) 지수를 이용한다.
+        \begin{equation}
+            \label{eq:theil0}
+            T(Y)=\frac{1}{N} \sum_{i=1}^{N} \ln \left(\frac{\bar{y}}{y_{i}}\right)
+        \end{equation} 
+        \item \cite{fng11}는 식 (\ref{eq:ols})을 식 (\ref{eq:theil0})에 대입하는 방법으로 기회불평등과 잔여불평등을 구분한다.
+    \end{itemize}
+    \begin{equation}
+        \label{eq:theil0-decompose}
+        T(Y)=T(C ' \cdot \beta) + T(\epsilon)
+    \end{equation}
+\end{frame}
+
+\begin{frame}{순수한 노력}
+    \begin{itemize}
+        \item \cite{betl12}는 \cite{Roemer98}의 순수한 노력(pure effort) 개념을 도입하여 식 (\ref{eq:ols})에서 오차항에 존재하는 환경의 영향을 받는 성취를 찾는다.
+        \item 오차항이 환경의 영향을 받는다면 조건부 분산 $\sigma ^2 _c = Var[\epsilon |C_c]$이 환경별로 상이할 것이다.
+        \item 잔차의 총분산이 $\sigma ^2 =  \sum _c f_c \sigma ^2 _c$인 점을 이용해 오차항의 이분산성을 해소할 수 있다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\cite{betl12}}
+    \begin{itemize}
+        \item  $k = ( 1 / \sum _c f _c \sigma ^2 _c ) ^{-1/2}$라고 한다면, 식 (\ref{eq:ols})을 아래와 같이 바꿀 수 있다. 
+        \begin{equation}
+            \label{eq:bjork}
+            \begin{aligned} Y_{i} &= \beta _0 +  \beta _1 C_{1i} + \cdots + \beta _c C_{ci} + \epsilon_{i} \\ &= \beta _0 +  \beta _1 C_{1i} + \cdots + \beta _c C_{ci} +\epsilon_{i}-\underbrace{\epsilon_{i} / k \sigma_{c}}_{u_{i}}+\underbrace{\epsilon_{i} / k \sigma_{c}}_{u_{i}} \\ &= \beta _0 +  \beta _1 C_{1i} + \cdots + \beta _c C_{ci} +\widetilde{\epsilon}_{i}+u_{i}, \end{aligned}
+        \end{equation}
+        \item 식 (\ref{eq:theil0-decompose})은 아래와 같이 바꿀 수 있다.. 
+        \begin{equation}
+            \label{eq:theil0-bjork}
+            T(Y)=T(C' \cdot \beta +\widetilde{\epsilon}) + T ( u )
+        \end{equation}
+        \item 위 식의 우변 첫번째 항은 기회의 불평등을 나타내고 두번째 항은 노력의 불평등이다.
+    \end{itemize}
+\end{frame}
+
+\subsection{회귀분석모형}
+\begin{frame}{회귀분석모형}
+   \begin{itemize}
+       \item  본 연구에서 우리는 성장 회귀분석(growth regression)에서 일반적으로 사용하는 다음의 실증모형을 추정한다.
+       \item 회귀분석은 선형회귀분석(OLS), 패널 고정효과(fixed effect) 모형, 시스템 GMM(\cite{bnb98}) 방법을 적용함으로써 주요 계수들을 추정한다.
+       \begin{equation}
+            \begin{aligned}
+            \ln \left(Y_{i, t^{\prime}}\right)-\ln \left(Y_{i, t}\right)=& \delta_{1} I O P_{i, t}+\delta_{2} I O E_{i, t}+\beta_{1} \ln \left(Y_{i, t}\right) \\
+            &+X_{i, t} \beta_{2} +\alpha_{i}+\tau_{t^{\prime}}+u_{i, t^{\prime}}
+            \end{aligned}
+            \label{eq:regbase}
+       \end{equation} 
+   \end{itemize} 
+\end{frame}
+ 
+\begin{frame}{회귀분석모형의 기호}
+   \begin{itemize}
+        \item $i$ : 국가, $t$ : 교육기회불평등의 측정연도
+        \item $t'$ : TIMSS의 경우 $t'=t+4$, PISA의 경우  $t'=t+3$
+        \item $Y_{i,t}$ : 국가 $i$의 연도 $t$현재 1인당 GDP
+        \item $IOP_{i,t}$ : 기회불평등 지수, $IOE_{i,t}$ : 노력 불평등의 지수
+        \item $X_{i,t}$ : 국가 $i$의 $t$연도 현재 특성변수들(인구 수 및 투자재의 가격)의 벡터 
+        \item $\alpha _i$ : 국가 고정효과, $\tau _{t'}$ : 연도 고정효과
+   \end{itemize} 
+\end{frame}
+
+\section{자료소개}
+\begin{frame}{TIMSS}
+    \begin{itemize}
+        \item TIMSS (Trends in International Mathematics and Science Study)
+        \begin{itemize}
+            \item 1995, 1999, 2003, 2007, 2011, 2015, 2019년도 조사
+            \item 수학/과학 학업(curriculum)성취도 검사
+            \item 4학년과 8학년 학생들을 대상으로 시행.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{PISA}
+    \begin{itemize}
+         \item PISA (Programme for International Student Assessment)
+        \begin{itemize}
+            \item 2000, 2003, 2006, 2009 , 2012, 2015, 2018년도 조사
+            \item 읽기/수학/과학 문해력(literacy) 검사
+            \item 만 15세 대상으로 시행.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{추가 자료설명}
+    \begin{itemize}
+        \item Penn World Table로부터 국가별 1인당 GDP 및 인구, 투자재의 가격 등 거시 통제변수 구축.
+        \item 공통사항
+        \begin{itemize}
+            \item 학생의 개인/가정/교사/학교 정보 조사.
+            \item 각 조사마다 34-77개 국가 참가, 총 98개국의 성적 자료.
+            \item 전세계 참여학생의 수학성적을 평균 500 분산 100점으로 정규화.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{환경변수}
+    \begin{itemize}
+    \item 부친 및 모친모의 학력 :
+    \begin{itemize}
+        \item ISCED Lv에 따라 분류(1-7)를 단순 합산하여 2-14의 값을 취함.
+    \end{itemize}
+    \item 장서수 :
+    \begin{itemize}
+        \item (1) 10권 미만 - (5) 200권 초과
+    \end{itemize}
+    \item 가정내 소유물
+    \begin{itemize}
+        \item 책상, 학생방, 컴퓨터, 인터넷 등 4개 항목을 더미로 조사하여 합산(0-4)
+    \end{itemize}
+    \item 최대 325개(=13$\times$5$\times$5)의 독립적인 환경 조합을 구성하여 기회불평등의 비중 계산
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{PISA와 TIMSS의 자료 차이: 응답률}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[scale=0.08]{fig/pnt_response.png}
+            \caption{PISA와 TIMSS 환경변수 응답률}
+        \end{center}
+    \end{figure}
+    \begin{itemize}
+        \item TIMSS의 경우 학생이 자신의 가정환경을 응답하므로 환경변수를 활용하는 본 연구는 해당자료 사용에서 응답률의 문제를 안고 있음.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{PISA와 TIMSS의 자료 차이: 학업성취도 vs. 문해력}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[scale=0.1]{fig/bar_pntcompare.png}
+            \caption{PISA와 TIMSS 불평등 비교}
+        \end{center}
+    \end{figure}
+    \begin{itemize}
+        \item 국가별 성적의 평균을 중심으로 살펴볼때 학업성취도와 문해력은 매우 밀접한 관계를 보임.
+        \item 국가별 성적의 분포를 중심으로 살펴보면 교육제도가 잘 갖춰진 국가일수록 두 교육성취는 차이를 보임. 
+    \end{itemize}
+\end{frame}
+
+\section{주요결과}
+\subsection{교육불평등지수}
+\begin{frame}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics<1| handout:1>[scale=0.15]{fig/map_bjtpisa_mean.png}
+            \includegraphics<2| handout:0>[scale=0.15]{fig/map_bjtpisa_2000.png}
+            \includegraphics<3| handout:0>[scale=0.15]{fig/map_bjtpisa_2003.png}
+            \includegraphics<4| handout:0>[scale=0.15]{fig/map_bjtpisa_2006.png}
+            \includegraphics<5| handout:0>[scale=0.15]{fig/map_bjtpisa_2009.png}
+            \includegraphics<6| handout:0>[scale=0.15]{fig/map_bjtpisa_2012.png}
+            \includegraphics<7| handout:0>[scale=0.15]{fig/map_bjtpisa_2015.png}
+            \includegraphics<8| handout:0>[scale=0.15]{fig/map_bjtpisa_2018.png}
+            \caption{PISA 총불평등}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics<1| handout:1>[scale=0.15]{fig/map_bjrpisa_mean.png}
+            \includegraphics<2| handout:0>[scale=0.15]{fig/map_bjrpisa_2000.png}
+            \includegraphics<3| handout:0>[scale=0.15]{fig/map_bjrpisa_2003.png}
+            \includegraphics<4| handout:0>[scale=0.15]{fig/map_bjrpisa_2006.png}
+            \includegraphics<5| handout:0>[scale=0.15]{fig/map_bjrpisa_2009.png}
+            \includegraphics<6| handout:0>[scale=0.15]{fig/map_bjrpisa_2012.png}
+            \includegraphics<7| handout:0>[scale=0.15]{fig/map_bjrpisa_2015.png}
+            \includegraphics<8| handout:0>[scale=0.15]{fig/map_bjrpisa_2018.png}
+            \caption{PISA 기회불평등의 비중}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics<1| handout:1>[scale=0.15]{fig/map_bjttimss_mean.png}
+            \includegraphics<2| handout:0>[scale=0.15]{fig/map_bjttimss_1995.png}
+            \includegraphics<3| handout:0>[scale=0.15]{fig/map_bjttimss_1999.png}
+            \includegraphics<4| handout:0>[scale=0.15]{fig/map_bjttimss_2003.png}
+            \includegraphics<5| handout:0>[scale=0.15]{fig/map_bjttimss_2007.png}
+            \includegraphics<6| handout:0>[scale=0.15]{fig/map_bjttimss_2011.png}
+            \includegraphics<7| handout:0>[scale=0.15]{fig/map_bjttimss_2015.png}
+            \includegraphics<8| handout:0>[scale=0.15]{fig/map_bjttimss_2019.png}
+            \caption{TIMSS 총불평등}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics<1| handout:1>[scale=0.15]{fig/map_bjrtimss_mean.png}
+            \includegraphics<2| handout:0>[scale=0.15]{fig/map_bjrtimss_1995.png}
+            \includegraphics<3| handout:0>[scale=0.15]{fig/map_bjrtimss_1999.png}
+            \includegraphics<4| handout:0>[scale=0.15]{fig/map_bjrtimss_2003.png}
+            \includegraphics<5| handout:0>[scale=0.15]{fig/map_bjrtimss_2007.png}
+            \includegraphics<6| handout:0>[scale=0.15]{fig/map_bjrtimss_2011.png}
+            \includegraphics<7| handout:0>[scale=0.15]{fig/map_bjrtimss_2015.png}
+            \includegraphics<8| handout:0>[scale=0.15]{fig/map_bjrtimss_2019.png}
+            \caption{TIMSS 기회불평등의 비중}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\subsection{성장회귀분석}
+\begin{frame}
+    \begin{table}[htbp]
+        \begin{adjustbox}{width=\textwidth, totalheight=\textheight-2\baselineskip,keepaspectratio}
+            \begin{threeparttable}
+                \input{tab/pisa_reg1}
+            \end{threeparttable}
+        \end{adjustbox}
+    \end{table}
+\end{frame}
+
+\begin{frame}
+    \begin{table}[htbp]
+        \begin{adjustbox}{width=\textwidth, totalheight=\textheight-2\baselineskip,keepaspectratio}
+            \begin{threeparttable}
+                \input{tab/pisa_reg2}
+            \end{threeparttable}
+        \end{adjustbox}
+    \end{table}
+\end{frame}
+
+
+\begin{frame}
+    \begin{table}[htbp]
+        \begin{adjustbox}{width=\textwidth, totalheight=\textheight-2\baselineskip,keepaspectratio}
+            \begin{threeparttable}
+                \input{tab/timss_reg1}
+            \end{threeparttable}
+        \end{adjustbox}
+    \end{table}
+\end{frame}
+
+\begin{frame}
+    \begin{table}[htbp]
+        \begin{adjustbox}{width=\textwidth, totalheight=\textheight-2\baselineskip,keepaspectratio}
+            \begin{threeparttable}
+                \input{tab/timss_reg2}
+            \end{threeparttable}
+        \end{adjustbox}
+    \end{table}
+\end{frame}
+
+\subsection{성장회귀분석}
+\begin{frame}
+    \begin{table}[htbp]
+        \begin{adjustbox}{width=\textwidth, totalheight=\textheight-2\baselineskip,keepaspectratio}
+            \begin{threeparttable}
+                \input{tab/pisa_reg_rob1}
+            \end{threeparttable}
+        \end{adjustbox}
+    \end{table}
+\end{frame}
+
+\begin{frame}
+    \begin{table}[htbp]
+        \begin{adjustbox}{width=\textwidth, totalheight=\textheight-2\baselineskip,keepaspectratio}
+            \begin{threeparttable}
+                \input{tab/pisa_reg_rob2}
+            \end{threeparttable}
+        \end{adjustbox}
+    \end{table}
+\end{frame}
+
+\begin{frame}
+    \begin{table}[htbp]
+        \begin{adjustbox}{width=\textwidth, totalheight=\textheight-2\baselineskip,keepaspectratio}
+            \begin{threeparttable}
+                \input{tab/timss_reg_rob1}
+            \end{threeparttable}
+        \end{adjustbox}
+    \end{table}
+\end{frame}
+
+\begin{frame}
+    \begin{table}[htbp]
+        \begin{adjustbox}{width=\textwidth, totalheight=\textheight-2\baselineskip,keepaspectratio}
+            \begin{threeparttable}
+                \input{tab/timss_reg_rob2}
+            \end{threeparttable}
+        \end{adjustbox}
+    \end{table}
+\end{frame}
+
+\section{결론}
+\begin{frame}
+    \begin{itemize}
+        \item 본연구는 TIMSS와 PISA 두 가지 국제교육평가자료를 이용해 교육의 총불평등을 계산한 후 이를 기회불평등과 노력불평등으로 분해함.
+        \begin{itemize}
+            \item 총불평등은 동유럽, 중동 및 남미 등 개도국들이 선진국 국가보다 높은 것으로 나타남.
+            \item 총불평등에서 기회불평등이 차지하는 비중은 미국, 서유럽과 같은 선진국가들에서도 심각한 것으로 나타남.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{itemize}
+        \item 상이한 성격의 불평등이 3-4년 뒤 경제성장에 어떤 영향을 주는 가에 대하여 분석한 결과 불평등의 성격과 국가의 발전상태에 따라 상이한 방향으로 작용함을 확인.
+        \begin{itemize}
+            \item 학업성취도의 노력불평등은 OECD 국가들의 4년뒤 경제성장에 부정적 영향을 줌.
+            \item 학업성취도의 기회불평등은 비OECD 국가들의 4년뒤 경제성장에 긍정적 영향을 줌.
+            \item 문해도의 기회불평등은 3년뒤 경제성장에 유의하지 않은 긍정적 영향을 줌.
+            \item 문해도의 노력불평등은 비OECD 국가들의 경우 3년뒤 경제성장에 부정적 영향을 줌.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{itemize}
+        \item 본 연구의 불평등은 교육의 기회불평등임. 
+        \begin{itemize}
+            \item 경제성장과 관련하여 소득의 기회불평등이 더 적합하지만 자료의 한계가 존재.
+        \end{itemize}
+        \item 학업성취도와 문해력의 차이에 대한 추가연구가 필요함.
+        \begin{itemize}
+            \item 경제성장과 관련하여 두 교육성취가 주는 영향의 방향이 상이함을 확인.
+        \end{itemize}
+        \item 한국의 경우 학생이 노력을 할 수 있는 최소한의 환경을 갖춰주는 것이 필요함.(예: 무료 자습실, 온라인 강의 바우처 등등.)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+    \bibliography{Bibliography.bib}
+    \bibliographystyle{apalike}
+    % \tiny\bibliographystyle{alpha}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        {\Huge 감사합니다.}
+    \end{center}
+\end{frame}
+
+\end{document}
