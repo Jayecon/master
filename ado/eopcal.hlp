@@ -1,0 +1,47 @@
+{smcl}
+*{hline}
+{title:help for eopcal}
+*{hline}
+
+{phang} 
+{cmd:eopcal} — Nonparametric analysis tool for (in)equality of opportunity
+
+{title:Syntax}
+{phang2}
+{cmd:eopcal} {varlist} [{cmd:if}] [{cmd:in}] [{cmd:pweight}|{cmd:aweight}|{cmd:fweight}|{cmd:iweight}], 
+    [{cmd:ENVironment(varname)} {cmd:GOIndex} {cmd:RRIndex} {cmd:BJORKlund}]
+
+{title:Description}
+{pstd}
+{cmd:eopcal} is a Stata command designed for analyzing (in)equality of opportunity in a nonparametric way.
+It allows users to calculate various indices related to opportunity inequality, including the GOIndex and RRIndex.
+
+{title:Options}
+{phang}
+{opt ENVironment(varname)} — Specifies a numeric variable representing the environment variable to include in the analysis.{p_end}
+{phang}
+{opt GOIndex} — Computes the Generalized Opportunity Index.{p_end}
+{phang}
+{opt RRIndex} — Computes the Relative Risk Index.{p_end}
+{phang}
+{opt BJORKlund} — Includes Björklund's decomposition in the analysis.{p_end}
+
+{title:Remarks}
+{pstd}
+Ensure that the {cmd:varlist} includes numeric variables only. The command supports weighting through the available weight options.{p_end}
+
+{title:Examples}
+{phang}
+Basic usage:{p_end}
+{phang2}
+. {cmd:eopcal income, ENVironment(region) GOIndex}{p_end}
+
+{phang}
+With weights:{p_end}
+{phang2}
+. {cmd:eopcal income, ENVironment(region) GOIndex pweight(pop)}{p_end}
+
+{title:Author}
+{pstd}
+Jay Oh, August 2017{break}  
+Updated in November 2019 and June 2020.{p_end}

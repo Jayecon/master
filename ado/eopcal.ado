@@ -18,12 +18,6 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
     GRoup                                               ///Options for EOp distributions.
     DEtail MODIfied TRace(integer 0) SAVing(string) ] ; ///Extra options.
     /* ARGUMENTS CHECK LIST {{{*/
-        /* TRACE ON/OFF */
-            if ("`trace'" != "0") {;
-                set trace on ;
-                set traced `trace' ;
-                set traceindent on ;
-            };
         /* CHECK THE ENVIRONMENT VALUE FORM */
             if "`environment'" != "" { ;
                 qui levelsof `environment' , local(typloc) ;
@@ -45,17 +39,17 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
                 local weight fw ;
                 local exp "= `wgt'" ;
             };
-            if ("`weight'"=="iweight") { ;
-                local wvar=strltrim(subinstr("`exp'","=","",1)) ;
-                sum `exp' , meanonly ;
-                gen `wgt'=`wvar'/(r(mean)) ;
-                local exp "=`wgt'" ;
-            };
-            if ("`weight'"=="fweight") {;
-                local wvar=strltrim(subinstr("`exp'","=","",1)) ;
-                qui gen `wgt' = round(`wvar' , 1) ; 
-                local exp "=`wgt'" ;
-            };
+            /*if ("`weight'"=="iweight") { ;*/
+                /*local wvar=strltrim(subinstr("`exp'","=","",1)) ;*/
+                /*sum `exp' , meanonly ;*/
+                /*gen `wgt'=`wvar'/(r(mean)) ;*/
+                /*local exp "=`wgt'" ;*/
+            /*};*/
+            /*if ("`weight'"=="fweight") {;*/
+                /*local wvar=strltrim(subinstr("`exp'","=","",1)) ;*/
+                /*qui gen `wgt' = round(`wvar' , 1) ; */
+                /*local exp "=`wgt'" ;*/
+            /*};*/
         /* CHECK IF THE OPTION RRINDEX HAS THE FORM OF (TYPE , CRITERA) */
             if `"`rrindex'"' != "" {; 
                 local rrindex
@@ -130,6 +124,12 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
                 };
                 local itt itt ;
             }; 
+        /* TRACE ON/OFF */
+            if ("`trace'" != "0") {;
+                set trace on ;
+                set traced `trace' ;
+                set traceindent on ;
+            };
     /*}}}*/
     marksample touse  ;
     markout `touse' `environment' ;
