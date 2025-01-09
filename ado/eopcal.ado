@@ -39,17 +39,6 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
                 local weight fw ;
                 local exp "= `wgt'" ;
             };
-            /*if ("`weight'"=="iweight") { ;*/
-                /*local wvar=strltrim(subinstr("`exp'","=","",1)) ;*/
-                /*sum `exp' , meanonly ;*/
-                /*gen `wgt'=`wvar'/(r(mean)) ;*/
-                /*local exp "=`wgt'" ;*/
-            /*};*/
-            /*if ("`weight'"=="fweight") {;*/
-                /*local wvar=strltrim(subinstr("`exp'","=","",1)) ;*/
-                /*qui gen `wgt' = round(`wvar' , 1) ; */
-                /*local exp "=`wgt'" ;*/
-            /*};*/
         /* CHECK IF THE OPTION RRINDEX HAS THE FORM OF (TYPE , CRITERA) */
             if `"`rrindex'"' != "" {; 
                 local rrindex
@@ -100,9 +89,9 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
                 local timew       = strltrim(strrtrim(subinstr("`timew'"       , ",","",1))) ;
                 local iopaversion = strltrim(strrtrim(subinstr("`iopaversion'" , ",","",1))) ;
                 local effortgrp   = strltrim(strrtrim(subinstr("`effortgrp'"   , ",","",1))) ;
-                if !inlist("`eopdist'" , "expost" , "exantepr" ) { ;
+                if !inlist("`eopdist'" , "expost" , "exante" ) { ;
                 di as error "ERROR in the 1st arg. " 
-                    as text "The following values are required: expost or exantepr." ;
+                    as text "The following values are required: expost or exante." ;
                 exit ;
                 } ;
                 if !inlist("`timew'" , "early" , "late" , "equal" ) { ;
@@ -131,11 +120,12 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
                 set traceindent on ;
             };
     /*}}}*/
-    marksample touse  ;
-    markout `touse' `environment' ;
-    preserve ;
-    qui keep if `touse' ;
-    tempname tmx tmx2 ;
+    /* Marksample */
+        marksample touse  ;
+        markout `touse' `environment' ;
+        preserve ;
+        qui keep if `touse' ;
+        tempname tmx tmx2 ;
     /*GOI*/
         if ("`goindex'" != "") {;
             goi `varlist' [`weight' `exp'] , environment(`environment') `detail' `modified' ;
@@ -389,56 +379,11 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
     restore ;
     end;
 /* LIST OF SUB PROGRAMS */
-    /* STATS PROGRAM {{{*/
-        capture program drop stats ;
-        program define stats , rclass; 
-        syntax varlist [fw aw pw iw] , ENVironment(varlist numeric) ;
-        local rownum = $typnum + 1 ;
-        local typval : value label `environment' ;
-        tempname temp ;
-            matrix `temp' = J(`rownum',10,.) ;
-        local rowname All ;
-        qui sum `varlist'[`weight' `exp'] ;
-        matrix `temp'[1,1] = -1 ;
-        matrix `temp'[1,2] = r(N) ;
-        matrix `temp'[1,3] = (`temp'[1,2]/`temp'[1,2]) ;
-        matrix `temp'[1,4] = r(mean) ;
-        matrix `temp'[1,5] = r(sd) ;
-        matrix `temp'[1,6] = r(min) ;
-        matrix `temp'[1,7] = r(max) ;
-        matrix `temp'[1,8] = r(sum_w) ;
-            qui count if `varlist' == 0 ;
-            matrix `temp'[1,9] = r(N) ;
-            matrix `temp'[1,10] = (`temp'[1,9]/`temp'[1,2]) ;
-        local count = 2 ;
-        foreach i of global typlist {;
-            qui sum `varlist' if `environment' == `i' [`weight' `exp'] ;
-            matrix `temp'[`count',1] = `i' ;
-            matrix `temp'[`count',2] = r(N) ;
-            matrix `temp'[`count',3] = (`temp'[`count',2]/`temp'[1,2]) ;
-            matrix `temp'[`count',4] = r(mean) ;
-            matrix `temp'[`count',5] = r(sd) ;
-            matrix `temp'[`count',6] = r(min) ;
-            matrix `temp'[`count',7] = r(max) ;
-            matrix `temp'[`count',8] = r(sum_w) ;
-                qui count if `varlist' == 0 & `environment' == `i' ;
-                matrix `temp'[`count',9] = r(N) ;
-                matrix `temp'[`count',10] = (`temp'[`count',9]/`temp'[`count',2]) ;
-            local row`i' : label `typval' `i' ;
-            local rowname `rowname' `row`i'' ;
-            local ++count ;
-        };
-        matrix rowname `temp' = `rowname' ;
-        matrix rowname `temp' = `environment': ;
-            matrix colname `temp' =  Group N RatioP Mean Sd Min Max sumW Nof0 Ratio0 ;
-        return matrix results = `temp' ;
-        end; /*}}}*/
     /* GOINDEX PROGRAM {{{*/
         capture program drop goi ;
         program define goi , rclass; 
-        syntax varlist [fw aw pw iw] , ENVironment(varlist numeric) [detail MODIfied];
+        syntax varname [fw aw pw iw] , ENVironment(varlist numeric) [detail MODIfied];
         tempname envm ginim senm countm populm tempg ;
-        local envvalue : value label `environment' ;
         mat `senm'=J($typnum, 1 ,99) ;
         mat `populm'=J($typnum, 1 ,99) ;
         if ("`detail'" != "") {;
@@ -539,6 +484,227 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
             matrix colname results = DisTyp SucDisNum DisNum SucNum PopNum ;
             return matrix results = results ;
         };
+        end; /*}}}*/
+    /* Bjorklund PROGRAM {{{*/
+        capture program drop bjork ;
+        program define bjork , rclass; 
+        syntax varlist [fw aw ] , TYPE(str) CUT(integer) ;
+        tempvar group nofg resid yhat one u yhatm ;
+        return local type  "`type'" ;
+        return local cut  "`cut'" ;
+        // DEFINE DEPENDENT AND INDEPENDENT VARIABLES
+            tokenize `varlist' ;
+            local depvar `1' ;
+            macro shift ;
+            local indepvars `*' ;
+            qui egen `group'  = group(`indepvars') ;
+        bys `group' : gen `nofg' = _N ;
+        qui replace `group' = . if `nofg' < `cut' ;
+        qui levelsof `group' if !missing(`nofg') , local(glist) ;
+        qui reg `depvar' `indepvars' [`weight' `exp'] if !missing(`group') ;
+        qui predict double `yhat' if e(sample)  ;
+        qui predict double `resid' if e(sample) , res ;
+        qui sum `resid' [`weight' `exp'] ;
+        local k = `r(sd)'^(-1) ;
+        local count = 1 ;
+        foreach i of local glist { ;
+            qui reg `depvar' `indepvar' [`weight' `exp'] if `group' == `i' ;
+            qui predict double resid0`count' if e(sample) , res ;
+            qui sum resid0`count' [`weight' `exp'] ;
+            local rho0`count' = `r(sd)' ;
+            qui gen u0`count' = resid0`count'*(`k'*`rho0`count'')^(-1) ;
+            local ++count ;
+        } ;
+        qui egen `u' = rowtotal(u0*) , missing ;
+        drop u0* ;
+        drop resid0* ;
+        qui gen `yhatm' = `depvar' - `u' ;
+        iop_mld `yhatm' if !missing(`u') [`weight'`exp'] ;
+        local res_FGa=r(mld) ;
+        iop_mld `depvar' if !missing(`u') [`weight'`exp'] ;
+        local res_FGorg=r(mld) ;
+        local res_FGr=`res_FGa'/`res_FGorg' ;
+        qui reg `depvar' `yhatm' if !missing(`u') [`weight' `exp' ] ;
+        local res_var=e(r2) ;
+        return scalar bj1a=`res_FGa' ;
+        return scalar bj1r=`res_FGr' ;
+        return scalar bj2r=`res_var' ;
+        end;
+        /* iOP_mld{{{*/
+            capture program drop iop_mld ;
+                program define iop_mld, rclass;
+                version 9.0 ;
+                syntax varlist(max=1) [if] [in] [iweight fweight] ;
+                preserve ;
+                quietly{ ;
+                    marksample touse2 ;
+                    keep if `touse2' ;
+                    sum `varlist' [`weight'`exp'] ;
+                    local mean=r(mean) ;
+                    tempvar mld ;
+                    gen `mld'=ln(r(mean)/`varlist') ;
+                    sum `mld' [`weight'`exp'] ;
+                    local MLD=r(mean) ;
+                    return scalar mld=r(mean) ;
+                } ;
+            end ; /*}}}*/
+    /*}}}*/
+    /* ITT PROGRAM {{{*/
+        capture program drop itt ;
+        program define itt , rclass ;
+        syntax varlist [fw aw ] , ENVironment(str) EFTlv(integer) ;
+        tempvar type eftgrp expost gmean typmean tottypedepvar propo tottypecompen antepr tvar etwgt ltwgt
+            epdt idtotepdt totwgt postlin1 eadt idtoteadt antelin1 idtotepdtearly postear1 idtoteadtearly anteear1
+            idtotepdtlate postlat1 idtoteadtlate antelat1 ;
+        quietly {;
+            local wgt = strtrim(subinstr("`exp'" , "= ","",1));
+            /*DEFINE DEPENDENT AND INDEPENDENT VARIABLES*/
+                tokenize `varlist' ;
+                local depvar `1' ;
+                macro shift ;
+                local indepvars `*' ;
+                return local depvar  "`depvar'" ;
+                return local indepvars  "`indepvars'" ;
+            /*GENERATE TIME WEIGHTS*/
+                xtset ;
+                local idvar = r(panelvar) ;
+                local tname = r(timevar) ;
+                local tmin = r(tmin) ;
+                local tmax = r(tmax) ;
+                if `tmin' != 1 {;
+                    local tmax = `tmax' - `tmin' + 1 ;
+                    gen `tvar' = `tname' - `tmin' + 1;
+                };
+                else {;
+                    gen `tvar' = `tname';
+                };
+                local numearly = 0;
+                forvalue i = 1/`tmax' {;
+                    local numearly = `numearly' + sqrt((`tmax' - `i' + 1)/`tmax') ;
+                };
+                gen `etwgt' = sqrt(`tmax' - `tvar'  +1)/`numearly' ;
+                local numlate = 0;
+                forvalue i = 1/`tmax' {;
+                    local numlate = `numlate' + sqrt(`i' /`tmax') ;
+                };
+                gen `ltwgt' = sqrt(`tvar' /  `tmax' )/`numlate' ;
+            /*IDENTIFY ENVIRONMENT GROUPS*/
+                if "`indepvars'" != "" {;
+                    egen `type'  = group(`indepvars') ;
+                };
+                else {;
+                    egen `type' = group(`environment') ;
+                };
+                levelsof `type' , local(typlist) ;
+            sort `tvar' `type' `depvar' ;
+            /* Generate Ex-post Eop Achievement*/
+                foreach i of local typlist {;
+                    forvalue j = 1/`tmax' {;
+                        xtile _temp`i'_`j' = `depvar' 
+                            if `type' == `i' & `tvar' == `j' [`weight' `exp'] , n(`eftlv') ;
+                    };
+                };
+                egen `eftgrp' = rowmax(_temp*) ;
+                drop _temp* ;
+                gen `expost' = . ;
+                forvalue i = 1/`eftlv' { ;
+                    forvalue j = 1/`tmax' {;
+                        sum `depvar' [`weight' `exp'] if `eftgrp' == `i' & `tvar' == `j' , meanonly ;
+                        replace `expost' = r(mean) if `eftgrp' == `i' & `tvar' == `j'  ;
+                    };
+                };
+            /* Generate Ex-ante Propotional Eop Achievement */
+                gen `gmean' = . ;
+                forvalue j = 1/`tmax' {;
+                    sum `depvar' [`weight' `exp'] if `tvar' == `j' , meanonly ;
+                    replace `gmean' = r(mean) if `tvar' == `j' ;
+                };
+                gen `typmean' = . ;
+                foreach i of local typlist { ;
+                    forvalue j = 1/`tmax' {;
+                        sum `depvar' [`weight' `exp'] if `type' == `i' & `tvar' == `j' , meanonly ;
+                        replace `typmean' = r(mean) if `type' == `i' & `tvar' == `j' ;
+                    };
+                };
+                bys `tvar' `type' : egen `tottypedepvar' = total( `depvar' * `wgt') ;
+                gen `propo' =(`depvar' * `wgt' ) / `tottypedepvar' ;
+                bys `tvar' `type' : egen `tottypecompen' = total((`gmean' - `typmean') ) ;
+                gen `antepr' =`depvar' + ( `tottypecompen' * `propo') ;
+            sort `idvar' `tvar' ;
+            /*Calculate ex-post, equal time and 1 aversion index */
+                gen `epdt' = ln(`depvar'/`expost') ;
+                bys `idvar' : egen `idtotepdt' = total(`epdt' / `tmax');
+                egen `totwgt' = total(`wgt') ;
+                egen `postlin1' = total(`idtotepdt' * `wgt' / `totwgt' ) ;
+                return scalar postlin1 = `postlin1'[1] ;
+            /*Calculate ex-ante pr, equal time and 1 aversion index */
+                gen `eadt' = ln(`depvar'/`antepr') ;
+                bys `idvar' : egen `idtoteadt' = total(`eadt' / `tmax');
+                egen `antelin1' = total(`idtoteadt' * `wgt' / `totwgt' ) ;
+                return scalar antelin1 = `antelin1'[1] ;
+            /*Calculate ex-post, early time and 1 aversion index */
+                bys `idvar' : egen `idtotepdtearly' = total(`epdt' * `etwgt'  / `tmax');
+                egen `postear1' = total(`idtotepdtearly' * `wgt' / `totwgt' ) ;
+                return scalar postear1 = `postear1'[1] ;
+            /*Calculate ex-ante pr, early time and 1 aversion index */
+                bys `idvar' : egen `idtoteadtearly' = total(`eadt' * `etwgt'  / `tmax');
+                egen `anteear1' = total(`idtoteadtearly' * `wgt' / `totwgt' ) ;
+                return scalar anteear1 = `anteear1'[1] ;
+            /*Calculate ex-post, late time and 1 aversion index */
+                bys `idvar' : egen `idtotepdtlate' = total(`epdt' * `ltwgt'  / `tmax');
+                egen `postlat1' = total(`idtotepdtlate' * `wgt' / `totwgt' ) ;
+                return scalar postlat1 = `postlat1'[1] ;
+            /*Calculate ex-ante pr, late time and 1 aversion index */
+                bys `idvar' : egen `idtoteadtlate' = total(`eadt' * `ltwgt'  / `tmax');
+                egen `antelat1' = total(`idtoteadtlate' * `wgt' / `totwgt' ) ;
+                return scalar antelat1 = `antelat1'[1] ;
+            };
+            pause;
+            end;
+        /*}}}*/
+    /* STATS PROGRAM {{{*/
+        capture program drop stats ;
+        program define stats , rclass; 
+        syntax varlist [fw aw pw iw] , ENVironment(varlist numeric) ;
+        local rownum = $typnum + 1 ;
+        local typval : value label `environment' ;
+        tempname temp ;
+            matrix `temp' = J(`rownum',10,.) ;
+        local rowname All ;
+        qui sum `varlist'[`weight' `exp'] ;
+        matrix `temp'[1,1] = -1 ;
+        matrix `temp'[1,2] = r(N) ;
+        matrix `temp'[1,3] = (`temp'[1,2]/`temp'[1,2]) ;
+        matrix `temp'[1,4] = r(mean) ;
+        matrix `temp'[1,5] = r(sd) ;
+        matrix `temp'[1,6] = r(min) ;
+        matrix `temp'[1,7] = r(max) ;
+        matrix `temp'[1,8] = r(sum_w) ;
+            qui count if `varlist' == 0 ;
+            matrix `temp'[1,9] = r(N) ;
+            matrix `temp'[1,10] = (`temp'[1,9]/`temp'[1,2]) ;
+        local count = 2 ;
+        foreach i of global typlist {;
+            qui sum `varlist' if `environment' == `i' [`weight' `exp'] ;
+            matrix `temp'[`count',1] = `i' ;
+            matrix `temp'[`count',2] = r(N) ;
+            matrix `temp'[`count',3] = (`temp'[`count',2]/`temp'[1,2]) ;
+            matrix `temp'[`count',4] = r(mean) ;
+            matrix `temp'[`count',5] = r(sd) ;
+            matrix `temp'[`count',6] = r(min) ;
+            matrix `temp'[`count',7] = r(max) ;
+            matrix `temp'[`count',8] = r(sum_w) ;
+                qui count if `varlist' == 0 & `environment' == `i' ;
+                matrix `temp'[`count',9] = r(N) ;
+                matrix `temp'[`count',10] = (`temp'[`count',9]/`temp'[`count',2]) ;
+            local row`i' : label `typval' `i' ;
+            local rowname `rowname' `row`i'' ;
+            local ++count ;
+        };
+        matrix rowname `temp' = `rowname' ;
+        matrix rowname `temp' = `environment': ;
+            matrix colname `temp' =  Group N RatioP Mean Sd Min Max sumW Nof0 Ratio0 ;
+        return matrix results = `temp' ;
         end; /*}}}*/
     /* CUMDPLOT PROGRAM {{{*/
         program define cumd, byable(recall);
@@ -765,181 +931,4 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
             return matrix results = `temp1';
             restore ; 
         end; /*}}}*/
-    /* Bjorklund PROGRAM {{{*/
-        capture program drop bjork ;
-        program define bjork , rclass; 
-        syntax varlist [fw aw ] , TYPE(str) CUT(integer) ;
-        tempvar group nofg resid yhat one u yhatm ;
-        return local type  "`type'" ;
-        return local cut  "`cut'" ;
-        // DEFINE DEPENDENT AND INDEPENDENT VARIABLES
-            tokenize `varlist' ;
-            local depvar `1' ;
-            macro shift ;
-            local indepvars `*' ;
-            qui egen `group'  = group(`indepvars') ;
-        bys `group' : gen `nofg' = _N ;
-        qui replace `group' = . if `nofg' < `cut' ;
-        qui levelsof `group' if !missing(`nofg') , local(glist) ;
-        qui reg `depvar' `indepvars' [`weight' `exp'] if !missing(`group') ;
-        qui predict double `yhat' if e(sample)  ;
-        qui predict double `resid' if e(sample) , res ;
-        qui sum `resid' [`weight' `exp'] ;
-        local k = `r(sd)'^(-1) ;
-        local count = 1 ;
-        foreach i of local glist { ;
-            qui reg `depvar' `indepvar' [`weight' `exp'] if `group' == `i' ;
-            qui predict double resid0`count' if e(sample) , res ;
-            qui sum resid0`count' [`weight' `exp'] ;
-            local rho0`count' = `r(sd)' ;
-            qui gen u0`count' = resid0`count'*(`k'*`rho0`count'')^(-1) ;
-            local ++count ;
-        } ;
-        qui egen `u' = rowtotal(u0*) , missing ;
-        drop u0* ;
-        drop resid0* ;
-        qui gen `yhatm' = `depvar' - `u' ;
-        iop_mld `yhatm' if !missing(`u') [`weight'`exp'] ;
-        local res_FGa=r(mld) ;
-        iop_mld `depvar' if !missing(`u') [`weight'`exp'] ;
-        local res_FGorg=r(mld) ;
-        local res_FGr=`res_FGa'/`res_FGorg' ;
-        qui reg `depvar' `yhatm' if !missing(`u') [`weight' `exp' ] ;
-        local res_var=e(r2) ;
-        return scalar bj1a=`res_FGa' ;
-        return scalar bj1r=`res_FGr' ;
-        return scalar bj2r=`res_var' ;
-        end;
-        /* iOP_mld{{{*/
-            capture program drop iop_mld ;
-                program define iop_mld, rclass;
-                version 9.0 ;
-                syntax varlist(max=1) [if] [in] [iweight fweight] ;
-                preserve ;
-                quietly{ ;
-                    marksample touse2 ;
-                    keep if `touse2' ;
-                    sum `varlist' [`weight'`exp'] ;
-                    local mean=r(mean) ;
-                    tempvar mld ;
-                    gen `mld'=ln(r(mean)/`varlist') ;
-                    sum `mld' [`weight'`exp'] ;
-                    local MLD=r(mean) ;
-                    return scalar mld=r(mean) ;
-                } ;
-            end ; /*}}}*/
-    /*}}}*/
-    /* ITT PROGRAM {{{*/
-        capture program drop itt ;
-        program define itt , rclass ;
-        syntax varlist [fw aw ] , ENVironment(str) EFTlv(integer) ;
-        tempvar type eftgrp expost gmean typmean tottypedepvar propo tottypecompen antepr tvar etwgt ltwgt
-            epdt idtotepdt totwgt postlin1 eadt idtoteadt antelin1 idtotepdtearly postear1 idtoteadtearly anteear1
-            idtotepdtlate postlat1 idtoteadtlate antelat1 ;
-        quietly {;
-            local wgt = strtrim(subinstr("`exp'" , "= ","",1));
-            /*DEFINE DEPENDENT AND INDEPENDENT VARIABLES*/
-                tokenize `varlist' ;
-                local depvar `1' ;
-                macro shift ;
-                local indepvars `*' ;
-                return local depvar  "`depvar'" ;
-                return local indepvars  "`indepvars'" ;
-            /*GENERATE TIME WEIGHTS*/
-                xtset ;
-                local idvar = r(panelvar) ;
-                local tname = r(timevar) ;
-                local tmin = r(tmin) ;
-                local tmax = r(tmax) ;
-                if `tmin' != 1 {;
-                    local tmax = `tmax' - `tmin' + 1 ;
-                    gen `tvar' = `tname' - `tmin' + 1;
-                };
-                else {;
-                    gen `tvar' = `tname';
-                };
-                local numearly = 0;
-                forvalue i = 1/`tmax' {;
-                    local numearly = `numearly' + sqrt((`tmax' - `i' + 1)/`tmax') ;
-                };
-                gen `etwgt' = sqrt(`tmax' - `tvar'  +1)/`numearly' ;
-                local numlate = 0;
-                forvalue i = 1/`tmax' {;
-                    local numlate = `numlate' + sqrt(`i' /`tmax') ;
-                };
-                gen `ltwgt' = sqrt(`tvar' /  `tmax' )/`numlate' ;
-            /*IDENTIFY ENVIRONMENT GROUPS*/
-                if "`indepvars'" != "" {;
-                    egen `type'  = group(`indepvars') ;
-                };
-                else {;
-                    egen `type' = group(`environment') ;
-                };
-                levelsof `type' , local(typlist) ;
-            sort `tvar' `type' `depvar' ;
-            /* Generate Ex-post Eop Achievement*/
-                foreach i of local typlist {;
-                    forvalue j = 1/`tmax' {;
-                        xtile _temp`i'_`j' = `depvar' 
-                            if `type' == `i' & `tvar' == `j' [`weight' `exp'] , n(`eftlv') ;
-                    };
-                };
-                egen `eftgrp' = rowmax(_temp*) ;
-                drop _temp* ;
-                gen `expost' = . ;
-                forvalue i = 1/`eftlv' { ;
-                    forvalue j = 1/`tmax' {;
-                        sum `depvar' [`weight' `exp'] if `eftgrp' == `i' & `tvar' == `j' , meanonly ;
-                        replace `expost' = r(mean) if `eftgrp' == `i' & `tvar' == `j'  ;
-                    };
-                };
-            /* Generate Ex-ante Propotional Eop Achievement */
-                gen `gmean' = . ;
-                forvalue j = 1/`tmax' {;
-                    sum `depvar' [`weight' `exp'] if `tvar' == `j' , meanonly ;
-                    replace `gmean' = r(mean) if `tvar' == `j' ;
-                };
-                gen `typmean' = . ;
-                foreach i of local typlist { ;
-                    forvalue j = 1/`tmax' {;
-                        sum `depvar' [`weight' `exp'] if `type' == `i' & `tvar' == `j' , meanonly ;
-                        replace `typmean' = r(mean) if `type' == `i' & `tvar' == `j' ;
-                    };
-                };
-                bys `tvar' `type' : egen `tottypedepvar' = total( `depvar' * `wgt') ;
-                gen `propo' =(`depvar' * `wgt' ) / `tottypedepvar' ;
-                bys `tvar' `type' : egen `tottypecompen' = total((`gmean' - `typmean') ) ;
-                gen `antepr' =`depvar' + ( `tottypecompen' * `propo') ;
-            sort `idvar' `tvar' ;
-            /*Calculate ex-post, equal time and 1 aversion index */
-                gen `epdt' = ln(`depvar'/`expost') ;
-                bys `idvar' : egen `idtotepdt' = total(`epdt' / `tmax');
-                egen `totwgt' = total(`wgt') ;
-                egen `postlin1' = total(`idtotepdt' * `wgt' / `totwgt' ) ;
-                return scalar postlin1 = `postlin1'[1] ;
-            /*Calculate ex-ante pr, equal time and 1 aversion index */
-                gen `eadt' = ln(`depvar'/`antepr') ;
-                bys `idvar' : egen `idtoteadt' = total(`eadt' / `tmax');
-                egen `antelin1' = total(`idtoteadt' * `wgt' / `totwgt' ) ;
-                return scalar antelin1 = `antelin1'[1] ;
-            /*Calculate ex-post, early time and 1 aversion index */
-                bys `idvar' : egen `idtotepdtearly' = total(`epdt' * `etwgt'  / `tmax');
-                egen `postear1' = total(`idtotepdtearly' * `wgt' / `totwgt' ) ;
-                return scalar postear1 = `postear1'[1] ;
-            /*Calculate ex-ante pr, early time and 1 aversion index */
-                bys `idvar' : egen `idtoteadtearly' = total(`eadt' * `etwgt'  / `tmax');
-                egen `anteear1' = total(`idtoteadtearly' * `wgt' / `totwgt' ) ;
-                return scalar anteear1 = `anteear1'[1] ;
-            /*Calculate ex-post, late time and 1 aversion index */
-                bys `idvar' : egen `idtotepdtlate' = total(`epdt' * `ltwgt'  / `tmax');
-                egen `postlat1' = total(`idtotepdtlate' * `wgt' / `totwgt' ) ;
-                return scalar postlat1 = `postlat1'[1] ;
-            /*Calculate ex-ante pr, late time and 1 aversion index */
-                bys `idvar' : egen `idtoteadtlate' = total(`eadt' * `ltwgt'  / `tmax');
-                egen `antelat1' = total(`idtoteadtlate' * `wgt' / `totwgt' ) ;
-                return scalar antelat1 = `antelat1'[1] ;
-            };
-            pause;
-            end;
-        /*}}}*/
 #delimit cr
