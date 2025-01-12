@@ -2,23 +2,32 @@
 *! Created by Jay Oh on 18th Aug 2017.
 *! First update on Novemver 2019.
 *! Second update on June 2020.
+
 #delimit ;
-capture program drop eopcal ;
-program eopcal, byable(recall) rclass sortpreserve ;
-syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] , 
-    [ENVironment(varname numeric)
-    GOIndex RRIndex(passthru)                        	///Options for calculating indicies.
-    BJORKlund(passthru)								    ///Options for Björklund et al. 
-    ITT												    ///Options for Intertemporal Iop.
-    DOMinance ACCuracy(passthru)					    ///Options for dominance test.
-    CUMDplot KDENplot GRoptions(passthru)               ///Options for drawing graphs.
-    Value(passthru) Percent(passthru)                   ///Options for manipulating data range.
-    STATs											    ///Options for descriptive statistics.
-    EXPost(integer 3)                                   ///Options for EOp distributions.
-    GRoup                                               ///Options for EOp distributions.
-    DEtail MODIfied TRace(integer 0) SAVing(string) ] ; ///Extra options.
-    /* ARGUMENTS CHECK LIST {{{*/
-        /* CHECK THE ENVIRONMENT VALUE FORM */
+    capture program drop eopcal ;
+    program eopcal, byable(recall) rclass sortpreserve ;
+    syntax varname(numeric) [if] [in] [fw pw aw] , ENVironment(varname numeric)
+        [GOIndex RRIndex(passthru)                        	
+            ///Options for calculating indicies.
+        BJORKlund(passthru)								    
+            ///Options for Björklund et al. 
+        ITT												    
+            ///Options for Intertemporal Iop.
+        DOMinance ACCuracy(passthru)					    
+            ///Options for dominance test.
+        CUMDplot KDENplot Value(passthru) Percent(passthru)
+            ///Options for drawing graphs and manipulating data range.
+        EXPost  GROup                             
+            ///Options for EOp distributions.
+        STATs											    
+            ///Options for descriptive statistics.
+        DEtail MODIfied TRace(integer 0)] ;                
+            ///Extra options.
+
+    /* Checking arguements */
+        /*{{{*/
+        /* Check the ENVIRONMENT and its value form */
+            /*{{{*/
             if "`environment'" != "" { ;
                 qui levelsof `environment' , local(typloc) ;
                 global typlist `typloc' ;
@@ -32,14 +41,9 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
                     };
                 };
             }; 
-        /* WEIGHT CHECK */
-            tempvar wgt ;
-            if ("`weight'" == "") {;
-                qui gen `wgt' = 1;
-                local weight fw ;
-                local exp "= `wgt'" ;
-            };
-        /* CHECK IF THE OPTION RRINDEX HAS THE FORM OF (TYPE , CRITERA) */
+            /*}}}*/
+        /* Check if the option rrindex has the form of (type , critera) */
+            /*{{{*/
             if `"`rrindex'"' != "" {; 
                 local rrindex
                     = strtrim(subinstr(subinstr("`rrindex'" , "rrindex(","",1) , ")","",1)) ;
@@ -59,7 +63,9 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
                 };
                 local rrindex rrindex ;
             };
-        /* CHECK IF THE OPTION BJORKLUND HAS THE FORM OF (TYPE , CRITERA) */
+            /*}}}*/
+        /* Check if the option bjorklund has the form of (type , critera) */
+            /*{{{*/
             if `"`bjorklund'"' != "" { ; 
                 local bjorklund
                     = strtrim(subinstr(subinstr("`bjorklund'" , "bjorklund(","",1) , ")","",1)) ;
@@ -79,7 +85,9 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
                 };
                 local bjorklund bjorklund ;
             };
-        /* CHECK IF THE OPTION ITT HAS THE FORM OF (EOP dist. , Time weight, IOP aversion, Effort lv. ) */
+            /*}}}*/
+        /* Check the form of the option itt */
+            /*{{{*/
             if `"`ITT'"' != "" { ; 
                 local itt = strtrim(subinstr(subinstr("`itt'" , "itt(","",1) , ")","",1)) ;
                 gettoken eopdist itt : itt, parse(,) ;
@@ -113,6 +121,14 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
                 };
                 local itt itt ;
             }; 
+            /*}}}*/
+        /* Gen slack weight if no weight assigned */
+            tempvar wgt;
+            if ("`weight'" == "") {;
+                qui gen byte `wgt' = 1;
+                local weight fw ;
+                local exp "= `wgt'" ;
+            };
         /* TRACE ON/OFF */
             if ("`trace'" != "0") {;
                 set trace on ;
@@ -120,13 +136,17 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
                 set traceindent on ;
             };
     /*}}}*/
+
     /* Marksample */
         marksample touse  ;
         markout `touse' `environment' ;
         preserve ;
         qui keep if `touse' ;
         tempname tmx tmx2 ;
+
+/*EXCUTION*/
     /*GOI*/
+        /*{{{*/
         if ("`goindex'" != "") {;
             goi `varlist' [`weight' `exp'] , environment(`environment') `detail' `modified' ;
             return local achname "`varlist'" ;
@@ -139,7 +159,9 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
                 return matrix results = `tmx' ;
             }; 
         };
+        /*}}}*/
     /*RRI*/
+        /*{{{*/
         else if ("`rrindex'" != "") {;
             rri `varlist' [`weight' `exp'] , environment(`environment') type(`rritype') crit(`rricrit') `detail' ;
             return local achname "`varlist'" ;
@@ -153,7 +175,9 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
                 return matrix results = `tmx' ;
             };
         };
+        /*}}}*/
     /*Bjorklund*/
+        /*{{{*/
         else if ("`bjorklund'" != "") {;
             bjork `varlist' [`weight' `exp'] , type(`bjorktype') cut(`bjorkcrit') ;
             return local idxname "Björklund-MLD" ;
@@ -164,7 +188,9 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
             di as text "`bjorklund', MLD, relative = " as result %5.4f `r(bj1r)' ;
             di as text "`bjorklund', Var, relative = " as result %5.4f `r(bj2r)' ;
         };
+        /*}}}*/
     /*ITT*/
+        /*{{{*/
         else if ("`itt'" != "") {;
             itt `varlist' [`weight' `exp'] , environment(`environment') eftlv(10) ;
             return scalar postlin1 = `r(postlin1)';
@@ -180,21 +206,23 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
             di as text "`itt', ex-post, early time and 1 aversion = " as result %5.4f `r(postear1)' ;
             di as text "`itt', ex-post, late time and 1 aversion = "  as result %5.4f `r(postlat1)' ;
         };
+        /*}}}*/
     /*STATS*/
-        if ("`stats'" != "") {;
+        else if ("`stats'" != "") {;
             stats `varlist' [`weight' `exp'] , environment(`environment') ;
             matrix `tmx' = r(results) ; matlist `tmx' ;
             return matrix results = `tmx' ;
         };
     /*cumdplot*/
         else if ("`cumdplot'" != "") {;
-            cumd `varlist' [`weight' `exp'] , environment(`environment') `value' `percent' `groptions';
+            cumd `varlist' [`weight' `exp'] , environment(`environment') `value' `percent' ;
         };
     /*kdenplot*/
         else if ("`kdenplot'" != "") {;
-            kden `varlist' [`weight' `exp'] , environment(`environment') `value' `percent' `groptions';
+            kden `varlist' [`weight' `exp'] , environment(`environment') `value' `percent' ;
         };
     /*DOM*/
+        /*{{{*/
         else if ("`dominance'" != "") {;
             dom `varlist' [`weight' `exp'] , environment(`environment') `value' `percent' `accuracy' `modified';
             matrix `tmx' = r(results) ;	 ///tmx for svmat
@@ -290,7 +318,9 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
                 }; /*}}}*/
             if ("`detail'" != "") {; matlist `tmx' ; };
         };
-    /* GENERATE THE EX-POST EFFORT GROUP FILE{{{*/
+        /*}}}*/
+    /* Generate the ex-post effort group file*/
+        /*{{{*/
         if ("`expost'" != "") {;
             sort `environment' `varlist' ;
             tempvar temp1 temp2 temp3 temp4 ;
@@ -334,7 +364,8 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
                 qui compress ;
                 save `sname'_epeop.dta , replace ;
         }; /*}}}*/
-    /* GENERATE THE GROUP VARIABLE EQUAL PERCENTILE TO THE ENV{{{*/
+    /* Generate the group variable equal percentile to the env*/
+        /*{{{*/
         if ("`group'" != "") {;
             tempvar one temp1 temp2 temp3 temp4 ;
             gen `one' == 1 ; 
@@ -344,7 +375,6 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
             foreach i of global typlist {; 
                 qui sum `one' [`weight' `exp'] if `environment' <= `i' , meanonly;
                 local rlist `rlist' r(sum_w)*100/`totnum'
-
             /* Marking effort groups */
                 qui bys `environment' : gen `temp1' = _n ;
                     foreach i of global typlist {;
@@ -378,11 +408,13 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
         }; /*}}}*/
     restore ;
     end;
+
 /* LIST OF SUB PROGRAMS */
-    /* GOINDEX PROGRAM {{{*/
+    /* GOINDEX PROGRAM */
+        /*{{{*/
         capture program drop goi ;
         program define goi , rclass; 
-        syntax varname [fw aw pw iw] , ENVironment(varlist numeric) [detail MODIfied];
+        syntax varname [fw aw pw iw] , ENVironment(varname numeric) [detail MODIfied];
         tempname envm ginim senm countm populm tempg ;
         mat `senm'=J($typnum, 1 ,99) ;
         mat `populm'=J($typnum, 1 ,99) ;
@@ -443,10 +475,11 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
             return matrix results = results ;
         };
         end ; /*}}}*/
-    /* RRINDEX PROGRAM {{{*/
+    /* RRINDEX PROGRAM */
+        /*{{{*/
         capture program drop rri ;
         program define rri , rclass; 
-        syntax varlist [fw aw pw iw] , ENVironment(varlist numeric) TYPE(str) CRIT(real) [detail] ;
+        syntax varname [fw aw pw iw] , ENVironment(varname numeric) TYPE(str) CRIT(real) [detail] ;
         return local type  "`type'" ;
         return local crit  "`crit'" ;
         tempvar one ;
@@ -485,10 +518,11 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
             return matrix results = results ;
         };
         end; /*}}}*/
-    /* Bjorklund PROGRAM {{{*/
+    /* Bjorklund PROGRAM */
+        /*{{{*/
         capture program drop bjork ;
         program define bjork , rclass; 
-        syntax varlist [fw aw ] , TYPE(str) CUT(integer) ;
+        syntax varname [fw aw ] , TYPE(str) CUT(integer) ;
         tempvar group nofg resid yhat one u yhatm ;
         return local type  "`type'" ;
         return local cut  "`cut'" ;
@@ -530,7 +564,7 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
         return scalar bj1r=`res_FGr' ;
         return scalar bj2r=`res_var' ;
         end;
-        /* iOP_mld{{{*/
+        /* iOP_mld*/
             capture program drop iop_mld ;
                 program define iop_mld, rclass;
                 version 9.0 ;
@@ -548,8 +582,8 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
                     return scalar mld=r(mean) ;
                 } ;
             end ; /*}}}*/
-    /*}}}*/
-    /* ITT PROGRAM {{{*/
+    /* ITT PROGRAM */
+        /*{{{*/
         capture program drop itt ;
         program define itt , rclass ;
         syntax varlist [fw aw ] , ENVironment(str) EFTlv(integer) ;
@@ -662,10 +696,11 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
             pause;
             end;
         /*}}}*/
-    /* STATS PROGRAM {{{*/
+    /* STATS PROGRAM */
+        /*{{{*/
         capture program drop stats ;
         program define stats , rclass; 
-        syntax varlist [fw aw pw iw] , ENVironment(varlist numeric) ;
+        syntax varname [fw aw pw iw] , ENVironment(varname numeric) ;
         local rownum = $typnum + 1 ;
         local typval : value label `environment' ;
         tempname temp ;
@@ -706,10 +741,11 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
             matrix colname `temp' =  Group N RatioP Mean Sd Min Max sumW Nof0 Ratio0 ;
         return matrix results = `temp' ;
         end; /*}}}*/
-    /* CUMDPLOT PROGRAM {{{*/
+    /* CUMDPLOT PROGRAM */
+        /*{{{*/
         program define cumd, byable(recall);
-        syntax varlist [if] [in] [fw aw pw iw] , 
-            ENVironment(varlist numeric) [ Value(numlist min=2 max=2 ascending) 
+        syntax varname [if] [in] [fw aw pw ] , 
+            ENVironment(varname numeric) [ Value(numlist min=2 max=2 ascending) 
             Percent(numlist min=2 max=2 >0 <1 ascending) GROPtions(string) ] ;
             /******************************* LABELING ******************************/
                 tempvar temp ;
@@ -766,56 +802,58 @@ syntax varlist(numeric) [if] [in] [pweight aweight fweight iweight] ,
                 qui line `cvarlist' c`environment',
                 `sort' `ytitle' `xtitle' `ylab'  `xlab' `legend' `groptions' legend(`labels') ;
         end; /*}}}*/
-        /* KDENPLOT PROGRAM {{{*/
-            program define kden, ;
-            syntax varlist [if] [in] [fw aw pw iw] ,
-                ENVironment(varlist numeric) [ Number(integer 500) Kernel(string)
-                Value(numlist min=2 max=2  ascending) Percent(numlist min=2 max=2 >0 <1 ascending) GROPtions(string)] ;
-            /******************************* LABELING ******************************/
-                tempvar temp ;
-                local varlabel : variable label `varlist';
-                local envvalue : value label `environment';
-                local count = 1;
-                if ("`envvalue'" != "") { ;
-                    foreach i of global typlist {;
-                        local lbv`i' : label `envvalue' `i';
-                        local labels `labels' label(`count' `lbv`i'') ;
-                        local ++count;
-                    };
-                };
-                else {;
-                    local count = 1;
-                    foreach i of global typlist {;
-                        local lbv`i' "`environment' == `i'" ;
-                        local labels `labels' label(`count' `lbv`i'') ;
-                        local ++count;
-                    };
-                };
-            /******************************* GEN KDEN ******************************/
-                qui kdensity `varlist' [`weight' `exp'] , n(`number') nograph gen(x c`environment') kernel(`kernel');
+    /* KDENPLOT PROGRAM */
+        /*{{{*/
+        program define kden, ;
+        syntax varname [if] [in] [fw aw pw iw] ,
+            ENVironment(varname numeric) [ Number(integer 500) Kernel(string)
+            Value(numlist min=2 max=2  ascending) Percent(numlist min=2 max=2 >0 <1 ascending) GROPtions(string)] ;
+        /******************************* LABELING ******************************/
+            tempvar temp ;
+            local varlabel : variable label `varlist';
+            local envvalue : value label `environment';
+            local count = 1;
+            if ("`envvalue'" != "") { ;
                 foreach i of global typlist {;
-                    local cvlist `cvlist' c`environment'`i' ;
-                    kdensity `varlist' [`weight' `exp'] if `environment' == `i' , nograph gen(c`environment'`i') at(x) kernel(`kernel');
-                    label var c`environment'`i' `"`lbv`i''"';
+                    local lbv`i' : label `envvalue' `i';
+                    local labels `labels' label(`count' `lbv`i'') ;
+                    local ++count;
                 };
-                if `"`value'"' != "" {;
-                    gettoken xmin xmax : value ;
-                    foreach i of global typlist {;
-                        qui replace x =. if !inrange( x , `xmin' , `xmax' ) ;
-                    };
+            };
+            else {;
+                local count = 1;
+                foreach i of global typlist {;
+                    local lbv`i' "`environment' == `i'" ;
+                    local labels `labels' label(`count' `lbv`i'') ;
+                    local ++count;
                 };
-            /******************************* Drawing ******************************/
-                if (strpos("`groptions'" , "sort"   ) == 0) {; local sort "sort" ; };
-                if (strpos("`groptions'" , "ytitle" ) == 0) {; local ytitle "ytitle(Density)" ; };
-                if (strpos("`groptions'" , "xtitle" ) == 0) {; local xtitle "xtitle(`varlabel')" ; };
-                if (strpos("`groptions'" , "legend" ) == 0)	{; local legend " legend( pos(6) row(1) ) " ; };
-                if ("`xtitle'" != "") {; local xlabel `xtitle' ; }; else {; local xlabe `varlabel' ; };
-                line `cvlist' x , `sort' `ytitle' `xtitle' `legend' `groptions' legend(`labels') ;
-            end; /*}}}*/
-    /* DOM PROGRAM{{{*/
+            };
+        /******************************* GEN KDEN ******************************/
+            qui kdensity `varlist' [`weight' `exp'] , n(`number') nograph gen(x c`environment') kernel(`kernel');
+            foreach i of global typlist {;
+                local cvlist `cvlist' c`environment'`i' ;
+                kdensity `varlist' [`weight' `exp'] if `environment' == `i' , nograph gen(c`environment'`i') at(x) kernel(`kernel');
+                label var c`environment'`i' `"`lbv`i''"';
+            };
+            if `"`value'"' != "" {;
+                gettoken xmin xmax : value ;
+                foreach i of global typlist {;
+                    qui replace x =. if !inrange( x , `xmin' , `xmax' ) ;
+                };
+            };
+        /******************************* Drawing ******************************/
+            if (strpos("`groptions'" , "sort"   ) == 0) {; local sort "sort" ; };
+            if (strpos("`groptions'" , "ytitle" ) == 0) {; local ytitle "ytitle(Density)" ; };
+            if (strpos("`groptions'" , "xtitle" ) == 0) {; local xtitle "xtitle(`varlabel')" ; };
+            if (strpos("`groptions'" , "legend" ) == 0)	{; local legend " legend( pos(6) row(1) ) " ; };
+            if ("`xtitle'" != "") {; local xlabel `xtitle' ; }; else {; local xlabe `varlabel' ; };
+            line `cvlist' x , `sort' `ytitle' `xtitle' `legend' `groptions' legend(`labels') ;
+        end; /*}}}*/
+    /* DOM PROGRAM*/
+        /*{{{*/
         capture program drop dom ;
         program define dom, rclass;
-                syntax varlist [fw pw aw] , ENVironment(varname numeric) 
+                syntax varname [fw pw aw] , ENVironment(varname numeric) 
                     [Value(numlist min=2 max=2  ascending)
                     Percent(numlist min=2 max=2 >=0 <=1 ascending) ///Options for control a test range.
                     ACCuracy(integer 40) ];                        ///Extra options.
