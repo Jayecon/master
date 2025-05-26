@@ -1,0 +1,46 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{TIMSS 기회불평등 vs. 노력불평등\label{tab:timsscomp}}
+\begin{tabular}{l*{6}{c}}
+\toprule
+                    &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}&\multicolumn{1}{c}{(6)}\\
+                    &\multicolumn{1}{c}{O}&\multicolumn{1}{c}{FE}&\multicolumn{1}{c}{Sys. GMM}&\multicolumn{1}{c}{OLS}&\multicolumn{1}{c}{FE}&\multicolumn{1}{c}{Sys. GMM}\\
+\midrule
+ln1인당GDP        &       0.928\sym{***}&       0.568\sym{***}&       0.817\sym{***}&       0.922\sym{***}&       0.574\sym{***}&       0.778\sym{***}\\
+                    &     [63.95]         &     [10.28]         &     [12.17]         &     [61.63]         &     [10.34]         &     [10.02]         \\
+\addlinespace
+기회불평등        &      -1.750         &      -1.374         &      -16.65\sym{**} &                     &                     &                     \\
+                    &     [-0.34]         &     [-0.27]         &     [-2.27]         &                     &                     &                     \\
+\addlinespace
+노력불평등        &      -1.053         &       0.483         &      -2.334         &                     &                     &                     \\
+                    &     [-0.87]         &      [0.40]         &     [-0.91]         &                     &                     &                     \\
+\addlinespace
+OECD$\times$기회불평등&                     &                     &                     &      -10.90         &      -0.226         &      -19.54         \\
+                    &                     &                     &                     &     [-0.92]         &     [-0.01]         &     [-1.29]         \\
+\addlinespace
+OECD$\times$노력불평등&                     &                     &                     &       4.596         &       5.967         &       15.81\sym{**} \\
+                    &                     &                     &                     &      [1.17]         &      [0.99]         &      [2.30]         \\
+\addlinespace
+비OECD$\times$기회불평등&                     &                     &                     &      -1.064         &      -1.260         &      -14.97\sym{*}  \\
+                    &                     &                     &                     &     [-0.19]         &     [-0.24]         &     [-1.92]         \\
+\addlinespace
+비OECD$\times$노력불평등&                     &                     &                     &      -1.179         &       0.405         &      -1.575         \\
+                    &                     &                     &                     &     [-0.92]         &      [0.33]         &     [-0.69]         \\
+\addlinespace
+투자재가격        &      0.0630         &      -0.149         &      0.0520         &      0.0382         &      -0.145         &     0.00122         \\
+                    &      [1.31]         &     [-1.65]         &      [0.55]         &      [0.77]         &     [-1.58]         &      [0.01]         \\
+\addlinespace
+ln인구            &    -0.00923         &      -0.318\sym{***}&      -0.178\sym{**} &     -0.0121\sym{*}  &      -0.314\sym{***}&      -0.226\sym{***}\\
+                    &     [-1.52]         &     [-3.20]         &     [-2.43]         &     [-1.82]         &     [-3.16]         &     [-2.73]         \\
+\addlinespace
+Constant            &       0.839\sym{***}&       5.393\sym{***}&       2.446\sym{***}&       0.903\sym{***}&       5.309\sym{***}&       2.896\sym{***}\\
+                    &      [6.26]         &      [8.37]         &      [3.57]         &      [6.44]         &      [8.20]         &      [3.79]         \\
+\midrule
+r2                  &       0.974         &       0.820         &                     &       0.975         &       0.822         &                     \\
+N                   &         238         &         238         &         238         &         238         &         238         &         238         \\
+N\_g                 &                     &          71         &          71         &                     &          71         &          71         \\
+\bottomrule
+\multicolumn{7}{l}{\footnotesize \textit{t} statistics in brackets}\\
+\multicolumn{7}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}
+\end{table}

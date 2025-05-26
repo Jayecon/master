@@ -1,0 +1,24 @@
+\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{TIMSS 총불평등\label{tab:timsssimp}}
+\begin{tabular}{l*{6}{c}}
+\toprule
+                    &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}&\multicolumn{1}{c}{(6)}\\
+                    &\multicolumn{1}{c}{O}&\multicolumn{1}{c}{FE}&\multicolumn{1}{c}{Sys. GMM}&\multicolumn{1}{c}{OLS}&\multicolumn{1}{c}{FE}&\multicolumn{1}{c}{Sys. GMM}\\
+\midrule
+총불평등          &      -1.172\sym{*}  &       0.199         &      -4.649\sym{*}  &                     &                     &                     \\
+                    &     [-1.76]         &      [0.25]         &     [-1.92]         &                     &                     &                     \\
+\addlinespace
+OECD $\times$ 총불평등&                     &                     &                     &       1.446         &       4.759         &       8.889\sym{*}  \\
+                    &                     &                     &                     &      [0.75]         &      [1.40]         &      [1.81]         \\
+\addlinespace
+비OECD $\times$ 총불평등&                     &                     &                     &      -1.140\sym{*}  &       0.151         &      -3.814\sym{*}  \\
+                    &                     &                     &                     &     [-1.70]         &      [0.19]         &     [-1.73]         \\
+\midrule
+r2                  &       0.974         &       0.820         &                     &       0.974         &       0.822         &                     \\
+N                   &         238         &         238         &         238         &         238         &         238         &         238         \\
+N\_g                 &                     &          71         &          71         &                     &          71         &          71         \\
+\bottomrule
+\multicolumn{7}{l}{\footnotesize \textit{t} statistics in brackets}\\
+\multicolumn{7}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}

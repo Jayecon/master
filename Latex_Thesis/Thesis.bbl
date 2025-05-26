@@ -1,0 +1,2124 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global/global}
+    \entry{ane20}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=a72dea53d841cc62d94ada39a13889bb}{%
+           family={Aiyar},
+           familyi={A\bibinitperiod},
+           given={Shekhar},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=70726be5b5652d2f148e1890a38557c8}{%
+           family={Ebeke},
+           familyi={E\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{51dcb8690c33c1a84903fbfd8faab700}
+      \strng{fullhash}{51dcb8690c33c1a84903fbfd8faab700}
+      \strng{fullhashraw}{51dcb8690c33c1a84903fbfd8faab700}
+      \strng{bibnamehash}{51dcb8690c33c1a84903fbfd8faab700}
+      \strng{authorbibnamehash}{51dcb8690c33c1a84903fbfd8faab700}
+      \strng{authornamehash}{51dcb8690c33c1a84903fbfd8faab700}
+      \strng{authorfullhash}{51dcb8690c33c1a84903fbfd8faab700}
+      \strng{authorfullhashraw}{51dcb8690c33c1a84903fbfd8faab700}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Despite the firm consensus that income inequality is intrinsically undesirable, its impact on economic growth is much disputed. We posit that the relationship between income inequality and economic growth is conditioned by the level of equality of opportunity. Our testable hypothesis is simple: in societies where opportunities are unequally distributed – where the material circumstances of parents act as binding constraints on the opportunities available to their children – income inequality exerts a greater drag on future growth. In contrast, in societies with a more equal distribution of opportunities, an increase in income inequality can be more easily reversed and need not constrain investment opportunities and growth. We identify equality of opportunity with intergenerational mobility, that is, the degree of the correlation between parents’ attainments (income and education) and childrens’ attainments. We use several recently developed internationally comparable measures of intergenerational mobility—including the World Bank’s comprehensive GDIM database—to confirm that the negative impact of income inequality on growth is higher the lower is intergenerational mobility. Our results suggest that omitting intergenerational mobility leads to misspecification, shedding light on why the empirical literature on income inequality and growth has been so inconclusive.}
+      \field{journaltitle}{World Development}
+      \field{title}{Inequality of opportunity, inequality of income and economic growth}
+      \field{volume}{136}
+      \field{year}{2020}
+      \field{pages}{105\bibrangedash 115}
+      \range{pages}{11}
+      \keyw{Intergenerational mobility,Income inequality,Growth}
+    \endentry
+    \entry{anr94}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=64e826b22be55f993a32de8986e58901}{%
+           family={Alesina},
+           familyi={A\bibinitperiod},
+           given={Alberto},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=838c73523715fb8fdf83d1d7a57cc6bd}{%
+           family={Rodrik},
+           familyi={R\bibinitperiod},
+           given={Dani},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Oxford University Press}%
+      }
+      \strng{namehash}{2b7934e96380b6d0cad876d598192f47}
+      \strng{fullhash}{2b7934e96380b6d0cad876d598192f47}
+      \strng{fullhashraw}{2b7934e96380b6d0cad876d598192f47}
+      \strng{bibnamehash}{2b7934e96380b6d0cad876d598192f47}
+      \strng{authorbibnamehash}{2b7934e96380b6d0cad876d598192f47}
+      \strng{authornamehash}{2b7934e96380b6d0cad876d598192f47}
+      \strng{authorfullhash}{2b7934e96380b6d0cad876d598192f47}
+      \strng{authorfullhashraw}{2b7934e96380b6d0cad876d598192f47}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We study the relationship between politics and economic growth in a simple model of endogenous growth with distributive conflict among agents endowed with varying capital/labor shares. We establish several results regarding the factor ownership of the median individual and the level of taxation, redistribution, and growth. Policies that maximize growth are optimal only for a government that cares solely about pure "capitalists." The greater the inequality of wealth and income, the higher the rate of taxation, and the lower growth. We present empirical results that show that inequality in land and income ownership is negatively correlated with subsequent economic growth.}
+      \field{journaltitle}{The Quarterly Journal of Economics}
+      \field{number}{2}
+      \field{title}{Distributive Politics and Economic Growth}
+      \field{volume}{109}
+      \field{year}{1994}
+      \field{pages}{465\bibrangedash 490}
+      \range{pages}{26}
+    \endentry
+    \entry{arneson91}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=fe8fa349f0fe2c9e4c834c8ad74535b5}{%
+           family={Arneson},
+           familyi={A\bibinitperiod},
+           given={Richard\bibnamedelima J.},
+           giveni={R\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{fe8fa349f0fe2c9e4c834c8ad74535b5}
+      \strng{fullhash}{fe8fa349f0fe2c9e4c834c8ad74535b5}
+      \strng{fullhashraw}{fe8fa349f0fe2c9e4c834c8ad74535b5}
+      \strng{bibnamehash}{fe8fa349f0fe2c9e4c834c8ad74535b5}
+      \strng{authorbibnamehash}{fe8fa349f0fe2c9e4c834c8ad74535b5}
+      \strng{authornamehash}{fe8fa349f0fe2c9e4c834c8ad74535b5}
+      \strng{authorfullhash}{fe8fa349f0fe2c9e4c834c8ad74535b5}
+      \strng{authorfullhashraw}{fe8fa349f0fe2c9e4c834c8ad74535b5}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Philosophical Studies: An International Journal for Philosophy in the Analytic Tradition}
+      \field{number}{1}
+      \field{title}{Equality and Equal Opportunity for Welfare}
+      \field{volume}{56}
+      \field{year}{1989}
+      \field{pages}{77\bibrangedash 93}
+      \range{pages}{17}
+    \endentry
+    \entry{bnd03}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=75cb9b0a536a90048d1b19d0ef0318bb}{%
+           family={Banerjee},
+           familyi={B\bibinitperiod},
+           given={Abhijit\bibnamedelima V.},
+           giveni={A\bibinitperiod\bibinitdelim V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7e6b0ea4eee38822cdb0a4361e98752c}{%
+           family={Duflo},
+           familyi={D\bibinitperiod},
+           given={Esther},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{000ed16d8053e6662e8cfcf9ddb9eb1b}
+      \strng{fullhash}{000ed16d8053e6662e8cfcf9ddb9eb1b}
+      \strng{fullhashraw}{000ed16d8053e6662e8cfcf9ddb9eb1b}
+      \strng{bibnamehash}{000ed16d8053e6662e8cfcf9ddb9eb1b}
+      \strng{authorbibnamehash}{000ed16d8053e6662e8cfcf9ddb9eb1b}
+      \strng{authornamehash}{000ed16d8053e6662e8cfcf9ddb9eb1b}
+      \strng{authorfullhash}{000ed16d8053e6662e8cfcf9ddb9eb1b}
+      \strng{authorfullhashraw}{000ed16d8053e6662e8cfcf9ddb9eb1b}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This paper describes the correlations between inequality and the growth rates in cross-country data. Using nonparametric methods, we show that the growth rate is an inverted U-shaped function of net changes in inequality: changes in inequality (in any direction) are associated with reduced growth in the next period. The estimated relationship is robust to variations in control variables and estimation methods. This inverted U-curve is consistent with a simple political economy model but it could also reflect the nature of measurement errors, and, in general, efforts to interpret this evidence causally run into difficult identification problems. We show that this non-linearity is sufficient to explain why previous estimates of the relationship between the level of inequality and growth are so different from one another.}
+      \field{journaltitle}{Journal of Economic Growth}
+      \field{number}{3}
+      \field{title}{Inequality and Growth: What Can the Data Say?}
+      \field{volume}{8}
+      \field{year}{2003}
+      \field{pages}{267\bibrangedash 299}
+      \range{pages}{33}
+    \endentry
+    \entry{barro91}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=12e80febb122b75421416b9e181d4657}{%
+           family={Barro},
+           familyi={B\bibinitperiod},
+           given={Robert\bibnamedelima J.},
+           giveni={R\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Oxford University Press}%
+      }
+      \strng{namehash}{12e80febb122b75421416b9e181d4657}
+      \strng{fullhash}{12e80febb122b75421416b9e181d4657}
+      \strng{fullhashraw}{12e80febb122b75421416b9e181d4657}
+      \strng{bibnamehash}{12e80febb122b75421416b9e181d4657}
+      \strng{authorbibnamehash}{12e80febb122b75421416b9e181d4657}
+      \strng{authornamehash}{12e80febb122b75421416b9e181d4657}
+      \strng{authorfullhash}{12e80febb122b75421416b9e181d4657}
+      \strng{authorfullhashraw}{12e80febb122b75421416b9e181d4657}
+      \field{extraname}{1}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{For 98 countries in the period 1960-1985, the growth rate of real per capita GDP is positively related to initial human capital (proxied by 1960 school-enrollment rates) and negatively related to the initial (1960) level of real per capita GDP. Countries with higher human capital also have lower fertility rates and higher ratios of physical investment to GDP. Growth is inversely related to the share of government consumption in GDP, but insignificantly related to the share of public investment. Growth rates are positively related to measures of political stability and inversely related to a proxy for market distortions.}
+      \field{journaltitle}{The Quarterly Journal of Economics}
+      \field{number}{2}
+      \field{title}{Economic Growth in a Cross Section of Countries}
+      \field{volume}{106}
+      \field{year}{1991}
+      \field{pages}{407\bibrangedash 443}
+      \range{pages}{37}
+    \endentry
+    \entry{barro20}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=12e80febb122b75421416b9e181d4657}{%
+           family={Barro},
+           familyi={B\bibinitperiod},
+           given={Robert\bibnamedelima J.},
+           giveni={R\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{12e80febb122b75421416b9e181d4657}
+      \strng{fullhash}{12e80febb122b75421416b9e181d4657}
+      \strng{fullhashraw}{12e80febb122b75421416b9e181d4657}
+      \strng{bibnamehash}{12e80febb122b75421416b9e181d4657}
+      \strng{authorbibnamehash}{12e80febb122b75421416b9e181d4657}
+      \strng{authornamehash}{12e80febb122b75421416b9e181d4657}
+      \strng{authorfullhash}{12e80febb122b75421416b9e181d4657}
+      \strng{authorfullhashraw}{12e80febb122b75421416b9e181d4657}
+      \field{extraname}{2}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Evidence from a broad panel of countries shows little overall relation between income inequality and rates of growth and investment. For growth, higher inequality tends to retard growth in poor countries and encourage growth in richer places. The Kuznets curve--whereby inequality first increases and later decreases during the process of economic development--emerges as a clear empirical regularity. However, this relation does not explain the bulk of variations in inequality across countries or over time.}
+      \field{journaltitle}{Journal of Economic Growth}
+      \field{number}{1}
+      \field{title}{Inequality and Growth in a Panel of Countries}
+      \field{volume}{5}
+      \field{year}{2000}
+      \field{pages}{5\bibrangedash 32}
+      \range{pages}{28}
+    \endentry
+    \entry{betl12}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=15a101eab186168716e4b7e950ff73fa}{%
+           family={Björklund},
+           familyi={B\bibinitperiod},
+           given={Anders},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b02c24e889a5a8c423e06e84654e8070}{%
+           family={Jäntti},
+           familyi={J\bibinitperiod},
+           given={Markus},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=443f24504b528addb9fe77c9de6ee330}{%
+           family={Roemer},
+           familyi={R\bibinitperiod},
+           given={John\bibnamedelima E.},
+           giveni={J\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{f2e9d673d78d518f0a4ea2360ffeee68}
+      \strng{fullhash}{f31db69420189c094eb594b345ba4d24}
+      \strng{fullhashraw}{f31db69420189c094eb594b345ba4d24}
+      \strng{bibnamehash}{f31db69420189c094eb594b345ba4d24}
+      \strng{authorbibnamehash}{f31db69420189c094eb594b345ba4d24}
+      \strng{authornamehash}{f2e9d673d78d518f0a4ea2360ffeee68}
+      \strng{authorfullhash}{f31db69420189c094eb594b345ba4d24}
+      \strng{authorfullhashraw}{f31db69420189c094eb594b345ba4d24}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Equality of opportunity is an ethical goal with almost universal appeal. The interpretation taken here is that a society has achieved equality of opportunity if it is the case that what individuals accomplish, with respect to some desirable objective, is determined wholly by their choices and personal effort, rather than by circumstances beyond their control. We use data for Swedish men born between 1955 and 1967 for whom we measure the distribution of long-run income, as well as several important background circumstances, such as parental education and income, family structure and own IQ before adulthood. We address the question: in Sweden, given its present constellation of social policies and institutions, to what extent is existing income inequality due to circumstances, as opposed to 'effort'? Our results suggest that several circumstances, importantly both parental income and own IQ, are important for long-run income inequality, but that variations in individual effort account for the most part of that inequality.}
+      \field{journaltitle}{Social Choice and Welfare}
+      \field{title}{Equality of opportunity and the distribution of long-run income in Sweden}
+      \field{volume}{39}
+      \field{year}{2012}
+      \field{pages}{675\bibrangedash 696}
+      \range{pages}{22}
+    \endentry
+    \entry{bnb98}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=201b803c1acac5e453b4e3a14b816b3b}{%
+           family={Blundell},
+           familyi={B\bibinitperiod},
+           given={Richard},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e4a48a61d23a81ee1206a1a126c35a45}{%
+           family={Bond},
+           familyi={B\bibinitperiod},
+           given={Stephen},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a4dde0865e02e65db3cbdd56d798d32e}
+      \strng{fullhash}{a4dde0865e02e65db3cbdd56d798d32e}
+      \strng{fullhashraw}{a4dde0865e02e65db3cbdd56d798d32e}
+      \strng{bibnamehash}{a4dde0865e02e65db3cbdd56d798d32e}
+      \strng{authorbibnamehash}{a4dde0865e02e65db3cbdd56d798d32e}
+      \strng{authornamehash}{a4dde0865e02e65db3cbdd56d798d32e}
+      \strng{authorfullhash}{a4dde0865e02e65db3cbdd56d798d32e}
+      \strng{authorfullhashraw}{a4dde0865e02e65db3cbdd56d798d32e}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Estimation of the dynamic error components model is considered using two alternative linear estimators that are designed to improve the properties of the standard first-differenced GMM estimator. Both estimators require restrictions on the initial conditions process. Asymptotic efficiency comparisons and Monte Carlo simulations for the simple AR(1) model demonstrate the dramatic improvement in performance of the proposed estimators compared to the usual first-differenced GMM estimator, and compared to non-linear GMM. The importance of these results is illustrated in an application to the estimation of a labour demand model using company panel data.}
+      \field{journaltitle}{Journal of Econometrics}
+      \field{number}{1}
+      \field{title}{Initial conditions and moment restrictions in dynamic panel data models}
+      \field{volume}{87}
+      \field{year}{1998}
+      \field{pages}{115\bibrangedash 143}
+      \range{pages}{29}
+      \keyw{Dynamic panel data,Error components,Weak instruments,Initial conditions,GMM}
+    \endentry
+    \entry{cc10}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=04b35e38ad6c7165692c4a0516e1e1ed}{%
+           family={Castelló-Climent},
+           familyi={C\bibinithyphendelim C\bibinitperiod},
+           given={Amparo},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{04b35e38ad6c7165692c4a0516e1e1ed}
+      \strng{fullhash}{04b35e38ad6c7165692c4a0516e1e1ed}
+      \strng{fullhashraw}{04b35e38ad6c7165692c4a0516e1e1ed}
+      \strng{bibnamehash}{04b35e38ad6c7165692c4a0516e1e1ed}
+      \strng{authorbibnamehash}{04b35e38ad6c7165692c4a0516e1e1ed}
+      \strng{authornamehash}{04b35e38ad6c7165692c4a0516e1e1ed}
+      \strng{authorfullhash}{04b35e38ad6c7165692c4a0516e1e1ed}
+      \strng{authorfullhashraw}{04b35e38ad6c7165692c4a0516e1e1ed}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This paper empirically investigates the effect of income and human capital inequality on economic growth in different regions of the world. In the estimation of a dynamic panel data model that controls for country-specific effects and takes into account the persistency of the inequality indicators, the results show a different effect of inequality on growth depending on the level of development of the region. Specifically, we find a negative effect of income and human capital inequality on economic growth, both in the sample as a whole and in the low and middle-income economies, an effect that vanishes or becomes positive in the higher-income countries.}
+      \field{journaltitle}{The Journal of Economic Inequality}
+      \field{number}{3}
+      \field{title}{Inequality and growth in advanced economies: an empirical investigation}
+      \field{volume}{8}
+      \field{year}{2010}
+      \field{pages}{293\bibrangedash 321}
+      \range{pages}{29}
+    \endentry
+    \entry{cetl21}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=d9253fa69306ab121872829275f00f21}{%
+           family={Cerra},
+           familyi={C\bibinitperiod},
+           given={Valerie},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f421d97467b49ebed07c3ac261c9640d}{%
+           family={Loayza},
+           familyi={L\bibinitperiod},
+           given={Norman},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8dc9c4bb89f6d1cbb7a480b31cd522fd}{%
+           family={Lama},
+           familyi={L\bibinitperiod},
+           given={Ruy},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{c17331dc6afd0ff54c9303ffb0ed4f7a}
+      \strng{fullhash}{26d8210f94aa7e07794af71a656db141}
+      \strng{fullhashraw}{26d8210f94aa7e07794af71a656db141}
+      \strng{bibnamehash}{26d8210f94aa7e07794af71a656db141}
+      \strng{authorbibnamehash}{26d8210f94aa7e07794af71a656db141}
+      \strng{authornamehash}{c17331dc6afd0ff54c9303ffb0ed4f7a}
+      \strng{authorfullhash}{26d8210f94aa7e07794af71a656db141}
+      \strng{authorfullhashraw}{26d8210f94aa7e07794af71a656db141}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IMF Working Papers}
+      \field{title}{Links Between Growth, Inequality, and Poverty: A Survey}
+      \field{volume}{2021/068}
+      \field{year}{2021}
+    \endentry
+    \entry{cohen89}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=1d42f47d2aba5e0b2307ce2e5e28e0fe}{%
+           family={Cohen},
+           familyi={C\bibinitperiod},
+           given={G.\bibnamedelimi A.},
+           giveni={G\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {University of Chicago Press}%
+      }
+      \strng{namehash}{1d42f47d2aba5e0b2307ce2e5e28e0fe}
+      \strng{fullhash}{1d42f47d2aba5e0b2307ce2e5e28e0fe}
+      \strng{fullhashraw}{1d42f47d2aba5e0b2307ce2e5e28e0fe}
+      \strng{bibnamehash}{1d42f47d2aba5e0b2307ce2e5e28e0fe}
+      \strng{authorbibnamehash}{1d42f47d2aba5e0b2307ce2e5e28e0fe}
+      \strng{authornamehash}{1d42f47d2aba5e0b2307ce2e5e28e0fe}
+      \strng{authorfullhash}{1d42f47d2aba5e0b2307ce2e5e28e0fe}
+      \strng{authorfullhashraw}{1d42f47d2aba5e0b2307ce2e5e28e0fe}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Ethics}
+      \field{number}{4}
+      \field{title}{On the Currency of Egalitarian Justice}
+      \field{volume}{99}
+      \field{year}{1989}
+      \field{pages}{906\bibrangedash 944}
+      \range{pages}{39}
+    \endentry
+    \entry{corak13}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=17dfd8b100e514392abb82c209868a88}{%
+           family={Corak},
+           familyi={C\bibinitperiod},
+           given={Miles},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {American Economic Association}%
+      }
+      \strng{namehash}{17dfd8b100e514392abb82c209868a88}
+      \strng{fullhash}{17dfd8b100e514392abb82c209868a88}
+      \strng{fullhashraw}{17dfd8b100e514392abb82c209868a88}
+      \strng{bibnamehash}{17dfd8b100e514392abb82c209868a88}
+      \strng{authorbibnamehash}{17dfd8b100e514392abb82c209868a88}
+      \strng{authornamehash}{17dfd8b100e514392abb82c209868a88}
+      \strng{authorfullhash}{17dfd8b100e514392abb82c209868a88}
+      \strng{authorfullhashraw}{17dfd8b100e514392abb82c209868a88}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Journal of Economic Perspectives}
+      \field{number}{3}
+      \field{title}{Income Inequality, Equality of Opportunity, and Intergenerational Mobility}
+      \field{volume}{27}
+      \field{year}{2013}
+      \field{pages}{79\bibrangedash 102}
+      \range{pages}{24}
+    \endentry
+    \entry{dnd00}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=3570a72ffad7cd7cc5b4fc3a681032a8}{%
+           family={Davidson},
+           familyi={D\bibinitperiod},
+           given={Russell},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6e4064c72f2e1b4dad161206efed78b3}{%
+           family={Duclos},
+           familyi={D\bibinitperiod},
+           given={Jean\bibnamedelima Yves},
+           giveni={J\bibinitperiod\bibinitdelim Y\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{bade34d0b7e1a5cd651c0c15746aafb7}
+      \strng{fullhash}{bade34d0b7e1a5cd651c0c15746aafb7}
+      \strng{fullhashraw}{bade34d0b7e1a5cd651c0c15746aafb7}
+      \strng{bibnamehash}{bade34d0b7e1a5cd651c0c15746aafb7}
+      \strng{authorbibnamehash}{bade34d0b7e1a5cd651c0c15746aafb7}
+      \strng{authornamehash}{bade34d0b7e1a5cd651c0c15746aafb7}
+      \strng{authorfullhash}{bade34d0b7e1a5cd651c0c15746aafb7}
+      \strng{authorfullhashraw}{bade34d0b7e1a5cd651c0c15746aafb7}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{We derive the asymptotic sampling distribution of various estimators frequently used to order distributions in terms of poverty, welfare, and inequality. This includes estimators of most of the poverty indices currently in use, as well as estimators of the curves used to infer ...}}
+      \field{journaltitle}{Econometrica: Journal of the Econometric Society}
+      \field{number}{6}
+      \field{title}{Statistical Inference for Stochastic Dominance and for the Measurement of Poverty and Inequality}
+      \field{volume}{68}
+      \field{year}{2000}
+      \field{pages}{1435 1464}
+      \range{pages}{-1}
+    \endentry
+    \entry{dworkin81a}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=295bb3d0361117c1a0a4469be4bec4c4}{%
+           family={Dworkin},
+           familyi={D\bibinitperiod},
+           given={R},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{295bb3d0361117c1a0a4469be4bec4c4}
+      \strng{fullhash}{295bb3d0361117c1a0a4469be4bec4c4}
+      \strng{fullhashraw}{295bb3d0361117c1a0a4469be4bec4c4}
+      \strng{bibnamehash}{295bb3d0361117c1a0a4469be4bec4c4}
+      \strng{authorbibnamehash}{295bb3d0361117c1a0a4469be4bec4c4}
+      \strng{authornamehash}{295bb3d0361117c1a0a4469be4bec4c4}
+      \strng{authorfullhash}{295bb3d0361117c1a0a4469be4bec4c4}
+      \strng{authorfullhashraw}{295bb3d0361117c1a0a4469be4bec4c4}
+      \field{extraname}{1}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradate}{1}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{Equality is a popular but mysterious political ideal. People can become equal (or at least more equal) in one way with the consequence that they become unequal (or more unequal) in others. If people have equal income, for example, they will almost certainly differ in the ...}}
+      \field{journaltitle}{Philosophy \& Public Affairs}
+      \field{number}{3}
+      \field{title}{{What is equality? Part 1: Equality of welfare}}
+      \field{volume}{10}
+      \field{year}{1981}
+      \field{pages}{185 246}
+      \range{pages}{-1}
+    \endentry
+    \entry{dworkin81b}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=295bb3d0361117c1a0a4469be4bec4c4}{%
+           family={Dworkin},
+           familyi={D\bibinitperiod},
+           given={R},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{295bb3d0361117c1a0a4469be4bec4c4}
+      \strng{fullhash}{295bb3d0361117c1a0a4469be4bec4c4}
+      \strng{fullhashraw}{295bb3d0361117c1a0a4469be4bec4c4}
+      \strng{bibnamehash}{295bb3d0361117c1a0a4469be4bec4c4}
+      \strng{authorbibnamehash}{295bb3d0361117c1a0a4469be4bec4c4}
+      \strng{authornamehash}{295bb3d0361117c1a0a4469be4bec4c4}
+      \strng{authorfullhash}{295bb3d0361117c1a0a4469be4bec4c4}
+      \strng{authorfullhashraw}{295bb3d0361117c1a0a4469be4bec4c4}
+      \field{extraname}{2}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradate}{2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{In Part i of this essay we considered the claims of equality of welfare as an interpretation of treating people as equals. In Part 2 we shall consider the competing claims of equality of resources . But we shall be occupied, for the most part, simply in defining a suitable ...}}
+      \field{journaltitle}{Philosophy \& Public Affairs}
+      \field{number}{4}
+      \field{title}{{What is equality? Part 2: Equality of resources}}
+      \field{volume}{10}
+      \field{year}{1981}
+      \field{pages}{283 345}
+      \range{pages}{-1}
+    \endentry
+    \entry{fng11}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=7df41c69999dbee1f11aafad008cb3e6}{%
+           family={Ferreira},
+           familyi={F\bibinitperiod},
+           given={Francisco\bibnamedelimb H.\bibnamedelimi G.},
+           giveni={F\bibinitperiod\bibinitdelim H\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=22563009a71c937ebe4f44f739fd0a45}{%
+           family={Gignoux},
+           familyi={G\bibinitperiod},
+           given={Jérémie},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{d04cf7ddfa3867510766c3bd63e62d4d}
+      \strng{fullhash}{d04cf7ddfa3867510766c3bd63e62d4d}
+      \strng{fullhashraw}{d04cf7ddfa3867510766c3bd63e62d4d}
+      \strng{bibnamehash}{d04cf7ddfa3867510766c3bd63e62d4d}
+      \strng{authorbibnamehash}{d04cf7ddfa3867510766c3bd63e62d4d}
+      \strng{authornamehash}{d04cf7ddfa3867510766c3bd63e62d4d}
+      \strng{authorfullhash}{d04cf7ddfa3867510766c3bd63e62d4d}
+      \strng{authorfullhashraw}{d04cf7ddfa3867510766c3bd63e62d4d}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{Building on the existing literature, this paper constructs a simple scalar measure of inequality of opportunity and applies it to six Latin American countries. The measure—which captures between-group inequality when groups are defined exclusively on the basis of predetermined circumstances—is shown to yield a lower-bound estimate of true inequality of opportunity. Absolute and relative versions of the index are defined, and alternative parametric and non-parametric methods are employed to generate robust estimates. In the application to Latin America, we find inequality of opportunity shares ranging from one quarter to one half of total consumption inequality. An opportunity-deprivation profile that identifies the worst-off types in each society is also formally defined, and described for the same six countries. In three of them, 100 percent of the opportunity-deprived were found to be indigenous or Afro-descendants.}}
+      \field{journaltitle}{Review of Income and Wealth}
+      \field{number}{4}
+      \field{title}{{The Measurement of Inequality of Opportunity: Theory and an Application to Latin America}}
+      \field{volume}{57}
+      \field{year}{2011}
+      \field{pages}{622 657}
+      \range{pages}{-1}
+    \endentry
+    \entry{fetl18}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=7df41c69999dbee1f11aafad008cb3e6}{%
+           family={Ferreira},
+           familyi={F\bibinitperiod},
+           given={Francisco\bibnamedelimb H.\bibnamedelimi G.},
+           giveni={F\bibinitperiod\bibinitdelim H\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2fd58661bf173dc242cdacf1d50dd59b}{%
+           family={Lakner},
+           familyi={L\bibinitperiod},
+           given={Christoph},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=35a3dee3b41a0aa2d8bd8b31dca279df}{%
+           family={Lugo},
+           familyi={L\bibinitperiod},
+           given={Maria\bibnamedelima Ana},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3e1f5b65ac28f59447457874f50e6ac5}{%
+           family={Özler},
+           familyi={Ö\bibinitperiod},
+           given={Berk},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{571f2e766e750afc1ba1a14c81ec1fc9}
+      \strng{fullhash}{f8197a927bbb6e8c56f54713c40220fe}
+      \strng{fullhashraw}{f8197a927bbb6e8c56f54713c40220fe}
+      \strng{bibnamehash}{f8197a927bbb6e8c56f54713c40220fe}
+      \strng{authorbibnamehash}{f8197a927bbb6e8c56f54713c40220fe}
+      \strng{authornamehash}{571f2e766e750afc1ba1a14c81ec1fc9}
+      \strng{authorfullhash}{f8197a927bbb6e8c56f54713c40220fe}
+      \strng{authorfullhashraw}{f8197a927bbb6e8c56f54713c40220fe}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{Income differences arise from many sources. While some kinds of inequality, caused by differential rewards to effort, might be associated with faster economic growth, other kinds, arising from unequal opportunities for investment, might be detrimental to economic progress. This study uses two new datasets, consisting of 117 income and expenditure household surveys and 134 Demographic and Health Surveys, to revisit the relationship between total inequality and economic growth. In particular, we ask whether inequality of opportunity, driven by circumstances at birth, has a negative effect on subsequent growth. Using the income and expenditure micro dataset, we find that while both total income inequality and inequality of opportunity are negatively associated with growth, the coefficient estimates are insignificant. The evidence is similarly equivocal using the Demographic and Health Surveys data. On balance, the data do not provide support for the hypothesis that inequality of opportunity is bad for growth.}}
+      \field{journaltitle}{Review of Income and Wealth}
+      \field{number}{4}
+      \field{title}{Inequality of Opportunity and Economic Growth: How Much Can Cross‐Country Regressions Really Tell Us?}
+      \field{volume}{64}
+      \field{year}{2018}
+      \field{pages}{800\bibrangedash 827}
+      \range{pages}{28}
+    \endentry
+    \entry{fnp15}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=7df41c69999dbee1f11aafad008cb3e6}{%
+           family={Ferreira},
+           familyi={F\bibinitperiod},
+           given={Francisco\bibnamedelimb H.\bibnamedelimi G.},
+           giveni={F\bibinitperiod\bibinitdelim H\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d6f867a213ae141fb91599f422d3daff}{%
+           family={Peragine},
+           familyi={P\bibinitperiod},
+           given={Vito},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{664ace1b7fb57a8a0d653936c9cc3045}
+      \strng{fullhash}{664ace1b7fb57a8a0d653936c9cc3045}
+      \strng{fullhashraw}{664ace1b7fb57a8a0d653936c9cc3045}
+      \strng{bibnamehash}{664ace1b7fb57a8a0d653936c9cc3045}
+      \strng{authorbibnamehash}{664ace1b7fb57a8a0d653936c9cc3045}
+      \strng{authornamehash}{664ace1b7fb57a8a0d653936c9cc3045}
+      \strng{authorfullhash}{664ace1b7fb57a8a0d653936c9cc3045}
+      \strng{authorfullhashraw}{664ace1b7fb57a8a0d653936c9cc3045}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{Building on earlier work by political philosophers, economists have recently sought to define a concept of equity that accommodates the fairness of reward to individual responsibility and effort, while allowing for the existence of some inequalities which are unfair and should be compensated. This paper–commissioned as a chapter for the Oxford Handbook of Well Being and Public Policy–provides a critical review of the economic ...}}
+      \field{journaltitle}{IZA Discussion Paper}
+      \field{title}{{Equality of opportunity: Theory and evidence}}
+      \field{volume}{8994}
+      \field{year}{2015}
+    \endentry
+    \entry{forbes00}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=f5dde46697707f4f99acec677c7bc564}{%
+           family={Forbes},
+           familyi={F\bibinitperiod},
+           given={Kristin\bibnamedelima J},
+           giveni={K\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{f5dde46697707f4f99acec677c7bc564}
+      \strng{fullhash}{f5dde46697707f4f99acec677c7bc564}
+      \strng{fullhashraw}{f5dde46697707f4f99acec677c7bc564}
+      \strng{bibnamehash}{f5dde46697707f4f99acec677c7bc564}
+      \strng{authorbibnamehash}{f5dde46697707f4f99acec677c7bc564}
+      \strng{authornamehash}{f5dde46697707f4f99acec677c7bc564}
+      \strng{authorfullhash}{f5dde46697707f4f99acec677c7bc564}
+      \strng{authorfullhashraw}{f5dde46697707f4f99acec677c7bc564}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{This paper challenges the current belief that income inequality has a negative relationship with economic growth. It uses an improved data set on income inequality which not only reduces measurement error, but also allows estimation via a panel technique. Panel estimation makes it possible to control for time-invariant country-specific effects, therefore eliminating a potential source of omitted-variable bias. Results suggest that in the short and medium term, an increase in a country's level of income inequality has a significant positive relationship with subsequent economic growth. This relationship is highly robust across samples, variable definitions, and model specifications. (JEL O40, O15, E25)}}
+      \field{journaltitle}{American Economic Review}
+      \field{number}{4}
+      \field{title}{{A Reassessment of the Relationship Between Inequality and Growth}}
+      \field{volume}{90}
+      \field{year}{2000}
+      \field{pages}{869\bibrangedash 887}
+      \range{pages}{19}
+    \endentry
+    \entry{gnz93}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=5bd32628f8a80555d67d5ecc79ec0a6d}{%
+           family={Galor},
+           familyi={G\bibinitperiod},
+           given={Oded},
+           giveni={O\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=652eb64d52585d4ae89450cbffd4c2a8}{%
+           family={Zeira},
+           familyi={Z\bibinitperiod},
+           given={Joseph},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{402fba1f5124a57e082ac78a5b215d4f}
+      \strng{fullhash}{402fba1f5124a57e082ac78a5b215d4f}
+      \strng{fullhashraw}{402fba1f5124a57e082ac78a5b215d4f}
+      \strng{bibnamehash}{402fba1f5124a57e082ac78a5b215d4f}
+      \strng{authorbibnamehash}{402fba1f5124a57e082ac78a5b215d4f}
+      \strng{authornamehash}{402fba1f5124a57e082ac78a5b215d4f}
+      \strng{authorfullhash}{402fba1f5124a57e082ac78a5b215d4f}
+      \strng{authorfullhashraw}{402fba1f5124a57e082ac78a5b215d4f}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Review of Economic Studies}
+      \field{number}{1}
+      \field{title}{{Income Distribution and Macroeconomics}}
+      \field{volume}{60}
+      \field{year}{1993}
+    \endentry
+    \entry{hetl14}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=4397d2c8c4468348903a16f0cd252cce}{%
+           family={Halter},
+           familyi={H\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ef1fa23afef4f62d33eaaa18e8c7fb8f}{%
+           family={Oechslin},
+           familyi={O\bibinitperiod},
+           given={Manuel},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=99859f8749c09794ec38e2d47bf91145}{%
+           family={Zweimüller},
+           familyi={Z\bibinitperiod},
+           given={Josef},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{7dbaf95084a172698715614c49687427}
+      \strng{fullhash}{33b629e7b73bcbc2f9d5df02b19a6a70}
+      \strng{fullhashraw}{33b629e7b73bcbc2f9d5df02b19a6a70}
+      \strng{bibnamehash}{33b629e7b73bcbc2f9d5df02b19a6a70}
+      \strng{authorbibnamehash}{33b629e7b73bcbc2f9d5df02b19a6a70}
+      \strng{authornamehash}{7dbaf95084a172698715614c49687427}
+      \strng{authorfullhash}{33b629e7b73bcbc2f9d5df02b19a6a70}
+      \strng{authorfullhashraw}{33b629e7b73bcbc2f9d5df02b19a6a70}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Inequality affects economic performance through many mechanisms, both beneficial and harmful. Moreover, some of these mechanisms tend to set in fast while others are rather slow. The present paper (i) introduces a simple theoretical model to study how changes in inequality affect economic growth over different time horizons; (ii) empirically investigates the inequality—growth relationship, thereby relying on specifications derived from the theory. Our empirical findings are in line with the theoretical predictions: Higher inequality helps economic performance in the short term but reduces the growth rate of GDP per capita farther in the future. The long-run (or total) effect of higher inequality tends to be negative.}
+      \field{journaltitle}{Journal of Economic Growth}
+      \field{number}{1}
+      \field{title}{Inequality and growth: the neglected time dimension}
+      \field{volume}{19}
+      \field{year}{2014}
+      \field{pages}{81\bibrangedash 104}
+      \range{pages}{24}
+    \endentry
+    \entry{Klieme16}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=be860e3bf2688f52bedf9d174eab9184}{%
+           family={Klieme},
+           familyi={K\bibinitperiod},
+           given={Eckhard},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{be860e3bf2688f52bedf9d174eab9184}
+      \strng{fullhash}{be860e3bf2688f52bedf9d174eab9184}
+      \strng{fullhashraw}{be860e3bf2688f52bedf9d174eab9184}
+      \strng{bibnamehash}{be860e3bf2688f52bedf9d174eab9184}
+      \strng{authorbibnamehash}{be860e3bf2688f52bedf9d174eab9184}
+      \strng{authornamehash}{be860e3bf2688f52bedf9d174eab9184}
+      \strng{authorfullhash}{be860e3bf2688f52bedf9d174eab9184}
+      \strng{authorfullhashraw}{be860e3bf2688f52bedf9d174eab9184}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{DIPF Working Paper}
+      \field{title}{{TIMSS 2015 and PISA 2015 How are they related on the country level ?}}
+      \field{year}{2016}
+    \endentry
+    \entry{letl08}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=77586c561d622e1e25197408035c145c}{%
+           family={Lefranc},
+           familyi={L\bibinitperiod},
+           given={Arnaud},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3e821ad713f2fde85a649a8aa65255c9}{%
+           family={Pistolesi},
+           familyi={P\bibinitperiod},
+           given={Nicolas},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=08ff38540d1622bcb7b352901376f864}{%
+           family={Trannoy},
+           familyi={T\bibinitperiod},
+           given={Alain},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{22e84271d8f68ae62e2ac2d398c83682}
+      \strng{fullhash}{fb473258d2bff47c48fa12c2381fbe2b}
+      \strng{fullhashraw}{fb473258d2bff47c48fa12c2381fbe2b}
+      \strng{bibnamehash}{fb473258d2bff47c48fa12c2381fbe2b}
+      \strng{authorbibnamehash}{fb473258d2bff47c48fa12c2381fbe2b}
+      \strng{authornamehash}{22e84271d8f68ae62e2ac2d398c83682}
+      \strng{authorfullhash}{fb473258d2bff47c48fa12c2381fbe2b}
+      \strng{authorfullhashraw}{fb473258d2bff47c48fa12c2381fbe2b}
+      \field{extraname}{1}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{This paper analyzes the relationship between income inequality and inequality of opportunities for income acquisition in nine developed countries during the 1990s. Equality of opportunity is defined as the situation where income distributions conditional on social origin cannot be ranked according to stochastic dominance criteria. We measure social origin by parental education and occupation and use the database built by Roemer et al. (2003). Stochastic dominance is assessed using nonparametric statistical tests. Our results indicate strong disparities in the degree of equality of opportunity across countries and a strong correlation between inequality of outcomes and inequality of opportunity. The U.S. and Italy show up as the most unequal countries in terms of both outcome and opportunity. At the opposite extreme, income distributions conditional on social origin are almost the same in Scandinavian countries even before any redistributive policy. We complement the ordinal comparison by resorting to an original scalar “Gini” index of opportunities, which can be decomposed into a risk and a return component. In our sample, inequality of opportunity is mostly driven by differences in mean income conditional on social origin, and differences in risk compensate the return element in most countries.}}
+      \field{journaltitle}{Review of Income and Wealth}
+      \field{number}{4}
+      \field{title}{{Inequality of Opportunities vs. Inequality of Outcomes: Are Western Societies All Alike?}}
+      \field{volume}{54}
+      \field{year}{2008}
+      \field{pages}{513 546}
+      \range{pages}{-1}
+    \endentry
+    \entry{letl09}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=77586c561d622e1e25197408035c145c}{%
+           family={Lefranc},
+           familyi={L\bibinitperiod},
+           given={Arnaud},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3e821ad713f2fde85a649a8aa65255c9}{%
+           family={Pistolesi},
+           familyi={P\bibinitperiod},
+           given={Nicolas},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=08ff38540d1622bcb7b352901376f864}{%
+           family={Trannoy},
+           familyi={T\bibinitperiod},
+           given={Alain},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{22e84271d8f68ae62e2ac2d398c83682}
+      \strng{fullhash}{fb473258d2bff47c48fa12c2381fbe2b}
+      \strng{fullhashraw}{fb473258d2bff47c48fa12c2381fbe2b}
+      \strng{bibnamehash}{fb473258d2bff47c48fa12c2381fbe2b}
+      \strng{authorbibnamehash}{fb473258d2bff47c48fa12c2381fbe2b}
+      \strng{authornamehash}{22e84271d8f68ae62e2ac2d398c83682}
+      \strng{authorfullhash}{fb473258d2bff47c48fa12c2381fbe2b}
+      \strng{authorfullhashraw}{fb473258d2bff47c48fa12c2381fbe2b}
+      \field{extraname}{2}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{We offer a model of equality of opportunity that encompasses different conceptions expressed in the public and philosophical debates. In addition to circumstances whose effect on outcome should be compensated and effort which represents a legitimate source of inequality, we introduce a third factor, luck, that captures the random factors whose impact on outcome should be even-handed for equality of opportunity to be satisfied. Then, we analyze how the various definitions of equality of opportunity can be empirically identified, given data limitations and provide testable conditions. Definitions and conditions resort to standard stochastic dominance tools. Lastly, we develop an empirical analysis of equality of opportunity for income acquisition in France over the period 1979–2000 which reveals that the degree of inequality of opportunity tends to decrease and that the degree of risk of income distributions, conditional on social origin, appears very similar across all groups of social origins.}}
+      \field{journaltitle}{Journal of Public Economics}
+      \field{number}{11-12}
+      \field{title}{{Equality of opportunity and luck: Definitions and testable conditions, with an application to income in France}}
+      \field{volume}{93}
+      \field{year}{2009}
+      \field{pages}{1189 1207}
+      \range{pages}{-1}
+    \endentry
+    \entry{lnz98}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=6a7861f54bd58dc46bf384608d710356}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Hongyi},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3878fd7545a85768068b735f769d48af}{%
+           family={Zou},
+           familyi={Z\bibinitperiod},
+           given={Heng‐fu},
+           giveni={H\bibinithyphendelim f\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{3bcdde7e842a9bb5fb8d53a63375874d}
+      \strng{fullhash}{3bcdde7e842a9bb5fb8d53a63375874d}
+      \strng{fullhashraw}{3bcdde7e842a9bb5fb8d53a63375874d}
+      \strng{bibnamehash}{3bcdde7e842a9bb5fb8d53a63375874d}
+      \strng{authorbibnamehash}{3bcdde7e842a9bb5fb8d53a63375874d}
+      \strng{authornamehash}{3bcdde7e842a9bb5fb8d53a63375874d}
+      \strng{authorfullhash}{3bcdde7e842a9bb5fb8d53a63375874d}
+      \strng{authorfullhashraw}{3bcdde7e842a9bb5fb8d53a63375874d}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{The paper shows that income inequality may theoretically lead to higher economic growth if public consumption enters the utility function. Empirically, baseline estimations and a sensitivity analysis show that income inequality is positively, and most of the time significantly, associated with economic growth. These findings stand in sharp contrast to the negative association between inequality and growth propounded by Alesina and Rodrik and by Persson and Tabellini.}}
+      \field{journaltitle}{Review of Development Economics}
+      \field{number}{3}
+      \field{title}{{Income Inequality is not Harmful for Growth: Theory and Evidence}}
+      \field{volume}{2}
+      \field{year}{1998}
+      \field{pages}{318\bibrangedash 334}
+      \range{pages}{17}
+    \endentry
+    \entry{loury81}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=2d962b0b71ebc5392a02ecafcef946bb}{%
+           family={Loury},
+           familyi={L\bibinitperiod},
+           given={Glenn\bibnamedelima C.},
+           giveni={G\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{2d962b0b71ebc5392a02ecafcef946bb}
+      \strng{fullhash}{2d962b0b71ebc5392a02ecafcef946bb}
+      \strng{fullhashraw}{2d962b0b71ebc5392a02ecafcef946bb}
+      \strng{bibnamehash}{2d962b0b71ebc5392a02ecafcef946bb}
+      \strng{authorbibnamehash}{2d962b0b71ebc5392a02ecafcef946bb}
+      \strng{authornamehash}{2d962b0b71ebc5392a02ecafcef946bb}
+      \strng{authorfullhash}{2d962b0b71ebc5392a02ecafcef946bb}
+      \strng{authorfullhashraw}{2d962b0b71ebc5392a02ecafcef946bb}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Econometrica}
+      \field{number}{4}
+      \field{title}{{Intergenerational Transfers and the Distribution of Earnings}}
+      \field{volume}{49}
+      \field{year}{1981}
+    \endentry
+    \entry{mnr13}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=6ebb6cce4eadacce1f7c80fe75e7ac27}{%
+           family={Marrero},
+           familyi={M\bibinitperiod},
+           given={Gustavo\bibnamedelima A},
+           giveni={G\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5c3361051b959e679cff5d715b63fb13}{%
+           family={Rodríguez},
+           familyi={R\bibinitperiod},
+           given={Juan\bibnamedelima Gabriel},
+           giveni={J\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{b6d2bf25342c6f34977b8e1a516a9428}
+      \strng{fullhash}{b6d2bf25342c6f34977b8e1a516a9428}
+      \strng{fullhashraw}{b6d2bf25342c6f34977b8e1a516a9428}
+      \strng{bibnamehash}{b6d2bf25342c6f34977b8e1a516a9428}
+      \strng{authorbibnamehash}{b6d2bf25342c6f34977b8e1a516a9428}
+      \strng{authornamehash}{b6d2bf25342c6f34977b8e1a516a9428}
+      \strng{authorfullhash}{b6d2bf25342c6f34977b8e1a516a9428}
+      \strng{authorfullhashraw}{b6d2bf25342c6f34977b8e1a516a9428}
+      \field{extraname}{1}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{Theoretical and empirical studies exploring the effects of income inequality upon growth reach a disappointing inconclusive result. This paper postulates that o.}}
+      \field{journaltitle}{Journal of Development Economics}
+      \field{title}{{Inequality of opportunity and growth}}
+      \field{volume}{104}
+      \field{year}{2013}
+      \field{pages}{107\bibrangedash 122}
+      \range{pages}{16}
+    \endentry
+    \entry{mnr14}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=6ebb6cce4eadacce1f7c80fe75e7ac27}{%
+           family={Marrero},
+           familyi={M\bibinitperiod},
+           given={Gustavo\bibnamedelima A},
+           giveni={G\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5c3361051b959e679cff5d715b63fb13}{%
+           family={Rodríguez},
+           familyi={R\bibinitperiod},
+           given={Juan\bibnamedelima Gabriel},
+           giveni={J\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{b6d2bf25342c6f34977b8e1a516a9428}
+      \strng{fullhash}{b6d2bf25342c6f34977b8e1a516a9428}
+      \strng{fullhashraw}{b6d2bf25342c6f34977b8e1a516a9428}
+      \strng{bibnamehash}{b6d2bf25342c6f34977b8e1a516a9428}
+      \strng{authorbibnamehash}{b6d2bf25342c6f34977b8e1a516a9428}
+      \strng{authornamehash}{b6d2bf25342c6f34977b8e1a516a9428}
+      \strng{authorfullhash}{b6d2bf25342c6f34977b8e1a516a9428}
+      \strng{authorfullhashraw}{b6d2bf25342c6f34977b8e1a516a9428}
+      \field{extraname}{2}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{ECINEQ WP}
+      \field{series}{Working Paper Series}
+      \field{title}{{Inequality and development :the role of opportunities and free-will}}
+      \field{volume}{2014-327}
+      \field{year}{2014}
+    \endentry
+    \entry{metl13}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=eb38da664367153ca7cd29156fa67b4a}{%
+           family={Molina},
+           familyi={M\bibinitperiod},
+           given={Ezequiel},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=46fdd1ddd4713f3f62df8b7f78c32a7d}{%
+           family={Narayan},
+           familyi={N\bibinitperiod},
+           given={Ambar},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c04a7502855bbf4f3506ef23b821dbb8}{%
+           family={Saavedra-Chanduví},
+           familyi={S\bibinithyphendelim C\bibinitperiod},
+           given={Jaime},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{c5478b31c7a229ef50f63e41ad15d09b}
+      \strng{fullhash}{b783306549ea3ed1e3bfd001aa2b44c2}
+      \strng{fullhashraw}{b783306549ea3ed1e3bfd001aa2b44c2}
+      \strng{bibnamehash}{b783306549ea3ed1e3bfd001aa2b44c2}
+      \strng{authorbibnamehash}{b783306549ea3ed1e3bfd001aa2b44c2}
+      \strng{authornamehash}{c5478b31c7a229ef50f63e41ad15d09b}
+      \strng{authorfullhash}{b783306549ea3ed1e3bfd001aa2b44c2}
+      \strng{authorfullhashraw}{b783306549ea3ed1e3bfd001aa2b44c2}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The World Bank Policy Research Working Paper Series}
+      \field{title}{{Outcomes, Opportunity and Development: Why Unequal Opportunities and Not Outcomes Hinder Economic Development}}
+      \field{volume}{6735}
+      \field{year}{2013}
+    \endentry
+    \entry{nns16}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=d3278d11477ed93443b7924eb404a5ec}{%
+           family={Neves},
+           familyi={N\bibinitperiod},
+           given={Pedro\bibnamedelima Cunha},
+           giveni={P\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1e6e1f372808a51a0e4677d97c27fa42}{%
+           family={Afonso},
+           familyi={A\bibinitperiod},
+           given={Ó},
+           giveni={Ó\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4c5632108b2b4f28eeb68baff7943c09}{%
+           family={Silva},
+           familyi={S\bibinitperiod},
+           given={Sandra\bibnamedelimb Maria\bibnamedelima Tavares},
+           giveni={S\bibinitperiod\bibinitdelim M\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{e89e78e526b76bc0ee42e301d934ea99}
+      \strng{fullhash}{f6fd1a3068819fa7e939445ce0e5ae49}
+      \strng{fullhashraw}{f6fd1a3068819fa7e939445ce0e5ae49}
+      \strng{bibnamehash}{f6fd1a3068819fa7e939445ce0e5ae49}
+      \strng{authorbibnamehash}{f6fd1a3068819fa7e939445ce0e5ae49}
+      \strng{authornamehash}{e89e78e526b76bc0ee42e301d934ea99}
+      \strng{authorfullhash}{f6fd1a3068819fa7e939445ce0e5ae49}
+      \strng{authorfullhashraw}{f6fd1a3068819fa7e939445ce0e5ae49}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{This paper develops a meta-analysis of the empirical literature that estimates the effect of inequality on growth. It covers studies published in scientific jou.}}
+      \field{journaltitle}{World Development}
+      \field{title}{{A Meta-Analytic Reassessment of the Effects of Inequality on Growth}}
+      \field{volume}{78}
+      \field{year}{2016}
+      \field{pages}{386 400}
+      \range{pages}{-1}
+    \endentry
+    \entry{nns13}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=d3278d11477ed93443b7924eb404a5ec}{%
+           family={Neves},
+           familyi={N\bibinitperiod},
+           given={Pedro\bibnamedelima Cunha},
+           giveni={P\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4c5632108b2b4f28eeb68baff7943c09}{%
+           family={Silva},
+           familyi={S\bibinitperiod},
+           given={Sandra\bibnamedelimb Maria\bibnamedelima Tavares},
+           giveni={S\bibinitperiod\bibinitdelim M\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{908ccff1d372963863cc270f0784f4a5}
+      \strng{fullhash}{908ccff1d372963863cc270f0784f4a5}
+      \strng{fullhashraw}{908ccff1d372963863cc270f0784f4a5}
+      \strng{bibnamehash}{908ccff1d372963863cc270f0784f4a5}
+      \strng{authorbibnamehash}{908ccff1d372963863cc270f0784f4a5}
+      \strng{authornamehash}{908ccff1d372963863cc270f0784f4a5}
+      \strng{authorfullhash}{908ccff1d372963863cc270f0784f4a5}
+      \strng{authorfullhashraw}{908ccff1d372963863cc270f0784f4a5}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{This paper is a critical survey of the empirical literature on the effects of inequality on economic growth. We conclude that it is most likely that the disparities found in the results are due to differences in the type of countries and time periods included in the samples, the variable used to measure inequality, the structure of the data, and the estimation techniques. These findings suggest that the mechanisms that link inequality to growth are likely to operate differently in different circumstances, an element that may offer important guidelines for both policy makers and researchers.}}
+      \field{journaltitle}{The Journal of Development Studies}
+      \field{number}{1}
+      \field{title}{{Survey Article: Inequality and Growth: Uncovering the Main Conclusions from the Empirics}}
+      \field{volume}{50}
+      \field{year}{2013}
+      \field{pages}{1\bibrangedash 21}
+      \range{pages}{21}
+    \endentry
+    \entry{pnt94}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=f1fa15cf0ff6f6015cc43a7429eab414}{%
+           family={Persson},
+           familyi={P\bibinitperiod},
+           given={Torsten},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5c48e1a82e30b93eec473760eccb65e9}{%
+           family={Tabellini},
+           familyi={T\bibinitperiod},
+           given={Guido},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {American Economic Association}%
+      }
+      \strng{namehash}{c85c5e6be06972ac6bdc491095031ef8}
+      \strng{fullhash}{c85c5e6be06972ac6bdc491095031ef8}
+      \strng{fullhashraw}{c85c5e6be06972ac6bdc491095031ef8}
+      \strng{bibnamehash}{c85c5e6be06972ac6bdc491095031ef8}
+      \strng{authorbibnamehash}{c85c5e6be06972ac6bdc491095031ef8}
+      \strng{authornamehash}{c85c5e6be06972ac6bdc491095031ef8}
+      \strng{authorfullhash}{c85c5e6be06972ac6bdc491095031ef8}
+      \strng{authorfullhashraw}{c85c5e6be06972ac6bdc491095031ef8}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Is inequality harmful for growth? We suggest that it is. In a society where distributional conflict is important, political decisions produce economic policies that tax investment and growth-promoting activities in order to redistribute income. The paper formulates a theoretical model that captures this idea. The model's implications are supported by the evidence. Both historical panel data and postwar cross sections indicate a significant and large negative relation between inequality and growth. This relation is only present in democracies.}
+      \field{journaltitle}{The American Economic Review}
+      \field{number}{3}
+      \field{title}{Is Inequality Harmful for Growth?}
+      \field{volume}{84}
+      \field{year}{1994}
+      \field{pages}{600\bibrangedash 621}
+      \range{pages}{22}
+    \endentry
+    \entry{rnv12}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=75f70bdff596baa200d29128ebf7dfad}{%
+           family={Ramos},
+           familyi={R\bibinitperiod},
+           given={Xavier},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bce4e967f58303a04979bf640a2ceb4a}{%
+           family={Gaer},
+           familyi={G\bibinitperiod},
+           given={Dirk\bibnamedelimb Van\bibnamedelima De},
+           giveni={D\bibinitperiod\bibinitdelim V\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{e4b92269928a3ad32fb67d6b48d84c96}
+      \strng{fullhash}{e4b92269928a3ad32fb67d6b48d84c96}
+      \strng{fullhashraw}{e4b92269928a3ad32fb67d6b48d84c96}
+      \strng{bibnamehash}{e4b92269928a3ad32fb67d6b48d84c96}
+      \strng{authorbibnamehash}{e4b92269928a3ad32fb67d6b48d84c96}
+      \strng{authornamehash}{e4b92269928a3ad32fb67d6b48d84c96}
+      \strng{authorfullhash}{e4b92269928a3ad32fb67d6b48d84c96}
+      \strng{authorfullhashraw}{e4b92269928a3ad32fb67d6b48d84c96}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{We put together the different conceptual issues involved in measuring inequality of opportunity, discuss how these concepts have been translated into computable measures, and point out the problems and choices researchers face when implementing these …}}
+      \field{journaltitle}{IZA Discussion Paper}
+      \field{title}{{Empirical approaches to inequality of opportunity: Principles, measures, and evidence}}
+      \field{volume}{6672}
+      \field{year}{2012}
+    \endentry
+    \entry{Rawls99}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=789e307f6a6f6a453ff0ca10f85cea17}{%
+           family={Rawls},
+           familyi={R\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Harvard University Press}%
+      }
+      \strng{namehash}{789e307f6a6f6a453ff0ca10f85cea17}
+      \strng{fullhash}{789e307f6a6f6a453ff0ca10f85cea17}
+      \strng{fullhashraw}{789e307f6a6f6a453ff0ca10f85cea17}
+      \strng{bibnamehash}{789e307f6a6f6a453ff0ca10f85cea17}
+      \strng{authorbibnamehash}{789e307f6a6f6a453ff0ca10f85cea17}
+      \strng{authornamehash}{789e307f6a6f6a453ff0ca10f85cea17}
+      \strng{authorfullhash}{789e307f6a6f6a453ff0ca10f85cea17}
+      \strng{authorfullhashraw}{789e307f6a6f6a453ff0ca10f85cea17}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{In this introductory chapter I sketch some of the main ideas of the theory of justice I wish to develop. The exposition is informal and intended to prepare the way for the more detailed arguments that follow. Unavoidably there is some overlap between this and later ...}}
+      \field{edition}{Revised Edition}
+      \field{series}{Harvard University Press}
+      \field{title}{{A theory of justice}}
+      \field{year}{1999}
+    \endentry
+    \entry{Roemer98}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=443f24504b528addb9fe77c9de6ee330}{%
+           family={Roemer},
+           familyi={R\bibinitperiod},
+           given={John\bibnamedelima E},
+           giveni={J\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Harvard University Press}%
+      }
+      \strng{namehash}{443f24504b528addb9fe77c9de6ee330}
+      \strng{fullhash}{443f24504b528addb9fe77c9de6ee330}
+      \strng{fullhashraw}{443f24504b528addb9fe77c9de6ee330}
+      \strng{bibnamehash}{443f24504b528addb9fe77c9de6ee330}
+      \strng{authorbibnamehash}{443f24504b528addb9fe77c9de6ee330}
+      \strng{authornamehash}{443f24504b528addb9fe77c9de6ee330}
+      \strng{authorfullhash}{443f24504b528addb9fe77c9de6ee330}
+      \strng{authorfullhashraw}{443f24504b528addb9fe77c9de6ee330}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{John Roemer points out that there are two views of equality of opportunity that are widely held today. The first, which he calls the nondiscrimination principle, states that in the competition for positions in society, individuals should be judged only on attributes relevant to the performance of the duties of the position in question. Attributes such as race or sex should not be taken into account. The second states that society should do what it can to level the playing field among persons who compete for positions, especially during their formative years, so that all those who have the relevant potential attributes can be considered. Common to both positions is that at some point the principle of equal opportunity holds individuals accountable for achievements of particular objectives, whether they be education, employment, health, or income. Roemer argues that there is consequently a "before" and an "after" in the notion of equality of opportunity: before the competition starts, opportunities must be equalized, by social intervention if need be; but after it begins, individuals are on their own. The different views of equal opportunity should be judged according to where they place the starting gate which separates "before" from "after." Roemer works out in a precise way how to determine the location of the starting gate in the different views.}}
+      \field{series}{Harvard University Press}
+      \field{title}{{Equality of Opportunity}}
+      \field{year}{1998}
+    \endentry
+    \entry{rnt16}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=443f24504b528addb9fe77c9de6ee330}{%
+           family={Roemer},
+           familyi={R\bibinitperiod},
+           given={John\bibnamedelima E},
+           giveni={J\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=08ff38540d1622bcb7b352901376f864}{%
+           family={Trannoy},
+           familyi={T\bibinitperiod},
+           given={Alain},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9b87194307819092b1ce38d23a9d3bfb}
+      \strng{fullhash}{9b87194307819092b1ce38d23a9d3bfb}
+      \strng{fullhashraw}{9b87194307819092b1ce38d23a9d3bfb}
+      \strng{bibnamehash}{9b87194307819092b1ce38d23a9d3bfb}
+      \strng{authorbibnamehash}{9b87194307819092b1ce38d23a9d3bfb}
+      \strng{authornamehash}{9b87194307819092b1ce38d23a9d3bfb}
+      \strng{authorfullhash}{9b87194307819092b1ce38d23a9d3bfb}
+      \strng{authorfullhashraw}{9b87194307819092b1ce38d23a9d3bfb}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{During the last third of the twentieth century, political philosophers actively debated about the content of distributive justice; the ruling ethical view of utilitarianism was challenged by various versions of equality of opportunities. Economists formulated several ways of modeling these ideas, focusing upon how individuals are placed with respect to opportunities for achieving various outcomes, and what compensation is due to individuals with truncated opportunities. After presenting a review of the main philosophical ideas (section 2), we turn to economic models (sections 3 and 4). We propose a reformulation of the definition of economic development, replacing the utilitarian measure of GDP per capita with a measure of the degree to which opportunities for income acquisition in a nation have been equalized. Finally, we discuss issues that the econometrician faces in measuring inequality of opportunity, briefly review the empirical literature (section 6), and conclude (section 7).}}
+      \field{journaltitle}{Journal of Economic Literature}
+      \field{number}{4}
+      \field{title}{{Equality of Opportunity: Theory and Measurement}}
+      \field{volume}{54}
+      \field{year}{2016}
+      \field{pages}{1288\bibrangedash 1332}
+      \range{pages}{45}
+    \endentry
+    \entry{retl03}{article}{}{}
+      \name{author}{15}{}{%
+        {{un=0,uniquepart=base,hash=443f24504b528addb9fe77c9de6ee330}{%
+           family={Roemer},
+           familyi={R\bibinitperiod},
+           given={John\bibnamedelima E},
+           giveni={J\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=24626f2ce8d31b1dbeb0991cba588fa5}{%
+           family={Aaberge},
+           familyi={A\bibinitperiod},
+           given={Rolf},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=cfb1824b2784a280e67f00325221d6e9}{%
+           family={Colombino},
+           familyi={C\bibinitperiod},
+           given={Ugo},
+           giveni={U\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5116919756db52fe21936163361581bd}{%
+           family={Fritzell},
+           familyi={F\bibinitperiod},
+           given={Johan},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=cbff0737c0a66b90cb05602e52f4324d}{%
+           family={Jenkins},
+           familyi={J\bibinitperiod},
+           given={Stephen\bibnamedelima P},
+           giveni={S\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=77586c561d622e1e25197408035c145c}{%
+           family={Lefranc},
+           familyi={L\bibinitperiod},
+           given={Arnaud},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=263500cc5c3282eb53f41b79ba59cd77}{%
+           family={Marx},
+           familyi={M\bibinitperiod},
+           given={Ive},
+           giveni={I\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b9bf5f37457302ab5a82304be404c76d}{%
+           family={Page},
+           familyi={P\bibinitperiod},
+           given={Marianne},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e7e06784463c8d16f2dca48a7563cee2}{%
+           family={Pommer},
+           familyi={P\bibinitperiod},
+           given={Evert},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=dd75cab07417734b1f42b1a68888f759}{%
+           family={Ruiz-Castillo},
+           familyi={R\bibinithyphendelim C\bibinitperiod},
+           given={Javier},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=24acc6fbc63d6765462fa091d1734a67}{%
+           family={Segundo},
+           familyi={S\bibinitperiod},
+           given={Maria\bibnamedelimb Jesus\bibnamedelima San},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e0285a85437623e2a49a6102febbb5ab}{%
+           family={Tranaes},
+           familyi={T\bibinitperiod},
+           given={Torben},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=08ff38540d1622bcb7b352901376f864}{%
+           family={Trannoy},
+           familyi={T\bibinitperiod},
+           given={Alain},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a782cdb400e499e6683fd8870ff96d3b}{%
+           family={Wagner},
+           familyi={W\bibinitperiod},
+           given={Gert\bibnamedelima G},
+           giveni={G\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=affb50fda60d937ffc39c1b24fa8d36f}{%
+           family={Zubiri},
+           familyi={Z\bibinitperiod},
+           given={Ignacio},
+           giveni={I\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{e359281fca7833824405b97105057bb3}
+      \strng{fullhash}{30e26d4f9c01dbda29d9f2d251ae6270}
+      \strng{fullhashraw}{30e26d4f9c01dbda29d9f2d251ae6270}
+      \strng{bibnamehash}{e359281fca7833824405b97105057bb3}
+      \strng{authorbibnamehash}{e359281fca7833824405b97105057bb3}
+      \strng{authornamehash}{e359281fca7833824405b97105057bb3}
+      \strng{authorfullhash}{30e26d4f9c01dbda29d9f2d251ae6270}
+      \strng{authorfullhashraw}{30e26d4f9c01dbda29d9f2d251ae6270}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{This paper employs the theory of equality of opportunity, described in Roemer’s book (Equality of Opportunity, Harvard University Press, 1998), to compute the extent to which tax-and-transfer regimes in 11 countries equalize opportunities among citizens for income acquisition. Roughly speaking, equality of opportunity for incomes has been achieved in a country when it is the case that the distributions of post-fisc income are the same for different types of citizen, where a citizen’s type is defined by the socio-economic status of his parents. Intuitively, a country will have equalized opportunity if the chances of earning high (or low) income are equal for citizens from all family backgrounds. Of course, pre-fisc income distributions, by type, will not be identical, as long as the educational system does not entirely make up for the disadvantage that children, who come from poor families face, but the tax-and-transfer system can play a role in rectifying that inequality. We include, in our computation, two numbers that summarize the extent to which each country’s current fiscal regime achieves equalization of opportunities for income, and the deadweight loss that would be incurred by moving to the regime that does.}}
+      \field{journaltitle}{Journal of Public Economics}
+      \field{number}{3-4}
+      \field{title}{{To what extent do fiscal regimes equalize opportunities for income acquisition among citizens?}}
+      \field{volume}{87}
+      \field{year}{2003}
+      \field{pages}{539\bibrangedash 565}
+      \range{pages}{27}
+    \endentry
+    \entry{voit05}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=c1c9723a7b97e6fd4d535939fa62d619}{%
+           family={Voitchovsky},
+           familyi={V\bibinitperiod},
+           given={Sarah},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{c1c9723a7b97e6fd4d535939fa62d619}
+      \strng{fullhash}{c1c9723a7b97e6fd4d535939fa62d619}
+      \strng{fullhashraw}{c1c9723a7b97e6fd4d535939fa62d619}
+      \strng{bibnamehash}{c1c9723a7b97e6fd4d535939fa62d619}
+      \strng{authorbibnamehash}{c1c9723a7b97e6fd4d535939fa62d619}
+      \strng{authornamehash}{c1c9723a7b97e6fd4d535939fa62d619}
+      \strng{authorfullhash}{c1c9723a7b97e6fd4d535939fa62d619}
+      \strng{authorfullhashraw}{c1c9723a7b97e6fd4d535939fa62d619}
+      \field{extraname}{1}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{This paper investigates the importance of the shape of the income distribution as a determinant of economic growth in a panel of countries. Using comparable data on disposable income from the Luxembou}}
+      \field{journaltitle}{Journal of economic growth}
+      \field{number}{3}
+      \field{title}{{Does the Profile of Income Inequality Matter for Economic Growth?}}
+      \field{volume}{10}
+      \field{year}{2005}
+      \field{pages}{273\bibrangedash 296}
+      \range{pages}{24}
+    \endentry
+    \entry{voit11}{incollection}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=c1c9723a7b97e6fd4d535939fa62d619}{%
+           family={Voitchovsky},
+           familyi={V\bibinitperiod},
+           given={Sarah},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=061741c2835b7f3f9ed47e7955e723ee}{%
+           family={Nolan},
+           familyi={N\bibinitperiod},
+           given={Brian},
+           giveni={B\bibinitperiod}}}%
+        {{hash=cb71f407c99ef62f4e763f4cef28cf81}{%
+           family={Salverda},
+           familyi={S\bibinitperiod},
+           given={Wiemer},
+           giveni={W\bibinitperiod}}}%
+        {{hash=d94aff15b3602158106dc5e5e7e211a4}{%
+           family={Smeeding},
+           familyi={S\bibinitperiod},
+           given={Timothy\bibnamedelima M.},
+           giveni={T\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Oxford University Press}%
+      }
+      \strng{namehash}{c1c9723a7b97e6fd4d535939fa62d619}
+      \strng{fullhash}{c1c9723a7b97e6fd4d535939fa62d619}
+      \strng{fullhashraw}{c1c9723a7b97e6fd4d535939fa62d619}
+      \strng{bibnamehash}{c1c9723a7b97e6fd4d535939fa62d619}
+      \strng{authorbibnamehash}{c1c9723a7b97e6fd4d535939fa62d619}
+      \strng{authornamehash}{c1c9723a7b97e6fd4d535939fa62d619}
+      \strng{authorfullhash}{c1c9723a7b97e6fd4d535939fa62d619}
+      \strng{authorfullhashraw}{c1c9723a7b97e6fd4d535939fa62d619}
+      \strng{editorbibnamehash}{8cc6096b4c155afeec01730fe8f3b68f}
+      \strng{editornamehash}{c25f45a9808508e75c44bf8ad97325da}
+      \strng{editorfullhash}{8cc6096b4c155afeec01730fe8f3b68f}
+      \strng{editorfullhashraw}{8cc6096b4c155afeec01730fe8f3b68f}
+      \field{extraname}{2}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{The Oxford Handbook of Economic Inequality}
+      \field{title}{{Inequality and Economic Growth}}
+      \field{year}{2011}
+    \endentry
+    \entry{wu09}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=4175178d2f59adc42f3f3747df148239}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Margaret},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{4175178d2f59adc42f3f3747df148239}
+      \strng{fullhash}{4175178d2f59adc42f3f3747df148239}
+      \strng{fullhashraw}{4175178d2f59adc42f3f3747df148239}
+      \strng{bibnamehash}{4175178d2f59adc42f3f3747df148239}
+      \strng{authorbibnamehash}{4175178d2f59adc42f3f3747df148239}
+      \strng{authornamehash}{4175178d2f59adc42f3f3747df148239}
+      \strng{authorfullhash}{4175178d2f59adc42f3f3747df148239}
+      \strng{authorfullhashraw}{4175178d2f59adc42f3f3747df148239}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{This study compares the Programme for International Student Assessment (PISA) 2003 Mathematics results with the Trends in International Mathematics and Science Study (TIMSS) 2003 Grade 8 mathematics results, using country mean scores for 22 participants of both studies. It is found that Western countries generally performed better in PISA than in TIMSS, and Eastern European and Asian countries generally performed better in TIMSS than in PISA. Furthermore, two factors, content balance and years of schooling, can account for 93\% of the variation between the differential performance of countries in PISA and TIMSS. Consequently, the rankings of countries in the two studies can be reconciled to a reasonable degree of accuracy.}}
+      \field{journaltitle}{PROSPECTS}
+      \field{number}{1}
+      \field{title}{{A comparison of PISA and TIMSS 2003 achievement results in mathematics}}
+      \field{volume}{39}
+      \field{year}{2009}
+      \field{pages}{33}
+      \range{pages}{1}
+    \endentry
+    \entry{yitzhaki79}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=a3885a5fced641b4bab0b4cb57dd4456}{%
+           family={Yitzhaki},
+           familyi={Y\bibinitperiod},
+           given={Shlomo},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a3885a5fced641b4bab0b4cb57dd4456}
+      \strng{fullhash}{a3885a5fced641b4bab0b4cb57dd4456}
+      \strng{fullhashraw}{a3885a5fced641b4bab0b4cb57dd4456}
+      \strng{bibnamehash}{a3885a5fced641b4bab0b4cb57dd4456}
+      \strng{authorbibnamehash}{a3885a5fced641b4bab0b4cb57dd4456}
+      \strng{authornamehash}{a3885a5fced641b4bab0b4cb57dd4456}
+      \strng{authorfullhash}{a3885a5fced641b4bab0b4cb57dd4456}
+      \strng{authorfullhashraw}{a3885a5fced641b4bab0b4cb57dd4456}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{... frequency of persons with incomes above y.4 We define two functional relationships : mY* (1 ... We have not tried to find the most general functional relationship between Runciman's approach and ... For a full review of the theory, see WG Runciman, Relative Deprivation and Social ...}}
+      \field{journaltitle}{The Quarterly Journal of Economics}
+      \field{number}{2}
+      \field{title}{{Relative Deprivation and the Gini Coefficient}}
+      \field{volume}{93}
+      \field{year}{1979}
+      \field{pages}{321\bibrangedash 324}
+      \range{pages}{4}
+    \endentry
+    \entry{kno17}{incollection}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=991efc4ca9df8d15b4b59935a19ab6b5}{%
+           family={강창희},
+           familyi={강\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=5a449f537c31eb7bac13f9ea0f8b97e8}{%
+           family={오성재},
+           familyi={오\bibinitperiod}}}%
+      }
+      \name{bookauthor}{1}{}{%
+        {{hash=7455ff8686274cd3d25679c22747d413}{%
+           family={황수경},
+           familyi={황\bibinitperiod},
+           given={박지혜},
+           giveni={박\bibinitperiod},
+           suffix={이창근},
+           suffixi={이\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {한국개발연구원}%
+      }
+      \strng{namehash}{07ce085f154211d659e9ad68c943f822}
+      \strng{fullhash}{07ce085f154211d659e9ad68c943f822}
+      \strng{fullhashraw}{07ce085f154211d659e9ad68c943f822}
+      \strng{bibnamehash}{07ce085f154211d659e9ad68c943f822}
+      \strng{authorbibnamehash}{07ce085f154211d659e9ad68c943f822}
+      \strng{authornamehash}{07ce085f154211d659e9ad68c943f822}
+      \strng{authorfullhash}{07ce085f154211d659e9ad68c943f822}
+      \strng{authorfullhashraw}{07ce085f154211d659e9ad68c943f822}
+      \strng{bookauthorbibnamehash}{7455ff8686274cd3d25679c22747d413}
+      \strng{bookauthornamehash}{7455ff8686274cd3d25679c22747d413}
+      \strng{bookauthorfullhash}{7455ff8686274cd3d25679c22747d413}
+      \strng{bookauthorfullhashraw}{7455ff8686274cd3d25679c22747d413}
+      \field{sortinit}{강}
+      \field{sortinithash}{48b831b6230a1bd9d9d52949cb98042d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{소득분배와 경제성장}
+      \field{series}{협동연구총서 17-07-01}
+      \field{title}{{기회불평등과 경제성장}}
+      \field{year}{2017}
+      \field{pages}{185\bibrangedash 224}
+      \range{pages}{40}
+      \keyw{kobib}
+    \endentry
+    \entry{knl11}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=345eff660c2007121b8390df2cfb5f8b}{%
+           family={고제이},
+           familyi={고\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=c1c02b46453db4e199860ef1792f11fd}{%
+           family={이우진},
+           familyi={이\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {한국재정학회(구 한국재정·공공경제학회)}%
+      }
+      \strng{namehash}{988324b028fd74e14429f468d97b0b1e}
+      \strng{fullhash}{988324b028fd74e14429f468d97b0b1e}
+      \strng{fullhashraw}{988324b028fd74e14429f468d97b0b1e}
+      \strng{bibnamehash}{988324b028fd74e14429f468d97b0b1e}
+      \strng{authorbibnamehash}{988324b028fd74e14429f468d97b0b1e}
+      \strng{authornamehash}{988324b028fd74e14429f468d97b0b1e}
+      \strng{authorfullhash}{988324b028fd74e14429f468d97b0b1e}
+      \strng{authorfullhashraw}{988324b028fd74e14429f468d97b0b1e}
+      \field{sortinit}{고}
+      \field{sortinithash}{3df1c2e0c309a02ef9e5a5af8c07368c}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{재정학연구}
+      \field{number}{2}
+      \field{title}{아버지의 학력과 아들의 성취}
+      \field{volume}{4}
+      \field{year}{2011}
+      \field{pages}{47\bibrangedash 87}
+      \range{pages}{41}
+      \keyw{kobib}
+    \endentry
+    \entry{ketl09}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=5285bf52de39ae41453af84ae332b93c}{%
+           family={김민성},
+           familyi={김\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=d91998fe0b95c11a343be70a5f590363}{%
+           family={김봉근},
+           familyi={김\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=563cd75a8f577003b3601a3396455d36}{%
+           family={하태욱},
+           familyi={하\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {한국국제경제학회}%
+      }
+      \strng{namehash}{8165c6a1e09fad6a5bda0916e948cbda}
+      \strng{fullhash}{5806a2a664f307035ba0474f796cf4e6}
+      \strng{fullhashraw}{5806a2a664f307035ba0474f796cf4e6}
+      \strng{bibnamehash}{5806a2a664f307035ba0474f796cf4e6}
+      \strng{authorbibnamehash}{5806a2a664f307035ba0474f796cf4e6}
+      \strng{authornamehash}{8165c6a1e09fad6a5bda0916e948cbda}
+      \strng{authorfullhash}{5806a2a664f307035ba0474f796cf4e6}
+      \strng{authorfullhashraw}{5806a2a664f307035ba0474f796cf4e6}
+      \field{sortinit}{김}
+      \field{sortinithash}{48bb2f23ca5b8e7a5708a0ef0fdcac85}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{국제경제연구}
+      \field{number}{2}
+      \field{title}{한국의 세대간 소득탄력성(所得彈力性)}
+      \field{volume}{15}
+      \field{year}{2009}
+      \field{pages}{87}
+      \range{pages}{1}
+      \keyw{kobib,Intergenerational Income Mobility ; Mean Reverting Measurement Error ; 비고전적인 측정오차 ; 세대간 소득탄력성}
+    \endentry
+    \entry{kim11}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=596f1af51f4a704e2cf1ba86520e96d7}{%
+           family={김영철},
+           familyi={김\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {한국개발연구원}%
+      }
+      \strng{namehash}{596f1af51f4a704e2cf1ba86520e96d7}
+      \strng{fullhash}{596f1af51f4a704e2cf1ba86520e96d7}
+      \strng{fullhashraw}{596f1af51f4a704e2cf1ba86520e96d7}
+      \strng{bibnamehash}{596f1af51f4a704e2cf1ba86520e96d7}
+      \strng{authorbibnamehash}{596f1af51f4a704e2cf1ba86520e96d7}
+      \strng{authornamehash}{596f1af51f4a704e2cf1ba86520e96d7}
+      \strng{authorfullhash}{596f1af51f4a704e2cf1ba86520e96d7}
+      \strng{authorfullhashraw}{596f1af51f4a704e2cf1ba86520e96d7}
+      \field{sortinit}{김}
+      \field{sortinithash}{48bb2f23ca5b8e7a5708a0ef0fdcac85}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{series}{정책연구시리즈 2011-06}
+      \field{title}{고등교육 진학단계에서의 기회형평성 제고방안}
+      \field{year}{2011}
+      \keyw{kobib}
+    \endentry
+    \entry{knl08}{book}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=3b945144a5d27ad9bfd4f64de29b5e78}{%
+           family={김우철},
+           familyi={김\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=c1c02b46453db4e199860ef1792f11fd}{%
+           family={이우진},
+           familyi={이\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {한국조세연구원}%
+      }
+      \strng{namehash}{a0b87270c4aa34c012ae169ef305357f}
+      \strng{fullhash}{a0b87270c4aa34c012ae169ef305357f}
+      \strng{fullhashraw}{a0b87270c4aa34c012ae169ef305357f}
+      \strng{bibnamehash}{a0b87270c4aa34c012ae169ef305357f}
+      \strng{authorbibnamehash}{a0b87270c4aa34c012ae169ef305357f}
+      \strng{authornamehash}{a0b87270c4aa34c012ae169ef305357f}
+      \strng{authorfullhash}{a0b87270c4aa34c012ae169ef305357f}
+      \strng{authorfullhashraw}{a0b87270c4aa34c012ae169ef305357f}
+      \field{sortinit}{김}
+      \field{sortinithash}{48bb2f23ca5b8e7a5708a0ef0fdcac85}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{series}{연구보고서 08-03}
+      \field{title}{{한국 조세재정정책의 기회 평등화 효과에 대한 연구: 소득획득에 대한 기회를 중심으로}}
+      \field{year}{2008}
+      \keyw{kobib}
+    \endentry
+    \entry{ketl14}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=c444ea4d425b22e4398b226be9d6b185}{%
+           family={김진영},
+           familyi={김\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=e43047fda2413ddfe2717f00e39649cf}{%
+           family={전영준},
+           familyi={전\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=55f5fd281e56b9e5ca1466f54773847a}{%
+           family={임병인},
+           familyi={임\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {한국재정학회(구 한국재정·공공경제학회)}%
+      }
+      \strng{namehash}{ded85ebeedeee599edd5882de85251e4}
+      \strng{fullhash}{b069ab455f0d842a933e0ee8d8eeaea2}
+      \strng{fullhashraw}{b069ab455f0d842a933e0ee8d8eeaea2}
+      \strng{bibnamehash}{b069ab455f0d842a933e0ee8d8eeaea2}
+      \strng{authorbibnamehash}{b069ab455f0d842a933e0ee8d8eeaea2}
+      \strng{authornamehash}{ded85ebeedeee599edd5882de85251e4}
+      \strng{authorfullhash}{b069ab455f0d842a933e0ee8d8eeaea2}
+      \strng{authorfullhashraw}{b069ab455f0d842a933e0ee8d8eeaea2}
+      \field{sortinit}{김}
+      \field{sortinithash}{48bb2f23ca5b8e7a5708a0ef0fdcac85}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{재정학연구}
+      \field{number}{2}
+      \field{title}{부모 학력에 따른 학업성취도 격차의 국제비교}
+      \field{volume}{7}
+      \field{year}{2014}
+      \field{pages}{27\bibrangedash 57}
+      \range{pages}{31}
+      \keyw{kobib}
+    \endentry
+    \entry{kim09}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=b10c57fd354d939b6f0d0ddb3cfe6e2d}{%
+           family={김희삼},
+           familyi={김\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {한국개발연구원}%
+      }
+      \strng{namehash}{b10c57fd354d939b6f0d0ddb3cfe6e2d}
+      \strng{fullhash}{b10c57fd354d939b6f0d0ddb3cfe6e2d}
+      \strng{fullhashraw}{b10c57fd354d939b6f0d0ddb3cfe6e2d}
+      \strng{bibnamehash}{b10c57fd354d939b6f0d0ddb3cfe6e2d}
+      \strng{authorbibnamehash}{b10c57fd354d939b6f0d0ddb3cfe6e2d}
+      \strng{authornamehash}{b10c57fd354d939b6f0d0ddb3cfe6e2d}
+      \strng{authorfullhash}{b10c57fd354d939b6f0d0ddb3cfe6e2d}
+      \strng{authorfullhashraw}{b10c57fd354d939b6f0d0ddb3cfe6e2d}
+      \field{sortinit}{김}
+      \field{sortinithash}{48bb2f23ca5b8e7a5708a0ef0fdcac85}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{series}{정책연구시리즈 2009-03}
+      \field{title}{한국의 세대 간 경제적 이동성 분석}
+      \field{year}{2009}
+      \keyw{kobib}
+    \endentry
+    \entry{snj21}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=ef0c51c0dce9f35bb327ef2cbcad9e23}{%
+           family={신지섭},
+           familyi={신\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=c8e9ccd57860d273348440b69d7b4dda}{%
+           family={주병기},
+           familyi={주\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {한국경제학회}%
+      }
+      \strng{namehash}{b38fa15a8a04e34ed78e167f9a16a171}
+      \strng{fullhash}{b38fa15a8a04e34ed78e167f9a16a171}
+      \strng{fullhashraw}{b38fa15a8a04e34ed78e167f9a16a171}
+      \strng{bibnamehash}{b38fa15a8a04e34ed78e167f9a16a171}
+      \strng{authorbibnamehash}{b38fa15a8a04e34ed78e167f9a16a171}
+      \strng{authornamehash}{b38fa15a8a04e34ed78e167f9a16a171}
+      \strng{authorfullhash}{b38fa15a8a04e34ed78e167f9a16a171}
+      \strng{authorfullhashraw}{b38fa15a8a04e34ed78e167f9a16a171}
+      \field{sortinit}{신}
+      \field{sortinithash}{fb16ac1b0f41ac617f8740e141ba697d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{경제학연구}
+      \field{number}{1}
+      \field{title}{한국노동패널과 가계동향조사를 이용한 소득기회불평등의 장기추세에 대한 연구}
+      \field{volume}{69}
+      \field{year}{2021}
+      \field{pages}{51\bibrangedash 95}
+      \range{pages}{45}
+      \keyw{kobib}
+    \endentry
+    \entry{yang12}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=19d9ad0c875beb0e5ba30ae637ee8266}{%
+           family={양정승},
+           familyi={양\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {한국노동경제학회}%
+      }
+      \strng{namehash}{19d9ad0c875beb0e5ba30ae637ee8266}
+      \strng{fullhash}{19d9ad0c875beb0e5ba30ae637ee8266}
+      \strng{fullhashraw}{19d9ad0c875beb0e5ba30ae637ee8266}
+      \strng{bibnamehash}{19d9ad0c875beb0e5ba30ae637ee8266}
+      \strng{authorbibnamehash}{19d9ad0c875beb0e5ba30ae637ee8266}
+      \strng{authornamehash}{19d9ad0c875beb0e5ba30ae637ee8266}
+      \strng{authorfullhash}{19d9ad0c875beb0e5ba30ae637ee8266}
+      \strng{authorfullhashraw}{19d9ad0c875beb0e5ba30ae637ee8266}
+      \field{sortinit}{양}
+      \field{sortinithash}{85ad88ec17bec678992d58a31d3d53e7}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{본 연구는 우리나라의 세대 간 소득탄력성을 보다 정확히 측정하고자 시도하였다. 먼저 선행연구들에서 세대 간 소득탄력성 추정치가 낮았던 주요한 이유는 표본 선택 문제에서 기인함을 보였고, 이러한 문제를 수정한 OLS추정치는 선행연구들에 비해 다소 높았다. 또한 희귀분석에서 발생하는 하향편의를 희귀분석 방법에 의해 항상소득과 임시소득의 분산을 추정하여 계산하였다. 추가적으로 다른 표본들을 연결하여 도구변수 추정을 함으로써 표본 선택 문제가 야기할 수 있는 편의 정도의 범위를 설정하고자 시도하였는데 이러한 방법들에 의한 추정 결과는 단순 희귀분석에 의한 결과와 비슷하거나 다소 높았다. In the study, we try to get reliable estimates of intergenerational income mobility in Korea. At first, we show that the low estimates of previous studies are mainly due to sample seleciton problem. The direct estimations using OLS after correcting this problem show higher values than previous estimates. We also compute the attenuation bias by decomposing the variances of earnings into the variances of permanent and transitory components of earnings by the results of the regression. Additionally, we try to estimate the range of intergenerational mobility by comparing the OLS results with the results of the two samples instrumental variable estimation and the three samples instrumental variable estimation. The results of these estimations are a little higher than or similar to OLS results.}
+      \field{journaltitle}{노동경제논집}
+      \field{number}{2}
+      \field{title}{한국의 세대 간 소득이동성 추정}
+      \field{volume}{35}
+      \field{year}{2012}
+      \field{pages}{79\bibrangedash 115}
+      \range{pages}{37}
+      \keyw{kobib}
+    \endentry
+    \entry{ohetl16}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=5a449f537c31eb7bac13f9ea0f8b97e8}{%
+           family={오성재},
+           familyi={오\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=991efc4ca9df8d15b4b59935a19ab6b5}{%
+           family={강창희},
+           familyi={강\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=1e682e41b1e18e2f1a2e0124ce42dd5b}{%
+           family={정혜원},
+           familyi={정\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=c8e9ccd57860d273348440b69d7b4dda}{%
+           family={주병기},
+           familyi={주\bibinitperiod}}}%
+      }
+      \strng{namehash}{19c189f896562816ce6d6e86accae707}
+      \strng{fullhash}{39d38219ac93ee9438c390aebe3f9733}
+      \strng{fullhashraw}{39d38219ac93ee9438c390aebe3f9733}
+      \strng{bibnamehash}{39d38219ac93ee9438c390aebe3f9733}
+      \strng{authorbibnamehash}{39d38219ac93ee9438c390aebe3f9733}
+      \strng{authornamehash}{19c189f896562816ce6d6e86accae707}
+      \strng{authorfullhash}{39d38219ac93ee9438c390aebe3f9733}
+      \strng{authorfullhashraw}{39d38219ac93ee9438c390aebe3f9733}
+      \field{sortinit}{오}
+      \field{sortinithash}{1ff7a4ef984ea133abf0796cd84998c6}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{개인의 의지와 무관하게 주어지는 환경에 따라 성취 기회의 우열이 결정되어서는 안 된다는 것이 기회평등의 원칙이다. 이에 기초하여 고등학교 교육성취에 있어서의 기회 평등 실태를 한국교육고용패널의 2005 학년도 수능성적자료와 한국교육종단연구의 2011 학년도 수능성적자료를 이용하여 분석하였다. 가구의 월평균 소득과 남성 보호자의 학력이라는두 가지 환경변수...}}
+      \field{journaltitle}{재정학연구}
+      \field{number}{4}
+      \field{title}{{가구환경과 교육성취의 기회: 대학수학능력시험 성적을 이용한 연구}}
+      \field{volume}{9}
+      \field{year}{2016}
+      \field{pages}{1\bibrangedash 32}
+      \range{pages}{32}
+      \keyw{kobib}
+    \endentry
+    \entry{onj17}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=5a449f537c31eb7bac13f9ea0f8b97e8}{%
+           family={오성재},
+           familyi={오\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=c8e9ccd57860d273348440b69d7b4dda}{%
+           family={주병기},
+           familyi={주\bibinitperiod}}}%
+      }
+      \strng{namehash}{ecdd6c34f1e8837f2c3899e0f8abbeda}
+      \strng{fullhash}{ecdd6c34f1e8837f2c3899e0f8abbeda}
+      \strng{fullhashraw}{ecdd6c34f1e8837f2c3899e0f8abbeda}
+      \strng{bibnamehash}{ecdd6c34f1e8837f2c3899e0f8abbeda}
+      \strng{authorbibnamehash}{ecdd6c34f1e8837f2c3899e0f8abbeda}
+      \strng{authornamehash}{ecdd6c34f1e8837f2c3899e0f8abbeda}
+      \strng{authorfullhash}{ecdd6c34f1e8837f2c3899e0f8abbeda}
+      \strng{authorfullhashraw}{ecdd6c34f1e8837f2c3899e0f8abbeda}
+      \field{extraname}{1}
+      \field{sortinit}{오}
+      \field{sortinithash}{1ff7a4ef984ea133abf0796cd84998c6}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{재정학연구}
+      \field{number}{3}
+      \field{title}{한국의 소득기회불평등에 대한 연구}
+      \field{volume}{10}
+      \field{year}{2017}
+      \field{pages}{1\bibrangedash 30}
+      \range{pages}{30}
+      \keyw{kobib}
+    \endentry
+    \entry{onj20}{book}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=5a449f537c31eb7bac13f9ea0f8b97e8}{%
+           family={오성재},
+           familyi={오\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=c8e9ccd57860d273348440b69d7b4dda}{%
+           family={주병기},
+           familyi={주\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {한국조세재정연구원}%
+      }
+      \strng{namehash}{ecdd6c34f1e8837f2c3899e0f8abbeda}
+      \strng{fullhash}{ecdd6c34f1e8837f2c3899e0f8abbeda}
+      \strng{fullhashraw}{ecdd6c34f1e8837f2c3899e0f8abbeda}
+      \strng{bibnamehash}{ecdd6c34f1e8837f2c3899e0f8abbeda}
+      \strng{authorbibnamehash}{ecdd6c34f1e8837f2c3899e0f8abbeda}
+      \strng{authornamehash}{ecdd6c34f1e8837f2c3899e0f8abbeda}
+      \strng{authorfullhash}{ecdd6c34f1e8837f2c3899e0f8abbeda}
+      \strng{authorfullhashraw}{ecdd6c34f1e8837f2c3899e0f8abbeda}
+      \field{extraname}{2}
+      \field{sortinit}{오}
+      \field{sortinithash}{1ff7a4ef984ea133abf0796cd84998c6}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{대학입학 성과에 나타난 교육 기회불평등과 대입 전형에 대한 연구}
+      \field{year}{2020}
+      \keyw{kobib}
+    \endentry
+    \entry{jnl16}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=d665b4565a8ec6ab1971e322fd06c7ef}{%
+           family={조진순},
+           familyi={조\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=c1c02b46453db4e199860ef1792f11fd}{%
+           family={이우진},
+           familyi={이\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {The Korean Association Of Public Finance}%
+      }
+      \strng{namehash}{2aaee53f343c8d47685534a1db8012a2}
+      \strng{fullhash}{2aaee53f343c8d47685534a1db8012a2}
+      \strng{fullhashraw}{2aaee53f343c8d47685534a1db8012a2}
+      \strng{bibnamehash}{2aaee53f343c8d47685534a1db8012a2}
+      \strng{authorbibnamehash}{2aaee53f343c8d47685534a1db8012a2}
+      \strng{authornamehash}{2aaee53f343c8d47685534a1db8012a2}
+      \strng{authorfullhash}{2aaee53f343c8d47685534a1db8012a2}
+      \strng{authorfullhashraw}{2aaee53f343c8d47685534a1db8012a2}
+      \field{sortinit}{조}
+      \field{sortinithash}{6253fd19d49948dda4f4d2c039080a42}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{한국재정학회 학술대회 논문집}
+      \field{title}{환경의 불평등과 개인 성취의 불평등 샤플리값 분해 방법의 적용}
+      \field{year}{2016}
+      \field{pages}{1\bibrangedash 21}
+      \range{pages}{21}
+      \keyw{kobib}
+    \endentry
+    \entry{cnh11}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=43d1fe3f73273abfef4f96bbbcf82d16}{%
+           family={최지은},
+           familyi={최\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=dfa47960af1ca6b27c7196cadb9342d4}{%
+           family={홍기석},
+           familyi={홍\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {한국사회보장학회}%
+      }
+      \strng{namehash}{87efaf9815e6def45c92b88e9488baa8}
+      \strng{fullhash}{87efaf9815e6def45c92b88e9488baa8}
+      \strng{fullhashraw}{87efaf9815e6def45c92b88e9488baa8}
+      \strng{bibnamehash}{87efaf9815e6def45c92b88e9488baa8}
+      \strng{authorbibnamehash}{87efaf9815e6def45c92b88e9488baa8}
+      \strng{authornamehash}{87efaf9815e6def45c92b88e9488baa8}
+      \strng{authorfullhash}{87efaf9815e6def45c92b88e9488baa8}
+      \strng{authorfullhashraw}{87efaf9815e6def45c92b88e9488baa8}
+      \field{sortinit}{최}
+      \field{sortinithash}{c5626ba705e519f1e224f780ed268730}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{사회보장연구}
+      \field{number}{3}
+      \field{title}{우리나라의 세대 간 소득 이동성 분석 -아버지와 아들을 중심으로}
+      \field{volume}{27}
+      \field{year}{2011}
+      \field{pages}{143}
+      \range{pages}{1}
+      \keyw{kobib}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

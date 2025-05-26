@@ -1,0 +1,27 @@
+\AtEveryCitekey{%
+    \ifkeyword{kobib}{% 
+        \renewcommand{\multinamedelim}{·} 
+        \renewcommand{\finalnamedelim}{·} 
+    }{% 
+    }% 
+} 
+\AtEveryBibitem{% 
+    \ifkeyword{kobib}{% 
+        \renewcommand{\multinamedelim}{·} 
+        \renewcommand{\finalnamedelim}{·} 
+        \DeclareFieldFormat{journaltitle}{\bnm{#1}} 
+    }{% 
+    }% 
+} 
+\printbibliography[keyword=kobib] 
+\printbibliography[notkeyword=kobib,heading=none]
+
+\DefineBibliographyStrings{english}{andothers={\myownetal}{}}
+\newcommand*{\myownetal}{\emph{et~al.}}
+\AtEveryCitekey{%
+  \ifkeyword{kobib}{%
+    \renewcommand{\multinamedelim}{·}%
+    \renewcommand{\finalnamedelim}{·}%
+    \renewcommand*{\myownetal}{ 외}%
+  }{}%
+}

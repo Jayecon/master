@@ -1,9 +1,9 @@
 set more off
 clear
 
-cd ~/dropbox/klips /*pwd;원자료는 pwd의 하위폴더 rawdata에 있다고 가정함*/
+cd ~/dropbox/data/klips /*pwd;원자료는 pwd의 하위폴더 rawdata에 있다고 가정함*/
 local fwave  1	/*조사시작회차 입력*/
-local lwave  23 /*조사최신회차 입력*/
+local lwave  26 /*조사최신회차 입력*/
 tempfile temp
 
   forvalues x = `fwave'/`lwave' {

@@ -1,0 +1,199 @@
+% 서울대학교 학사/석사/박사 학위논문
+% LaTeX 양식 샘플
+\RequirePackage{fix-cm} % documentclass 이전에 넣는다.
+% oneside : 단면 인쇄용
+% twoside : 양면 인쇄용
+% ko : 국문 논문 작성
+% master : 석사
+% phd : 박사
+% openright : 챕터가 홀수쪽에서 시작
+\documentclass[oneside,ko,phd]{snuthesis}
+\include{snutocstyle} % SNU toc style
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 다른 패키지 로드
+%% http://faq.ktug.or.kr/faq/pdflatex%B0%FAlatex%B5%BF%BD%C3%BB%E7%BF%EB
+%% 필요에 따라 직접 수정 필요
+\ifpdf
+	\input glyphtounicode\pdfgentounicode=1 %type 1 font사용시
+	\usepackage[pdftex]{graphicx}
+	%\usepackage[pdftex,svgnames]{xcolor}
+\else
+	\usepackage[dvipdfmx]{graphicx}
+	%\usepackage[dvipdfmx,svgnames]{xcolor}
+\fi
+	\usepackage{subcaption}
+    \usepackage{float,pstricks,listings,stackengine,calligra}
+    \usepackage{amsmath,amssymb,latexsym}
+    \usepackage{booktabs,longtable,multicol,multirow,lscape,rotating}
+    \usepackage{lipsum} % lorem ipsum
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 유저 커맨드
+\newcommand{\source}[1]{{\raggedright \footnotesize 자료: {#1} \\ } }
+\newcommand{\confer}[1]{{\raggedright \footnotesize 참고: {#1} \\ } }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Biblatex을 이용한 한글 참고문헌 
+\usepackage[%
+    backend=biber, 
+    bibencoding=utf8, 
+    style=apa, 
+    natbib=true, 
+    citestyle=authoryear-comp, 
+    bibstyle=authoryear,  
+    maxcitenames=2, 
+    maxbibnames=9, 
+    language=auto, 
+    autolang=other, 
+    uniquelist=false 
+]{biblatex}
+\addbibresource{Bibliography.bib}
+\renewcommand\nameyeardelim{, }	%% natbib command. natbib should be true.
+\newcommand*{\myownetal}{\emph{et~al.}}
+\DefineBibliographyStrings{english}{%
+    bibliography = {참고문헌},
+    andothers={\myownetal}{}
+}
+\AtEveryCitekey{%
+  \ifkeyword{kobib}{%
+    \renewcommand{\multinamedelim}{·}%
+    \renewcommand{\finalnamedelim}{·}%
+    \renewcommand*{\myownetal}{외}%
+  }{}%
+}
+\AtEveryBibitem{%
+  \renewbibmacro{in:}{}
+  \ifkeyword{kobib}{%
+    \renewcommand{\multinamedelim}{·}%
+    \renewcommand{\finalnamedelim}{·}%
+    \DeclareFieldFormat{journaltitle}{『#1』}%
+    \DeclareFieldFormat[book]{title}{『#1』}%
+    \DeclareFieldFormat[series]{title}{『#1』}%
+    \DeclareFieldFormat{booktitle}{『#1』}%
+  }{}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \title : 22pt로 나오는 큰 제목
+%% \title* : 16pt로 나오는 작은 제목
+\title{한국의 경제 및 교육의 기회불평등 분석}
+\title*{~}
+
+\academicko{경제학}
+\departmentko{경제학부}
+
+%% 저자 이름 Author's(Your) name
+\author{오성재}
+\author*{오~성~재} % Insert space for Hangul name.
+%\author{Gildong Hong}
+%\author*{Gildong Hong} % Same as \author.
+
+%% 학번 Student number
+\studentnumber{2015-30953}
+
+%% 지도교수님 성함 Advisor's name
+%% (?) Use Korean name for Korean professor.
+\advisor{주병기}
+\advisor*{주~병~기} % Insert space for Hangul name.
+%\advisor{Gildong Hong}
+%\advisor*{Gildong Hong}
+
+%% 학위 수여일 Graduation date
+%% 표지에 적히는 날짜.
+%% 학위 수여일이 아니라 논문 발간년도를 적어야 할 수도 있음.
+\graddate{2022~년~2~월}
+%\graddate{FEBRUARY 2010}
+
+%% 논문 제출일 Submission date
+%% (?) Use Korean date format.
+\submissiondate{2022~년~2~월}
+
+%% 논문 인준일 Approval date
+%% (?) Use Korean date format.
+\approvaldate{2022~년~2~월}
+
+%% 참고: 인준지의 교수님 성함은
+%% 컴퓨터로 출력하지 않고, 교수님께서
+%% 자필로 쓰시기도 합니다.
+%% 위원장, 부위원장, 위원
+\committeemembers%
+{김~봉~근}%
+{주~병~기}%
+{강~창~희}%
+{이~우~진}%
+{홍~석~철}
+%% 밑줄 길이
+%\setlength{\committeenameunderlinelength}{7cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\pagenumbering{Roman}
+\makefrontcover
+\makefrontcover
+\makeapproval
+
+\cleardoublepage
+\pagenumbering{roman}
+
+% 초록 Abstract
+\keyword{교육기회불평등, 소득기회불평등, 국제교육기회불평등, 경제성장과 불평등}
+\begin{abstract}
+기회평등의 원칙에 따르면 개인의 의지와 무관하게 주어지는 환경에 따라 성취 기회의 우열이 결정되어서는 안 된다. 본 연구는 이러한 기회평등의 원칙하에 교육과 경제 두 분야에 대하여 우리 사회가 겪는 기회불평등에 대한 분석이다. 1장은 들어가는 글로 전체 글의 구성을 소개하는 내용이다.
+
+2장에서는 청년들이 겪는 기회불평등에 대하여 분석한다. 대졸자직업이동경로조사(GOMS)를 이용하여 2000년에서 2011년까지 대학입학결과를 바탕으로 대입수험생들이 겪은 기회불평등의 정도와 추이를 측정한다. 그리고 이들이 대학을 졸업하고 경제활동을 처음으로 시작하여 얻는 월 소득을 기준으로 사회에 진출하여 직면하는 경제적 성취의 불평등을 아울러 분석한다.  학생이 속한 가구의 사회경제적 지위에 의한 대학진학 성과 및 생애 첫 소득의 기회불평등이 조사 기간 전체에 걸쳐 뚜렷하게 존재하는 것으로 나타났다. 열악한 환경에서 기회불평등으로 최상위권 대학진학에 실패할 확률이 최대 70\%에 이르는 것으로 나타났다. 입시 전형별로 일반수시 합격자간 기회불평등이 일반정시 합격자간 기회불평등보다 높은 것으로 나타났다. 소득의 경우 대학진학에 비해 기회불평등의 정도가 현저히 낮았지만, 열악한 환경에서 기회불평등으로 고소득 획득에 실패할 확률이 40\%에 달함을 확인하였다.
+
+3장은 한국의 가계소득의 기회불평등에 대하여 살펴본다. 한국노동패널(KLIPS)을 이용하여 1998년부터 2020년 까지 우리 사회의 가구소득 획득에서 각 가구들이 직면하는 기회불평등의 정도와 추이를 살펴본다. 가구주 부친의 직업과 학력 각각에서 우월한 유형의 부친을 가진 가구주의 가구가 상대적으로 열악한 가구보다 소득획득에서 우월한 기회를 보장받는 기회불평등이 존재함을 확인하였다. 전체적인 기회불평등 정도는 가구주의 연령을 30-50세로 제한할 경우 전 연령을 대상으로 할 때보다 매우 낮게 측정되었다. 반면, 30-50대 가장 연령층에서 경제적 성공 기회의 불평등 정도가 급격히 높아졌다. 이는 우리 사회가 체감하는 높은 기회불평등은 주요 경제활동연령층이 경제적 성공을 얻는 데 대한 기회불평등임을 보여주고 있다.
+
+4장에서는 연구의 관심 지역과 범위를 확장한다. 전 세계의 교육성취의 기회불평등을 측정하고 기회불평등이 경제성장에 미치는 영향에 대하여 살펴본다. 불평등과 경제성장 사이의 관계를 다룬 많은 선행연구들에서는 불평등의 구성요소들을 따로 구분하지 않기 때문에, 각 구성요소가 경제성장에 미치는 (상반된) 영향이 혼합되어 나타날 수 있다. TIMSS 자료를 바탕으로 분석하는 경우, 전 세계를 대상으로 실시한 분석에서 기회불평등은 경제성장에 부정적인 영향을 주는 반면 잔여불평등은 경제성장에 유의미한 영향을 미치지 않는다. 반면 OECD 가입국 집단에서 기회의 불평등은 경제성장에 유의한 영향을 미치지 못하는 반면, 잔여불평등은 경제성장에 부정적인 영향을 미친다. PISA자료를 바탕으로 분석하는 경우, 문해력의 기회불평등도와 잔여불평등도 모두 3년간의 경제성장에 유의미한 영향을 주지 못하는 것을 알 수 있었다.  5장의 2-4장의 연구 결과를 정리하는 글이다.
+
+\end{abstract}
+
+\tableofcontents
+\listoftables
+\listoffigures
+
+\cleardoublepage
+\pagenumbering{arabic}
+
+\chapter{들어가는 글}
+\input{Introduction.tex}
+
+\chapter{대학입학과 청년의 경제적 성취의 기회불평등}
+\input{GOMS}
+
+\chapter{한국의 소득획득의 기회불평등}
+\input{KLIPS.tex}
+
+\chapter{기회불평등과 경제성장}
+\input{PISAnTIMSS}
+
+\chapter{맺음말}
+\input{Conclusion}
+
+\appendix
+
+\addcontentsline{toc}{chapter}{\appendixname}
+\chapter*{\appendixname}
+\input{Appendix}
+
+\addcontentsline{toc}{chapter}{참고문헌}
+\printbibliography[keyword=kobib]
+\printbibliography[notkeyword=kobib,heading=none]
+
+\keywordalt{Educational Opportunity Inequality, Income Opportunity Inequality, International Educational Opportunity Inequality, Economic Growth and Inequality}
+\begin{abstractalt}
+    \noindent
+The principle of equality of opportunity said that the superiority and inferiority of achievement opportunities should not be determined by the circumstances given regardless of individual will. This study is an analysis of the inequality of opportunity in Korea in education and economy under the principle of equality of opportunity. Chapter 1 is introductory that introduces the structure of the entire text.
+
+Chapter 2 analyzes the inequality of opportunity experienced by young people. We measure the degree and trend of inequality of opportunity on college admission result from 2000 to 2011 using the GOMS. We also analyze the inequality of the monthly income they get from graduating from university and starting economic activities. It was found that the inequality of opportunity for college admissions and first-time income by the socioeconomic status of the household to which the student belongs was evident throughout the survey period. The probability of failing to enter a top-ranking university due to inequality of opportunity in a poor environment is up to 70\%. The inequality of opportunity among those who passed the early decision was higher than the inequality of opportunity among those who passed the regular decision by entrance examination type. In the case of income, the degree of inequality of opportunity was significantly lower than that of university entrance, but it was confirmed that the probability of failing to obtain high income due to inequality of opportunity in a poor environment reached 40\%.
+
+Chapter 3 examines the inequality of opportunity in household income in Korea. We examine the degree and trend of inequality of opportunity in household income acquisition in Korea from 1998 to 2020 by using the Korea Labor Income Panel Study(KLIPS). We find that there is an inequality of opportunity on household income acquisition. The higher the educational or occupational background of the father of the head of the household, the greater the chance of obtaining household income.  The overall degree of inequality of opportunity was measured to be very low when the age of the head of household was limited to 30-50 years compared to that of all age groups. The degree of inequality of opportunity for economic success has risen sharply among the age of the head of the household is 30-50. This shows that the high inequality of opportunity in Korea is the inequality of opportunity for the major economically active age group to achieve economic success.
+
+Chapter 4 expands the area of interest and scope of the study. We measure inequality of opportunity in educational achievement around the world and examine the effect of inequality of opportunity on economic growth. Since many previous studies dealing with the relationship between inequality and economic growth do not separate the components of inequality separately, the (opposite) effects of each component on economic growth may appear mixed. In the case of analysis based on TIMSS data, inequality of opportunity has a negative effect on economic growth, whereas residual inequality does not have a significant effect on economic growth in the global analysis. On the other hand, in the OECD member countries, inequality of opportunity does not have a significant effect on economic growth, whereas residual inequality has a negative effect on economic growth. In the case of analysis based on PISA data, it was found that neither opportunity inequality nor residual inequality of literacy had a significant effect on economic growth over three years. Chapter 5 is the final chapter of the entire text.
+\end{abstractalt}
+
+%\acknowledgement
+%감사의 글은 생략 가능하고, 형식이 자유이다.
+
+\end{document}

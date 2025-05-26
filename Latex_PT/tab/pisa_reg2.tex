@@ -1,0 +1,33 @@
+\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{PISA 기회불평등 vs. 노력불평등\label{tab:pisacomp}}
+\begin{tabular}{l*{6}{c}}
+\toprule
+                    &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}&\multicolumn{1}{c}{(6)}\\ &\multicolumn{1}{c}{OLS}&\multicolumn{1}{c}{FE}&\multicolumn{1}{c}{Sys. GMM}&\multicolumn{1}{c}{OLS}&\multicolumn{1}{c}{FE}&\multicolumn{1}{c}{Sys. GMM}\\
+\midrule
+\addlinespace
+기회불평등        &      -2.924         &      -0.375         &       9.860         &                     &                     &                     \\
+                    &     [-0.59]         &     [-0.06]         &      [0.87]         &                     &                     &                     \\
+\addlinespace
+노력불평등        &      -3.371\sym{**} &      -5.716\sym{***}&      -6.400\sym{*}  &                     &                     &                     \\
+                    &     [-2.01]         &     [-2.78]         &     [-1.65]         &                     &                     &                     \\
+\addlinespace
+OECD$\times$기회불평등&                     &                     &                     &       3.270         &      -5.126         &       11.99         \\
+                    &                     &                     &                     &      [0.70]         &     [-0.48]         &      [0.79]         \\
+\addlinespace
+OECD$\times$노력불평등&                     &                     &                     &      -5.862\sym{***}&      -0.599         &      -3.274         \\
+                    &                     &                     &                     &     [-2.82]         &     [-0.14]         &     [-0.49]         \\
+\addlinespace
+비OECD$\times$기회불평등&                     &                     &                     &      -6.396         &       2.069         &       4.608         \\
+                    &                     &                     &                     &     [-0.88]         &      [0.29]         &      [0.37]         \\
+\addlinespace
+비OECD$\times$노력불평등&                     &                     &                     &      -2.254         &      -6.566\sym{***}&      -6.761\sym{*}  \\
+                    &                     &                     &                     &     [-1.04]         &     [-2.93]         &     [-1.86]         \\
+\midrule
+r2                  &       0.980         &       0.803         &                     &       0.980         &       0.805         &                     \\
+N                   &         334         &         334         &         334         &         334         &         334         &         334         \\
+N\_g                 &                     &          77         &          77         &                     &          77         &          77         \\
+\bottomrule
+\multicolumn{7}{l}{\footnotesize \textit{t} statistics in brackets}\\
+\multicolumn{7}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}

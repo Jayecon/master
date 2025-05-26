@@ -1,0 +1,23 @@
+\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{PISA 총불평등\label{tab:pisasimp}}
+\begin{tabular}{l*{6}{c}}
+\toprule
+                    &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}&\multicolumn{1}{c}{(6)}\\ &\multicolumn{1}{c}{OLS}&\multicolumn{1}{c}{FE}&\multicolumn{1}{c}{Sys. GMM}&\multicolumn{1}{c}{OLS}&\multicolumn{1}{c}{FE}&\multicolumn{1}{c}{Sys. GMM}\\
+\midrule
+총불평등          &      -3.248\sym{***}&      -4.625\sym{***}&      -2.332         &                     &                     &                     \\
+                    &     [-2.99]         &     [-3.27]         &     [-0.58]         &                     &                     &                     \\
+\addlinespace
+OECD$ \times$ 총불평등&                     &                     &                     &      -3.562\sym{***}&      -2.107         &       0.737         \\
+                    &                     &                     &                     &     [-2.70]         &     [-0.95]         &      [0.12]         \\
+\addlinespace
+비OECD$ \times$ 총불평등&                     &                     &                     &      -3.268\sym{***}&      -4.875\sym{***}&      -3.968         \\
+                    &                     &                     &                     &     [-3.00]         &     [-3.43]         &     [-1.08]         \\
+\midrule
+r2                  &       0.980         &       0.803         &                     &       0.980         &       0.804         &                     \\
+N                   &         334         &         334         &         334         &         334         &         334         &         334         \\
+N\_g                 &                     &          77         &          77         &                     &          77         &          77         \\
+\bottomrule
+\multicolumn{7}{l}{\footnotesize \textit{t} statistics in brackets}\\
+\multicolumn{7}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}

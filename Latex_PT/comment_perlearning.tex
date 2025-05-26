@@ -1,0 +1,147 @@
+%----------------------------------------------------------
+% PACKAGES AND THEMES
+%----------------------------------------------------------
+\documentclass[aspectratio=169,xcolor=dvipsnames,handout]{beamer}
+
+\usetheme{Darmstadt}
+\usecolortheme{seahorse}
+\setbeamercovered{transparent}
+
+\usepackage[hangul]{kotex}
+\usepackage{hyperref}
+\usepackage{graphicx, array, adjustbox, makecell}
+\usepackage{booktabs, multicol, multirow}
+
+% font조정
+%\usepackage{fontspec}
+%\setmainfont{Times New Roman}
+%\setmainhangulfont{NanumGothic}
+
+% 문자열 대체{노사관계론 전용}
+\usepackage{newunicodechar}
+\newunicodechar{•}{$\cdot$}
+\newunicodechar{➔}{$\implies$}
+\newunicodechar{∴}{$\therefore$}
+\newunicodechar{∵}{$\because$}
+
+%----------------------------------------------------------
+% TITLE PAGE
+%----------------------------------------------------------
+\title{\textit{대학 교수자의 온라인 동료학습을 통한 강의만족도 개선 효과}에 대한 논평}
+\subtitle{정진화}
+\author{오성재}
+\institute[KIHASA]
+    {\relax
+        2024--25년 SSK 네트워킹 제3차 합동 심포지엄
+    }
+\date{2025년 2월 21일}
+
+%----------------------------------------------------------
+\begin{document}
+%----------------------------------------------------------
+
+\frame{\titlepage}
+
+\begin{frame}{목차}
+    \tableofcontents
+\end{frame}
+
+\section{발표문 요약}
+
+\begin{frame}
+    \frametitle{현실 및 정책}
+    \begin{itemize}[<+->]
+        \item  COVID19 시기 대구 소재 A대학에서 일어난 정책에 대한 미시계량적 분석.
+        \begin{itemize}
+            \item 전염병 사태로 인한 학교폐쇄.
+            \begin{itemize}
+               \item 집합금지 조치 등으로 인해 교원간 동료효과(peer effect)가 차단.
+            \end{itemize}
+            \item 직전학기 교수자의 교수법을 동료 교수자가 학습할 기회를 제공.
+            \begin{itemize}
+               \item 온라인 인터뷰 동영상 형식.
+               \item 수업개선보고서 작성 양식에서 시청가능한 링크 제공.
+               \item 767명의 교수자 가운데 237명이 최소 1회이상 시청.
+            \end{itemize}
+            \item 해당 정책은 무작위 처치.
+            \begin{itemize}
+               \item 온라인 인터뷰 동영상 형식.
+               \item 수업개선보고서 작성 양식에서 시청가능한 링크 제공.
+               \item 767명의 교수자 가운데 237명이 최소 1회이상 시청(31\%).
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{주요결과 및 시사점}
+    \begin{itemize}[<+->]
+        \item 주요결과
+            \begin{itemize}[<+->]
+                \item 정책참여자(동영상 강의 시청자)의 강의에 대한 학생의 만족도는 1.8\% 상승.
+                \item 동영상시청 1회당(최대 3회) 0.5\% 상승
+                \item 강사, 조교수에서 강의만족도의 증가가 더 크게 나타남.
+            \end{itemize}
+        \item 시사점
+            \begin{itemize}[<+->]
+                \item 강의의 질적 향상을 위해 교수자간 학습 필요.
+                \item 교수자의 학습참여 비용을 줄이는 노력의 필요.
+                \item 교수자의 경력 및 처지에 따른 맞춤형 학습의 개발.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\section{제언}%
+
+\begin{frame}
+    \frametitle{처치의 독립성}
+    \begin{itemize}[<+->]
+        \item 본질적으로 처치(수강여부)의 결정에 자료(교수자)의 의지가 포함.
+        \begin{itemize}[<+->]
+            \item `처치의 임의성'은 결코 높거나 낮아질 수 없음.
+            \item 선택편의에 대한 검토는 처치여부를 결정하는 과정에 자료의 개입이 원천차단 된 사실에 기반했을때 보충적으로 이뤄져야.
+            \item 각주9에서 버튼의 발견이 교수자의 선택이 아닌 교수자의 인지에 의한 것이라면, 임의처치라는 주장은 설득이 어려움.
+        \end{itemize}
+        \item 표5 에서 교수자 유형별 처치참여 여부의 t-test 결과가 상이함은 처치가 자료에 대해 독립적이지 못한 근거가 됨.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{자료의 한계}
+    \begin{itemize}[<+->]
+        \item 본 연구는 자료수집에서 한계를 지니고 이는 낮은 $R^2$로 나타나고 있음.
+            \begin{itemize}[<+->]
+                \item 교수자 정보 : 성별, 연령.
+                \item 강의 유형 : 실습여부, 전공 vs. 교양.
+                \item 학과 정보 : 학생의 전공계열도 유추 가능.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{추가적인 강건성 분석}
+    \begin{itemize}[<+->]
+        \item 표5 에서 강사들의 경우 t-test를 통과하지 못한다는 점은 처치에 대한 분석을 전임교원과 비전임교원을 구분해서 진행해야 함을 의미.
+            \begin{itemize}[<+->]
+                \item 특히 비전임교원의 열악한 환경(경제적 안정성, 독립된 연구공간)에 노출되어 있음. 
+                \item 강사와 조교수의 차이는 환경에 의한 결과일 가능성.
+                \item 전임교원 간의 차이는 경험에 의한 결과일 가능성.
+            \end{itemize}
+        \item 학생들의 전공계열에 따른 효과(인문계 vs. 자연계).
+    \end{itemize}
+\end{frame}
+
+
+
+
+\section*{}%
+\begin{frame}
+    \centering
+    \huge
+    감사합니다.
+\end{frame}
+
+%------------------------------------------------
+\end{document}
+%------------------------------------------------
+

@@ -1,0 +1,59 @@
+%==========
+%Appendix
+%==========
+\setcounter{figure}{0}
+\setcounter{equation}{0}
+\setcounter{table}{0}
+\renewcommand{\thefigure}{A\arabic{figure}}
+\renewcommand{\theequation}{A\arabic{equation}}
+\renewcommand{\thetable}{A\arabic{table}}
+
+\input{table/klips_stat}
+
+\begin{table}
+    \centering
+    \caption{확률지배검증결과: 가구주부친직업환경}
+    \resizebox{.8\textwidth}{!}{
+    \input{table/klips_dom_byjob_all}
+    \label{tab:klips_dom_byjob_all}
+    }
+\end{table}
+
+\begin{table}
+    \centering
+    \caption{확률지배검증결과: 가구주부친직업환경, 가구주 30-50세}
+    \resizebox{.8\textwidth}{!}{
+    \input{table/klips_dom_byjob_3050}
+    \label{tab:klips_dom_byjob_3050}
+    }
+\end{table}
+
+\begin{table}
+    \centering
+    \caption{확률지배검증결과: 가구주부친학력환경}
+    \resizebox{.8\textwidth}{!}{
+    \input{table/klips_dom_byedu_all}
+    \label{tab:klips_dom_byedu_all}
+    }
+\end{table}
+
+\begin{table}
+    \centering
+    \caption{확률지배검증결과: 가구주부친학력환경, 가구주 30-50세}
+    \resizebox{.8\textwidth}{!}{
+    \input{table/klips_dom_byedu_3050}
+    \label{tab:klips_dom_byedu_3050}
+    }
+\end{table}
+
+\newpage
+
+\input{table/timss_sumstat}
+
+\input{table/pisa_sumstat}
+
+\newpage
+\input{table/timss_index}
+
+\newpage
+\input{table/pisa_index}
