@@ -1,0 +1,77 @@
+* 1. LIS 데이터 불러오기
+/*use your_lis_file.dta", clear*/
+use AU20H.dta", clear
+
+* 2. 기본 변수 파악
+* LIS 표준 변수 예시 (국가별로 상이, LIS Codebook 확인)
+* 예: hhincome, hhsize, hpopwgt, children, elderly
+
+* 3. 추가 변수 정의
+gen min = hhincome - public_transfers          // 시장소득
+gen eq = sqrt(hhsize)                          // 균등화 계수
+
+* 4. 균등화 소득 변수
+gen emin = min / eq
+
+* 5. 가구구성 계산
+gen ynum = hhsize - elderly - children         // 비노인 성인수
+
+* 6. 가구유형 구분 (예시: SAS코드 로직 반영)
+gen ht = .
+replace ht = 1 if hhsize==1 & elderly==1
+replace ht = 2 if hhsize==elderly
+replace ht = 3 if hhsize==1 & ynum==1
+replace ht = 4 if hhsize==2 & ynum==2
+replace ht = 5 if (elderly + ynum)>=1 & children==0
+replace ht = 6 if elderly>0 & ynum==0 & children>0
+replace ht = 6 if elderly==0 & ynum==1 & children>0
+replace ht = 7 if elderly==0 & ynum==2 & children>0
+replace ht = 8 if ynum>=3
+replace ht = 9 if missing(ht)
+
+* 7. 가중 분위수 계산
+xtile decile = emin [aw=hpopwgt], nq(10)
+xtile quintile = emin [=hpopwgt], nq(5)
+
+* 8. 중위소득 계산 (weighted median)
+_pctile emin [aw=hpopwgt], p(50)
+scalar p50 = r(r1)
+gen pl5 = 0.5 * p50
+gen pl6 = 0.6 * p50
+
+* 9. 빈곤위험 여부
+gen pv5 = (emin < pl5)
+gen pv6 = (emin < pl6)
+
+* 10. 빈곤위험도 할당 (예시)
+gen rpv5 = .
+gen rpv6 = .
+replace rpv5 = 0.824 if ht==1
+replace rpv5 = 0.715 if ht==2
+replace rpv5 = 0.326 if ht==3
+replace rpv5 = 0.141 if ht==4
+replace rpv5 = 0.197 if ht==5
+replace rpv5 = 0.704 if ht==6
+replace rpv5 = 0.185 if ht==7
+replace rpv5 = 0.163 if ht==8
+replace rpv5 = 0.481 if ht==9
+
+replace rpv6 = 0.835 if ht==1
+replace rpv6 = 0.745 if ht==2
+replace rpv6 = 0.317 if ht==3
+replace rpv6 = 0.142 if ht==4
+replace rpv6 = 0.193 if ht==5
+replace rpv6 = 0.720 if ht==6
+replace rpv6 = 0.193 if ht==7
+replace rpv6 = 0.143 if ht==8
+replace rpv6 = 0.542 if ht==9
+
+* 11. 소득분위별 빈곤위험도 평균 계산
+bysort quintile: egen mean_rpv5 = mean(rpv5) [aw=hpopwgt]
+bysort quintile: egen mean_rpv6 = mean(rpv6) [aw=hpopwgt]
+
+* 12. 결과 출력
+log using results.lst, replace text
+tabstat rpv5 [aw=hpopwgt], by(quintile) stats(mean)
+tabstat rpv6 [aw=hpopwgt], by(quintile) stats(mean)
+log close
