@@ -153,12 +153,6 @@
             /*변수 생성 : 균등화 소득*/
                 gen ehhmen    = sqrt(nhhmem)
                 gen emin      = min      / ehhmen
-                gen ehitotal  = hitotal  / ehhmen
-                gen edhi      = dhi      / ehhmen
-                gen ehpublic  = hpublic  / ehhmen
-                gen ehi31     = hi31     / ehhmen
-                gen ehipubsoc = hipubsoc / ehhmen
-                gen ehxitsc   = hxitsc   / ehhmen
             /*변수생성 : 가구유형*/
                 capture drop hhtype
                 gen hhtype = .
@@ -178,19 +172,8 @@
         /*중위소득 계산 (weighted median)*/
             _pctile emin [aw=hpopwgt], p(50)
             scalar p50 = r(r1)
-            gen pv5 = emin < 0.5 * p50
             gen pv6 = emin < 0.6 * p50
         /*빈곤위험도 할당 (수치는 예시)*/
-            gen rpv5 = .
-                replace rpv5 = 0.824 if hhtype==1
-                replace rpv5 = 0.715 if hhtype==2
-                replace rpv5 = 0.326 if hhtype==3
-                replace rpv5 = 0.141 if hhtype==4
-                replace rpv5 = 0.197 if hhtype==5
-                replace rpv5 = 0.704 if hhtype==6
-                replace rpv5 = 0.185 if hhtype==7
-                replace rpv5 = 0.163 if hhtype==8
-                replace rpv5 = 0.481 if hhtype==9
             gen rpv6 = .
                 replace rpv6 = 0.835 if hhtype==1
                 replace rpv6 = 0.745 if hhtype==2
@@ -202,10 +185,6 @@
                 replace rpv6 = 0.143 if hhtype==8
                 replace rpv6 = 0.542 if hhtype==9
         /*소득분위별 빈곤위험도 평균 계산*/
-            forvalue i = 1/5 {
-                summarize rpv5  if qtgroup == `i' , meanonly
-                local mrpv5q`i' = r(mean)
-            }
             forvalue i = 1/5 {
                 summarize rpv6  if qtgroup == `i' , meanonly
                 local mrpv6q`i' = r(mean)
@@ -220,6 +199,5 @@
             if "`k" == au81 {
                 di as text "cname; iso2; iso3; year; mrpv5q1; mrpv5q2; mrpv5q3; mrpv5q4; mrpv5q5;"
             }
-            di as text "`cname'; `iso2'; `iso3'; `year'; `mrpv5q1'; `mrpv5q2'; `mrpv5q3'; `mrpv5q4'; `mrpv5q5';"
-            /*di as text "`cname'; `iso2'; `iso3'; `year'; `mrpv6q1'; `mrpv6q2'; `mrpv6q3'; `mrpv6q4'; `mrpv6q5';"*/
+            di as text "`cname'; `iso2'; `iso3'; `year'; `mrpv6q1'; `mrpv6q2'; `mrpv6q3'; `mrpv6q4'; `mrpv6q5';"
     }

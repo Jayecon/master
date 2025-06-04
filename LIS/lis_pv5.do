@@ -141,8 +141,9 @@
         /*}}}*/ ;
     #delimit cr
 
+    local datalist kr06 kr08 kr10 kr12 kr14 kr16 kr17 kr18 kr19 kr20 kr21
     foreach k of local datalist {
-        qui {
+        /*qui {*/
         /*자료호출*/
             use $`k'h, clear
         /*변수조작*/
@@ -153,64 +154,34 @@
             /*변수 생성 : 균등화 소득*/
                 gen ehhmen    = sqrt(nhhmem)
                 gen emin      = min      / ehhmen
-                gen ehitotal  = hitotal  / ehhmen
-                gen edhi      = dhi      / ehhmen
-                gen ehpublic  = hpublic  / ehhmen
-                gen ehi31     = hi31     / ehhmen
-                gen ehipubsoc = hipubsoc / ehhmen
-                gen ehxitsc   = hxitsc   / ehhmen
             /*변수생성 : 가구유형*/
                 capture drop hhtype
                 gen hhtype = .
-                replace hhtype = 1  if nhhmem                     == 1 & nhhmem65   == 1
-                replace hhtype = 2  if nhhmem                     ==     nhhmem65   
-                replace hhtype = 3  if (nhhmem65 + nhhmem1864)    >= 1 & nhhmem17   == 0
-                replace hhtype = 4  if nhhmem65 > 0  & nhhmem1864 == 0 & nhhmem17   >  0
-                replace hhtype = 5  if nhhmem                     == 1 & nhhmem1864 == 1
-                replace hhtype = 6  if nhhmem                     == 2 & nhhmem1864 == 2
-                replace hhtype = 7  if nhhmem65                   == 0 & nhhmem1864 == 1 & nhhmem17 > 0
-                replace hhtype = 8  if nhhmem65                   == 0 & nhhmem1864 == 2 & nhhmem17 > 0
-                replace hhtype = 9  if nhhmem1864                 >= 3
-                replace hhtype = 10 if missing(hhtype)
+                replace hhtype = 1 if nhhmem == 1 & nhhmem65 == 1 // 노인 1인
+                replace hhtype = 2 if nhhmem >= 2 & nhhmem == nhhmem65 // 노인만 2인 이상
+                replace hhtype = 3 if nhhmem == 1 & nhhmem1864 == 1 // 근로연령 1인
+                replace hhtype = 4 if nhhmem == 2 & nhhmem1864 == 2 //근로연령만 2인 
+                replace hhtype = 5 if (nhhmem65 + nhhmem1864) >= 1 & nhhmem17 == 0 // 노인+ 근로연령(아동없음)
+                replace hhtype = 6 if (nhhmem65 >=1 & nhhmem1864 == 0 & nhhmem17 >= 1) | (nhhmem65 == 0 & nhhmem1864 == 1 & nhhmem17 >= 1) 
+                    // 조손가구 또는 한부모가구 : 정의가 튄다.
+                replace hhtype = 7 if nhhmem65 == 0 & nhhmem1864 == 2 & nhhmem17 >= 1 // 근로연령 2인 + 아동
+                replace hhtype = 8 if nhhmem1864 >= 3 // 근로연령 3인 이상 + 아동(노인 무관)
+                replace hhtype = 9 if missing(hhtype) & (!missing(nhhmem) & !missing(nhhmem65) & !missing(nhhmem17)) // 기타
             /*변수 생성 : 가중 분위수 집단*/
-                xtile dcgroup = emin [aw=hpopwgt], nq(10)
-                xtile qtgroup = emin [aw=hpopwgt], nq(5)
+                xtile dcgroup = emin [aw=pwgt], nq(10)
+                xtile qtgroup = emin [aw=pwgt], nq(5)
         /*중위소득 계산 (weighted median)*/
             _pctile emin [aw=hpopwgt], p(50)
             scalar p50 = r(r1)
             gen pv5 = emin < 0.5 * p50
-            gen pv6 = emin < 0.6 * p50
-        /*빈곤위험도 할당 (수치는 예시)*/
-            gen rpv5 = .
-                replace rpv5 = 0.824 if hhtype==1
-                replace rpv5 = 0.715 if hhtype==2
-                replace rpv5 = 0.326 if hhtype==3
-                replace rpv5 = 0.141 if hhtype==4
-                replace rpv5 = 0.197 if hhtype==5
-                replace rpv5 = 0.704 if hhtype==6
-                replace rpv5 = 0.185 if hhtype==7
-                replace rpv5 = 0.163 if hhtype==8
-                replace rpv5 = 0.481 if hhtype==9
-            gen rpv6 = .
-                replace rpv6 = 0.835 if hhtype==1
-                replace rpv6 = 0.745 if hhtype==2
-                replace rpv6 = 0.317 if hhtype==3
-                replace rpv6 = 0.142 if hhtype==4
-                replace rpv6 = 0.193 if hhtype==5
-                replace rpv6 = 0.720 if hhtype==6
-                replace rpv6 = 0.193 if hhtype==7
-                replace rpv6 = 0.143 if hhtype==8
-                replace rpv6 = 0.542 if hhtype==9
-        /*소득분위별 빈곤위험도 평균 계산*/
-            forvalue i = 1/5 {
-                summarize rpv5  if qtgroup == `i' , meanonly
-                local mrpv5q`i' = r(mean)
+        /*빈곤위험도 계산*/
+            sum pv5 [aw=hpopwgt] , meanonly
+                scalar npv5 = r(sum)
+            forvalue i=1/9 {
+                sum pv5 if hhtype = `i' [aw=hpopwgt] , meanonly
+                scalar npv5t`i' = r(sum) / npv5
             }
-            forvalue i = 1/5 {
-                summarize rpv6  if qtgroup == `i' , meanonly
-                local mrpv6q`i' = r(mean)
-            }
-        }
+        /*}*/
         /*결과 출력*/
             /*국가명 년도*/
                 local cname = cname[1]
@@ -218,8 +189,7 @@
                 local iso3 = iso3[1]
                 local year = year[1]
             if "`k" == au81 {
-                di as text "cname; iso2; iso3; year; mrpv5q1; mrpv5q2; mrpv5q3; mrpv5q4; mrpv5q5;"
+                di as text "cname; iso2; iso3; year; npv5t1; npv5t2; npv5t3; npv5t4; npv5t5; npv5t6; npv5t7; npv5t8; npv5t9;"
             }
-            di as text "`cname'; `iso2'; `iso3'; `year'; `mrpv5q1'; `mrpv5q2'; `mrpv5q3'; `mrpv5q4'; `mrpv5q5';"
-            /*di as text "`cname'; `iso2'; `iso3'; `year'; `mrpv6q1'; `mrpv6q2'; `mrpv6q3'; `mrpv6q4'; `mrpv6q5';"*/
+            di as text "`cname'; `iso2'; `iso3'; `year'; `npv5t1'; `npv5t2'; `npv5t3'; `npv5t4'; `npv5t5'; `npv5t6'; `npv5t7'; `npv5t8'; `npv5t9';"
     }
