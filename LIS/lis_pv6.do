@@ -140,64 +140,48 @@
             /*vn05 vn07 vn09 vn11 vn13*/
         /*}}}*/ ;
     #delimit cr
-
     foreach k of local datalist {
         qui {
         /*자료호출*/
             use $`k'h, clear
         /*변수조작*/
             /*변수 생성*/
-                gen min     = hitotal - hpublic
-                gen pwgt    = hpopwgt * nhhmem
+                gen min        = hitotal - hpublic
+                gen pwgt       = hpopwgt * nhhmem
                 gen nhhmem1864 = nhhmem - nhhmem65 - nhhmem17
             /*변수 생성 : 균등화 소득*/
                 gen ehhmen    = sqrt(nhhmem)
-                gen emin      = min      / ehhmen
+                gen emin      = min / ehhmen
             /*변수생성 : 가구유형*/
                 capture drop hhtype
                 gen hhtype = .
-                replace hhtype = 1  if nhhmem                     == 1 & nhhmem65   == 1
-                replace hhtype = 2  if nhhmem                     ==     nhhmem65   
-                replace hhtype = 3  if (nhhmem65 + nhhmem1864)    >= 1 & nhhmem17   == 0
-                replace hhtype = 4  if nhhmem65 > 0  & nhhmem1864 == 0 & nhhmem17   >  0
-                replace hhtype = 5  if nhhmem                     == 1 & nhhmem1864 == 1
-                replace hhtype = 6  if nhhmem                     == 2 & nhhmem1864 == 2
-                replace hhtype = 7  if nhhmem65                   == 0 & nhhmem1864 == 1 & nhhmem17 > 0
-                replace hhtype = 8  if nhhmem65                   == 0 & nhhmem1864 == 2 & nhhmem17 > 0
-                replace hhtype = 9  if nhhmem1864                 >= 3
-                replace hhtype = 10 if missing(hhtype)
-            /*변수 생성 : 가중 분위수 집단*/
-                xtile dcgroup = emin [aw=hpopwgt], nq(10)
-                xtile qtgroup = emin [aw=hpopwgt], nq(5)
+                replace hhtype = 1 if nhhmem == 1 & nhhmem65 == 1 // 노인 1인
+                replace hhtype = 2 if nhhmem >= 2 & nhhmem == nhhmem65 // 노인만 2인 이상
+                replace hhtype = 3 if nhhmem == 1 & nhhmem1864 == 1 // 근로연령 1인
+                replace hhtype = 4 if nhhmem == 2 & nhhmem1864 == 2 //근로연령만 2인 
+                replace hhtype = 5 if missing(hhtype) & ((nhhmem65 + nhhmem1864) >= 1 & nhhmem17 == 0) 
+                    // 노인+ 근로연령(아동없음). missing 안걸면 1-4 유형 가구를 덮어씀.
+                replace hhtype = 6 if (nhhmem65 >=1 & nhhmem1864 == 0 & nhhmem17 >= 1) | (nhhmem65 == 0 & nhhmem1864 == 1 & nhhmem17 >= 1) 
+                    // 조손가구 또는 한부모가구 : 정의가 튄다.
+                replace hhtype = 7 if nhhmem65 == 0 & nhhmem1864 == 2 & nhhmem17 >= 1 // 근로연령 2인 + 아동
+                replace hhtype = 8 if nhhmem1864 >= 3 // 근로연령 3인 이상 + 아동(노인 무관)
+                replace hhtype = 9 if missing(hhtype) //기타
         /*중위소득 계산 (weighted median)*/
-            _pctile emin [aw=hpopwgt], p(50)
-            scalar p50 = r(r1)
+            summarize emin [aw=pwgt], detail
+            scalar p50 = r(p50)
             gen pv6 = emin < 0.6 * p50
-        /*빈곤위험도 할당 (수치는 예시)*/
-            gen rpv6 = .
-                replace rpv6 = 0.835 if hhtype==1
-                replace rpv6 = 0.745 if hhtype==2
-                replace rpv6 = 0.317 if hhtype==3
-                replace rpv6 = 0.142 if hhtype==4
-                replace rpv6 = 0.193 if hhtype==5
-                replace rpv6 = 0.720 if hhtype==6
-                replace rpv6 = 0.193 if hhtype==7
-                replace rpv6 = 0.143 if hhtype==8
-                replace rpv6 = 0.542 if hhtype==9
-        /*소득분위별 빈곤위험도 평균 계산*/
-            forvalue i = 1/5 {
-                summarize rpv6  if qtgroup == `i' , meanonly
-                local mrpv6q`i' = r(mean)
+        /*빈곤위험도 계산*/
+            summarize pv6 [aw=pwgt] , meanonly
+                scalar npv6 = r(sum)
+            forvalue i=1/9 {
+                summarize pv6 if hhtype == `i' [aw=pwgt] , meanonly
+                scalar denum = r(sum)
+                local pv6t`i' = denum / npv6
             }
         }
         /*결과 출력*/
-            /*국가명 년도*/
-                local cname = cname[1]
-                local iso2 = iso2[1]
-                local iso3 = iso3[1]
-                local year = year[1]
-            if "`k" == au81 {
-                di as text "cname; iso2; iso3; year; mrpv5q1; mrpv5q2; mrpv5q3; mrpv5q4; mrpv5q5;"
+            if "`k'" == "au81" {
+                di as text "cname; iso2; iso3; year; pv6t1; pv6t2; pv6t3; pv6t4; pv6t5; pv6t6; pv6t7; pv6t8; pv6t9;"
             }
-            di as text "`cname'; `iso2'; `iso3'; `year'; `mrpv6q1'; `mrpv6q2'; `mrpv6q3'; `mrpv6q4'; `mrpv6q5';"
+            di as text "`cname'; `iso2'; `iso3'; `year'; `pv6t1'; `pv6t2'; `pv6t3'; `pv6t4'; `pv6t5'; `pv6t6'; `pv6t7'; `pv6t8'; `pv6t9';
     }
