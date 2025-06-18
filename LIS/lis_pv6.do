@@ -1,4 +1,6 @@
 /*호출변수 목록 생성*/
+bys cname: gen lwave = _N
+bys cname: gen lwave = _N
     #delimit ;
     local datalist /*관측치 5개 이하 국가는 제외*/
         /*{{{*/
@@ -150,8 +152,8 @@
                 gen pwgt       = hpopwgt * nhhmem
                 gen nhhmem1864 = nhhmem - nhhmem65 - nhhmem17
             /*변수 생성 : 균등화 소득*/
-                gen ehhmen    = sqrt(nhhmem)
-                gen emin      = min / ehhmen
+                gen ehhmen = sqrt(nhhmem)
+                gen emin   = min / ehhmen
             /*변수생성 : 가구유형*/
                 capture drop hhtype
                 gen hhtype = .
