@@ -45,11 +45,11 @@
         /*중위소득 계산 (weighted median)*/
             summarize emin [aw=pwgt], detail
             scalar p50 = r(p50)
-            gen pv6 = emin < 0.6 * p50
+            gen pv5 = emin < 0.5 * p50
         /*빈곤위험도 계산*/
             forvalue i=1/9 {
-                summarize pv6 if hhtype == `i' [aw=pwgt] , meanonly
-                local pv6t`i' = r(mean)
+                summarize pv5 if hhtype == `i' [aw=pwgt] , meanonly
+                local pv5t`i' = r(mean)
             }
         }
         /*결과 출력*/
@@ -59,7 +59,7 @@
                 local iso3 = iso3[1]
                 local year = year[1]
             if "`k'" == "fr09" {
-                di as text "cname,iso2,iso3,year,pv6t1,pv6t2,pv6t3,pv6t4,pv6t5,pv6t6,pv6t7,pv6t8,pv6t9"
+                di as text "cname,iso2,iso3,year,pv5t1,pv5t2,pv5t3,pv5t4,pv5t5,pv5t6,pv5t7,pv5t8,pv5t9"
             }
-            di as text "`cname',`iso2',`iso3',`year',`pv6t1',`pv6t2',`pv6t3',`pv6t4',`pv6t5',`pv6t6',`pv6t7',`pv6t8',`pv6t9'"
+            di as text "`cname',`iso2',`iso3',`year',`pv5t1',`pv5t2',`pv5t3',`pv5t4',`pv5t5',`pv5t6',`pv5t7',`pv5t8',`pv5t9'"
     }
