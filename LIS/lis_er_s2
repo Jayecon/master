@@ -123,13 +123,7 @@
                 gen nhhmem1864 = nhhmem - nhhmem65 - nhhmem17
             /*변수 생성 : 균등화 소득*/
                 gen ehhmen    = sqrt(nhhmem)
-                gen emin      = min      / ehhmen
-                gen ehitotal  = hitotal  / ehhmen
-                gen edhi      = dhi      / ehhmen
-                gen ehpublic  = hpublic  / ehhmen
-                gen ehi31     = hi31     / ehhmen
-                gen ehipubsoc = hipubsoc / ehhmen
-                gen ehxitsc   = hxitsc   / ehhmen
+                gen emin      = min / ehhmen
             /*변수생성 : 가구유형*/
                 capture drop hhtype
                 gen hhtype = .

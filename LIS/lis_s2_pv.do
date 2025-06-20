@@ -123,13 +123,7 @@
                 gen nhhmem1864 = nhhmem - nhhmem65 - nhhmem17
             /*변수 생성 : 균등화 소득*/
                 gen ehhmen    = sqrt(nhhmem)
-                gen emin      = min      / ehhmen
-                gen ehitotal  = hitotal  / ehhmen
-                gen edhi      = dhi      / ehhmen
-                gen ehpublic  = hpublic  / ehhmen
-                gen ehi31     = hi31     / ehhmen
-                gen ehipubsoc = hipubsoc / ehhmen
-                gen ehxitsc   = hxitsc   / ehhmen
+                gen emin      = min / ehhmen
             /*변수생성 : 가구유형*/
                 capture drop hhtype
                 gen hhtype = .
@@ -146,7 +140,6 @@
                 replace hhtype = 9 if missing(hhtype) //기타
             /*변수 생성 : 가중 분위수 집단*/
                 xtile dcgroup = emin [aw=hpopwgt], nq(10)
-                xtile qtgroup = emin [aw=hpopwgt], nq(5)
         /*중위소득 계산 (weighted median)*/
             _pctile emin [aw=hpopwgt], p(50)
             scalar p50 = r(r1)
@@ -164,21 +157,19 @@
                 replace rpv5 = `k'pv5t8 if hhtype==8
                 replace rpv5 = `k'pv5t9 if hhtype==9
             gen rpv6 = .
-                replace rpv6 = `k'pv5t1 if hhtype==1
-                replace rpv6 = `k'pv5t2 if hhtype==2
-                replace rpv6 = `k'pv5t3 if hhtype==3
-                replace rpv6 = `k'pv5t4 if hhtype==4
-                replace rpv6 = `k'pv5t5 if hhtype==5
-                replace rpv6 = `k'pv5t6 if hhtype==6
-                replace rpv6 = `k'pv5t7 if hhtype==7
-                replace rpv6 = `k'pv5t8 if hhtype==8
-                replace rpv6 = `k'pv5t9 if hhtype==9
+                replace rpv6 = `k'pv6t1 if hhtype==1
+                replace rpv6 = `k'pv6t2 if hhtype==2
+                replace rpv6 = `k'pv6t3 if hhtype==3
+                replace rpv6 = `k'pv6t4 if hhtype==4
+                replace rpv6 = `k'pv6t5 if hhtype==5
+                replace rpv6 = `k'pv6t6 if hhtype==6
+                replace rpv6 = `k'pv6t7 if hhtype==7
+                replace rpv6 = `k'pv6t8 if hhtype==8
+                replace rpv6 = `k'pv6t9 if hhtype==9
         /*소득분위별 빈곤위험도 평균 계산*/
             forvalue i = 1/10 {
                 summarize rpv5  if dcgroup == `i' , meanonly
                 local mrpv5d`i' = r(mean)
-            }
-            forvalue i = 1/10 {
                 summarize rpv6  if dcgroup == `i' , meanonly
                 local mrpv6d`i' = r(mean)
             }
@@ -188,9 +179,10 @@
                 local cname = cname[1]
                 local iso2 = iso2[1]
                 local iso3 = iso3[1]
-                local year = year[1]
-            if "`k" == "fr" {
-                di as text "cname,iso2,iso3,year,mrpv5d1,mrpv5d2,mrpv5d3,mrpv5d4,mrpv5d5,mrpv5d6,mrpv5d7,mrpv5d8,mrpv5d9,mrpv5d10,mrpv6d1,mrpv6d2,mrpv6d3,mrpv6d4,mrpv6d5,mrpv6d6,mrpv6d7,mrpv6d8,mrpv6d9,mrpv6d10"
+            if "`k'" == "fr" {
+                di as text "cname,iso2,iso3,dcgroup,mrpv5,mrpv6"
             }
-            di as text "`cname',`iso2',`iso3',`year',`mrpv5d1',`mrpv5d2',`mrpv5d3',`mrpv5d4',`mrpv5d5',`mrpv5d6',`mrpv5d7',`mrpv5d8',`mrpv5d9',`mrpv5d10',`mrpv6d1',`mrpv6d2',`mrpv6d3',`mrpv6d4',`mrpv6d5',`mrpv6d6',`mrpv6d7',`mrpv6d8',`mrpv6d9',`mrpv6d10'""
+            forvalue i = 1/10 {
+                di as text "`cname',`iso2',`iso3',`i',`mrpv5d`i'',`mrpv6d`i''"
+            }
     }
