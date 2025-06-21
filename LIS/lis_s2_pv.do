@@ -168,9 +168,9 @@
                 replace rpv6 = `k'pv6t9 if hhtype==9
         /*소득분위별 빈곤위험도 평균 계산*/
             forvalue i = 1/10 {
-                summarize rpv5  if dcgroup == `i' , meanonly
+                summarize rpv5 [aw=hpopwgt] if dcgroup == `i' , meanonly
                 local mrpv5d`i' = r(mean)
-                summarize rpv6  if dcgroup == `i' , meanonly
+                summarize rpv6 [aw=hpopwgt] if dcgroup == `i' , meanonly
                 local mrpv6d`i' = r(mean)
             }
         }
