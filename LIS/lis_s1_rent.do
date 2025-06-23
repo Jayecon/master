@@ -42,11 +42,11 @@
                 replace hhtype = 8 if nhhmem1864 >= 3 // 근로연령 3인 이상 + 아동(노인 무관)
                 replace hhtype = 9 if missing(hhtype) //기타
         /*중위소득 계산 (weighted median)*/
-            gen rt4 = hc41/edhi > .4
+            gen rt = hc41/edhi > .4
         /*빈곤위험도 계산*/
             forvalue i=1/9 {
-                summarize rt4 if hhtype == `i' [aw=pwgt] , meanonly
-                local rt4t`i' = r(mean)
+                summarize rt if hhtype == `i' [aw=pwgt] , meanonly
+                local rtt`i' = r(mean)
             }
         }
         /*결과 출력*/
@@ -55,8 +55,8 @@
                 local iso2 = iso2[1]
                 local iso3 = iso3[1]
                 local year = year[1]
-            if "`k'" == "fr09" {
-                di as text "cname,iso2,iso3,year,rt4t1,rt4t2,rt4t3,rt4t4,rt4t5,rt4t6,rt4t7,rt4t8,rt4t9"
+            if "`k'" == "fr10" {
+                di as text "cname,iso2,iso3,year,rtt1,rtt2,rtt3,rtt4,rtt5,rtt6,rtt7,rtt8,rtt9"
             }
-            di as text "`cname',`iso2',`iso3',`year',`rt4t1',`rt4t2',`rt4t3',`rt4t4',`rt4t5',`rt4t6',`rt4t7',`rt4t8',`rt4t9'"
+            di as text "`cname',`iso2',`iso3',`year',`rtt1',`rtt2',`rtt3',`rtt4',`rtt5',`rtt6',`rtt7',`rtt8',`rtt9'"
     }

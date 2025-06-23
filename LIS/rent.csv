@@ -1,61 +1,61 @@
 cname,iso2,iso3,dcgroup,rent
-France,fr,fra,1,.0812639242626182
-France,fr,fra,2,.0730326753479814
-France,fr,fra,3,.0756704286275143
-France,fr,fra,4,.0829678647106991
-France,fr,fra,5,.0934223328023839
-France,fr,fra,6,.0934639184118839
-France,fr,fra,7,.0911433400460756
-France,fr,fra,8,.0879052606984212
-France,fr,fra,9,.085435651315546
-France,fr,fra,10,.0813309765811026
-Sweden,se,swe,1,.0905918938583626
-Sweden,se,swe,2,.0775182618422515
-Sweden,se,swe,3,.0754681616565809
-Sweden,se,swe,4,.0857364445025685
-Sweden,se,swe,5,.0933477165972506
-Sweden,se,swe,6,.0940593857123691
-Sweden,se,swe,7,.088786974273741
-Sweden,se,swe,8,.0869157346250808
-Sweden,se,swe,9,.0824403350515484
-Sweden,se,swe,10,.0774002289627375
-South Korea,kr,kor,1,.0756971653335911
-South Korea,kr,kor,2,.0747600313223602
-South Korea,kr,kor,3,.078537358609174
-South Korea,kr,kor,4,.0800337093145311
-South Korea,kr,kor,5,.0796040737432116
-South Korea,kr,kor,6,.0806956561389765
-South Korea,kr,kor,7,.0809973797654854
-South Korea,kr,kor,8,.0814695182924791
-South Korea,kr,kor,9,.0824613825155056
-South Korea,kr,kor,10,.0826631760365936
-Japan,jp,jpn,1,.0710712637668725
-Japan,jp,jpn,2,.0692978057205843
-Japan,jp,jpn,3,.0699067803233169
-Japan,jp,jpn,4,.0725512667790409
-Japan,jp,jpn,5,.0735913899826403
-Japan,jp,jpn,6,.0765399543525419
-Japan,jp,jpn,7,.0755978935581792
-Japan,jp,jpn,8,.0780289377836556
-Japan,jp,jpn,9,.0791344356106325
-Japan,jp,jpn,10,.0774342051204289
-United Kingdom,uk,gbr,1,.0904609557555907
-United Kingdom,uk,gbr,2,.0823214153251183
-United Kingdom,uk,gbr,3,.0870419658992093
-United Kingdom,uk,gbr,4,.0830501695406527
-United Kingdom,uk,gbr,5,.0833189757614874
-United Kingdom,uk,gbr,6,.0820785802804605
-United Kingdom,uk,gbr,7,.0807280786448455
-United Kingdom,uk,gbr,8,.0798687016020279
-United Kingdom,uk,gbr,9,.0794341248537165
-United Kingdom,uk,gbr,10,.0785996153798717
-United States,us,usa,1,.0799269814342776
-United States,us,usa,2,.0812392073293664
-United States,us,usa,3,.0896371991552065
-United States,us,usa,4,.0878929880930364
-United States,us,usa,5,.0850572245480819
-United States,us,usa,6,.0841633309311748
-United States,us,usa,7,.0822593052204774
-United States,us,usa,8,.0805396818886857
-United States,us,usa,9,.0801058271183001
-United States,us,usa,10,.0772361085949956
+France,fr,fra,1,.0972975263639041
+France,fr,fra,2,.0908345492958374
+France,fr,fra,3,.0923819380374795
+France,fr,fra,4,.0992742159766437
+France,fr,fra,5,.1085094399522187
+France,fr,fra,6,.1103886883714958
+France,fr,fra,7,.1074883950689094
+France,fr,fra,8,.1037772136878206
+France,fr,fra,9,.1009562517453337
+France,fr,fra,10,.0988969840609679
+Sweden,se,swe,1,.107162816589394
+Sweden,se,swe,2,.0946784513804868
+Sweden,se,swe,3,.0905889725575644
+Sweden,se,swe,4,.1015244921252175
+Sweden,se,swe,5,.1114382540941551
+Sweden,se,swe,6,.1086506592153124
+Sweden,se,swe,7,.1050145658747141
+Sweden,se,swe,8,.1010253905556265
+Sweden,se,swe,9,.0976056551740562
+Sweden,se,swe,10,.0944959123118031
+South Korea,kr,kor,1,.093196903081094
+South Korea,kr,kor,2,.0916883001796289
+South Korea,kr,kor,3,.0959035202826132
+South Korea,kr,kor,4,.0966290434681875
+South Korea,kr,kor,5,.0967003878703064
+South Korea,kr,kor,6,.0981251193877477
+South Korea,kr,kor,7,.0987347818165062
+South Korea,kr,kor,8,.0982509505476865
+South Korea,kr,kor,9,.0992417160068944
+South Korea,kr,kor,10,.0990024274639575
+Japan,jp,jpn,1,.0902381201190818
+Japan,jp,jpn,2,.0865370907236896
+Japan,jp,jpn,3,.0852759134306346
+Japan,jp,jpn,4,.0895163549217512
+Japan,jp,jpn,5,.0897010818926363
+Japan,jp,jpn,6,.0907386169643257
+Japan,jp,jpn,7,.0949478262934965
+Japan,jp,jpn,8,.0941118468769688
+Japan,jp,jpn,9,.0967142340559578
+Japan,jp,jpn,10,.0941977877499938
+United Kingdom,uk,gbr,1,.1075298476360188
+United Kingdom,uk,gbr,2,.0973725440994437
+United Kingdom,uk,gbr,3,.1027823640384093
+United Kingdom,uk,gbr,4,.1006923026130373
+United Kingdom,uk,gbr,5,.0990501715199636
+United Kingdom,uk,gbr,6,.0984579335050671
+United Kingdom,uk,gbr,7,.0966033973368032
+United Kingdom,uk,gbr,8,.0974145781710384
+United Kingdom,uk,gbr,9,.0939437522552086
+United Kingdom,uk,gbr,10,.0942332196887441
+United States,us,usa,1,.0984140139942371
+United States,us,usa,2,.0977565413423547
+United States,us,usa,3,.1043473896448396
+United States,us,usa,4,.1053177559655619
+United States,us,usa,5,.1019058836713045
+United States,us,usa,6,.1006580212090634
+United States,us,usa,7,.0989405362112268
+United States,us,usa,8,.0967055942609981
+United States,us,usa,9,.0961909844178016
+United States,us,usa,10,.0937453035800205

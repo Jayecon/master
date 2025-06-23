@@ -4,7 +4,7 @@ cd  ~/GitHub/master/LIS
 
     import delimited "health.csv",       delimiter(",") encoding(ISO-8859-1)clear
         save `tfile1' , replace
-    import delimited "isolation.csv",    delimiter(",") encoding(ISO-8859-1)clear
+    import delimited "support.csv",    delimiter(",") encoding(ISO-8859-1)clear
         merge 1:1 iso2 dcgroup using `tfile1' , nogen
         save `tfile1' , replace
     import delimited "noemployment.csv", delimiter(",") encoding(ISO-8859-1)clear

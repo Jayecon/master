@@ -1,61 +1,61 @@
 cname,iso2,iso3,dcgroup,care
-France,fr,fra,1,.591915514006324
-France,fr,fra,2,.7215008464599642
-France,fr,fra,3,.6666951632607684
-France,fr,fra,4,.4639924260607562
-France,fr,fra,5,.2502114496342182
-France,fr,fra,6,.1600423671034731
-France,fr,fra,7,.1228755620430987
-France,fr,fra,8,.1066748763521969
-France,fr,fra,9,.0964534008284712
-France,fr,fra,10,.1170383326329957
-Sweden,se,swe,1,.40311140047943
-Sweden,se,swe,2,.7694061668327229
-Sweden,se,swe,3,.6702480136899142
-Sweden,se,swe,4,.4367641051636398
-Sweden,se,swe,5,.2822795084233365
-Sweden,se,swe,6,.1913358496147326
-Sweden,se,swe,7,.1381926770787291
-Sweden,se,swe,8,.1216756429267238
-Sweden,se,swe,9,.1197182857938878
-Sweden,se,swe,10,.1208299509865336
-South Korea,kr,kor,1,.6901421578256848
-South Korea,kr,kor,2,.5614399971725614
-South Korea,kr,kor,3,.3974596884767025
-South Korea,kr,kor,4,.3055144208542119
-South Korea,kr,kor,5,.2757206487338598
-South Korea,kr,kor,6,.2174451574031869
-South Korea,kr,kor,7,.1922753139851688
-South Korea,kr,kor,8,.177138029800002
-South Korea,kr,kor,9,.1462234234695447
-South Korea,kr,kor,10,.1502449617732797
-Japan,jp,jpn,1,.4878898444479677
-Japan,jp,jpn,2,.5587300376640225
-Japan,jp,jpn,3,.5464662039338445
-Japan,jp,jpn,4,.459607870745565
-Japan,jp,jpn,5,.44003297293694
-Japan,jp,jpn,6,.3325182583431799
-Japan,jp,jpn,7,.2643328210364753
-Japan,jp,jpn,8,.2476630118571412
-Japan,jp,jpn,9,.1978404173640583
-Japan,jp,jpn,10,.1959288475880897
-United Kingdom,uk,gbr,1,.4668906128444341
-United Kingdom,uk,gbr,2,.7307439534619701
-United Kingdom,uk,gbr,3,.5514708190881873
-United Kingdom,uk,gbr,4,.4184070591684258
-United Kingdom,uk,gbr,5,.3022401443366548
-United Kingdom,uk,gbr,6,.231328713069388
-United Kingdom,uk,gbr,7,.1786596355014814
-United Kingdom,uk,gbr,8,.1349870946521137
-United Kingdom,uk,gbr,9,.1159423237124114
-United Kingdom,uk,gbr,10,.1203542847393281
-United States,us,usa,1,.5870536964705158
-United States,us,usa,2,.5918220720686598
-United States,us,usa,3,.3723790430792316
-United States,us,usa,4,.2813965538696943
-United States,us,usa,5,.2397379474020478
-United States,us,usa,6,.2018983545075475
-United States,us,usa,7,.1780935664725171
-United States,us,usa,8,.1723535696693054
-United States,us,usa,9,.1612616951682906
-United States,us,usa,10,.1908084434516258
+France,fr,fra,1,.6173119084577156
+France,fr,fra,2,.7402130439136295
+France,fr,fra,3,.6717105232071789
+France,fr,fra,4,.4632053578609615
+France,fr,fra,5,.2503368232376502
+France,fr,fra,6,.1670479868430804
+France,fr,fra,7,.1183415814465683
+France,fr,fra,8,.1067422644699757
+France,fr,fra,9,.0961913665316136
+France,fr,fra,10,.1145311023724918
+Sweden,se,swe,1,.3275784084807778
+Sweden,se,swe,2,.7776307062478127
+Sweden,se,swe,3,.6875034623638016
+Sweden,se,swe,4,.4452484952067012
+Sweden,se,swe,5,.2848722693630036
+Sweden,se,swe,6,.1740924572287814
+Sweden,se,swe,7,.1355604992689951
+Sweden,se,swe,8,.1249693801286139
+Sweden,se,swe,9,.1272088304338816
+Sweden,se,swe,10,.1180903820102423
+South Korea,kr,kor,1,.6512639901839721
+South Korea,kr,kor,2,.5479246808793377
+South Korea,kr,kor,3,.3804472729110124
+South Korea,kr,kor,4,.2924089724726111
+South Korea,kr,kor,5,.251808116532898
+South Korea,kr,kor,6,.2197278069054525
+South Korea,kr,kor,7,.1983447062873427
+South Korea,kr,kor,8,.1727919989344049
+South Korea,kr,kor,9,.1501028034307341
+South Korea,kr,kor,10,.144572949244942
+Japan,jp,jpn,1,.5083657724198039
+Japan,jp,jpn,2,.5648496944833757
+Japan,jp,jpn,3,.5787000334092472
+Japan,jp,jpn,4,.540907706574264
+Japan,jp,jpn,5,.4083536774601691
+Japan,jp,jpn,6,.353445314178578
+Japan,jp,jpn,7,.2523154679186541
+Japan,jp,jpn,8,.2446227308513886
+Japan,jp,jpn,9,.1781158574345532
+Japan,jp,jpn,10,.1858276391074618
+United Kingdom,uk,gbr,1,.3716868441840414
+United Kingdom,uk,gbr,2,.7052771361824695
+United Kingdom,uk,gbr,3,.5398093284991741
+United Kingdom,uk,gbr,4,.4094001691300423
+United Kingdom,uk,gbr,5,.3536303978637814
+United Kingdom,uk,gbr,6,.247565492307779
+United Kingdom,uk,gbr,7,.1898504051539504
+United Kingdom,uk,gbr,8,.1434469117959093
+United Kingdom,uk,gbr,9,.1316690800976033
+United Kingdom,uk,gbr,10,.1236444530292889
+United States,us,usa,1,.5577341019972508
+United States,us,usa,2,.5933776676891502
+United States,us,usa,3,.3994266469217835
+United States,us,usa,4,.3054382676575892
+United States,us,usa,5,.2364359491509098
+United States,us,usa,6,.2076718810352887
+United States,us,usa,7,.1857768436049512
+United States,us,usa,8,.1753793148659014
+United States,us,usa,9,.1699951486494306
+United States,us,usa,10,.1730605240541769

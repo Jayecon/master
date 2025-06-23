@@ -58,7 +58,7 @@
                 local iso2 = iso2[1]
                 local iso3 = iso3[1]
                 local year = year[1]
-            if "`k'" == "fr09" {
+            if "`k'" == "fr10" {
                 di as text "cname,iso2,iso3,year,pv5t1,pv5t2,pv5t3,pv5t4,pv5t5,pv5t6,pv5t7,pv5t8,pv5t9"
             }
             di as text "`cname',`iso2',`iso3',`year',`pv5t1',`pv5t2',`pv5t3',`pv5t4',`pv5t5',`pv5t6',`pv5t7',`pv5t8',`pv5t9'"
