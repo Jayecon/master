@@ -59,8 +59,8 @@
     foreach k of local datalist {
         qui {
         /*자료호출*/
-            use $`k'19h, clear
-            merge 1:m hid using $`k'19p, nogen 
+            use $`k'20h, clear
+            merge 1:m hid using $`k'20p, nogen 
         /*변수조작*/
             /*변수 생성*/
                 gen min     = hitotal - hpublic

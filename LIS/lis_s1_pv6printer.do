@@ -1,6 +1,6 @@
-import delimited "~/GitHub/master/LIS/rents_s1.csv", encoding(ISO-8859-1)
+import delimited "~/GitHub/master/LIS/pv6_s1.csv", encoding(ISO-8859-1)
     levelsof iso2 , local(clist)
-    local vlist rt4t1  rt4t2  rt4t3  rt4t4  rt4t5  rt4t6  rt4t7  rt4t8  rt4t9
+    local vlist pv6t1 pv6t2 pv6t3 pv6t4 pv6t5 pv6t6 pv6t7 pv6t8 pv6t9
 
     foreach i of local clist { 
         foreach j of local vlist {
