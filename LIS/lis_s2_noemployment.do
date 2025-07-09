@@ -144,201 +144,209 @@
                 gen min     = hitotal - hpublic
                 capture drop pwgt
                 gen pwgt    = hpopwgt * nhhmem
-                gen nhhmem1864 = nhhmem - nhhmem65 - nhhmem17
             /*변수 생성 : 균등화 소득*/
                 gen ehhmen    = sqrt(nhhmem)
                 gen emin      = min / ehhmen
-            /*변수생성 : 집단별 실업률*/
-                gen employ = .
-                /*입력받은 수치를 국가별 성별 연령별 집단에게 부여{{{*/
-                    if "`k'" == "fr" {
-                    /*{{{*/
-                        replace employ = frfe1519 if inrange(age , 15 , 19)  & sex == 2
-                        replace employ = frfe2024 if inrange(age , 20 , 24)  & sex == 2
-                        replace employ = frfe2529 if inrange(age , 25 , 29)  & sex == 2
-                        replace employ = frfe3034 if inrange(age , 30 , 34)  & sex == 2
-                        replace employ = frfe3539 if inrange(age , 35 , 39)  & sex == 2
-                        replace employ = frfe4044 if inrange(age , 40 , 44)  & sex == 2
-                        replace employ = frfe4549 if inrange(age , 45 , 49)  & sex == 2
-                        replace employ = frfe5054 if inrange(age , 50 , 54)  & sex == 2
-                        replace employ = frfe5559 if inrange(age , 55 , 59)  & sex == 2
-                        replace employ = frfe6064 if inrange(age , 60 , 64)  & sex == 2
-                        replace employ = frfe6599 if inrange(age , 65 , 999) & sex == 2
-                        replace employ = frme1519 if inrange(age , 15 , 19)  & sex == 1
-                        replace employ = frme2024 if inrange(age , 20 , 24)  & sex == 1
-                        replace employ = frme2529 if inrange(age , 25 , 29)  & sex == 1
-                        replace employ = frme3034 if inrange(age , 30 , 34)  & sex == 1
-                        replace employ = frme3539 if inrange(age , 35 , 39)  & sex == 1
-                        replace employ = frme4044 if inrange(age , 40 , 44)  & sex == 1
-                        replace employ = frme4549 if inrange(age , 45 , 49)  & sex == 1
-                        replace employ = frme5054 if inrange(age , 50 , 54)  & sex == 1
-                        replace employ = frme5559 if inrange(age , 55 , 59)  & sex == 1
-                        replace employ = frme6064 if inrange(age , 60 , 64)  & sex == 1
-                        replace employ = frme6599 if inrange(age , 65 , 999) & sex == 1
-                    /*}}}*/
-                    }
-                    else if "`k'" == "jp" {
-                    /*{{{*/
-                        replace employ = jpfe1519 if inrange(age , 15 , 19)  & sex == 2
-                        replace employ = jpfe2024 if inrange(age , 20 , 24)  & sex == 2
-                        replace employ = jpfe2529 if inrange(age , 25 , 29)  & sex == 2
-                        replace employ = jpfe3034 if inrange(age , 30 , 34)  & sex == 2
-                        replace employ = jpfe3539 if inrange(age , 35 , 39)  & sex == 2
-                        replace employ = jpfe4044 if inrange(age , 40 , 44)  & sex == 2
-                        replace employ = jpfe4549 if inrange(age , 45 , 49)  & sex == 2
-                        replace employ = jpfe5054 if inrange(age , 50 , 54)  & sex == 2
-                        replace employ = jpfe5559 if inrange(age , 55 , 59)  & sex == 2
-                        replace employ = jpfe6064 if inrange(age , 60 , 64)  & sex == 2
-                        replace employ = jpfe6599 if inrange(age , 65 , 999) & sex == 2
-                        replace employ = jpme1519 if inrange(age , 15 , 19)  & sex == 1
-                        replace employ = jpme2024 if inrange(age , 20 , 24)  & sex == 1
-                        replace employ = jpme2529 if inrange(age , 25 , 29)  & sex == 1
-                        replace employ = jpme3034 if inrange(age , 30 , 34)  & sex == 1
-                        replace employ = jpme3539 if inrange(age , 35 , 39)  & sex == 1
-                        replace employ = jpme4044 if inrange(age , 40 , 44)  & sex == 1
-                        replace employ = jpme4549 if inrange(age , 45 , 49)  & sex == 1
-                        replace employ = jpme5054 if inrange(age , 50 , 54)  & sex == 1
-                        replace employ = jpme5559 if inrange(age , 55 , 59)  & sex == 1
-                        replace employ = jpme6064 if inrange(age , 60 , 64)  & sex == 1
-                        replace employ = jpme6599 if inrange(age , 65 , 999) & sex == 1
-                    /*}}}*/
-                    }
-                    else if "`k'" == "kr" {
-                    /*{{{*/
-                        replace employ = krfe1519 if inrange(age , 15 , 19)  & sex == 2
-                        replace employ = krfe2024 if inrange(age , 20 , 24)  & sex == 2
-                        replace employ = krfe2529 if inrange(age , 25 , 29)  & sex == 2
-                        replace employ = krfe3034 if inrange(age , 30 , 34)  & sex == 2
-                        replace employ = krfe3539 if inrange(age , 35 , 39)  & sex == 2
-                        replace employ = krfe4044 if inrange(age , 40 , 44)  & sex == 2
-                        replace employ = krfe4549 if inrange(age , 45 , 49)  & sex == 2
-                        replace employ = krfe5054 if inrange(age , 50 , 54)  & sex == 2
-                        replace employ = krfe5559 if inrange(age , 55 , 59)  & sex == 2
-                        replace employ = krfe6064 if inrange(age , 60 , 64)  & sex == 2
-                        replace employ = krfe6599 if inrange(age , 65 , 999) & sex == 2
-                        replace employ = krme1519 if inrange(age , 15 , 19)  & sex == 1
-                        replace employ = krme2024 if inrange(age , 20 , 24)  & sex == 1
-                        replace employ = krme2529 if inrange(age , 25 , 29)  & sex == 1
-                        replace employ = krme3034 if inrange(age , 30 , 34)  & sex == 1
-                        replace employ = krme3539 if inrange(age , 35 , 39)  & sex == 1
-                        replace employ = krme4044 if inrange(age , 40 , 44)  & sex == 1
-                        replace employ = krme4549 if inrange(age , 45 , 49)  & sex == 1
-                        replace employ = krme5054 if inrange(age , 50 , 54)  & sex == 1
-                        replace employ = krme5559 if inrange(age , 55 , 59)  & sex == 1
-                        replace employ = krme6064 if inrange(age , 60 , 64)  & sex == 1
-                        replace employ = krme6599 if inrange(age , 65 , 999) & sex == 1
-                    /*}}}*/
-                    }
-                    else if "`k'" == "se" {
-                    /*{{{*/
-                        replace employ = sefe1519 if inrange(age , 15 , 19)  & sex == 2
-                        replace employ = sefe2024 if inrange(age , 20 , 24)  & sex == 2
-                        replace employ = sefe2529 if inrange(age , 25 , 29)  & sex == 2
-                        replace employ = sefe3034 if inrange(age , 30 , 34)  & sex == 2
-                        replace employ = sefe3539 if inrange(age , 35 , 39)  & sex == 2
-                        replace employ = sefe4044 if inrange(age , 40 , 44)  & sex == 2
-                        replace employ = sefe4549 if inrange(age , 45 , 49)  & sex == 2
-                        replace employ = sefe5054 if inrange(age , 50 , 54)  & sex == 2
-                        replace employ = sefe5559 if inrange(age , 55 , 59)  & sex == 2
-                        replace employ = sefe6064 if inrange(age , 60 , 64)  & sex == 2
-                        replace employ = sefe6599 if inrange(age , 65 , 999) & sex == 2
-                        replace employ = seme1519 if inrange(age , 15 , 19)  & sex == 1
-                        replace employ = seme2024 if inrange(age , 20 , 24)  & sex == 1
-                        replace employ = seme2529 if inrange(age , 25 , 29)  & sex == 1
-                        replace employ = seme3034 if inrange(age , 30 , 34)  & sex == 1
-                        replace employ = seme3539 if inrange(age , 35 , 39)  & sex == 1
-                        replace employ = seme4044 if inrange(age , 40 , 44)  & sex == 1
-                        replace employ = seme4549 if inrange(age , 45 , 49)  & sex == 1
-                        replace employ = seme5054 if inrange(age , 50 , 54)  & sex == 1
-                        replace employ = seme5559 if inrange(age , 55 , 59)  & sex == 1
-                        replace employ = seme6064 if inrange(age , 60 , 64)  & sex == 1
-                        replace employ = seme6599 if inrange(age , 65 , 999) & sex == 1
-                    /*}}}*/
-                    }
-                    else if "`k'" == "uk" {
-                    /*{{{*/
-                        replace employ = ukfe1519 if inrange(age , 15 , 19)  & sex == 2
-                        replace employ = ukfe2024 if inrange(age , 20 , 24)  & sex == 2
-                        replace employ = ukfe2529 if inrange(age , 25 , 29)  & sex == 2
-                        replace employ = ukfe3034 if inrange(age , 30 , 34)  & sex == 2
-                        replace employ = ukfe3539 if inrange(age , 35 , 39)  & sex == 2
-                        replace employ = ukfe4044 if inrange(age , 40 , 44)  & sex == 2
-                        replace employ = ukfe4549 if inrange(age , 45 , 49)  & sex == 2
-                        replace employ = ukfe5054 if inrange(age , 50 , 54)  & sex == 2
-                        replace employ = ukfe5559 if inrange(age , 55 , 59)  & sex == 2
-                        replace employ = ukfe6064 if inrange(age , 60 , 64)  & sex == 2
-                        replace employ = ukfe6599 if inrange(age , 65 , 999) & sex == 2
-                        replace employ = ukme1519 if inrange(age , 15 , 19)  & sex == 1
-                        replace employ = ukme2024 if inrange(age , 20 , 24)  & sex == 1
-                        replace employ = ukme2529 if inrange(age , 25 , 29)  & sex == 1
-                        replace employ = ukme3034 if inrange(age , 30 , 34)  & sex == 1
-                        replace employ = ukme3539 if inrange(age , 35 , 39)  & sex == 1
-                        replace employ = ukme4044 if inrange(age , 40 , 44)  & sex == 1
-                        replace employ = ukme4549 if inrange(age , 45 , 49)  & sex == 1
-                        replace employ = ukme5054 if inrange(age , 50 , 54)  & sex == 1
-                        replace employ = ukme5559 if inrange(age , 55 , 59)  & sex == 1
-                        replace employ = ukme6064 if inrange(age , 60 , 64)  & sex == 1
-                        replace employ = ukme6599 if inrange(age , 65 , 999) & sex == 1
-                    /*}}}*/
-                    }
-                    else if "`k'" == "us" {
-                    /*{{{*/
-                        replace employ = usfe1519 if inrange(age , 15 , 19)  & sex == 2
-                        replace employ = usfe2024 if inrange(age , 20 , 24)  & sex == 2
-                        replace employ = usfe2529 if inrange(age , 25 , 29)  & sex == 2
-                        replace employ = usfe3034 if inrange(age , 30 , 34)  & sex == 2
-                        replace employ = usfe3539 if inrange(age , 35 , 39)  & sex == 2
-                        replace employ = usfe4044 if inrange(age , 40 , 44)  & sex == 2
-                        replace employ = usfe4549 if inrange(age , 45 , 49)  & sex == 2
-                        replace employ = usfe5054 if inrange(age , 50 , 54)  & sex == 2
-                        replace employ = usfe5559 if inrange(age , 55 , 59)  & sex == 2
-                        replace employ = usfe6064 if inrange(age , 60 , 64)  & sex == 2
-                        replace employ = usfe6599 if inrange(age , 65 , 999) & sex == 2
-                        replace employ = usme1519 if inrange(age , 15 , 19)  & sex == 1
-                        replace employ = usme2024 if inrange(age , 20 , 24)  & sex == 1
-                        replace employ = usme2529 if inrange(age , 25 , 29)  & sex == 1
-                        replace employ = usme3034 if inrange(age , 30 , 34)  & sex == 1
-                        replace employ = usme3539 if inrange(age , 35 , 39)  & sex == 1
-                        replace employ = usme4044 if inrange(age , 40 , 44)  & sex == 1
-                        replace employ = usme4549 if inrange(age , 45 , 49)  & sex == 1
-                        replace employ = usme5054 if inrange(age , 50 , 54)  & sex == 1
-                        replace employ = usme5559 if inrange(age , 55 , 59)  & sex == 1
-                        replace employ = usme6064 if inrange(age , 60 , 64)  & sex == 1
-                        replace employ = usme6599 if inrange(age , 65 , 999) & sex == 1
-                    /*}}}*/
-                    }
+        /*위험도 할당*/
+            gen employ = .
+            /*입력받은 수치를 국가별 성별 연령별 집단에게 부여{{{*/
+                if "`k'" == "fr" {
+                /*{{{*/
+                    replace employ = frfe1519 if inrange(age , 15 , 19)  & sex == 2
+                    replace employ = frfe2024 if inrange(age , 20 , 24)  & sex == 2
+                    replace employ = frfe2529 if inrange(age , 25 , 29)  & sex == 2
+                    replace employ = frfe3034 if inrange(age , 30 , 34)  & sex == 2
+                    replace employ = frfe3539 if inrange(age , 35 , 39)  & sex == 2
+                    replace employ = frfe4044 if inrange(age , 40 , 44)  & sex == 2
+                    replace employ = frfe4549 if inrange(age , 45 , 49)  & sex == 2
+                    replace employ = frfe5054 if inrange(age , 50 , 54)  & sex == 2
+                    replace employ = frfe5559 if inrange(age , 55 , 59)  & sex == 2
+                    replace employ = frfe6064 if inrange(age , 60 , 64)  & sex == 2
+                    replace employ = frfe6599 if inrange(age , 65 , 999) & sex == 2
+                    replace employ = frme1519 if inrange(age , 15 , 19)  & sex == 1
+                    replace employ = frme2024 if inrange(age , 20 , 24)  & sex == 1
+                    replace employ = frme2529 if inrange(age , 25 , 29)  & sex == 1
+                    replace employ = frme3034 if inrange(age , 30 , 34)  & sex == 1
+                    replace employ = frme3539 if inrange(age , 35 , 39)  & sex == 1
+                    replace employ = frme4044 if inrange(age , 40 , 44)  & sex == 1
+                    replace employ = frme4549 if inrange(age , 45 , 49)  & sex == 1
+                    replace employ = frme5054 if inrange(age , 50 , 54)  & sex == 1
+                    replace employ = frme5559 if inrange(age , 55 , 59)  & sex == 1
+                    replace employ = frme6064 if inrange(age , 60 , 64)  & sex == 1
+                    replace employ = frme6599 if inrange(age , 65 , 999) & sex == 1
                 /*}}}*/
-                drop if missing(employ)
-                gen noemp = 1 - employ/100
-                drop temp1
-            /*변수 생성 : 모두미취업*/
-                gen temp1  = ln(noemp) 
-                bys hid : egen temp2 = total(temp1)
-                gen anoemp = exp(temp2)
-            /*변수 생성 : 미취업있음*/
-                gen temp3  = 1 - noemp
-                gen temp4  = ln(temp3) 
-                bys hid : egen temp5 = total(temp4)
-                gen xnoemp = 1 - exp(temp5)
-        /*소득분위별 빈곤위험도 평균 계산*/
+                }
+                else if "`k'" == "jp" {
+                /*{{{*/
+                    replace employ = jpfe1519 if inrange(age , 15 , 19)  & sex == 2
+                    replace employ = jpfe2024 if inrange(age , 20 , 24)  & sex == 2
+                    replace employ = jpfe2529 if inrange(age , 25 , 29)  & sex == 2
+                    replace employ = jpfe3034 if inrange(age , 30 , 34)  & sex == 2
+                    replace employ = jpfe3539 if inrange(age , 35 , 39)  & sex == 2
+                    replace employ = jpfe4044 if inrange(age , 40 , 44)  & sex == 2
+                    replace employ = jpfe4549 if inrange(age , 45 , 49)  & sex == 2
+                    replace employ = jpfe5054 if inrange(age , 50 , 54)  & sex == 2
+                    replace employ = jpfe5559 if inrange(age , 55 , 59)  & sex == 2
+                    replace employ = jpfe6064 if inrange(age , 60 , 64)  & sex == 2
+                    replace employ = jpfe6599 if inrange(age , 65 , 999) & sex == 2
+                    replace employ = jpme1519 if inrange(age , 15 , 19)  & sex == 1
+                    replace employ = jpme2024 if inrange(age , 20 , 24)  & sex == 1
+                    replace employ = jpme2529 if inrange(age , 25 , 29)  & sex == 1
+                    replace employ = jpme3034 if inrange(age , 30 , 34)  & sex == 1
+                    replace employ = jpme3539 if inrange(age , 35 , 39)  & sex == 1
+                    replace employ = jpme4044 if inrange(age , 40 , 44)  & sex == 1
+                    replace employ = jpme4549 if inrange(age , 45 , 49)  & sex == 1
+                    replace employ = jpme5054 if inrange(age , 50 , 54)  & sex == 1
+                    replace employ = jpme5559 if inrange(age , 55 , 59)  & sex == 1
+                    replace employ = jpme6064 if inrange(age , 60 , 64)  & sex == 1
+                    replace employ = jpme6599 if inrange(age , 65 , 999) & sex == 1
+                /*}}}*/
+                }
+                else if "`k'" == "kr" {
+                /*{{{*/
+                    replace employ = krfe1519 if inrange(age , 15 , 19)  & sex == 2
+                    replace employ = krfe2024 if inrange(age , 20 , 24)  & sex == 2
+                    replace employ = krfe2529 if inrange(age , 25 , 29)  & sex == 2
+                    replace employ = krfe3034 if inrange(age , 30 , 34)  & sex == 2
+                    replace employ = krfe3539 if inrange(age , 35 , 39)  & sex == 2
+                    replace employ = krfe4044 if inrange(age , 40 , 44)  & sex == 2
+                    replace employ = krfe4549 if inrange(age , 45 , 49)  & sex == 2
+                    replace employ = krfe5054 if inrange(age , 50 , 54)  & sex == 2
+                    replace employ = krfe5559 if inrange(age , 55 , 59)  & sex == 2
+                    replace employ = krfe6064 if inrange(age , 60 , 64)  & sex == 2
+                    replace employ = krfe6599 if inrange(age , 65 , 999) & sex == 2
+                    replace employ = krme1519 if inrange(age , 15 , 19)  & sex == 1
+                    replace employ = krme2024 if inrange(age , 20 , 24)  & sex == 1
+                    replace employ = krme2529 if inrange(age , 25 , 29)  & sex == 1
+                    replace employ = krme3034 if inrange(age , 30 , 34)  & sex == 1
+                    replace employ = krme3539 if inrange(age , 35 , 39)  & sex == 1
+                    replace employ = krme4044 if inrange(age , 40 , 44)  & sex == 1
+                    replace employ = krme4549 if inrange(age , 45 , 49)  & sex == 1
+                    replace employ = krme5054 if inrange(age , 50 , 54)  & sex == 1
+                    replace employ = krme5559 if inrange(age , 55 , 59)  & sex == 1
+                    replace employ = krme6064 if inrange(age , 60 , 64)  & sex == 1
+                    replace employ = krme6599 if inrange(age , 65 , 999) & sex == 1
+                /*}}}*/
+                }
+                else if "`k'" == "se" {
+                /*{{{*/
+                    replace employ = sefe1519 if inrange(age , 15 , 19)  & sex == 2
+                    replace employ = sefe2024 if inrange(age , 20 , 24)  & sex == 2
+                    replace employ = sefe2529 if inrange(age , 25 , 29)  & sex == 2
+                    replace employ = sefe3034 if inrange(age , 30 , 34)  & sex == 2
+                    replace employ = sefe3539 if inrange(age , 35 , 39)  & sex == 2
+                    replace employ = sefe4044 if inrange(age , 40 , 44)  & sex == 2
+                    replace employ = sefe4549 if inrange(age , 45 , 49)  & sex == 2
+                    replace employ = sefe5054 if inrange(age , 50 , 54)  & sex == 2
+                    replace employ = sefe5559 if inrange(age , 55 , 59)  & sex == 2
+                    replace employ = sefe6064 if inrange(age , 60 , 64)  & sex == 2
+                    replace employ = sefe6599 if inrange(age , 65 , 999) & sex == 2
+                    replace employ = seme1519 if inrange(age , 15 , 19)  & sex == 1
+                    replace employ = seme2024 if inrange(age , 20 , 24)  & sex == 1
+                    replace employ = seme2529 if inrange(age , 25 , 29)  & sex == 1
+                    replace employ = seme3034 if inrange(age , 30 , 34)  & sex == 1
+                    replace employ = seme3539 if inrange(age , 35 , 39)  & sex == 1
+                    replace employ = seme4044 if inrange(age , 40 , 44)  & sex == 1
+                    replace employ = seme4549 if inrange(age , 45 , 49)  & sex == 1
+                    replace employ = seme5054 if inrange(age , 50 , 54)  & sex == 1
+                    replace employ = seme5559 if inrange(age , 55 , 59)  & sex == 1
+                    replace employ = seme6064 if inrange(age , 60 , 64)  & sex == 1
+                    replace employ = seme6599 if inrange(age , 65 , 999) & sex == 1
+                /*}}}*/
+                }
+                else if "`k'" == "uk" {
+                /*{{{*/
+                    replace employ = ukfe1519 if inrange(age , 15 , 19)  & sex == 2
+                    replace employ = ukfe2024 if inrange(age , 20 , 24)  & sex == 2
+                    replace employ = ukfe2529 if inrange(age , 25 , 29)  & sex == 2
+                    replace employ = ukfe3034 if inrange(age , 30 , 34)  & sex == 2
+                    replace employ = ukfe3539 if inrange(age , 35 , 39)  & sex == 2
+                    replace employ = ukfe4044 if inrange(age , 40 , 44)  & sex == 2
+                    replace employ = ukfe4549 if inrange(age , 45 , 49)  & sex == 2
+                    replace employ = ukfe5054 if inrange(age , 50 , 54)  & sex == 2
+                    replace employ = ukfe5559 if inrange(age , 55 , 59)  & sex == 2
+                    replace employ = ukfe6064 if inrange(age , 60 , 64)  & sex == 2
+                    replace employ = ukfe6599 if inrange(age , 65 , 999) & sex == 2
+                    replace employ = ukme1519 if inrange(age , 15 , 19)  & sex == 1
+                    replace employ = ukme2024 if inrange(age , 20 , 24)  & sex == 1
+                    replace employ = ukme2529 if inrange(age , 25 , 29)  & sex == 1
+                    replace employ = ukme3034 if inrange(age , 30 , 34)  & sex == 1
+                    replace employ = ukme3539 if inrange(age , 35 , 39)  & sex == 1
+                    replace employ = ukme4044 if inrange(age , 40 , 44)  & sex == 1
+                    replace employ = ukme4549 if inrange(age , 45 , 49)  & sex == 1
+                    replace employ = ukme5054 if inrange(age , 50 , 54)  & sex == 1
+                    replace employ = ukme5559 if inrange(age , 55 , 59)  & sex == 1
+                    replace employ = ukme6064 if inrange(age , 60 , 64)  & sex == 1
+                    replace employ = ukme6599 if inrange(age , 65 , 999) & sex == 1
+                /*}}}*/
+                }
+                else if "`k'" == "us" {
+                /*{{{*/
+                    replace employ = usfe1519 if inrange(age , 15 , 19)  & sex == 2
+                    replace employ = usfe2024 if inrange(age , 20 , 24)  & sex == 2
+                    replace employ = usfe2529 if inrange(age , 25 , 29)  & sex == 2
+                    replace employ = usfe3034 if inrange(age , 30 , 34)  & sex == 2
+                    replace employ = usfe3539 if inrange(age , 35 , 39)  & sex == 2
+                    replace employ = usfe4044 if inrange(age , 40 , 44)  & sex == 2
+                    replace employ = usfe4549 if inrange(age , 45 , 49)  & sex == 2
+                    replace employ = usfe5054 if inrange(age , 50 , 54)  & sex == 2
+                    replace employ = usfe5559 if inrange(age , 55 , 59)  & sex == 2
+                    replace employ = usfe6064 if inrange(age , 60 , 64)  & sex == 2
+                    replace employ = usfe6599 if inrange(age , 65 , 999) & sex == 2
+                    replace employ = usme1519 if inrange(age , 15 , 19)  & sex == 1
+                    replace employ = usme2024 if inrange(age , 20 , 24)  & sex == 1
+                    replace employ = usme2529 if inrange(age , 25 , 29)  & sex == 1
+                    replace employ = usme3034 if inrange(age , 30 , 34)  & sex == 1
+                    replace employ = usme3539 if inrange(age , 35 , 39)  & sex == 1
+                    replace employ = usme4044 if inrange(age , 40 , 44)  & sex == 1
+                    replace employ = usme4549 if inrange(age , 45 , 49)  & sex == 1
+                    replace employ = usme5054 if inrange(age , 50 , 54)  & sex == 1
+                    replace employ = usme5559 if inrange(age , 55 , 59)  & sex == 1
+                    replace employ = usme6064 if inrange(age , 60 , 64)  & sex == 1
+                    replace employ = usme6599 if inrange(age , 65 , 999) & sex == 1
+                /*}}}*/
+                }
+            /*}}}*/
+            gen noemp = 1 - employ/100
+            drop temp1
+        /*변수 생성 : 모두미취업*/
+            gen temp1  = ln(noemp) 
+            bys hid : egen temp2 = total(temp1)
+            gen anoemp = exp(temp2)
+        /*변수 생성 : 미취업있음*/
+            gen temp3  = 1 - noemp
+            gen temp4  = ln(temp3) 
+            bys hid : egen temp5 = total(temp4)
+            gen xnoemp = 1 - exp(temp5)
+        /*변수 생성 : 가중 분위수 집단*/
             keep if relation == 1000
             xtile dcgroup = emin [aw=hpopwgt], nq(10)
+            xtile pcgroup = emin [aw=hpopwgt], nq(100)
+        /*소득분위별 위험도 평균계산*/
             forvalue i = 1/10 {
                 summarize anoemp  [aw=hpopwgt] if dcgroup == `i' , meanonly
                 local anoempd`i' = r(mean)
                 summarize xnoemp  [aw=hpopwgt] if dcgroup == `i' , meanonly
                 local xnoempd`i' = r(mean)
             }
+            forvalue i = 1/100 {
+                summarize anoemp  [aw=hpopwgt] if pcgroup == `i' , meanonly
+                local anoempp`i' = r(mean)
+                summarize xnoemp  [aw=hpopwgt] if pcgroup == `i' , meanonly
+                local xnoempp`i' = r(mean)
+            }
         }
         /*결과 출력*/
-            /*국가명 년도*/
-                local cname = cname[1]
-                local iso2 = iso2[1]
-                local iso3 = iso3[1]
+            local cname = cname[1]
+            local iso2 = iso2[1]
+            local iso3 = iso3[1]
             if "`k'" == "fr" {
-                di as text "cname,iso2,iso3,dcgroup,anoemp,xnoemp"
+                di as text "cname,iso2,iso3,group,grtype,anoemp,xnoemp"
             }
             forvalue i = 1/10 {
-                di as text "`cname',`iso2',`iso3',`i',`anoempd`i'',`xnoempd`i''"
+                di as text "`cname',`iso2',`iso3',`i',1,`anoempd`i'',`xnoempd`i''"
+            }
+            forvalue i = 1/100 {
+                di as text "`cname',`iso2',`iso3',`i',2,`anoempp`i'',`xnoempp`i''"
             }
     }

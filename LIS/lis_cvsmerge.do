@@ -5,25 +5,25 @@ cd  ~/GitHub/master/LIS
     import delimited "health.csv",       delimiter(",") encoding(ISO-8859-1)clear
         save `tfile1' , replace
     import delimited "support.csv",    delimiter(",") encoding(ISO-8859-1)clear
-        merge 1:1 iso2 dcgroup using `tfile1' , nogen
+        merge 1:1 iso2 grtype group using `tfile1' , nogen
         save `tfile1' , replace
     import delimited "noemployment.csv", delimiter(",") encoding(ISO-8859-1)clear
-        merge 1:1 iso2 dcgroup using `tfile1' , nogen
+        merge 1:1 iso2 grtype group using `tfile1' , nogen
         save `tfile1' , replace
     import delimited "ptjob.csv",        delimiter(",") encoding(ISO-8859-1)clear
-        merge 1:1 iso2 dcgroup using `tfile1' , nogen
+        merge 1:1 iso2 grtype group using `tfile1' , nogen
         save `tfile1' , replace
     import delimited "rent.csv",         delimiter(",") encoding(ISO-8859-1)clear
-        merge 1:1 iso2 dcgroup using `tfile1' , nogen
+        merge 1:1 iso2 grtype group using `tfile1' , nogen
         save `tfile1' , replace
     import delimited "pv.csv",           delimiter(",") encoding(ISO-8859-1)clear
-        merge 1:1 iso2 dcgroup using `tfile1' , nogen
+        merge 1:1 iso2 grtype group using `tfile1' , nogen
         save `tfile1' , replace
     import delimited "care.csv",         delimiter(",") encoding(ISO-8859-1)clear
-        merge 1:1 iso2 dcgroup using `tfile1' , nogen
+        merge 1:1 iso2 grtype group using `tfile1' , nogen
         save `tfile1' , replace
     import delimited "unemployment.csv", delimiter(",") encoding(ISO-8859-1)clear
-        merge 1:1 iso2 dcgroup using `tfile1' , nogen
+        merge 1:1 iso2 grtype group using `tfile1' , nogen
         save socialrisk.dta , replace
 
     label var abhlth  "모두나쁜건강"
@@ -32,7 +32,14 @@ cd  ~/GitHub/master/LIS
     label var aptjob  "모두비자발적임시직"
     label var aunemp  "모두실업"
     label var cname   "국가명(영문)"
-    label var dcgroup "10분위 집단"
+    label var group   "분위 집단"
+    label var grtype  "분위 유형"
+        label define GRTYPE 1 "10분위" 2 "100분위"
+        label value grtype GRTYPE
+        gen dcvalue = grtype == 1
+        label var dcvalue "10분위수치"
+        gen pcvalue = grtype == 2
+        label var pcvalue "100분위수치"
     label var iso2    "국가명(iso2)"
     label var iso3    "국가명(iso3)"
     label var mrpv5   "빈곤위험:중위소득50%"

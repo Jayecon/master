@@ -1,61 +1,661 @@
-cname,iso2,iso3,dcgroup,care
-France,fr,fra,1,.6173119084577156
-France,fr,fra,2,.7402130439136295
-France,fr,fra,3,.6717105232071789
-France,fr,fra,4,.4632053578609615
-France,fr,fra,5,.2503368232376502
-France,fr,fra,6,.1670479868430804
-France,fr,fra,7,.1183415814465683
-France,fr,fra,8,.1067422644699757
-France,fr,fra,9,.0961913665316136
-France,fr,fra,10,.1145311023724918
-Sweden,se,swe,1,.3275784084807778
-Sweden,se,swe,2,.7776307062478127
-Sweden,se,swe,3,.6875034623638016
-Sweden,se,swe,4,.4452484952067012
-Sweden,se,swe,5,.2848722693630036
-Sweden,se,swe,6,.1740924572287814
-Sweden,se,swe,7,.1355604992689951
-Sweden,se,swe,8,.1249693801286139
-Sweden,se,swe,9,.1272088304338816
-Sweden,se,swe,10,.1180903820102423
-South Korea,kr,kor,1,.6512639901839721
-South Korea,kr,kor,2,.5479246808793377
-South Korea,kr,kor,3,.3804472729110124
-South Korea,kr,kor,4,.2924089724726111
-South Korea,kr,kor,5,.251808116532898
-South Korea,kr,kor,6,.2197278069054525
-South Korea,kr,kor,7,.1983447062873427
-South Korea,kr,kor,8,.1727919989344049
-South Korea,kr,kor,9,.1501028034307341
-South Korea,kr,kor,10,.144572949244942
-Japan,jp,jpn,1,.5083657724198039
-Japan,jp,jpn,2,.5648496944833757
-Japan,jp,jpn,3,.5787000334092472
-Japan,jp,jpn,4,.540907706574264
-Japan,jp,jpn,5,.4083536774601691
-Japan,jp,jpn,6,.353445314178578
-Japan,jp,jpn,7,.2523154679186541
-Japan,jp,jpn,8,.2446227308513886
-Japan,jp,jpn,9,.1781158574345532
-Japan,jp,jpn,10,.1858276391074618
-United Kingdom,uk,gbr,1,.3716868441840414
-United Kingdom,uk,gbr,2,.7052771361824695
-United Kingdom,uk,gbr,3,.5398093284991741
-United Kingdom,uk,gbr,4,.4094001691300423
-United Kingdom,uk,gbr,5,.3536303978637814
-United Kingdom,uk,gbr,6,.247565492307779
-United Kingdom,uk,gbr,7,.1898504051539504
-United Kingdom,uk,gbr,8,.1434469117959093
-United Kingdom,uk,gbr,9,.1316690800976033
-United Kingdom,uk,gbr,10,.1236444530292889
-United States,us,usa,1,.5577341019972508
-United States,us,usa,2,.5933776676891502
-United States,us,usa,3,.3994266469217835
-United States,us,usa,4,.3054382676575892
-United States,us,usa,5,.2364359491509098
-United States,us,usa,6,.2076718810352887
-United States,us,usa,7,.1857768436049512
-United States,us,usa,8,.1753793148659014
-United States,us,usa,9,.1699951486494306
-United States,us,usa,10,.1730605240541769
+cname,iso2,iso3,group,grtype,care
+France,fr,fra,1,1,.7906936970194938
+France,fr,fra,2,1,.8547228274607003
+France,fr,fra,3,1,.8171563873701534
+France,fr,fra,4,1,.7106778360413635
+France,fr,fra,5,1,.6094662869085111
+France,fr,fra,6,1,.5678368404980942
+France,fr,fra,7,1,.5457784924048764
+France,fr,fra,8,1,.5409208909859826
+France,fr,fra,9,1,.5336510790560109
+France,fr,fra,10,1,.540809402109272
+France,fr,fra,1,2,.7799451905719124
+France,fr,fra,2,2,.7794758052019196
+France,fr,fra,3,2,.
+France,fr,fra,4,2,.
+France,fr,fra,5,2,.
+France,fr,fra,6,2,.
+France,fr,fra,7,2,.7991618963285556
+France,fr,fra,8,2,.
+France,fr,fra,9,2,.8061654700102211
+France,fr,fra,10,2,.8261607422560961
+France,fr,fra,11,2,.8274917014823796
+France,fr,fra,12,2,.8423345968602929
+France,fr,fra,13,2,.8180515941486436
+France,fr,fra,14,2,.8573154113739633
+France,fr,fra,15,2,.8639070910797993
+France,fr,fra,16,2,.844248740638924
+France,fr,fra,17,2,.8545042818564633
+France,fr,fra,18,2,.8828004131659808
+France,fr,fra,19,2,.8676266288055027
+France,fr,fra,20,2,.880485759410213
+France,fr,fra,21,2,.8332713139634593
+France,fr,fra,22,2,.8428577820927784
+France,fr,fra,23,2,.8211931254695447
+France,fr,fra,24,2,.8453223049769267
+France,fr,fra,25,2,.8166011527618851
+France,fr,fra,26,2,.8405979014757313
+France,fr,fra,27,2,.8107316616150313
+France,fr,fra,28,2,.800329521575461
+France,fr,fra,29,2,.7840462196230318
+France,fr,fra,30,2,.776820123736384
+France,fr,fra,31,2,.7838317038389141
+France,fr,fra,32,2,.7554292781172357
+France,fr,fra,33,2,.7649943447785608
+France,fr,fra,34,2,.7151346935914379
+France,fr,fra,35,2,.7101892907399164
+France,fr,fra,36,2,.6968363418176762
+France,fr,fra,37,2,.6869730765279431
+France,fr,fra,38,2,.6845715330441606
+France,fr,fra,39,2,.6591259109779379
+France,fr,fra,40,2,.6496467139768767
+France,fr,fra,41,2,.6429381176427922
+France,fr,fra,42,2,.6437010202963352
+France,fr,fra,43,2,.6408959778566455
+France,fr,fra,44,2,.6019281196479378
+France,fr,fra,45,2,.5995497000221228
+France,fr,fra,46,2,.5961200397135106
+France,fr,fra,47,2,.591197169439073
+France,fr,fra,48,2,.5948839299153129
+France,fr,fra,49,2,.5986873648391647
+France,fr,fra,50,2,.5847405320828232
+France,fr,fra,51,2,.5850506744860073
+France,fr,fra,52,2,.5864564341641952
+France,fr,fra,53,2,.5687356415746645
+France,fr,fra,54,2,.5717497375733699
+France,fr,fra,55,2,.5784527393740325
+France,fr,fra,56,2,.5752276755676998
+France,fr,fra,57,2,.5626848235678019
+France,fr,fra,58,2,.5581402718162397
+France,fr,fra,59,2,.5439334198419272
+France,fr,fra,60,2,.5479172813555875
+France,fr,fra,61,2,.5530286583405353
+France,fr,fra,62,2,.5542073263121822
+France,fr,fra,63,2,.5516316916766865
+France,fr,fra,64,2,.542497578694372
+France,fr,fra,65,2,.553613903874952
+France,fr,fra,66,2,.5287839748347744
+France,fr,fra,67,2,.5435023438523575
+France,fr,fra,68,2,.5480894297000491
+France,fr,fra,69,2,.5423689779506232
+France,fr,fra,70,2,.5401103852487231
+France,fr,fra,71,2,.5442653264739398
+France,fr,fra,72,2,.5371117804463695
+France,fr,fra,73,2,.5421587782397693
+France,fr,fra,74,2,.5467565849083366
+France,fr,fra,75,2,.5411547146887397
+France,fr,fra,76,2,.5502566162035324
+France,fr,fra,77,2,.5446250222211896
+France,fr,fra,78,2,.5312911430776487
+France,fr,fra,79,2,.5333692391522202
+France,fr,fra,80,2,.5382115425530307
+France,fr,fra,81,2,.5293559602848439
+France,fr,fra,82,2,.5333525531366603
+France,fr,fra,83,2,.5412275722706565
+France,fr,fra,84,2,.5288421426940593
+France,fr,fra,85,2,.5306655001869683
+France,fr,fra,86,2,.5265198184024188
+France,fr,fra,87,2,.5419822372016251
+France,fr,fra,88,2,.5408236110680577
+France,fr,fra,89,2,.530012996246091
+France,fr,fra,90,2,.5337492520913214
+France,fr,fra,91,2,.5307058226485908
+France,fr,fra,92,2,.5375847243099358
+France,fr,fra,93,2,.5332152288269438
+France,fr,fra,94,2,.5454280379065694
+France,fr,fra,95,2,.528986655029174
+France,fr,fra,96,2,.5380606070362134
+France,fr,fra,97,2,.5409771575246972
+France,fr,fra,98,2,.5308489356255502
+France,fr,fra,99,2,.5471912879383136
+France,fr,fra,100,2,.5750954472694723
+Sweden,se,swe,1,1,.32076902506925
+Sweden,se,swe,2,1,.770981348302191
+Sweden,se,swe,3,1,.6792653411421542
+Sweden,se,swe,4,1,.4335989649317432
+Sweden,se,swe,5,1,.2748412029585163
+Sweden,se,swe,6,1,.1631765148045917
+Sweden,se,swe,7,1,.1283106632059799
+Sweden,se,swe,8,1,.1164127074927963
+Sweden,se,swe,9,1,.1253126846070511
+Sweden,se,swe,10,1,.1159368269714977
+Sweden,se,swe,1,2,.229446378359364
+Sweden,se,swe,2,2,.
+Sweden,se,swe,3,2,.
+Sweden,se,swe,4,2,.
+Sweden,se,swe,5,2,.
+Sweden,se,swe,6,2,.1580728657343299
+Sweden,se,swe,7,2,.2894546267199412
+Sweden,se,swe,8,2,.4469826311661302
+Sweden,se,swe,9,2,.581081756602482
+Sweden,se,swe,10,2,.539462281131349
+Sweden,se,swe,11,2,.7753020443813224
+Sweden,se,swe,12,2,.72956862249452
+Sweden,se,swe,13,2,.6793784287889383
+Sweden,se,swe,14,2,.8562876377559012
+Sweden,se,swe,15,2,.8290637717525203
+Sweden,se,swe,16,2,.8122978485216539
+Sweden,se,swe,17,2,.8437967899584209
+Sweden,se,swe,18,2,.8149064708781091
+Sweden,se,swe,19,2,.7246394403286064
+Sweden,se,swe,20,2,.6479709340323561
+Sweden,se,swe,21,2,.7784012534337276
+Sweden,se,swe,22,2,.8066747493286084
+Sweden,se,swe,23,2,.717061099581128
+Sweden,se,swe,24,2,.7848839365185551
+Sweden,se,swe,25,2,.7485619040437088
+Sweden,se,swe,26,2,.6269774407235257
+Sweden,se,swe,27,2,.7227412481447173
+Sweden,se,swe,28,2,.5512679883323215
+Sweden,se,swe,29,2,.4833881967404834
+Sweden,se,swe,30,2,.5738732381293845
+Sweden,se,swe,31,2,.5168620303553695
+Sweden,se,swe,32,2,.5705144047228131
+Sweden,se,swe,33,2,.4693797617307973
+Sweden,se,swe,34,2,.4829223971160507
+Sweden,se,swe,35,2,.4519816730669108
+Sweden,se,swe,36,2,.3587735082355907
+Sweden,se,swe,37,2,.3741700006599436
+Sweden,se,swe,38,2,.4008037421420687
+Sweden,se,swe,39,2,.4164992610582535
+Sweden,se,swe,40,2,.2954404457473778
+Sweden,se,swe,41,2,.2713525034885876
+Sweden,se,swe,42,2,.3643930107244736
+Sweden,se,swe,43,2,.363353508584041
+Sweden,se,swe,44,2,.280134504964283
+Sweden,se,swe,45,2,.3202673137439523
+Sweden,se,swe,46,2,.2375872936497637
+Sweden,se,swe,47,2,.2307837007033592
+Sweden,se,swe,48,2,.2229940064633111
+Sweden,se,swe,49,2,.2320566649262863
+Sweden,se,swe,50,2,.2242102143666743
+Sweden,se,swe,51,2,.1797650263568927
+Sweden,se,swe,52,2,.2147522889286071
+Sweden,se,swe,53,2,.1742626139614734
+Sweden,se,swe,54,2,.1529751574092026
+Sweden,se,swe,55,2,.1365165473949697
+Sweden,se,swe,56,2,.1541361015642698
+Sweden,se,swe,57,2,.1863891797289254
+Sweden,se,swe,58,2,.139178291151657
+Sweden,se,swe,59,2,.1652595856680676
+Sweden,se,swe,60,2,.1294230822152846
+Sweden,se,swe,61,2,.1331743759114875
+Sweden,se,swe,62,2,.1153760193921946
+Sweden,se,swe,63,2,.1537862513932333
+Sweden,se,swe,64,2,.1301919014568456
+Sweden,se,swe,65,2,.1451411572789761
+Sweden,se,swe,66,2,.0729336658174634
+Sweden,se,swe,67,2,.1443603074036498
+Sweden,se,swe,68,2,.1268583300520605
+Sweden,se,swe,69,2,.0979423932372157
+Sweden,se,swe,70,2,.1635534614936963
+Sweden,se,swe,71,2,.0820691403912378
+Sweden,se,swe,72,2,.0857535529151987
+Sweden,se,swe,73,2,.1742836021331045
+Sweden,se,swe,74,2,.1706512047422385
+Sweden,se,swe,75,2,.1503764601096267
+Sweden,se,swe,76,2,.1416518424246656
+Sweden,se,swe,77,2,.0702003891639257
+Sweden,se,swe,78,2,.09051336460699
+Sweden,se,swe,79,2,.0893110189380682
+Sweden,se,swe,80,2,.1108520140550711
+Sweden,se,swe,81,2,.1054873378680554
+Sweden,se,swe,82,2,.2553411772913657
+Sweden,se,swe,83,2,.0949809541426699
+Sweden,se,swe,84,2,.0912369245664253
+Sweden,se,swe,85,2,.1246937244224755
+Sweden,se,swe,86,2,.1053716189674291
+Sweden,se,swe,87,2,.1406767988167982
+Sweden,se,swe,88,2,.1418718486499777
+Sweden,se,swe,89,2,.108782292022612
+Sweden,se,swe,90,2,.0859958860665207
+Sweden,se,swe,91,2,.1386800078441395
+Sweden,se,swe,92,2,.144734717206801
+Sweden,se,swe,93,2,.0952062276323364
+Sweden,se,swe,94,2,.0851716902701879
+Sweden,se,swe,95,2,.1145698456451799
+Sweden,se,swe,96,2,.1407874200758958
+Sweden,se,swe,97,2,.0800397056387137
+Sweden,se,swe,98,2,.1000529710581119
+Sweden,se,swe,99,2,.0872427506121718
+Sweden,se,swe,100,2,.1722891457968324
+South Korea,kr,kor,1,1,.6377688369874667
+South Korea,kr,kor,2,1,.5210743239575594
+South Korea,kr,kor,3,1,.3555314620995997
+South Korea,kr,kor,4,1,.2660829612231866
+South Korea,kr,kor,5,1,.2248967824152253
+South Korea,kr,kor,6,1,.2055301679120388
+South Korea,kr,kor,7,1,.181896623410239
+South Korea,kr,kor,8,1,.1694309023589877
+South Korea,kr,kor,9,1,.1560195356313213
+South Korea,kr,kor,10,1,.1589886972310307
+South Korea,kr,kor,1,2,.3757384600484766
+South Korea,kr,kor,2,2,.6785795879383054
+South Korea,kr,kor,3,2,.6354630631640982
+South Korea,kr,kor,4,2,.7290995150900376
+South Korea,kr,kor,5,2,.7087636207234151
+South Korea,kr,kor,6,2,.6986281467303751
+South Korea,kr,kor,7,2,.6686130901656446
+South Korea,kr,kor,8,2,.6481351091742612
+South Korea,kr,kor,9,2,.6513827263175817
+South Korea,kr,kor,10,2,.5856461941991674
+South Korea,kr,kor,11,2,.6461068000964059
+South Korea,kr,kor,12,2,.580867533972824
+South Korea,kr,kor,13,2,.5504132787950869
+South Korea,kr,kor,14,2,.4884044291914851
+South Korea,kr,kor,15,2,.5404298543256716
+South Korea,kr,kor,16,2,.5648108782858127
+South Korea,kr,kor,17,2,.4868748576693986
+South Korea,kr,kor,18,2,.4543735303734463
+South Korea,kr,kor,19,2,.4369180661046932
+South Korea,kr,kor,20,2,.4628842069203098
+South Korea,kr,kor,21,2,.4105361462731309
+South Korea,kr,kor,22,2,.3732426678892369
+South Korea,kr,kor,23,2,.365434545003625
+South Korea,kr,kor,24,2,.372715714427495
+South Korea,kr,kor,25,2,.3846673427377763
+South Korea,kr,kor,26,2,.3393264926173932
+South Korea,kr,kor,27,2,.3277209682288854
+South Korea,kr,kor,28,2,.3318404289355919
+South Korea,kr,kor,29,2,.3318974844177242
+South Korea,kr,kor,30,2,.3178107213259678
+South Korea,kr,kor,31,2,.2711301237098452
+South Korea,kr,kor,32,2,.3067213720849093
+South Korea,kr,kor,33,2,.2471684969825656
+South Korea,kr,kor,34,2,.2599657780383596
+South Korea,kr,kor,35,2,.2658828480620818
+South Korea,kr,kor,36,2,.2609370377714043
+South Korea,kr,kor,37,2,.2520781385445752
+South Korea,kr,kor,38,2,.3012454421414874
+South Korea,kr,kor,39,2,.2454006756604004
+South Korea,kr,kor,40,2,.250654754116178
+South Korea,kr,kor,41,2,.1968593437657482
+South Korea,kr,kor,42,2,.2236999496983086
+South Korea,kr,kor,43,2,.2265161943029595
+South Korea,kr,kor,44,2,.2373954289338976
+South Korea,kr,kor,45,2,.2707254518486912
+South Korea,kr,kor,46,2,.2409615470139111
+South Korea,kr,kor,47,2,.2329641077672577
+South Korea,kr,kor,48,2,.2065145600584326
+South Korea,kr,kor,49,2,.2064323715518396
+South Korea,kr,kor,50,2,.2072835088686558
+South Korea,kr,kor,51,2,.2174466747543619
+South Korea,kr,kor,52,2,.2094318940666706
+South Korea,kr,kor,53,2,.2098757801393016
+South Korea,kr,kor,54,2,.2337504825584411
+South Korea,kr,kor,55,2,.1988810984193634
+South Korea,kr,kor,56,2,.20506903494165
+South Korea,kr,kor,57,2,.1899794000345161
+South Korea,kr,kor,58,2,.1608113542870268
+South Korea,kr,kor,59,2,.1989424915452388
+South Korea,kr,kor,60,2,.2306026017300927
+South Korea,kr,kor,61,2,.1900276750246315
+South Korea,kr,kor,62,2,.1811806098351727
+South Korea,kr,kor,63,2,.2157880182131563
+South Korea,kr,kor,64,2,.1791124389633385
+South Korea,kr,kor,65,2,.1873675401307947
+South Korea,kr,kor,66,2,.2024405047517659
+South Korea,kr,kor,67,2,.172069616338697
+South Korea,kr,kor,68,2,.1545028395777442
+South Korea,kr,kor,69,2,.1745341802854905
+South Korea,kr,kor,70,2,.1609822149318322
+South Korea,kr,kor,71,2,.1988657717658756
+South Korea,kr,kor,72,2,.1722153086905012
+South Korea,kr,kor,73,2,.1836826511844354
+South Korea,kr,kor,74,2,.1612979752057452
+South Korea,kr,kor,75,2,.1678426604939301
+South Korea,kr,kor,76,2,.1521250579752543
+South Korea,kr,kor,77,2,.153883052216299
+South Korea,kr,kor,78,2,.1541135761667185
+South Korea,kr,kor,79,2,.1925063328955289
+South Korea,kr,kor,80,2,.1578322286593077
+South Korea,kr,kor,81,2,.1480679515054807
+South Korea,kr,kor,82,2,.1693679773054898
+South Korea,kr,kor,83,2,.140738207729751
+South Korea,kr,kor,84,2,.1391866126805643
+South Korea,kr,kor,85,2,.1562741607027863
+South Korea,kr,kor,86,2,.1529994843145713
+South Korea,kr,kor,87,2,.1680919766854475
+South Korea,kr,kor,88,2,.1880601527631297
+South Korea,kr,kor,89,2,.1530796969044647
+South Korea,kr,kor,90,2,.144721953569426
+South Korea,kr,kor,91,2,.1479487349957117
+South Korea,kr,kor,92,2,.145468369135764
+South Korea,kr,kor,93,2,.1305782849307693
+South Korea,kr,kor,94,2,.1495942189765285
+South Korea,kr,kor,95,2,.1541856229074886
+South Korea,kr,kor,96,2,.1582236884491288
+South Korea,kr,kor,97,2,.1476991137807828
+South Korea,kr,kor,98,2,.1758843896729136
+South Korea,kr,kor,99,2,.1693298764679474
+South Korea,kr,kor,100,2,.2108934056517428
+Japan,jp,jpn,1,1,.5008703241989706
+Japan,jp,jpn,2,1,.5279619136558248
+Japan,jp,jpn,3,1,.5633430908262749
+Japan,jp,jpn,4,1,.5275861926212216
+Japan,jp,jpn,5,1,.3819808653504449
+Japan,jp,jpn,6,1,.3268594498319585
+Japan,jp,jpn,7,1,.2480551963858738
+Japan,jp,jpn,8,1,.2336752806994425
+Japan,jp,jpn,9,1,.2152788894488961
+Japan,jp,jpn,10,1,.2203571779722621
+Japan,jp,jpn,1,2,.3669925878282397
+Japan,jp,jpn,2,2,.408149999818835
+Japan,jp,jpn,3,2,.5306947600621247
+Japan,jp,jpn,4,2,.4600689859991558
+Japan,jp,jpn,5,2,.707220895224098
+Japan,jp,jpn,6,2,.6856642090444353
+Japan,jp,jpn,7,2,.4170221648773906
+Japan,jp,jpn,8,2,.4471855692731765
+Japan,jp,jpn,9,2,.4981553077341434
+Japan,jp,jpn,10,2,.4913645082958016
+Japan,jp,jpn,11,2,.5280257243512235
+Japan,jp,jpn,12,2,.4614546019156693
+Japan,jp,jpn,13,2,.5082621614683267
+Japan,jp,jpn,14,2,.3985109679603156
+Japan,jp,jpn,15,2,.6145749293692951
+Japan,jp,jpn,16,2,.5715555850417025
+Japan,jp,jpn,17,2,.3785990134190447
+Japan,jp,jpn,18,2,.6238400904925457
+Japan,jp,jpn,19,2,.6146829788171447
+Japan,jp,jpn,20,2,.5549150805434169
+Japan,jp,jpn,21,2,.5045335897553295
+Japan,jp,jpn,22,2,.6117797557023491
+Japan,jp,jpn,23,2,.7085828867852434
+Japan,jp,jpn,24,2,.4807472004274968
+Japan,jp,jpn,25,2,.4948811354446693
+Japan,jp,jpn,26,2,.4575013333570481
+Japan,jp,jpn,27,2,.7419324078763202
+Japan,jp,jpn,28,2,.4104797538038282
+Japan,jp,jpn,29,2,.701920483526408
+Japan,jp,jpn,30,2,.5274881682313378
+Japan,jp,jpn,31,2,.6419915292892462
+Japan,jp,jpn,32,2,.4018447215947742
+Japan,jp,jpn,33,2,.5536778966306305
+Japan,jp,jpn,34,2,.680627903732989
+Japan,jp,jpn,35,2,.7303138869828684
+Japan,jp,jpn,36,2,.5553231045066942
+Japan,jp,jpn,37,2,.529628932962979
+Japan,jp,jpn,38,2,.2514979331429238
+Japan,jp,jpn,39,2,.5003955743005282
+Japan,jp,jpn,40,2,.3133085656678914
+Japan,jp,jpn,41,2,.3185752039895038
+Japan,jp,jpn,42,2,.432798202054924
+Japan,jp,jpn,43,2,.4661424641712469
+Japan,jp,jpn,44,2,.4755878813839084
+Japan,jp,jpn,45,2,.3258369877375764
+Japan,jp,jpn,46,2,.4136007993127709
+Japan,jp,jpn,47,2,.3597407598402537
+Japan,jp,jpn,48,2,.4332074234904381
+Japan,jp,jpn,49,2,.2957071680408077
+Japan,jp,jpn,50,2,.3065678983767368
+Japan,jp,jpn,51,2,.2677691943548504
+Japan,jp,jpn,52,2,.317095783240061
+Japan,jp,jpn,53,2,.332895055170457
+Japan,jp,jpn,54,2,.3869651687114959
+Japan,jp,jpn,55,2,.3396611251179689
+Japan,jp,jpn,56,2,.2923426965626846
+Japan,jp,jpn,57,2,.3689229705125062
+Japan,jp,jpn,58,2,.3446801039871885
+Japan,jp,jpn,59,2,.3870355714304001
+Japan,jp,jpn,60,2,.2322511637258089
+Japan,jp,jpn,61,2,.1851775916153394
+Japan,jp,jpn,62,2,.3641460220122771
+Japan,jp,jpn,63,2,.3407138159120527
+Japan,jp,jpn,64,2,.2842558098210786
+Japan,jp,jpn,65,2,.1664916059105424
+Japan,jp,jpn,66,2,.2372927470062758
+Japan,jp,jpn,67,2,.2343630019821567
+Japan,jp,jpn,68,2,.1689244388021355
+Japan,jp,jpn,69,2,.315289338937645
+Japan,jp,jpn,70,2,.2015483177825081
+Japan,jp,jpn,71,2,.3103118436348494
+Japan,jp,jpn,72,2,.2984913989440992
+Japan,jp,jpn,73,2,.1622054907382572
+Japan,jp,jpn,74,2,.2332260019921694
+Japan,jp,jpn,75,2,.3208551422461514
+Japan,jp,jpn,76,2,.1818169381379033
+Japan,jp,jpn,77,2,.2048815411135064
+Japan,jp,jpn,78,2,.1882535046823352
+Japan,jp,jpn,79,2,.1680557674133878
+Japan,jp,jpn,80,2,.2077964362785186
+Japan,jp,jpn,81,2,.301056703937077
+Japan,jp,jpn,82,2,.2006382025303697
+Japan,jp,jpn,83,2,.178480215788662
+Japan,jp,jpn,84,2,.2197154835707042
+Japan,jp,jpn,85,2,.16590288033203
+Japan,jp,jpn,86,2,.2015424302216203
+Japan,jp,jpn,87,2,.2478286617205754
+Japan,jp,jpn,88,2,.2421883156793877
+Japan,jp,jpn,89,2,.1550269125149171
+Japan,jp,jpn,90,2,.2404276198369975
+Japan,jp,jpn,91,2,.2153672349087078
+Japan,jp,jpn,92,2,.1804617475739707
+Japan,jp,jpn,93,2,.1499686563478414
+Japan,jp,jpn,94,2,.2989089710091942
+Japan,jp,jpn,95,2,.2479415235438173
+Japan,jp,jpn,96,2,.2356560050053921
+Japan,jp,jpn,97,2,.1934349943486982
+Japan,jp,jpn,98,2,.2081697183051245
+Japan,jp,jpn,99,2,.1892696454494107
+Japan,jp,jpn,100,2,.2860696472720988
+United Kingdom,uk,gbr,1,1,.4636835090372793
+United Kingdom,uk,gbr,2,1,.7286924395535793
+United Kingdom,uk,gbr,3,1,.5720306782481054
+United Kingdom,uk,gbr,4,1,.4572941608360729
+United Kingdom,uk,gbr,5,1,.3985946915552153
+United Kingdom,uk,gbr,6,1,.3150754240877413
+United Kingdom,uk,gbr,7,1,.2680011387141183
+United Kingdom,uk,gbr,8,1,.2298418858742732
+United Kingdom,uk,gbr,9,1,.2213215596600485
+United Kingdom,uk,gbr,10,1,.2134701785554092
+United Kingdom,uk,gbr,1,2,.4636835090372793
+United Kingdom,uk,gbr,2,2,.
+United Kingdom,uk,gbr,3,2,.
+United Kingdom,uk,gbr,4,2,.
+United Kingdom,uk,gbr,5,2,.
+United Kingdom,uk,gbr,6,2,.
+United Kingdom,uk,gbr,7,2,.
+United Kingdom,uk,gbr,8,2,.
+United Kingdom,uk,gbr,9,2,.
+United Kingdom,uk,gbr,10,2,.
+United Kingdom,uk,gbr,11,2,.
+United Kingdom,uk,gbr,12,2,.7413991623099935
+United Kingdom,uk,gbr,13,2,.7777215871799507
+United Kingdom,uk,gbr,14,2,.6339431776367954
+United Kingdom,uk,gbr,15,2,.8085461737961582
+United Kingdom,uk,gbr,16,2,.7276713855571253
+United Kingdom,uk,gbr,17,2,.7636689764460159
+United Kingdom,uk,gbr,18,2,.7481756488492546
+United Kingdom,uk,gbr,19,2,.6230416024805417
+United Kingdom,uk,gbr,20,2,.7422740088744364
+United Kingdom,uk,gbr,21,2,.6399851104970257
+United Kingdom,uk,gbr,22,2,.6130837473005656
+United Kingdom,uk,gbr,23,2,.5665475381821211
+United Kingdom,uk,gbr,24,2,.7083001567606019
+United Kingdom,uk,gbr,25,2,.5864791227601319
+United Kingdom,uk,gbr,26,2,.5191858113834498
+United Kingdom,uk,gbr,27,2,.6443470408778267
+United Kingdom,uk,gbr,28,2,.4803414352021115
+United Kingdom,uk,gbr,29,2,.4940060435511707
+United Kingdom,uk,gbr,30,2,.4678601993897028
+United Kingdom,uk,gbr,31,2,.5439706306029871
+United Kingdom,uk,gbr,32,2,.5107917604739616
+United Kingdom,uk,gbr,33,2,.4922251405675386
+United Kingdom,uk,gbr,34,2,.4491577584284417
+United Kingdom,uk,gbr,35,2,.4470055114049267
+United Kingdom,uk,gbr,36,2,.4248258808085361
+United Kingdom,uk,gbr,37,2,.4524655598746015
+United Kingdom,uk,gbr,38,2,.4658914457415952
+United Kingdom,uk,gbr,39,2,.4124341793789769
+United Kingdom,uk,gbr,40,2,.3736365378141383
+United Kingdom,uk,gbr,41,2,.4555914036811273
+United Kingdom,uk,gbr,42,2,.4091417386916409
+United Kingdom,uk,gbr,43,2,.4065189234466676
+United Kingdom,uk,gbr,44,2,.386236443168621
+United Kingdom,uk,gbr,45,2,.4543791939253397
+United Kingdom,uk,gbr,46,2,.4023026228885812
+United Kingdom,uk,gbr,47,2,.4235576099369691
+United Kingdom,uk,gbr,48,2,.3482472212666256
+United Kingdom,uk,gbr,49,2,.3702911893506589
+United Kingdom,uk,gbr,50,2,.325473493653566
+United Kingdom,uk,gbr,51,2,.2826608469429421
+United Kingdom,uk,gbr,52,2,.4332907332665172
+United Kingdom,uk,gbr,53,2,.3384973880157313
+United Kingdom,uk,gbr,54,2,.2717837651979754
+United Kingdom,uk,gbr,55,2,.3101703090879104
+United Kingdom,uk,gbr,56,2,.2939908255931798
+United Kingdom,uk,gbr,57,2,.2568052081297764
+United Kingdom,uk,gbr,58,2,.3842424967821479
+United Kingdom,uk,gbr,59,2,.2944978534636625
+United Kingdom,uk,gbr,60,2,.2842416673901865
+United Kingdom,uk,gbr,61,2,.3208527893407352
+United Kingdom,uk,gbr,62,2,.2472320883107465
+United Kingdom,uk,gbr,63,2,.2944440389671686
+United Kingdom,uk,gbr,64,2,.2790703782203935
+United Kingdom,uk,gbr,65,2,.2433879239015179
+United Kingdom,uk,gbr,66,2,.2921692462834715
+United Kingdom,uk,gbr,67,2,.2600121413698985
+United Kingdom,uk,gbr,68,2,.2422938699612815
+United Kingdom,uk,gbr,69,2,.2270006495253095
+United Kingdom,uk,gbr,70,2,.2722475069570112
+United Kingdom,uk,gbr,71,2,.2189750474332553
+United Kingdom,uk,gbr,72,2,.2377868129789702
+United Kingdom,uk,gbr,73,2,.242309079224385
+United Kingdom,uk,gbr,74,2,.2504164558509528
+United Kingdom,uk,gbr,75,2,.2243910524134156
+United Kingdom,uk,gbr,76,2,.2656729980738201
+United Kingdom,uk,gbr,77,2,.2075606016748987
+United Kingdom,uk,gbr,78,2,.1935181699438367
+United Kingdom,uk,gbr,79,2,.2325464585225146
+United Kingdom,uk,gbr,80,2,.2237852593048973
+United Kingdom,uk,gbr,81,2,.249849490071757
+United Kingdom,uk,gbr,82,2,.2244827949815708
+United Kingdom,uk,gbr,83,2,.2136402902907187
+United Kingdom,uk,gbr,84,2,.237281981095462
+United Kingdom,uk,gbr,85,2,.228428165782502
+United Kingdom,uk,gbr,86,2,.2351316380996377
+United Kingdom,uk,gbr,87,2,.1905517304397263
+United Kingdom,uk,gbr,88,2,.2049638543335201
+United Kingdom,uk,gbr,89,2,.200005041846512
+United Kingdom,uk,gbr,90,2,.229837360894002
+United Kingdom,uk,gbr,91,2,.2029540091366221
+United Kingdom,uk,gbr,92,2,.2198582788653694
+United Kingdom,uk,gbr,93,2,.2305279990706628
+United Kingdom,uk,gbr,94,2,.1761020768992806
+United Kingdom,uk,gbr,95,2,.1970162407145695
+United Kingdom,uk,gbr,96,2,.2408373008111446
+United Kingdom,uk,gbr,97,2,.2069463221829022
+United Kingdom,uk,gbr,98,2,.2259105242041955
+United Kingdom,uk,gbr,99,2,.2038770146542369
+United Kingdom,uk,gbr,100,2,.2307524391207619
+United States,us,usa,1,1,.6273539231882819
+United States,us,usa,2,1,.6652359821896734
+United States,us,usa,3,1,.5283022137568388
+United States,us,usa,4,1,.4575966692356926
+United States,us,usa,5,1,.3854712040739868
+United States,us,usa,6,1,.361187657876301
+United States,us,usa,7,1,.3362341336817407
+United States,us,usa,8,1,.3183278710405587
+United States,us,usa,9,1,.3166884209482482
+United States,us,usa,10,1,.3089355791667283
+United States,us,usa,1,2,.6104658215730984
+United States,us,usa,2,2,.
+United States,us,usa,3,2,.
+United States,us,usa,4,2,.
+United States,us,usa,5,2,.
+United States,us,usa,6,2,.
+United States,us,usa,7,2,.
+United States,us,usa,8,2,.
+United States,us,usa,9,2,.7021084135519237
+United States,us,usa,10,2,.7228895110678853
+United States,us,usa,11,2,.7271737145828148
+United States,us,usa,12,2,.7732762177230404
+United States,us,usa,13,2,.7181407612079431
+United States,us,usa,14,2,.6859826005618445
+United States,us,usa,15,2,.658595339286834
+United States,us,usa,16,2,.6296109011910276
+United States,us,usa,17,2,.6456785514606498
+United States,us,usa,18,2,.6303911385251628
+United States,us,usa,19,2,.6006438046665497
+United States,us,usa,20,2,.5871231949711087
+United States,us,usa,21,2,.5565778082869357
+United States,us,usa,22,2,.5772095698639317
+United States,us,usa,23,2,.56660693936287
+United States,us,usa,24,2,.5207724243730616
+United States,us,usa,25,2,.5359612597380391
+United States,us,usa,26,2,.5414823131346055
+United States,us,usa,27,2,.5199836355140848
+United States,us,usa,28,2,.4887665665688168
+United States,us,usa,29,2,.4917398583151132
+United States,us,usa,30,2,.4851529521057456
+United States,us,usa,31,2,.4749554946288328
+United States,us,usa,32,2,.4962503130958216
+United States,us,usa,33,2,.4598612832663642
+United States,us,usa,34,2,.4891536810210009
+United States,us,usa,35,2,.4243837314778294
+United States,us,usa,36,2,.4858643207898046
+United States,us,usa,37,2,.4687381585477625
+United States,us,usa,38,2,.424273730526778
+United States,us,usa,39,2,.450658020285028
+United States,us,usa,40,2,.4104347554008385
+United States,us,usa,41,2,.442276099865433
+United States,us,usa,42,2,.4007669746607891
+United States,us,usa,43,2,.3558549072337635
+United States,us,usa,44,2,.4202150750031612
+United States,us,usa,45,2,.3830747138633813
+United States,us,usa,46,2,.3830890472642653
+United States,us,usa,47,2,.3880071872648121
+United States,us,usa,48,2,.3749520549819844
+United States,us,usa,49,2,.3249776345869075
+United States,us,usa,50,2,.3880918212437677
+United States,us,usa,51,2,.3604462382746894
+United States,us,usa,52,2,.3630165729318112
+United States,us,usa,53,2,.3435887457901635
+United States,us,usa,54,2,.3742173978765997
+United States,us,usa,55,2,.3450153667574384
+United States,us,usa,56,2,.3898501195685928
+United States,us,usa,57,2,.3590293180287243
+United States,us,usa,58,2,.3528474371388793
+United States,us,usa,59,2,.3383887569350061
+United States,us,usa,60,2,.3851808502362305
+United States,us,usa,61,2,.3173206283682128
+United States,us,usa,62,2,.3734603705858815
+United States,us,usa,63,2,.3247052479882879
+United States,us,usa,64,2,.3423840823303357
+United States,us,usa,65,2,.3279119519470359
+United States,us,usa,66,2,.3272491432506349
+United States,us,usa,67,2,.3475571320813678
+United States,us,usa,68,2,.3164286570975205
+United States,us,usa,69,2,.3404407441848804
+United States,us,usa,70,2,.3447099571383138
+United States,us,usa,71,2,.2783985551791641
+United States,us,usa,72,2,.3429394760772417
+United States,us,usa,73,2,.3274763422275107
+United States,us,usa,74,2,.3121385771380126
+United States,us,usa,75,2,.3323110990822709
+United States,us,usa,76,2,.284572425658411
+United States,us,usa,77,2,.3353128421216292
+United States,us,usa,78,2,.3289124478064641
+United States,us,usa,79,2,.3205115960505736
+United States,us,usa,80,2,.324185460386138
+United States,us,usa,81,2,.325081947143169
+United States,us,usa,82,2,.3270168999892224
+United States,us,usa,83,2,.3237979355598521
+United States,us,usa,84,2,.2947821685467266
+United States,us,usa,85,2,.3177067003668802
+United States,us,usa,86,2,.3402832882819702
+United States,us,usa,87,2,.3072587815357288
+United States,us,usa,88,2,.3047198977836106
+United States,us,usa,89,2,.3160600271042115
+United States,us,usa,90,2,.310319870099462
+United States,us,usa,91,2,.3106614604796415
+United States,us,usa,92,2,.275582280189673
+United States,us,usa,93,2,.304021543002374
+United States,us,usa,94,2,.2945881291921755
+United States,us,usa,95,2,.3162823774251952
+United States,us,usa,96,2,.3129126985670226
+United States,us,usa,97,2,.3101997172686076
+United States,us,usa,98,2,.3163971855101652
+United States,us,usa,99,2,.2954720926473775
+United States,us,usa,100,2,.3531006866194401

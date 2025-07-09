@@ -4,7 +4,7 @@ import delimited "~/GitHub/master/LIS/pv5_s1.csv", encoding(ISO-8859-1)
 
     foreach i of local clist { 
         foreach j of local vlist {
-            sum `j' , meanonly
+            sum `j' if iso2 == "`i'" , meanonly
             local v`j' = r(mean)
             di "scalar `i'`j' = `v`j''"
         }

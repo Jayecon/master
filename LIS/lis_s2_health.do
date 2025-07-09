@@ -118,165 +118,174 @@
             /*변수 생성 : 균등화 소득*/
                 gen ehhmen    = sqrt(nhhmem)
                 gen emin      = min / ehhmen
-            /*변수생성 : 집단별 건강위험*/
-                gen health = .
-                /*입력받은 수치를 국가별 성별 연령별 집단에게 부여{{{*/
-                    if "`k'" == "fr" {
-                    /*{{{*/
-                        replace health = frmh1624 if inrange(age , 16 , 24)  & sex == 1
-                        replace health = frfh1624 if inrange(age , 16 , 24)  & sex == 2
-                        replace health = frmh2534 if inrange(age , 25 , 34)  & sex == 1
-                        replace health = frfh2534 if inrange(age , 25 , 34)  & sex == 2
-                        replace health = frmh3544 if inrange(age , 35 , 44)  & sex == 1
-                        replace health = frfh3544 if inrange(age , 35 , 44)  & sex == 2
-                        replace health = frmh4554 if inrange(age , 45 , 54)  & sex == 1
-                        replace health = frfh4554 if inrange(age , 45 , 54)  & sex == 2
-                        replace health = frmh5564 if inrange(age , 55 , 64)  & sex == 1
-                        replace health = frfh5564 if inrange(age , 55 , 64)  & sex == 2
-                        replace health = frmh6599 if inrange(age , 65 , 999) & sex == 1
-                        replace health = frfh6599 if inrange(age , 65 , 999) & sex == 2
-                    /*}}}*/
-                    }
-                    else if "`k'" == "jp" {
-                    /*{{{*/
-                        replace health = jpfh0609 if inrange(age , 06 , 09)  & sex == 2
-                        replace health = jpfh1014 if inrange(age , 10 , 14)  & sex == 2
-                        replace health = jpfh1519 if inrange(age , 15 , 19)  & sex == 2
-                        replace health = jpfh2024 if inrange(age , 20 , 24)  & sex == 2
-                        replace health = jpfh2529 if inrange(age , 25 , 29)  & sex == 2
-                        replace health = jpfh3034 if inrange(age , 30 , 34)  & sex == 2
-                        replace health = jpfh3539 if inrange(age , 35 , 39)  & sex == 2
-                        replace health = jpfh4044 if inrange(age , 40 , 44)  & sex == 2
-                        replace health = jpfh4549 if inrange(age , 45 , 49)  & sex == 2
-                        replace health = jpfh5054 if inrange(age , 50 , 54)  & sex == 2
-                        replace health = jpfh5559 if inrange(age , 55 , 59)  & sex == 2
-                        replace health = jpfh6064 if inrange(age , 60 , 64)  & sex == 2
-                        replace health = jpfh6599 if inrange(age , 65 , 999)  & sex == 2
-                        replace health = jpmh0609 if inrange(age , 06 , 09)  & sex == 1
-                        replace health = jpmh1014 if inrange(age , 10 , 14)  & sex == 1
-                        replace health = jpmh1519 if inrange(age , 15 , 19)  & sex == 1
-                        replace health = jpmh2024 if inrange(age , 20 , 24)  & sex == 1
-                        replace health = jpmh2529 if inrange(age , 25 , 29)  & sex == 1
-                        replace health = jpmh3034 if inrange(age , 30 , 34)  & sex == 1
-                        replace health = jpmh3539 if inrange(age , 35 , 39)  & sex == 1
-                        replace health = jpmh4044 if inrange(age , 40 , 44)  & sex == 1
-                        replace health = jpmh4549 if inrange(age , 45 , 49)  & sex == 1
-                        replace health = jpmh5054 if inrange(age , 50 , 54)  & sex == 1
-                        replace health = jpmh5559 if inrange(age , 55 , 59)  & sex == 1
-                        replace health = jpmh6064 if inrange(age , 60 , 64)  & sex == 1
-                        replace health = jpmh6599 if inrange(age , 65 , 999)  & sex == 1
-                    /*}}}*/
-                    }
-                    else if "`k'" == "kr" {
-                    /*{{{*/
-                        replace health = krmh0014 if inrange(age , 00 , 14)  & sex == 1
-                        replace health = krfh0014 if inrange(age , 00 , 14)  & sex == 2
-                        replace health = krmh1519 if inrange(age , 15 , 19)  & sex == 1
-                        replace health = krfh1519 if inrange(age , 15 , 19)  & sex == 2
-                        replace health = krmh2024 if inrange(age , 20 , 24)  & sex == 1
-                        replace health = krfh2024 if inrange(age , 20 , 24)  & sex == 2
-                        replace health = krmh2529 if inrange(age , 25 , 29)  & sex == 1
-                        replace health = krfh2529 if inrange(age , 25 , 29)  & sex == 2
-                        replace health = krmh3034 if inrange(age , 30 , 34)  & sex == 1
-                        replace health = krfh3034 if inrange(age , 30 , 34)  & sex == 2
-                        replace health = krmh3539 if inrange(age , 35 , 39) & sex == 1
-                        replace health = krfh3539 if inrange(age , 35 , 39) & sex == 2
-                        replace health = krmh4044 if inrange(age , 40 , 44)  & sex == 1
-                        replace health = krfh4044 if inrange(age , 40 , 44)  & sex == 2
-                        replace health = krmh4549 if inrange(age , 45 , 49) & sex == 1
-                        replace health = krfh4549 if inrange(age , 45 , 49) & sex == 2
-                        replace health = krmh5054 if inrange(age , 50 , 54)  & sex == 1
-                        replace health = krfh5054 if inrange(age , 50 , 54)  & sex == 2
-                        replace health = krmh5559 if inrange(age , 55 , 59) & sex == 1
-                        replace health = krfh5559 if inrange(age , 55 , 59) & sex == 2
-                        replace health = krmh6064 if inrange(age , 60 , 64)  & sex == 1
-                        replace health = krfh6064 if inrange(age , 60 , 64)  & sex == 2
-                        replace health = krmh6599 if inrange(age , 65 , 999) & sex == 1
-                        replace health = krfh6599 if inrange(age , 65 , 999) & sex == 2
-                    /*}}}*/
-                    }
-                    else if "`k'" == "se" {
-                    /*{{{*/
-                        replace health = semh1624 if inrange(age , 16 , 24)  & sex == 1
-                        replace health = sefh1624 if inrange(age , 16 , 24)  & sex == 2
-                        replace health = semh2534 if inrange(age , 25 , 34)  & sex == 1
-                        replace health = sefh2534 if inrange(age , 25 , 34)  & sex == 2
-                        replace health = semh3544 if inrange(age , 35 , 44)  & sex == 1
-                        replace health = sefh3544 if inrange(age , 35 , 44)  & sex == 2
-                        replace health = semh4554 if inrange(age , 45 , 54)  & sex == 1
-                        replace health = sefh4554 if inrange(age , 45 , 54)  & sex == 2
-                        replace health = semh5564 if inrange(age , 55 , 64)  & sex == 1
-                        replace health = sefh5564 if inrange(age , 55 , 64)  & sex == 2
-                        replace health = semh6599 if inrange(age , 65 , 999) & sex == 1
-                        replace health = sefh6599 if inrange(age , 65 , 999) & sex == 2
-                    /*}}}*/
-                    }
-                    else if "`k'" == "uk" {
-                    /*{{{*/
-                        replace health = ukmh1624 if inrange(age , 16 , 24)  & sex == 1
-                        replace health = ukfh1624 if inrange(age , 16 , 24)  & sex == 2
-                        replace health = ukmh2534 if inrange(age , 25 , 34)  & sex == 1
-                        replace health = ukfh2534 if inrange(age , 25 , 34)  & sex == 2
-                        replace health = ukmh3544 if inrange(age , 35 , 44)  & sex == 1
-                        replace health = ukfh3544 if inrange(age , 35 , 44)  & sex == 2
-                        replace health = ukmh4554 if inrange(age , 45 , 54)  & sex == 1
-                        replace health = ukfh4554 if inrange(age , 45 , 54)  & sex == 2
-                        replace health = ukmh5564 if inrange(age , 55 , 64)  & sex == 1
-                        replace health = ukfh5564 if inrange(age , 55 , 64)  & sex == 2
-                        replace health = ukmh6599 if inrange(age , 65 , 999) & sex == 1
-                        replace health = ukfh6599 if inrange(age , 65 , 999) & sex == 2
-                    /*}}}*/
-                    }
-                    else if "`k'" == "us" {
-                    /*{{{*/
-                        replace health = usmh0005 if inrange(age , 00 , 05)  & sex == 1
-                        replace health = usfh0005 if inrange(age , 00 , 05)  & sex == 2
-                        replace health = usmh0617 if inrange(age , 06 , 17)  & sex == 1
-                        replace health = usfh0617 if inrange(age , 06 , 17)  & sex == 2
-                        replace health = usmh1824 if inrange(age , 18 , 24)  & sex == 1
-                        replace health = usfh1824 if inrange(age , 18 , 24)  & sex == 2
-                        replace health = usmh2544 if inrange(age , 25 , 44)  & sex == 1
-                        replace health = usfh2544 if inrange(age , 25 , 44)  & sex == 2
-                        replace health = usmh4554 if inrange(age , 45 , 54)  & sex == 1
-                        replace health = usfh4554 if inrange(age , 45 , 54)  & sex == 2
-                        replace health = usmh5564 if inrange(age , 55 , 64)  & sex == 1
-                        replace health = usfh5564 if inrange(age , 55 , 64)  & sex == 2
-                        replace health = usmh6599 if inrange(age , 65 , 999) & sex == 1
-                        replace health = usfh6599 if inrange(age , 65 , 999) & sex == 2
-                    /*}}}*/
-                    }
+        /*위험도 할당*/
+            gen health = .
+            /*입력받은 수치를 국가별 성별 연령별 집단에게 부여{{{*/
+                if "`k'" == "fr" {
+                /*{{{*/
+                    replace health = frmh1624 if inrange(age , 16 , 24)  & sex == 1
+                    replace health = frfh1624 if inrange(age , 16 , 24)  & sex == 2
+                    replace health = frmh2534 if inrange(age , 25 , 34)  & sex == 1
+                    replace health = frfh2534 if inrange(age , 25 , 34)  & sex == 2
+                    replace health = frmh3544 if inrange(age , 35 , 44)  & sex == 1
+                    replace health = frfh3544 if inrange(age , 35 , 44)  & sex == 2
+                    replace health = frmh4554 if inrange(age , 45 , 54)  & sex == 1
+                    replace health = frfh4554 if inrange(age , 45 , 54)  & sex == 2
+                    replace health = frmh5564 if inrange(age , 55 , 64)  & sex == 1
+                    replace health = frfh5564 if inrange(age , 55 , 64)  & sex == 2
+                    replace health = frmh6599 if inrange(age , 65 , 999) & sex == 1
+                    replace health = frfh6599 if inrange(age , 65 , 999) & sex == 2
                 /*}}}*/
-                drop if missing(health)
-                replace health = health/100
-                drop temp1
-            /*변수 생성 : 모두나쁨*/
-                gen temp1  = ln(health) 
-                bys hid : egen temp2 = total(temp1)
-                gen abhlth = exp(temp2)
-            /*변수 생성 : 나쁜사람 있음*/
-                gen temp3  = 1 - health
-                gen temp4  = ln(temp3) 
-                bys hid : egen temp5 = total(temp4)
-                gen xbhlth = 1 - exp(temp5)
-        /*소득분위별 위험도 평균 계산*/
+                }
+                else if "`k'" == "jp" {
+                /*{{{*/
+                    replace health = jpfh0609 if inrange(age , 06 , 09)  & sex == 2
+                    replace health = jpfh1014 if inrange(age , 10 , 14)  & sex == 2
+                    replace health = jpfh1519 if inrange(age , 15 , 19)  & sex == 2
+                    replace health = jpfh2024 if inrange(age , 20 , 24)  & sex == 2
+                    replace health = jpfh2529 if inrange(age , 25 , 29)  & sex == 2
+                    replace health = jpfh3034 if inrange(age , 30 , 34)  & sex == 2
+                    replace health = jpfh3539 if inrange(age , 35 , 39)  & sex == 2
+                    replace health = jpfh4044 if inrange(age , 40 , 44)  & sex == 2
+                    replace health = jpfh4549 if inrange(age , 45 , 49)  & sex == 2
+                    replace health = jpfh5054 if inrange(age , 50 , 54)  & sex == 2
+                    replace health = jpfh5559 if inrange(age , 55 , 59)  & sex == 2
+                    replace health = jpfh6064 if inrange(age , 60 , 64)  & sex == 2
+                    replace health = jpfh6599 if inrange(age , 65 , 999)  & sex == 2
+                    replace health = jpmh0609 if inrange(age , 06 , 09)  & sex == 1
+                    replace health = jpmh1014 if inrange(age , 10 , 14)  & sex == 1
+                    replace health = jpmh1519 if inrange(age , 15 , 19)  & sex == 1
+                    replace health = jpmh2024 if inrange(age , 20 , 24)  & sex == 1
+                    replace health = jpmh2529 if inrange(age , 25 , 29)  & sex == 1
+                    replace health = jpmh3034 if inrange(age , 30 , 34)  & sex == 1
+                    replace health = jpmh3539 if inrange(age , 35 , 39)  & sex == 1
+                    replace health = jpmh4044 if inrange(age , 40 , 44)  & sex == 1
+                    replace health = jpmh4549 if inrange(age , 45 , 49)  & sex == 1
+                    replace health = jpmh5054 if inrange(age , 50 , 54)  & sex == 1
+                    replace health = jpmh5559 if inrange(age , 55 , 59)  & sex == 1
+                    replace health = jpmh6064 if inrange(age , 60 , 64)  & sex == 1
+                    replace health = jpmh6599 if inrange(age , 65 , 999)  & sex == 1
+                /*}}}*/
+                }
+                else if "`k'" == "kr" {
+                /*{{{*/
+                    replace health = krmh0014 if inrange(age , 00 , 14)  & sex == 1
+                    replace health = krfh0014 if inrange(age , 00 , 14)  & sex == 2
+                    replace health = krmh1519 if inrange(age , 15 , 19)  & sex == 1
+                    replace health = krfh1519 if inrange(age , 15 , 19)  & sex == 2
+                    replace health = krmh2024 if inrange(age , 20 , 24)  & sex == 1
+                    replace health = krfh2024 if inrange(age , 20 , 24)  & sex == 2
+                    replace health = krmh2529 if inrange(age , 25 , 29)  & sex == 1
+                    replace health = krfh2529 if inrange(age , 25 , 29)  & sex == 2
+                    replace health = krmh3034 if inrange(age , 30 , 34)  & sex == 1
+                    replace health = krfh3034 if inrange(age , 30 , 34)  & sex == 2
+                    replace health = krmh3539 if inrange(age , 35 , 39) & sex == 1
+                    replace health = krfh3539 if inrange(age , 35 , 39) & sex == 2
+                    replace health = krmh4044 if inrange(age , 40 , 44)  & sex == 1
+                    replace health = krfh4044 if inrange(age , 40 , 44)  & sex == 2
+                    replace health = krmh4549 if inrange(age , 45 , 49) & sex == 1
+                    replace health = krfh4549 if inrange(age , 45 , 49) & sex == 2
+                    replace health = krmh5054 if inrange(age , 50 , 54)  & sex == 1
+                    replace health = krfh5054 if inrange(age , 50 , 54)  & sex == 2
+                    replace health = krmh5559 if inrange(age , 55 , 59) & sex == 1
+                    replace health = krfh5559 if inrange(age , 55 , 59) & sex == 2
+                    replace health = krmh6064 if inrange(age , 60 , 64)  & sex == 1
+                    replace health = krfh6064 if inrange(age , 60 , 64)  & sex == 2
+                    replace health = krmh6599 if inrange(age , 65 , 999) & sex == 1
+                    replace health = krfh6599 if inrange(age , 65 , 999) & sex == 2
+                /*}}}*/
+                }
+                else if "`k'" == "se" {
+                /*{{{*/
+                    replace health = semh1624 if inrange(age , 16 , 24)  & sex == 1
+                    replace health = sefh1624 if inrange(age , 16 , 24)  & sex == 2
+                    replace health = semh2534 if inrange(age , 25 , 34)  & sex == 1
+                    replace health = sefh2534 if inrange(age , 25 , 34)  & sex == 2
+                    replace health = semh3544 if inrange(age , 35 , 44)  & sex == 1
+                    replace health = sefh3544 if inrange(age , 35 , 44)  & sex == 2
+                    replace health = semh4554 if inrange(age , 45 , 54)  & sex == 1
+                    replace health = sefh4554 if inrange(age , 45 , 54)  & sex == 2
+                    replace health = semh5564 if inrange(age , 55 , 64)  & sex == 1
+                    replace health = sefh5564 if inrange(age , 55 , 64)  & sex == 2
+                    replace health = semh6599 if inrange(age , 65 , 999) & sex == 1
+                    replace health = sefh6599 if inrange(age , 65 , 999) & sex == 2
+                /*}}}*/
+                }
+                else if "`k'" == "uk" {
+                /*{{{*/
+                    replace health = ukmh1624 if inrange(age , 16 , 24)  & sex == 1
+                    replace health = ukfh1624 if inrange(age , 16 , 24)  & sex == 2
+                    replace health = ukmh2534 if inrange(age , 25 , 34)  & sex == 1
+                    replace health = ukfh2534 if inrange(age , 25 , 34)  & sex == 2
+                    replace health = ukmh3544 if inrange(age , 35 , 44)  & sex == 1
+                    replace health = ukfh3544 if inrange(age , 35 , 44)  & sex == 2
+                    replace health = ukmh4554 if inrange(age , 45 , 54)  & sex == 1
+                    replace health = ukfh4554 if inrange(age , 45 , 54)  & sex == 2
+                    replace health = ukmh5564 if inrange(age , 55 , 64)  & sex == 1
+                    replace health = ukfh5564 if inrange(age , 55 , 64)  & sex == 2
+                    replace health = ukmh6599 if inrange(age , 65 , 999) & sex == 1
+                    replace health = ukfh6599 if inrange(age , 65 , 999) & sex == 2
+                /*}}}*/
+                }
+                else if "`k'" == "us" {
+                /*{{{*/
+                    replace health = usmh0005 if inrange(age , 00 , 05)  & sex == 1
+                    replace health = usfh0005 if inrange(age , 00 , 05)  & sex == 2
+                    replace health = usmh0617 if inrange(age , 06 , 17)  & sex == 1
+                    replace health = usfh0617 if inrange(age , 06 , 17)  & sex == 2
+                    replace health = usmh1824 if inrange(age , 18 , 24)  & sex == 1
+                    replace health = usfh1824 if inrange(age , 18 , 24)  & sex == 2
+                    replace health = usmh2544 if inrange(age , 25 , 44)  & sex == 1
+                    replace health = usfh2544 if inrange(age , 25 , 44)  & sex == 2
+                    replace health = usmh4554 if inrange(age , 45 , 54)  & sex == 1
+                    replace health = usfh4554 if inrange(age , 45 , 54)  & sex == 2
+                    replace health = usmh5564 if inrange(age , 55 , 64)  & sex == 1
+                    replace health = usfh5564 if inrange(age , 55 , 64)  & sex == 2
+                    replace health = usmh6599 if inrange(age , 65 , 999) & sex == 1
+                    replace health = usfh6599 if inrange(age , 65 , 999) & sex == 2
+                /*}}}*/
+                }
+            /*}}}*/
+            replace health = health/100
+            drop temp1
+        /*변수 생성 : 모두나쁨*/
+            gen temp1  = ln(health) 
+            bys hid : egen temp2 = total(temp1)
+            gen abhlth = exp(temp2)
+        /*변수 생성 : 나쁜사람있음*/
+            gen temp3  = 1 - health
+            gen temp4  = ln(temp3) 
+            bys hid : egen temp5 = total(temp4)
+            gen xbhlth = 1 - exp(temp5)
+        /*변수 생성 : 가중 분위수 집단*/
             keep if relation == 1000
             xtile dcgroup = emin [aw=hpopwgt], nq(10)
+            xtile pcgroup = emin [aw=hpopwgt], nq(100)
+        /*소득분위별 위험도 평균계산*/
             forvalue i = 1/10 {
                 summarize abhlth  [aw=hpopwgt] if dcgroup == `i' , meanonly
                 local abhlthd`i' = r(mean)
                 summarize xbhlth  [aw=hpopwgt] if dcgroup == `i' , meanonly
                 local xbhlthd`i' = r(mean)
             }
+            forvalue i = 1/100 {
+                summarize abhlth  [aw=hpopwgt] if pcgroup == `i' , meanonly
+                local abhlthp`i' = r(mean)
+                summarize xbhlth  [aw=hpopwgt] if pcgroup == `i' , meanonly
+                local xbhlthp`i' = r(mean)
+            }
         }
         /*결과 출력*/
-            /*국가명 년도*/
-                local cname = cname[1]
-                local iso2 = iso2[1]
-                local iso3 = iso3[1]
+            local cname = cname[1]
+            local iso2 = iso2[1]
+            local iso3 = iso3[1]
             if "`k'" == "fr" {
-                di as text "cname,iso2,iso3,dcgroup,abhlth,xbhlth"
+                di as text "cname,iso2,iso3,group,grtype,abhlth,xbhlth"
             }
             forvalue i = 1/10 {
-                di as text "`cname',`iso2',`iso3',`i',`abhlthd`i'',`xbhlthd`i''"
+                di as text "`cname',`iso2',`iso3',`i',1,`abhlthd`i'',`xbhlthd`i''"
+            }
+            forvalue i = 1/100 {
+                di as text "`cname',`iso2',`iso3',`i',2,`abhlthp`i'',`xbhlthp`i''"
             }
     }
