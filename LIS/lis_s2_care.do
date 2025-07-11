@@ -1,6 +1,6 @@
 /*호출변수 목록 생성*/
     local datalist fr se kr jp uk us
-    /*rent scalars{{{*/
+    /*care scalars{{{*/
         scalar frcaret1 = 1
         scalar frcaret2 = 1
         scalar frcaret3 = .4611448287963867

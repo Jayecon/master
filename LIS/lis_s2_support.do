@@ -1,46 +1,46 @@
     local datalist fr se kr jp uk us
-        /*사회적지지부족  단위: % {{{*/
-            /*2009~2018년 평균 격년 조사의 경우 조사가 없는 해는 이전 조사값을 대입함
-                (oecd 원자료 제공상태가 그러함)*/
-            /*원자료는 성&연령대별 값을 제공하지 않음.
-                * 아래는 성, 연령대 각각의 데이터를 이용하여 계산한 값임.*/
-            scalar frms1529 = 6.6
-            scalar frms3049 = 8.3
-            scalar frms5099 = 10.2
-            scalar frfs1529 = 6.1
-            scalar frfs3049 = 7.8
-            scalar frfs5099 = 9.7
-            scalar jpms1529 = 7.7
-            scalar jpms3049 = 12.4
-            scalar jpms5099 = 13.8
-            scalar jpfs1529 = 4.1
-            scalar jpfs3049 = 6.6
-            scalar jpfs5099 = 7.4
-            scalar krms1529 = 6.5
-            scalar krms3049 = 19.9
-            scalar krms5099 = 39.1
-            scalar krfs1529 = 5.4
-            scalar krfs3049 = 16.6
-            scalar krfs5099 = 32.5
-            scalar sems1529 = 2.3
-            scalar sems3049 = 6.8
-            scalar sems5099 = 9.6
-            scalar sefs1529 = 2.3
-            scalar sefs3049 = 6.7
-            scalar sefs5099 = 9.4
-            scalar ukms1529 = 4.9
-            scalar ukms3049 = 7.4
-            scalar ukms5099 = 7.4
-            scalar ukfs1529 = 4.0
-            scalar ukfs3049 = 5.9
-            scalar ukfs5099 = 5.8
-            scalar usms1529 = 6.0
-            scalar usms3049 = 11.6
-            scalar usms5099 = 9.7
-            scalar usfs1529 = 4.6
-            scalar usfs3049 = 8.9
-            scalar usfs5099 = 7.5
-        /*}}}*/
+    /*사회적지지부족  단위: % {{{*/
+        /*2009~2018년 평균 격년 조사의 경우 조사가 없는 해는 이전 조사값을 대입함
+            (oecd 원자료 제공상태가 그러함)*/
+        /*원자료는 성&연령대별 값을 제공하지 않음.
+            * 아래는 성, 연령대 각각의 데이터를 이용하여 계산한 값임.*/
+        scalar frms1529 = 6.6
+        scalar frms3049 = 8.3
+        scalar frms5099 = 10.2
+        scalar frfs1529 = 6.1
+        scalar frfs3049 = 7.8
+        scalar frfs5099 = 9.7
+        scalar jpms1529 = 7.7
+        scalar jpms3049 = 12.4
+        scalar jpms5099 = 13.8
+        scalar jpfs1529 = 4.1
+        scalar jpfs3049 = 6.6
+        scalar jpfs5099 = 7.4
+        scalar krms1529 = 6.5
+        scalar krms3049 = 19.9
+        scalar krms5099 = 39.1
+        scalar krfs1529 = 5.4
+        scalar krfs3049 = 16.6
+        scalar krfs5099 = 32.5
+        scalar sems1529 = 2.3
+        scalar sems3049 = 6.8
+        scalar sems5099 = 9.6
+        scalar sefs1529 = 2.3
+        scalar sefs3049 = 6.7
+        scalar sefs5099 = 9.4
+        scalar ukms1529 = 4.9
+        scalar ukms3049 = 7.4
+        scalar ukms5099 = 7.4
+        scalar ukfs1529 = 4.0
+        scalar ukfs3049 = 5.9
+        scalar ukfs5099 = 5.8
+        scalar usms1529 = 6.0
+        scalar usms3049 = 11.6
+        scalar usms5099 = 9.7
+        scalar usfs1529 = 4.6
+        scalar usfs3049 = 8.9
+        scalar usfs5099 = 7.5
+    /*}}}*/
     foreach k of local datalist {
         qui {
         /*자료호출*/
