@@ -262,6 +262,11 @@ set nocompatible " no compatible with the original Vi filetype off
                     "\ ],
                 "\}
         "}}}2
+        " minimap ---------------------- {{{2
+        let g:minimap_width = 10
+        let g:minimap_auto_start = 1
+        let g:minimap_auto_start_win_enter = 1
+        " }}}2
     " }}}1
     " Environment Setting ---------------------- {{{1
         " Basic " {{{2
@@ -377,7 +382,7 @@ set nocompatible " no compatible with the original Vi filetype off
         map <leader>sc :w<cr>:source %<cr>
         map <leader>sp :UltiSnipsEdit<cr>
         map <leader>rc :e $MYVIMRC<cr>
-        map <leader>brc :w! ~/dropbox/Z_personal/myvimrc<cr>:w! ~/github/master/etc/myvimrc<cr>
+        map <leader>brc :w! ~/github/master/etc/myvimrc<cr>:w! ~/dropbox/Z_Personal/myvimrc<cr>
         "vimrc를 ~/Dropbox/Z_Personal/myvimrc로 백업{{{3
             "nnoremap  <silent> <leader>brc :call ReplaceIfCurrentIsRecent()<CR> 
             "function! GetFileModificationTime(filename) " 파일의 생성시간을 반환하는 함수

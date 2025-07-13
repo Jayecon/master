@@ -32,12 +32,13 @@
                 local hblist nhhmem1864 nhhmem nhhmem65 nhhmem17 hhtype
                 foreach i of local hklist {
                     gen ln`i' = ln(`i')
-                        label var ln`i' "log of `i'"
-                    kdensity ln`i' , title("log of `i', `cname'")
+                    local temp : var label `i'
+                    kdensity ln`i' , title("log of `i'(`temp'), `cname'")
                     graphexportpdf $mypdf/`k'_`i'_kdensity.pdf
                 }
                 foreach i of local hblist {
-                    histogram `i', title("`i', `cname'")
+                    local temp : var label `i'
+                    histogram `i', title("`i'(`temp'), `cname'")
                     graphexportpdf $mypdf/`k'_`i'_histogram.pdf
                 }
     }
