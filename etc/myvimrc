@@ -5,8 +5,8 @@ set nocompatible " no compatible with the original Vi filetype off
         language message en_US.UTF-8
         set encoding=utf8
         set fileencoding=utf8
-        set guifont=hack_nerd_font:h22:cANSI
-        set guifont=D2codingligature:h18:cHANGEUL
+        set guifont=Hack\ Nerd\ Font\ Mono:h14
+        set guifontwide=D2codingligature\ Nerd\ Font:h14
     elseif has('macunix')
         "set langmenu=en_US.UTF-8
         "language message en_US.UTF-8
@@ -57,6 +57,7 @@ set nocompatible " no compatible with the original Vi filetype off
         Plug 'lervag/vimtex'                    " Latex editor for Vim
         Plug 'git@github.com:honza/vim-snippets.git'
             Plug 'git@github.com:SirVer/ultisnips.git'
+        Plug 'wfxr/minimap.vim'                 "Blazing fast minimap for vim
     call plug#end()
     " }}}1
     " Plugins Specific Setting -------------------- {{{1

@@ -13,3 +13,5 @@
 *.nav
 *.pdf
 *.vrb
+etc/myvimrc.bak
+*.bak
