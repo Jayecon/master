@@ -5,9 +5,10 @@
             use $`k'20h, clear
         /*변수조작*/
             /*변수 생성*/
+                gen min     = hitotal - hpublic
                 gen pwgt    = hpopwgt * nhhmem
                 gen nhhmem1864 = nhhmem - nhhmem65 - nhhmem17
-                gen htax = hxitax + hxptax
+                gen htax = hxitax + hxptax + hxscont
             /*변수 생성 : 균등화 소득*/
                 gen ehhmen    = sqrt(nhhmem)
                 gen emin      = min / ehhmen
@@ -25,11 +26,9 @@
                 replace hhtype = 7 if missing(hhtype) & nhhmem65 == 0 & nhhmem1864 == 2 & nhhmem17 >= 1 // 근로연령 2인 + 아동
                 replace hhtype = 8 if missing(hhtype) & nhhmem1864 >= 3 // 근로연령 3인 이상 + 아동(노인 무관)
                 replace hhtype = 9 if missing(hhtype) //기타
-        /*자료호출 : 개인화*/
-            merge 1:m hid using $`k'20p, nogen 
             /*그래프 그리기*/
                 local cname = cname[1]
-                local hklist hitotal hpublic pwgt tax hxitax hxptax hxotax hxscont hipension hipubsoc hi31 hi32
+                local hklist min hitotal hpublic pwgt tax hxitax hxptax hxotax hxscont hipension hipubsoc hi31 hi32
                 local hblist nhhmem1864 nhhmem nhhmem65 nhhmem17 hhtype
                 foreach i of local hklist {
                     gen ln`i' = ln(`i')
@@ -43,3 +42,4 @@
                     graphexportpdf $mypdf/`k'_`i'_histogram.pdf
                 }
     }
+            /*merge 1:m hid using $`k'20p, nogen */
