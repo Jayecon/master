@@ -62,6 +62,12 @@
             use $`k'20h, clear
             merge 1:m hid using $`k'20p, nogen 
         /*변수조작*/
+            /*변수생성 : 국가별 예외*/
+                if "`k'" == "jp" | "`k'" == "kr" {
+                    drop hpublic
+                    egen hpublic = rowtotal(hipubsoc hi31 hi32)
+                        label var hpublic "Public tasfers(replaced)"
+                }
             /*변수 생성*/
                 gen min     = hitotal - hpublic
                 capture drop pwgt

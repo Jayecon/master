@@ -6,15 +6,20 @@
         /*변수조작*/
             /*변수 생성*/
                 gen min     = hitotal - hpublic
+                    label var min "Market Income"
                 gen pwgt    = hpopwgt * nhhmem
+                    label var pwgt "Weight" 
                 gen nhhmem1864 = nhhmem - nhhmem65 - nhhmem17
-                gen htax = hxitax + hxptax + hxscont
+                    label var nhhmem1864 "Number of Household member, age 18-64"
+                gen tax = hxitax + hxptax + hxotax
+                    label var tax "Household Tax"
             /*변수 생성 : 균등화 소득*/
                 gen ehhmen    = sqrt(nhhmem)
                 gen emin      = min / ehhmen
             /*변수생성 : 가구유형*/
                 capture drop hhtype
                 gen hhtype = .
+                    label var hhtype "Household Type"
                 replace hhtype = 1 if nhhmem == 1 & nhhmem65 == 1 // 노인 1인
                 replace hhtype = 2 if nhhmem >= 2 & nhhmem == nhhmem65 // 노인만 2인 이상
                 replace hhtype = 3 if nhhmem == 1 & nhhmem1864 == 1 // 근로연령 1인
@@ -28,7 +33,7 @@
                 replace hhtype = 9 if missing(hhtype) //기타
             /*그래프 그리기*/
                 local cname = cname[1]
-                local hklist min hitotal hpublic pwgt tax hxitax hxptax hxotax hxscont hipension hipubsoc hi31 hi32
+                local hklist dhi min hitotal hpublic pwgt tax hxitax hxptax hxotax hxscont hipension hipubsoc hi31 hi32
                 local hblist nhhmem1864 nhhmem nhhmem65 nhhmem17 hhtype
                 foreach i of local hklist {
                     gen ln`i' = ln(`i')
@@ -38,7 +43,7 @@
                 }
                 foreach i of local hblist {
                     local temp : var label `i'
-                    histogram `i', title("`i'(`temp'), `cname'")
+                    histogram `i' , title("`i'(`temp'), `cname'")
                     graphexportpdf $mypdf/`k'_`i'_histogram.pdf
                 }
     }

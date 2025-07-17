@@ -8,18 +8,23 @@
             /*변수조작*/
                 /*변수 생성*/
                     gen min     = hitotal - hpublic
+                        label var min "Market Income"
                     gen pwgt    = hpopwgt * nhhmem
+                        label var pwgt "Weight" 
                     gen nhhmem1864 = nhhmem - nhhmem65 - nhhmem17
-                    gen htax = hxitax + hxptax + hxotax
+                        label var nhhmem1864 "Number of Household member, age 18-64"
+                    gen tax = hxitax + hxptax + hxotax
+                        label var tax "Household Tax"
                 /*변수 생성 : 균등화 소득*/
                     gen ehhmen    = sqrt(nhhmem)
                     gen emin      = min / ehhmen
+                        label var emin "Equiv. Market Income"
             /*가구통계량 생성*/
-                local hlist dhi min hitotal hpublic htax hxitax hxptax hxotax hxscont ///
+                local hlist dhi min hitotal hpublic htax xitax hxptax hxotax hxscont ///
                     hipension hi31 hi32 hipubsoc dhi ///
                     pwgt nhhmem1864 nhhmem nhhmem65 nhhmem17 
                 foreach i of local hlist {
-                    qui summarize `i'
+                    qui summarize `i' 
                     local `k'`i'N    = r(N)
                     local `k'`i'mean = r(mean)
                     local `k'`i'sd   = r(sd)
@@ -33,9 +38,9 @@
             /*개인통계량 생성*/
                 local plist pitotal pxitax pxscont ///
                     pipension pi31 pi32 ///
-                    ppopwgt age
+                    ppopwgt disabled age
                 foreach i of local plist {
-                    qui summarize `i'
+                    qui summarize `i' 
                     local `k'`i'N    = r(N)
                     local `k'`i'mean = r(mean)
                     local `k'`i'sd   = r(sd)
