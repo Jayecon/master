@@ -2,116 +2,116 @@
     local datalist fr se kr jp uk us
     /*Scalars{{{*/
         /*pv5 scalars{{{*/
-            scalar frpv5t1 = .8822435557842254
-            scalar frpv5t2 = .8466526627540588
-            scalar frpv5t3 = .3658936202526092
-            scalar frpv5t4 = .2019227802753449
-            scalar frpv5t5 = .2847796976566315
-            scalar frpv5t6 = .4661048591136933
-            scalar frpv5t7 = .1401366144418716
-            scalar frpv5t8 = .1584531769156456
-            scalar frpv5t9 = .461115825176239
-            scalar jppv5t1 = .4234922736883163
-            scalar jppv5t2 = .1373156324028969
-            scalar jppv5t3 = .1848604097962379
-            scalar jppv5t4 = .0785118963569403
-            scalar jppv5t5 = .1365521863102913
-            scalar jppv5t6 = .3620704412460327
-            scalar jppv5t7 = .0617576409131289
-            scalar jppv5t8 = .1276022106409073
-            scalar jppv5t9 = .1496874570846558
-            scalar krpv5t1 = .8126856784025828
-            scalar krpv5t2 = .5979460974534353
-            scalar krpv5t3 = .3121382296085358
-            scalar krpv5t4 = .1516160716613134
-            scalar krpv5t5 = .117493304113547
-            scalar krpv5t6 = .4581379294395447
-            scalar krpv5t7 = .0931216043730577
-            scalar krpv5t8 = .0884350767980019
-            scalar krpv5t9 = .1724237824479739
-            scalar sepv5t1 = .8455428540706634
-            scalar sepv5t2 = .6720898389816284
-            scalar sepv5t3 = .3624374836683273
-            scalar sepv5t4 = .0971292622387409
-            scalar sepv5t5 = .1418916836380958
-            scalar sepv5t6 = .3769566655158997
-            scalar sepv5t7 = .1269379481673241
-            scalar sepv5t8 = .149249979108572
-            scalar sepv5t9 = .3819241836667061
-            scalar ukpv5t1 = .7635461807250976
-            scalar ukpv5t2 = .5710752785205842
-            scalar ukpv5t3 = .3612029850482941
-            scalar ukpv5t4 = .1184371829032898
-            scalar ukpv5t5 = .17129046022892
-            scalar ukpv5t6 = .7529336094856263
-            scalar ukpv5t7 = .2112693592905998
-            scalar ukpv5t8 = .1997040539979935
-            scalar ukpv5t9 = .4313078492879868
-            scalar uspv5t1 = .7544791877269745
-            scalar uspv5t2 = .5865679442882538
-            scalar uspv5t3 = .325478258728981
-            scalar uspv5t4 = .1600376799702644
-            scalar uspv5t5 = .2240241140127182
-            scalar uspv5t6 = .5889186978340148
-            scalar uspv5t7 = .2039042830467224
-            scalar uspv5t8 = .2034007161855698
-            scalar uspv5t9 = .3543424665927887
+            scalar frpv5t1 = .8825612843036652
+            scalar frpv5t2 = .8469465672969818
+            scalar frpv5t3 = .3660598695278168
+            scalar frpv5t4 = .2025036796927452
+            scalar frpv5t5 = .2872826039791107
+            scalar frpv5t6 = .4653258562088013
+            scalar frpv5t7 = .1400555863976479
+            scalar frpv5t8 = .1574170738458633
+            scalar frpv5t9 = .4657467633485794
+            scalar jppv5t1 = .35573750436306
+            scalar jppv5t2 = .1152342602610588
+            scalar jppv5t3 = .1631318606436253
+            scalar jppv5t4 = .0757832635194063
+            scalar jppv5t5 = .1017812207341194
+            scalar jppv5t6 = .2928691297769547
+            scalar jppv5t7 = .055604850128293
+            scalar jppv5t8 = .100756661593914
+            scalar jppv5t9 = .1222495377063751
+            scalar krpv5t1 = .8185668985048929
+            scalar krpv5t2 = .6020206312338511
+            scalar krpv5t3 = .3236140956481298
+            scalar krpv5t4 = .1556307151913643
+            scalar krpv5t5 = .1193511672317982
+            scalar krpv5t6 = .4500729689995448
+            scalar krpv5t7 = .0951312469939391
+            scalar krpv5t8 = .0886109080165625
+            scalar krpv5t9 = .1696060175697009
+            scalar sepv5t1 = .8450232684612274
+            scalar sepv5t2 = .6711944460868835
+            scalar sepv5t3 = .3627754122018814
+            scalar sepv5t4 = .0971311420202255
+            scalar sepv5t5 = .1414916843175888
+            scalar sepv5t6 = .3773355275392533
+            scalar sepv5t7 = .1273318819701671
+            scalar sepv5t8 = .1498006224632263
+            scalar sepv5t9 = .3762431487441063
+            scalar ukpv5t1 = .7629622757434845
+            scalar ukpv5t2 = .5699417769908905
+            scalar ukpv5t3 = .3627677321434021
+            scalar ukpv5t4 = .1191498592495918
+            scalar ukpv5t5 = .1704690784215927
+            scalar ukpv5t6 = .7524578630924225
+            scalar ukpv5t7 = .2118858695030212
+            scalar ukpv5t8 = .1997385486960411
+            scalar ukpv5t9 = .4332509458065033
+            scalar uspv5t1 = .7694943130016327
+            scalar uspv5t2 = .6171998143196106
+            scalar uspv5t3 = .3263619571924209
+            scalar uspv5t4 = .1621687203645706
+            scalar uspv5t5 = .2337624445557594
+            scalar uspv5t6 = .584399265050888
+            scalar uspv5t7 = .202683687210083
+            scalar uspv5t8 = .2024155139923096
+            scalar uspv5t9 = .3692317962646484
         /*}}}*/
         /*pv6 scalars{{{*/
-            scalar frpv6t1 = .9008320212364197
-            scalar frpv6t2 = .8700130343437195
-            scalar frpv6t3 = .3925652384757995
-            scalar frpv6t4 = .2262740626931191
-            scalar frpv6t5 = .315827864408493
-            scalar frpv6t6 = .5204449146986008
-            scalar frpv6t7 = .1807365253567696
-            scalar frpv6t8 = .1997570812702179
-            scalar frpv6t9 = .5318299442529678
-            scalar jppv6t1 = .5435693442821503
-            scalar jppv6t2 = .2412948355078697
-            scalar jppv6t3 = .2639788746833801
-            scalar jppv6t4 = .110128266364336
-            scalar jppv6t5 = .1892142787575722
-            scalar jppv6t6 = .4267252624034882
-            scalar jppv6t7 = .1195139169692993
-            scalar jppv6t8 = .1806850209832191
-            scalar jppv6t9 = .206596414744854
-            scalar krpv6t1 = .8633189102013906
-            scalar krpv6t2 = .6834552983442942
-            scalar krpv6t3 = .3841019968191783
-            scalar krpv6t4 = .2107924794157346
-            scalar krpv6t5 = .1653599664568901
-            scalar krpv6t6 = .5723810444275538
-            scalar krpv6t7 = .1481623401244481
-            scalar krpv6t8 = .1343461287518342
-            scalar krpv6t9 = .2317810182770093
-            scalar sepv6t1 = .8716694951057434
-            scalar sepv6t2 = .7242617785930634
-            scalar sepv6t3 = .3970932722091675
-            scalar sepv6t4 = .1156138099730015
-            scalar sepv6t5 = .1695046126842499
-            scalar sepv6t6 = .4317498177289963
-            scalar sepv6t7 = .1639791741967201
-            scalar sepv6t8 = .1759012952446938
-            scalar sepv6t9 = .4320654809474945
-            scalar ukpv6t1 = .8080550611019135
-            scalar ukpv6t2 = .6289283692836761
-            scalar ukpv6t3 = .391408109664917
-            scalar ukpv6t4 = .14179353043437
-            scalar ukpv6t5 = .2055666238069534
-            scalar ukpv6t6 = .7956693291664123
-            scalar ukpv6t7 = .2596901804208755
-            scalar ukpv6t8 = .2411232426762581
-            scalar ukpv6t9 = .4771475315093994
-            scalar uspv6t1 = .7841616094112396
-            scalar uspv6t2 = .6267612993717193
-            scalar uspv6t3 = .3604522466659546
-            scalar uspv6t4 = .1895810797810555
-            scalar uspv6t5 = .2624601721763611
-            scalar uspv6t6 = .6558062553405761
-            scalar uspv6t7 = .2574362307786942
-            scalar uspv6t8 = .2601524576544761
-            scalar uspv6t9 = .4187516689300537
+            scalar frpv6t1 = .9009915649890899
+            scalar frpv6t2 = .8699919641017914
+            scalar frpv6t3 = .3930564939975739
+            scalar frpv6t4 = .2266863897442818
+            scalar frpv6t5 = .3183891445398331
+            scalar frpv6t6 = .5197837769985199
+            scalar frpv6t7 = .1803509265184403
+            scalar frpv6t8 = .1988780423998833
+            scalar frpv6t9 = .5345491856336594
+            scalar jppv6t1 = .4345595568418503
+            scalar jppv6t2 = .2102439492940903
+            scalar jppv6t3 = .2314120769500732
+            scalar jppv6t4 = .1070369176566601
+            scalar jppv6t5 = .1462159648537636
+            scalar jppv6t6 = .3483210593461991
+            scalar jppv6t7 = .1091445028781891
+            scalar jppv6t8 = .1358475655317307
+            scalar jppv6t9 = .1683125741779804
+            scalar krpv6t1 = .8674003581206003
+            scalar krpv6t2 = .6879901091257731
+            scalar krpv6t3 = .3970663497845332
+            scalar krpv6t4 = .2166199336449305
+            scalar krpv6t5 = .1671404441197713
+            scalar krpv6t6 = .5679148981968561
+            scalar krpv6t7 = .1491746989389261
+            scalar krpv6t8 = .1327654160559177
+            scalar krpv6t9 = .2365531449516614
+            scalar sepv6t1 = .870892059803009
+            scalar sepv6t2 = .7229444265365601
+            scalar sepv6t3 = .3969927340745926
+            scalar sepv6t4 = .1160045772790909
+            scalar sepv6t5 = .1698346272110939
+            scalar sepv6t6 = .43680459856987
+            scalar sepv6t7 = .1634046018123627
+            scalar sepv6t8 = .1753537960350514
+            scalar sepv6t9 = .429824934899807
+            scalar ukpv6t1 = .8078438162803649
+            scalar ukpv6t2 = .6270740509033204
+            scalar ukpv6t3 = .3929225951433182
+            scalar ukpv6t4 = .1423728562891483
+            scalar ukpv6t5 = .2045011237263679
+            scalar ukpv6t6 = .7949646234512329
+            scalar ukpv6t7 = .2595373183488846
+            scalar ukpv6t8 = .2407388716936111
+            scalar ukpv6t9 = .4795669734477997
+            scalar uspv6t1 = .7961133122444153
+            scalar uspv6t2 = .6537506580352783
+            scalar uspv6t3 = .3599831998348236
+            scalar uspv6t4 = .1919577479362488
+            scalar uspv6t5 = .2714015424251556
+            scalar uspv6t6 = .651655238866806
+            scalar uspv6t7 = .2571355566382408
+            scalar uspv6t8 = .2579497739672661
+            scalar uspv6t9 = .4309220045804977
         /*}}}*/
     /*care scalars{{{*/
         scalar frcaret1 = 1
@@ -170,60 +170,60 @@
         scalar uscaret9 = .6049211204051972
     /*}}}*/
         /*rent scalars{{{*/
-            scalar frrtt1 = .1501409855067322
-            scalar frrtt2 = .1818442763920757
-            scalar frrtt3 = .1182751992018893
-            scalar frrtt4 = .1391242563950073
-            scalar frrtt5 = .1638426387500658
-            scalar frrtt6 = .1553707281098468
-            scalar frrtt7 = .1677285788289737
-            scalar frrtt8 = .1699936509132385
-            scalar frrtt9 = .1561719009303488
-            scalar jprtt1 = .147425701469183
-            scalar jprtt2 = .1162389807403088
-            scalar jprtt3 = .1180476047098637
-            scalar jprtt4 = .1099310882389545
-            scalar jprtt5 = .1379492312669754
-            scalar jprtt6 = .2180543426424265
-            scalar jprtt7 = .1438057027757168
-            scalar jprtt8 = .1401426926255226
-            scalar jprtt9 = .1475979946553707
-            scalar krrtt1 = .0007139500618602
-            scalar krrtt2 = .0001565348587368
-            scalar krrtt3 = .0010929139680229
-            scalar krrtt4 = .0002361008373555
-            scalar krrtt5 = .0000398090730111
-            scalar krrtt6 = 0
-            scalar krrtt7 = .0000155394069831
-            scalar krrtt8 = .0000853161133515
-            scalar krrtt9 = 0
-            scalar sertt1 = .1645832359790802
-            scalar sertt2 = .0495460584759712
-            scalar sertt3 = .1344752181961667
-            scalar sertt4 = .0611648671329021
-            scalar sertt5 = .051773127168417
-            scalar sertt6 = .2926333218812943
-            scalar sertt7 = .1341796860098839
-            scalar sertt8 = .152448220551014
-            scalar sertt9 = .2821669429540634
-            scalar ukrtt1 = .0614068694412708
-            scalar ukrtt2 = .0231423530727625
-            scalar ukrtt3 = .2010756507515907
-            scalar ukrtt4 = .1087394431233406
-            scalar ukrtt5 = .1128127112984657
-            scalar ukrtt6 = .5216966480016708
-            scalar ukrtt7 = .1979364678263664
-            scalar ukrtt8 = .1581566087901592
-            scalar ukrtt9 = .1370696105062962
-            scalar usrtt1 = .0113490806892514
-            scalar usrtt2 = .0064387765713036
-            scalar usrtt3 = .0223130209371448
-            scalar usrtt4 = .0074667093809694
-            scalar usrtt5 = .0047223703702912
-            scalar usrtt6 = .0047818269347772
-            scalar usrtt7 = .0016347891592886
-            scalar usrtt8 = .001254449330736
-            scalar usrtt9 = .0014345584670082
+            scalar frrentt1 = .1501754906355927
+            scalar frrentt2 = .1818442763920757
+            scalar frrentt3 = .1183085360797122
+            scalar frrentt4 = .1391242563950073
+            scalar frrentt5 = .1638426387500658
+            scalar frrentt6 = .1553707281098468
+            scalar frrentt7 = .1677285788289737
+            scalar frrentt8 = .1699936509132385
+            scalar frrentt9 = .1561719009303488
+            scalar jprentt1 = .147425701469183
+            scalar jprentt2 = .1162389807403088
+            scalar jprentt3 = .1180476047098637
+            scalar jprentt4 = .1099310882389545
+            scalar jprentt5 = .1379492312669754
+            scalar jprentt6 = .2180543426424265
+            scalar jprentt7 = .1438057027757168
+            scalar jprentt8 = .1401426926255226
+            scalar jprentt9 = .1475979946553707
+            scalar krrentt1 = .0007139500618602
+            scalar krrentt2 = .0001565348587368
+            scalar krrentt3 = .0010929139680229
+            scalar krrentt4 = .0002361008373555
+            scalar krrentt5 = .0000398090730111
+            scalar krrentt6 = 0
+            scalar krrentt7 = .0000155394069831
+            scalar krrentt8 = .0000853161133515
+            scalar krrentt9 = 0
+            scalar serentt1 = .1645832359790802
+            scalar serentt2 = .0495460584759712
+            scalar serentt3 = .1344752181961667
+            scalar serentt4 = .0611648671329021
+            scalar serentt5 = .051773127168417
+            scalar serentt6 = .2926333218812943
+            scalar serentt7 = .1341796860098839
+            scalar serentt8 = .152448220551014
+            scalar serentt9 = .2821669429540634
+            scalar ukrentt1 = .0614068694412708
+            scalar ukrentt2 = .0231423530727625
+            scalar ukrentt3 = .2013983383774757
+            scalar ukrentt4 = .1087394431233406
+            scalar ukrentt5 = .1128127112984657
+            scalar ukrentt6 = .5216966480016708
+            scalar ukrentt7 = .1979364678263664
+            scalar ukrentt8 = .1581566087901592
+            scalar ukrentt9 = .1370696105062962
+            scalar usrentt1 = .0113490806892514
+            scalar usrentt2 = .0064387765713036
+            scalar usrentt3 = .0223130209371448
+            scalar usrentt4 = .0074667093809694
+            scalar usrentt5 = .0047223703702912
+            scalar usrentt6 = .0047818269347772
+            scalar usrentt7 = .0016347891592886
+            scalar usrentt8 = .001254449330736
+            scalar usrentt9 = .0014345584670082
         /*}}}*/
         /*health scalars{{{*/
             /*유럽 2009-2018 10개년 평균*/
@@ -702,79 +702,119 @@
         /*}}}*/
     /*}}}*/
     foreach k of local datalist {
-        qui {
+        qui{
         /*자료호출*/
             use $`k'20h, clear
-            merge 1:m hid using $`k'20p, nogen 
         /*변수조작*/
-            /*변수 생성*/
-                gen min     = hitotal - hpublic
-                gen pwgt    = hpopwgt * nhhmem
+            /*변수생성 : 국가별 예외*/
+                if "`k'" == "jp" | "`k'" == "kr" {
+                    drop hpublic
+                    egen hpublic = rowtotal(hipubsoc hi31 hi32)
+                        label var hpublic "Public tasfers(replaced)"
+                }
+            /*변수생성*/
+                gen min        = hitotal - hpublic
+                    label var min "Market Income"
+                gen hpwgt      = hpopwgt * nhhmem
+                    label var hpwgt "Weight" 
                 gen nhhmem1864 = nhhmem - nhhmem65 - nhhmem17
-            /*변수 생성 : 균등화 소득*/
-                gen ehhmen    = sqrt(nhhmem)
-                gen emin      = min / ehhmen
+                    label var nhhmem1864 "Number of Household member, age 18-64"
+            /*변수생성 : 균등화 소득*/
+                gen ehhmen = sqrt(nhhmem)
+                gen edhi   = dhi / ehhmen
+                    label var edhi "Equiv. disposable Income"
+                gen emin   = min / ehhmen
+                    label var emin "Equiv. Market Income"
             /*변수생성 : 가구유형*/
-                capture drop hhtype
-                gen hhtype = .
-                replace hhtype = 1 if nhhmem == 1 & nhhmem65 == 1 // 노인 1인
-                replace hhtype = 2 if nhhmem >= 2 & nhhmem == nhhmem65 // 노인만 2인 이상
-                replace hhtype = 3 if nhhmem == 1 & nhhmem1864 == 1 // 근로연령 1인
-                replace hhtype = 4 if nhhmem == 2 & nhhmem1864 == 2 //근로연령만 2인 
-                replace hhtype = 5 if missing(hhtype) & ((nhhmem65 + nhhmem1864) >= 1 & nhhmem17 == 0) 
+                capture drop hht
+                gen hht = .
+                label var hht "Household Category"
+                replace hht = 1 if nhhmem == 1 & nhhmem65 == 1 // 노인 1인
+                replace hht = 2 if nhhmem >= 2 & nhhmem == nhhmem65 // 노인만 2인 이상
+                replace hht = 3 if nhhmem == 1 & nhhmem1864 == 1 // 근로연령 1인
+                replace hht = 4 if nhhmem == 2 & nhhmem1864 == 2 //근로연령만 2인 
+                replace hht = 5 if missing(hht) & ((nhhmem65 + nhhmem1864) >= 1 & nhhmem17 == 0) 
                     // 노인+ 근로연령(아동없음). missing 안걸면 1-4 유형 가구를 덮어씀.
-                replace hhtype = 6 if missing(hhtype) & (nhhmem65 >=1 & nhhmem1864 == 0 & nhhmem17 >= 1) | (nhhmem65 == 0 & nhhmem1864 == 1 & nhhmem17 >= 1) 
+                replace hht = 6 if missing(hht) & (nhhmem65 >=1 & nhhmem1864 == 0 & nhhmem17 >= 1) | (nhhmem65 == 0 & nhhmem1864 == 1 & nhhmem17 >= 1) 
                     // 조손가구 또는 한부모가구 : 정의가 튄다.
-                replace hhtype = 7 if missing(hhtype) & nhhmem65 == 0 & nhhmem1864 == 2 & nhhmem17 >= 1 // 근로연령 2인 + 아동
-                replace hhtype = 8 if missing(hhtype) & nhhmem1864 >= 3 // 근로연령 3인 이상 + 아동(노인 무관)
-                replace hhtype = 9 if missing(hhtype) //기타
-        /*위험도 할당{{{*/
+                replace hht = 7 if missing(hht) & nhhmem65 == 0 & nhhmem1864 == 2 & nhhmem17 >= 1 // 근로연령 2인 + 아동
+                replace hht = 8 if missing(hht) & nhhmem1864 >= 3 // 근로연령 3인 이상 + 아동(노인 무관)
+                replace hht = 9 if missing(hht) //기타
+        /*변수 생성 : 가중 분위수 집단*/
+            xtile dcgroup = emin [aw=hpwgt], nq(10)
+            xtile pcgroup = emin [aw=hpwgt], nq(100)
+        /*가구위험도 할당{{{*/
             /*pv 위험도 할당{{{*/
             gen rpv5 = .
-                replace rpv5 = `k'pv5t1 if hhtype==1
-                replace rpv5 = `k'pv5t2 if hhtype==2
-                replace rpv5 = `k'pv5t3 if hhtype==3
-                replace rpv5 = `k'pv5t4 if hhtype==4
-                replace rpv5 = `k'pv5t5 if hhtype==5
-                replace rpv5 = `k'pv5t6 if hhtype==6
-                replace rpv5 = `k'pv5t7 if hhtype==7
-                replace rpv5 = `k'pv5t8 if hhtype==8
-                replace rpv5 = `k'pv5t9 if hhtype==9
+                replace rpv5 = `k'pv5t1 if hht==1
+                replace rpv5 = `k'pv5t2 if hht==2
+                replace rpv5 = `k'pv5t3 if hht==3
+                replace rpv5 = `k'pv5t4 if hht==4
+                replace rpv5 = `k'pv5t5 if hht==5
+                replace rpv5 = `k'pv5t6 if hht==6
+                replace rpv5 = `k'pv5t7 if hht==7
+                replace rpv5 = `k'pv5t8 if hht==8
+                replace rpv5 = `k'pv5t9 if hht==9
             gen rpv6 = .
-                replace rpv6 = `k'pv6t1 if hhtype==1
-                replace rpv6 = `k'pv6t2 if hhtype==2
-                replace rpv6 = `k'pv6t3 if hhtype==3
-                replace rpv6 = `k'pv6t4 if hhtype==4
-                replace rpv6 = `k'pv6t5 if hhtype==5
-                replace rpv6 = `k'pv6t6 if hhtype==6
-                replace rpv6 = `k'pv6t7 if hhtype==7
-                replace rpv6 = `k'pv6t8 if hhtype==8
-                replace rpv6 = `k'pv6t9 if hhtype==9
+                replace rpv6 = `k'pv6t1 if hht==1
+                replace rpv6 = `k'pv6t2 if hht==2
+                replace rpv6 = `k'pv6t3 if hht==3
+                replace rpv6 = `k'pv6t4 if hht==4
+                replace rpv6 = `k'pv6t5 if hht==5
+                replace rpv6 = `k'pv6t6 if hht==6
+                replace rpv6 = `k'pv6t7 if hht==7
+                replace rpv6 = `k'pv6t8 if hht==8
+                replace rpv6 = `k'pv6t9 if hht==9
             /*}}}*/
             /*care 위험도 할당{{{*/
             gen care = .
-                replace care = `k'caret1 if hhtype==1
-                replace care = `k'caret2 if hhtype==2
-                replace care = `k'caret3 if hhtype==3
-                replace care = `k'caret4 if hhtype==4
-                replace care = `k'caret5 if hhtype==5
-                replace care = `k'caret6 if hhtype==6
-                replace care = `k'caret7 if hhtype==7
-                replace care = `k'caret8 if hhtype==8
-                replace care = `k'caret9 if hhtype==9
+                replace care = `k'caret1 if hht==1
+                replace care = `k'caret2 if hht==2
+                replace care = `k'caret3 if hht==3
+                replace care = `k'caret4 if hht==4
+                replace care = `k'caret5 if hht==5
+                replace care = `k'caret6 if hht==6
+                replace care = `k'caret7 if hht==7
+                replace care = `k'caret8 if hht==8
+                replace care = `k'caret9 if hht==9
             /*}}}*/
             /*rent 위험도 할당{{{*/
             gen rent = .
-                replace rent = `k'rtt1 if hhtype==1
-                replace rent = `k'rtt2 if hhtype==2
-                replace rent = `k'rtt3 if hhtype==3
-                replace rent = `k'rtt4 if hhtype==4
-                replace rent = `k'rtt5 if hhtype==5
-                replace rent = `k'rtt6 if hhtype==6
-                replace rent = `k'rtt7 if hhtype==7
-                replace rent = `k'rtt8 if hhtype==8
-                replace rent = `k'rtt9 if hhtype==9
+                replace rent = `k'rentt1 if hht==1
+                replace rent = `k'rentt2 if hht==2
+                replace rent = `k'rentt3 if hht==3
+                replace rent = `k'rentt4 if hht==4
+                replace rent = `k'rentt5 if hht==5
+                replace rent = `k'rentt6 if hht==6
+                replace rent = `k'rentt7 if hht==7
+                replace rent = `k'rentt8 if hht==8
+                replace rent = `k'rentt9 if hht==9
             /*}}}*/
+        /*}}}*/
+        /*소득분위별 가구위험도 평균계산{{{*/
+            forvalue i = 1/10 {
+                summarize rpv5 [aw=hpwgt] if dcgroup == `i' , meanonly
+                    local mrpv5d`i' = r(mean)
+                summarize rpv6 [aw=hpwgt] if dcgroup == `i' , meanonly
+                    local mrpv6d`i' = r(mean)
+                summarize care [aw=hpwgt] if dcgroup == `i' , meanonly
+                    local cared`i' = r(mean)
+                summarize rent [aw=hpwgt] if dcgroup == `i' , meanonly
+                    local rentd`i' = r(mean)
+            }
+            forvalue i = 1/100 {
+                summarize rpv5 [aw=hpwgt] if pcgroup == `i' , meanonly
+                    local mrpv5p`i' = r(mean)
+                summarize rpv6 [aw=hpwgt] if pcgroup == `i' , meanonly
+                    local mrpv6p`i' = r(mean)
+                summarize care [aw=hpwgt] if pcgroup == `i' , meanonly
+                    local carep`i' = r(mean)
+                summarize rent [aw=hpwgt] if pcgroup == `i' , meanonly
+                    local rentp`i' = r(mean)
+            }
+            /*}}}*/
+        merge 1:m hid using $`k'20p, nogen 
+        /*개인위험도 할당{{{*/
             /*health 위험도 할당{{{*/
             gen health = .
                 if "`k'" == "fr" {
@@ -1371,34 +1411,154 @@
                     }
             /*}}}*/
         /*}}}*/
-        /*변수 생성 : 가중 분위수 집단*/
-            xtile dcgroup = emin [aw=hpopwgt], nq(10)
-            xtile pcgroup = emin [aw=hpopwgt], nq(100)
-        /*소득분위별 위험도 평균계산*/
+        /*개인위험도 기반 가구위험도 계산{{{*/
+            /*미취업*/
+                gen noemp = 1 - employ/100
+                drop temp1
+                /*변수 생성 : 모두미취업*/
+                    gen temp1  = ln(noemp) 
+                    bys hid : egen temp2 = total(temp1)
+                    gen anoemp = exp(temp2)
+                /*변수 생성 : 미취업있음*/
+                    gen temp3  = 1 - noemp
+                    gen temp4  = ln(temp3) 
+                    bys hid : egen temp5 = total(temp4)
+                    gen xnoemp = 1 - exp(temp5)
+            /*비정규직*/
+                replace ptjob = ptjob/100
+                drop temp1 temp2 temp3 temp4 temp5
+                /*변수 생성 : 모두비정규직*/
+                    gen temp1  = ln(ptjob) 
+                    bys hid : egen temp2 = total(temp1)
+                    gen aptjob = exp(temp2)
+                /*변수 생성 : 비정규직 있음*/
+                    gen temp3  = 1 - ptjob
+                    gen temp4  = ln(temp3) 
+                    bys hid : egen temp5 = total(temp4)
+                    gen xptjob = 1 - exp(temp5)
+            /*사회적 고립*/
+                replace isolt = isolt/100
+                drop temp1 temp2 temp3 temp4 temp5
+                /*변수 생성 : 모두고립*/
+                    gen temp1  = ln(isolt) 
+                    bys hid : egen temp2 = total(temp1)
+                    gen aisolt = exp(temp2)
+                /*변수 생성 : 고립자 있음*/
+                    gen temp3  = 1 - isolt
+                    gen temp4  = ln(temp3) 
+                    bys hid : egen temp5 = total(temp4)
+                    gen xisolt = 1 - exp(temp5)
+            /*실업*/
+                replace unemp = unemp/100
+                drop temp1 temp2 temp3 temp4 temp5
+                /*변수 생성 : 모두실업*/
+                    gen temp1  = ln(unemp) 
+                    bys hid : egen temp2 = total(temp1)
+                    gen aunemp = exp(temp2)
+                /*변수 생성 : 실업있음*/
+                    gen temp3  = 1 - unemp
+                    gen temp4  = ln(temp3) 
+                    bys hid : egen temp5 = total(temp4)
+                    gen xunemp = 1 - exp(temp5)
+            /*건강*/
+                replace health = health/100
+                drop temp1 temp2 temp3 temp4 temp5
+                /*변수 생성 : 모두나쁨*/
+                    gen temp1  = ln(health) 
+                    bys hid : egen temp2 = total(temp1)
+                    gen abhlth = exp(temp2)
+                /*변수 생성 : 나쁜사람있음*/
+                    gen temp3  = 1 - health
+                    gen temp4  = ln(temp3) 
+                    bys hid : egen temp5 = total(temp4)
+                    gen xbhlth = 1 - exp(temp5)
+        /*}}}*/
+        /*소득분위별 가구위험도 평균계산{{{*/
+            keep if relation == 1000
             forvalue i = 1/10 {
-                summarize rpv5 [aw=hpopwgt] if dcgroup == `i' , meanonly
-                local mrpv5d`i' = r(mean)
-                summarize rpv6 [aw=hpopwgt] if dcgroup == `i' , meanonly
-                local mrpv6d`i' = r(mean)
+                summarize abhlth  [aw=hpwgt] if dcgroup == `i' , meanonly
+                    local abhlthd`i' = r(mean)
+                summarize xbhlth  [aw=hpwgt] if dcgroup == `i' , meanonly
+                    local xbhlthd`i' = r(mean)
+                summarize anoemp  [aw=hpwgt] if dcgroup == `i' , meanonly
+                    local anoempd`i' = r(mean)
+                summarize xnoemp  [aw=hpwgt] if dcgroup == `i' , meanonly
+                    local xnoempd`i' = r(mean)
+                summarize aptjob  [aw=hpwgt] if dcgroup == `i' , meanonly
+                    local aptjobd`i' = r(mean)
+                summarize xptjob  [aw=hpwgt] if dcgroup == `i' , meanonly
+                    local xptjobd`i' = r(mean)
+                summarize aisolt  [aw=hpwgt] if dcgroup == `i' , meanonly
+                    local aisoltd`i' = r(mean)
+                summarize xisolt  [aw=hpwgt] if dcgroup == `i' , meanonly
+                    local xisoltd`i' = r(mean)
+                summarize aunemp  [aw=hpwgt] if dcgroup == `i' , meanonly
+                    local aunempd`i' = r(mean)
+                summarize xunemp  [aw=hpwgt] if dcgroup == `i' , meanonly
+                    local xunempd`i' = r(mean)
             }
             forvalue i = 1/100 {
-                summarize rpv5 [aw=hpopwgt] if pcgroup == `i' , meanonly
-                local mrpv5p`i' = r(mean)
-                summarize rpv6 [aw=hpopwgt] if pcgroup == `i' , meanonly
-                local mrpv6p`i' = r(mean)
+                summarize abhlth  [aw=hpwgt] if pcgroup == `i' , meanonly
+                    local abhlthp`i' = r(mean)
+                summarize xbhlth  [aw=hpwgt] if pcgroup == `i' , meanonly
+                    local xbhlthp`i' = r(mean)
+                summarize anoemp  [aw=hpwgt] if pcgroup == `i' , meanonly
+                    local anoempp`i' = r(mean)
+                summarize xnoemp  [aw=hpwgt] if pcgroup == `i' , meanonly
+                    local xnoempp`i' = r(mean)
+                summarize aptjob  [aw=hpwgt] if pcgroup == `i' , meanonly
+                    local aptjobp`i' = r(mean)
+                summarize xptjob  [aw=hpwgt] if pcgroup == `i' , meanonly
+                    local xptjobp`i' = r(mean)
+                summarize aisolt  [aw=hpwgt] if pcgroup == `i' , meanonly
+                    local aisoltp`i' = r(mean)
+                summarize xisolt  [aw=hpwgt] if pcgroup == `i' , meanonly
+                    local xisoltp`i' = r(mean)
+                summarize aunemp  [aw=hpwgt] if pcgroup == `i' , meanonly
+                    local aunempp`i' = r(mean)
+                summarize xunemp  [aw=hpwgt] if pcgroup == `i' , meanonly
+                    local xunempp`i' = r(mean)
             }
-        }
-        /*결과 출력*/
+            /*}}}*/
+    }
+        /*결과 출력{{{*/
             local cname = cname[1]
             local iso2 = iso2[1]
             local iso3 = iso3[1]
             if "`k'" == "fr" {
-                di as text "cname,iso2,iso3,group,grtype,mrpv5,mrpv6"
+                di as text "cname,iso2,name,group,grcat,value"
             }
             forvalue i = 1/10 {
-                di as text "`cname',`iso2',`iso3',`i',1,`mrpv5d`i'',`mrpv6d`i''"
+                di as text "`cname',`iso2',pv5,`i',1,`mrpv5d`i''"
+                di as text "`cname',`iso2',pv6,`i',1,`mrpv6d`i''"
+                di as text "`cname',`iso2',care,`i',1,`cared`i''"
+                di as text "`cname',`iso2',rent,`i',1,`rentd`i''"
+                di as text "`cname',`iso2',abhlth,`i',1,`abhlthd`i''"
+                di as text "`cname',`iso2',xbhlth,`i',1,`xbhlthd`i''"
+                di as text "`cname',`iso2',anoemp,`i',1,`anoempd`i''"
+                di as text "`cname',`iso2',xnoemp,`i',1,`xnoempd`i''"
+                di as text "`cname',`iso2',aptjob,`i',1,`aptjobd`i''"
+                di as text "`cname',`iso2',xptjob,`i',1,`xptjobd`i''"
+                di as text "`cname',`iso2',aisolt,`i',1,`aisoltd`i''"
+                di as text "`cname',`iso2',xisolt,`i',1,`xisoltd`i''"
+                di as text "`cname',`iso2',aunemp,`i',1,`aunempd`i''"
+                di as text "`cname',`iso2',xunemp,`i',1,`xunempd`i''"
             }
             forvalue i = 1/100 {
-                di as text "`cname',`iso2',`iso3',`i',2,`mrpv5p`i'',`mrpv6p`i''"
+                di as text "`cname',`iso2',pv5,`i',2,`mrpv5p`i''"
+                di as text "`cname',`iso2',pv6,`i',2,`mrpv6p`i''"
+                di as text "`cname',`iso2',care,`i',2,`carep`i''"
+                di as text "`cname',`iso2',rent,`i',2,`rentp`i''"
+                di as text "`cname',`iso2',abhlth,`i',2,`abhlthp`i''"
+                di as text "`cname',`iso2',xbhlth,`i',2,`xbhlthp`i''"
+                di as text "`cname',`iso2',anoemp,`i',2,`anoempp`i''"
+                di as text "`cname',`iso2',xnoemp,`i',2,`xnoempp`i''"
+                di as text "`cname',`iso2',aptjob,`i',2,`aptjobp`i''"
+                di as text "`cname',`iso2',xptjob,`i',2,`xptjobp`i''"
+                di as text "`cname',`iso2',aisolt,`i',2,`aisoltp`i''"
+                di as text "`cname',`iso2',xisolt,`i',2,`xisoltp`i''"
+                di as text "`cname',`iso2',aunemp,`i',2,`aunempp`i''"
+                di as text "`cname',`iso2',xunemp,`i',2,`xunempp`i''"
             }
+        /*}}}*/
     }

@@ -1,5 +1,5 @@
 /*호출변수 목록 생성*/
-    local datalist fr se kr jp uk us
+    local dataset fr se kr jp uk us
     /*care scalars{{{*/
         scalar frcaret1 = 1
         scalar frcaret2 = 1
@@ -56,7 +56,7 @@
         scalar uscaret8 = .31909219622612
         scalar uscaret9 = .6049211204051972
     /*}}}*/
-    foreach k of local datalist {
+    foreach k of local dataset {
         qui {
         /*자료호출*/
             use $`k'20h, clear
@@ -75,30 +75,30 @@
                 gen ehhmen    = sqrt(nhhmem)
                 gen emin      = min / ehhmen
             /*변수생성 : 가구유형*/
-                capture drop hhtype
-                gen hhtype = .
-                replace hhtype = 1 if nhhmem == 1 & nhhmem65 == 1 // 노인 1인
-                replace hhtype = 2 if nhhmem >= 2 & nhhmem == nhhmem65 // 노인만 2인 이상
-                replace hhtype = 3 if nhhmem == 1 & nhhmem1864 == 1 // 근로연령 1인
-                replace hhtype = 4 if nhhmem == 2 & nhhmem1864 == 2 //근로연령만 2인 
-                replace hhtype = 5 if missing(hhtype) & ((nhhmem65 + nhhmem1864) >= 1 & nhhmem17 == 0) 
+                capture drop hht
+                gen hht = .
+                replace hht = 1 if nhhmem == 1 & nhhmem65 == 1 // 노인 1인
+                replace hht = 2 if nhhmem >= 2 & nhhmem == nhhmem65 // 노인만 2인 이상
+                replace hht = 3 if nhhmem == 1 & nhhmem1864 == 1 // 근로연령 1인
+                replace hht = 4 if nhhmem == 2 & nhhmem1864 == 2 //근로연령만 2인 
+                replace hht = 5 if missing(hht) & ((nhhmem65 + nhhmem1864) >= 1 & nhhmem17 == 0) 
                     // 노인+ 근로연령(아동없음). missing 안걸면 1-4 유형 가구를 덮어씀.
-                replace hhtype = 6 if missing(hhtype) & (nhhmem65 >=1 & nhhmem1864 == 0 & nhhmem17 >= 1) | (nhhmem65 == 0 & nhhmem1864 == 1 & nhhmem17 >= 1) 
+                replace hht = 6 if missing(hht) & (nhhmem65 >=1 & nhhmem1864 == 0 & nhhmem17 >= 1) | (nhhmem65 == 0 & nhhmem1864 == 1 & nhhmem17 >= 1) 
                     // 조손가구 또는 한부모가구 : 정의가 튄다.
-                replace hhtype = 7 if missing(hhtype) & nhhmem65 == 0 & nhhmem1864 == 2 & nhhmem17 >= 1 // 근로연령 2인 + 아동
-                replace hhtype = 8 if missing(hhtype) & nhhmem1864 >= 3 // 근로연령 3인 이상 + 아동(노인 무관)
-                replace hhtype = 9 if missing(hhtype) //기타
+                replace hht = 7 if missing(hht) & nhhmem65 == 0 & nhhmem1864 == 2 & nhhmem17 >= 1 // 근로연령 2인 + 아동
+                replace hht = 8 if missing(hht) & nhhmem1864 >= 3 // 근로연령 3인 이상 + 아동(노인 무관)
+                replace hht = 9 if missing(hht) //기타
         /*위험도 할당*/
             gen care = .
-                replace care = `k'caret1 if hhtype==1
-                replace care = `k'caret2 if hhtype==2
-                replace care = `k'caret3 if hhtype==3
-                replace care = `k'caret4 if hhtype==4
-                replace care = `k'caret5 if hhtype==5
-                replace care = `k'caret6 if hhtype==6
-                replace care = `k'caret7 if hhtype==7
-                replace care = `k'caret8 if hhtype==8
-                replace care = `k'caret9 if hhtype==9
+                replace care = `k'caret1 if hht==1
+                replace care = `k'caret2 if hht==2
+                replace care = `k'caret3 if hht==3
+                replace care = `k'caret4 if hht==4
+                replace care = `k'caret5 if hht==5
+                replace care = `k'caret6 if hht==6
+                replace care = `k'caret7 if hht==7
+                replace care = `k'caret8 if hht==8
+                replace care = `k'caret9 if hht==9
         /*변수 생성 : 가중 분위수 집단*/
             xtile dcgroup = emin [aw=hpopwgt], nq(10)
             xtile pcgroup = emin [aw=hpopwgt], nq(100)

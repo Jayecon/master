@@ -1,21 +1,13 @@
-/*호출변수 목록 생성*/
-    #delimit ;
-    local datalist
-        /*{{{*/
-        /*France*/
-            fr10 fr11 fr12 fr13 fr14 fr15 fr16 fr17 fr18 fr19
-        /*Japan*/
-            jp10 jp11 jp12 jp13 jp14 jp15 jp16 jp17 jp18 jp19
-        /*South Korea*/
-            kr12 kr14 kr16 kr17 kr18 kr19
-        /*Sweden*/
-            se10 se11 se12 se13 se14 se15 se16 se17 se18 se19
-        /*United Kingdom*/
-            uk10 uk11 uk12 uk13 uk14 uk15 uk16 uk17 uk18 uk19
-        /*United States*/
-            us10 us11 us12 us13 us14 us15 us16 us17 us18 us19
-        /*}}}*/ ;
-    #delimit cr
+    local datalist ///
+        /*list of country-year data{{{*/
+            fr10 fr11 fr12 fr13 fr14 fr15 fr16 fr17 fr18 fr19 /// France
+            jp10 jp11 jp12 jp13 jp14 jp15 jp16 jp17 jp18 jp19 /// Japan
+            kr12 kr14 kr16 kr17 kr18 kr19                     /// South Korea
+            se10 se11 se12 se13 se14 se15 se16 se17 se18 se19 /// Sweden
+            uk10 uk11 uk12 uk13 uk14 uk15 uk16 uk17 uk18 uk19 /// United Kingdom
+            us10 us11 us12 us13 us14 us15 us16 us17 us18 us19 /*United States*/
+        /*}}}*/ 
+
     foreach k of local datalist {
         qui {
         /*자료호출*/
