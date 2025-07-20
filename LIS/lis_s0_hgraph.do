@@ -47,4 +47,3 @@
                     graphexportpdf $mypdf/`k'_`i'_histogram.pdf
                 }
     }
-            /*merge 1:m hid using $`k'20p, nogen */

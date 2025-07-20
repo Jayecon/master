@@ -1,4 +1,9 @@
 use socialrisk.dta , clear
 
-gr bar mrpv5 mrpv6 ,over(dcgroup) by(cname)
-gr bar mrpv5 mrpv6 if iso2 == "kr" , over(dcgroup)
+gr bar xunemp aunemp if dcvalue ,over(group) by(cname)
+
+twoway (connect aunemp group if dcvalue ,sort by(cname)) ///
+    (connect xunemp group if dcvalue ,sort by(cname))
+
+twoway (connect pv5 group if pcvalue ,sort by(cname) msymbol(none)) ///
+    (connect pv6 group if pcvalue ,sort by(cname) msymbol(none))

@@ -713,8 +713,10 @@
                         label var hpublic "Public tasfers(replaced)"
                 }
             /*변수생성*/
-                gen min        = hitotal - hpublic
+                gen min        = hitotal - hpublic - hxvcont - hxiht
                     label var min "Market Income"
+                gen cin        = hitotal  - hxvcont - hxiht
+                    label var cin "Current Income"
                 gen hpwgt      = hpopwgt * nhhmem
                     label var hpwgt "Weight" 
                 gen nhhmem1864 = nhhmem - nhhmem65 - nhhmem17
@@ -725,6 +727,8 @@
                     label var edhi "Equiv. disposable Income"
                 gen emin   = min / ehhmen
                     label var emin "Equiv. Market Income"
+                gen ecin   = cin / ehhmen
+                    label var ecin "Equiv. Current Income"
             /*변수생성 : 가구유형*/
                 capture drop hht
                 gen hht = .

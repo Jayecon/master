@@ -3,7 +3,6 @@ tempfile tfile1
 cd  ~/GitHub/master/LIS
 
     import delimited "s2.csv",       delimiter(",") encoding(ISO-8859-1)clear
-        /*save `tfile1' , replace*/
 
     preserve
     local itr = 1
@@ -18,14 +17,13 @@ cd  ~/GitHub/master/LIS
             merge 1:1 cname grcat group using `tfile1' , nogen
             save `tfile1' , replace
         }
-        de
         restore , preserve
         local ++itr
     }
 
     use `tfile1' , clear
-    de
 
+    drop name
     label data "사회적 위험 from LIS"
     label var abhlth  "모두나쁜건강"
     label var aisolt  "모두사회적고립"
