@@ -1,12 +1,13 @@
 cd ~/dropbox/data/yfc
 
-use yfc if b1 & id , clear
+use yfc if b1 , clear
+    drop if dset == 0 & nx == 1 // 초기상담만 한 자료 삭제
 
 gen agrp = 2025 - q1
-recode agrp (0/19=1) (20/24=2) (25/29=3) (30/34=4) (35/99=5) 
-label var agrp "연령집단"
-label define AGRP 1 "19세 이하" 2 "20~24세" 3 "25~30세" 4 "30~34세" 5 "35세 이상"
-label value agrp AGRP
+    recode agrp (0/19=1) (20/24=2) (25/29=3) (30/34=4) (35/99=5) 
+    label var agrp "연령집단"
+    label define AGRP 1 "19세 이하" 2 "20~24세" 3 "25~30세" 4 "30~34세" 5 "35세 이상"
+    label value agrp AGRP
 
 forvalue i = 1/10 {
     gen mytu`i' = !missing(tu`i')
@@ -18,6 +19,8 @@ gr bar (sum) mytu* , over(agrp) stack percentages ytitle("") ///
     label(9 "센터활동") label(10 "기타")  position(3) col(1)) saving(time.gph, replace)
 
 preserve
+    local mybaroption over(tag) blabel(bar , format(%9.2fc) size(tiny)) legend(label(1 "초기상담") label(2 "25년 4월") label(3 "25년 7월") row(1)) graphregion(color(white))
+
     collapse lsns? , by(dset) 
     xpose , clear varname
     drop if _v == "dset"
@@ -33,8 +36,6 @@ preserve
         replace tag = "일상대화" if  _v == "lsns6"
         replace tag = "도움"     if  _v == "lsns7"
         replace tag = "친구" if  _v == "lsns8"
-
-    local mybaroption over(tag) blabel(bar , format(%9.2fc) size(tiny)) legend(label(1 "초기상담") label(2 "25년 4월") label(3 "25년 7월") row(1)) graphregion(color(white))
 
     gr bar v1 v2 v3  if fam , `mybaroption' saving(lsns_fam.gph, replace)
     gr bar v1 v2 v3  if fri , `mybaroption' saving(lsns_frd.gph, replace)
