@@ -1,4 +1,4 @@
-cd ~/dropbox/data/khp/rawdata1
+cd ~/dropbox/data/khp
 set tr off
 set traced 1
 
@@ -10,7 +10,7 @@ forvalue i = 8/18 {
 
 	di as text "YEAR == `year'"
    
-    use t`yr'hh , clear
+    use rawdata1/t`yr'hh , clear
         rename _all , upper
         isid HHID
         gen YEAR = `year'
