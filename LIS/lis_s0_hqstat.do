@@ -1,17 +1,9 @@
-        /*set of countrty-year data{{{*/
-        local dataset fr10 fr11 fr12 fr13 fr14 fr15 fr16 fr17 fr18 fr19 /// France
-            jp10 jp11 jp12 jp13 jp14 jp15 jp16 jp17 jp18 jp19 /// Japan
-            kr12 kr14 kr16 kr17 kr18 kr19                     /// South Korea
-            se10 se11 se12 se13 se14 se15 se16 se17 se18 se19 /// Sweden
-            uk10 uk11 uk12 uk13 uk14 uk15 uk16 uk17 uk18 uk19 /// United Kingdom
-            us10 us11 us12 us13 us14 us15 us16 us17 us18 us19 /*United States*/
-        /*}}}*/ 
+    local dataset fr jp kr se uk us
 
     foreach k of local dataset {
         qui {
         /*자료호출*/
-            use $`k'h, clear
-            /*merge 1:m hid using $`k'p, nogen */
+            use $`k'20h, clear
         /*변수조작*/
             /*변수생성 : 국가별 예외*/
                 if "`k'" == "jp" | "`k'" == "kr" {
@@ -49,22 +41,30 @@
                 replace hht = 7 if missing(hht) & nhhmem65 == 0 & nhhmem1864 == 2 & nhhmem17 >= 1 // 근로연령 2인 + 아동
                 replace hht = 8 if missing(hht) & nhhmem1864 >= 3 // 근로연령 3인 이상 + 아동(노인 무관)
                 replace hht = 9 if missing(hht) //기타
+        /*변수 생성 : 가중 분위수 집단*/
+            xtile dcgroup = emin [aw=hpwgt], nq(10)
         /*기초통계량 생산*/
             /*유형별 가구수*/
                 gen one = 1
-                sum one [aw = hpwgt] , meanonly
-                local hnum = round(r(sum_w))
-                forvalue i = 1/9 {
-                    sum one [aw = hpwgt] if hht == `i'
-                    local numt`i' = round(r(sum_w))
+                forvalue i = 1/10 {
+                    sum one [aw = hpwgt] if dcgroup == `i' , meanonly
+                    local hnumt`i' = round(r(sum_w))
+                }
+                forvalue i = 1/10 {
+                    forvalue j = 1/9 {
+                        sum one [aw = hpwgt] if hht == `j' & dcgroup == `i' ,meanonly
+                        local numq`i't`j' = round(r(sum_w))
+                    }
                 }
         }
         /*결과 출력*/
             local cname = cname[1]
             local iso2 = iso2[1]
             local year = year[1]
-            if "`k'" == "fr10" {
-                di as text "cname,iso2,year,hnum,numt1,numt2,numt3,numt4,numt5,numt6,numt7,numt8,numt9"
+            if "`k'" == "fr" {
+                di as text "cname,iso2,ft,hunm,numq1,numq2,numq3,numq4,numq5,numq6,numq7,numq8,numt9"
             }
-            di as text "`cname',`iso2',`year',`hnum',`numt1',`numt2',`numt3',`numt4',`numt5',`numt6',`numt7',`numt8',`numt9'"
+            forvalue i = 1/9 {
+                di as text "`cname',`iso2',`i',`hnumt`i'',`numq1t`i'',`numq2t`i'',`numq3t`i'',`numq4t`i'',`numq5t`i'',`numq6t`i'',`numq7t`i'',`numq8t`i'',`numq9t`i''"
+            }
     }
