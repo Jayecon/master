@@ -466,7 +466,7 @@
             scalar usme6064 = 57.9534
             scalar usme6599 = 22.0444
         /*}}}*/
-        /*ptjob scalars{{{*/
+        /*underemployment scalars{{{*/
             /* 전체 인구 대비 연령대 구분에 주의*/
             /*예 : krfv2029 한국 20-29세 여성 전체인구대비 비자발적 시간제 근로자비율(%)*/
             scalar frfv1524 = 4.7
@@ -1428,7 +1428,7 @@
                     gen temp4  = ln(temp3) 
                     bys hid : egen temp5 = total(temp4)
                     gen xnoemp = 1 - exp(temp5)
-            /*비정규직*/
+            /*불완전고용*/
                 replace ptjob = ptjob/100
                 drop temp1 temp2 temp3 temp4 temp5
                 /*변수 생성 : 모두비정규직*/

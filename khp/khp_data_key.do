@@ -14,7 +14,7 @@ forvalue i = 8/18 {
         rename _all , upper
         isid HHID
         gen YEAR = `year'
-        merge 1:m HHID using mt`yr'_i , nogen  
+        merge 1:m HHID using rawdata1/mt`yr'_i , nogen  
     if `i' == 8 {
         save `tfile' , replace
     }
@@ -26,4 +26,6 @@ forvalue i = 8/18 {
 
 label var YEAR "조사년도"
 label data "KHP Wave1 Key data"
+rename _all , low
+compress
 save khp_key.dta , replace

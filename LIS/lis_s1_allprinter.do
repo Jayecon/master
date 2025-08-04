@@ -1,11 +1,14 @@
-import delimited "~/GitHub/master/LIS/pv6_s1.csv", encoding(ISO-8859-1)
+import delimited "~/GitHub/master/LIS/s1.csv", encoding(ISO-8859-1)
     levelsof iso2 , local(clist)
-    local vlist pv6t1 pv6t2 pv6t3 pv6t4 pv6t5 pv6t6 pv6t7 pv6t8 pv6t9
+    levelsof rname , local(vlist)
 
-    foreach i of local clist { 
-        foreach j of local vlist {
-            sum `j' if iso2 == "`i'" , meanonly
-            local v`j' = r(mean)
-            di "scalar `i'`j' = `v`j''"
+    foreach j of local vlist {
+        foreach i of local clist { 
+            forvalue k =1/9 {
+                sum t`k' if iso2 == "`i'" & rname == "`j'" , meanonly
+                local v`j' = r(mean)
+                di "scalar `i'`j't`k' = `v`j''"
+            }
         }
+        di ""
     }

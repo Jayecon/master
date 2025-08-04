@@ -49,12 +49,6 @@
                 local l4 "모두나쁨(우축)"
                 local l5 "일부나쁨(우축)"
             }
-            else if "`i'" == "care" {
-                local v1 care
-                local v2
-                local l2 "돌봄위험 누적분포"
-                local l3 "돌봄위험(우축)"
-            }
             else if "`i'" == "isolation" {
                 local v1 aisolt
                 local v2 xisolt
@@ -62,6 +56,12 @@
                 local l3 "일부지지없음 누적분포"
                 local l4 "모두지지없음(우축)"
                 local l5 "일부지지없음(우축)"
+            }
+            else if "`i'" == "care" {
+                local v1 care
+                local v2
+                local l2 "돌봄위험 누적분포"
+                local l3 "돌봄위험(우축)"
             }
             if "`v2'" != "" {
                 glcurve `v1', sortvar(group) glvar(l`v1') lorenz nograph

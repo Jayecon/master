@@ -25,4 +25,6 @@ forvalue i = 8/18 {
 
 label var YEAR "조사년도"
 label data "KHP Wave1 Individual Data"
+rename _all , low
+compress
 save khp_ind.dta , replace
