@@ -26,6 +26,16 @@ program lsf
     ! ls -d */
 end
 
+capture program drop lsg
+program lsg
+    if "`1'" != "" {
+        ls "`1'/*.gph"
+    }
+    else {
+        ls *.gph
+    }
+end
+
 capture program drop lsd
 program lsd
     if "`1'" != "" {

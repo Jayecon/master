@@ -1,6 +1,4 @@
-    cdgit lis
-
-    local datalist fr se kr jp uk us
+    Glocal datalist fr se kr jp uk us
     foreach k of local datalist {
         use socialrisk if iso == "`k'" & pcvalue, clear
 
@@ -90,7 +88,7 @@
                     ylabel(0 "0%" 0.1 "10%" 0.2 "20%" 0.3 "30%" 0.4 "40%" 0.5 "50%" 0.6 "60%" 0.7 "70%" 0.8 "80%" 0.9 "90%" 1 "100%", axis(2) angle(0)) ///
                     legend(order(1 "균등분포" 2 "`l2'" 3 "`l3'") ///
                     size(small) region(lstyle(none)) row(2)) graphregion(color(white))
-                graph export "`k'_`i'.png", replace
+                graph export "~/dropbox/W_Social risk/`k'_`i'.png", replace
             }
         }
     }
