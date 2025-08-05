@@ -1,4 +1,5 @@
-import delimited "~/GitHub/master/LIS/s1.csv", encoding(ISO-8859-1)
+cd  ~/GitHub/master/LIS
+import delimited "s1.csv", encoding(ISO-8859-1)
     levelsof iso2 , local(clist)
     levelsof rname , local(vlist)
 
@@ -12,3 +13,8 @@ import delimited "~/GitHub/master/LIS/s1.csv", encoding(ISO-8859-1)
         }
         di ""
     }
+
+    collapse t? , by(cname rname)
+    drop if rname == "rent"
+
+save riskmean.dta , replace

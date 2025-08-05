@@ -1,3 +1,4 @@
+    /*호출자료 목록 생성*/
     local datalist fr se kr jp uk us
     /*Scalars{{{*/
         /*pv5 scalars{{{*/
@@ -465,7 +466,7 @@
             scalar usme6064 = 57.9534
             scalar usme6599 = 22.0444
         /*}}}*/
-        /*ptjob scalars{{{*/
+        /*underemployment scalars{{{*/
             /* 전체 인구 대비 연령대 구분에 주의*/
             /*예 : krfv2029 한국 20-29세 여성 전체인구대비 비자발적 시간제 근로자비율(%)*/
             scalar frfv1524 = 4.7
@@ -701,6 +702,7 @@
         /*}}}*/
     /*}}}*/
     foreach k of local datalist {
+        qui{
         /*자료호출*/
             use $`k'20h, clear
         /*변수조작*/
@@ -719,7 +721,6 @@
                     label var hpwgt "Weight" 
                 gen nhhmem1864 = nhhmem - nhhmem65 - nhhmem17
                     label var nhhmem1864 "Number of Household member, age 18-64"
-                gen netbnf = 
             /*변수생성 : 균등화 소득*/
                 gen ehhmen = sqrt(nhhmem)
                 gen edhi   = dhi / ehhmen
@@ -794,42 +795,14 @@
                 replace rent = `k'rentt9 if hht==9
             /*}}}*/
         /*}}}*/
-        /*가구 그래프 그리기{{{*/
-            capture drop p rl se kx ky ucl lcl kxx
-
-            svyset [pw=hpopwgt]
-
-            kdensity hitotal [aw=hpopwgt] , n(100) gen(kx ky) nograph
-            xtile kxx = kx , nq(100)
-            replace kxx = kxx / 100
-
-            svylorenz hitotal , ngp(100) pvar(p) lvar(rl) selvar(se)
-                /*CI가 필요한 경우*/
-                /*local half_alpha = (1 - `c(level)' / 100) / 2*/
-                /*gen lcl = rl + invnorm(`half_alpha') * se*/
-                /*gen ucl = rl + invnorm(1-`half_alpha') * se*/
-
-            graph twoway ///
-                (connect rl p, sort yaxis(1 1) msymbol(none)) ///
-                (function y = x, range(0 1) yaxis(1 1) ) ///
-                (connect ky kxx, sort yaxis(2 2) msymbol(none)) ///
-                , aspect(1) xtitle("Cumulative population share, p") ///
-                ytitle("Cumulative income share, poorest 100p%", axis(1)) ytitle(" ",axis(2)) ///
-                legend(label (1 "Lorenz") label(2 "Equality") label(3 "Density") ///
-                    size(small) region(lstyle(none)) ) ///
-                
-            /*CI가 필요한 경우*/
-            /*graph twoway ///*/
-                /*(connect rl p, sort yaxis(1 1) msymbol(none)) ///*/
-                /*(function y = x, range(0 1) yaxis(1 1) ) ///*/
-                /*(rspike lcl ucl p, blcolor(black) sort ) ///*/
-                /*(connect ky kxx, sort yaxis(2 2) msymbol(none)) ///*/
-                /*, aspect(1) xtitle("Cumulative population share, p") ///*/
-                /*ytitle("Cumulative income share, poorest 100p%", axis(1)) ytitle(" ",axis(2)) ///*/
-                /*legend(label (1 "Lorenz") label(2 "Equality") label(4 "Density") label(3 "95%CI") ///*/
-                    /*size(small) region(lstyle(none)) ) ///*/
-                    /*saving(svylorenz81_91, replace)	*/
-        /*}}}*/
+        /*가구할당 위험도 지수 계산{{{*/
+            foreach i in rpv5 rpv6 care {
+                conindex `i' [pw=hpwgt] , truezero
+                local gini`i' = r(CI)
+                conindex `i' [pw=hpwgt] , rank(emin) truezero
+                local ci`i' = r(CI)
+            }
+            /*}}}*/
         merge 1:m hid using $`k'20p, nogen 
         /*개인위험도 할당{{{*/
             /*health 위험도 할당{{{*/
@@ -1441,7 +1414,7 @@
                     gen temp4  = ln(temp3) 
                     bys hid : egen temp5 = total(temp4)
                     gen xnoemp = 1 - exp(temp5)
-            /*비정규직*/
+            /*불완전고용*/
                 replace ptjob = ptjob/100
                 drop temp1 temp2 temp3 temp4 temp5
                 /*변수 생성 : 모두비정규직*/
@@ -1490,5 +1463,50 @@
                     bys hid : egen temp5 = total(temp4)
                     gen xbhlth = 1 - exp(temp5)
         /*}}}*/
+        /*개인할당 위험도 지수 계산{{{*/
+            keep if relation == 1000
+            foreach i in abhlth xbhlth anoemp xnoemp aptjob xptjob aisolt xisolt aunemp xunemp {
+                conindex `i' [pw=hpwgt] , truezero
+                local gini`i' = r(CI)
+                conindex `i' [pw=hpwgt] , rank(emin) truezero
+                local ci`i' = r(CI)
+            }
+        /*}}}*/
     }
-
+        /*결과 출력{{{*/
+            local cname = cname[1]
+            local iso2 = iso2[1]
+            local iso3 = iso3[1]
+            if "`k'" == "fr" {
+                di as text "???"
+                di as text "cname,iso2,idx,var,value"
+            }
+                di as text "`cname',`iso2',gini,pv5,`ginirpv5'"    
+                di as text "`cname',`iso2',ci,pv5,`cirpv5'"      
+                di as text "`cname',`iso2',gini,pv6,`ginirpv6'"    
+                di as text "`cname',`iso2',ci,pv6,`cirpv6'"      
+                di as text "`cname',`iso2',gini,care,`ginicare'"   
+                di as text "`cname',`iso2',ci,care,`cicare'"     
+                di as text "`cname',`iso2',gini,abhlth,`giniabhlth'" 
+                di as text "`cname',`iso2',ci,abhlth,`ciabhlth'"   
+                di as text "`cname',`iso2',gini,xbhlth,`ginixbhlth'" 
+                di as text "`cname',`iso2',ci,xbhlth,`cixbhlth'"   
+                di as text "`cname',`iso2',gini,anoemp,`ginianoemp'" 
+                di as text "`cname',`iso2',ci,anoemp,`cianoemp'"   
+                di as text "`cname',`iso2',gini,xnoemp,`ginixnoemp'" 
+                di as text "`cname',`iso2',ci,xnoemp,`cixnoemp'"   
+                di as text "`cname',`iso2',gini,aptjob,`giniaptjob'" 
+                di as text "`cname',`iso2',ci,aptjob,`ciaptjob'"   
+                di as text "`cname',`iso2',gini,xptjob,`ginixptjob'" 
+                di as text "`cname',`iso2',ci,xptjob,`cixptjob'"   
+                di as text "`cname',`iso2',gini,aisolt,`giniaisolt'" 
+                di as text "`cname',`iso2',ci,aisolt,`ciaisolt'"   
+                di as text "`cname',`iso2',gini,xisolt,`ginixisolt'" 
+                di as text "`cname',`iso2',ci,xisolt,`cixisolt'"   
+                di as text "`cname',`iso2',gini,aunemp,`giniaunemp'" 
+                di as text "`cname',`iso2',ci,aunemp,`ciaunemp'"   
+                di as text "`cname',`iso2',gini,xunemp,`ginixunemp'" 
+                di as text "`cname',`iso2',ci,xunemp,`cixunemp'"   
+        /*}}}*/
+    }
+    di as text "???"

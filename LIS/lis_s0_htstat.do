@@ -56,7 +56,7 @@
                 local hnum = round(r(sum_w))
                 forvalue i = 1/9 {
                     sum one [aw = hpwgt] if hht == `i'
-                    local numt`i' = round(r(sum_w))
+                    local numt`i' = round(r(sum_w))/`hnum'
                 }
         }
         /*결과 출력*/
@@ -64,7 +64,9 @@
             local iso2 = iso2[1]
             local year = year[1]
             if "`k'" == "fr10" {
+                di "???"
                 di as text "cname,iso2,year,hnum,numt1,numt2,numt3,numt4,numt5,numt6,numt7,numt8,numt9"
             }
             di as text "`cname',`iso2',`year',`hnum',`numt1',`numt2',`numt3',`numt4',`numt5',`numt6',`numt7',`numt8',`numt9'"
     }
+    di "???"

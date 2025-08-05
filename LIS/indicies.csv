@@ -1,0 +1,157 @@
+cname,iso2,idx,var,value
+France,fr,gini,pv5,.3797216438245739
+France,fr,ci,pv5,-.2321239586667325
+France,fr,gini,pv6,.3378127218347541
+France,fr,ci,pv6,-.2079147053008964
+France,fr,gini,care,.1412042720671515
+France,fr,ci,care,-.0755276651079942
+France,fr,gini,abhlth,.7653650879640005
+France,fr,ci,abhlth,-.4235746655761801
+France,fr,gini,xbhlth,.3550032158866661
+France,fr,ci,xbhlth,-.1129441378064542
+France,fr,gini,anoemp,.6252872349102804
+France,fr,ci,anoemp,-.412492505182561
+France,fr,gini,xnoemp,.25724409049932
+France,fr,ci,xnoemp,-.0802510653392747
+France,fr,gini,aptjob,.8442847602626172
+France,fr,ci,aptjob,-.1082480241440333
+France,fr,gini,xptjob,.3581726673246949
+France,fr,ci,xptjob,.1681043699988359
+France,fr,gini,aisolt,.7762959584458725
+France,fr,ci,aisolt,-.0127753271127597
+France,fr,gini,xisolt,.2321848259393957
+France,fr,ci,xisolt,.0178549267988444
+France,fr,gini,aunemp,.8017800068599047
+France,fr,ci,aunemp,-.0478742443723201
+France,fr,gini,xunemp,.4034177400879659
+France,fr,ci,xunemp,.1836815660612299
+Sweden,se,gini,pv5,.4127105549044275
+Sweden,se,ci,pv5,-.2324949861977051
+Sweden,se,gini,pv6,.3785948222504125
+Sweden,se,ci,pv6,-.2129628713042664
+Sweden,se,gini,care,.6081246294654258
+Sweden,se,ci,care,-.3036818632847095
+Sweden,se,gini,abhlth,.7291617425456276
+Sweden,se,ci,abhlth,-.2977387872203145
+Sweden,se,gini,xbhlth,.2602971673348062
+Sweden,se,ci,xbhlth,.0291755523722718
+Sweden,se,gini,anoemp,.6646817635209179
+Sweden,se,ci,anoemp,-.372590654467615
+Sweden,se,gini,xnoemp,.3347805153510252
+Sweden,se,ci,xnoemp,-.0717043562609512
+Sweden,se,gini,aptjob,.7961578598354886
+Sweden,se,ci,aptjob,-.2003621711936927
+Sweden,se,gini,xptjob,.3914286091471952
+Sweden,se,ci,xptjob,.1267900988037076
+Sweden,se,gini,aisolt,.8082580059660206
+Sweden,se,ci,aisolt,.0277972685162488
+Sweden,se,gini,xisolt,.2767858562943483
+Sweden,se,ci,xisolt,.0262321027708903
+Sweden,se,gini,aunemp,.7784046168442932
+Sweden,se,ci,aunemp,-.1902478475657969
+Sweden,se,gini,xunemp,.4253832225068228
+Sweden,se,ci,xunemp,.1185651272259377
+South Korea,kr,gini,pv5,.3890558759031664
+South Korea,kr,ci,pv5,-.2457227112291198
+South Korea,kr,gini,pv6,.3169928903265689
+South Korea,kr,ci,pv6,-.1986519318784103
+South Korea,kr,gini,care,.4505498266894983
+South Korea,kr,ci,care,-.2647284416260593
+South Korea,kr,gini,abhlth,.8419953514738885
+South Korea,kr,ci,abhlth,-.5701229690172928
+South Korea,kr,gini,xbhlth,.326370042323839
+South Korea,kr,ci,xbhlth,-.0775736503645558
+South Korea,kr,gini,anoemp,.6485560544541009
+South Korea,kr,ci,anoemp,-.3931866495065484
+South Korea,kr,gini,xnoemp,.1873003746569
+South Korea,kr,ci,xnoemp,.0004201221393631
+South Korea,kr,gini,aptjob,.8948422315753117
+South Korea,kr,ci,aptjob,-.518762024040293
+South Korea,kr,gini,xptjob,.2506948398902224
+South Korea,kr,ci,xptjob,.0499732812953266
+South Korea,kr,gini,aisolt,.6957267755555262
+South Korea,kr,ci,aisolt,-.1813472378487498
+South Korea,kr,gini,xisolt,.247684894556595
+South Korea,kr,ci,xisolt,-.0017847750650049
+South Korea,kr,gini,aunemp,.907074283825011
+South Korea,kr,ci,aunemp,-.2408251718302909
+South Korea,kr,gini,xunemp,.3658859548514476
+South Korea,kr,ci,xunemp,.1358789930628976
+Japan,jp,gini,pv5,.1820181837910418
+Japan,jp,ci,pv5,-.0792941292628544
+Japan,jp,gini,pv6,.1547009346418559
+Japan,jp,ci,pv6,-.0797980457072005
+Japan,jp,gini,care,.4098096709337642
+Japan,jp,ci,care,-.2512515776612012
+Japan,jp,gini,abhlth,.8273419564105472
+Japan,jp,ci,abhlth,-.4248695092800571
+Japan,jp,gini,xbhlth,.203470034514609
+Japan,jp,ci,xbhlth,-.047217165543077
+Japan,jp,gini,anoemp,.7392258212312466
+Japan,jp,ci,anoemp,-.4666615736775713
+Japan,jp,gini,xnoemp,.1792385404410836
+Japan,jp,ci,xnoemp,-.0575175316621727
+Japan,jp,gini,aptjob,.9046628125215227
+Japan,jp,ci,aptjob,-.0633279784513414
+Japan,jp,gini,xptjob,.2827673827991883
+Japan,jp,ci,xptjob,.0964394758881875
+Japan,jp,gini,aisolt,.877349488986903
+Japan,jp,ci,aisolt,.2134936657051095
+Japan,jp,gini,xisolt,.2253019610397537
+Japan,jp,ci,xisolt,-.0045655525120153
+Japan,jp,gini,aunemp,.9287132811870467
+Japan,jp,ci,aunemp,.0626122608260939
+Japan,jp,gini,xunemp,.3381877933421903
+Japan,jp,ci,xunemp,.117119908925804
+United Kingdom,uk,gini,pv5,.3389565261056297
+United Kingdom,uk,ci,pv5,-.1744968288524662
+United Kingdom,uk,gini,pv6,.3112553678148505
+United Kingdom,uk,ci,pv6,-.1578875554087938
+United Kingdom,uk,gini,care,.3981962780911034
+United Kingdom,uk,ci,care,-.1802107278331602
+United Kingdom,uk,gini,abhlth,.7767406636605733
+United Kingdom,uk,ci,abhlth,-.3564722469360238
+United Kingdom,uk,gini,xbhlth,.2837496073481613
+United Kingdom,uk,ci,xbhlth,-.0041476386614785
+United Kingdom,uk,gini,anoemp,.6760860234777412
+United Kingdom,uk,ci,anoemp,-.3242490231675142
+United Kingdom,uk,gini,xnoemp,.2597462748964564
+United Kingdom,uk,ci,xnoemp,-.0493939375448688
+United Kingdom,uk,gini,aptjob,.8402682314821106
+United Kingdom,uk,ci,aptjob,-.2787614814920966
+United Kingdom,uk,gini,xptjob,.3690681510346894
+United Kingdom,uk,ci,xptjob,.1082889047996671
+United Kingdom,uk,gini,aisolt,.8428742580315361
+United Kingdom,uk,ci,aisolt,-.0167698398638973
+United Kingdom,uk,gini,xisolt,.2266923304856873
+United Kingdom,uk,ci,xisolt,.0410969510020977
+United Kingdom,uk,gini,aunemp,.8266254874372432
+United Kingdom,uk,ci,aunemp,-.2316576967676671
+United Kingdom,uk,gini,xunemp,.446872292574068
+United Kingdom,uk,ci,xunemp,.102664954370447
+United States,us,gini,pv5,.2735539514343975
+United States,us,ci,pv5,-.1271556435743535
+United States,us,gini,pv6,.2369572057645973
+United States,us,ci,pv6,-.1105984794153729
+United States,us,gini,care,.3476929106838357
+United States,us,ci,care,-.1196914061050635
+United States,us,gini,abhlth,.8140195463581487
+United States,us,ci,abhlth,-.3019785891832522
+United States,us,gini,xbhlth,.2529829422888494
+United States,us,ci,xbhlth,-.0066608964320438
+United States,us,gini,anoemp,.6190344568672502
+United States,us,ci,anoemp,-.2741078010397823
+United States,us,gini,xnoemp,.2142037548204633
+United States,us,ci,xnoemp,-.0332278514350227
+United States,us,gini,aptjob,.8907044856030468
+United States,us,ci,aptjob,-.2203163163892519
+United States,us,gini,xptjob,.4185468328078107
+United States,us,ci,xptjob,.0721399650086911
+United States,us,gini,aisolt,.821398045251143
+United States,us,ci,aisolt,.0290423090155078
+United States,us,gini,xisolt,.2376413161217646
+United States,us,ci,xisolt,.0307084089341329
+United States,us,gini,aunemp,.8176142601237569
+United States,us,ci,aunemp,-.1615036782721939
+United States,us,gini,xunemp,.3568872889132717
+United States,us,ci,xunemp,.0759394141339804

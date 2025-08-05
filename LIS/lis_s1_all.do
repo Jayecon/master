@@ -92,6 +92,7 @@
             local iso3 = iso3[1]
             local year = year[1]
             if "`k'" == "fr10" {
+                di as text "???"
                 di as text "cname,iso2,rname,year,t1,t2,t3,t4,t5,t6,t7,t8,t9"
             }
             di as text "`cname',`iso2',pv5,`year',`pv5t1',`pv5t2',`pv5t3',`pv5t4',`pv5t5',`pv5t6',`pv5t7',`pv5t8',`pv5t9'"
@@ -99,3 +100,4 @@
             di as text "`cname',`iso2',rent,`year',`rtt1',`rtt2',`rtt3',`rtt4',`rtt5',`rtt6',`rtt7',`rtt8',`rtt9'"
             di as text "`cname',`iso2',care,`year',`caret1',`caret2',`caret3',`caret4',`caret5',`caret6',`caret7',`caret8',`caret9'"
     }
+    di as text "???"

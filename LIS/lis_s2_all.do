@@ -1530,6 +1530,7 @@
             local iso2 = iso2[1]
             local iso3 = iso3[1]
             if "`k'" == "fr" {
+                di as text "???"
                 di as text "cname,iso2,name,group,grcat,value"
             }
             forvalue i = 1/10 {
@@ -1566,3 +1567,4 @@
             }
         /*}}}*/
     }
+    di as text "???"

@@ -46,16 +46,36 @@
         /*기초통계량 생산*/
             /*유형별 가구수*/
                 gen one = 1
-                forvalue i = 1/10 {
-                    sum one [aw = hpwgt] if dcgroup == `i' , meanonly
-                    local hnumt`i' = round(r(sum_w))
-                }
-                forvalue i = 1/10 {
-                    forvalue j = 1/9 {
-                        sum one [aw = hpwgt] if hht == `j' & dcgroup == `i' ,meanonly
-                        local numq`i't`j' = round(r(sum_w)) / `hnumt`i''
+                    sum one [aw = hpwgt] , meanonly
+                    local numhq11 = round(r(sum_w))
+                    forvalue i = 1/10 {
+                        sum one [aw = hpwgt] if dcgroup == `i' , meanonly
+                        local numhq`i' = round(r(sum_w))
                     }
-                }
+                merge 1:m hid using $`k'20p, nogen 
+                replace one = 1 if missing(one)
+                    sum one [aw = hpopwgt] if sex == 1 ,meanonly
+                    local nummq11 = round(r(sum_w))/`numhq11'
+                    sum one [aw = hpopwgt] if sex == 2 ,meanonly
+                    local numfq11 = round(r(sum_w))/`numhq11'
+                    sum one [aw = hpopwgt] if inrange(age , 0, 17) , meanonly
+                    local num17q11 = round(r(sum_w))/`numhq11'
+                    sum one [aw = hpopwgt] if inrange(age , 18, 64) , meanonly
+                    local num1864q11 = round(r(sum_w))/`numhq11'
+                    sum one [aw = hpopwgt] if inrange(age , 65, 999) , meanonly
+                    local num65q11 = round(r(sum_w))/`numhq11'
+                    forvalue i = 1/10 {
+                        sum one [aw = hpopwgt] if sex == 1 & dcgroup == `i' ,meanonly
+                        local nummq`i' = round(r(sum_w))/`numhq`i''
+                        sum one [aw = hpopwgt] if sex == 2 & dcgroup == `i' ,meanonly
+                        local numfq`i' = round(r(sum_w))/`numhq`i''
+                        sum one [aw = hpopwgt] if inrange(age , 0, 17) & dcgroup == `i' , meanonly
+                        local num17q`i' = round(r(sum_w))/`numhq`i''
+                        sum one [aw = hpopwgt] if inrange(age , 18, 64) & dcgroup == `i' , meanonly
+                        local num1864q`i' = round(r(sum_w))/`numhq`i''
+                        sum one [aw = hpopwgt] if inrange(age , 65, 999) & dcgroup == `i' , meanonly
+                        local num65q`i' = round(r(sum_w))/`numhq`i''
+                    }
         }
         /*결과 출력*/
             local cname = cname[1]
@@ -63,10 +83,10 @@
             local year = year[1]
             if "`k'" == "fr" {
                 di as text "???"
-                di as text "cname,iso2,ft,hunm,numt1,numt2,numt3,numt4,numt5,numt6,numt7,numt8,numt9,numt10"
+                di as text "cname,iso2,dcgroup,hunm,numm,numf,num17,num1864,num65"
             }
-            forvalue i = 1/9 {
-                di as text "`cname',`iso2',`i',`hnumt`i'',`numq1t`i'',`numq2t`i'',`numq3t`i'',`numq4t`i'',`numq5t`i'',`numq6t`i'',`numq7t`i'',`numq8t`i'',`numq9t`i'',`numq10t`i''"
+            forvalue i = 1/11 {
+                di as text "`cname',`iso2',`i',`numhq`i'',`nummq`i'',`numfq`i'',`num17q`i'',`num1864q`i'',`num65q`i''"
             }
     }
     di as text "???"
