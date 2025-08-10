@@ -18,27 +18,18 @@ cd ~/dropbox/data/khp
         }
     }
 
+    forvalue i = 1/5 {
+        gen mexp`i' = h_medicalexp`i' / 10000
+    }
     local vset total inc3 inc5
     foreach i of local vset {
-        local temp : var label `i'
-        local temp `temp'(원)
-        gen `i'w = `i' * 10000
-        label var `i'w "`temp'"
-        mvdecode `i'w , mv(-90000)
+        mvdecode `i' , mv(-9)
     }
-    gen mincw = totalw - inc3w - inc5w
-        label var mincw "시장소득(원)"
-
-    label var year          "자료년도"
-    label var h_medicalexp1 "가구의료비(응급,입원,외래)"
-    label var h_medicalexp2 "가구의료비(1+교통+간병)"
-    label var h_medicalexp3 "가구의료비(2+산후)"
-    label var h_medicalexp4 "가구의료비(3+한약+건기식)"
-    label var h_medicalexp5 "가구의료비(4+장기요양)"
-    label var total_q5      "총 가구소득5분위"
-    label var total_q10     "총 가구소득10분위"
-    label var w_total_q5    "총 가구소득5분위(가중치적용)"
-    label var w_total_q10   "총 가구소득10분위(가중치적용)"
+    gen minc = total - inc3 - inc5
+        label var minc "시장소득(만원)"
+    gen wgt = h_wgc
+        replace wgt = h_wgc_tot if missing(wgt)
+        label var wgt "가구가중치(년도별 횡단)"
 
     save `tfile' , replace
 
@@ -94,15 +85,37 @@ cd ~/dropbox/data/khp
             }
         }
     }
+
     label var ertc "가구 응급실 이용횟수"
     label var ertd "가구 응급실 이용일수"
     label var intc "가구 입원 이용횟수"
     label var intd "가구 입원 이용일수"
     label var outc "가구 외래 이용횟수"
+    label var year "자료년도"
+    label var mexp1 "가구의료비(응급,입원,외래;만원)"
+    label var mexp2 "가구의료비(1+교통+간병;만원)"
+    label var mexp3 "가구의료비(2+산후;만원)"
+    label var mexp4 "가구의료비(3+한약+건기식;만원)"
+    label var mexp5 "가구의료비(4+장기요양;만원)"
+    label var h_medicalexp1 "가구의료비(응급,입원,외래;원)"
+    label var h_medicalexp2 "가구의료비(1+교통+간병;원)"
+    label var h_medicalexp3 "가구의료비(2+산후;원)"
+    label var h_medicalexp4 "가구의료비(3+한약+건기식;원)"
+    label var h_medicalexp5 "가구의료비(4+장기요양;원)"
+    label var total_q5      "총 가구소득5분위"
+    label var total_q10     "총 가구소득10분위"
+    label var w_total_q5    "총 가구소득5분위(가중치적용)"
+    label var w_total_q10   "총 가구소득10분위(가중치적용)"
+    label define P 11 "서울특별시" 26 "부산광역시" 27 "대구광역시" 28 "인천광역시" ///
+        28 "광주광역시" 30 "대전광역시" 31 "울산광역시" 36 "세종시" 41 "경기도" ///
+        42 "강원도" 43 "충청북도" 44 "충청남도" 45 "전라북도" 46 "전라남도" ///
+        47 "경상북도" 48 "경상남도" 50 "제주도"
+    label value p P
+    label define P1 1 "동부" 2 "읍면부"
+    label value p2 P2
 
 label data "KHP Wave1 Household Data(09-18)"
-drop if year == 2008
+drop if year == 2007
 rename _all , low
 compress
 save khp.dta , replace
-
