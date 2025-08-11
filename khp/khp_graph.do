@@ -1,7 +1,8 @@
 cd ~/dropbox/data/khp
 use khp_idx , clear
-sort
+sort year
 format *gini* %9.3f
+format ci* %9.3f
 format year %9.0f
 
 local mygropt graphregion(color(white))
@@ -23,9 +24,29 @@ twoway (connect dtfive year, mlabs(vsmall) mlabel(dtfive) mlabp(12)) ///
 
 twoway (connect ginim  year, mlabs(vsmall) mlabel(ginim)  mlabp(12)) ///
        (connect ginit  year, mlabs(vsmall) mlabel(ginit)  mlabp(12)) ///
+       (connect ginim1 year, mlabs(vsmall) mlabel(ginim1) mlabp(6)  msymbol(d)) ///
+       (connect ginit1 year, mlabs(vsmall) mlabel(ginit1) mlabp(6)  msymbol(d)) ///
+       (connect ginim5 year, mlabs(vsmall) mlabel(ginim5) mlabp(12) msymbol(t)) ///
+       (connect ginit5 year, mlabs(vsmall) mlabel(ginit5) mlabp(12) msymbol(t)) ///
+       , `mygropt' saving(khp_giniha.gph , replace)
+
+twoway (connect ginim  year, mlabs(vsmall) mlabel(ginim)  mlabp(12)) ///
+       (connect ginit  year, mlabs(vsmall) mlabel(ginit)  mlabp(12)) ///
        (connect mwgini year, mlabs(vsmall) mlabel(mwgini) mlabp(6) msymbol(d)) ///
        (connect dwgini year, mlabs(vsmall) mlabel(dwgini) mlabp(12) msymbol(d)) ///
        , `mygropt' saving(khp_ginih.gph , replace)
+
+twoway (connect ginim1 year, mlabs(vsmall) mlabel(ginim1) mlabp(12)) ///
+       (connect ginit1 year, mlabs(vsmall) mlabel(ginit1) mlabp(12)) ///
+       (connect mwgini year, mlabs(vsmall) mlabel(mwgini) mlabp(6) msymbol(d)) ///
+       (connect dwgini year, mlabs(vsmall) mlabel(dwgini) mlabp(12) msymbol(d)) ///
+       , `mygropt' saving(khp_ginih1.gph , replace)
+
+twoway (connect ginim5 year, mlabs(vsmall) mlabel(ginim5) mlabp(12)) ///
+       (connect ginit5 year, mlabs(vsmall) mlabel(ginit5) mlabp(12)) ///
+       (connect mwgini year, mlabs(vsmall) mlabel(mwgini) mlabp(6) msymbol(d)) ///
+       (connect dwgini year, mlabs(vsmall) mlabel(dwgini) mlabp(12) msymbol(d)) ///
+       , `mygropt' saving(khp_ginih5.gph , replace)
 
 twoway (connect cim1m  year,  mlabs(vsmall) mlabel(cim1m)  mlabp(6)  ) ///
        (connect cim1t  year,  mlabs(vsmall) mlabel(cim1t)  mlabp(12) ) ///

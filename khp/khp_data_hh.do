@@ -27,9 +27,25 @@ cd ~/dropbox/data/khp
     }
     gen minc = total - inc3 - inc5
         label var minc "시장소득(만원)"
+    gen etotal = total / sqrt(b1)
+        label var etotal "균등화 총소득(만원)"
+    gen eminc = minc / sqrt(b1)
+        label var eminc "균등화 시장소득(만원)"
+    gen etotal1 = etotal - mexp1
+        label var etotal1 "균등화 총소득(만원,mexp1 차감)"
+    gen eminc1 = minc - mexp1
+        label var eminc1 "균등화 시장소득(만원,mexp1 차감)"
+    gen etotal5 = etotal - mexp5
+        label var etotal1 "균등화 총소득(만원,mexp5 차감)"
+    gen eminc5 = minc - mexp5
+        label var eminc5 "균등화 시장소득(만원,mexp5 차감)"
     gen wgt = h_wgc
         replace wgt = h_wgc_tot if missing(wgt)
         label var wgt "가구가중치(년도별 횡단)"
+    recode p (11 41 = 1) (26/36 =2) (42/99 =3) , gen(p9)
+        label var p9 "지역구분"
+        label define P9 1 "수도권" 2 "광역시" 3 "도"
+        label value p9 P9
 
     save `tfile' , replace
 
@@ -107,11 +123,11 @@ cd ~/dropbox/data/khp
     label var w_total_q5    "총 가구소득5분위(가중치적용)"
     label var w_total_q10   "총 가구소득10분위(가중치적용)"
     label define P 11 "서울특별시" 26 "부산광역시" 27 "대구광역시" 28 "인천광역시" ///
-        28 "광주광역시" 30 "대전광역시" 31 "울산광역시" 36 "세종시" 41 "경기도" ///
+        29 "광주광역시" 30 "대전광역시" 31 "울산광역시" 36 "세종시" 41 "경기도" ///
         42 "강원도" 43 "충청북도" 44 "충청남도" 45 "전라북도" 46 "전라남도" ///
         47 "경상북도" 48 "경상남도" 50 "제주도"
     label value p P
-    label define P1 1 "동부" 2 "읍면부"
+    label define P2 1 "동부" 2 "읍면부"
     label value p2 P2
 
 label data "KHP Wave1 Household Data(09-18)"
