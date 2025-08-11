@@ -26,3 +26,8 @@ use khp , clear
         conindex mexp5 if year == `i' [pw=wgt] , truezero rank(minc)
         local cim5m`i' = r(CI)
     }
+
+    di as text "year,ginit,ginim,cim1t,cim5t,cim1m,cim5m"
+    foreach i of local yset {
+        di as text "`i',`ginit`i'' ,`ginim`i'' ,`cim1t`i'' ,`cim5t`i'' ,`cim1m`i'' ,`cim5m`i''"
+    }
