@@ -1,5 +1,5 @@
-  cd ~/dropbox/goms
-  import delimited "/Users/jay/Library/CloudStorage/Dropbox/GOMS/rawdata/hslist_2022late.csv", encoding(UTF-8) clear
+  cd ~/dropbox/data/goms
+  import delimited "rawdata/hslist_2022late.csv", encoding(UTF-8) clear
     label data"유초중등 학교학과별 데이터셋(2022 후반기)"
     drop in 1/5
     drop v1
