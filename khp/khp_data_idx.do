@@ -1,7 +1,7 @@
 cd ~/dropbox/data/khp
 tempfile tfile
 
-import delimited "/Users/jay/GitHub/master/khp/indicies.csv", encoding(ISO-8859-1) clear
+import delimited "~/GitHub/master/khp/indicies.csv", encoding(ISO-8859-1) clear
     label var year   "년도"
     label var dtfive "5분위배율(가계동향, 가처분소득)"
     label var dtgini "지니계수(가계동향, 가처분소득) "
@@ -15,7 +15,11 @@ import delimited "/Users/jay/GitHub/master/khp/indicies.csv", encoding(ISO-8859-
     label var mwpvty "빈곤율(가금복, 시장소득)"
 save `tfile' ,replace
 
-import delimited "/Users/jay/GitHub/master/khp/khp_idx.csv", encoding(ISO-8859-1) clear
+import delimited "~/GitHub/master/khp/khp_idx.csv", encoding(ISO-8859-1) clear
+    label var ginit1 "지니계수(의료비1 차감, 총소득)"
+    label var ginim1 "지니계수(의료비1 차감, 시장소득)"
+    label var ginit5 "지니계수(의료비5 차감, 총소득)"
+    label var ginim5 "지니계수(의료비5 차감, 시장소득)"
     label var ginit "지니계수(의료패널, 총소득)"
     label var ginim "지니계수(의료패널, 시장소득)"
     label var cim1t "의료비집중도(협의, 총소득)"
