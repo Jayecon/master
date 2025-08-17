@@ -101,13 +101,12 @@ set nocompatible " no compatible with the original Vi filetype off
                     \ '\/$'    ,
                     \ '\.do$'  ,
                     \ '\.ado$' ,
+                    \ '\.csv$' ,
                     \ '\.py$'  ,
                     \ '\.tex$'  ,
                     \ '\.txt$' ,
                     \ '\.dta$' ,
-                    \ '\.csv$' ,
                     \ '\.xls$' ,
-                    \ '\.xlsx$' ,
                     \ '\.xlsx$' ,
                     \ 'myvimrc' ,
                     \ '\.snippets$' ,
@@ -148,7 +147,7 @@ set nocompatible " no compatible with the original Vi filetype off
             let g:syntastic_check_on_wq = 0
         " }}}2
         " UltiSnips ---------------------- {{{2
-          " Debug
+            " Debug
                 let g:UltiSnipsDebug=1
                 let g:UltiSnipsLogFile = 
                     \ expand("$HOME/GitHub/master/vim_configs/UltiSnips/ultisnips_debug.log")
@@ -163,7 +162,7 @@ set nocompatible " no compatible with the original Vi filetype off
                 let g:UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit = 
                     \ expand("$HOME/GitHub/master/vim_configs/UltiSnips")
             " UltiSnips 설정: Tab 키를 스니펫 확장 및 이동에 사용
-                let g:UltiSnipsExpandOrJumpTrigger = "<tab>"
+                let g:UltiSnipsExpandOrJumpTrigger = "<Tab>"
                 let g:UltiSnipsJumpForwardTrigger  = "<Tab>"
                 let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
         " }}}2
@@ -385,35 +384,11 @@ set nocompatible " no compatible with the original Vi filetype off
         map <leader>sc :w<cr>:source %<cr>
         map <leader>sp :UltiSnipsEdit<cr>
         map <leader>rc :e $MYVIMRC<cr>
-        map <leader>brc :w! ~/github/master/etc/myvimrc<cr>:w! ~/dropbox/Z_Personal/myvimrc<cr>
-        "vimrc를 ~/Dropbox/Z_Personal/myvimrc로 백업{{{3
-            "nnoremap  <silent> <leader>brc :call ReplaceIfCurrentIsRecent()<CR> 
-            "function! GetFileModificationTime(filename) " 파일의 생성시간을 반환하는 함수
-                "let modification_epoch = getftime(a:filename)
-                "let modification_date  = strftime("%Y-%m-%d %H:%M:%S", modification_epoch)
-                "return modification_date
-            "endfunction
-            "function! ReplaceIfCurrentIsRecent()
-                "let current_file              = '~/.vimrc'
-                "let bak_file                  = '~/Dropbox/Z_Personal/myvimrc'
-                "let current_modification_time = GetFileModificationTime(current_file)
-                "let bak_modification_time     = GetFileModificationTime(bak_file)
-                "if current_modification_time > bak_modification_time
-                    "silent execute 'w! ' . bak_file
-                    "echo "vimrc를 백업합니다."
-                "else
-                    "echo "백업파일이 최신입니다. 백업을 중지합니다."
-                "endif
-            "endfunction
-            "}}}3
-        map <leader>urc :e! ~/dropbox/Z_personal/myvimrc<cr>:w! $MYVIMRC<cr>:source $MYVIMRC<cr>
+        map <leader>brc :w! ~/github/master/etc/myvimrc<cr>:w!
+        map <leader>urc :e! ~/github/master/etc/myvimrc<cr>:w! $MYVIMRC<cr>:source $MYVIMRC<cr>
         map <leader>l :set list!<cr>
         map <silent> <leader>box :cd ~/dropbox<cr>:pwd<cr>
-        if has('win32')
-            map <silent> <leader>git :cd ~/git<cr>:pwd<cr>
-        elseif has('macunix')
-            map <silent> <leader>git :cd ~/Github/master<cr>:pwd<cr>
-        endif
+        map <silent> <leader>git :cd ~/Github/master<cr>:pwd<cr>
         "}}}2
         " Insert Mode {{{2
         inoremap <F2> <C-o>:w<CR>
