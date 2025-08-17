@@ -71,9 +71,22 @@ snippet !inr "not inrange condition"
 !inrange(${1:var_name}, ${2:min}, ${3:max})
 endsnippet
 
-snippet ld "value label set"
-label defien ${1:value_name} ${3:value_list}
-label value ${2:var_name}  $1
+snippet '(?i)ld(\d+)(?:\s+(.*))?' "label define + label values with N pairs" rb
+label define ${1:label_name} `!p
+import shlex
+n = int(match.group(1))                  # ldN → N pairs
+values_str = match.group(2) or ""        # 뒤따르는 값 목록(선택)
+values = shlex.split(values_str) if values_str else []   # 공백/따옴표 처리
+pairs = []
+for i in range(1, n+1):
+    if i <= len(values):
+        pairs.append(f'{i} "{values[i-1]}"')            # 미리 입력한 값 사용
+    else:
+        ph = i + 2  # ${3}, ${4}, ...  (${1}=label_name, ${2}=var_name)
+        pairs.append(f'{i} "${{{ph}:val{i}}}"')         # 플레이스홀더
+snip.rv = " ".join(pairs)
+`
+label values ${2:var_name} $1
 endsnippet
 
 snippet lv "variable label"
@@ -100,8 +113,21 @@ snippet rp "replace"
 replace ${1:varname} = ${2:exp} if ${3:condition}
 endsnippet
 
-snippet rn "rename"
+snippet rn "rename" b
 rename ${1:varname} ${2:exp}
+endsnippet
+
+snippet rnu "rename upper" b
+rename _all , upper
+endsnippet
+
+snippet rnl "rename lower" b
+rename _all , lower
+endsnippet
+
+snippet rc "recode with labels" b
+recode ${1:varname}	${0:(1=0) (2=1)} , gen($2)
+label variable $2 "${3:Recode of $1}"
 endsnippet
 
 snippet '' "Local macro quote" b
@@ -133,4 +159,3 @@ endsnippet
 snippet ,r "replace option"
  , replace
 endsnippet
-

@@ -202,19 +202,19 @@ snippet xpre "Exam Preamble"
 \\begin{document}
 %----------------------------------------------------------
 % TITLE
-    \\title{\relax
-        2024년 2학기 중간고사 \\
-        \\Large
-        노사관계의 이론과 실재
-    }
-    \\author{담당교수: 오성재}
-    \\date{\today}
-    \\maketitle
+	\\title{\relax
+		2024년 2학기 중간고사 \\
+		\\Large
+		노사관계의 이론과 실재
+	}
+	\\author{담당교수: 오성재}
+	\\date{\today}
+	\\maketitle
 
 % 학생 이름과 학번 입력란
-    \\noindent
-    성명: \makebox[.3\textwidth]{\hrulefill} \\[3pt]
-    학번: \makebox[.3\textwidth]{\hrulefill}
+	\\noindent
+	성명: \makebox[.3\textwidth]{\hrulefill} \\[3pt]
+	학번: \makebox[.3\textwidth]{\hrulefill}
 
 \\begin{questions}
 	${1:contents here}
@@ -226,20 +226,20 @@ endsnippet
 
 snippet qch "Multiple choice question"
 \\question[${1:points}] ${2:question here}
-    \\begin{choices}
-    \\choice\relax ${3:1st choice}
-    \\choice\relax ${4:2nd choice}
-    \\choice\relax ${5:3rd choice}
-    \\choice\relax ${6:4th choice}
-    \\end{choices}
+	\\begin{choices}
+	\\choice\relax ${3:1st choice}
+	\\choice\relax ${4:2nd choice}
+	\\choice\relax ${5:3rd choice}
+	\\choice\relax ${6:4th choice}
+	\\end{choices}
 endsnippet
 
 snippet qcc "Correct choice item"
-    \\CorrectChoice\relax
+	\\CorrectChoice\relax
 endsnippet
 
 snippet qci "Choice item"
-    \\choice\relax
+	\\choice\relax
 endsnippet
 
 snippet qfi "Fill in the blanks question"
@@ -249,13 +249,52 @@ endsnippet
 snippet qwr "Writing questions"
 \\question[${1:points}] ${2:question here} \\[3pt]
 \\ifprintanswers\relax
-    ${3:your reasons here}
+	${3:your reasons here}
 \\else
-    \\rule{\linewidth}{0.4pt} \\[3pt]
-    \\rule{\linewidth}{0.4pt} \\[3pt]
-    \\rule{\linewidth}{0.4pt} \\[3pt]
-    \\rule{\linewidth}{0.4pt} \\[3pt]
-    \\rule{\linewidth}{0.4pt}
+	\\rule{\linewidth}{0.4pt} \\[3pt]
+	\\rule{\linewidth}{0.4pt} \\[3pt]
+	\\rule{\linewidth}{0.4pt} \\[3pt]
+	\\rule{\linewidth}{0.4pt} \\[3pt]
+	\\rule{\linewidth}{0.4pt}
 \\fi
 endsnippet
 
+global !p
+def create_matrix_placeholders(snip):
+    # Re-expand the just-inserted body as an anonymous snippet
+    # so that $1..$N become real tabstops.
+    start = snip.snippet_start[0]
+    end = snip.snippet_end[0]
+
+    body_lines = [snip.buffer[i] for i in range(start, end + 1)]
+    anon = "\n".join(body_lines)
+
+    # Remove all but keep one line to preserve position.
+    for _ in range(start, end):
+        del snip.buffer[start]
+    snip.buffer[start] = ''
+
+    snip.expand_anon(anon)
+
+def create_matrix(cols, rows, sep, line_start, line_end):
+    cols = int(cols)
+    rows = int(rows)
+    ph = 1
+    lines = []
+    for _ in range(rows):
+        cells = [f"${ph + i}" for i in range(cols)]
+        line = line_start + (f" {sep} ").join(cells) + " " + line_end
+        lines.append(line)
+        ph += cols
+    return "".join(lines)
+endglobal
+
+post_jump "create_matrix_placeholders(snip)"
+snippet 'arr(\d+),(\d+)' "LaTeX array" br
+\begin{array}{`!p
+orient = "l" * int(match.group(1))
+snip.rv = orient`}
+`!p snip.rv = create_matrix(match.group(1), match.group(2), "&", "\t", "\\\\\n")`
+$0
+\end{array}
+endsnippet

@@ -33,7 +33,6 @@ set nocompatible " no compatible with the original Vi filetype off
         Plug 'airblade/vim-gitgutter'           " Shows a git diff in the sign column
         Plug 'altercation/vim-colors-solarized' " Solarized color scheme
         Plug 'dense-analysis/ale'               " Asynchronous Lint Engine
-        Plug 'ervandew/supertab'                " Use <tab> for autocompletion
         Plug 'frazrepo/vim-rainbow'             " Rainbow Parentheses Improved
         Plug 'mhinz/vim-startify'               " The fancy start screen for vim
         Plug 'nathanaelkane/vim-indent-guides'  " Indent guide
@@ -46,6 +45,7 @@ set nocompatible " no compatible with the original Vi filetype off
             Plug 'PhilRunninger/nerdtree-visual-selection'
         Plug 'scrooloose/syntastic'             " Syntax checking hacks for Vim
         Plug 'tpope/vim-fugitive'               " Git in the Vim
+        Plug 'tpope/vim-rhubarb'                " Hub in the Vim
         Plug 'tpope/vim-sensible'               " A universal set of defaults
         Plug 'tpope/vim-surround'               " Quotation and Parenthesis
         Plug 'vim-airline/vim-airline'          " status/tabline for vim
@@ -55,30 +55,16 @@ set nocompatible " no compatible with the original Vi filetype off
         Plug 'nvie/vim-flake8'                  " Python syntax check
         Plug 'bagrat/vim-buffet'                " Vim buffer improve
         Plug 'lervag/vimtex'                    " Latex editor for Vim
-        Plug 'git@github.com:honza/vim-snippets.git'
-            Plug 'git@github.com:SirVer/ultisnips.git'
+        Plug 'git@github.com:SirVer/ultisnips.git'
+            Plug 'git@github.com:honza/vim-snippets.git'
         Plug 'wfxr/minimap.vim'                 "Blazing fast minimap for vim
     call plug#end()
     " }}}1
     " Plugins Specific Setting -------------------- {{{1
-        "Change Background by Time{{{2
-            let currentHour = strftime("%H")
-            let currentTime = strftime("%Y %b %d %T")
-            if currentHour < 7 + 0
-                let g:airline_solarized_bg='dark'
-                set background=dark
-            elseif currentHour < 18 + 0
-                let g:airline_solarized_bg='light'
-                set background=light
-            else
-                let g:airline_solarized_bg='dark'
-                set background=dark
-            endif
-        "}}}2
         " Indent Guide ---------------------- {{{2
             let g:indent_guides_enable_on_vim_startup = 1
             let g:indent_guides_guide_size = 1
-            let g:indent_guides_start_level = 2
+            let g:indent_guides_start_level = 1
             " Indent settings like ts, sw, and et affect this plugin. See the indent ENV. below.
         " }}}2
         " Jedi-vim ---------------------- {{{2
@@ -89,10 +75,13 @@ set nocompatible " no compatible with the original Vi filetype off
         " NERDTree ---------------------- {{{2
             noremap <C-N> :NERDTreeToggle<CR>
             "close vim if the only window left open is a NERDTree
-                autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif	
+                autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") 
+                    \ && b:NERDTree.isTabTree()) | q | endif	
             " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-                autocmd BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-                \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+                autocmd BufEnter * if winnr() == winnr('h') && bufname('#') 
+                    \ =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' 
+                    \ && winnr('$') > 1 | let buf=bufnr() | buffer# | execute "normal! \<C-W>w" 
+                    \ | execute 'buffer'.buf | endif
             "Lines in the file are displayed as shown below. 
                 let g:NERDTreeFileLines = 0
             "Ignore some files
@@ -159,27 +148,24 @@ set nocompatible " no compatible with the original Vi filetype off
             let g:syntastic_check_on_wq = 0
         " }}}2
         " UltiSnips ---------------------- {{{2
-            " Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
-            " - https://github.com/Valloric/YouCompleteMe
-            " - https://github.com/nvim-lua/completion-nvim
           " Debug
-            let g:UltiSnipsDebug=1
-            let g:UltiSnipsLogFile="~/ultisnips_debug.log"
+                let g:UltiSnipsDebug=1
+                let g:UltiSnipsLogFile = 
+                    \ expand("$HOME/GitHub/master/vim_configs/UltiSnips/ultisnips_debug.log")
             " If you want :UltiSnipsEdit to split your window.
-            let g:UltiSnipsEditSplit="vertical"
+                let g:UltiSnipsEditSplit="vertical"
             " Change the snipptes path
-            let g:UltiSnipsSnippetDirectories=['~/GitHub/master/snippets', 'UltiSnips']
-            " SuperTab 기본 설정
-            let g:SuperTabDefaultCompletionType="context"
-            let g:SuperTabContextUltiSnips = 1
+                let g:UltiSnipsSnippetDirectories = [
+                    \ expand("$HOME/GitHub/master/vim_configs/UltiSnips"),
+                    \ 'UltiSnips'
+                    \ ]
+            " UltiSnipsEdit 전용 스니펫 저장 디렉토리
+                let g:UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit = 
+                    \ expand("$HOME/GitHub/master/vim_configs/UltiSnips")
             " UltiSnips 설정: Tab 키를 스니펫 확장 및 이동에 사용
-            let g:UltiSnipsExpandTrigger="<tab>"
-            let g:UltiSnipsJumpForwardTrigger="<tab>"
-            let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-            " SuperTab과 UltiSnips 통합 설정
-            let g:SuperTabContextDefaults = {'&omnifunc': 'context', 'g:UltiSnipsExpandTrigger': 'UltiSnips'}
-            let g:SuperTabContextUltiSnips = 1
-            let g:SuperTabCompletionContexts = ['UltiSnips', 's:context_text', 's:context_text_start']
+                let g:UltiSnipsExpandOrJumpTrigger = "<tab>"
+                let g:UltiSnipsJumpForwardTrigger  = "<Tab>"
+                let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
         " }}}2
         " Vim-airline ---------------------- {{{2
             let g:airline_theme='solarized'
@@ -196,7 +182,21 @@ set nocompatible " no compatible with the original Vi filetype off
                     set background=dark
                 endif
             endfunction
-        " }}}2
+            "Color Change{{{3
+                let currentHour = strftime("%H")
+                let currentTime = strftime("%Y %b %d %T")
+                if currentHour < 7 + 0
+                    let g:airline_solarized_bg='dark'
+                    set background=dark
+                elseif currentHour < 18 + 0
+                    let g:airline_solarized_bg='light'
+                    set background=light
+                else
+                    let g:airline_solarized_bg='dark'
+                    set background=dark
+                endif
+            "}}}3
+        "}}}2
         " Vim-buffet ---------------------- {{{2
             let g:buffet_use_devicons = 1
             let g:buffet_show_index = 1
@@ -263,9 +263,11 @@ set nocompatible " no compatible with the original Vi filetype off
                 "\}
         "}}}2
         " minimap ---------------------- {{{2
-        let g:minimap_width = 10
-        let g:minimap_auto_start = 1
-        let g:minimap_auto_start_win_enter = 1
+            let g:minimap_width = 10
+            let g:minimap_auto_start = 1
+            let g:minimap_auto_start_win_enter = 1
+            let g:minimap_highlight_search = 1
+            let g:minimap_git_colors = 1
         " }}}2
     " }}}1
     " Environment Setting ---------------------- {{{1
@@ -378,6 +380,7 @@ set nocompatible " no compatible with the original Vi filetype off
     " Key Mappings ---------------------- {{{1
         " Global {{{2
         map <leader><leader> :Startify<cr>
+        map <leader>m :MinimapToggle<cr>
         map <leader>t :echo strftime('%Y년 %B %d일 %X')<cr>
         map <leader>sc :w<cr>:source %<cr>
         map <leader>sp :UltiSnipsEdit<cr>
@@ -452,12 +455,6 @@ set nocompatible " no compatible with the original Vi filetype off
         onoremap in< :<c-u>normal! f<vi<<cr>
         onoremap il< :<c-u>normal! F>vi<<cr>
         " }}} 2
-        "Window Navigation {{{2
-        nnoremap <C-h> <C-w>h
-        nnoremap <C-j> <C-w>j
-        nnoremap <C-k> <C-w>k
-        nnoremap <C-l> <C-w>l
-        " }}}2
         " Command Line {{{2
         cnoreabbrev VS vs<Bar>bnext
         cnoreabbrev VP vs<Bar>bprevious
