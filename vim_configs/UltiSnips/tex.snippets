@@ -18,7 +18,7 @@ snippet bpre "Beamer Preamble"
 %\setmainhangulfont{NanumGothic}
 
 \\usepackage{newunicodechar}
-\\newunicodechar{•}{$\cdot$}
+\\newunicodechar{•}{\textperiodcentered}
 \\newunicodechar{➔}{$\implies$}
 \\newunicodechar{∴}{$\therefore$}
 \\newunicodechar{∵}{$\because$}
@@ -155,6 +155,10 @@ snippet bsrc "source for Beamer"
 \\tiny{자료: ${1:source}}
 endsnippet
 
+snippet tcd "text center dot " i
+\textperiodcentered
+endsnippet
+
 snippet imp "imply"
 $\implies$
 endsnippet
@@ -259,6 +263,37 @@ snippet qwr "Writing questions"
 \\fi
 endsnippet
 
+snippet f2p "frame 2 column pictures"
+\\begin{frame}{그림2단}
+\\begin{columns}
+    \\begin{column}{.5\textwidth}
+        \\begin{figure}
+            \\centering
+            \\includegraphics[width=.7\textwidth]{pic/smileman.png}
+            \\\
+            \\raggedright % 왼쪽 정렬
+            \\hspace{1em} % 좌측 여백을 추가
+            \\tiny{자료: } % 자료 출처
+            \\caption{좌측그림}
+        \\end{figure}
+    \\end{column}
+    \\begin{column}{.5\textwidth}
+        \\begin{figure}
+            \\centering
+            \\only<1|handout:0>{\transparent{0.3}\includegraphics[width=.7\textwidth]{pic/smileman.png}} % 첫 번째 슬라이드: 투명하게 표시
+            \\only<2>{\includegraphics[width=.7\textwidth]{pic/smileman.png}} % 두 번째 슬라이드: 선명하게 표시
+            \\\
+            \\raggedright % 왼쪽 정렬
+            \\hspace{1em} % 좌측 여백을 추가
+            \\tiny{자료:} % 자료 출처
+            \\caption{우측그림}
+        \\end{figure}
+    \\end{column}
+\\end{columns}
+\\end{frame}
+endsnippet
+
+#array 시작
 global !p
 def create_matrix_placeholders(snip):
     # Re-expand the just-inserted body as an anonymous snippet
@@ -298,3 +333,4 @@ snip.rv = orient`}
 $0
 \end{array}
 endsnippet
+#array 끝
