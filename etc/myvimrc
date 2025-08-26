@@ -58,6 +58,7 @@ set nocompatible " no compatible with the original Vi filetype off
         Plug 'git@github.com:SirVer/ultisnips.git'
             Plug 'git@github.com:honza/vim-snippets.git'
         Plug 'wfxr/minimap.vim'                 "Blazing fast minimap for vim
+        Plug 'jiangmiao/auto-pairs'
     call plug#end()
     " }}}1
     " Plugins Specific Setting -------------------- {{{1
@@ -152,7 +153,7 @@ set nocompatible " no compatible with the original Vi filetype off
                 let g:UltiSnipsLogFile = 
                     \ expand("$HOME/GitHub/master/vim_configs/UltiSnips/ultisnips_debug.log")
             " If you want :UltiSnipsEdit to split your window.
-                let g:UltiSnipsEditSplit="vertical"
+                let g:UltiSnipsEditSplit="context"
             " Change the snipptes path
                 let g:UltiSnipsSnippetDirectories = [
                     \ expand("$HOME/GitHub/master/vim_configs/UltiSnips"),
@@ -165,6 +166,11 @@ set nocompatible " no compatible with the original Vi filetype off
                 let g:UltiSnipsExpandOrJumpTrigger = "<Tab>"
                 let g:UltiSnipsJumpForwardTrigger  = "<Tab>"
                 let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
+            " .snippet 파일이 열려 있는 버퍼를 닫을 때 창도 닫도록 설정
+                augroup SnippetClose
+                    autocmd!
+                    autocmd BufWipeout *.snippets if winnr('$') > 1 | close | endif
+                augroup END
         " }}}2
         " Vim-airline ---------------------- {{{2
             let g:airline_theme='solarized'
@@ -378,67 +384,67 @@ set nocompatible " no compatible with the original Vi filetype off
     " }}}1
     " Key Mappings ---------------------- {{{1
         " Global {{{2
-            map <leader><leader> :Startify<cr>
-            map <leader>m :MinimapToggle<cr>
-            map <leader>t :echo strftime('%Y년 %B %d일 %X')<cr>
-            map <leader>sc :w<cr>:source %<cr>
-            map <leader>sp :UltiSnipsEdit<cr>
-            map <leader>rc :e $MYVIMRC<cr>
-            map <leader>brc :w! ~/github/master/etc/myvimrc<cr>
-            map <leader>urc :e! ~/github/master/etc/myvimrc<cr>:w! $MYVIMRC<cr>:source $MYVIMRC<cr>
-            map <leader>l :set list!<cr>
-            map <silent> <leader>box :cd ~/dropbox<cr>:pwd<cr>
-            map <silent> <leader>git :cd ~/Github/master<cr>:pwd<cr>
+        map <leader><leader> :Startify<cr>
+        map <leader>m :MinimapToggle<cr>
+        map <leader>t :echo strftime('%Y년 %B %d일 %X')<cr>
+        map <leader>sc :w<cr>:source %<cr>
+        map <leader>sp :UltiSnipsEdit<cr>
+        map <leader>rc :e $MYVIMRC<cr>
+        map <leader>brc :w! ~/github/master/etc/myvimrc<cr>
+        map <leader>urc :e! ~/github/master/etc/myvimrc<cr>:w! $MYVIMRC<cr>:source $MYVIMRC<cr>
+        map <leader>l :set list!<cr>
+        map <silent> <leader>box :cd ~/dropbox<cr>:pwd<cr>
+        map <silent> <leader>git :cd ~/Github/master<cr>:pwd<cr>
         "}}}2
         " Insert Mode {{{2
-            inoremap <F2> <C-o>:w<CR>
-            inoremap jk <esc>
-            inoremap ㅓㅏ <esc>
+        inoremap <F2> <C-o>:w<CR>
+        inoremap jk <esc>
+        inoremap ㅓㅏ <esc>
         "}}}2
         " Normal Mode {{{2
-            nnoremap <F2> :w<cr>
-            nnoremap <space> za
-            nnoremap <c-w>. 10<c-w>>
-            nnoremap <c-w>, 10<c-w><
-            nnoremap <leader>" viW<esc>a"<esc>Bi"<esc>ee
-            nnoremap <leader>` viW<esc>a'<esc>Bi`<esc>ee
-            nnoremap <leader>' viW<esc>a'<esc>Bi'<esc>ee
-            nnoremap <leader>> viW<esc>a><esc>Bi<<esc>ee
-            nnoremap <leader>) viW<esc>a)<esc>Bi(<esc>ee
-            nnoremap :: :<up><cr>
-            nnoremap Y y$
-            nnoremap cW viwc
-            nnoremap <leader>ff O<c-d>/*{{{*/<esc>bf*a
-            nnoremap <leader>fc mgo<c-d>/*}}}*/<esc>`g
+        nnoremap <F2> :w<cr>
+        nnoremap <space> za
+        nnoremap <c-w>. 10<c-w>>
+        nnoremap <c-w>, 10<c-w><
+        nnoremap <leader>" viW<esc>a"<esc>Bi"<esc>ee
+        nnoremap <leader>` viW<esc>a'<esc>Bi`<esc>ee
+        nnoremap <leader>' viW<esc>a'<esc>Bi'<esc>ee
+        nnoremap <leader>> viW<esc>a><esc>Bi<<esc>ee
+        nnoremap <leader>) viW<esc>a)<esc>Bi(<esc>ee
+        nnoremap :: :<up><cr>
+        nnoremap Y y$
+        nnoremap cW viwc
+        nnoremap <leader>ff O<c-d>/*{{{*/<esc>bf*a
+        nnoremap <leader>fc mgo<c-d>/*}}}*/<esc>`g
         "}}}2
         " Visual Mode {{{2
-            vnoremap <space> iw
+        vnoremap <space> iw
         "}}}2
         "Operator-pending Mode {{{2
-            onoremap in( :<c-u>normal! f(vi(<cr>
-            onoremap il( :<c-u>normal! F)vi(<cr>
-            onoremap in' :<c-u>normal! f'vi'<cr>
-            onoremap il' :<c-u>normal! F'vi'<cr>
-            onoremap in` :<c-u>normal! f`vi`<cr>
-            onoremap il` :<c-u>normal! F`vi`<cr>
-            onoremap in" :<c-u>normal! f"vi"<cr>
-            onoremap il" :<c-u>normal! F"vi"<cr>
-            onoremap in[ :<c-u>normal! f[vi[<cr>
-            onoremap il[ :<c-u>normal! F]vi[<cr>
-            onoremap in{ :<c-u>normal! f{vi{<cr>
-            onoremap il{ :<c-u>normal! F}vi{<cr>
-            onoremap in< :<c-u>normal! f<vi<<cr>
-            onoremap il< :<c-u>normal! F>vi<<cr>
+        onoremap in( :<c-u>normal! f(vi(<cr>
+        onoremap il( :<c-u>normal! F)vi(<cr>
+        onoremap in' :<c-u>normal! f'vi'<cr>
+        onoremap il' :<c-u>normal! F'vi'<cr>
+        onoremap in` :<c-u>normal! f`vi`<cr>
+        onoremap il` :<c-u>normal! F`vi`<cr>
+        onoremap in" :<c-u>normal! f"vi"<cr>
+        onoremap il" :<c-u>normal! F"vi"<cr>
+        onoremap in[ :<c-u>normal! f[vi[<cr>
+        onoremap il[ :<c-u>normal! F]vi[<cr>
+        onoremap in{ :<c-u>normal! f{vi{<cr>
+        onoremap il{ :<c-u>normal! F}vi{<cr>
+        onoremap in< :<c-u>normal! f<vi<<cr>
+        onoremap il< :<c-u>normal! F>vi<<cr>
         " }}} 2
         " Command Line {{{2
-            cnoreabbrev VS vs<Bar>bnext
-            cnoreabbrev VP vs<Bar>bprevious
-            cnoreabbrev VD vert diffsplit
-            cnoreabbrev W w
-            cnoreabbrev Wq wq
-            cnoreabbrev H vert h
-            cnoreabbrev HR vert bo h
-            cnoreabbrev Bd bd
+        cnoreabbrev VS vs<Bar>bnext
+        cnoreabbrev VP vs<Bar>bprevious
+        cnoreabbrev VD vert diffsplit
+        cnoreabbrev W w
+        cnoreabbrev Wq wq
+        cnoreabbrev H vert h
+        cnoreabbrev HR vert bo h
+        cnoreabbrev Bd bd
         "}}}2
         " Buffer {{{2
             noremap <silent> <Tab> :bn<CR>
@@ -452,21 +458,22 @@ set nocompatible " no compatible with the original Vi filetype off
             xmap ga <Plug>(EasyAlign)
         "}}}2
         "Python Mapping {{{2
-            autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-            autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+        autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+        autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
         " }}}2
         "STATA Mapping {{{2
-            if has('win32')
-                autocmd FileType stata set iskeyword-=_
-                autocmd FileType stata nnoremap <F8> :!"c:\stata\stataMP-64.exe" doedit %:p<CR><CR>
-                autocmd FileType stata inoremap <F8> :!"c:\stata\stataMP-64.exe" doedit %:p<CR><CR>
-                autocmd FileType stata nnoremap <F9> :w<CR>:!"c:\stata\stataMP-64.exe" /e do %:p<CR>:! move %:t:r.log %:p:r.log <CR>:e %:p:r.log<CR>:set syntax=stata<CR>
-            elseif has('macunix')
-                autocmd FileType stata set iskeyword-=_
-                autocmd FileType stata nnoremap <F8> :! /Applications/StataNow/StataMP.app/Contents/MacOS/StataMP doedit %:p<CR>
-                autocmd FileType stata inoremap <F8> :! /Applications/StataNow/StataMP.app/Contents/MacOS/StataMP doedit %:p<CR>
-                autocmd FileType stata nnoremap <F9> :w<CR>:! /Applications/StataNow/StataMP.app/Contents/MacOS/StataMP -e do %:p<CR>:!mv %:t:r.log %:p:r.log<CR>:e %:p:r.log<CR>:set syntax=stata<CR>
-            endif
+        if has('win32')
+            autocmd FileType stata set iskeyword-=_
+            autocmd FileType stata nnoremap <F8> :!"c:\stata\stataMP-64.exe" doedit %:p<CR><CR>
+            autocmd FileType stata inoremap <F8> :!"c:\stata\stataMP-64.exe" doedit %:p<CR><CR>
+            autocmd FileType stata nnoremap <F9> :w<CR>:!"c:\stata\stataMP-64.exe" /e do %:p<CR>:! move %:t:r.log %:p:r.log <CR>:e %:p:r.log<CR>:set syntax=stata<CR>
+        elseif has('macunix')
+            autocmd FileType stata set iskeyword-=_
+            autocmd FileType stata nnoremap <F8> :! /Applications/StataNow/StataMP.app/Contents/MacOS/StataMP doedit %:p<CR>
+            autocmd FileType stata inoremap <F8> :! /Applications/StataNow/StataMP.app/Contents/MacOS/StataMP doedit %:p<CR>
+            autocmd FileType stata nnoremap <F9> :w<CR>:! /Applications/StataNow/StataMP.app/Contents/MacOS/StataMP -e do %:p<CR>:!mv %:t:r.log %:p:r.log<CR>:e %:p:r.log<CR>:set syntax=stata<CR>
+        endif
         " }}}2
     " }}}1
 syntax on "force to the syntax highlight function
+
