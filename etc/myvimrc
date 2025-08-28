@@ -274,6 +274,21 @@ set nocompatible " no compatible with the original Vi filetype off
             let g:minimap_highlight_search = 1
             let g:minimap_git_colors = 1
         " }}}2
+        " auto-pair ---------------------- {{{2
+        " " ~/.vimrc (또는 plugin 설정 파일)
+            augroup AutoPairsStataOverride
+                autocmd!
+                autocmd FileType stata call s:ap_override_stata()
+            augroup END
+            function! s:ap_override_stata() abort
+                " 전역 설정을 안전하게 복사
+                let l:base = deepcopy(get(g:, 'AutoPairs', {}))
+                " 해당 키만 강제 덮어쓰기
+                let l:base = extend(l:base, {'`': "'"}, 'force')
+                " 버퍼 로컬 정의로 적용 (기본/전역과 병합된 dict를 기준으로 재정의)
+                let b:AutoPairs = AutoPairsDefine(l:base)
+            endfunction
+        " }}}2
     " }}}1
     " Environment Setting ---------------------- {{{1
         " Basic " {{{2
