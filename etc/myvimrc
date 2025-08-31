@@ -273,21 +273,40 @@ set nocompatible " no compatible with the original Vi filetype off
             let g:minimap_auto_start_win_enter = 1
             let g:minimap_highlight_search = 1
             let g:minimap_git_colors = 1
+            " help, man, quickfix, 터미널 등은 minimap을 띄우지 않음
+            let g:minimap_block_filetypes = ['help','man','qf','gitcommit','startify',
+                        \'TelescopePrompt','NvimTree','terminal']
         " }}}2
         " auto-pair ---------------------- {{{2
-        " " ~/.vimrc (또는 plugin 설정 파일)
-            augroup AutoPairsStataOverride
-                autocmd!
-                autocmd FileType stata call s:ap_override_stata()
-            augroup END
-            function! s:ap_override_stata() abort
-                " 전역 설정을 안전하게 복사
-                let l:base = deepcopy(get(g:, 'AutoPairs', {}))
-                " 해당 키만 강제 덮어쓰기
-                let l:base = extend(l:base, {'`': "'"}, 'force')
-                " 버퍼 로컬 정의로 적용 (기본/전역과 병합된 dict를 기준으로 재정의)
-                let b:AutoPairs = AutoPairsDefine(l:base)
-            endfunction
+            "stata{{{3
+                augroup AutoPairsStataOverride
+                    autocmd!
+                    autocmd FileType stata call s:ap_override_stata()
+                augroup END
+                function! s:ap_override_stata() abort
+                    " 전역 설정을 안전하게 복사
+                    let l:base = deepcopy(get(g:, 'AutoPairs', {}))
+                    " 해당 키만 강제 덮어쓰기
+                    let l:base = extend(l:base, {'`': "'"}, 'force')
+                    " 버퍼 로컬 정의로 적용 (기본/전역과 병합된 dict를 기준으로 재정의)
+                    let b:AutoPairs = AutoPairsDefine(l:base)
+                endfunction
+            "}}}3 
+            " tex {{{3
+                augroup AutoPairsTexOverride
+                    autocmd!
+                    autocmd FileType tex call s:ap_override_tex()
+                augroup END
+                function! s:ap_override_tex() abort
+                    " 전역 설정을 안전하게 복사
+                    let l:base = deepcopy(get(g:, 'AutoPairs', {}))
+                    " 해당 키만 강제 덮어쓰기
+                    let l:base = extend(l:base, {'$': '$'}, 'force')
+                    let l:base = extend(l:base, {"``": "''"}, 'force')
+                    " 버퍼 로컬 정의로 적용 (기본/전역과 병합된 dict를 기준으로 재정의)
+                    let b:AutoPairs = AutoPairsDefine(l:base)
+                endfunction
+            " }}}3
         " }}}2
     " }}}1
     " Environment Setting ---------------------- {{{1

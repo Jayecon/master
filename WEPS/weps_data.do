@@ -14,7 +14,7 @@ rename h06_21       water
     label define WATER 1 "단독사용" 2 "공동사용" 3 "없음"
     label var water WATER
 rename h06_22       kitchen
-    label define KITCHEN 1 "단독사용-입식" 2 "단독사용-재래식" 3 "공동사용 입식" ///
+    label define KITCHEN 1 "단독사용-입식" 2 "단독사용-재래식" 3 "공동사용-입식" ///
         4 "공동사용-재래식" 5 "없음"
     label var kitchen KITCHEN
 rename h06_23       toilet
