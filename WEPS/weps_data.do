@@ -1,5 +1,4 @@
 cd ~/Library/CloudStorage/dropbox/data/KOWEPS
-
 use wepsh , clear
 drop if year <= 2015
 
@@ -56,29 +55,237 @@ rename h01_11aq7    rsyn
     label define RSYN 1 " 예" 2 " 아니요"
     label var rsyn RSYN
 
-replace tag = 0 if yyy >= 330000 & year == 2023 & nhh == 1  & inlist(rgn , 0)
-replace tag = 0 if yyy >= 370000 & year == 2023 & nhh == 2  & inlist(rgn , 0)
-replace tag = 0 if yyy >= 441000 & year == 2023 & nhh == 3  & inlist(rgn , 0)
-replace tag = 0 if yyy >= 510000 & year == 2023 & nhh == 4  & inlist(rgn , 0)
-replace tag = 0 if yyy >= 528000 & year == 2023 & nhh == 5  & inlist(rgn , 0)
-replace tag = 0 if yyy >= 626000 & year == 2023 & nhh >= 6  & inlist(rgn , 0)
-replace tag = 0 if yyy >= 255000 & year == 2023 & nhh == 1  & inlist(rgn , 0)
-replace tag = 0 if yyy >= 285000 & year == 2023 & nhh == 2  & inlist(rgn , 0)
-replace tag = 0 if yyy >= 341000 & year == 2023 & nhh == 3  & inlist(rgn , 0)
-replace tag = 0 if yyy >= 394000 & year == 2023 & nhh == 4  & inlist(rgn , 0)
-replace tag = 0 if yyy >= 407000 & year == 2023 & nhh == 5  & inlist(rgn , 0)
-replace tag = 0 if yyy >= 482000 & year == 2023 & nhh >= 6  & inlist(rgn , 0)
-replace tag = 0 if yyy >= 203000 & year == 2023 & nhh == 1  & inlist(rgn , 0)
-replace tag = 0 if yyy >= 226000 & year == 2023 & nhh == 2  & inlist(rgn , 0)
-replace tag = 0 if yyy >= 270000 & year == 2023 & nhh == 3  & inlist(rgn , 0)
-replace tag = 0 if yyy >= 313000 & year == 2023 & nhh == 4  & inlist(rgn , 0)
-replace tag = 0 if yyy >= 323000 & year == 2023 & nhh == 5  & inlist(rgn , 0)
-replace tag = 0 if yyy >= 382000 & year == 2023 & nhh >= 6  & inlist(rgn , 0)
-replace tag = 0 if yyy >= 164000 & year == 2023 & nhh == 1  & inlist(rgn , 0)
-replace tag = 0 if yyy >= 185000 & year == 2023 & nhh == 2  & inlist(rgn , 0)
-replace tag = 0 if yyy >= 220000 & year == 2023 & nhh == 3  & inlist(rgn , 0)
-replace tag = 0 if yyy >= 256000 & year == 2023 & nhh == 4  & inlist(rgn , 0)
-replace tag = 0 if yyy >= 264000 & year == 2023 & nhh == 5  & inlist(rgn , 0)
-replace tag = 0 if yyy >= 313000 & year == 2023 & nhh >= 6  & inlist(rgn , 0)
+
+gen rgn = 0
+    replace rgn = 1 if h_reg7 == 1
+    replace rgn = 2 if h_reg7 == 2
+    replace rgn = 3 if h_reg5 == 2 & !inlist(h_reg7, 1, 2)
+    replace rgn = 4 if !inlist(h_reg5, 1, 2) & !inlist(h_reg7, 1, 2)
+
+gen tag = 0
+    replace tag = 1 if tms >= 330000 & year == 2015 & nhh == 1  & rgn == 1
+    replace tag = 1 if tms >= 370000 & year == 2015 & nhh == 2  & rgn == 1
+    replace tag = 1 if tms >= 441000 & year == 2015 & nhh == 3  & rgn == 1
+    replace tag = 1 if tms >= 510000 & year == 2015 & nhh == 4  & rgn == 1
+    replace tag = 1 if tms >= 528000 & year == 2015 & nhh == 5  & rgn == 1
+    replace tag = 1 if tms >= 626000 & year == 2015 & nhh >= 6  & rgn == 1
+    replace tag = 1 if tms >= 255000 & year == 2015 & nhh == 1  & rgn == 2
+    replace tag = 1 if tms >= 285000 & year == 2015 & nhh == 2  & rgn == 2
+    replace tag = 1 if tms >= 341000 & year == 2015 & nhh == 3  & rgn == 2
+    replace tag = 1 if tms >= 394000 & year == 2015 & nhh == 4  & rgn == 2
+    replace tag = 1 if tms >= 407000 & year == 2015 & nhh == 5  & rgn == 2
+    replace tag = 1 if tms >= 482000 & year == 2015 & nhh >= 6  & rgn == 2
+    replace tag = 1 if tms >= 203000 & year == 2015 & nhh == 1  & rgn == 3
+    replace tag = 1 if tms >= 226000 & year == 2015 & nhh == 2  & rgn == 3
+    replace tag = 1 if tms >= 270000 & year == 2015 & nhh == 3  & rgn == 3
+    replace tag = 1 if tms >= 313000 & year == 2015 & nhh == 4  & rgn == 3
+    replace tag = 1 if tms >= 323000 & year == 2015 & nhh == 5  & rgn == 3
+    replace tag = 1 if tms >= 382000 & year == 2015 & nhh >= 6  & rgn == 3
+    replace tag = 1 if tms >= 164000 & year == 2015 & nhh == 1  & rgn == 4
+    replace tag = 1 if tms >= 185000 & year == 2015 & nhh == 2  & rgn == 4
+    replace tag = 1 if tms >= 220000 & year == 2015 & nhh == 3  & rgn == 4
+    replace tag = 1 if tms >= 256000 & year == 2015 & nhh == 4  & rgn == 4
+    replace tag = 1 if tms >= 264000 & year == 2015 & nhh == 5  & rgn == 4
+    replace tag = 1 if tms >= 313000 & year == 2015 & nhh >= 6  & rgn == 4
+
+    replace tag = 1 if tms >= 330000 & year == 2016 & nhh == 1  & rgn == 1
+    replace tag = 1 if tms >= 370000 & year == 2016 & nhh == 2  & rgn == 1
+    replace tag = 1 if tms >= 441000 & year == 2016 & nhh == 3  & rgn == 1
+    replace tag = 1 if tms >= 510000 & year == 2016 & nhh == 4  & rgn == 1
+    replace tag = 1 if tms >= 528000 & year == 2016 & nhh == 5  & rgn == 1
+    replace tag = 1 if tms >= 626000 & year == 2016 & nhh >= 6  & rgn == 1
+    replace tag = 1 if tms >= 255000 & year == 2016 & nhh == 1  & rgn == 2
+    replace tag = 1 if tms >= 285000 & year == 2016 & nhh == 2  & rgn == 2
+    replace tag = 1 if tms >= 341000 & year == 2016 & nhh == 3  & rgn == 2
+    replace tag = 1 if tms >= 394000 & year == 2016 & nhh == 4  & rgn == 2
+    replace tag = 1 if tms >= 407000 & year == 2016 & nhh == 5  & rgn == 2
+    replace tag = 1 if tms >= 482000 & year == 2016 & nhh >= 6  & rgn == 2
+    replace tag = 1 if tms >= 203000 & year == 2016 & nhh == 1  & rgn == 3
+    replace tag = 1 if tms >= 226000 & year == 2016 & nhh == 2  & rgn == 3
+    replace tag = 1 if tms >= 270000 & year == 2016 & nhh == 3  & rgn == 3
+    replace tag = 1 if tms >= 313000 & year == 2016 & nhh == 4  & rgn == 3
+    replace tag = 1 if tms >= 323000 & year == 2016 & nhh == 5  & rgn == 3
+    replace tag = 1 if tms >= 382000 & year == 2016 & nhh >= 6  & rgn == 3
+    replace tag = 1 if tms >= 164000 & year == 2016 & nhh == 1  & rgn == 4
+    replace tag = 1 if tms >= 185000 & year == 2016 & nhh == 2  & rgn == 4
+    replace tag = 1 if tms >= 220000 & year == 2016 & nhh == 3  & rgn == 4
+    replace tag = 1 if tms >= 256000 & year == 2016 & nhh == 4  & rgn == 4
+    replace tag = 1 if tms >= 264000 & year == 2016 & nhh == 5  & rgn == 4
+    replace tag = 1 if tms >= 313000 & year == 2016 & nhh >= 6  & rgn == 4
+
+    replace tag = 1 if tms >= 330000 & year == 2017 & nhh == 1  & rgn == 1
+    replace tag = 1 if tms >= 370000 & year == 2017 & nhh == 2  & rgn == 1
+    replace tag = 1 if tms >= 441000 & year == 2017 & nhh == 3  & rgn == 1
+    replace tag = 1 if tms >= 510000 & year == 2017 & nhh == 4  & rgn == 1
+    replace tag = 1 if tms >= 528000 & year == 2017 & nhh == 5  & rgn == 1
+    replace tag = 1 if tms >= 626000 & year == 2017 & nhh >= 6  & rgn == 1
+    replace tag = 1 if tms >= 255000 & year == 2017 & nhh == 1  & rgn == 2
+    replace tag = 1 if tms >= 285000 & year == 2017 & nhh == 2  & rgn == 2
+    replace tag = 1 if tms >= 341000 & year == 2017 & nhh == 3  & rgn == 2
+    replace tag = 1 if tms >= 394000 & year == 2017 & nhh == 4  & rgn == 2
+    replace tag = 1 if tms >= 407000 & year == 2017 & nhh == 5  & rgn == 2
+    replace tag = 1 if tms >= 482000 & year == 2017 & nhh >= 6  & rgn == 2
+    replace tag = 1 if tms >= 203000 & year == 2017 & nhh == 1  & rgn == 3
+    replace tag = 1 if tms >= 226000 & year == 2017 & nhh == 2  & rgn == 3
+    replace tag = 1 if tms >= 270000 & year == 2017 & nhh == 3  & rgn == 3
+    replace tag = 1 if tms >= 313000 & year == 2017 & nhh == 4  & rgn == 3
+    replace tag = 1 if tms >= 323000 & year == 2017 & nhh == 5  & rgn == 3
+    replace tag = 1 if tms >= 382000 & year == 2017 & nhh >= 6  & rgn == 3
+    replace tag = 1 if tms >= 164000 & year == 2017 & nhh == 1  & rgn == 4
+    replace tag = 1 if tms >= 185000 & year == 2017 & nhh == 2  & rgn == 4
+    replace tag = 1 if tms >= 220000 & year == 2017 & nhh == 3  & rgn == 4
+    replace tag = 1 if tms >= 256000 & year == 2017 & nhh == 4  & rgn == 4
+    replace tag = 1 if tms >= 264000 & year == 2017 & nhh == 5  & rgn == 4
+    replace tag = 1 if tms >= 313000 & year == 2017 & nhh >= 6  & rgn == 4
+
+    replace tag = 1 if tms >= 330000 & year == 2018 & nhh == 1  & rgn == 1
+    replace tag = 1 if tms >= 370000 & year == 2018 & nhh == 2  & rgn == 1
+    replace tag = 1 if tms >= 441000 & year == 2018 & nhh == 3  & rgn == 1
+    replace tag = 1 if tms >= 510000 & year == 2018 & nhh == 4  & rgn == 1
+    replace tag = 1 if tms >= 528000 & year == 2018 & nhh == 5  & rgn == 1
+    replace tag = 1 if tms >= 626000 & year == 2018 & nhh >= 6  & rgn == 1
+    replace tag = 1 if tms >= 255000 & year == 2018 & nhh == 1  & rgn == 2
+    replace tag = 1 if tms >= 285000 & year == 2018 & nhh == 2  & rgn == 2
+    replace tag = 1 if tms >= 341000 & year == 2018 & nhh == 3  & rgn == 2
+    replace tag = 1 if tms >= 394000 & year == 2018 & nhh == 4  & rgn == 2
+    replace tag = 1 if tms >= 407000 & year == 2018 & nhh == 5  & rgn == 2
+    replace tag = 1 if tms >= 482000 & year == 2018 & nhh >= 6  & rgn == 2
+    replace tag = 1 if tms >= 203000 & year == 2018 & nhh == 1  & rgn == 3
+    replace tag = 1 if tms >= 226000 & year == 2018 & nhh == 2  & rgn == 3
+    replace tag = 1 if tms >= 270000 & year == 2018 & nhh == 3  & rgn == 3
+    replace tag = 1 if tms >= 313000 & year == 2018 & nhh == 4  & rgn == 3
+    replace tag = 1 if tms >= 323000 & year == 2018 & nhh == 5  & rgn == 3
+    replace tag = 1 if tms >= 382000 & year == 2018 & nhh >= 6  & rgn == 3
+    replace tag = 1 if tms >= 164000 & year == 2018 & nhh == 1  & rgn == 4
+    replace tag = 1 if tms >= 185000 & year == 2018 & nhh == 2  & rgn == 4
+    replace tag = 1 if tms >= 220000 & year == 2018 & nhh == 3  & rgn == 4
+    replace tag = 1 if tms >= 256000 & year == 2018 & nhh == 4  & rgn == 4
+    replace tag = 1 if tms >= 264000 & year == 2018 & nhh == 5  & rgn == 4
+    replace tag = 1 if tms >= 313000 & year == 2018 & nhh >= 6  & rgn == 4
+
+    replace tag = 1 if tms >= 330000 & year == 2019 & nhh == 1  & rgn == 1
+    replace tag = 1 if tms >= 370000 & year == 2019 & nhh == 2  & rgn == 1
+    replace tag = 1 if tms >= 441000 & year == 2019 & nhh == 3  & rgn == 1
+    replace tag = 1 if tms >= 510000 & year == 2019 & nhh == 4  & rgn == 1
+    replace tag = 1 if tms >= 528000 & year == 2019 & nhh == 5  & rgn == 1
+    replace tag = 1 if tms >= 626000 & year == 2019 & nhh >= 6  & rgn == 1
+    replace tag = 1 if tms >= 255000 & year == 2019 & nhh == 1  & rgn == 2
+    replace tag = 1 if tms >= 285000 & year == 2019 & nhh == 2  & rgn == 2
+    replace tag = 1 if tms >= 341000 & year == 2019 & nhh == 3  & rgn == 2
+    replace tag = 1 if tms >= 394000 & year == 2019 & nhh == 4  & rgn == 2
+    replace tag = 1 if tms >= 407000 & year == 2019 & nhh == 5  & rgn == 2
+    replace tag = 1 if tms >= 482000 & year == 2019 & nhh >= 6  & rgn == 2
+    replace tag = 1 if tms >= 203000 & year == 2019 & nhh == 1  & rgn == 3
+    replace tag = 1 if tms >= 226000 & year == 2019 & nhh == 2  & rgn == 3
+    replace tag = 1 if tms >= 270000 & year == 2019 & nhh == 3  & rgn == 3
+    replace tag = 1 if tms >= 313000 & year == 2019 & nhh == 4  & rgn == 3
+    replace tag = 1 if tms >= 323000 & year == 2019 & nhh == 5  & rgn == 3
+    replace tag = 1 if tms >= 382000 & year == 2019 & nhh >= 6  & rgn == 3
+    replace tag = 1 if tms >= 164000 & year == 2019 & nhh == 1  & rgn == 4
+    replace tag = 1 if tms >= 185000 & year == 2019 & nhh == 2  & rgn == 4
+    replace tag = 1 if tms >= 220000 & year == 2019 & nhh == 3  & rgn == 4
+    replace tag = 1 if tms >= 256000 & year == 2019 & nhh == 4  & rgn == 4
+    replace tag = 1 if tms >= 264000 & year == 2019 & nhh == 5  & rgn == 4
+    replace tag = 1 if tms >= 313000 & year == 2019 & nhh >= 6  & rgn == 4
+
+    replace tag = 1 if tms >= 330000 & year == 2020 & nhh == 1  & rgn == 1
+    replace tag = 1 if tms >= 370000 & year == 2020 & nhh == 2  & rgn == 1
+    replace tag = 1 if tms >= 441000 & year == 2020 & nhh == 3  & rgn == 1
+    replace tag = 1 if tms >= 510000 & year == 2020 & nhh == 4  & rgn == 1
+    replace tag = 1 if tms >= 528000 & year == 2020 & nhh == 5  & rgn == 1
+    replace tag = 1 if tms >= 626000 & year == 2020 & nhh >= 6  & rgn == 1
+    replace tag = 1 if tms >= 255000 & year == 2020 & nhh == 1  & rgn == 2
+    replace tag = 1 if tms >= 285000 & year == 2020 & nhh == 2  & rgn == 2
+    replace tag = 1 if tms >= 341000 & year == 2020 & nhh == 3  & rgn == 2
+    replace tag = 1 if tms >= 394000 & year == 2020 & nhh == 4  & rgn == 2
+    replace tag = 1 if tms >= 407000 & year == 2020 & nhh == 5  & rgn == 2
+    replace tag = 1 if tms >= 482000 & year == 2020 & nhh >= 6  & rgn == 2
+    replace tag = 1 if tms >= 203000 & year == 2020 & nhh == 1  & rgn == 3
+    replace tag = 1 if tms >= 226000 & year == 2020 & nhh == 2  & rgn == 3
+    replace tag = 1 if tms >= 270000 & year == 2020 & nhh == 3  & rgn == 3
+    replace tag = 1 if tms >= 313000 & year == 2020 & nhh == 4  & rgn == 3
+    replace tag = 1 if tms >= 323000 & year == 2020 & nhh == 5  & rgn == 3
+    replace tag = 1 if tms >= 382000 & year == 2020 & nhh >= 6  & rgn == 3
+    replace tag = 1 if tms >= 164000 & year == 2020 & nhh == 1  & rgn == 4
+    replace tag = 1 if tms >= 185000 & year == 2020 & nhh == 2  & rgn == 4
+    replace tag = 1 if tms >= 220000 & year == 2020 & nhh == 3  & rgn == 4
+    replace tag = 1 if tms >= 256000 & year == 2020 & nhh == 4  & rgn == 4
+    replace tag = 1 if tms >= 264000 & year == 2020 & nhh == 5  & rgn == 4
+    replace tag = 1 if tms >= 313000 & year == 2020 & nhh >= 6  & rgn == 4
+
+    replace tag = 1 if tms >= 330000 & year == 2021 & nhh == 1  & rgn == 1
+    replace tag = 1 if tms >= 370000 & year == 2021 & nhh == 2  & rgn == 1
+    replace tag = 1 if tms >= 441000 & year == 2021 & nhh == 3  & rgn == 1
+    replace tag = 1 if tms >= 510000 & year == 2021 & nhh == 4  & rgn == 1
+    replace tag = 1 if tms >= 528000 & year == 2021 & nhh == 5  & rgn == 1
+    replace tag = 1 if tms >= 626000 & year == 2021 & nhh >= 6  & rgn == 1
+    replace tag = 1 if tms >= 255000 & year == 2021 & nhh == 1  & rgn == 2
+    replace tag = 1 if tms >= 285000 & year == 2021 & nhh == 2  & rgn == 2
+    replace tag = 1 if tms >= 341000 & year == 2021 & nhh == 3  & rgn == 2
+    replace tag = 1 if tms >= 394000 & year == 2021 & nhh == 4  & rgn == 2
+    replace tag = 1 if tms >= 407000 & year == 2021 & nhh == 5  & rgn == 2
+    replace tag = 1 if tms >= 482000 & year == 2021 & nhh >= 6  & rgn == 2
+    replace tag = 1 if tms >= 203000 & year == 2021 & nhh == 1  & rgn == 3
+    replace tag = 1 if tms >= 226000 & year == 2021 & nhh == 2  & rgn == 3
+    replace tag = 1 if tms >= 270000 & year == 2021 & nhh == 3  & rgn == 3
+    replace tag = 1 if tms >= 313000 & year == 2021 & nhh == 4  & rgn == 3
+    replace tag = 1 if tms >= 323000 & year == 2021 & nhh == 5  & rgn == 3
+    replace tag = 1 if tms >= 382000 & year == 2021 & nhh >= 6  & rgn == 3
+    replace tag = 1 if tms >= 164000 & year == 2021 & nhh == 1  & rgn == 4
+    replace tag = 1 if tms >= 185000 & year == 2021 & nhh == 2  & rgn == 4
+    replace tag = 1 if tms >= 220000 & year == 2021 & nhh == 3  & rgn == 4
+    replace tag = 1 if tms >= 256000 & year == 2021 & nhh == 4  & rgn == 4
+    replace tag = 1 if tms >= 264000 & year == 2021 & nhh == 5  & rgn == 4
+    replace tag = 1 if tms >= 313000 & year == 2021 & nhh >= 6  & rgn == 4
+
+    replace tag = 1 if tms >= 330000 & year == 2022 & nhh == 1  & rgn == 1
+    replace tag = 1 if tms >= 370000 & year == 2022 & nhh == 2  & rgn == 1
+    replace tag = 1 if tms >= 441000 & year == 2022 & nhh == 3  & rgn == 1
+    replace tag = 1 if tms >= 510000 & year == 2022 & nhh == 4  & rgn == 1
+    replace tag = 1 if tms >= 528000 & year == 2022 & nhh == 5  & rgn == 1
+    replace tag = 1 if tms >= 626000 & year == 2022 & nhh >= 6  & rgn == 1
+    replace tag = 1 if tms >= 255000 & year == 2022 & nhh == 1  & rgn == 2
+    replace tag = 1 if tms >= 285000 & year == 2022 & nhh == 2  & rgn == 2
+    replace tag = 1 if tms >= 341000 & year == 2022 & nhh == 3  & rgn == 2
+    replace tag = 1 if tms >= 394000 & year == 2022 & nhh == 4  & rgn == 2
+    replace tag = 1 if tms >= 407000 & year == 2022 & nhh == 5  & rgn == 2
+    replace tag = 1 if tms >= 482000 & year == 2022 & nhh >= 6  & rgn == 2
+    replace tag = 1 if tms >= 203000 & year == 2022 & nhh == 1  & rgn == 3
+    replace tag = 1 if tms >= 226000 & year == 2022 & nhh == 2  & rgn == 3
+    replace tag = 1 if tms >= 270000 & year == 2022 & nhh == 3  & rgn == 3
+    replace tag = 1 if tms >= 313000 & year == 2022 & nhh == 4  & rgn == 3
+    replace tag = 1 if tms >= 323000 & year == 2022 & nhh == 5  & rgn == 3
+    replace tag = 1 if tms >= 382000 & year == 2022 & nhh >= 6  & rgn == 3
+    replace tag = 1 if tms >= 164000 & year == 2022 & nhh == 1  & rgn == 4
+    replace tag = 1 if tms >= 185000 & year == 2022 & nhh == 2  & rgn == 4
+    replace tag = 1 if tms >= 220000 & year == 2022 & nhh == 3  & rgn == 4
+    replace tag = 1 if tms >= 256000 & year == 2022 & nhh == 4  & rgn == 4
+    replace tag = 1 if tms >= 264000 & year == 2022 & nhh == 5  & rgn == 4
+    replace tag = 1 if tms >= 313000 & year == 2022 & nhh >= 6  & rgn == 4
+
+    replace tag = 1 if tms >= 330000 & year == 2023 & nhh == 1  & rgn == 1
+    replace tag = 1 if tms >= 370000 & year == 2023 & nhh == 2  & rgn == 1
+    replace tag = 1 if tms >= 441000 & year == 2023 & nhh == 3  & rgn == 1
+    replace tag = 1 if tms >= 510000 & year == 2023 & nhh == 4  & rgn == 1
+    replace tag = 1 if tms >= 528000 & year == 2023 & nhh == 5  & rgn == 1
+    replace tag = 1 if tms >= 626000 & year == 2023 & nhh >= 6  & rgn == 1
+    replace tag = 1 if tms >= 255000 & year == 2023 & nhh == 1  & rgn == 2
+    replace tag = 1 if tms >= 285000 & year == 2023 & nhh == 2  & rgn == 2
+    replace tag = 1 if tms >= 341000 & year == 2023 & nhh == 3  & rgn == 2
+    replace tag = 1 if tms >= 394000 & year == 2023 & nhh == 4  & rgn == 2
+    replace tag = 1 if tms >= 407000 & year == 2023 & nhh == 5  & rgn == 2
+    replace tag = 1 if tms >= 482000 & year == 2023 & nhh >= 6  & rgn == 2
+    replace tag = 1 if tms >= 203000 & year == 2023 & nhh == 1  & rgn == 3
+    replace tag = 1 if tms >= 226000 & year == 2023 & nhh == 2  & rgn == 3
+    replace tag = 1 if tms >= 270000 & year == 2023 & nhh == 3  & rgn == 3
+    replace tag = 1 if tms >= 313000 & year == 2023 & nhh == 4  & rgn == 3
+    replace tag = 1 if tms >= 323000 & year == 2023 & nhh == 5  & rgn == 3
+    replace tag = 1 if tms >= 382000 & year == 2023 & nhh >= 6  & rgn == 3
+    replace tag = 1 if tms >= 164000 & year == 2023 & nhh == 1  & rgn == 4
+    replace tag = 1 if tms >= 185000 & year == 2023 & nhh == 2  & rgn == 4
+    replace tag = 1 if tms >= 220000 & year == 2023 & nhh == 3  & rgn == 4
+    replace tag = 1 if tms >= 256000 & year == 2023 & nhh == 4  & rgn == 4
+    replace tag = 1 if tms >= 264000 & year == 2023 & nhh == 5  & rgn == 4
+    replace tag = 1 if tms >= 313000 & year == 2023 & nhh >= 6  & rgn == 4
 
 save weps , replace

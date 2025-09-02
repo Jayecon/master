@@ -56,11 +56,11 @@ mvdecode ${1:var_list}, mv(${2:value_list})
 endsnippet
 
 snippet inl "inlist condition"
-inlist(${1:var_name}, ${2:exp}})
+inlist(${1:var_name}, ${2:exp})
 endsnippet
 
 snippet !inl "not inlist condition"
-!inlist(${1:var_name}, ${2:exp}})
+!inlist(${1:var_name}, ${2:exp})
 endsnippet
 
 snippet inr "inrange"
@@ -125,7 +125,7 @@ snippet rnl "rename lower" b
 rename _all , lower
 endsnippet
 
-snippet rc "recode with labels" b
+snippet rec "recode with labels" b
 recode ${1:varname}	${0:(1=0) (2=1)} , gen($2)
 label variable $2 "${3:Recode of $1}"
 endsnippet
