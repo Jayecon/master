@@ -339,3 +339,34 @@ twoway (scatter health trs , by(year) ) (qfit health trs , by(year) )
 twoway (scatter health trs , by(year) ) (lit health trs , by(year) )
 twoway (scatter health trs , by(year) ) (lfit health trs , by(year) )
 twoway (scatter health trs ,) (lfit health trs , )
+
+* 집수리 경험 여부
+gen ever_repair = (repair_year < .)
+
+* 시점 변수 (처치 이후)
+gen post = (year >= repair_year) if ever_repair==1
+
+* DID 모형
+xtset hhid year
+xtreg y ever_repair##post i.year, fe cluster(hhid)
+
+gen treat_amt = 0
+replace treat_amt = repair_amt if year >= repair_year & repair_year < .
+xtreg y treat_amt i.year, fe cluster(hhid)
+
+gen lntreat_amt = ln(1 + treat_amt)
+xtreg y lntreat_amt i.year, fe cluster(hhid)
+
+* 상대연도 변수 생성
+gen rel_year = year - repair_year if ever_repair==1
+
+* 기준시점: 집수리 직전(rel_year = -1)
+xtreg y i.rel_year##i.ever_repair, fe cluster(hhid)
+
+
+ssc install eventstudyinteract
+eventstudyinteract y, absorb(hhid year) cohort(repair_year) rel_year(-5/5) vce(cluster hhid)
+
+ssc install csdid
+csdid y, ivar(hhid) time(year) gvar(repair_year) method(dripw) vce(cluster hhid)
+estat event

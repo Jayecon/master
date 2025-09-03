@@ -311,6 +311,11 @@ egen health = rowmean( h02_2 h02_11 h02_20 h02_29 h02_38 h02_47 h02_56 h02_65 h0
 
 egen disa = rowmax(h01_9 h01_21  h01_33  h01_45  h01_57  h01_69  h01_81  h01_93 h01_105)
 
+bysort hhid (year): egen repair_year = min(cond(repair_amt>0, year, .))
+replace repair_year = 0 if repair_year == .
+gen ever_repair = (repair_year < .)
+gen rel_year = year - repair_year if ever_repair==1
+
 compress
 sort h_merkey
 xtset h_merkey year
