@@ -273,40 +273,21 @@ set nocompatible " no compatible with the original Vi filetype off
             let g:minimap_auto_start_win_enter = 1
             let g:minimap_highlight_search = 1
             let g:minimap_git_colors = 1
-            " help, man, quickfix, 터미널 등은 minimap을 띄우지 않음
-            let g:minimap_block_filetypes = ['help','man','qf','gitcommit','startify',
-                        \'TelescopePrompt','NvimTree','terminal']
         " }}}2
         " auto-pair ---------------------- {{{2
-            "stata{{{3
-                augroup AutoPairsStataOverride
-                    autocmd!
-                    autocmd FileType stata call s:ap_override_stata()
-                augroup END
-                function! s:ap_override_stata() abort
-                    " 전역 설정을 안전하게 복사
-                    let l:base = deepcopy(get(g:, 'AutoPairs', {}))
-                    " 해당 키만 강제 덮어쓰기
-                    let l:base = extend(l:base, {'`': "'"}, 'force')
-                    " 버퍼 로컬 정의로 적용 (기본/전역과 병합된 dict를 기준으로 재정의)
-                    let b:AutoPairs = AutoPairsDefine(l:base)
-                endfunction
-            "}}}3 
-            " tex {{{3
-                augroup AutoPairsTexOverride
-                    autocmd!
-                    autocmd FileType tex call s:ap_override_tex()
-                augroup END
-                function! s:ap_override_tex() abort
-                    " 전역 설정을 안전하게 복사
-                    let l:base = deepcopy(get(g:, 'AutoPairs', {}))
-                    " 해당 키만 강제 덮어쓰기
-                    let l:base = extend(l:base, {'$': '$'}, 'force')
-                    let l:base = extend(l:base, {"``": "''"}, 'force')
-                    " 버퍼 로컬 정의로 적용 (기본/전역과 병합된 dict를 기준으로 재정의)
-                    let b:AutoPairs = AutoPairsDefine(l:base)
-                endfunction
-            " }}}3
+        " " ~/.vimrc (또는 plugin 설정 파일)
+            augroup AutoPairsStataOverride
+                autocmd!
+                autocmd FileType stata call s:ap_override_stata()
+            augroup END
+            function! s:ap_override_stata() abort
+                " 전역 설정을 안전하게 복사
+                let l:base = deepcopy(get(g:, 'AutoPairs', {}))
+                " 해당 키만 강제 덮어쓰기
+                let l:base = extend(l:base, {'`': "'"}, 'force')
+                " 버퍼 로컬 정의로 적용 (기본/전역과 병합된 dict를 기준으로 재정의)
+                let b:AutoPairs = AutoPairsDefine(l:base)
+            endfunction
         " }}}2
     " }}}1
     " Environment Setting ---------------------- {{{1
@@ -366,7 +347,16 @@ set nocompatible " no compatible with the original Vi filetype off
             set nocursorcolumn                                  " No highlight the screen column of the cursor.
             set foldmethod=marker                               " The kind of folding used for the current window.
             set nolist                                          " No list mode.
-            set noimd
+            " 1) 기본 시작 상태: Vim이 IME 제어하도록 허용 + 영어
+                set noimdisable
+                set iminsert=0
+            augroup IME_AutoSwitch
+                autocmd!
+            " 2) Insert 진입: imd=ON → Vim이 IME를 건드리지 않음(받침깨짐 방지)
+                autocmd InsertEnter * set imdisable
+            " 3) Insert 종료: imd=OFF + 영어로 강제
+                autocmd InsertLeave * set noimdisable | set iminsert=0
+            augroup END
             syntax enable
             "set gdefault                                       " Always use the /g flag with :s; add /g to restore the default.
             "set t_ti= t_te=                                    " Prevent clearing the terminal on exit.
