@@ -1,9 +1,16 @@
+cd ~/dropbox
+
 use wdi , clear
-collapse v1 if inrange(year , 1960 , 1969) , by(ccode cname)
-sort v1
-gen num = _n
-sum num if ccode == "KOR" , meanonly
-local knum = r(mean)
-local kmin = `knum' -5
-local kmax = `knum' +5
-list in `kmin'/`kmax' , sep(0)
+
+
+separate v1 if v1e1960 , by(kname) gen(tmp) short
+ds, has(varl *==*)
+local vset = r(varlist)
+foreach i of local vset {
+    local aaa : var label `i'
+    local aaa : subinstr local aaa "kname ==" "", all
+    label var `i' "`aaa'"
+}
+
+local yl : var label v1
+line tmp* year, lwidth(medthick) legend(col(1)) ytitle(`yl')

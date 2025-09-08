@@ -117,7 +117,7 @@ snippet pr "preserve" b
 preserve
 endsnippet
 
-snippet r, "preserve" b
+snippet pr, "preserve" b
 restore , preserve
 endsnippet
 
@@ -140,6 +140,10 @@ endsnippet
 snippet rec "recode with labels" b
 recode ${1:varname}	${0:(1=0) (2=1)} , gen($2)
 label variable $2 "${3:Recode of $1}"
+endsnippet
+
+snippet tr "set trace" b
+set trace o${1:n/ff}
 endsnippet
 
 snippet '' "Local macro quote" b
