@@ -1,16 +1,23 @@
 cd ~/dropbox
-
 use wdi , clear
 
+local yset 1960 1970 1980 1990 2000 2010 2020
+preserve
 
-separate v1 if v1e1960 , by(kname) gen(tmp) short
-ds, has(varl *==*)
-local vset = r(varlist)
-foreach i of local vset {
-    local aaa : var label `i'
-    local aaa : subinstr local aaa "kname ==" "", all
-    label var `i' "`aaa'"
+forvalue k = 1/18 {
+    foreach j of local yset {
+        keep if v`k'e`j'
+        separate v`k' , by(kname) gen(tmp) short
+        ds, has(varl *==*)
+        local vset = r(varlist)
+        foreach i of local vset {
+            local aaa : var label `i'
+            local aaa : subinstr local aaa "kname ==" "", all
+            label var `i' "`aaa'"
+        }
+        local yl : var label v`k'
+        line tmp* year, lwidth(medthick) legend(col(1)) ytitle("`yl'")
+        gr save v`k'e`j' , replace
+        restore , preserve
+    }
 }
-
-local yl : var label v1
-line tmp* year, lwidth(medthick) legend(col(1)) ytitle(`yl')

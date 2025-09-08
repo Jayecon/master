@@ -7,9 +7,12 @@ local rng = 6
 
 preserve
 foreach j of varlist v1-v18 {
-    forvalue i =  1/6 {
+    forvalue i =  1/7 {
         local fyr = 1950 + 10*`i'
         local lyr = 1959 + 10*`i'
+        if ( `i' == 7 ) {
+            local lyr = 2023
+        }
         collapse `j' if inrange(year , `fyr' , `lyr') & cyn , by(ccode cname) 
         gsort -`j'
         gen num = _n
@@ -30,9 +33,12 @@ foreach j of varlist v1-v18 {
 
 qui{ 
     foreach j of varlist v1-v18 {
-        forvalue i =  1/6 {
+        forvalue i =  1/7 {
             local fyr = 1950 + 10*`i'
             local lyr = 1959 + 10*`i'
+            if ( `i' == 7 ) {
+                local lyr = 2023
+            }
             gen `j'e`fyr' = 0
             foreach k of local `j'cset`i' {
             replace `j'e`fyr' = 1 if inrange(year , `fyr' , `lyr') & ccode == "`k'"
