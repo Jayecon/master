@@ -2,6 +2,7 @@ cd ~/Library/CloudStorage/dropbox/data/KOWEPS
 use wepsh , clear
 drop if year <= 2015
 
+rename h_merkey hhid   
 rename h01_11aq8    rstype
     label define RSTYPE 0 "해당없음" 1 "임차급여(특례포함)" 3 "수선유지급여(특례포함)"
     label value rstype RSTYPE
@@ -302,7 +303,7 @@ gen rgn = 0
     replace ytrt = 0 if missing(mrs)
 /*}}}*/
 
-bys h_merkey : gen ctrt = sum(ytrt)
+bys hhid : gen ctrt = sum(ytrt)
 
 mvdecode  h02_20 , mv(9)
 egen health = rowmean( h02_2 h02_11 h02_20 h02_29 h02_38 h02_47 h02_56 h02_65 h02_74)
@@ -317,6 +318,6 @@ gen ever_repair = (repair_year < .)
 gen rel_year = year - repair_year if ever_repair==1
 
 compress
-sort h_merkey
-xtset h_merkey year
+sort hhid 
+xtset hhid year
 save weps , replace
