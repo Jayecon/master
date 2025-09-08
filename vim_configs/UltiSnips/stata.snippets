@@ -8,26 +8,26 @@ snippet tos "tostring"
 tostrign ${1:var_list}
 endsnippet
 
-snippet ff "if roof"
+snippet ifr "if roof"
 if ( ${1:condition} ) {
 	${2:in roof code here}
 }
 endsnippet
 
-snippet fe "else roof"
+snippet elr "else roof"
 else  {
 	${1:in roof code here}
 }
 endsnippet
 
-snippet fl "elseif roof"
+snippet eir "elseif roof"
 elseif ( ${1:condition} ) {
 	${2:in roof code here}
 }
 endsnippet
 
 snippet fe "foreach roof"
-foreach ${1:indicator} ${2:in/of}  ${3:value} {
+foreach ${1:indicator} ${2:in/of} ${3:value} {
 	${4:in roof code here}
 }
 endsnippet
@@ -93,6 +93,10 @@ snippet lv "variable label"
 label var ${1:var_name} "${2:var_label}"
 endsnippet
 
+snippet lvo "levelsof"
+levelsof ${1:var_name}, local(${2:local_name})
+endsnippet
+
 snippet lo "local macro "
 local ${1:macro name} ${2:macro exp}
 endsnippet
@@ -107,6 +111,14 @@ endsnippet
 
 snippet of "order first"
 order ${1:var list} , first
+endsnippet
+
+snippet pr "preserve" b
+preserve
+endsnippet
+
+snippet r, "preserve" b
+restore , preserve
 endsnippet
 
 snippet rp "replace"
