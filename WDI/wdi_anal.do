@@ -4,9 +4,9 @@ use wdi , clear
 local yset 1960 1970 1980 1990 2000 2010 2020
 preserve
 
-forvalue k = 1/18 {
+forvalue k = 1/19 {
     foreach j of local yset {
-        keep if v`k'e`j'
+        keep if v`k'r`j'
         separate v`k' , by(kname) gen(tmp) short
         ds, has(varl *==*)
         local vset = r(varlist)

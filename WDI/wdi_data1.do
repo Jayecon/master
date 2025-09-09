@@ -1,4 +1,4 @@
-cd ~/dropbox
+cd ~/dropbox/data/wdi/
 import excel "P_Data_Extract_From_World_Development_Indicators.xlsx", sheet("Data") firstrow clear
 tempfile tfile
 
@@ -19,6 +19,7 @@ local itr = 1
             local vc`i' = SeriesCode[`i'] 
             local vl`i' = SeriesName[`i']
         }
+        destring _all , replace
         xpose , clear
         drop in 1/4
         forvalue i = 1/`vmax' {
@@ -42,7 +43,6 @@ local itr = 1
     }
 
 use `tfile' , clear
-compress
 /*gen cyn{{{*/
     gen cyn = regexm(ccode, "^[A-Z]{3}$")
     replace cyn = 0 if inlist(ccode,"WLD","SSA","SSF","ARB","OED","EMU","EUU") ///
@@ -116,42 +116,49 @@ compress
 /*}}}*/
 /*gen ctt{{{*/
     gen str20 ctt = ""
+        label var ctt "Continent"
     * Africa
-    local AFR "DZA AGO BWA BDI CMR CAF TCD COM COG COD DJI EGY GNQ ERI ETH GAB GMB GHA GIN GNB KEN LSO LBR LBY MDG MWI MLI MRT MUS MAR MOZ NAM NER NGA RWA STP SEN SYC SLE ZAF SSD SDN SWZ TGO TUN UGA TZA ZMB ZWE"
-    foreach c of local AFR {
-        replace ctt = "Africa" if ccode == "`c'"
-    }
+        local AFR DZA AGO BWA BDI CMR CAF TCD COM COG COD DJI EGY GNQ ERI ETH GAB GMB GHA GIN ///
+            GNB KEN LSO LBR LBY MDG MWI MLI MRT MUS MAR MOZ NAM NER NGA RWA STP SEN SYC SLE ///
+            ZAF SSD SDN SWZ TGO TUN UGA TZA ZMB ZWE
+        foreach c of local AFR {
+            replace ctt = "Africa" if ccode == "`c'"
+        }
     * Asia
-    local ASIA "AFG ARM AZE BHR BGD BTN BRN KHM CHN GEO IND IDN IRN IRQ ISR JPN JOR KAZ KWT KGZ LAO LBN MAC MYS MDV MNG MMR NPL PRK OMN PAK PSE PHL QAT SAU SGP KOR LKA SYR TWN TJK THA TUR TKM ARE UZB VNM YEM"
-    foreach c of local ASIA {
-        replace ctt = "Asia" if ccode == "`c'"
-    }
+        local ASIA AFG ARM AZE BHR BGD BTN BRN KHM CHN GEO IND IDN IRN IRQ ISR JPN JOR KAZ KWT ///
+            KGZ LAO LBN MAC MYS MDV MNG MMR NPL PRK OMN PAK PSE PHL QAT SAU SGP KOR LKA SYR TWN ///
+            TJK THA TUR TKM ARE UZB VNM YEM
+        foreach c of local ASIA {
+            replace ctt = "Asia" if ccode == "`c'"
+        }
     * Europe
-    local EUR "ALB AND AUT BLR BEL BIH BGR HRV CYP CZE DNK EST FIN FRA DEU GRC HUN ISL IRL ITA XKX LVA LIE LTU LUX MLT MDA MCO MNE NLD MKD NOR POL PRT ROU RUS SMR SRB SVK SVN ESP SWE CHE UKR GBR"
-    foreach c of local EUR {
-        replace ctt = "Europe" if ccode == "`c'"
-    }
+        local EUR ALB AND AUT BLR BEL BIH BGR HRV CYP CZE DNK EST FIN FRA DEU GRC HUN ISL IRL ///
+            ITA XKX LVA LIE LTU LUX MLT MDA MCO MNE NLD MKD NOR POL PRT ROU RUS SMR SRB SVK ///
+            SVN ESP SWE CHE UKR GBR
+        foreach c of local EUR {
+            replace ctt = "Europe" if ccode == "`c'"
+        }
     * North America
-    local NAM "CAN USA MEX BLZ GTM HND NIC CRI PAN"
-    foreach c of local NAM {
-        replace ctt = "North America" if ccode == "`c'"
-    }
+        local NAM CAN USA MEX BLZ GTM HND NIC CRI PAN
+        foreach c of local NAM {
+            replace ctt = "North America" if ccode == "`c'"
+        }
     * South America
-    local SAM "ARG BOL BRA CHL COL ECU PRY PER SUR URY VEN GUY"
-    foreach c of local SAM {
-        replace ctt = "South America" if ccode == "`c'"
-    }
+        local SAM ARG BOL BRA CHL COL ECU PRY PER SUR URY VEN GUY
+        foreach c of local SAM {
+            replace ctt = "South America" if ccode == "`c'"
+        }
     * Oceania
-    local OCE "AUS FJI KIR MHL FSM NRU NZL PLW PNG WSM SLB TON TUV VUT"
-    foreach c of local OCE {
-        replace ctt = "Oceania" if ccode == "`c'"
-    }
+        local OCE AUS FJI KIR MHL FSM NRU NZL PLW PNG WSM SLB TON TUV VUT
+        foreach c of local OCE {
+            replace ctt = "Oceania" if ccode == "`c'"
+        }
     * Caribbean
-    local CAR "ATG BHS BRB CUB DMA DOM GRD HTI JAM KNA LCA VCT TTO ABW AIA BMU CYM CUW GLP MTQ PRI SXM TCA VIR"
-    foreach c of local CAR {
-        replace ctt = "Caribbean" if ccode == "`c'"
-    }
-    label var ctt "Continent"
+        local CAR ATG BHS BRB CUB DMA DOM GRD HTI JAM KNA LCA VCT TTO ABW AIA BMU CYM CUW GLP ///
+            MTQ PRI SXM TCA VIR
+        foreach c of local CAR {
+            replace ctt = "Caribbean" if ccode == "`c'"
+        }
 /*}}}*/
 /*gen kname{{{*/
     gen kname = ""
@@ -429,6 +436,7 @@ compress
     replace kname = "짐바브웨"               if cname == "Zimbabwe"
 /*}}}*/
 sort cname year
-order ccode cyn ccode ctt cname kname year , first
+order ccode cyn ctt cname kname year , first
 label data "World Development Index from World Bank"
-save wdi , replace
+compress
+save wdi_master , replace
