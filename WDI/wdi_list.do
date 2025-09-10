@@ -7,7 +7,8 @@ forvalue k = 1/19 {
     foreach j of local yset {
         sort v`k'r`j' year
         local lv : var label v`k'
-        di as error "`lv' in `j'"
-        list kname year v`k' v`k'r`j' if v`k'r`j' & !missing(v`k'r`j'), sepby(kname)
+        di as error "/*`lv' in `j' {{{*/"
+        list ccode kname year v`k' v`k'r`j' if v`k'r`j' & !missing(v`k'r`j'), sepby(kname)
+        di as error "/*}}}*/"
     }
 }
