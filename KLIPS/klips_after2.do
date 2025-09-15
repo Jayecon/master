@@ -1,6 +1,6 @@
 set more off
 
-cd ~/dropbox/klips /*원자료는 pwd의 하위폴더 rawdata에 있다고 가정함.*/
+cd ~/dropbox/data/klips /*원자료는 pwd의 하위폴더 rawdata에 있다고 가정함.*/
 use klips_master.dta , clear
 xtset pid wave
 sort pid wave

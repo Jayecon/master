@@ -1,5 +1,8 @@
 set more off
 
+cd ~/dropbox/klips /*원자료는 pwd의 하위폴더 rawdata에 있다고 가정함.*/
+use klips_master.dta , clear
+
 foreach i in edu job {
 	foreach j in goi rri {
 		foreach k in all 2545 3050 {
@@ -48,9 +51,6 @@ foreach i in edu job {
 	}
 	
 
-*forvalues x = 1/19 { 
-*	local yr : disp %02.0f  = `x'
-*	local y2 : disp %02.0f  = `x'+1
 	
 
 
