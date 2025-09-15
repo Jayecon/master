@@ -5,36 +5,39 @@ use klips_master.dta , clear
 xtset pid wave
 sort pid wave
 
-local fwave  1	/*조사시작회차 입력*/
-local lwave  23 /*조사최신회차 입력*/
+local fwave  1  /*조사시작회차 입력*/
+local lwave  26 /*조사최신회차 입력*/
 
   /* Generate the GDP Deflator Variable {{{*/
     /*97년지수부터 시작 (2015 = 100) */
-    local price1 = 60.063/100
-    local price2 = 64.576/100
-    local price3 = 65.101/100
-    local price4 = 66.572/100
-    local price5 = 69.279/100
-    local price6 = 71.193/100
-    local price7 = 73.695/100
-    local price8 = 76.341/100
-    local price9 = 78.444/100
-    local price10 = 80.202/100
-    local price11 = 82.235/100
-    local price12 = 86.079/100
-    local price13 = 88.452/100
-    local price14 = 91.051/100
-    local price15 = 94.717/100
-    local price16 = 96.789/100
-    local price17 = 98.048/100
-    local price18 = 99.298/100
-    local price19 = 100.000/100   /*2015년*/
-    local price20 = 100.970/100
-    local price21 = 102.930/100
-    local price22 = 104.450/100
-    local price23 = 104.850/100
+    local price1  =65.1/100
+    local price2  =68.0/100
+    local price3  =67.1/100
+    local price4  =67.7/100
+    local price5  =70.1/100
+    local price6  =72.2/100
+    local price7  =74.8/100
+    local price8  =77.2/100
+    local price9  =78.1/100
+    local price10 =78.0/100
+    local price11 =79.9/100
+    local price12 =82.3/100
+    local price13 =85.1/100
+    local price14 =87.5/100
+    local price15 =88.6/100
+    local price16 =89.7/100
+    local price17 =90.7/100
+    local price18 =91.6/100
+    local price19 =94.6/100
+    local price20 =96.5/100
+    local price21 =98.5/100
+    local price22 =99.1/100
+    local price23 =98.4/100
+    local price24 =100.0/100 /*2020=100*/
+    local price25 =103.2/100
+    local price26 =105.0/100
     gen gdpdef = .
-    label var gdpdef "디플레이터 (2015 = 100)"
+    label var gdpdef "디플레이터 (2020 = 100)"
     forvalues i = `fwave'/`lwave' {
       replace gdpdef = `price`i'' if wave == `i'
     }
@@ -95,14 +98,14 @@ local lwave  23 /*조사최신회차 입력*/
     capture label values jobgrp JOBGRP
     capture label variable jobgrp "직업환경(가구주부친)"
     /*}}}*/
-  /* Generate the bplace {{{*/
+/* Generate the bplace {{{*/
     bys pid : egen bplace = max(p9001)
     label var jobpap "부친 직업"
     recode bplace -1=. 1=3 2/7=2 8/18 = 1
     capture label define BPLACE -1 "전체"  3 "특별시" 2 "광역시" 1 "도" 
     capture label values bplace BPLACE
     capture label variable bplace "출생지(특별시/광역시/도)"
-    /*}}}*/
+/*}}}*/
   /*Generate pcagrp {{{*/
     pca edupap jobpap 
       predict pcascore if e(sample)
@@ -173,6 +176,24 @@ local lwave  23 /*조사최신회차 입력*/
     label var hmem "개인번호(해당회차)"
     label var hwave "응답여부(해당회차)"
     /*}}}*/
+/*label : p9051 9052 9053 9054{{{*/
+ label define EDULV 1 "무학" 2 "초등학교(보통학교)" 3 "중학교(공민학교)" 4 "고등학교" 5 "전문대학(사범학교)" 6 "대학/대학교" 7 "대학원 이상"
+ label value p9051 EDULV
+ label value p9053 EDULV
+ label define EDUYN 1 "졸업" 2 "중퇴" 3 "휴학" 4 "재학 중" 5 "수료" 6 "잘 모르겠다"
+ label value p9052 EDULV
+ label value p9054 EDULV
+ label define P0110 1 "미취학" 2 "무학" 3 "초등학교" 4 "중학교" 5 "고등학교" 6 "2년제 대학,전문대학" 7 "4년제 대학" 8 "대학원 석사" 9 "대학원 박사"
+ label values p0110 P0110 
+/*}}}*/
+/*gen byear{{{*/
+gen byear = year - p0107
+label var byear "출생년도"
+recode byear (1900/1939=1) (1940/1949=2) (1950/1959=3) (1960/1969=4) (1970/1979=5) (1980/1989=6) (1990/9999=7) , gen(bygrp)
+label var bygrp "출생년도 집단"
+label define BYGRP 1 "1939년 이전" 2 "1940년대" 3 "1950년대" 4 "1960년대" 5 "1970년대" 6 "1980년대" 7 "1990년 이후"
+label value bygrp BYGRP
+/*}}}*/
 
 compress
 order _all , alpha
