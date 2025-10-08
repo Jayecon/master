@@ -39,3 +39,7 @@ foreach i of local dvar2 {
     }
 }
 esttab , label
+
+/*twoway (scatter e3 d13 [pw=wpg] , mcolor(black%10) msize(tiny) by(dm2 , total legend(pos(6)))) (lfit e3 d13 [pw=wpg]) (qfit e3 d13 [pw=wpg]) */
+
+/*hist e2 , by(dm2, total) percent ytitle("비율(%)") xlabel(1 "1" 2 "2" 3 "3")*/
