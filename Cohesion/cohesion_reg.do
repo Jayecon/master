@@ -11,6 +11,14 @@ use cohesion , clear
     label var e4_6 "e4_6.사회보장세"
     label var e4_7 "e4_7.탄소세"
 
+    replace d18_1 = 5 if d18_1 == 8
+    replace d18_2 = 5 if d18_2 == 8
+    replace d18_3 = 5 if d18_3 == 8
+    egen d18 = rowtotal(d18*) , miss
+    egen d10 = rowtotal(d18*) , miss
+    egen c12 = rowtotal(d18*) , miss
+
+
 svyset [pw=wpg]
 
 local idvar1 d13 d8 c16
@@ -24,7 +32,7 @@ local dvar2 e4_1 e4_2 e4_3 e4_4 e4_5 e4_6 e4_7
 global ctrl    i.pa0_sido i.sq1 c.sq2_1 i.a3_1_1 i.a4 c.f3 i.a3_2
 global ctrlage i.pa0_sido i.sq1         i.a3_1_1 i.a4 c.f3 i.a3_2 
 global ctrlrgn            i.sq1 c.sq2_1 i.a3_1_1 i.a4 c.f3 i.a3_2
-global myesttab esttab , r2 label interaction(" X ") indicate(통제 = *pa0_sido* *sq1* *sq2_1* *a3* *a4* *f3*) compress
+global myesttab esttab , r2 label interaction(" X ") indicate(통제 = *pa0_sido* *sq1* *sq2_1* *a3* *a4* *f3*)
 
 eststo clear
 foreach j of local idvar1 {
@@ -43,26 +51,26 @@ foreach j of local idvar1 {
 	eststo clear
 }
 
-eststo clear
-foreach j of local idvar2 {
-    foreach i of local dvar1 {
-        eststo : qui  svy :  reg `i' `j' $ctrl 
-    }
-}
-$myesttab
+/*eststo clear*/
+/*foreach j of local idvar2 {*/
+    /*foreach i of local dvar1 {*/
+        /*eststo : qui  svy :  reg `i' `j' $ctrl */
+    /*}*/
+/*}*/
+/*$myesttab*/
 
-eststo clear
-foreach j of local idvar3 {
-    foreach i of local dvar1 {
-        eststo : qui  svy :  reg `i' `j' $ctrl 
-    }
-}
-$myesttab
+/*eststo clear*/
+/*foreach j of local idvar3 {*/
+    /*foreach i of local dvar1 {*/
+        /*eststo : qui  svy :  reg `i' `j' $ctrl */
+    /*}*/
+/*}*/
+/*$myesttab*/
 
-eststo clear
-foreach j of local idvar4 {
-    foreach i of local dvar1 {
-        eststo : qui  svy :  reg `i' `j' $ctrl 
-    }
-}
-$myesttab
+/*eststo clear*/
+/*foreach j of local idvar4 {*/
+    /*foreach i of local dvar1 {*/
+        /*eststo : qui  svy :  reg `i' `j' $ctrl */
+    /*}*/
+/*}*/
+/*$myesttab*/
