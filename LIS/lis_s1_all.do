@@ -74,10 +74,10 @@
             count if !missing(disabled)
             local numdisabled = r(N)
             if `numdisabled' > 0 {
-                gen temp1 = (!missing(age) & ( age <= 5 | age >= 65)) | disabled
+                gen temp1 = (!missing(age) & ( age <= 5 | age >= 75)) | disabled
             }
             else {
-                gen temp1 = (!missing(age) & ( age <= 5 | age >= 65))
+                gen temp1 = (!missing(age) & ( age <= 5 | age >= 75))
             }
             bys hid : egen temp2 = total(temp1)
             gen care = temp2 / nhhmem

@@ -46,6 +46,12 @@ cd  ~/GitHub/master/LIS
         label var xunemp  "실업존재"
         label var rent    "주거위험"
         label var care    "돌봄위험"
+        sort cname  grcat  group
+        forvalue i = 1/660 {
+            foreach j of varlist xunemp-abhlth {
+                replace `j' = `j'[_n-1] if missing(`j') in `i'
+            }
+        }
 save sr.dta , replace
 
 use sr if dcvalue
@@ -54,9 +60,15 @@ use sr if dcvalue
         bys iso2 : egen t1`i' = total(`i')
         gen t2`i' = `i'/t1`i'
         bys iso2 : gen c`i' = sum(t2`i')
-        drop `i'
     }
-    drop t1* t2* dcvalue pcvalue grcat
-    keep if inlist(group, 1, 2, 5)
-    order cname iso2 group cpv5 cpv6 caunemp cxunemp canoemp cxnoemp captjob cxptjob cabhlth cxbhlth ccare caisolt cxisolt crent
+    drop t1* dcvalue pcvalue grcat
+    rename t2* r*
+
+    order cname iso2 group pv5 rpv5 cpv5 pv6 rpv6 cpv6 aunemp raunemp caunemp anoemp ranoemp canoemp aptjob raptjob captjob abhlth rabhlth cabhlth care rcare ccare aisolt raisolt caisolt , first
+    drop xunemp-cxunemp
+
+    foreach i of varlist pv5-caisolt {
+        replace `i' = `i' * 100
+        format `i' %3.1f
+    }
 save srcum.dta , replace
