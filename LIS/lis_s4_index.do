@@ -1,4 +1,4 @@
-/*호출변수 목록 생성*/
+    /*호출자료 목록 생성*/
     local datalist fr se kr jp uk us
     foreach k of local datalist {
         qui{
@@ -48,38 +48,13 @@
         /*변수 생성 : 가중 분위수 집단*/
             xtile dcgroup = emin [aw=hpwgt], nq(10)
             xtile pcgroup = emin [aw=hpwgt], nq(100)
-        /*소득분위별 가구위험도 평균계산{{{*/
-            forvalue i = 1/10 {
-                summarize emin [aw=hpwgt] if dcgroup == `i' , meanonly
-                    local memind`i' = r(mean)
-                summarize ebnf [aw=hpwgt] if dcgroup == `i' , meanonly
-                    local mebnfd`i' = r(mean)
-                summarize etax [aw=hpwgt] if dcgroup == `i' , meanonly
-                    local metaxd`i' = r(mean)
-                summarize esct [aw=hpwgt] if dcgroup == `i' , meanonly
-                    local mesctd`i' = r(mean)
-                summarize ebdn [aw=hpwgt] if dcgroup == `i' , meanonly
-                    local mebdnd`i' = r(mean)
-                summarize ebfn [aw=hpwgt] if dcgroup == `i' , meanonly
-                    local mebfnd`i' = r(mean)
-                summarize ebf0 [aw=hpwgt] if dcgroup == `i' , meanonly
-                    local mebf0d`i' = r(mean)
-            }
-            forvalue i = 1/100 {
-                summarize emin [aw=hpwgt] if pcgroup == `i' , meanonly
-                    local meminp`i' = r(mean)
-                summarize ebnf [aw=hpwgt] if pcgroup == `i' , meanonly
-                    local mebnfp`i' = r(mean)
-                summarize etax [aw=hpwgt] if pcgroup == `i' , meanonly
-                    local metaxp`i' = r(mean)
-                summarize esct [aw=hpwgt] if pcgroup == `i' , meanonly
-                    local mesctp`i' = r(mean)
-                summarize ebdn [aw=hpwgt] if pcgroup == `i' , meanonly
-                    local mebdnp`i' = r(mean)
-                summarize ebfn [aw=hpwgt] if pcgroup == `i' , meanonly
-                    local mebfnp`i' = r(mean)
-                summarize ebf0 [aw=hpwgt] if pcgroup == `i' , meanonly
-                    local mebf0p`i' = r(mean)
+        /*가구할당 위험도 지수 계산{{{*/
+            local vset emin ebnf etax esct ebdn ebfn ebf0 
+            foreach i of local vset {
+                conindex `i' [pw=hpwgt] , truezero
+                local gini`i' = r(CI)
+                conindex `i' [pw=hpwgt] , rank(emin) truezero
+                local ci`i' = r(CI)
             }
             /*}}}*/
     }
@@ -89,26 +64,15 @@
             local iso3 = iso3[1]
             if "`k'" == "fr" {
                 di as text "???"
-                di as text "cname,iso2,name,group,grcat,value"
+                di as text "cname,iso2,var,ci,gini"
             }
-            forvalue i = 1/10 {
-                di as text "`cname',`iso2',min,`i',1,`memind`i''"
-                di as text "`cname',`iso2',bnf,`i',1,`mebnfd`i''"
-                di as text "`cname',`iso2',tax,`i',1,`metaxd`i''"
-                di as text "`cname',`iso2',sct,`i',1,`mesctd`i''"
-                di as text "`cname',`iso2',bdn,`i',1,`mebdnd`i''"
-                di as text "`cname',`iso2',bfn,`i',1,`mebfnd`i''"
-                di as text "`cname',`iso2',bf0,`i',1,`mebf0d`i''"
-            }
-            forvalue i = 1/100 {
-                di as text "`cname',`iso2',min,`i',2,`meminp`i''"
-                di as text "`cname',`iso2',bnf,`i',2,`mebnfp`i''"
-                di as text "`cname',`iso2',tax,`i',2,`metaxp`i''"
-                di as text "`cname',`iso2',sct,`i',2,`mesctp`i''"
-                di as text "`cname',`iso2',bdn,`i',2,`mebdnp`i''"
-                di as text "`cname',`iso2',bfn,`i',2,`mebfnp`i''"
-                di as text "`cname',`iso2',bf0,`i',2,`mebf0p`i''"
-            }
+                di as text "`cname',`iso1',emin,`ciemin',`giniemin'"    
+                di as text "`cname',`iso1',ebnf,`ciebnf',`giniebnf'"    
+                di as text "`cname',`iso1',etax,`cietax',`ginietax'"    
+                di as text "`cname',`iso1',esct,`ciesct',`giniesct'"    
+                di as text "`cname',`iso1',ebdn,`ciebdn',`giniebdn'"    
+                di as text "`cname',`iso1',ebfn,`ciebfn',`giniebfn'"    
+                di as text "`cname',`iso1',ebf0,`ciebf0',`giniebf0'"    
         /*}}}*/
     }
     di as text "???"
