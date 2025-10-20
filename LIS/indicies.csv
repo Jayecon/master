@@ -1,36 +1,36 @@
 cname,iso2,idx,var,value
 France,fr,gini,pv5,.3797216438245739
-France,fr,ci,pv5,-.2321239586667325
+France,fr,ci,pv5,-.23213419888903
 France,fr,gini,pv6,.3378127218347541
-France,fr,ci,pv6,-.2079147053008964
-France,fr,gini,care,.1412042720671515
-France,fr,ci,care,-.0755276651079942
+France,fr,ci,pv6,-.2079230377194788
+France,fr,gini,care,.0963501259064724
+France,fr,ci,care,-.0375682725038975
 France,fr,gini,abhlth,.7653650879640005
-France,fr,ci,abhlth,-.4235746655761801
+France,fr,ci,abhlth,-.4235746377357961
 France,fr,gini,xbhlth,.3550032158866661
-France,fr,ci,xbhlth,-.1129441378064542
+France,fr,ci,xbhlth,-.1129490205426264
 France,fr,gini,anoemp,.6252872349102804
-France,fr,ci,anoemp,-.412492505182561
+France,fr,ci,anoemp,-.4125092619025373
 France,fr,gini,xnoemp,.25724409049932
-France,fr,ci,xnoemp,-.0802510653392747
+France,fr,ci,xnoemp,-.0802546278525637
 France,fr,gini,aptjob,.8442847602626172
-France,fr,ci,aptjob,-.1082480241440333
+France,fr,ci,aptjob,-.1081442457313105
 France,fr,gini,xptjob,.3581726673246949
-France,fr,ci,xptjob,.1681043699988359
+France,fr,ci,xptjob,.1681182829766355
 France,fr,gini,aisolt,.7762959584458725
-France,fr,ci,aisolt,-.0127753271127597
+France,fr,ci,aisolt,-.0127198501190012
 France,fr,gini,xisolt,.2321848259393957
-France,fr,ci,xisolt,.0178549267988444
+France,fr,ci,xisolt,.0178466889211447
 France,fr,gini,aunemp,.8017800068599047
-France,fr,ci,aunemp,-.0478742443723201
+France,fr,ci,aunemp,-.047861279766918
 France,fr,gini,xunemp,.4034177400879659
-France,fr,ci,xunemp,.1836815660612299
+France,fr,ci,xunemp,.1836741738586598
 Sweden,se,gini,pv5,.4127105549044275
 Sweden,se,ci,pv5,-.2324949861977051
 Sweden,se,gini,pv6,.3785948222504125
 Sweden,se,ci,pv6,-.2129628713042664
-Sweden,se,gini,care,.6081246294654258
-Sweden,se,ci,care,-.3036818632847095
+Sweden,se,gini,care,.5603165912499236
+Sweden,se,ci,care,-.2359224150221577
 Sweden,se,gini,abhlth,.7291617425456276
 Sweden,se,ci,abhlth,-.2977387872203145
 Sweden,se,gini,xbhlth,.2602971673348062
@@ -55,8 +55,8 @@ South Korea,kr,gini,pv5,.3890558759031664
 South Korea,kr,ci,pv5,-.2457227112291198
 South Korea,kr,gini,pv6,.3169928903265689
 South Korea,kr,ci,pv6,-.1986519318784103
-South Korea,kr,gini,care,.4505498266894983
-South Korea,kr,ci,care,-.2647284416260593
+South Korea,kr,gini,care,.4087930762138074
+South Korea,kr,ci,care,-.1925690829482434
 South Korea,kr,gini,abhlth,.8419953514738885
 South Korea,kr,ci,abhlth,-.5701229690172928
 South Korea,kr,gini,xbhlth,.326370042323839
@@ -81,8 +81,8 @@ Japan,jp,gini,pv5,.1820181837910418
 Japan,jp,ci,pv5,-.0792941292628544
 Japan,jp,gini,pv6,.1547009346418559
 Japan,jp,ci,pv6,-.0797980457072005
-Japan,jp,gini,care,.4098096709337642
-Japan,jp,ci,care,-.2512515776612012
+Japan,jp,gini,care,.3246515724464505
+Japan,jp,ci,care,-.2082986715233555
 Japan,jp,gini,abhlth,.8273419564105472
 Japan,jp,ci,abhlth,-.4248695092800571
 Japan,jp,gini,xbhlth,.203470034514609
@@ -107,8 +107,8 @@ United Kingdom,uk,gini,pv5,.3389565261056297
 United Kingdom,uk,ci,pv5,-.1744968288524662
 United Kingdom,uk,gini,pv6,.3112553678148505
 United Kingdom,uk,ci,pv6,-.1578875554087938
-United Kingdom,uk,gini,care,.3981962780911034
-United Kingdom,uk,ci,care,-.1802107278331602
+United Kingdom,uk,gini,care,.3255336275019167
+United Kingdom,uk,ci,care,-.1430901529928011
 United Kingdom,uk,gini,abhlth,.7767406636605733
 United Kingdom,uk,ci,abhlth,-.3564722469360238
 United Kingdom,uk,gini,xbhlth,.2837496073481613
@@ -133,8 +133,8 @@ United States,us,gini,pv5,.2735539514343975
 United States,us,ci,pv5,-.1271556435743535
 United States,us,gini,pv6,.2369572057645973
 United States,us,ci,pv6,-.1105984794153729
-United States,us,gini,care,.3476929106838357
-United States,us,ci,care,-.1196914061050635
+United States,us,gini,care,.3013240773481563
+United States,us,ci,care,-.0765080262470723
 United States,us,gini,abhlth,.8140195463581487
 United States,us,ci,abhlth,-.3019785891832522
 United States,us,gini,xbhlth,.2529829422888494
