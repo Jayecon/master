@@ -61,6 +61,10 @@
                 summarize pv6 if hht == `i' [aw=pwgt] , meanonly
                 local pv6t`i' = r(mean)
             }
+            summarize pv5 if [aw=pwgt] , meanonly
+                local pv5t0 = r(mean)
+            summarize pv6 if [aw=pwgt] , meanonly
+                local pv6t0 = r(mean)
         /*주거위험 : 주거비가 가처분소득의 40% 이상 */
             gen rt = hc41/edhi >= .4
                 label var rt "1==if in rent risk"
