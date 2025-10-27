@@ -42,11 +42,11 @@
         replace t`v6' = 0 in 1
 
         graph twoway ///
-            (function y = x     , range(0 1) lcolor(gray) lpattern(shortdash)) ///
-            (connect t`v1' tgrp, sort       lcolor(red)  lpattern(line) msymbol(none)) ///
-            (connect t`v2' tgrp, sort       lcolor(blue) lpattern(line) msymbol(none)) ///
-            (connect t`v3' tgrp, sort       lcolor(green) lpattern(line) msymbol(none)) ///
-            (connect t`v4' tgrp, sort       lcolor(violet) lpattern(line) msymbol(none)) ///
+            (function y = x    , range(0 1) lcolor(gray)   lpattern(shortdash)) ///
+            (connect t`v1' tgrp , sort      lcolor(red)    lpattern(line) msymbol(none)) ///
+            (connect t`v2' tgrp , sort      lcolor(blue)   lpattern(line) msymbol(none)) ///
+            (connect t`v3' tgrp , sort      lcolor(green)  lpattern(line) msymbol(none)) ///
+            (connect t`v4' tgrp , sort      lcolor(violet) lpattern(line) msymbol(none)) ///
             , ///
             xtitle("") ///
             ytitle("") ///
@@ -57,7 +57,7 @@
         graph export "`k'_bdn.png", replace
 
         sum t`v6' , meanonly
-        local ratio = r(max)-r(min)
+        local ratio = (r(max)-r(min))*5
         di "The ratio is `ratio'"
         gen tl`v6' = t`v6'*100
         nicelabels tl`v6' , nvals(20) local(v6ylab)
@@ -65,14 +65,14 @@
         graph twoway ///
             (function y = x     , range(0 1) lcolor(gray) lpattern(shortdash)) ///
             (connect t`v5' tgrp, sort       lcolor(red)  lpattern(line) msymbol(none)) ///
-            (connect t`v6' tgrp, sort       lcolor(red) lpattern(dot) msymbol(none)) ///
+            (connect t`v6' tgrp, sort       lcolor(red) lwidth(thick) lpattern(dot) msymbol(none)) ///
             , ///
             xtitle("") ///
             ytitle("") ///
             ylabel(`v6ylab', angle(0)) ///
             legend(order(1 "균등분포" 2 "`l5'" 3 "`l6'") ///
             size(vsmall) region(lstyle(none)) row(1) pos(6)) graphregion(color(white)) ///
-            xsize(1) ysize(`ratio') yscale(alt)
+            xsize(5) ysize(`ratio') yscale(alt)
         graph export "`k'_bnf.png", replace
     }
     

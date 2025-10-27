@@ -1,4 +1,5 @@
     local datalist fr se kr jp uk us
+    local datalist fr
     foreach k of local datalist {
         use sr if iso == "`k'" & pcvalue, clear
 
@@ -71,12 +72,12 @@
                 replace t`v4' = 0 in 1
                 gen t`v5' = l`v5'[_n-1]
                 replace t`v5' = 0 in 1
-                graph twoway ///
-                    (connect t`v1' tgrp, sort       lcolor(red)  lpattern(line) msymbol(none)) ///
-                    (connect t`v2' tgrp, sort       lcolor(blue) lpattern(line) msymbol(none)) ///
-                    (connect t`v3' tgrp, sort       lcolor(green) lpattern(line) msymbol(none)) ///
-                    (connect t`v4' tgrp, sort       lcolor(orange) lpattern(line) msymbol(none)) ///
-                    (connect t`v5' tgrp, sort       lcolor(purple) lpattern(line) msymbol(none)) ///
+                graph        twoway ///
+                    (connect t`v1' tgrp, sort lcolor(red)    lpattern(line) msymbol(none)) ///
+                    (connect t`v2' tgrp, sort lcolor(blue)   lpattern(line) msymbol(none)) ///
+                    (connect t`v3' tgrp, sort lcolor(green)  lpattern(line) msymbol(none)) ///
+                    (connect t`v4' tgrp, sort lcolor(orange) lpattern(line) msymbol(none)) ///
+                    (connect t`v5' tgrp, sort lcolor(purple) lpattern(line) msymbol(none)) ///
                     (function y = x     , range(0 1) lcolor(gray) lpattern(shortdash)) ///
                     , ///
                     xtitle("") ///

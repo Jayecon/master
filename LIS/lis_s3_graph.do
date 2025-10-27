@@ -77,13 +77,14 @@
                     nicelabels tl`v2' , local(v2ylab)
                     mylabels `v2ylab' , suffix(%) local(v2ylab)
                 graph twoway ///
-                    (connect tl`v1'  tgrp, sort       yaxis (2)  lcolor(red)  lpattern(dot) msymbol(none)) ///
-                    (connect tl`v2'  tgrp, sort       yaxis (2)  lcolor(blue) lpattern(dot) msymbol(none)) ///
-                    (function y = x,     range(0 1) yaxis (1)  lcolor(gray) lpattern(shortdash)) ///
-                    (connect t`v1' tgrp, sort       yaxis (1)  lcolor(red)                msymbol(none)) ///
-                    (connect t`v2' tgrp, sort       yaxis (1)  lcolor(blue)               msymbol(none)) ///
+                    (connect tl`v1' tgrp, sort  yaxis(2) lcolor(red)  msymbol(none) lwidth(medthick) lpattern(dot) ) ///
+                    (connect tl`v2' tgrp, sort  yaxis(2) lcolor(blue) msymbol(none) lwidth(medthick) lpattern(dot) ) ///
+                    (function y = x, range(0 1) yaxis(1) lcolor(gray) lpattern(shortdash)) ///
+                    (connect t`v1'  tgrp, sort  yaxis(1) lcolor(red)  msymbol(none)) ///
+                    (connect t`v2'  tgrp, sort  yaxis(1) lcolor(blue) msymbol(none)) ///
                     , ///
                     ylabel(0 "0%" 0.1 "10%" 0.2 "20%" 0.3 "30%" 0.4 "40%" 0.5 "50%" 0.6 "60%" 0.7 "70%" 0.8 "80%" 0.9 "90%" 1 "100%", axis(1) angle(0)) ///
+                    xlabel(0 "0" 0.1 "10" 0.2 "20" 0.3 "30" 0.4 "40" 0.5 "50" 0.6 "60" 0.7 "70" 0.8 "80" 0.9 "90" 1 "100", angle(0)) ///
                     ylabel(`v2ylab', axis(2) angle(0)) ///
                     xtitle("") ///
                     ytitle("",axis(1)) ///
@@ -101,11 +102,12 @@
                     nicelabels tl`v1' , local(v1ylab)
                     mylabels `v1ylab' , suffix(%) local(v1ylab)
                 graph twoway ///
-                    (connect tl`v1'  tgrp, sort       yaxis (2) lcolor(red)  lpattern(dot) msymbol(none)) ///
-                    (function y = x,     range(0 1) yaxis (1) lcolor(gray) lpattern(shortdash)) ///
-                    (connect t`v1' tgrp, sort       yaxis (1) lcolor(red)                msymbol(none)) ///
+                    (connect tl`v1' tgrp, sort  yaxis(2) lcolor(red) msymbol(none)  lpattern(dot) lwidth(medthick)) ///
+                    (function y = x, range(0 1) yaxis(1) lcolor(gray)               lpattern(shortdash)) ///
+                    (connect t`v1'  tgrp, sort  yaxis(1) lcolor(red) msymbol(none)) ///
                     , ///
                     ylabel(0 "0%" 0.1 "10%" 0.2 "20%" 0.3 "30%" 0.4 "40%" 0.5 "50%" 0.6 "60%" 0.7 "70%" 0.8 "80%" 0.9 "90%" 1 "100%", axis(1) angle(0)) ///
+                    xlabel(0 "0" 0.1 "10" 0.2 "20" 0.3 "30" 0.4 "40" 0.5 "50" 0.6 "60" 0.7 "70" 0.8 "80" 0.9 "90" 1 "100", angle(0)) ///
                     ylabel(`v1ylab', axis(2) angle(0)) ///
                     xtitle("") ///
                     ytitle("",axis(1)) ///
