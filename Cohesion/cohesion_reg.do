@@ -24,7 +24,10 @@ use cohesion , clear
         label var c12 "이주민거부"
 	gen lnf3 = ln(f3)
 		label var lnf3 "ln가구소득"
-		
+	forvalue i = 1/7{
+		gen ea_`i' = 5 - e4_`i'
+	}	
+	
     capture ssc install estout
 
 svyset [pw=wpg]
@@ -37,12 +40,15 @@ svyset [pw=wpg]
 	
     local dvar1 e2 e3 
     local dvar2 e4_1 e4_2 e4_3 e4_4 e4_5 e4_6 e4_7
+	local dvar3 ea_1 ea_2 ea_3 ea_4 ea_5 ea_6 ea_7
 
     global ctrl    i.pa0_sido i.sq1 c.sq2_1 i.a3_1_1 i.a4 lnf3 i.a3_2
     global ctrlage i.pa0_sido i.sq1         i.a3_1_1 i.a4 lnf3 i.a3_2 
     global ctrlrgn            i.sq1 c.sq2_1 i.a3_1_1 i.a4 lnf3 i.a3_2
     global myesttab esttab , cell(b se) r2 label interaction(" X ") indicate(통제 = *pa0_sido* *sq1* *sq2_1* *a3* *a4* *f3*)
     global myesttab2 esttab , r2 label interaction(" X ") indicate(통제 = *pa0_sido* *sq1* *sq2_1* *a3* *a4* *f3*)
+    global myesttab esttab , r2 label interaction(" X ") indicate(통제 = *pa0_sido* *sq1* *sq2_1* *a3* *a4* *f3*)
+    global myesttab2 esttab , cell(b se) r2 label interaction(" X ") indicate(통제 = *pa0_sido* *sq1* *sq2_1* *a3* *a4* *f3*)
 
 
 eststo clear
@@ -52,7 +58,6 @@ foreach j of local idvar5 {
     }
 }
 $myesttab
-$myesttab2
 
 eststo clear
 foreach j of local idvar5 {
@@ -60,10 +65,18 @@ foreach j of local idvar5 {
         eststo : qui  svy :  reg `i' `j' $ctrl 
     }
 	$myesttab
-	$myesttab2
 	eststo clear
 }
 
+eststo clear
+foreach j of local idvar5 {
+	foreach i of local dvar3 {
+        eststo : qui  svy :  reg `i' `j' $ctrl 
+    }
+	$myesttab
+	$myesttab2
+	eststo clear
+}
 /*eststo clear*/
 /*foreach j of local idvar2 {*/
     /*foreach i of local dvar1 {*/
