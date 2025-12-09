@@ -2,7 +2,7 @@ cd ~/Library/CloudStorage/dropbox/data/KOWEPS
 use wepsh , clear
 drop if year <= 2015
 
-rename h_merkey hhid   
+rename h_merkey    rstype
 rename h01_11aq8    rstype
     label define RSTYPE 0 "해당없음" 1 "임차급여(특례포함)" 3 "수선유지급여(특례포함)"
     label value rstype RSTYPE
