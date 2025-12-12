@@ -72,4 +72,11 @@ use yfc_raw , clear
             label var c2pos "삶의 통제감(긍적적)"
         egen c2neg = rowtotal(c2d c2e c2f) , missing
             label var c2neg "삶의 통제감(부정적)"
+    /*c4*/
+        replace c4 = "1" if strpos(c4 , "전혀")
+        replace c4 = "2" if strpos(c4 , "어느")
+        replace c4 = "3" if strpos(c4 , "완벽")
+        destring c4 , replace
+        label define C4 1 "실현불가" 2 "부분가능" 3 "완벽실현"
+        label values c4 C4    
 save yfc , replace
