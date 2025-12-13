@@ -115,7 +115,7 @@ restore , preserve
         replace tag = "연락"        if _v == "hq19"
         replace tag = "혼자있기"    if _v == "hq20"
         replace tag = "상담할 사람" if _v == "hq21"
-        replace tag = "혼자지냄"    if _v == "hq22"
+        replace tag = "혼자못지냄"    if _v == "hq22"
         replace tag = "사회적 교류" if _v == "hq23"
         replace tag = "타인과 교류" if _v == "hq24"
         replace tag = "함께지냄"    if _v == "hq25"
@@ -164,7 +164,7 @@ restore , preserve
         replace tag = "연락"        if _v == "hq19"
         replace tag = "혼자있기"    if _v == "hq20"
         replace tag = "상담할 사람" if _v == "hq21"
-        replace tag = "혼자지냄"    if _v == "hq22"
+        replace tag = "혼자못지냄"  if _v == "hq22"
         replace tag = "사회적 교류" if _v == "hq23"
         replace tag = "타인과 교류" if _v == "hq24"
         replace tag = "함께지냄"    if _v == "hq25"
@@ -306,4 +306,10 @@ restore, preserve
     label values order orderlbl
     gr bar v4, over(order, label(angle(45))) `mybaroptdset' ytitle("") saving(c3_dur.gph, replace)
     gr export c3_dur.png , replace
+restore, preserve
+    collapse c4 if dm2 > 0, by(dur) 
+    xpose , clear varname
+    drop if _v == "dur"
+    gr bar v1 v2 v3 v4 ,  `mybaroptdur' ytitle("") saving(c4.gph, replace)
+    gr export c4.png , replace
 /*}}}*/
