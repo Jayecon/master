@@ -13,13 +13,13 @@ set nocompatible " no compatible with the original Vi filetype off
         set linespace=3	
         set encoding=utf-8
         set fileencoding=utf8
-        set guifont=D2CodingLigature\ Nerd\ Font:h22
+        set guifont=D2CodingLigature\ Nerd\ Font:h17
         noremap <silent> <f3> :call GfnToggle()<cr>
         function! GfnToggle()
             if &gfn == 'hack_nerd_font:h22'
-                set guifont=D2CodingLigature\ Nerd\ Font:h22
+                set guifont=D2CodingLigature\ Nerd\ Font:h17
             else
-                set guifont=hack_nerd_font:h22
+                set guifont=hack_nerd_font:h17
             endif
         endfunction
     endif
@@ -95,7 +95,6 @@ set nocompatible " no compatible with the original Vi filetype off
                     \ '\.snm$' ,
                     \ '\.synctex.gz$' ,
                     \ '\.toc$' ,
-                    \ '\.log$' ,
                     \ '\.bak$' ,
                     \ ]
                 let NERDTreeSortOrder = [
@@ -273,6 +272,7 @@ set nocompatible " no compatible with the original Vi filetype off
             let g:minimap_auto_start_win_enter = 1
             let g:minimap_highlight_search = 1
             let g:minimap_git_colors = 1
+            let g:minimap_block_filetypes = ['tex']
         " }}}2
         " auto-pair ---------------------- {{{2
         " " ~/.vimrc (또는 plugin 설정 파일)
