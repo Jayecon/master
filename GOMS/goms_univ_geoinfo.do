@@ -1,4 +1,4 @@
-lwocal path ~/dropbox/data/
+local path ~/dropbox/data/
 tempfile tfile1 tfile2 tfile3
 
 use `path'goms_eq.dta , clear
