@@ -1,6 +1,6 @@
 set more off
 clear
-cd ~/dropbox/goms
+cd ~/dropbox/data/goms
     /*List 개인변수 {{{*/
         /*local demolablelist PID 본분교 국공사립 학위과정유형 주야간 전공계열 전공소분류CODE 전공세분류CODE/전공명 ///
             학교유형 학교소재권역 학교소재지역 성별 출생년 출생월 연령(조사기준일_당시) 졸업년 졸업월*/
@@ -23,11 +23,11 @@ cd ~/dropbox/goms
     /*List 직업력변수 {{{*/
         /*local econlabellist 산업10차대분류 산업10차중분류 산업10차소분류 직업2018대분류 직업*/
         local econvarlist  a004_10 a005_10 a006_10 a007_2018 a008_2018 a009_2018 a010 ///
-            a011 a021 a022 a059 a122 a356 a366 a376 a386
+            a011 a015 a021 a022 a059 a122 a356 a366 a376 a386
         /*}}}*/
     /*List 조사변수 변화를 해결하기 위한 결측변수 {{{*/
-        local misvarlist07 branch daynight a059 a356 a366 a376 a386 f007 f008 f013 f014 f170 p021 p036 
-        local misvarlist08 daynight a059 f013 f014 f170 p021 p036
+        local misvarlist07 branch daynight a015 a059 a356 a366 a376 a386 f007 f008 f013 f014 f170 p021 p036 
+        local misvarlist08 daynight a015 a059 f013 f014 f170 p021 p036
         local misvarlist09 f013 a059 f170 p036
         local misvarlist10 f013 a059 f170 p036
         local misvarlist11 f013 a059 f170 p036
@@ -36,7 +36,10 @@ cd ~/dropbox/goms
         local misvarlist14 f005 f013 f170 p019 p036
         local misvarlist15 f170
         local misvarlist16 f014 
-        local misvarlist17 f014 /*}}}*/
+        local misvarlist17 f014
+        local misvarlist18 f014
+        local misvarlist19 f014
+        /*}}}*/
     /*List 년도별 value label {{{*/
         local labelist07 V6_A LABO 
         local labelist08 V13_A LABB LABBD LABCG LABCH LABCI LABCJ LABCK
@@ -48,11 +51,13 @@ cd ~/dropbox/goms
         local labelist14 LABE 
         local labelist15 LABE LABF
         local labelist16 LABAS LABK LABBR LABBS LABDM LABDN LABDO
-        local labelist17 LABCC LABEI LABEJ LABEL LABEM LABEK LABEN LABEO/*}}}*/
+        local labelist17 LABCC LABEI LABEJ LABEL LABEM LABEK LABEN LABEO
+        local labelist19 LABF
+    /*}}}*/
     /*년도별 파일을 goms??.dta 로 각각 저장하기{{{*/
-        forvalue x = 7/17 {
+        forvalue x = 7/19 {
             local yr : disp %02.0f  = `x'
-            use ~/dropbox/GOMS/rawdata/GP`yr'.dta
+            use rawdata/GP`yr'.dta
             rename g`yr'1* *
             drop if missing(sex)
             foreach i of local misvarlist`yr' {
@@ -215,12 +220,13 @@ cd ~/dropbox/goms
                 label var wave "조사회차"
         /* 대학-고교정보 합치기{{{*/
             rename pid g`yr'1pid
-            merge 1:1 g`yr'1pid using ~/dropbox/goms/rawdata/goms_gu`yr' , nogen
+            merge 1:1 g`yr'1pid using rawdata/goms_gu`yr' , nogen
             rename g`yr'1* * 
             capture label var uniname "출신대학명"
             capture label var unicode "출신대학code"
+            capture tostring unicode , replace
             if (`x' >= 9 ){
-                merge 1:1 pid using ~/dropbox/goms/rawdata/goms_gh`yr' , nogen
+                merge 1:1 pid using rawdata/goms_gh`yr' , nogen
                 replace hsname = "" if strpos(hsname, "-1")
                 replace hsname = "" if strpos(hsname, "-2")
                 replace hsname = "" if strpos(hsname, "모름")
@@ -230,6 +236,7 @@ cd ~/dropbox/goms
                 replace hsname = "" if strpos(hsname, "탁송")
                 capture label var hsname "출신고교명"
                 capture label var hscode "출신고교code"
+                capture tostring hscode , replace
             }
             rename * *`yr'
         /*}}}*/
@@ -247,11 +254,11 @@ cd ~/dropbox/goms
             if ("`x'" == "7") {
                 rename unibran branch07
                 label var branch "본분교"
-                save ~/dropbox/goms/goms_master.dta , replace
+                save goms_master.dta , replace
             }
             else {
-                append using ~/dropbox/goms/goms_master.dta
-                save ~/dropbox/goms/goms_master.dta , replace
+                append using goms_master.dta
+                save goms_master.dta , replace
             }
         }
     /*}}}*/
@@ -269,6 +276,7 @@ cd ~/dropbox/goms
         egen a009 = rowtotal(a009_2018??) , missing      ; label var a009 "현직장 직업세분류(2018)" ; label value a009 G171A009 ;
         egen a010 = rowtotal(a010??) , missing           ; label var a010 "기업체 종사자수" ; label value a010 LABI ;
         egen a011 = rowtotal(a011??) , missing           ; label var a011 "사업체 종사자수" ; label value a011 LABI ;
+        egen a015 = rowtotal(a015??) , missing           ; label var a015 "사업체 위치(시군구)" ; label value a015 G191LABF ;
         egen a021 = rowtotal(a021??) , missing           ; label var a021 "현직장 종사상지위" ; label value a021 G171A021 ;
         egen a022 = rowtotal(a022??) , missing           ; label var a022 "계약기간 존재여부" ; label value a022 G171A022 ;
         egen a059 = rowtotal(a059??) , missing           ; label var a059 "현직장 정규직(응답자판단)" ; label value a059 G171A059 ;
@@ -301,25 +309,24 @@ cd ~/dropbox/goms
         egen school = rowtotal(school??) , missing       ; label var school "출신대학유형" ; label value school G071SCHO ;
         egen pid = rowtotal(pid??) , missing             ; label var pid "id" ;
 #delimit cr
-merge m:1 uniname using ~/dropbox/goms/rawdata/uniranking.dta , nogen
+merge 1:1 pid year using rawdata/goms_univ.dta , nogen
 	label var unirank "QS2018순위"
-	/* 07-17까지 뒷자리 제거 {{{*/
+	/* 07-17까지 뒷자리 제거(a015 같은 이름의 변수는 아래의 절차를 넣을 것) {{{*/
         rename f009?? f009??mark
         rename f013?? f013??mark
         rename f014?? f014??mark
         rename f170?? f170??mark
         rename (f007 f010 f011 f012) (f007mark f010mark f011mark f012mark)
-        rename (a007 a008 a009 a010 a011) (a007mark a008mark a009mark a010mark a011mark)
-        forvalue i = 7/17 {
+        rename (a007 a008 a009 a010 a011 a015) (a007mark a008mark a009mark a010mark a011mark a015mark)
+        forvalue i = 7/19 {
             local yr : disp %02.0f = `i'
             drop *`yr'
         }
-        drop unibran
         rename *mark *
 	/*}}}*/
 /*}}}*/
-label data "GOMS 07-17"
+label data "GOMS 07-19"
 	order _all , alpha
 	order pid wave year , first
 	sort wave pid
-save ~/dropbox/goms/goms_master.dta , replace
+save goms_master.dta , replace

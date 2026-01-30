@@ -1,4 +1,5 @@
-use ~/dropbox/goms/goms_master , clear
+cd ~/dropbox/data/goms
+use goms_master , clear
 /*자료제한 1981-1993년생 , 2000-2012년 고교졸업자 */
 /*keep if inrange(birthy , 1981 , 1994) & inrange(f001 , 2000 , 2011)*/
   /*자료 신뢰도 검증{{{*/
@@ -507,4 +508,4 @@ use ~/dropbox/goms/goms_master , clear
     order pid year wave *grp* , first
     compress
   /*}}}*/
-save ~/dropbox/goms/goms.dta , replace
+save goms.dta , replace
