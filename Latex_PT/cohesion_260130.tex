@@ -1,0 +1,316 @@
+%----------------------------------------------------------
+% PACKAGES AND THEMES
+%----------------------------------------------------------
+\documentclass[aspectratio=169,xcolor=dvipsnames,handout]{beamer}
+
+\usetheme{Darmstadt}
+\usecolortheme{seahorse}
+\setbeamercovered{transparent}
+
+\usepackage[hangul]{kotex}
+\usepackage{hyperref}
+\usepackage{graphicx, array, adjustbox, makecell}
+\usepackage{booktabs, multicol, multirow}
+
+% font조정
+%\usepackage{fontspec}
+%\setmainfont{Times New Roman}
+%\setmainhangulfont{NanumGothic}
+
+% 문자열 대체{노사관계론 전용}
+\usepackage{newunicodechar}
+\newunicodechar{•}{$\cdot$}
+\newunicodechar{➔}{$\implies$}
+\newunicodechar{∴}{$\therefore$}
+\newunicodechar{∵}{$\because$}
+
+%----------------------------------------------------------
+% TITLE PAGE
+%----------------------------------------------------------
+\title{한국의 정치갈등: 극우성향 집단의 부상}
+%\subtitle{}
+\author[Oh \& Lee]{오성재\inst{1}}
+\institute[KIHASA / SUFE]
+{%
+  \inst{1}
+  %사회보장정책연구실\\
+  한국보건사회연구원\\
+  %\vspace{0.2cm}
+  %\inst{2}
+  %%Research Institute of Economics and Management\\
+  %Southwestern University of Finance and Economics, China\\
+  %\vspace{0.4cm}
+}
+\date[]{한국·일본의 사회이동성 현황 세미나\\2026년 2월 5일}
+
+%----------------------------------------------------------
+\begin{document}
+%----------------------------------------------------------
+
+\frame{\titlepage}
+
+\begin{frame}{목차}
+    \small
+    \tableofcontents[hideallsubsections]
+\end{frame}
+
+\section{배경}
+\begin{frame}
+    \frametitle{2025. 12. 3. 계엄선포}
+    \begin{itemize}[<+->]
+        \item 일자별 주요 사건
+        \begin{itemize}[<+->]
+            \item 25.12.3. 윤석열 대통령 계엄선포 및 익일 해제.
+            \item 26.1.15. 윤석열 대통령 체포.
+            \item 26.1.19. 서부지법 폭력 점거.
+            \item 26.4.4. 윤석열 탄핵.
+            \item 26.6.3. 이재명 대통령 당선.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{`극우'의 부상}
+    \begin{itemize}[<+->]
+        \item 계엄지지 집단의 부상과 동시에 이들을 `극우'로 호칭하기 시작.
+        \begin{itemize}[<+->]
+            \item 윤 대통령 체포이후 구속영장 발부에 대한 항의로 서울 서부지법을 폭력 점거함.
+            \item 139명 체포, 95명 구속, 140명 기소, 42명 확정판결, 98명 재판진행 중.
+        \end{itemize}
+        \begin{figure}
+            \includegraphics[width=.4\textwidth]{pic/서부지법_침입.png}
+            \\
+            \raggedright
+            \hspace{1em}
+            \tiny{자료: 머니투데이 (2025.4.17.)}
+        \end{figure}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{여론의 추이}
+    \centering
+    \begin{figure}
+        \includegraphics[width=.4\textwidth]{pic/극우_추이.png}
+        \\
+        \raggedright
+        \hspace{1em}
+        \tiny{자료: 빅카인즈 뉴스검색서비스(https://www.bigkinds.or.kr/)}
+    \end{figure}
+    \begin{itemize}[<+->]
+        \item 계엄을 전후로 `극우'관련 기사의 생산은 급격한 차이를 보임.
+        \item 25년 1월경의 미국 대통령 선거 영향을 제외 하더라도 차이는 유효함.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{여론의 추이}
+    \centering
+    \begin{figure}
+        \includegraphics[width=.5\textwidth]{pic/극우_검색어추이.png}
+        \\
+        \raggedright
+        \hspace{1em}
+        \tiny{자료: 빅카인즈 뉴스검색서비스(https://www.bigkinds.or.kr/)}
+    \end{figure}
+    \begin{itemize}[<+->]
+        \item 기사 생산량에서 `극우'는 갈등, 통합, 민주주의, 분열 과 같은 단어와 모두 양의 상관관계.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{`극우 관련 키워드'}
+    \centering
+    \begin{figure}
+        \includegraphics[width=.5\textwidth]{pic/극우_키워드.png}
+        \\
+        \raggedright
+        \hspace{1em}
+        \tiny{자료: 빅카인즈 뉴스검색서비스(https://www.bigkinds.or.kr/)}
+    \end{figure}
+    \begin{itemize}[<+->]
+        \item `극우'기사의 연관어는 `민주주의', `엘리트', `차별금지법' 등 사회갈등 요소를 내포하고 있음.
+    \end{itemize}
+\end{frame}
+
+\section{발표목표}%
+\begin{frame}
+    \frametitle{목표 및 주요 내용}
+    \begin{itemize}[<+->]
+        \item 발표내용.
+        \begin{itemize}[<+->]
+            \item 한국에서 극우성향의 집단에 대한 규모 소개.
+            \item 26년 진행될 연구의 방향 소개.
+        \end{itemize}
+        \item 주요내용.
+        \begin{itemize}[<+->]
+            \item 응답자의 성향을 기준으로 할 경우 극우성향은 성인인구의 약 20\%. 
+            \item 응답자의 자기정체성을 기준으로 할 경우 극우는 성인인구의 약 2--9\%.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+
+\section{객관적 기준 설문조사(최영준 2025)}%
+
+\begin{frame}[allowframebreaks]
+\frametitle{극우의 객관적 정의}
+    \begin{itemize}[<+->]
+        \item 극단주의와 우파를 구분한 후 각 속성에 대한 총 7개 질문에 긍정 대답을 한 개인들을 극우 성향으로 분류.
+        \item 극단주의(far, extreme, populism)
+        \begin{itemize}[<+->]
+            \item 권위주의: 정치적 안정과 경제발전을 위해 강력한 지도자가 필요하다.
+            \item 급진주의: 현재의 정치•사회 체제를 과감하게 타파하기 위해서는 급진적 수단이 필요할 수 있다.
+            \item 반엘리트주의(포퓰리즘): 정치, 경제, 문화 분야의 기득권층은 일반시민들의 삶에 관심이 없다.
+        \end{itemize}
+        \framebreak%
+        \item 우파(right, conservative)
+        \begin{itemize}[<+->]
+            \item 토착주의(반이민주의): 외국인의 시민권 부여 및 복지혜택 요건은 지금보다 더욱 엄격해야 한다.
+            \item 보수주의: 전통적인 가족 구조와 도덕적 규범은 사회의 안정과 발전을 위해 반드시 지켜져야 한다.
+            \item 반공주의: 북한과의 협력보다는 강경 대응이 필요하다.
+            \item 사회 다윈주의: 모든 사람이 동일한 출발점을 가질 수 없으며, 각자의 능력 차이가 당연하다.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{극우성향의 인구사회학적 구성}
+    \begin{itemize}[<+->]
+        \item 1000명을 대상으로 하는 온라인 조사 결과 극우성향 집단은 약 21\%, 극좌는 0.2\%.
+        \item 극우성향의 집단의 주요 인구사회학적 요소는 아래와 같음.
+        \begin{itemize}[<+->]
+            \item 남성 24\%
+            \item 18--29세 28\%, 70세 이상 29\%
+            \item 고졸이하 24\%
+            \item 농/임/어업 28\%, 판매/영업/서비스 33\%, 무직/퇴직 26\%
+            \item 가구소득 100만원 미만 30\%, 1천만원 이상 27\%
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{정치지향}
+    \centering
+    \begin{figure}
+        \includegraphics[width=.5\textwidth]{pic/최영준_정치성향.png}
+        \\
+        \raggedright
+        \hspace{1em}
+        \tiny{자료: 최영준 (2025)}
+    \end{figure}
+    \begin{itemize}[<+->]
+        \item 극우 성향의 45\%는 스스로를 중도 또는 진보로 인식.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{정치효능감}
+    \begin{itemize}[<+->]
+        \item `나 같은 사람은 정부가 하는 일에 대해 어떤 영향도 미칠 수 없다.'는 질문에 극우집단은 더 많은 동의를 함.
+    \end{itemize}
+    \centering
+    \begin{figure}
+        \includegraphics[width=.5\textwidth]{pic/최영준_정치효능감_나-정부.png}
+    \end{figure}
+    \begin{itemize}[<+->]
+        \item `정부는 나 같은 사람들의 생각이나 의견에 관심이 없다.'는 질문에 대해서도 극우집단은 더 많은 동의를 함.
+    \end{itemize}
+    \begin{figure}
+        \includegraphics[width=.5\textwidth]{pic/최영준_정치효능감_정부-나.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{공감욕구}
+    \begin{itemize}[<+->]
+        \item `얼마나 많은 사람들이 내 생각에 공감해 주는가는 일상에서 매우 중요하다고 생각한다.'는 질문에 극우집단은 더 많은 동의를 함.
+    \end{itemize}
+    \centering
+    \begin{figure}
+        \includegraphics[width=.5\textwidth]{pic/최영준_공감욕구.png}
+    \end{figure}
+    \begin{itemize}[<+->]
+        \item 반면, 인적교류 정도와 극우성향의 음의 상관관계는 30대(가까운 지인), 70대(타인)에서만 관찰됨.
+    \end{itemize}
+\end{frame}
+
+\section{주관적 설문조사(정한울 2025)}
+\begin{frame}
+    \frametitle{극우 정의의 한계}
+    \begin{itemize}[<+->]
+        \item 객관적 지표
+        \begin{itemize}[<+->]
+            \item 객관적 기준이라는 장점.
+            \item 그러나 기준이 난해함.
+            \item 측정 및 분류의 기준을 정하는 단계에서 `경계의 문제(study of boundaries)' 가 발생.
+        \end{itemize}
+        \item 주관적 지표
+        \begin{itemize}[<+->]
+            \item 응답자에게 본인의 정체성을 직접 물음.
+            \item 직관적인 결과.
+            \item 응답의 신뢰도 문제는 존재.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{주관적 지표에 의한 극우의 규모}
+    \begin{itemize}[<+->]
+        \item 진보정책연구원·한국사람연구원 2025. 4월, 5월 등등.
+        \begin{enumerate}
+            \item 극단적 좌파-극단적 우파 까지 5점 척도.
+            \item 극우 비율은 2-6\%.
+        \end{enumerate}
+        \item 시사인·한국리서치 조사
+        \begin{enumerate}
+            \item `나는 극우파다.'에 대한 동의여부.
+            \item 극우 비율은 9\%.
+        \end{enumerate}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{계엄 및 서부지법 사건에 대한 태도}
+    \begin{itemize}[<+->]
+        \item 극우집단은 계엄과 서부지법 사태를 정당한 행위로 인식. 
+    \end{itemize}
+    \centering
+    \begin{figure}
+        \includegraphics[width=.5\textwidth]{pic/진사연_계엄서부.png}
+        \\
+        \raggedright
+        \hspace{1em}
+        \tiny{자료: 정한울 (2025)에서 재인용.}
+    \end{figure}
+\end{frame}
+
+\section{맺음말}%
+\begin{frame}
+    \frametitle{향후과제}
+    \begin{itemize}[<+->]
+        \item 극단적 성향 집단에 대한 꾸준한 파악.
+        \begin{itemize}[<+->]
+            \item 우리사회의 극우는 25년부터 부각되었지만, 해외에서는 견고한 세력을 형성.
+            \item 이들에 대한 파악은 향후 한국의 정치·사회 진행방향을 가늠하는데 중요한 요인.
+            \item 극좌 역시 언제든 확장할 수 있음.
+        \end{itemize}
+        \item 극우가 존재하는 사회에서 사회통합의 방향 모색. 
+        \begin{itemize}[<+->]
+            \item 극우의 성향 뿐만 아니라 배경 및 상태에 대한 복합적 이해가 필요.
+            \item 기존의 사회정책을 통한 갈등해결 모색.
+            \item 또는, 새로운 사회정책 발굴.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \centering
+    \huge
+    감사합니다.
+\end{frame}
+
+
+%------------------------------------------------
+\end{document}
+%------------------------------------------------
