@@ -1,0 +1,4 @@
+﻿시군구,종류,시작년도,종료년도,url,orgId,tblId
+경기도,종사자규모별,2001,2023,https://kosis.kr/openapi/Param/statisticsParameterData.do?method=getList&apiKey=인증키없음&itmId=T001+T002+T003+T004+T005+&objL1=ALL&objL2=ALL&objL3=&objL4=&objL5=&objL6=&objL7=&objL8=&format=json&jsonVD=Y&prdSe=Y&newEstPrdCnt=3&orgId=210&tblId=DT_21002D002,210,DT_21002D002
+경기도,산업별,2001,2023,https://kosis.kr/openapi/Param/statisticsParameterData.do?method=getList&apiKey=인증키없음&itmId=T001+T002+T003+T004+T005+&objL1=ALL&objL2=ALL&objL3=&objL4=&objL5=&objL6=&objL7=&objL8=&format=json&jsonVD=Y&prdSe=Y&newEstPrdCnt=3&orgId=210&tblId=DT_21002D003,210,DT_21002D003
+경상남도,산업별,2006,2023,https://kosis.kr/openapi/Param/statisticsParameterData.do?method=getList&apiKey=인증키없음&itmId=T001+T002+T003+T004+T005+&objL1=ALL&objL2=ALL&objL3=&objL4=&objL5=&objL6=&objL7=&objL8=&format=json&jsonVD=Y&prdSe=Y&newEstPrdCnt=3&orgId=217&tblId=DT_217003N_D003,217,DT_217003N_D003
