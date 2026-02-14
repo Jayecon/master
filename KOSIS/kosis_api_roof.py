@@ -12,7 +12,7 @@ from pathlib import Path
 BASE_URL = "https://kosis.kr/openapi/Param/statisticsParameterData.do"
 API_KEY = "YOUR_API_KEY"
 
-META_FILE = "kosis_area_sido_updated.xlsx"
+META_FILE = "kosis_area_sido_updated2.xlsx"
 OUTPUT_FILE = "kosis_all_panel.csv"
 
 MAX_RETRY = 3
