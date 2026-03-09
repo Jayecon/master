@@ -48,19 +48,25 @@ import delimited "강원_211_DT_211002_D004_20260215054246.csv", ///
     clear varnames(1) encoding()
 	
 *******************************************************
-* 2. Id = 시군, time = 시점
+* 2. Id = 시군, year = 시점
 *******************************************************
-rename 시군 id
-rename 시점 time
+rename 시군               id
+rename 시점               year
+rename 사업체개           cop
+rename 여성대표자사업체개 wop
+rename 종사자명           emp
+rename 남자종사자명       mmp
+rename 여자종사자명       fmp
 
 *******************************************************
-* 3. time 숫자만 추출
+* 3. year 숫자만 추출
 *******************************************************
-capture confirm string variable time
+
+capture confirm string variable year
 if _rc == 0 {
-    gen time_num = real(regexs(0)) if regexm(time, "[0-9]+")
-    drop time    
-	rename time_num time
+    gen year_num = real(regexs(0)) if regexm(year, "[0-9]+")
+    drop year    
+	rename year_num year
 }
 
 *******************************************************
@@ -114,4 +120,6 @@ compress
 describe
 label list
 tab size_cat
+
+reshape wide cop wop emp mmp fmp , i(id year) j(size_cat)
 
