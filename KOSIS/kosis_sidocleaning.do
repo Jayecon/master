@@ -121,5 +121,8 @@ describe
 label list
 tab size_cat
 
+*******************************************************
+* 7. reshape
+*******************************************************
 reshape wide cop wop emp mmp fmp , i(id year) j(size_cat)
 
