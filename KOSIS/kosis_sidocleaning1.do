@@ -152,29 +152,3 @@ foreach k of local flist1 {
 }
 
 order ctry id year ,first
-
-local flist2 경북_종사자규모별_사업체수_및_종사자수_20260215055156.csv 광주_종사자규모별_사업체수_및_종사자수_20260215053330.csv 대구_종사자규모별_사업체수_및_종사자수_20260214182155.cSv 대전_종사자규모별_사업체수_및_종사자수_20260215053541.csv 부산_종사자_규모별_사업체수_및_종사자수_20260214181920.csv 서울_사업체현황_종사자규모별_동별_20260215055736.csv 세종_종사규모별_사업체수_및_종사자수_20260215053907.csv 울산_종사자규모별_사업체수_및_종사자수_20260215053721.csv 인천_종사자_규모별_사업체수_및_종사자수_20260214182327.csv 전북_종사자규모별_사업체수_및_종사자수_20260215054927.csv 제주_종사자규모별_사업체수_및_종사자수_20260215055429.csv 중남_종사자규모별_사업체수_및_종사자수_20260215054727.csv 충북_종사자_규모별_사업체수_및_종사자수_20260215054452.csv
-
-foreach k of local flist1 {
-    import delimited "`k'", clear (1) ()
-    di "loading `k'"
-
-    ds
-    local aaa `r(varlist)'
-    foreach i of local aaa {
-        replace `i' = subinstr(`i' , " " , "" , .)
-        replace `i' = subinstr(`i' , "~" , "-" , .)
-        replace `i' = subinstr(`i' , "9명"" , "9" , .)
-        replace `i' = subinstr(`i' , "9명"" , "9" , .)
-    }
-    foreach i of local aaa {
-        rename `i' id_`i' if strpos("시군")
-        rename `i' id_`i' if strpos("시점")
-        rename `i' id_`i' if strpos("사업체수개")
-        rename `i' id_`i' if strpos("여성대표자사업체수개")
-        rename `i' id_`i' if strpos("남성종사자수명")
-        rename `i' id_`i' if strpos("여성종사자수명")
-        rename `i' id_`i' if strpos("종사자수명")
-        gen ctry = "경기"
-    }
-    list in 1/2
