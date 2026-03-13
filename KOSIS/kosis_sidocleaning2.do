@@ -1,6 +1,7 @@
 *******************************************************
 * 0. 기본 설정
 *******************************************************
+/*pause on*/
 global path ~/dropbox
 tempfile tfile
 cd "$path"
@@ -24,6 +25,9 @@ foreach l of local flist2 {
         local k `i'[1]
         local j `i'[2]
         if strpos(`j',"시군"){
+            local vname id
+        }
+        if strpos(`j',"구군"){
             local vname id
         }
         if strpos(`j',"행정"){
@@ -84,7 +88,7 @@ foreach l of local flist2 {
         else if strpos(`k',"500-999"){
             local snum 9
         }
-        else if strpos(`k',"합계"){
+        else if strpos(`k',"계"){
             local snum 10
         }
         else if strpos(`k',"300"){
@@ -93,11 +97,51 @@ foreach l of local flist2 {
         else {
             local snum
         }
-
         rename `i' `vname'`snum'
     }
-
-      if "`l'" == "경북_종사자규모별_사업체수_및_종사자수_20260215055156.csv" {
+    order id year ,first
+    drop in 1/2
+    destring , replace
+    ds , has(type string)
+    local vslist `r(varlist)'
+    foreach i of local vslist {
+        replace `i' = subinstr(`i', ",", "", .)
+        replace `i' = subinstr(`i', "-", "", .)
+        replace `i' = subinstr(`i', "x", "", .)
+        replace `i' = subinstr(`i', "X", "", .)
+        destring `i', replace
+    }
+    if strpos("`l'","경북"){
+        gen ctry = "경북"
+    }
+    else if strpos("`l'","대구"){
+        gen ctry = "대구"
+    }
+    else if strpos("`l'","대전"){
+        gen ctry = "대전"
+    }
+    else if strpos("`l'","부산"){
+        gen ctry = "부산"
+    }
+    else if strpos("`l'","세종"){
+        gen ctry = "세종"
+    }
+    else if strpos("`l'","울산"){
+        gen ctry = "울산"
+    }
+    else if strpos("`l'","전북"){
+        gen ctry = "전북"
+    }
+    else if strpos("`l'","제주"){
+        gen ctry = "제주"
+    }
+    else if strpos("`l'","충남"){
+        gen ctry = "충남"
+    }
+    else if strpos(`k',"1-4") {
+        local snum 1
+    }
+    if "`l'" == "경북_종사자규모별_사업체수_및_종사자수_20260215055156.csv" {
         save `tfile'
     }
     else {
@@ -106,5 +150,6 @@ foreach l of local flist2 {
     }
 }
 
-order id year ,first
-
+compress
+order _all , alpha
+order ctry id year , first

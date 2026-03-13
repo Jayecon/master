@@ -1,4 +1,3 @@
-
 *******************************************************
 * 0. 기본 설정
 *******************************************************
@@ -142,6 +141,17 @@ foreach k of local flist1 {
             label var `i'`j' "`vlb`i''_`slb`j''"
         }
     }
+    order ctry id year ,first
+    destring cop1-fmp10 , replace
+    ds , has(type string)
+    local vslist `r(varlist)'
+    foreach i of local vslist {
+        replace `i' = subinstr(`i', ",", "", .)
+        replace `i' = subinstr(`i', "-", "", .)
+        replace `i' = subinstr(`i', "x", "", .)
+        replace `i' = subinstr(`i', "X", "", .)
+        destring `i', replace
+        }
     if "`k'" == "강원_211_DT_211002_D004_20260215054246.csv" {
         save `tfile'
     }
@@ -151,4 +161,3 @@ foreach k of local flist1 {
     }
 }
 
-order ctry id year ,first
