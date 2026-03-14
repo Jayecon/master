@@ -2,16 +2,22 @@
 * 0. 기본 설정
 *******************************************************
 /*pause on*/
-global path ~/dropbox
 tempfile tfile
-cd "$path"
 
-local flist2 경북_종사자규모별_사업체수_및_종사자수_20260215055156.csv 대구_종사자규모별_사업체수_및_종사자수_20260214182155.cSv 대전_종사자규모별_사업체수_및_종사자수_20260215053541.csv 부산_종사자_규모별_사업체수_및_종사자수_20260214181920.csv 세종_종사규모별_사업체수_및_종사자수_20260215053907.csv 울산_종사자규모별_사업체수_및_종사자수_20260215053721.csv 전북_종사자규모별_사업체수_및_종사자수_20260215054927.csv 제주_종사자규모별_사업체수_및_종사자수_20260215055429.csv 충남_종사자규모별_사업체수_및_종사자수_20260215054727.csv 
+local flist2 경북_종사자규모별_사업체수_및_종사자수_20260215055156.csv ///
+            대구_종사자규모별_사업체수_및_종사자수_20260214182155.cSv ///
+            대전_종사자규모별_사업체수_및_종사자수_20260215053541.csv ///
+            부산_종사자_규모별_사업체수_및_종사자수_20260214181920.csv ///
+            세종_종사규모별_사업체수_및_종사자수_20260215053907.csv ///
+            울산_종사자규모별_사업체수_및_종사자수_20260215053721.csv ///
+            전북_종사자규모별_사업체수_및_종사자수_20260215054927.csv ///
+            제주_종사자규모별_사업체수_및_종사자수_20260215055429.csv ///
+            충남_종사자규모별_사업체수_및_종사자수_20260215054727.csv ///
+            충북_종사자_규모별_사업체수_및_종사자수_20260215054452.csv
 
 foreach l of local flist2 {
-    import delimited "`l'", clear
+    import delimited $path`l', clear
     di "loading `l'"
-
     ds
     local vlist `r(varlist)'
     foreach i of local vlist {
@@ -21,9 +27,14 @@ foreach l of local flist2 {
         replace `i' = subinstr(`i' , "0명" , "0" , .)
         replace `i' = subinstr(`i' , "이상" , "" , .)
     }
+
     foreach i of local vlist {
         local k `i'[1]
         local j `i'[2]
+        local keys "시군 구군 행정"
+        foreach k of local keys {
+            if strpos("`j'","`k'") local vname id
+        }
         if strpos(`j',"시군"){
             local vname id
         }
@@ -138,8 +149,8 @@ foreach l of local flist2 {
     else if strpos("`l'","충남"){
         gen ctry = "충남"
     }
-    else if strpos(`k',"1-4") {
-        local snum 1
+    else if strpos("`l'","충북"){
+        gen ctry = "충북"
     }
     if "`l'" == "경북_종사자규모별_사업체수_및_종사자수_20260215055156.csv" {
         save `tfile'

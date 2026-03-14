@@ -59,6 +59,7 @@ set nocompatible " no compatible with the original Vi filetype off
             Plug 'git@github.com:honza/vim-snippets.git'
         Plug 'wfxr/minimap.vim'                 "Blazing fast minimap for vim
         Plug 'jiangmiao/auto-pairs'
+        Plug 'git@github.com:ervandew/supertab.git' "use <Tab> for insert completion
     call plug#end()
     " }}}1
     " Plugins Specific Setting -------------------- {{{1
@@ -275,7 +276,6 @@ set nocompatible " no compatible with the original Vi filetype off
             let g:minimap_block_filetypes = ['tex']
         " }}}2
         " auto-pair ---------------------- {{{2
-        " " ~/.vimrc (또는 plugin 설정 파일)
             augroup AutoPairsStataOverride
                 autocmd!
                 autocmd FileType stata call s:ap_override_stata()

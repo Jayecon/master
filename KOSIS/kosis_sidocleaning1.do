@@ -1,18 +1,20 @@
 *******************************************************
 * 0. 기본 설정
 *******************************************************
-global	path ~/dropbox
 tempfile tfile
-cd "$path"
-local flist1 강원_211_DT_211002_D004_20260215054246.csv 경기_210_DT_21002D002_20260215054050.csv 경남_217_DT_217003N_D002_20260215055312.csv 전남_215_DT_215N_D05_20260215055034.csv
+local flist1 강원_211_DT_211002_D004_20260215054246.csv ///
+            경기_210_DT_21002D002_20260215054050.csv ///
+            경남_217_DT_217003N_D002_20260215055312.csv ///
+            전남_215_DT_215N_D05_20260215055034.csv
 
     *******************************************************
     * 1. 데이터 불러오기
     *******************************************************
 foreach k of local flist1 {
-    import delimited "`k'", ///
+    import delimited $path`k', ///
         clear varnames(1) encoding()
     di "loading `k'"
+
     *******************************************************
     * 2. Id = 시군, year = 시점
     *******************************************************
@@ -57,6 +59,7 @@ foreach k of local flist1 {
         rename 여자종사자수명       fmp
         gen ctry = "전남"
     }
+
     *******************************************************
     * 3. year 숫자만 추출
     *******************************************************
@@ -66,6 +69,7 @@ foreach k of local flist1 {
         drop year    
         rename year_num year
     }
+
     *******************************************************
     * 4. 종사자규모별 → numeric category + value label
     *******************************************************
@@ -75,7 +79,6 @@ foreach k of local flist1 {
     replace 종사자규모별 = subinstr(종사자규모별 , ",", "", .)
     replace 종사자규모별 = subinstr(종사자규모별 , "명", "", .)
     replace 종사자규모별 = subinstr(종사자규모별 , "이상", "", .)
-
     * 문자열일 경우 encode (자동으로 value label 생성)
     capture confirm string variable 종사자규모별
     if _rc == 0 {
@@ -83,7 +86,6 @@ foreach k of local flist1 {
         drop 종사자규모별
         rename size_cat size_cat
     }
-
     * 이미 numeric인 경우 value label이 없으면 새로 생성
     capture confirm numeric variable size_cat
     if _rc != 0 {
@@ -92,7 +94,6 @@ foreach k of local flist1 {
             rename 종사자규모별 size_cat
         }
     }
-
     * value label이 없는 경우 원래 문자열 기준으로 재생성
     capture label list size_cat
     if _rc != 0 {
@@ -141,6 +142,7 @@ foreach k of local flist1 {
             label var `i'`j' "`vlb`i''_`slb`j''"
         }
     }
+    order _all ,alpha
     order ctry id year ,first
     destring cop1-fmp10 , replace
     ds , has(type string)
@@ -159,5 +161,8 @@ foreach k of local flist1 {
         append using `tfile'
         save `tfile' , replace
     }
+    foreach v of varlist _all {
+        capture assert missing(`v')
+        if !_rc drop `v'
+    }
 }
-
