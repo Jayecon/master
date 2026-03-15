@@ -1,166 +1,159 @@
 *******************************************************
 * 0. 기본 설정
 *******************************************************
-/*pause on*/
 tempfile tfile
+local first 1
 
-local flist2 경북_종사자규모별_사업체수_및_종사자수_20260215055156.csv ///
-            대구_종사자규모별_사업체수_및_종사자수_20260214182155.cSv ///
-            대전_종사자규모별_사업체수_및_종사자수_20260215053541.csv ///
-            부산_종사자_규모별_사업체수_및_종사자수_20260214181920.csv ///
-            세종_종사규모별_사업체수_및_종사자수_20260215053907.csv ///
-            울산_종사자규모별_사업체수_및_종사자수_20260215053721.csv ///
-            전북_종사자규모별_사업체수_및_종사자수_20260215054927.csv ///
-            제주_종사자규모별_사업체수_및_종사자수_20260215055429.csv ///
-            충남_종사자규모별_사업체수_및_종사자수_20260215054727.csv ///
-            충북_종사자_규모별_사업체수_및_종사자수_20260215054452.csv
+local flist2 ///
+    경북_종사자규모별_사업체수_및_종사자수_20260215055156.csv ///
+    대구_종사자규모별_사업체수_및_종사자수_20260214182155.cSv ///
+    대전_종사자규모별_사업체수_및_종사자수_20260215053541.csv ///
+    부산_종사자_규모별_사업체수_및_종사자수_20260214181920.csv ///
+    세종_종사규모별_사업체수_및_종사자수_20260215053907.csv ///
+    울산_종사자규모별_사업체수_및_종사자수_20260215053721.csv ///
+    전북_종사자규모별_사업체수_및_종사자수_20260215054927.csv ///
+    제주_종사자규모별_사업체수_및_종사자수_20260215055429.csv ///
+    충남_종사자규모별_사업체수_및_종사자수_20260215054727.csv ///
+    충북_종사자_규모별_사업체수_및_종사자수_20260215054452.csv
 
+*******************************************************
+* 1. 매핑 테이블
+*******************************************************
+
+* label_text -> vname
+local map_vname ///
+    `"id|시군 구군 행정"' ///
+    `"year|시점"' ///
+    `"cop|사업체"' ///
+    `"wop|여성대표자"' ///
+    `"emp|종사자수"' ///
+    `"mmp|남자종사 남성종사"' ///
+    `"fmp|여자종사 여성종사"' ///
+    `"tot|합계"'
+
+* size_text -> snum
+local map_snum ///
+    `"1|1-4"' ///
+    `"2|10-19"' ///
+    `"3|100-299"' ///
+    `"4|1000"' ///
+    `"5|20-49"' ///
+    `"6|300-499"' ///
+    `"7|5-9"' ///
+    `"8|50-99"' ///
+    `"9|500-999"' ///
+    `"10|계"' ///
+    `"11|300"'
+
+*******************************************************
+* 2. 파일 반복
+*******************************************************
 foreach l of local flist2 {
-    import delimited $path`l', clear
+
+    import delimited "$path`l'", clear
     di "loading `l'"
+
     ds
     local vlist `r(varlist)'
-    foreach i of local vlist {
-        replace `i' = subinstr(`i' , " " , "" , .)
-        replace `i' = subinstr(`i' , "~" , "-" , .)
-        replace `i' = subinstr(`i' , "9명" , "9" , .)
-        replace `i' = subinstr(`i' , "0명" , "0" , .)
-        replace `i' = subinstr(`i' , "이상" , "" , .)
+
+    ***************************************************
+    * 2-1. 문자열 정리
+    ***************************************************
+    foreach v of local vlist {
+        replace `v' = subinstr(`v', " ",   "",  .)
+        replace `v' = subinstr(`v', "~",   "-", .)
+        replace `v' = subinstr(`v', "9명", "9", .)
+        replace `v' = subinstr(`v', "0명", "0", .)
+        replace `v' = subinstr(`v', "이상", "", .)
     }
 
-    foreach i of local vlist {
-        local k `i'[1]
-        local j `i'[2]
-        local keys "시군 구군 행정"
-        foreach k of local keys {
-            if strpos("`j'","`k'") local vname id
-        }
-        if strpos(`j',"시군"){
-            local vname id
-        }
-        if strpos(`j',"구군"){
-            local vname id
-        }
-        if strpos(`j',"행정"){
-            local vname id
-        }
-        if strpos(`j',"시점"){
-            local vname year
-        }
-        if strpos(`j',"사업체"){
-            local vname cop
-        }
-        if strpos(`j',"여성대표자"){
-            local vname wop
-        }
-        if strpos(`j',"종사자수"){
-            local vname emp
-        }
-        if strpos(`j',"남자종사"){
-            local vname mmp
-        }
-        if strpos(`j',"남성종사"){
-            local vname mmp
-        }
-        if strpos(`j',"여자종사"){
-            local vname fmp
-        }
-        if strpos(`j',"여성종사"){
-            local vname fmp
-        }
-        if strpos(`j',"합계"){
-            local vname tot
+    ***************************************************
+    * 2-2. 변수명 변경
+    ***************************************************
+    foreach v of local vlist {
+
+        local size_text  = `v'[1]
+        local label_text = `v'[2]
+
+        local vname ""
+        local snum  ""
+
+        * ---- vname 결정: 매핑 테이블 ----
+        foreach rule of local map_vname {
+            gettoken newname keywords : rule, parse("|")
+            local keywords = subinstr(`"`keywords'"', "|", "", .)
+
+            foreach kw of local keywords {
+                if strpos("`label_text'", "`kw'") {
+                    local vname "`newname'"
+                    continue, break
+                }
+            }
+            if "`vname'" != "" continue, break
         }
 
-        if strpos(`k',"1-4") {
-            local snum 1
+        * ---- snum 결정: 매핑 테이블 ----
+        foreach rule of local map_snum {
+            gettoken newnum key : rule, parse("|")
+            local key = subinstr(`"`key'"', "|", "", .)
+
+            if strpos("`size_text'", "`key'") {
+                local snum "`newnum'"
+                continue, break
+            }
         }
-        else if strpos(`k',"10-19"){
-            local snum 2
-        }
-        else if strpos(`k',"100-299"){
-            local snum 3
-        }
-        else if strpos(`k',"1000"){
-            local snum 4
-        }
-        else if strpos(`k',"20-49"){
-            local snum 5
-        }
-        else if strpos(`k',"300-499"){
-            local snum 6
-        }
-        else if strpos(`k',"5-9"){
-            local snum 7
-        }
-        else if strpos(`k',"50-99"){
-            local snum 8
-        }
-        else if strpos(`k',"500-999"){
-            local snum 9
-        }
-        else if strpos(`k',"계"){
-            local snum 10
-        }
-        else if strpos(`k',"300"){
-            local snum 11
-        }
-        else {
-            local snum
-        }
-        rename `i' `vname'`snum'
+
+        * 이름이 비어 있으면 건너뜀
+        if "`vname'" == "" continue
+
+        rename `v' `vname'`snum'
     }
-    order id year ,first
+
+    order id year, first
     drop in 1/2
-    destring , replace
-    ds , has(type string)
+
+    ***************************************************
+    * 2-3. 숫자형 변환
+    ***************************************************
+    destring, replace
+
+    ds, has(type string)
     local vslist `r(varlist)'
-    foreach i of local vslist {
-        replace `i' = subinstr(`i', ",", "", .)
-        replace `i' = subinstr(`i', "-", "", .)
-        replace `i' = subinstr(`i', "x", "", .)
-        replace `i' = subinstr(`i', "X", "", .)
-        destring `i', replace
+
+    foreach v of local vslist {
+        replace `v' = subinstr(`v', ",", "", .)
+        replace `v' = subinstr(`v', "-", "", .)
+        replace `v' = subinstr(`v', "x", "", .)
+        replace `v' = subinstr(`v', "X", "", .)
+        destring `v', replace
     }
-    if strpos("`l'","경북"){
-        gen ctry = "경북"
+
+    ***************************************************
+    * 2-4. 지역명 생성
+    ***************************************************
+    gen ctry = ""
+
+    foreach region in 경북 대구 대전 부산 세종 울산 전북 제주 충남 충북 {
+        if strpos("`l'", "`region'") replace ctry = "`region'"
     }
-    else if strpos("`l'","대구"){
-        gen ctry = "대구"
-    }
-    else if strpos("`l'","대전"){
-        gen ctry = "대전"
-    }
-    else if strpos("`l'","부산"){
-        gen ctry = "부산"
-    }
-    else if strpos("`l'","세종"){
-        gen ctry = "세종"
-    }
-    else if strpos("`l'","울산"){
-        gen ctry = "울산"
-    }
-    else if strpos("`l'","전북"){
-        gen ctry = "전북"
-    }
-    else if strpos("`l'","제주"){
-        gen ctry = "제주"
-    }
-    else if strpos("`l'","충남"){
-        gen ctry = "충남"
-    }
-    else if strpos("`l'","충북"){
-        gen ctry = "충북"
-    }
-    if "`l'" == "경북_종사자규모별_사업체수_및_종사자수_20260215055156.csv" {
-        save `tfile'
+
+    ***************************************************
+    * 2-5. append
+    ***************************************************
+    if `first' {
+        save `tfile', replace
+        local first 0
     }
     else {
         append using `tfile'
-        save `tfile' , replace
+        save `tfile', replace
     }
 }
 
+*******************************************************
+* 3. 마무리
+*******************************************************
+use `tfile', clear
 compress
-order _all , alpha
-order ctry id year , first
+order _all, alpha
+order ctry id year, first
