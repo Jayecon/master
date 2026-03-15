@@ -2,15 +2,13 @@
 * 0. 기본 설정
 *******************************************************
 /*pause on*/
-global path ~/dropbox
 tempfile tfile
-cd "$path"
 
 local flist3 광주_종사자규모별_사업체수_및_종사자수_20260215053330.csv ///
     서울_사업체현황_종사자규모별_동별__20260215055736.csv ///
         인천_종사자_규모별_사업체수_및_종사자수_20260214182327.csv 
 foreach l of local flist3 {
-    import delimited "`l'", clear
+	import delimited $path`l',clear
     di "loading `l'"
     if strpos("`l'","서울"){
         drop v1

@@ -3,6 +3,7 @@
 *******************************************************
 /*pause on*/
 tempfile tfile
+local ff = 1
 
 local flist2 경북_종사자규모별_사업체수_및_종사자수_20260215055156.csv ///
             대구_종사자규모별_사업체수_및_종사자수_20260214182155.cSv ///
@@ -22,6 +23,7 @@ foreach l of local flist2 {
     local vlist `r(varlist)'
     foreach i of local vlist {
         replace `i' = subinstr(`i' , " " , "" , .)
+        replace `i' = subinstr(`i' , "..." , "" , .)
         replace `i' = subinstr(`i' , "~" , "-" , .)
         replace `i' = subinstr(`i' , "9명" , "9" , .)
         replace `i' = subinstr(`i' , "0명" , "0" , .)
@@ -31,10 +33,8 @@ foreach l of local flist2 {
     foreach i of local vlist {
         local k `i'[1]
         local j `i'[2]
-        local keys "시군 구군 행정"
-        foreach k of local keys {
-            if strpos("`j'","`k'") local vname id
-        }
+        local snum
+        *vname 확정
         if strpos(`j',"시군"){
             local vname id
         }
@@ -52,6 +52,7 @@ foreach l of local flist2 {
         }
         if strpos(`j',"여성대표자"){
             local vname wop
+            local snum 10
         }
         if strpos(`j',"종사자수"){
             local vname emp
@@ -68,11 +69,33 @@ foreach l of local flist2 {
         if strpos(`j',"여성종사"){
             local vname fmp
         }
+        if strpos(`j',"소계"){
+            if strpos(`k',"사업체"){
+                local vname cop
+                local snum 10
+            }
+            if strpos(`k',"종사자"){
+                local vname emp
+                local snum 10
+            }
+        }
+        if strpos(`j',"남"){
+            if strpos(`k',"종사자"){
+                local vname mmp
+                local snum 10
+            }
+        }
+        if strpos(`j',"여"){
+            if strpos(`k',"종사자"){
+                local vname fmp
+                local snum 10
+            }
+        }
         if strpos(`j',"합계"){
             local vname tot
         }
-
-        if strpos(`k',"1-4") {
+		* snum 확정
+       if strpos(`k',"1-4") {
             local snum 1
         }
         else if strpos(`k',"10-19"){
@@ -105,14 +128,12 @@ foreach l of local flist2 {
         else if strpos(`k',"300"){
             local snum 11
         }
-        else {
+        else if "`snum'" == "" {
             local snum
         }
-        rename `i' `vname'`snum'
+		* vname snum 조합으로 rename
+       rename `i' `vname'`snum'
     }
-    order id year ,first
-    drop in 1/2
-    destring , replace
     ds , has(type string)
     local vslist `r(varlist)'
     foreach i of local vslist {
@@ -152,13 +173,19 @@ foreach l of local flist2 {
     else if strpos("`l'","충북"){
         gen ctry = "충북"
     }
-    if "`l'" == "경북_종사자규모별_사업체수_및_종사자수_20260215055156.csv" {
+    order _all ,alpha
+    order ctry id year ,first
+    drop in 1/2
+    destring , replace
+    if `ff' == 1 {
         save `tfile'
+        local ff = 0
     }
     else {
         append using `tfile'
         save `tfile' , replace
     }
+    pause
 }
 
 compress
