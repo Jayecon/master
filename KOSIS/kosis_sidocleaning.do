@@ -1,4 +1,4 @@
-global path ~/dropbox/
+global path ~/dropbox/data/kosis/
 tempfile tfile
 do kosis_sidocleaning1.do
     save `tfile'
