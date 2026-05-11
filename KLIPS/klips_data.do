@@ -203,6 +203,6 @@ tempfile temp
   drop pa*
   capture drop _*
   mvdecode _all , mv(-1)
-  save klips_master , replace
+  save ~/dropbox/klips_master , replace
 
 exit
