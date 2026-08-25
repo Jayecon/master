@@ -2,7 +2,7 @@ set more off
 clear
 
 cd ~/dropbox/data/klips /*pwd;원자료는 pwd의 하위폴더 rawdata에 있다고 가정함*/
-local lwave  26 /*조사최신회차 입력*/
+local lwave  27 /*조사최신회차 입력*/
 tempfile temp
 
   forvalues x = 1/`lwave' {
@@ -203,6 +203,6 @@ tempfile temp
   drop pa*
   capture drop _*
   mvdecode _all , mv(-1)
-  save ~/dropbox/klips_master , replace
+  save ~/dropbox/data/klips/klips_master , replace
 
 exit

@@ -6,7 +6,7 @@ xtset pid wave
 sort pid wave
 
 local fwave  1  /*조사시작회차 입력*/
-local lwave  26 /*조사최신회차 입력*/
+local lwave  27 /*조사최신회차 입력*/
 
   /* Generate the GDP Deflator Variable {{{*/
     /*97년지수부터 시작 (2015 = 100) */
@@ -36,6 +36,7 @@ local lwave  26 /*조사최신회차 입력*/
     local price24 =100.0/100 /*2020=100*/
     local price25 =103.2/100
     local price26 =105.0/100
+	local price27 =107.0/100
     gen gdpdef = .
     label var gdpdef "디플레이터 (2020 = 100)"
     forvalues i = `fwave'/`lwave' {
